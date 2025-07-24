@@ -1,0 +1,948 @@
+Product:
+  name: Amazon Athena
+  versions: [2017.5.18]
+  package: amazon.aws.athena
+  description: |-
+    AWS Athena
+  link: https://docs.aws.amazon.com/athena/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  BatchGetNamedQuery:
+    description: |-
+      Returns the details of a single named query or a list of up to 50 queries, which you provide as an array of query ID strings. Requires you to have access to the workgroup in which the queries were saved. Use ListNamedQueriesInput to get the list of named query IDs in the specified workgroup. If information could not be retrieved for a submitted query ID, information about the query ID submitted is listed under UnprocessedNamedQueryId. Named queries differ from executed queries. Use BatchGetQueryExecutionInput to get details about each unique query execution, and ListQueryExecutionsInput to get a list of query execution IDs.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_BatchGetNamedQuery.html
+    example:
+      inputs: [
+        {
+          "NamedQueryIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NamedQueries": [
+            {
+              "Name": "string",
+              "Database": "string",
+              "WorkGroup": "string",
+              "Description": "string",
+              "QueryString": "string",
+              "NamedQueryId": "string"
+            }
+          ],
+          "UnprocessedNamedQueryIds": [
+            {
+              "ErrorCode": "string",
+              "ErrorMessage": "string",
+              "NamedQueryId": "string"
+            }
+          ]
+        }
+      ]
+  BatchGetQueryExecution:
+    description: |-
+      Returns the details of a single query execution or a list of up to 50 query executions, which you provide as an array of query execution ID strings. Requires you to have access to the workgroup in which the queries ran. To get a list of query execution IDs, use ListQueryExecutions:WorkGroup. Query executions differ from named (saved) queries. Use BatchGetNamedQueryInput to get details about named queries.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_BatchGetQueryExecution.html
+    example:
+      inputs: [
+        {
+          "QueryExecutionIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "QueryExecutions": [
+            {
+              "Query": "string",
+              "Status": {
+                "State": "string",
+                "StateChangeReason": "string",
+                "CompletionDateTime": 1481289211.615,
+                "SubmissionDateTime": 1481289211.615
+              },
+              "WorkGroup": "string",
+              "Statistics": {
+                "DataScannedInBytes": 1,
+                "DataManifestLocation": "string",
+                "QueryQueueTimeInMillis": 1,
+                "QueryPlanningTimeInMillis": 1,
+                "TotalExecutionTimeInMillis": 1,
+                "EngineExecutionTimeInMillis": 1,
+                "ServiceProcessingTimeInMillis": 1
+              },
+              "EngineVersion": {
+                "SelectedEngineVersion": "string",
+                "EffectiveEngineVersion": "string"
+              },
+              "StatementType": "string",
+              "QueryExecutionId": "string",
+              "ResultConfiguration": {
+                "OutputLocation": "string",
+                "EncryptionConfiguration": {
+                  "KmsKey": "string",
+                  "EncryptionOption": "string"
+                }
+              },
+              "QueryExecutionContext": {
+                "Catalog": "string",
+                "Database": "string"
+              }
+            }
+          ],
+          "UnprocessedQueryExecutionIds": [
+            {
+              "ErrorCode": "string",
+              "ErrorMessage": "string",
+              "QueryExecutionId": "string"
+            }
+          ]
+        }
+      ]
+  CreateDataCatalog:
+    description: |-
+      Creates (registers) a data catalog with the specified name and properties. Catalogs created are visible to all users of the same AWS account.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_CreateDataCatalog.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Type": "string",
+          "Parameters": {
+            "string": "string"
+          },
+          "Description": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateNamedQuery:
+    description: |-
+      Creates a named query in the specified workgroup. Requires that you have access to the workgroup.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_CreateNamedQuery.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Database": "string",
+          "WorkGroup": "string",
+          "Description": "string",
+          "QueryString": "string",
+          "ClientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NamedQueryId": "string"
+        }
+      ]
+  CreatePreparedStatement:
+    description: |-
+      Creates a prepared statement for use with SQL queries in Athena.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_CreatePreparedStatement.html
+    example:
+      inputs: [
+        {
+          "WorkGroup": "string",
+          "Description": "string",
+          "StatementName": "string",
+          "QueryStatement": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateWorkGroup:
+    description: |-
+      Creates a workgroup with the specified name.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_CreateWorkGroup.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Description": "string",
+          "Configuration": {
+            "EngineVersion": {
+              "SelectedEngineVersion": "string",
+              "EffectiveEngineVersion": "string"
+            },
+            "ResultConfiguration": {
+              "OutputLocation": "string",
+              "EncryptionConfiguration": {
+                "KmsKey": "string",
+                "EncryptionOption": "string"
+              }
+            },
+            "RequesterPaysEnabled": false,
+            "BytesScannedCutoffPerQuery": 1,
+            "EnforceWorkGroupConfiguration": false,
+            "PublishCloudWatchMetricsEnabled": false
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDataCatalog:
+    description: |-
+      Deletes a data catalog.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_DeleteDataCatalog.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteNamedQuery:
+    description: |-
+      Deletes the named query if you have access to the workgroup in which the query was saved.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_DeleteNamedQuery.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeletePreparedStatement:
+    description: |-
+      Deletes the prepared statement with the specified name from the specified workgroup.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_DeletePreparedStatement.html
+    example:
+      inputs: [
+        {
+          "WorkGroup": "string",
+          "StatementName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteWorkGroup:
+    description: |-
+      Deletes the workgroup with the specified name. The primary workgroup cannot be deleted.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_DeleteWorkGroup.html
+    example:
+      inputs: [
+        {
+          "WorkGroup": "string",
+          "RecursiveDeleteOption": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetDatabase:
+    description: |-
+      Returns a database object for the specified database and data catalog.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_GetDatabase.html
+    example:
+      inputs: [
+        {
+          "CatalogName": "string",
+          "DatabaseName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Database": {
+            "Name": "string",
+            "Parameters": {
+              "string": "string"
+            },
+            "Description": "string"
+          }
+        }
+      ]
+  GetDataCatalog:
+    description: |-
+      Returns the specified data catalog.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_GetDataCatalog.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DataCatalog": {
+            "Name": "string",
+            "Type": "string",
+            "Parameters": {
+              "string": "string"
+            },
+            "Description": "string"
+          }
+        }
+      ]
+  GetNamedQuery:
+    description: |-
+      Returns information about a single query. Requires that you have access to the workgroup in which the query was saved.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_GetNamedQuery.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "NamedQuery": {
+            "Name": "string",
+            "Database": "string",
+            "WorkGroup": "string",
+            "Description": "string",
+            "QueryString": "string",
+            "NamedQueryId": "string"
+          }
+        }
+      ]
+  GetPreparedStatement:
+    description: |-
+      Retrieves the prepared statement with the specified name from the specified workgroup.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_GetPreparedStatement.html
+    example:
+      inputs: [
+        {
+          "WorkGroup": "string",
+          "StatementName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PreparedStatement": {
+            "Description": "string",
+            "StatementName": "string",
+            "WorkGroupName": "string",
+            "QueryStatement": "string",
+            "LastModifiedTime": 1481289211.615
+          }
+        }
+      ]
+  GetQueryExecution:
+    description: |-
+      Returns information about a single execution of a query if you have access to the workgroup in which the query ran. Each time a query executes, information about the query execution is saved with a unique ID.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryExecution.html
+    example:
+      inputs: [
+        {
+          "QueryExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "QueryExecution": {
+            "Query": "string",
+            "Status": {
+              "State": "string",
+              "StateChangeReason": "string",
+              "CompletionDateTime": 1481289211.615,
+              "SubmissionDateTime": 1481289211.615
+            },
+            "WorkGroup": "string",
+            "Statistics": {
+              "DataScannedInBytes": 1,
+              "DataManifestLocation": "string",
+              "QueryQueueTimeInMillis": 1,
+              "QueryPlanningTimeInMillis": 1,
+              "TotalExecutionTimeInMillis": 1,
+              "EngineExecutionTimeInMillis": 1,
+              "ServiceProcessingTimeInMillis": 1
+            },
+            "EngineVersion": {
+              "SelectedEngineVersion": "string",
+              "EffectiveEngineVersion": "string"
+            },
+            "StatementType": "string",
+            "QueryExecutionId": "string",
+            "ResultConfiguration": {
+              "OutputLocation": "string",
+              "EncryptionConfiguration": {
+                "KmsKey": "string",
+                "EncryptionOption": "string"
+              }
+            },
+            "QueryExecutionContext": {
+              "Catalog": "string",
+              "Database": "string"
+            }
+          }
+        }
+      ]
+  GetQueryResults:
+    description: |-
+      Streams the results of a single query execution specified by QueryExecutionId from the Athena query results location in Amazon S3. For more information, see Query Results in the Amazon Athena User Guide. This request does not execute the query but returns results. Use StartQueryExecution to run a query.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryResults.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "QueryExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ResultSet": {
+            "Rows": [
+              {
+                "Data": [
+                  {
+                    "VarCharValue": "string"
+                  }
+                ]
+              }
+            ],
+            "ResultSetMetadata": {
+              "ColumnInfo": [
+                {
+                  "Name": "string",
+                  "Type": "string",
+                  "Label": "string",
+                  "Scale": 1,
+                  "Nullable": "string",
+                  "Precision": 1,
+                  "TableName": "string",
+                  "SchemaName": "string",
+                  "CatalogName": "string",
+                  "CaseSensitive": false
+                }
+              ]
+            }
+          },
+          "UpdateCount": 1
+        }
+      ]
+  GetTableMetadata:
+    description: |-
+      Returns table metadata for the specified catalog, database, and table.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_GetTableMetadata.html
+    example:
+      inputs: [
+        {
+          "TableName": "string",
+          "CatalogName": "string",
+          "DatabaseName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TableMetadata": {
+            "Name": "string",
+            "Columns": [
+              {
+                "Name": "string",
+                "Type": "string",
+                "Comment": "string"
+              }
+            ],
+            "TableType": "string",
+            "CreateTime": 1481289211.615,
+            "Parameters": {
+              "string": "string"
+            },
+            "PartitionKeys": [
+              {
+                "Name": "string",
+                "Type": "string",
+                "Comment": "string"
+              }
+            ],
+            "LastAccessTime": 1481289211.615
+          }
+        }
+      ]
+  GetWorkGroup:
+    description: |-
+      Returns information about the workgroup with the specified name.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_GetWorkGroup.html
+    example:
+      inputs: [
+        {
+          "WorkGroup": "string"
+        }
+      ]
+      outputs: [
+        {
+          "WorkGroup": {
+            "Name": "string",
+            "State": "string",
+            "Description": "string",
+            "CreationTime": 1481289211.615,
+            "Configuration": {
+              "EngineVersion": {
+                "SelectedEngineVersion": "string",
+                "EffectiveEngineVersion": "string"
+              },
+              "ResultConfiguration": {
+                "OutputLocation": "string",
+                "EncryptionConfiguration": {
+                  "KmsKey": "string",
+                  "EncryptionOption": "string"
+                }
+              },
+              "RequesterPaysEnabled": false,
+              "BytesScannedCutoffPerQuery": 1,
+              "EnforceWorkGroupConfiguration": false,
+              "PublishCloudWatchMetricsEnabled": false
+            }
+          }
+        }
+      ]
+  ListDatabases:
+    description: |-
+      Lists the databases in the specified data catalog.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_ListDatabases.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "CatalogName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DatabaseList": [
+            {
+              "Name": "string",
+              "Parameters": {
+                "string": "string"
+              },
+              "Description": "string"
+            }
+          ]
+        }
+      ]
+  ListDataCatalogs:
+    description: |-
+      Lists the data catalogs in the current AWS account.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_ListDataCatalogs.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DataCatalogsSummary": [
+            {
+              "Type": "string",
+              "CatalogName": "string"
+            }
+          ]
+        }
+      ]
+  ListEngineVersions:
+    description: |-
+      Returns a list of engine versions that are available to choose from, including the Auto option.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_ListEngineVersions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "EngineVersions": [
+            {
+              "SelectedEngineVersion": "string",
+              "EffectiveEngineVersion": "string"
+            }
+          ]
+        }
+      ]
+  ListNamedQueries:
+    description: |-
+      Provides a list of available query IDs only for queries saved in the specified workgroup. Requires that you have access to the specified workgroup. If a workgroup is not specified, lists the saved queries for the primary workgroup.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_ListNamedQueries.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "WorkGroup": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "NamedQueryIds": [
+            "string"
+          ]
+        }
+      ]
+  ListPreparedStatements:
+    description: |-
+      Lists the prepared statements in the specfied workgroup.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_ListPreparedStatements.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "WorkGroup": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "PreparedStatements": [
+            {
+              "StatementName": "string",
+              "LastModifiedTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListQueryExecutions:
+    description: |-
+      Provides a list of available query execution IDs for the queries in the specified workgroup. If a workgroup is not specified, returns a list of query execution IDs for the primary workgroup. Requires you to have access to the workgroup in which the queries ran.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_ListQueryExecutions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "WorkGroup": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "QueryExecutionIds": [
+            "string"
+          ]
+        }
+      ]
+  ListTableMetadata:
+    description: |-
+      Lists the metadata for the tables in the specified data catalog database.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_ListTableMetadata.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "Expression": "string",
+          "MaxResults": 1,
+          "CatalogName": "string",
+          "DatabaseName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "TableMetadataList": [
+            {
+              "Name": "string",
+              "Columns": [
+                {
+                  "Name": "string",
+                  "Type": "string",
+                  "Comment": "string"
+                }
+              ],
+              "TableType": "string",
+              "CreateTime": 1481289211.615,
+              "Parameters": {
+                "string": "string"
+              },
+              "PartitionKeys": [
+                {
+                  "Name": "string",
+                  "Type": "string",
+                  "Comment": "string"
+                }
+              ],
+              "LastAccessTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists the tags associated with an Athena workgroup or data catalog resource.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListWorkGroups:
+    description: |-
+      Lists available workgroups for the account.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_ListWorkGroups.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "WorkGroups": [
+            {
+              "Name": "string",
+              "State": "string",
+              "Description": "string",
+              "CreationTime": 1481289211.615,
+              "EngineVersion": {
+                "SelectedEngineVersion": "string",
+                "EffectiveEngineVersion": "string"
+              }
+            }
+          ]
+        }
+      ]
+  StartQueryExecution:
+    description: |-
+      Runs the SQL query statements contained in the Query. Requires you to have access to the workgroup in which the query ran. Running queries against an external catalog requires GetDataCatalog permission to the catalog. For code samples using the AWS SDK for Java, see Examples and Code Samples in the Amazon Athena User Guide.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html
+    example:
+      inputs: [
+        {
+          "WorkGroup": "string",
+          "QueryString": "string",
+          "ClientRequestToken": "string",
+          "ResultConfiguration": {
+            "OutputLocation": "string",
+            "EncryptionConfiguration": {
+              "KmsKey": "string",
+              "EncryptionOption": "string"
+            }
+          },
+          "QueryExecutionContext": {
+            "Catalog": "string",
+            "Database": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StopQueryExecution:
+    description: |-
+      Stops a query execution. Requires you to have access to the workgroup in which the query ran.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_StopQueryExecution.html
+    example:
+      inputs: [
+        {
+          "QueryExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Adds one or more tags to an Athena resource. A tag is a label that you assign to a resource. In Athena, a resource can be a workgroup or data catalog. Each tag consists of a key and an optional value, both of which you define. For example, you can use tags to categorize Athena workgroups or data catalogs by purpose, owner, or environment. Use a consistent set of tag keys to make it easier to search and filter workgroups or data catalogs in your account. For best practices, see Tagging Best Practices. Tag keys can be from 1 to 128 UTF-8 Unicode characters, and tag values can be from 0 to 256 UTF-8 Unicode characters. Tags can use letters and numbers representable in UTF-8, and the following characters:+ - = . _ :/ @. Tag keys and values are case-sensitive. Tag keys must be unique per resource. If you specify more than one tag, separate them by commas.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes one or more tags from a data catalog or workgroup resource.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateDataCatalog:
+    description: |-
+      Updates the data catalog that has the specified name.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_UpdateDataCatalog.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Type": "string",
+          "Parameters": {
+            "string": "string"
+          },
+          "Description": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdatePreparedStatement:
+    description: |-
+      Updates a prepared statement.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_UpdatePreparedStatement.html
+    example:
+      inputs: [
+        {
+          "WorkGroup": "string",
+          "Description": "string",
+          "StatementName": "string",
+          "QueryStatement": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateWorkGroup:
+    description: |-
+      Updates the workgroup with the specified name. The workgroup's name cannot be changed.
+    versions:
+      from: 2017.5.18
+    link: https://docs.aws.amazon.com/athena/latest/APIReference/API_UpdateWorkGroup.html
+    example:
+      inputs: [
+        {
+          "State": "string",
+          "WorkGroup": "string",
+          "Description": "string",
+          "ConfigurationUpdates": {
+            "EngineVersion": {
+              "SelectedEngineVersion": "string",
+              "EffectiveEngineVersion": "string"
+            },
+            "RequesterPaysEnabled": false,
+            "BytesScannedCutoffPerQuery": 1,
+            "ResultConfigurationUpdates": {
+              "OutputLocation": "string",
+              "RemoveOutputLocation": false,
+              "EncryptionConfiguration": {
+                "KmsKey": "string",
+                "EncryptionOption": "string"
+              },
+              "RemoveEncryptionConfiguration": false
+            },
+            "EnforceWorkGroupConfiguration": false,
+            "PublishCloudWatchMetricsEnabled": false,
+            "RemoveBytesScannedCutoffPerQuery": false
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]

@@ -1,0 +1,1527 @@
+Product:
+  name: AWS Glue DataBrew
+  versions: [2017.7.25]
+  package: amazon.aws.gluedatabrew
+  description: |-
+    AWS Glue DataBrew
+  link: https://docs.aws.amazon.com/databrew/latest/dg/what-is.html
+  contentType: json
+Operations:
+  BatchDeleteRecipeVersion:
+    description: |-
+      Deletes one or more versions of a recipe at a time.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_BatchDeleteRecipeVersion.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "RecipeVersions": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Errors": [
+            {
+              "ErrorCode": "string",
+              "ErrorMessage": "string",
+              "RecipeVersion": "string"
+            }
+          ]
+        }
+      ]
+  CreateDataset:
+    description: |-
+      Creates a new DataBrew dataset.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_CreateDataset.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Input": {
+            "S3InputDefinition": {
+              "Key": "string",
+              "Bucket": "string"
+            },
+            "DatabaseInputDefinition": {
+              "TempDirectory": {
+                "Key": "string",
+                "Bucket": "string"
+              },
+              "DatabaseTableName": "string",
+              "GlueConnectionName": "string"
+            },
+            "DataCatalogInputDefinition": {
+              "CatalogId": "string",
+              "TableName": "string",
+              "DatabaseName": "string",
+              "TempDirectory": {
+                "Key": "string",
+                "Bucket": "string"
+              }
+            }
+          },
+          "Format": "string",
+          "PathOptions": {
+            "FilesLimit": {
+              "Order": "string",
+              "MaxFiles": 1,
+              "OrderedBy": "string"
+            },
+            "Parameters": {
+              "string": {
+                "Name": "string",
+                "Type": "string",
+                "Filter": {
+                  "ValuesMap": {
+                    "string": "string"
+                  },
+                  "Expression": "string"
+                },
+                "CreateColumn": false,
+                "DatetimeOptions": {
+                  "Format": "string",
+                  "LocaleCode": "string",
+                  "TimezoneOffset": "string"
+                }
+              }
+            },
+            "LastModifiedDateCondition": {
+              "ValuesMap": {
+                "string": "string"
+              },
+              "Expression": "string"
+            }
+          },
+          "FormatOptions": {
+            "Csv": {
+              "Delimiter": "string",
+              "HeaderRow": false
+            },
+            "Json": {
+              "MultiLine": false
+            },
+            "Excel": {
+              "HeaderRow": false,
+              "SheetNames": [
+                "string"
+              ],
+              "SheetIndexes": [
+                1
+              ]
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateProfileJob:
+    description: |-
+      Creates a new job to analyze a dataset and create its data profile.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_CreateProfileJob.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "RoleArn": "string",
+          "Timeout": 1,
+          "JobSample": {
+            "Mode": "string",
+            "Size": 1
+          },
+          "MaxRetries": 1,
+          "DatasetName": "string",
+          "MaxCapacity": 1,
+          "EncryptionMode": "string",
+          "OutputLocation": {
+            "Key": "string",
+            "Bucket": "string"
+          },
+          "LogSubscription": "string",
+          "EncryptionKeyArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateProject:
+    description: |-
+      Creates a new DataBrew project.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_CreateProject.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Sample": {
+            "Size": 1,
+            "Type": "string"
+          },
+          "RoleArn": "string",
+          "RecipeName": "string",
+          "DatasetName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateRecipe:
+    description: |-
+      Creates a new DataBrew recipe.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_CreateRecipe.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Steps": [
+            {
+              "Action": {
+                "Operation": "string",
+                "Parameters": {
+                  "string": "string"
+                }
+              },
+              "ConditionExpressions": [
+                {
+                  "Value": "string",
+                  "Condition": "string",
+                  "TargetColumn": "string"
+                }
+              ]
+            }
+          ],
+          "Description": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateRecipeJob:
+    description: |-
+      Creates a new job to transform input data, using steps defined in an existing AWS Glue DataBrew recipe
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_CreateRecipeJob.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Outputs": [
+            {
+              "Format": "string",
+              "Location": {
+                "Key": "string",
+                "Bucket": "string"
+              },
+              "Overwrite": false,
+              "FormatOptions": {
+                "Csv": {
+                  "Delimiter": "string"
+                }
+              },
+              "PartitionColumns": [
+                "string"
+              ],
+              "CompressionFormat": "string"
+            }
+          ],
+          "RoleArn": "string",
+          "Timeout": 1,
+          "MaxRetries": 1,
+          "DatasetName": "string",
+          "MaxCapacity": 1,
+          "ProjectName": "string",
+          "EncryptionMode": "string",
+          "LogSubscription": "string",
+          "RecipeReference": {
+            "Name": "string",
+            "RecipeVersion": "string"
+          },
+          "EncryptionKeyArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateSchedule:
+    description: |-
+      Creates a new schedule for one or more DataBrew jobs. Jobs can be run at a specific date and time, or at regular intervals.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_CreateSchedule.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "JobNames": [
+            "string"
+          ],
+          "CronExpression": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDataset:
+    description: |-
+      Deletes a dataset from DataBrew.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_DeleteDataset.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteJob:
+    description: |-
+      Deletes the specified DataBrew job.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_DeleteJob.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteProject:
+    description: |-
+      Deletes an existing DataBrew project.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_DeleteProject.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteRecipeVersion:
+    description: |-
+      Deletes a single version of a DataBrew recipe.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_DeleteRecipeVersion.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "RecipeVersion": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteSchedule:
+    description: |-
+      Deletes the specified DataBrew schedule.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_DeleteSchedule.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeDataset:
+    description: |-
+      Returns the definition of a specific DataBrew dataset.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_DescribeDataset.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Input": {
+            "S3InputDefinition": {
+              "Key": "string",
+              "Bucket": "string"
+            },
+            "DatabaseInputDefinition": {
+              "TempDirectory": {
+                "Key": "string",
+                "Bucket": "string"
+              },
+              "DatabaseTableName": "string",
+              "GlueConnectionName": "string"
+            },
+            "DataCatalogInputDefinition": {
+              "CatalogId": "string",
+              "TableName": "string",
+              "DatabaseName": "string",
+              "TempDirectory": {
+                "Key": "string",
+                "Bucket": "string"
+              }
+            }
+          },
+          "Format": "string",
+          "Source": "string",
+          "CreatedBy": "string",
+          "CreateDate": 1481289211.615,
+          "PathOptions": {
+            "FilesLimit": {
+              "Order": "string",
+              "MaxFiles": 1,
+              "OrderedBy": "string"
+            },
+            "Parameters": {
+              "string": {
+                "Name": "string",
+                "Type": "string",
+                "Filter": {
+                  "ValuesMap": {
+                    "string": "string"
+                  },
+                  "Expression": "string"
+                },
+                "CreateColumn": false,
+                "DatetimeOptions": {
+                  "Format": "string",
+                  "LocaleCode": "string",
+                  "TimezoneOffset": "string"
+                }
+              }
+            },
+            "LastModifiedDateCondition": {
+              "ValuesMap": {
+                "string": "string"
+              },
+              "Expression": "string"
+            }
+          },
+          "ResourceArn": "string",
+          "FormatOptions": {
+            "Csv": {
+              "Delimiter": "string",
+              "HeaderRow": false
+            },
+            "Json": {
+              "MultiLine": false
+            },
+            "Excel": {
+              "HeaderRow": false,
+              "SheetNames": [
+                "string"
+              ],
+              "SheetIndexes": [
+                1
+              ]
+            }
+          },
+          "LastModifiedBy": "string",
+          "LastModifiedDate": 1481289211.615
+        }
+      ]
+  DescribeJob:
+    description: |-
+      Returns the definition of a specific DataBrew job.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_DescribeJob.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Type": "string",
+          "Outputs": [
+            {
+              "Format": "string",
+              "Location": {
+                "Key": "string",
+                "Bucket": "string"
+              },
+              "Overwrite": false,
+              "FormatOptions": {
+                "Csv": {
+                  "Delimiter": "string"
+                }
+              },
+              "PartitionColumns": [
+                "string"
+              ],
+              "CompressionFormat": "string"
+            }
+          ],
+          "RoleArn": "string",
+          "Timeout": 1,
+          "CreatedBy": "string",
+          "JobSample": {
+            "Mode": "string",
+            "Size": 1
+          },
+          "CreateDate": 1481289211.615,
+          "MaxRetries": 1,
+          "DatasetName": "string",
+          "MaxCapacity": 1,
+          "ProjectName": "string",
+          "ResourceArn": "string",
+          "EncryptionMode": "string",
+          "LastModifiedBy": "string",
+          "LogSubscription": "string",
+          "RecipeReference": {
+            "Name": "string",
+            "RecipeVersion": "string"
+          },
+          "EncryptionKeyArn": "string",
+          "LastModifiedDate": 1481289211.615
+        }
+      ]
+  DescribeJobRun:
+    description: |-
+      Represents one run of a DataBrew job.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_DescribeJobRun.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "RunId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RunId": "string",
+          "State": "string",
+          "Attempt": 1,
+          "JobName": "string",
+          "Outputs": [
+            {
+              "Format": "string",
+              "Location": {
+                "Key": "string",
+                "Bucket": "string"
+              },
+              "Overwrite": false,
+              "FormatOptions": {
+                "Csv": {
+                  "Delimiter": "string"
+                }
+              },
+              "PartitionColumns": [
+                "string"
+              ],
+              "CompressionFormat": "string"
+            }
+          ],
+          "JobSample": {
+            "Mode": "string",
+            "Size": 1
+          },
+          "StartedBy": "string",
+          "StartedOn": 1481289211.615,
+          "CompletedOn": 1481289211.615,
+          "DatasetName": "string",
+          "ErrorMessage": "string",
+          "LogGroupName": "string",
+          "ExecutionTime": 1,
+          "LogSubscription": "string",
+          "RecipeReference": {
+            "Name": "string",
+            "RecipeVersion": "string"
+          }
+        }
+      ]
+  DescribeProject:
+    description: |-
+      Returns the definition of a specific DataBrew project.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_DescribeProject.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Sample": {
+            "Size": 1,
+            "Type": "string"
+          },
+          "RoleArn": "string",
+          "OpenDate": 1481289211.615,
+          "OpenedBy": "string",
+          "CreatedBy": "string",
+          "CreateDate": 1481289211.615,
+          "RecipeName": "string",
+          "DatasetName": "string",
+          "ResourceArn": "string",
+          "SessionStatus": "string",
+          "LastModifiedBy": "string",
+          "LastModifiedDate": 1481289211.615
+        }
+      ]
+  DescribeRecipe:
+    description: |-
+      Returns the definition of a specific DataBrew recipe corresponding to a particular version.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_DescribeRecipe.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "RecipeVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Steps": [
+            {
+              "Action": {
+                "Operation": "string",
+                "Parameters": {
+                  "string": "string"
+                }
+              },
+              "ConditionExpressions": [
+                {
+                  "Value": "string",
+                  "Condition": "string",
+                  "TargetColumn": "string"
+                }
+              ]
+            }
+          ],
+          "CreatedBy": "string",
+          "CreateDate": 1481289211.615,
+          "Description": "string",
+          "ProjectName": "string",
+          "PublishedBy": "string",
+          "ResourceArn": "string",
+          "PublishedDate": 1481289211.615,
+          "RecipeVersion": "string",
+          "LastModifiedBy": "string",
+          "LastModifiedDate": 1481289211.615
+        }
+      ]
+  DescribeSchedule:
+    description: |-
+      Returns the definition of a specific DataBrew schedule.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_DescribeSchedule.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "JobNames": [
+            "string"
+          ],
+          "CreatedBy": "string",
+          "CreateDate": 1481289211.615,
+          "ResourceArn": "string",
+          "CronExpression": "string",
+          "LastModifiedBy": "string",
+          "LastModifiedDate": 1481289211.615
+        }
+      ]
+  ListDatasets:
+    description: |-
+      Lists all of the DataBrew datasets.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_ListDatasets.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Datasets": [
+            {
+              "Name": "string",
+              "Tags": {
+                "string": "string"
+              },
+              "Input": {
+                "S3InputDefinition": {
+                  "Key": "string",
+                  "Bucket": "string"
+                },
+                "DatabaseInputDefinition": {
+                  "TempDirectory": {
+                    "Key": "string",
+                    "Bucket": "string"
+                  },
+                  "DatabaseTableName": "string",
+                  "GlueConnectionName": "string"
+                },
+                "DataCatalogInputDefinition": {
+                  "CatalogId": "string",
+                  "TableName": "string",
+                  "DatabaseName": "string",
+                  "TempDirectory": {
+                    "Key": "string",
+                    "Bucket": "string"
+                  }
+                }
+              },
+              "Format": "string",
+              "Source": "string",
+              "AccountId": "string",
+              "CreatedBy": "string",
+              "CreateDate": 1481289211.615,
+              "PathOptions": {
+                "FilesLimit": {
+                  "Order": "string",
+                  "MaxFiles": 1,
+                  "OrderedBy": "string"
+                },
+                "Parameters": {
+                  "string": {
+                    "Name": "string",
+                    "Type": "string",
+                    "Filter": {
+                      "ValuesMap": {
+                        "string": "string"
+                      },
+                      "Expression": "string"
+                    },
+                    "CreateColumn": false,
+                    "DatetimeOptions": {
+                      "Format": "string",
+                      "LocaleCode": "string",
+                      "TimezoneOffset": "string"
+                    }
+                  }
+                },
+                "LastModifiedDateCondition": {
+                  "ValuesMap": {
+                    "string": "string"
+                  },
+                  "Expression": "string"
+                }
+              },
+              "ResourceArn": "string",
+              "FormatOptions": {
+                "Csv": {
+                  "Delimiter": "string",
+                  "HeaderRow": false
+                },
+                "Json": {
+                  "MultiLine": false
+                },
+                "Excel": {
+                  "HeaderRow": false,
+                  "SheetNames": [
+                    "string"
+                  ],
+                  "SheetIndexes": [
+                    1
+                  ]
+                }
+              },
+              "LastModifiedBy": "string",
+              "LastModifiedDate": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListJobRuns:
+    description: |-
+      Lists all of the previous runs of a particular DataBrew job.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_ListJobRuns.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "JobRuns": [
+            {
+              "RunId": "string",
+              "State": "string",
+              "Attempt": 1,
+              "JobName": "string",
+              "Outputs": [
+                {
+                  "Format": "string",
+                  "Location": {
+                    "Key": "string",
+                    "Bucket": "string"
+                  },
+                  "Overwrite": false,
+                  "FormatOptions": {
+                    "Csv": {
+                      "Delimiter": "string"
+                    }
+                  },
+                  "PartitionColumns": [
+                    "string"
+                  ],
+                  "CompressionFormat": "string"
+                }
+              ],
+              "JobSample": {
+                "Mode": "string",
+                "Size": 1
+              },
+              "StartedBy": "string",
+              "StartedOn": 1481289211.615,
+              "CompletedOn": 1481289211.615,
+              "DatasetName": "string",
+              "ErrorMessage": "string",
+              "LogGroupName": "string",
+              "ExecutionTime": 1,
+              "LogSubscription": "string",
+              "RecipeReference": {
+                "Name": "string",
+                "RecipeVersion": "string"
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListJobs:
+    description: |-
+      Lists all of the DataBrew jobs that are defined.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_ListJobs.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "DatasetName": "string",
+          "ProjectName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Jobs": [
+            {
+              "Name": "string",
+              "Tags": {
+                "string": "string"
+              },
+              "Type": "string",
+              "Outputs": [
+                {
+                  "Format": "string",
+                  "Location": {
+                    "Key": "string",
+                    "Bucket": "string"
+                  },
+                  "Overwrite": false,
+                  "FormatOptions": {
+                    "Csv": {
+                      "Delimiter": "string"
+                    }
+                  },
+                  "PartitionColumns": [
+                    "string"
+                  ],
+                  "CompressionFormat": "string"
+                }
+              ],
+              "RoleArn": "string",
+              "Timeout": 1,
+              "AccountId": "string",
+              "CreatedBy": "string",
+              "JobSample": {
+                "Mode": "string",
+                "Size": 1
+              },
+              "CreateDate": 1481289211.615,
+              "MaxRetries": 1,
+              "DatasetName": "string",
+              "MaxCapacity": 1,
+              "ProjectName": "string",
+              "ResourceArn": "string",
+              "EncryptionMode": "string",
+              "LastModifiedBy": "string",
+              "LogSubscription": "string",
+              "RecipeReference": {
+                "Name": "string",
+                "RecipeVersion": "string"
+              },
+              "EncryptionKeyArn": "string",
+              "LastModifiedDate": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListProjects:
+    description: |-
+      Lists all of the DataBrew projects that are defined.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_ListProjects.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Projects": [
+            {
+              "Name": "string",
+              "Tags": {
+                "string": "string"
+              },
+              "Sample": {
+                "Size": 1,
+                "Type": "string"
+              },
+              "RoleArn": "string",
+              "OpenDate": 1481289211.615,
+              "OpenedBy": "string",
+              "AccountId": "string",
+              "CreatedBy": "string",
+              "CreateDate": 1481289211.615,
+              "RecipeName": "string",
+              "DatasetName": "string",
+              "ResourceArn": "string",
+              "LastModifiedBy": "string",
+              "LastModifiedDate": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListRecipes:
+    description: |-
+      Lists all of the DataBrew recipes that are defined.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_ListRecipes.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "RecipeVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Recipes": [
+            {
+              "Name": "string",
+              "Tags": {
+                "string": "string"
+              },
+              "Steps": [
+                {
+                  "Action": {
+                    "Operation": "string",
+                    "Parameters": {
+                      "string": "string"
+                    }
+                  },
+                  "ConditionExpressions": [
+                    {
+                      "Value": "string",
+                      "Condition": "string",
+                      "TargetColumn": "string"
+                    }
+                  ]
+                }
+              ],
+              "CreatedBy": "string",
+              "CreateDate": 1481289211.615,
+              "Description": "string",
+              "ProjectName": "string",
+              "PublishedBy": "string",
+              "ResourceArn": "string",
+              "PublishedDate": 1481289211.615,
+              "RecipeVersion": "string",
+              "LastModifiedBy": "string",
+              "LastModifiedDate": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListRecipeVersions:
+    description: |-
+      Lists the versions of a particular DataBrew recipe, except for LATEST_WORKING.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_ListRecipeVersions.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Recipes": [
+            {
+              "Name": "string",
+              "Tags": {
+                "string": "string"
+              },
+              "Steps": [
+                {
+                  "Action": {
+                    "Operation": "string",
+                    "Parameters": {
+                      "string": "string"
+                    }
+                  },
+                  "ConditionExpressions": [
+                    {
+                      "Value": "string",
+                      "Condition": "string",
+                      "TargetColumn": "string"
+                    }
+                  ]
+                }
+              ],
+              "CreatedBy": "string",
+              "CreateDate": 1481289211.615,
+              "Description": "string",
+              "ProjectName": "string",
+              "PublishedBy": "string",
+              "ResourceArn": "string",
+              "PublishedDate": 1481289211.615,
+              "RecipeVersion": "string",
+              "LastModifiedBy": "string",
+              "LastModifiedDate": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListSchedules:
+    description: |-
+      Lists the DataBrew schedules that are defined.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_ListSchedules.html
+    example:
+      inputs: [
+        {
+          "JobName": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Schedules": [
+            {
+              "Name": "string",
+              "Tags": {
+                "string": "string"
+              },
+              "JobNames": [
+                "string"
+              ],
+              "AccountId": "string",
+              "CreatedBy": "string",
+              "CreateDate": 1481289211.615,
+              "ResourceArn": "string",
+              "CronExpression": "string",
+              "LastModifiedBy": "string",
+              "LastModifiedDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists all the tags for a DataBrew resource.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  PublishRecipe:
+    description: |-
+      Publishes a new version of a DataBrew recipe.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_PublishRecipe.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Description": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SendProjectSessionAction:
+    description: |-
+      Performs a recipe step within an interactive DataBrew session that's currently open.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_SendProjectSessionAction.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Preview": false,
+          "StepIndex": 1,
+          "ViewFrame": {
+            "ColumnRange": 1,
+            "HiddenColumns": [
+              "string"
+            ],
+            "StartColumnIndex": 1
+          },
+          "RecipeStep": {
+            "Action": {
+              "Operation": "string",
+              "Parameters": {
+                "string": "string"
+              }
+            },
+            "ConditionExpressions": [
+              {
+                "Value": "string",
+                "Condition": "string",
+                "TargetColumn": "string"
+              }
+            ]
+          },
+          "ClientSessionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Result": "string",
+          "ActionId": 1
+        }
+      ]
+  StartJobRun:
+    description: |-
+      Runs a DataBrew job.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_StartJobRun.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RunId": "string"
+        }
+      ]
+  StartProjectSession:
+    description: |-
+      Creates an interactive session, enabling you to manipulate data in a DataBrew project.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_StartProjectSession.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AssumeControl": false
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "ClientSessionId": "string"
+        }
+      ]
+  StopJobRun:
+    description: |-
+      Stops a particular run of a job.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_StopJobRun.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "RunId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RunId": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds metadata tags to a DataBrew resource, such as a dataset, project, recipe, job, or schedule.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes metadata tags from a DataBrew resource.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateDataset:
+    description: |-
+      Modifies the definition of an existing DataBrew dataset.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_UpdateDataset.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Input": {
+            "S3InputDefinition": {
+              "Key": "string",
+              "Bucket": "string"
+            },
+            "DatabaseInputDefinition": {
+              "TempDirectory": {
+                "Key": "string",
+                "Bucket": "string"
+              },
+              "DatabaseTableName": "string",
+              "GlueConnectionName": "string"
+            },
+            "DataCatalogInputDefinition": {
+              "CatalogId": "string",
+              "TableName": "string",
+              "DatabaseName": "string",
+              "TempDirectory": {
+                "Key": "string",
+                "Bucket": "string"
+              }
+            }
+          },
+          "Format": "string",
+          "PathOptions": {
+            "FilesLimit": {
+              "Order": "string",
+              "MaxFiles": 1,
+              "OrderedBy": "string"
+            },
+            "Parameters": {
+              "string": {
+                "Name": "string",
+                "Type": "string",
+                "Filter": {
+                  "ValuesMap": {
+                    "string": "string"
+                  },
+                  "Expression": "string"
+                },
+                "CreateColumn": false,
+                "DatetimeOptions": {
+                  "Format": "string",
+                  "LocaleCode": "string",
+                  "TimezoneOffset": "string"
+                }
+              }
+            },
+            "LastModifiedDateCondition": {
+              "ValuesMap": {
+                "string": "string"
+              },
+              "Expression": "string"
+            }
+          },
+          "FormatOptions": {
+            "Csv": {
+              "Delimiter": "string",
+              "HeaderRow": false
+            },
+            "Json": {
+              "MultiLine": false
+            },
+            "Excel": {
+              "HeaderRow": false,
+              "SheetNames": [
+                "string"
+              ],
+              "SheetIndexes": [
+                1
+              ]
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateProfileJob:
+    description: |-
+      Modifies the definition of an existing profile job.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_UpdateProfileJob.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "RoleArn": "string",
+          "Timeout": 1,
+          "JobSample": {
+            "Mode": "string",
+            "Size": 1
+          },
+          "MaxRetries": 1,
+          "MaxCapacity": 1,
+          "EncryptionMode": "string",
+          "OutputLocation": {
+            "Key": "string",
+            "Bucket": "string"
+          },
+          "LogSubscription": "string",
+          "EncryptionKeyArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateProject:
+    description: |-
+      Modifies the definition of an existing DataBrew project.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_UpdateProject.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Sample": {
+            "Size": 1,
+            "Type": "string"
+          },
+          "RoleArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "LastModifiedDate": 1481289211.615
+        }
+      ]
+  UpdateRecipe:
+    description: |-
+      Modifies the definition of the LATEST_WORKING version of a DataBrew recipe.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_UpdateRecipe.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Steps": [
+            {
+              "Action": {
+                "Operation": "string",
+                "Parameters": {
+                  "string": "string"
+                }
+              },
+              "ConditionExpressions": [
+                {
+                  "Value": "string",
+                  "Condition": "string",
+                  "TargetColumn": "string"
+                }
+              ]
+            }
+          ],
+          "Description": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateRecipeJob:
+    description: |-
+      Modifies the definition of an existing DataBrew recipe job.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_UpdateRecipeJob.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Outputs": [
+            {
+              "Format": "string",
+              "Location": {
+                "Key": "string",
+                "Bucket": "string"
+              },
+              "Overwrite": false,
+              "FormatOptions": {
+                "Csv": {
+                  "Delimiter": "string"
+                }
+              },
+              "PartitionColumns": [
+                "string"
+              ],
+              "CompressionFormat": "string"
+            }
+          ],
+          "RoleArn": "string",
+          "Timeout": 1,
+          "MaxRetries": 1,
+          "MaxCapacity": 1,
+          "EncryptionMode": "string",
+          "LogSubscription": "string",
+          "EncryptionKeyArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateSchedule:
+    description: |-
+      Modifies the definition of an existing DataBrew schedule.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/databrew/latest/dg/API_UpdateSchedule.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "JobNames": [
+            "string"
+          ],
+          "CronExpression": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

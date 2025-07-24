@@ -1,0 +1,613 @@
+Product:
+  name: Amazon Quantum Ledger Database
+  versions: [2019.1.2,2019.7.11]
+  package: amazon.aws.qldb
+  description: |-
+    Amazon Quantum Ledger Database
+  link: https://docs.aws.amazon.com/qldb/latest/developerguide/what-is.html
+  contentType: json
+Operations:
+  CancelJournalKinesisStream:
+    description: |-
+      Ends a given Amazon QLDB journal stream. Before a stream can be canceled, its current status must be ACTIVE.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_CancelJournalKinesisStream.html
+    example:
+      inputs: [
+        {
+          "StreamId": "string",
+          "LedgerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "StreamId": "string"
+        }
+      ]
+  CreateLedger:
+    description: |-
+      Creates a new ledger in your AWS account in the current Region.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_CreateLedger.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "PermissionsMode": "string",
+          "DeletionProtection": false
+        }
+      ]
+      outputs: [
+        {
+          "Arn": "string",
+          "Name": "string",
+          "State": "string",
+          "CreationDateTime": 1481289211.615,
+          "DeletionProtection": false
+        }
+      ]
+  DeleteLedger:
+    description: |-
+      Deletes a ledger and all of its contents. This action is irreversible.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_DeleteLedger.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeJournalKinesisStream:
+    description: |-
+      Returns detailed information about a given Amazon QLDB journal stream. The output includes the Amazon Resource Name (ARN), stream name, current status, creation time, and the parameters of the original stream creation request.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_DescribeJournalKinesisStream.html
+    example:
+      inputs: [
+        {
+          "StreamId": "string",
+          "LedgerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Stream": {
+            "Arn": "string",
+            "Status": "string",
+            "RoleArn": "string",
+            "StreamId": "string",
+            "ErrorCause": "string",
+            "LedgerName": "string",
+            "StreamName": "string",
+            "CreationTime": 1481289211.615,
+            "ExclusiveEndTime": 1481289211.615,
+            "InclusiveStartTime": 1481289211.615,
+            "KinesisConfiguration": {
+              "StreamArn": "string",
+              "AggregationEnabled": false
+            }
+          }
+        }
+      ]
+  DescribeJournalS3Export:
+    description: |-
+      Returns information about a journal export job, including the ledger name, export ID, creation time, current status, and the parameters of the original export creation request.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_DescribeJournalS3Export.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "ExportId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ExportDescription": {
+            "Status": "string",
+            "RoleArn": "string",
+            "ExportId": "string",
+            "LedgerName": "string",
+            "ExclusiveEndTime": 1481289211.615,
+            "ExportCreationTime": 1481289211.615,
+            "InclusiveStartTime": 1481289211.615,
+            "S3ExportConfiguration": {
+              "Bucket": "string",
+              "Prefix": "string",
+              "EncryptionConfiguration": {
+                "KmsKeyArn": "string",
+                "ObjectEncryptionType": "string"
+              }
+            }
+          }
+        }
+      ]
+  DescribeLedger:
+    description: |-
+      Returns information about a ledger, including its state and when it was created.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_DescribeLedger.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Arn": "string",
+          "Name": "string",
+          "State": "string",
+          "CreationDateTime": 1481289211.615,
+          "DeletionProtection": false
+        }
+      ]
+  ExportJournalToS3:
+    description: |-
+      Exports journal contents within a date and time range from a ledger into a specified Amazon Simple Storage Service (Amazon S3) bucket. The data is written as files in Amazon Ion format.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_ExportJournalToS3.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "RoleArn": "string",
+          "ExclusiveEndTime": 1481289211.615,
+          "InclusiveStartTime": 1481289211.615,
+          "S3ExportConfiguration": {
+            "Bucket": "string",
+            "Prefix": "string",
+            "EncryptionConfiguration": {
+              "KmsKeyArn": "string",
+              "ObjectEncryptionType": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ExportId": "string"
+        }
+      ]
+  GetBlock:
+    description: |-
+      Returns a block object at a specified address in a journal. Also returns a proof of the specified block for verification if DigestTipAddress is provided.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_GetBlock.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "BlockAddress": {
+            "IonText": "string"
+          },
+          "DigestTipAddress": {
+            "IonText": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Block": {
+            "IonText": "string"
+          },
+          "Proof": {
+            "IonText": "string"
+          }
+        }
+      ]
+  GetDigest:
+    description: |-
+      Returns the digest of a ledger at the latest committed block in the journal. The response includes a 256-bit hash value and a block address.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_GetDigest.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Digest": "blob",
+          "DigestTipAddress": {
+            "IonText": "string"
+          }
+        }
+      ]
+  GetRevision:
+    description: |-
+      Returns a revision data object for a specified document ID and block address. Also returns a proof of the specified revision for verification if DigestTipAddress is provided.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_GetRevision.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "DocumentId": "string",
+          "BlockAddress": {
+            "IonText": "string"
+          },
+          "DigestTipAddress": {
+            "IonText": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Proof": {
+            "IonText": "string"
+          },
+          "Revision": {
+            "IonText": "string"
+          }
+        }
+      ]
+  ListJournalKinesisStreamsForLedger:
+    description: |-
+      Returns an array of all Amazon QLDB journal stream descriptors for a given ledger. The output of each stream descriptor includes the same details that are returned by DescribeJournalKinesisStream.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_ListJournalKinesisStreamsForLedger.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "LedgerName": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Streams": [
+            {
+              "Arn": "string",
+              "Status": "string",
+              "RoleArn": "string",
+              "StreamId": "string",
+              "ErrorCause": "string",
+              "LedgerName": "string",
+              "StreamName": "string",
+              "CreationTime": 1481289211.615,
+              "ExclusiveEndTime": 1481289211.615,
+              "InclusiveStartTime": 1481289211.615,
+              "KinesisConfiguration": {
+                "StreamArn": "string",
+                "AggregationEnabled": false
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListJournalS3ExportsForLedger:
+    description: |-
+      Returns an array of journal export job descriptions for a specified ledger.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_ListJournalS3ExportsForLedger.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "JournalS3Exports": [
+            {
+              "Status": "string",
+              "RoleArn": "string",
+              "ExportId": "string",
+              "LedgerName": "string",
+              "ExclusiveEndTime": 1481289211.615,
+              "ExportCreationTime": 1481289211.615,
+              "InclusiveStartTime": 1481289211.615,
+              "S3ExportConfiguration": {
+                "Bucket": "string",
+                "Prefix": "string",
+                "EncryptionConfiguration": {
+                  "KmsKeyArn": "string",
+                  "ObjectEncryptionType": "string"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  ListJournalS3Exports:
+    description: |-
+      Returns an array of journal export job descriptions for all ledgers that are associated with the current AWS account and Region.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_ListJournalS3Exports.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "JournalS3Exports": [
+            {
+              "Status": "string",
+              "RoleArn": "string",
+              "ExportId": "string",
+              "LedgerName": "string",
+              "ExclusiveEndTime": 1481289211.615,
+              "ExportCreationTime": 1481289211.615,
+              "InclusiveStartTime": 1481289211.615,
+              "S3ExportConfiguration": {
+                "Bucket": "string",
+                "Prefix": "string",
+                "EncryptionConfiguration": {
+                  "KmsKeyArn": "string",
+                  "ObjectEncryptionType": "string"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  ListLedgers:
+    description: |-
+      Returns an array of ledger summaries that are associated with the current AWS account and Region.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_ListLedgers.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Ledgers": [
+            {
+              "Name": "string",
+              "State": "string",
+              "CreationDateTime": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns all tags for a specified Amazon QLDB resource.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  SendCommand:
+    description: |-
+      Sends a command to an Amazon QLDB ledger.
+    versions:
+      from: 2019.7.11
+      to: 2019.7.11
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_QLDB-Session_SendCommand.html
+    example:
+      inputs: [
+        {
+          "FetchPage": {
+            "NextPageToken": "string",
+            "TransactionId": "string"
+          },
+          "EndSession": {},
+          "SessionToken": "string",
+          "StartSession": {
+            "LedgerName": "string"
+          },
+          "AbortTransaction": {},
+          "ExecuteStatement": {
+            "Statement": "string",
+            "Parameters": [
+              {
+                "IonText": "string",
+                "IonBinary": "blob"
+              }
+            ],
+            "TransactionId": "string"
+          },
+          "StartTransaction": {},
+          "CommitTransaction": {
+            "CommitDigest": "blob",
+            "TransactionId": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "FetchPage": {
+            "Page": {
+              "Values": [
+                {
+                  "IonText": "string",
+                  "IonBinary": "blob"
+                }
+              ],
+              "NextPageToken": "string"
+            },
+            "ConsumedIOs": {
+              "ReadIOs": 1,
+              "WriteIOs": 1
+            },
+            "TimingInformation": {
+              "ProcessingTimeMilliseconds": 1
+            }
+          },
+          "EndSession": {
+            "TimingInformation": {
+              "ProcessingTimeMilliseconds": 1
+            }
+          },
+          "StartSession": {
+            "SessionToken": "string",
+            "TimingInformation": {
+              "ProcessingTimeMilliseconds": 1
+            }
+          },
+          "AbortTransaction": {
+            "TimingInformation": {
+              "ProcessingTimeMilliseconds": 1
+            }
+          },
+          "ExecuteStatement": {
+            "FirstPage": {
+              "Values": [
+                {
+                  "IonText": "string",
+                  "IonBinary": "blob"
+                }
+              ],
+              "NextPageToken": "string"
+            },
+            "ConsumedIOs": {
+              "ReadIOs": 1,
+              "WriteIOs": 1
+            },
+            "TimingInformation": {
+              "ProcessingTimeMilliseconds": 1
+            }
+          },
+          "StartTransaction": {
+            "TransactionId": "string",
+            "TimingInformation": {
+              "ProcessingTimeMilliseconds": 1
+            }
+          },
+          "CommitTransaction": {
+            "ConsumedIOs": {
+              "ReadIOs": 1,
+              "WriteIOs": 1
+            },
+            "CommitDigest": "blob",
+            "TransactionId": "string",
+            "TimingInformation": {
+              "ProcessingTimeMilliseconds": 1
+            }
+          }
+        }
+      ]
+  StreamJournalToKinesis:
+    description: |-
+      Creates a journal stream for a given Amazon QLDB ledger. The stream captures every document revision that is committed to the ledger's journal and delivers the data to a specified Amazon Kinesis Data Streams resource.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_StreamJournalToKinesis.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "RoleArn": "string",
+          "LedgerName": "string",
+          "StreamName": "string",
+          "ExclusiveEndTime": 1481289211.615,
+          "InclusiveStartTime": 1481289211.615,
+          "KinesisConfiguration": {
+            "StreamArn": "string",
+            "AggregationEnabled": false
+          }
+        }
+      ]
+      outputs: [
+        {
+          "StreamId": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds one or more tags to a specified Amazon QLDB resource.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes one or more tags from a specified Amazon QLDB resource. You can specify up to 50 tag keys to remove.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateLedger:
+    description: |-
+      Updates properties on a ledger.
+    versions:
+      from: 2019.1.2
+    link: https://docs.aws.amazon.com/qldb/latest/developerguide/API_UpdateLedger.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "DeletionProtection": false
+        }
+      ]
+      outputs: [
+        {
+          "Arn": "string",
+          "Name": "string",
+          "State": "string",
+          "CreationDateTime": 1481289211.615,
+          "DeletionProtection": false
+        }
+      ]

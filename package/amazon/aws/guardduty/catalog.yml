@@ -1,0 +1,1741 @@
+Product:
+  name: Amazon GuardDuty
+  versions: [2017.11.28]
+  package: amazon.aws.guardduty
+  description: |-
+    Amazon GuardDuty
+  link: https://docs.aws.amazon.com/guardduty/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AcceptInvitation:
+    description: |-
+      Accepts the invitation to be monitored by a GuardDuty administrator account.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_AcceptInvitation.html
+    example:
+      inputs: [
+        {
+          "MasterId": "string",
+          "DetectorId": "string",
+          "InvitationId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ArchiveFindings:
+    description: |-
+      Archives GuardDuty findings that are specified by the list of finding IDs.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ArchiveFindings.html
+    example:
+      inputs: [
+        {
+          "DetectorId": "string",
+          "FindingIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateDetector:
+    description: |-
+      Creates a single Amazon GuardDuty detector. A detector is a resource that represents the GuardDuty service. To start using GuardDuty, you must create a detector in each Region where you enable the service. You can have only one detector per account per Region. All data sources are enabled in a new detector by default.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_CreateDetector.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "Enable": false,
+          "ClientToken": "string",
+          "DataSources": {
+            "S3Logs": {
+              "Enable": false
+            }
+          },
+          "FindingPublishingFrequency": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DetectorId": "string"
+        }
+      ]
+  CreateFilter:
+    description: |-
+      Creates a filter using the specified finding criteria.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_CreateFilter.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Rank": 1,
+          "Tags": {
+            "string": "string"
+          },
+          "Action": "string",
+          "DetectorId": "string",
+          "ClientToken": "string",
+          "Description": "string",
+          "FindingCriteria": {
+            "Criterion": {
+              "string": {
+                "Eq": [
+                  "string"
+                ],
+                "Gt": 1,
+                "Lt": 1,
+                "Gte": 1,
+                "Lte": 1,
+                "Neq": [
+                  "string"
+                ],
+                "Equals": [
+                  "string"
+                ],
+                "LessThan": 1,
+                "NotEquals": [
+                  "string"
+                ],
+                "GreaterThan": 1,
+                "LessThanOrEqual": 1,
+                "GreaterThanOrEqual": 1
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateIPSet:
+    description: |-
+      Creates a new IPSet, which is called a trusted IP list in the console user interface. An IPSet is a list of IP addresses that are trusted for secure communication with AWS infrastructure and applications. GuardDuty doesn't generate findings for IP addresses that are included in IPSets. Only users from the administrator account can use this operation.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_CreateIPSet.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Format": "string",
+          "Activate": false,
+          "Location": "string",
+          "DetectorId": "string",
+          "ClientToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IpSetId": "string"
+        }
+      ]
+  CreateMembers:
+    description: |-
+      Creates member accounts of the current AWS account by specifying a list of AWS account IDs. This step is a prerequisite for managing the associated member accounts either by invitation or through an organization.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_CreateMembers.html
+    example:
+      inputs: [
+        {
+          "DetectorId": "string",
+          "AccountDetails": [
+            {
+              "Email": "string",
+              "AccountId": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "UnprocessedAccounts": [
+            {
+              "Result": "string",
+              "AccountId": "string"
+            }
+          ]
+        }
+      ]
+  CreatePublishingDestination:
+    description: |-
+      Creates a publishing destination to export findings to. The resource to export findings to must exist before you use this operation.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_CreatePublishingDestination.html
+    example:
+      inputs: [
+        {
+          "DetectorId": "string",
+          "ClientToken": "string",
+          "DestinationType": "string",
+          "DestinationProperties": {
+            "KmsKeyArn": "string",
+            "DestinationArn": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "DestinationId": "string"
+        }
+      ]
+  CreateSampleFindings:
+    description: |-
+      Generates example findings of types specified by the list of finding types. If 'NULL' is specified for findingTypes, the API generates example findings of all supported finding types.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_CreateSampleFindings.html
+    example:
+      inputs: [
+        {
+          "DetectorId": "string",
+          "FindingTypes": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateThreatIntelSet:
+    description: |-
+      Creates a new ThreatIntelSet. ThreatIntelSets consist of known malicious IP addresses. GuardDuty generates findings based on ThreatIntelSets. Only users of the administrator account can use this operation.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_CreateThreatIntelSet.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Format": "string",
+          "Activate": false,
+          "Location": "string",
+          "DetectorId": "string",
+          "ClientToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ThreatIntelSetId": "string"
+        }
+      ]
+  DeclineInvitations:
+    description: |-
+      Declines invitations sent to the current member account by AWS accounts specified by their account IDs.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DeclineInvitations.html
+    example:
+      inputs: [
+        {
+          "AccountIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "UnprocessedAccounts": [
+            {
+              "Result": "string",
+              "AccountId": "string"
+            }
+          ]
+        }
+      ]
+  DeleteDetector:
+    description: |-
+      Deletes an Amazon GuardDuty detector that is specified by the detector ID.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DeleteDetector.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteFilter:
+    description: |-
+      Deletes the filter specified by the filter name.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DeleteFilter.html
+    example:
+      inputs: [
+        {
+          "DetectorId": "string",
+          "FilterName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteInvitations:
+    description: |-
+      Deletes invitations sent to the current member account by AWS accounts specified by their account IDs.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DeleteInvitations.html
+    example:
+      inputs: [
+        {
+          "AccountIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "UnprocessedAccounts": [
+            {
+              "Result": "string",
+              "AccountId": "string"
+            }
+          ]
+        }
+      ]
+  DeleteIPSet:
+    description: |-
+      Deletes the IPSet specified by the ipSetId. IPSets are called trusted IP lists in the console user interface.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DeleteIPSet.html
+    example:
+      inputs: [
+        {
+          "IpSetId": "string",
+          "DetectorId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteMembers:
+    description: |-
+      Deletes GuardDuty member accounts (to the current GuardDuty administrator account) specified by the account IDs.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DeleteMembers.html
+    example:
+      inputs: [
+        {
+          "AccountIds": [
+            "string"
+          ],
+          "DetectorId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UnprocessedAccounts": [
+            {
+              "Result": "string",
+              "AccountId": "string"
+            }
+          ]
+        }
+      ]
+  DeletePublishingDestination:
+    description: |-
+      Deletes the publishing definition with the specified destinationId.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DeletePublishingDestination.html
+    example:
+      inputs: [
+        {
+          "DetectorId": "string",
+          "DestinationId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteThreatIntelSet:
+    description: |-
+      Deletes the ThreatIntelSet specified by the ThreatIntelSet ID.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DeleteThreatIntelSet.html
+    example:
+      inputs: [
+        {
+          "DetectorId": "string",
+          "ThreatIntelSetId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeOrganizationConfiguration:
+    description: |-
+      Returns information about the account selected as the delegated administrator for GuardDuty.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DescribeOrganizationConfiguration.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "AutoEnable": false,
+          "DataSources": {
+            "S3Logs": {
+              "AutoEnable": false
+            }
+          },
+          "MemberAccountLimitReached": false
+        }
+      ]
+  DescribePublishingDestination:
+    description: |-
+      Returns information about the publishing destination specified by the provided destinationId.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DescribePublishingDestination.html
+    example:
+      inputs: [
+        {
+          "DetectorId": "string",
+          "DestinationId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "DestinationId": "string",
+          "DestinationType": "string",
+          "DestinationProperties": {
+            "KmsKeyArn": "string",
+            "DestinationArn": "string"
+          },
+          "PublishingFailureStartTimestamp": 1
+        }
+      ]
+  DisableOrganizationAdminAccount:
+    description: |-
+      Disables an AWS account within the Organization as the GuardDuty delegated administrator.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DisableOrganizationAdminAccount.html
+    example:
+      inputs: [
+        {
+          "AdminAccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DisassociateFromMasterAccount:
+    description: |-
+      Disassociates the current GuardDuty member account from its administrator account.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DisassociateFromMasterAccount.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DisassociateMembers:
+    description: |-
+      Disassociates GuardDuty member accounts (to the current GuardDuty administrator account) specified by the account IDs.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_DisassociateMembers.html
+    example:
+      inputs: [
+        {
+          "AccountIds": [
+            "string"
+          ],
+          "DetectorId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UnprocessedAccounts": [
+            {
+              "Result": "string",
+              "AccountId": "string"
+            }
+          ]
+        }
+      ]
+  EnableOrganizationAdminAccount:
+    description: |-
+      Enables an AWS account within the organization as the GuardDuty delegated administrator.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_EnableOrganizationAdminAccount.html
+    example:
+      inputs: [
+        {
+          "AdminAccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetDetector:
+    description: |-
+      Retrieves an Amazon GuardDuty detector specified by the detectorId.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_GetDetector.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "Status": "string",
+          "CreatedAt": "string",
+          "UpdatedAt": "string",
+          "DataSources": {
+            "S3Logs": {
+              "Status": "string"
+            },
+            "DNSLogs": {
+              "Status": "string"
+            },
+            "FlowLogs": {
+              "Status": "string"
+            },
+            "CloudTrail": {
+              "Status": "string"
+            }
+          },
+          "ServiceRole": "string",
+          "FindingPublishingFrequency": "string"
+        }
+      ]
+  GetFilter:
+    description: |-
+      Returns the details of the filter specified by the filter name.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_GetFilter.html
+    example:
+      inputs: [
+        {
+          "DetectorId": "string",
+          "FilterName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Rank": 1,
+          "Tags": {
+            "string": "string"
+          },
+          "Action": "string",
+          "Description": "string",
+          "FindingCriteria": {
+            "Criterion": {
+              "string": {
+                "Eq": [
+                  "string"
+                ],
+                "Gt": 1,
+                "Lt": 1,
+                "Gte": 1,
+                "Lte": 1,
+                "Neq": [
+                  "string"
+                ],
+                "Equals": [
+                  "string"
+                ],
+                "LessThan": 1,
+                "NotEquals": [
+                  "string"
+                ],
+                "GreaterThan": 1,
+                "LessThanOrEqual": 1,
+                "GreaterThanOrEqual": 1
+              }
+            }
+          }
+        }
+      ]
+  GetFindings:
+    description: |-
+      Describes Amazon GuardDuty findings specified by finding IDs.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_GetFindings.html
+    example:
+      inputs: [
+        {
+          "DetectorId": "string",
+          "FindingIds": [
+            "string"
+          ],
+          "SortCriteria": {
+            "OrderBy": "string",
+            "AttributeName": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Findings": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Type": "string",
+              "Title": "string",
+              "Region": "string",
+              "Service": {
+                "Count": 1,
+                "Action": {
+                  "ActionType": "string",
+                  "PortProbeAction": {
+                    "Blocked": false,
+                    "PortProbeDetails": [
+                      {
+                        "LocalIpDetails": {
+                          "IpAddressV4": "string"
+                        },
+                        "RemoteIpDetails": {
+                          "City": {
+                            "CityName": "string"
+                          },
+                          "Country": {
+                            "CountryCode": "string",
+                            "CountryName": "string"
+                          },
+                          "GeoLocation": {
+                            "Lat": 0.1,
+                            "Lon": 0.1
+                          },
+                          "IpAddressV4": "string",
+                          "Organization": {
+                            "Asn": "string",
+                            "Isp": "string",
+                            "Org": "string",
+                            "AsnOrg": "string"
+                          }
+                        },
+                        "LocalPortDetails": {
+                          "Port": 1,
+                          "PortName": "string"
+                        }
+                      }
+                    ]
+                  },
+                  "AwsApiCallAction": {
+                    "Api": "string",
+                    "ErrorCode": "string",
+                    "CallerType": "string",
+                    "ServiceName": "string",
+                    "DomainDetails": {
+                      "Domain": "string"
+                    },
+                    "RemoteIpDetails": {
+                      "City": {
+                        "CityName": "string"
+                      },
+                      "Country": {
+                        "CountryCode": "string",
+                        "CountryName": "string"
+                      },
+                      "GeoLocation": {
+                        "Lat": 0.1,
+                        "Lon": 0.1
+                      },
+                      "IpAddressV4": "string",
+                      "Organization": {
+                        "Asn": "string",
+                        "Isp": "string",
+                        "Org": "string",
+                        "AsnOrg": "string"
+                      }
+                    }
+                  },
+                  "DnsRequestAction": {
+                    "Domain": "string"
+                  },
+                  "NetworkConnectionAction": {
+                    "Blocked": false,
+                    "Protocol": "string",
+                    "LocalIpDetails": {
+                      "IpAddressV4": "string"
+                    },
+                    "RemoteIpDetails": {
+                      "City": {
+                        "CityName": "string"
+                      },
+                      "Country": {
+                        "CountryCode": "string",
+                        "CountryName": "string"
+                      },
+                      "GeoLocation": {
+                        "Lat": 0.1,
+                        "Lon": 0.1
+                      },
+                      "IpAddressV4": "string",
+                      "Organization": {
+                        "Asn": "string",
+                        "Isp": "string",
+                        "Org": "string",
+                        "AsnOrg": "string"
+                      }
+                    },
+                    "LocalPortDetails": {
+                      "Port": 1,
+                      "PortName": "string"
+                    },
+                    "RemotePortDetails": {
+                      "Port": 1,
+                      "PortName": "string"
+                    },
+                    "ConnectionDirection": "string"
+                  }
+                },
+                "Archived": false,
+                "Evidence": {
+                  "ThreatIntelligenceDetails": [
+                    {
+                      "ThreatNames": [
+                        "string"
+                      ],
+                      "ThreatListName": "string"
+                    }
+                  ]
+                },
+                "DetectorId": "string",
+                "ServiceName": "string",
+                "ResourceRole": "string",
+                "UserFeedback": "string",
+                "EventLastSeen": "string",
+                "EventFirstSeen": "string"
+              },
+              "Resource": {
+                "ResourceType": "string",
+                "InstanceDetails": {
+                  "Tags": [
+                    {
+                      "Key": "string",
+                      "Value": "string"
+                    }
+                  ],
+                  "ImageId": "string",
+                  "Platform": "string",
+                  "InstanceId": "string",
+                  "LaunchTime": "string",
+                  "OutpostArn": "string",
+                  "InstanceType": "string",
+                  "ProductCodes": [
+                    {
+                      "Code": "string",
+                      "ProductType": "string"
+                    }
+                  ],
+                  "InstanceState": "string",
+                  "AvailabilityZone": "string",
+                  "ImageDescription": "string",
+                  "NetworkInterfaces": [
+                    {
+                      "VpcId": "string",
+                      "PublicIp": "string",
+                      "SubnetId": "string",
+                      "Ipv6Addresses": [
+                        "string"
+                      ],
+                      "PublicDnsName": "string",
+                      "PrivateDnsName": "string",
+                      "SecurityGroups": [
+                        {
+                          "GroupId": "string",
+                          "GroupName": "string"
+                        }
+                      ],
+                      "PrivateIpAddress": "string",
+                      "NetworkInterfaceId": "string",
+                      "PrivateIpAddresses": [
+                        {
+                          "PrivateDnsName": "string",
+                          "PrivateIpAddress": "string"
+                        }
+                      ]
+                    }
+                  ],
+                  "IamInstanceProfile": {
+                    "Id": "string",
+                    "Arn": "string"
+                  }
+                },
+                "S3BucketDetails": [
+                  {
+                    "Arn": "string",
+                    "Name": "string",
+                    "Tags": [
+                      {
+                        "Key": "string",
+                        "Value": "string"
+                      }
+                    ],
+                    "Type": "string",
+                    "Owner": {
+                      "Id": "string"
+                    },
+                    "CreatedAt": 1481289211.615,
+                    "PublicAccess": {
+                      "EffectivePermission": "string",
+                      "PermissionConfiguration": {
+                        "BucketLevelPermissions": {
+                          "BucketPolicy": {
+                            "AllowsPublicReadAccess": false,
+                            "AllowsPublicWriteAccess": false
+                          },
+                          "AccessControlList": {
+                            "AllowsPublicReadAccess": false,
+                            "AllowsPublicWriteAccess": false
+                          },
+                          "BlockPublicAccess": {
+                            "BlockPublicAcls": false,
+                            "IgnorePublicAcls": false,
+                            "BlockPublicPolicy": false,
+                            "RestrictPublicBuckets": false
+                          }
+                        },
+                        "AccountLevelPermissions": {
+                          "BlockPublicAccess": {
+                            "BlockPublicAcls": false,
+                            "IgnorePublicAcls": false,
+                            "BlockPublicPolicy": false,
+                            "RestrictPublicBuckets": false
+                          }
+                        }
+                      }
+                    },
+                    "DefaultServerSideEncryption": {
+                      "EncryptionType": "string",
+                      "KmsMasterKeyArn": "string"
+                    }
+                  }
+                ],
+                "AccessKeyDetails": {
+                  "UserName": "string",
+                  "UserType": "string",
+                  "AccessKeyId": "string",
+                  "PrincipalId": "string"
+                }
+              },
+              "Severity": 0.1,
+              "AccountId": "string",
+              "CreatedAt": "string",
+              "Partition": "string",
+              "UpdatedAt": "string",
+              "Confidence": 0.1,
+              "Description": "string",
+              "SchemaVersion": "string"
+            }
+          ]
+        }
+      ]
+  GetFindingsStatistics:
+    description: |-
+      Lists Amazon GuardDuty findings statistics for the specified detector ID.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_GetFindingsStatistics.html
+    example:
+      inputs: [
+        {
+          "DetectorId": "string",
+          "FindingCriteria": {
+            "Criterion": {
+              "string": {
+                "Eq": [
+                  "string"
+                ],
+                "Gt": 1,
+                "Lt": 1,
+                "Gte": 1,
+                "Lte": 1,
+                "Neq": [
+                  "string"
+                ],
+                "Equals": [
+                  "string"
+                ],
+                "LessThan": 1,
+                "NotEquals": [
+                  "string"
+                ],
+                "GreaterThan": 1,
+                "LessThanOrEqual": 1,
+                "GreaterThanOrEqual": 1
+              }
+            }
+          },
+          "FindingStatisticTypes": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "FindingStatistics": {
+            "CountBySeverity": {
+              "string": 1
+            }
+          }
+        }
+      ]
+  GetInvitationsCount:
+    description: |-
+      Returns the count of all GuardDuty membership invitations that were sent to the current member account except the currently accepted invitation.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_GetInvitationsCount.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "InvitationsCount": 1
+        }
+      ]
+  GetIPSet:
+    description: |-
+      Retrieves the IPSet specified by the ipSetId.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_GetIPSet.html
+    example:
+      inputs: [
+        {
+          "IpSetId": "string",
+          "DetectorId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Format": "string",
+          "Status": "string",
+          "Location": "string"
+        }
+      ]
+  GetMasterAccount:
+    description: |-
+      Provides the details for the GuardDuty administrator account associated with the current GuardDuty member account.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_GetMasterAccount.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Master": {
+            "AccountId": "string",
+            "InvitedAt": "string",
+            "InvitationId": "string",
+            "RelationshipStatus": "string"
+          }
+        }
+      ]
+  GetMemberDetectors:
+    description: |-
+      Describes which data sources are enabled for the member account's detector.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_GetMemberDetectors.html
+    example:
+      inputs: [
+        {
+          "AccountIds": [
+            "string"
+          ],
+          "DetectorId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UnprocessedAccounts": [
+            {
+              "Result": "string",
+              "AccountId": "string"
+            }
+          ],
+          "MemberDataSourceConfigurations": [
+            {
+              "AccountId": "string",
+              "DataSources": {
+                "S3Logs": {
+                  "Status": "string"
+                },
+                "DNSLogs": {
+                  "Status": "string"
+                },
+                "FlowLogs": {
+                  "Status": "string"
+                },
+                "CloudTrail": {
+                  "Status": "string"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  GetMembers:
+    description: |-
+      Retrieves GuardDuty member accounts (of the current GuardDuty administrator account) specified by the account IDs.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_GetMembers.html
+    example:
+      inputs: [
+        {
+          "AccountIds": [
+            "string"
+          ],
+          "DetectorId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Members": [
+            {
+              "Email": "string",
+              "MasterId": "string",
+              "AccountId": "string",
+              "InvitedAt": "string",
+              "UpdatedAt": "string",
+              "DetectorId": "string",
+              "RelationshipStatus": "string"
+            }
+          ],
+          "UnprocessedAccounts": [
+            {
+              "Result": "string",
+              "AccountId": "string"
+            }
+          ]
+        }
+      ]
+  GetThreatIntelSet:
+    description: |-
+      Retrieves the ThreatIntelSet that is specified by the ThreatIntelSet ID.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_GetThreatIntelSet.html
+    example:
+      inputs: [
+        {
+          "DetectorId": "string",
+          "ThreatIntelSetId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Format": "string",
+          "Status": "string",
+          "Location": "string"
+        }
+      ]
+  GetUsageStatistics:
+    description: |-
+      Lists Amazon GuardDuty usage statistics over the last 30 days for the specified detector ID. For newly enabled detectors or data sources the cost returned will include only the usage so far under 30 days, this may differ from the cost metrics in the console, which projects usage over 30 days to provide a monthly cost estimate. For more information see Understanding How Usage Costs are Calculated.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_GetUsageStatistics.html
+    example:
+      inputs: [
+        {
+          "Unit": "string",
+          "NextToken": "string",
+          "DetectorId": "string",
+          "MaxResults": 1,
+          "UsageCriteria": {
+            "Resources": [
+              "string"
+            ],
+            "AccountIds": [
+              "string"
+            ],
+            "DataSources": [
+              "string"
+            ]
+          },
+          "UsageStatisticType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "UsageStatistics": {
+            "SumByAccount": [
+              {
+                "Total": {
+                  "Unit": "string",
+                  "Amount": "string"
+                },
+                "AccountId": "string"
+              }
+            ],
+            "TopResources": [
+              {
+                "Total": {
+                  "Unit": "string",
+                  "Amount": "string"
+                },
+                "Resource": "string"
+              }
+            ],
+            "SumByResource": [
+              {
+                "Total": {
+                  "Unit": "string",
+                  "Amount": "string"
+                },
+                "Resource": "string"
+              }
+            ],
+            "SumByDataSource": [
+              {
+                "Total": {
+                  "Unit": "string",
+                  "Amount": "string"
+                },
+                "DataSource": "string"
+              }
+            ]
+          }
+        }
+      ]
+  InviteMembers:
+    description: |-
+      Invites other AWS accounts (created as members of the current AWS account by CreateMembers) to enable GuardDuty, and allow the current AWS account to view and manage these accounts' findings on their behalf as the GuardDuty administrator account.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_InviteMembers.html
+    example:
+      inputs: [
+        {
+          "Message": "string",
+          "AccountIds": [
+            "string"
+          ],
+          "DetectorId": "string",
+          "DisableEmailNotification": false
+        }
+      ]
+      outputs: [
+        {
+          "UnprocessedAccounts": [
+            {
+              "Result": "string",
+              "AccountId": "string"
+            }
+          ]
+        }
+      ]
+  ListDetectors:
+    description: |-
+      Lists detectorIds of all the existing Amazon GuardDuty detector resources.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DetectorIds": [
+            "string"
+          ]
+        }
+      ]
+  ListFilters:
+    description: |-
+      Returns a paginated list of the current filters.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListFilters.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "DetectorId": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "FilterNames": [
+            "string"
+          ]
+        }
+      ]
+  ListFindings:
+    description: |-
+      Lists Amazon GuardDuty findings for the specified detector ID.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListFindings.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "DetectorId": "string",
+          "MaxResults": 1,
+          "SortCriteria": {
+            "OrderBy": "string",
+            "AttributeName": "string"
+          },
+          "FindingCriteria": {
+            "Criterion": {
+              "string": {
+                "Eq": [
+                  "string"
+                ],
+                "Gt": 1,
+                "Lt": 1,
+                "Gte": 1,
+                "Lte": 1,
+                "Neq": [
+                  "string"
+                ],
+                "Equals": [
+                  "string"
+                ],
+                "LessThan": 1,
+                "NotEquals": [
+                  "string"
+                ],
+                "GreaterThan": 1,
+                "LessThanOrEqual": 1,
+                "GreaterThanOrEqual": 1
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "FindingIds": [
+            "string"
+          ]
+        }
+      ]
+  ListInvitations:
+    description: |-
+      Lists all GuardDuty membership invitations that were sent to the current AWS account.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListInvitations.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Invitations": [
+            {
+              "AccountId": "string",
+              "InvitedAt": "string",
+              "InvitationId": "string",
+              "RelationshipStatus": "string"
+            }
+          ]
+        }
+      ]
+  ListIPSets:
+    description: |-
+      Lists the IPSets of the GuardDuty service specified by the detector ID. If you use this operation from a member account, the IPSets returned are the IPSets from the associated administrator account.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListIPSets.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "DetectorId": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "IpSetIds": [
+            "string"
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListMembers:
+    description: |-
+      Lists details about all member accounts for the current GuardDuty administrator account.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListMembers.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "DetectorId": "string",
+          "MaxResults": 1,
+          "OnlyAssociated": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Members": [
+            {
+              "Email": "string",
+              "MasterId": "string",
+              "AccountId": "string",
+              "InvitedAt": "string",
+              "UpdatedAt": "string",
+              "DetectorId": "string",
+              "RelationshipStatus": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListOrganizationAdminAccounts:
+    description: |-
+      Lists the accounts configured as GuardDuty delegated administrators.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListOrganizationAdminAccounts.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "AdminAccounts": [
+            {
+              "AdminStatus": "string",
+              "AdminAccountId": "string"
+            }
+          ]
+        }
+      ]
+  ListPublishingDestinations:
+    description: |-
+      Returns a list of publishing destinations associated with the specified detectorId.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListPublishingDestinations.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "DetectorId": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Destinations": [
+            {
+              "Status": "string",
+              "DestinationId": "string",
+              "DestinationType": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists tags for a resource. Tagging is currently supported for detectors, finding filters, IP sets, and threat intel sets, with a limit of 50 tags per resource. When invoked, this operation returns all assigned tags for a given resource.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  ListThreatIntelSets:
+    description: |-
+      Lists the ThreatIntelSets of the GuardDuty service specified by the detector ID. If you use this operation from a member account, the ThreatIntelSets associated with the administrator account are returned.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListThreatIntelSets.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "DetectorId": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ThreatIntelSetIds": [
+            "string"
+          ]
+        }
+      ]
+  StartMonitoringMembers:
+    description: |-
+      Turns on GuardDuty monitoring of the specified member accounts. Use this operation to restart monitoring of accounts that you stopped monitoring with the StopMonitoringMembers operation.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_StartMonitoringMembers.html
+    example:
+      inputs: [
+        {
+          "AccountIds": [
+            "string"
+          ],
+          "DetectorId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UnprocessedAccounts": [
+            {
+              "Result": "string",
+              "AccountId": "string"
+            }
+          ]
+        }
+      ]
+  StopMonitoringMembers:
+    description: |-
+      Stops GuardDuty monitoring for the specified member accounts. Use the StartMonitoringMembers operation to restart monitoring for those accounts.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_StopMonitoringMembers.html
+    example:
+      inputs: [
+        {
+          "AccountIds": [
+            "string"
+          ],
+          "DetectorId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UnprocessedAccounts": [
+            {
+              "Result": "string",
+              "AccountId": "string"
+            }
+          ]
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds tags to a resource.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UnarchiveFindings:
+    description: |-
+      Unarchives GuardDuty findings specified by the findingIds.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_UnarchiveFindings.html
+    example:
+      inputs: [
+        {
+          "DetectorId": "string",
+          "FindingIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes tags from a resource.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateDetector:
+    description: |-
+      Updates the Amazon GuardDuty detector specified by the detectorId.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_UpdateDetector.html
+    example:
+      inputs: [
+        {
+          "Enable": false,
+          "DetectorId": "string",
+          "DataSources": {
+            "S3Logs": {
+              "Enable": false
+            }
+          },
+          "FindingPublishingFrequency": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateFilter:
+    description: |-
+      Updates the filter specified by the filter name.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_UpdateFilter.html
+    example:
+      inputs: [
+        {
+          "Rank": 1,
+          "Action": "string",
+          "DetectorId": "string",
+          "FilterName": "string",
+          "Description": "string",
+          "FindingCriteria": {
+            "Criterion": {
+              "string": {
+                "Eq": [
+                  "string"
+                ],
+                "Gt": 1,
+                "Lt": 1,
+                "Gte": 1,
+                "Lte": 1,
+                "Neq": [
+                  "string"
+                ],
+                "Equals": [
+                  "string"
+                ],
+                "LessThan": 1,
+                "NotEquals": [
+                  "string"
+                ],
+                "GreaterThan": 1,
+                "LessThanOrEqual": 1,
+                "GreaterThanOrEqual": 1
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateFindingsFeedback:
+    description: |-
+      Marks the specified GuardDuty findings as useful or not useful.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_UpdateFindingsFeedback.html
+    example:
+      inputs: [
+        {
+          "Comments": "string",
+          "Feedback": "string",
+          "DetectorId": "string",
+          "FindingIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateIPSet:
+    description: |-
+      Updates the IPSet specified by the IPSet ID.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_UpdateIPSet.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "IpSetId": "string",
+          "Activate": false,
+          "Location": "string",
+          "DetectorId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateMemberDetectors:
+    description: |-
+      Contains information on member accounts to be updated.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_UpdateMemberDetectors.html
+    example:
+      inputs: [
+        {
+          "AccountIds": [
+            "string"
+          ],
+          "DetectorId": "string",
+          "DataSources": {
+            "S3Logs": {
+              "Enable": false
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "UnprocessedAccounts": [
+            {
+              "Result": "string",
+              "AccountId": "string"
+            }
+          ]
+        }
+      ]
+  UpdateOrganizationConfiguration:
+    description: |-
+      Updates the delegated administrator account with the values provided.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_UpdateOrganizationConfiguration.html
+    example:
+      inputs: [
+        {
+          "AutoEnable": false,
+          "DetectorId": "string",
+          "DataSources": {
+            "S3Logs": {
+              "AutoEnable": false
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdatePublishingDestination:
+    description: |-
+      Updates information about the publishing destination specified by the destinationId.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_UpdatePublishingDestination.html
+    example:
+      inputs: [
+        {
+          "DetectorId": "string",
+          "DestinationId": "string",
+          "DestinationProperties": {
+            "KmsKeyArn": "string",
+            "DestinationArn": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateThreatIntelSet:
+    description: |-
+      Updates the ThreatIntelSet specified by the ThreatIntelSet ID.
+    versions:
+      from: 2017.11.28
+    link: https://docs.aws.amazon.com/guardduty/latest/APIReference/API_UpdateThreatIntelSet.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Activate": false,
+          "Location": "string",
+          "DetectorId": "string",
+          "ThreatIntelSetId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

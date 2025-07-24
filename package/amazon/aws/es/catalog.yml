@@ -1,0 +1,2214 @@
+Product:
+  name: Amazon Elasticsearch Service
+  versions: [2015.1.1]
+  package: amazon.aws.es
+  description: |-
+    Amazon Elasticsearch Service
+  link: https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/what-is-amazon-elasticsearch-service.html
+  contentType: json
+Operations:
+  AcceptInboundCrossClusterSearchConnection:
+    description: |-
+      Allows the destination domain owner to accept an inbound cross-cluster search connection request.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/accept-inbound-cross-cluster-search-connection.html
+    example:
+      inputs: [
+        {
+          "CrossClusterSearchConnectionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CrossClusterSearchConnection": {
+            "ConnectionStatus": {
+              "Message": "string",
+              "StatusCode": "string"
+            },
+            "SourceDomainInfo": {
+              "Region": "string",
+              "OwnerId": "string",
+              "DomainName": "string"
+            },
+            "DestinationDomainInfo": {
+              "Region": "string",
+              "OwnerId": "string",
+              "DomainName": "string"
+            },
+            "CrossClusterSearchConnectionId": "string"
+          }
+        }
+      ]
+  AddTags:
+    description: |-
+      Attaches tags to an existing Elasticsearch domain. Tags are a set of case-sensitive key value pairs. An Elasticsearch domain may have up to 10 tags. See Tagging Amazon Elasticsearch Service Domains for more information.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/add-tags.html
+    example:
+      inputs: [
+        {
+          "ARN": "string",
+          "TagList": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  AssociatePackage:
+    description: |-
+      Associates a package with an Amazon ES domain.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/associate-package.html
+    example:
+      inputs: [
+        {
+          "PackageID": "string",
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DomainPackageDetails": {
+            "PackageID": "string",
+            "DomainName": "string",
+            "LastUpdated": 1481289211.615,
+            "PackageName": "string",
+            "PackageType": "string",
+            "ErrorDetails": {
+              "ErrorType": "string",
+              "ErrorMessage": "string"
+            },
+            "ReferencePath": "string",
+            "PackageVersion": "string",
+            "DomainPackageStatus": "string"
+          }
+        }
+      ]
+  CancelElasticsearchServiceSoftwareUpdate:
+    description: |-
+      Cancels a scheduled service software update for an Amazon ES domain. You can only perform this operation before the AutomatedUpdateDate and when the UpdateStatus is in the PENDING_UPDATE state.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/cancel-elasticsearch-service-software-update.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ServiceSoftwareOptions": {
+            "NewVersion": "string",
+            "Cancellable": false,
+            "Description": "string",
+            "UpdateStatus": "string",
+            "CurrentVersion": "string",
+            "UpdateAvailable": false,
+            "OptionalDeployment": false,
+            "AutomatedUpdateDate": 1481289211.615
+          }
+        }
+      ]
+  CreateElasticsearchDomain:
+    description: |-
+      Creates a new Elasticsearch domain. For more information, see Creating Elasticsearch Domains in the Amazon Elasticsearch Service Developer Guide .
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/create-elasticsearch-domain.html
+    example:
+      inputs: [
+        {
+          "TagList": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "DomainName": "string",
+          "EBSOptions": {
+            "Iops": 1,
+            "EBSEnabled": false,
+            "VolumeSize": 1,
+            "VolumeType": "string"
+          },
+          "VPCOptions": {
+            "SubnetIds": [
+              "string"
+            ],
+            "SecurityGroupIds": [
+              "string"
+            ]
+          },
+          "AccessPolicies": "string",
+          "CognitoOptions": {
+            "Enabled": false,
+            "RoleArn": "string",
+            "UserPoolId": "string",
+            "IdentityPoolId": "string"
+          },
+          "AdvancedOptions": {
+            "string": "string"
+          },
+          "AutoTuneOptions": {
+            "DesiredState": "string",
+            "MaintenanceSchedules": [
+              {
+                "StartAt": 1481289211.615,
+                "Duration": {
+                  "Unit": "string",
+                  "Value": 1
+                },
+                "CronExpressionForRecurrence": "string"
+              }
+            ]
+          },
+          "SnapshotOptions": {
+            "AutomatedSnapshotStartHour": 1
+          },
+          "ElasticsearchVersion": "string",
+          "LogPublishingOptions": {
+            "string": {
+              "Enabled": false,
+              "CloudWatchLogsLogGroupArn": "string"
+            }
+          },
+          "DomainEndpointOptions": {
+            "EnforceHTTPS": false,
+            "CustomEndpoint": "string",
+            "TLSSecurityPolicy": "string",
+            "CustomEndpointEnabled": false,
+            "CustomEndpointCertificateArn": "string"
+          },
+          "AdvancedSecurityOptions": {
+            "Enabled": false,
+            "SAMLOptions": {
+              "Idp": {
+                "EntityId": "string",
+                "MetadataContent": "string"
+              },
+              "Enabled": false,
+              "RolesKey": "string",
+              "SubjectKey": "string",
+              "MasterUserName": "string",
+              "MasterBackendRole": "string",
+              "SessionTimeoutMinutes": 1
+            },
+            "MasterUserOptions": {
+              "MasterUserARN": "string",
+              "MasterUserName": "string",
+              "MasterUserPassword": "string"
+            },
+            "InternalUserDatabaseEnabled": false
+          },
+          "EncryptionAtRestOptions": {
+            "Enabled": false,
+            "KmsKeyId": "string"
+          },
+          "ElasticsearchClusterConfig": {
+            "WarmType": "string",
+            "WarmCount": 1,
+            "WarmEnabled": false,
+            "InstanceType": "string",
+            "InstanceCount": 1,
+            "DedicatedMasterType": "string",
+            "ZoneAwarenessConfig": {
+              "AvailabilityZoneCount": 1
+            },
+            "DedicatedMasterCount": 1,
+            "ZoneAwarenessEnabled": false,
+            "DedicatedMasterEnabled": false
+          },
+          "NodeToNodeEncryptionOptions": {
+            "Enabled": false
+          }
+        }
+      ]
+      outputs: [
+        {
+          "DomainStatus": {
+            "ARN": "string",
+            "Created": false,
+            "Deleted": false,
+            "DomainId": "string",
+            "Endpoint": "string",
+            "Endpoints": {
+              "string": "string"
+            },
+            "DomainName": "string",
+            "EBSOptions": {
+              "Iops": 1,
+              "EBSEnabled": false,
+              "VolumeSize": 1,
+              "VolumeType": "string"
+            },
+            "Processing": false,
+            "VPCOptions": {
+              "VPCId": "string",
+              "SubnetIds": [
+                "string"
+              ],
+              "SecurityGroupIds": [
+                "string"
+              ],
+              "AvailabilityZones": [
+                "string"
+              ]
+            },
+            "AccessPolicies": "string",
+            "CognitoOptions": {
+              "Enabled": false,
+              "RoleArn": "string",
+              "UserPoolId": "string",
+              "IdentityPoolId": "string"
+            },
+            "AdvancedOptions": {
+              "string": "string"
+            },
+            "AutoTuneOptions": {
+              "State": "string",
+              "ErrorMessage": "string"
+            },
+            "SnapshotOptions": {
+              "AutomatedSnapshotStartHour": 1
+            },
+            "UpgradeProcessing": false,
+            "ElasticsearchVersion": "string",
+            "LogPublishingOptions": {
+              "string": {
+                "Enabled": false,
+                "CloudWatchLogsLogGroupArn": "string"
+              }
+            },
+            "DomainEndpointOptions": {
+              "EnforceHTTPS": false,
+              "CustomEndpoint": "string",
+              "TLSSecurityPolicy": "string",
+              "CustomEndpointEnabled": false,
+              "CustomEndpointCertificateArn": "string"
+            },
+            "ServiceSoftwareOptions": {
+              "NewVersion": "string",
+              "Cancellable": false,
+              "Description": "string",
+              "UpdateStatus": "string",
+              "CurrentVersion": "string",
+              "UpdateAvailable": false,
+              "OptionalDeployment": false,
+              "AutomatedUpdateDate": 1481289211.615
+            },
+            "AdvancedSecurityOptions": {
+              "Enabled": false,
+              "SAMLOptions": {
+                "Idp": {
+                  "EntityId": "string",
+                  "MetadataContent": "string"
+                },
+                "Enabled": false,
+                "RolesKey": "string",
+                "SubjectKey": "string",
+                "SessionTimeoutMinutes": 1
+              },
+              "InternalUserDatabaseEnabled": false
+            },
+            "EncryptionAtRestOptions": {
+              "Enabled": false,
+              "KmsKeyId": "string"
+            },
+            "ElasticsearchClusterConfig": {
+              "WarmType": "string",
+              "WarmCount": 1,
+              "WarmEnabled": false,
+              "InstanceType": "string",
+              "InstanceCount": 1,
+              "DedicatedMasterType": "string",
+              "ZoneAwarenessConfig": {
+                "AvailabilityZoneCount": 1
+              },
+              "DedicatedMasterCount": 1,
+              "ZoneAwarenessEnabled": false,
+              "DedicatedMasterEnabled": false
+            },
+            "NodeToNodeEncryptionOptions": {
+              "Enabled": false
+            }
+          }
+        }
+      ]
+  CreateOutboundCrossClusterSearchConnection:
+    description: |-
+      Creates a new cross-cluster search connection from a source domain to a destination domain.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/create-outbound-cross-cluster-search-connection.html
+    example:
+      inputs: [
+        {
+          "ConnectionAlias": "string",
+          "SourceDomainInfo": {
+            "Region": "string",
+            "OwnerId": "string",
+            "DomainName": "string"
+          },
+          "DestinationDomainInfo": {
+            "Region": "string",
+            "OwnerId": "string",
+            "DomainName": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ConnectionAlias": "string",
+          "ConnectionStatus": {
+            "Message": "string",
+            "StatusCode": "string"
+          },
+          "SourceDomainInfo": {
+            "Region": "string",
+            "OwnerId": "string",
+            "DomainName": "string"
+          },
+          "DestinationDomainInfo": {
+            "Region": "string",
+            "OwnerId": "string",
+            "DomainName": "string"
+          },
+          "CrossClusterSearchConnectionId": "string"
+        }
+      ]
+  CreatePackage:
+    description: |-
+      Create a package for use with Amazon ES domains.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/create-package.html
+    example:
+      inputs: [
+        {
+          "PackageName": "string",
+          "PackageType": "string",
+          "PackageSource": {
+            "S3Key": "string",
+            "S3BucketName": "string"
+          },
+          "PackageDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PackageDetails": {
+            "CreatedAt": 1481289211.615,
+            "PackageID": "string",
+            "PackageName": "string",
+            "PackageType": "string",
+            "ErrorDetails": {
+              "ErrorType": "string",
+              "ErrorMessage": "string"
+            },
+            "LastUpdatedAt": 1481289211.615,
+            "PackageStatus": "string",
+            "PackageDescription": "string",
+            "AvailablePackageVersion": "string"
+          }
+        }
+      ]
+  DeleteElasticsearchDomain:
+    description: |-
+      Permanently deletes the specified Elasticsearch domain and all of its data. Once a domain is deleted, it cannot be recovered.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/delete-elasticsearch-domain.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DomainStatus": {
+            "ARN": "string",
+            "Created": false,
+            "Deleted": false,
+            "DomainId": "string",
+            "Endpoint": "string",
+            "Endpoints": {
+              "string": "string"
+            },
+            "DomainName": "string",
+            "EBSOptions": {
+              "Iops": 1,
+              "EBSEnabled": false,
+              "VolumeSize": 1,
+              "VolumeType": "string"
+            },
+            "Processing": false,
+            "VPCOptions": {
+              "VPCId": "string",
+              "SubnetIds": [
+                "string"
+              ],
+              "SecurityGroupIds": [
+                "string"
+              ],
+              "AvailabilityZones": [
+                "string"
+              ]
+            },
+            "AccessPolicies": "string",
+            "CognitoOptions": {
+              "Enabled": false,
+              "RoleArn": "string",
+              "UserPoolId": "string",
+              "IdentityPoolId": "string"
+            },
+            "AdvancedOptions": {
+              "string": "string"
+            },
+            "AutoTuneOptions": {
+              "State": "string",
+              "ErrorMessage": "string"
+            },
+            "SnapshotOptions": {
+              "AutomatedSnapshotStartHour": 1
+            },
+            "UpgradeProcessing": false,
+            "ElasticsearchVersion": "string",
+            "LogPublishingOptions": {
+              "string": {
+                "Enabled": false,
+                "CloudWatchLogsLogGroupArn": "string"
+              }
+            },
+            "DomainEndpointOptions": {
+              "EnforceHTTPS": false,
+              "CustomEndpoint": "string",
+              "TLSSecurityPolicy": "string",
+              "CustomEndpointEnabled": false,
+              "CustomEndpointCertificateArn": "string"
+            },
+            "ServiceSoftwareOptions": {
+              "NewVersion": "string",
+              "Cancellable": false,
+              "Description": "string",
+              "UpdateStatus": "string",
+              "CurrentVersion": "string",
+              "UpdateAvailable": false,
+              "OptionalDeployment": false,
+              "AutomatedUpdateDate": 1481289211.615
+            },
+            "AdvancedSecurityOptions": {
+              "Enabled": false,
+              "SAMLOptions": {
+                "Idp": {
+                  "EntityId": "string",
+                  "MetadataContent": "string"
+                },
+                "Enabled": false,
+                "RolesKey": "string",
+                "SubjectKey": "string",
+                "SessionTimeoutMinutes": 1
+              },
+              "InternalUserDatabaseEnabled": false
+            },
+            "EncryptionAtRestOptions": {
+              "Enabled": false,
+              "KmsKeyId": "string"
+            },
+            "ElasticsearchClusterConfig": {
+              "WarmType": "string",
+              "WarmCount": 1,
+              "WarmEnabled": false,
+              "InstanceType": "string",
+              "InstanceCount": 1,
+              "DedicatedMasterType": "string",
+              "ZoneAwarenessConfig": {
+                "AvailabilityZoneCount": 1
+              },
+              "DedicatedMasterCount": 1,
+              "ZoneAwarenessEnabled": false,
+              "DedicatedMasterEnabled": false
+            },
+            "NodeToNodeEncryptionOptions": {
+              "Enabled": false
+            }
+          }
+        }
+      ]
+  DeleteElasticsearchServiceRole:
+    description: |-
+      Deletes the service-linked role that Elasticsearch Service uses to manage and maintain VPC domains. Role deletion will fail if any existing VPC domains use the role. You must delete any such Elasticsearch domains before deleting the role. See Deleting Elasticsearch Service Role in VPC Endpoints for Amazon Elasticsearch Service Domains .
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/delete-elasticsearch-service-role.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteInboundCrossClusterSearchConnection:
+    description: |-
+      Allows the destination domain owner to delete an existing inbound cross-cluster search connection.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/delete-inbound-cross-cluster-search-connection.html
+    example:
+      inputs: [
+        {
+          "CrossClusterSearchConnectionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CrossClusterSearchConnection": {
+            "ConnectionStatus": {
+              "Message": "string",
+              "StatusCode": "string"
+            },
+            "SourceDomainInfo": {
+              "Region": "string",
+              "OwnerId": "string",
+              "DomainName": "string"
+            },
+            "DestinationDomainInfo": {
+              "Region": "string",
+              "OwnerId": "string",
+              "DomainName": "string"
+            },
+            "CrossClusterSearchConnectionId": "string"
+          }
+        }
+      ]
+  DeleteOutboundCrossClusterSearchConnection:
+    description: |-
+      Allows the source domain owner to delete an existing outbound cross-cluster search connection.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/delete-outbound-cross-cluster-search-connection.html
+    example:
+      inputs: [
+        {
+          "CrossClusterSearchConnectionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CrossClusterSearchConnection": {
+            "ConnectionAlias": "string",
+            "ConnectionStatus": {
+              "Message": "string",
+              "StatusCode": "string"
+            },
+            "SourceDomainInfo": {
+              "Region": "string",
+              "OwnerId": "string",
+              "DomainName": "string"
+            },
+            "DestinationDomainInfo": {
+              "Region": "string",
+              "OwnerId": "string",
+              "DomainName": "string"
+            },
+            "CrossClusterSearchConnectionId": "string"
+          }
+        }
+      ]
+  DeletePackage:
+    description: |-
+      Delete the package.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/delete-package.html
+    example:
+      inputs: [
+        {
+          "PackageID": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PackageDetails": {
+            "CreatedAt": 1481289211.615,
+            "PackageID": "string",
+            "PackageName": "string",
+            "PackageType": "string",
+            "ErrorDetails": {
+              "ErrorType": "string",
+              "ErrorMessage": "string"
+            },
+            "LastUpdatedAt": 1481289211.615,
+            "PackageStatus": "string",
+            "PackageDescription": "string",
+            "AvailablePackageVersion": "string"
+          }
+        }
+      ]
+  DescribeDomainAutoTunes:
+    description: |-
+      Provides scheduled Auto-Tune action details for the Elasticsearch domain, such as Auto-Tune action type, description, severity, and scheduled date.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/describe-domain-auto-tunes.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "DomainName": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "AutoTunes": [
+            {
+              "AutoTuneType": "string",
+              "AutoTuneDetails": {
+                "ScheduledAutoTuneDetails": {
+                  "Date": 1481289211.615,
+                  "Action": "string",
+                  "Severity": "string",
+                  "ActionType": "string"
+                }
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeElasticsearchDomainConfig:
+    description: |-
+      Provides cluster configuration information about the specified Elasticsearch domain, such as the state, creation date, update version, and update date for cluster options.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/describe-elasticsearch-domain-config.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DomainConfig": {
+            "EBSOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Iops": 1,
+                "EBSEnabled": false,
+                "VolumeSize": 1,
+                "VolumeType": "string"
+              }
+            },
+            "VPCOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "VPCId": "string",
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ],
+                "AvailabilityZones": [
+                  "string"
+                ]
+              }
+            },
+            "AccessPolicies": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": "string"
+            },
+            "CognitoOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Enabled": false,
+                "RoleArn": "string",
+                "UserPoolId": "string",
+                "IdentityPoolId": "string"
+              }
+            },
+            "AdvancedOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "string": "string"
+              }
+            },
+            "AutoTuneOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "ErrorMessage": "string",
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "DesiredState": "string",
+                "RollbackOnDisable": "string",
+                "MaintenanceSchedules": [
+                  {
+                    "StartAt": 1481289211.615,
+                    "Duration": {
+                      "Unit": "string",
+                      "Value": 1
+                    },
+                    "CronExpressionForRecurrence": "string"
+                  }
+                ]
+              }
+            },
+            "SnapshotOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "AutomatedSnapshotStartHour": 1
+              }
+            },
+            "ElasticsearchVersion": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": "string"
+            },
+            "LogPublishingOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "string": {
+                  "Enabled": false,
+                  "CloudWatchLogsLogGroupArn": "string"
+                }
+              }
+            },
+            "DomainEndpointOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "EnforceHTTPS": false,
+                "CustomEndpoint": "string",
+                "TLSSecurityPolicy": "string",
+                "CustomEndpointEnabled": false,
+                "CustomEndpointCertificateArn": "string"
+              }
+            },
+            "AdvancedSecurityOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Enabled": false,
+                "SAMLOptions": {
+                  "Idp": {
+                    "EntityId": "string",
+                    "MetadataContent": "string"
+                  },
+                  "Enabled": false,
+                  "RolesKey": "string",
+                  "SubjectKey": "string",
+                  "SessionTimeoutMinutes": 1
+                },
+                "InternalUserDatabaseEnabled": false
+              }
+            },
+            "EncryptionAtRestOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Enabled": false,
+                "KmsKeyId": "string"
+              }
+            },
+            "ElasticsearchClusterConfig": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "WarmType": "string",
+                "WarmCount": 1,
+                "WarmEnabled": false,
+                "InstanceType": "string",
+                "InstanceCount": 1,
+                "DedicatedMasterType": "string",
+                "ZoneAwarenessConfig": {
+                  "AvailabilityZoneCount": 1
+                },
+                "DedicatedMasterCount": 1,
+                "ZoneAwarenessEnabled": false,
+                "DedicatedMasterEnabled": false
+              }
+            },
+            "NodeToNodeEncryptionOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Enabled": false
+              }
+            }
+          }
+        }
+      ]
+  DescribeElasticsearchDomain:
+    description: |-
+      Returns domain configuration information about the specified Elasticsearch domain, including the domain ID, domain endpoint, and domain ARN.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/describe-elasticsearch-domain.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DomainStatus": {
+            "ARN": "string",
+            "Created": false,
+            "Deleted": false,
+            "DomainId": "string",
+            "Endpoint": "string",
+            "Endpoints": {
+              "string": "string"
+            },
+            "DomainName": "string",
+            "EBSOptions": {
+              "Iops": 1,
+              "EBSEnabled": false,
+              "VolumeSize": 1,
+              "VolumeType": "string"
+            },
+            "Processing": false,
+            "VPCOptions": {
+              "VPCId": "string",
+              "SubnetIds": [
+                "string"
+              ],
+              "SecurityGroupIds": [
+                "string"
+              ],
+              "AvailabilityZones": [
+                "string"
+              ]
+            },
+            "AccessPolicies": "string",
+            "CognitoOptions": {
+              "Enabled": false,
+              "RoleArn": "string",
+              "UserPoolId": "string",
+              "IdentityPoolId": "string"
+            },
+            "AdvancedOptions": {
+              "string": "string"
+            },
+            "AutoTuneOptions": {
+              "State": "string",
+              "ErrorMessage": "string"
+            },
+            "SnapshotOptions": {
+              "AutomatedSnapshotStartHour": 1
+            },
+            "UpgradeProcessing": false,
+            "ElasticsearchVersion": "string",
+            "LogPublishingOptions": {
+              "string": {
+                "Enabled": false,
+                "CloudWatchLogsLogGroupArn": "string"
+              }
+            },
+            "DomainEndpointOptions": {
+              "EnforceHTTPS": false,
+              "CustomEndpoint": "string",
+              "TLSSecurityPolicy": "string",
+              "CustomEndpointEnabled": false,
+              "CustomEndpointCertificateArn": "string"
+            },
+            "ServiceSoftwareOptions": {
+              "NewVersion": "string",
+              "Cancellable": false,
+              "Description": "string",
+              "UpdateStatus": "string",
+              "CurrentVersion": "string",
+              "UpdateAvailable": false,
+              "OptionalDeployment": false,
+              "AutomatedUpdateDate": 1481289211.615
+            },
+            "AdvancedSecurityOptions": {
+              "Enabled": false,
+              "SAMLOptions": {
+                "Idp": {
+                  "EntityId": "string",
+                  "MetadataContent": "string"
+                },
+                "Enabled": false,
+                "RolesKey": "string",
+                "SubjectKey": "string",
+                "SessionTimeoutMinutes": 1
+              },
+              "InternalUserDatabaseEnabled": false
+            },
+            "EncryptionAtRestOptions": {
+              "Enabled": false,
+              "KmsKeyId": "string"
+            },
+            "ElasticsearchClusterConfig": {
+              "WarmType": "string",
+              "WarmCount": 1,
+              "WarmEnabled": false,
+              "InstanceType": "string",
+              "InstanceCount": 1,
+              "DedicatedMasterType": "string",
+              "ZoneAwarenessConfig": {
+                "AvailabilityZoneCount": 1
+              },
+              "DedicatedMasterCount": 1,
+              "ZoneAwarenessEnabled": false,
+              "DedicatedMasterEnabled": false
+            },
+            "NodeToNodeEncryptionOptions": {
+              "Enabled": false
+            }
+          }
+        }
+      ]
+  DescribeElasticsearchDomains:
+    description: |-
+      Returns domain configuration information about the specified Elasticsearch domains, including the domain ID, domain endpoint, and domain ARN.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/describe-elasticsearch-domains.html
+    example:
+      inputs: [
+        {
+          "DomainNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "DomainStatusList": [
+            {
+              "ARN": "string",
+              "Created": false,
+              "Deleted": false,
+              "DomainId": "string",
+              "Endpoint": "string",
+              "Endpoints": {
+                "string": "string"
+              },
+              "DomainName": "string",
+              "EBSOptions": {
+                "Iops": 1,
+                "EBSEnabled": false,
+                "VolumeSize": 1,
+                "VolumeType": "string"
+              },
+              "Processing": false,
+              "VPCOptions": {
+                "VPCId": "string",
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ],
+                "AvailabilityZones": [
+                  "string"
+                ]
+              },
+              "AccessPolicies": "string",
+              "CognitoOptions": {
+                "Enabled": false,
+                "RoleArn": "string",
+                "UserPoolId": "string",
+                "IdentityPoolId": "string"
+              },
+              "AdvancedOptions": {
+                "string": "string"
+              },
+              "AutoTuneOptions": {
+                "State": "string",
+                "ErrorMessage": "string"
+              },
+              "SnapshotOptions": {
+                "AutomatedSnapshotStartHour": 1
+              },
+              "UpgradeProcessing": false,
+              "ElasticsearchVersion": "string",
+              "LogPublishingOptions": {
+                "string": {
+                  "Enabled": false,
+                  "CloudWatchLogsLogGroupArn": "string"
+                }
+              },
+              "DomainEndpointOptions": {
+                "EnforceHTTPS": false,
+                "CustomEndpoint": "string",
+                "TLSSecurityPolicy": "string",
+                "CustomEndpointEnabled": false,
+                "CustomEndpointCertificateArn": "string"
+              },
+              "ServiceSoftwareOptions": {
+                "NewVersion": "string",
+                "Cancellable": false,
+                "Description": "string",
+                "UpdateStatus": "string",
+                "CurrentVersion": "string",
+                "UpdateAvailable": false,
+                "OptionalDeployment": false,
+                "AutomatedUpdateDate": 1481289211.615
+              },
+              "AdvancedSecurityOptions": {
+                "Enabled": false,
+                "SAMLOptions": {
+                  "Idp": {
+                    "EntityId": "string",
+                    "MetadataContent": "string"
+                  },
+                  "Enabled": false,
+                  "RolesKey": "string",
+                  "SubjectKey": "string",
+                  "SessionTimeoutMinutes": 1
+                },
+                "InternalUserDatabaseEnabled": false
+              },
+              "EncryptionAtRestOptions": {
+                "Enabled": false,
+                "KmsKeyId": "string"
+              },
+              "ElasticsearchClusterConfig": {
+                "WarmType": "string",
+                "WarmCount": 1,
+                "WarmEnabled": false,
+                "InstanceType": "string",
+                "InstanceCount": 1,
+                "DedicatedMasterType": "string",
+                "ZoneAwarenessConfig": {
+                  "AvailabilityZoneCount": 1
+                },
+                "DedicatedMasterCount": 1,
+                "ZoneAwarenessEnabled": false,
+                "DedicatedMasterEnabled": false
+              },
+              "NodeToNodeEncryptionOptions": {
+                "Enabled": false
+              }
+            }
+          ]
+        }
+      ]
+  DescribeElasticsearchInstanceTypeLimits:
+    description: |-
+      Describe Elasticsearch Limits for a given InstanceType and ElasticsearchVersion. When modifying existing Domain, specify the `` DomainName `` to know what Limits are supported for modifying.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/describe-elasticsearch-instance-type-limits.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string",
+          "InstanceType": "string",
+          "ElasticsearchVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LimitsByRole": {
+            "string": {
+              "StorageTypes": [
+                {
+                  "StorageTypeName": "string",
+                  "StorageTypeLimits": [
+                    {
+                      "LimitName": "string",
+                      "LimitValues": [
+                        "string"
+                      ]
+                    }
+                  ],
+                  "StorageSubTypeName": "string"
+                }
+              ],
+              "InstanceLimits": {
+                "InstanceCountLimits": {
+                  "MaximumInstanceCount": 1,
+                  "MinimumInstanceCount": 1
+                }
+              },
+              "AdditionalLimits": [
+                {
+                  "LimitName": "string",
+                  "LimitValues": [
+                    "string"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ]
+  DescribeInboundCrossClusterSearchConnections:
+    description: |-
+      Lists all the inbound cross-cluster search connections for a destination domain.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/describe-inbound-cross-cluster-search-connections.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CrossClusterSearchConnections": [
+            {
+              "ConnectionStatus": {
+                "Message": "string",
+                "StatusCode": "string"
+              },
+              "SourceDomainInfo": {
+                "Region": "string",
+                "OwnerId": "string",
+                "DomainName": "string"
+              },
+              "DestinationDomainInfo": {
+                "Region": "string",
+                "OwnerId": "string",
+                "DomainName": "string"
+              },
+              "CrossClusterSearchConnectionId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeOutboundCrossClusterSearchConnections:
+    description: |-
+      Lists all the outbound cross-cluster search connections for a source domain.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/describe-outbound-cross-cluster-search-connections.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CrossClusterSearchConnections": [
+            {
+              "ConnectionAlias": "string",
+              "ConnectionStatus": {
+                "Message": "string",
+                "StatusCode": "string"
+              },
+              "SourceDomainInfo": {
+                "Region": "string",
+                "OwnerId": "string",
+                "DomainName": "string"
+              },
+              "DestinationDomainInfo": {
+                "Region": "string",
+                "OwnerId": "string",
+                "DomainName": "string"
+              },
+              "CrossClusterSearchConnectionId": "string"
+            }
+          ]
+        }
+      ]
+  DescribePackages:
+    description: |-
+      Describes all packages available to Amazon ES. Includes options for filtering, limiting the number of results, and pagination.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/describe-packages.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Value": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "PackageDetailsList": [
+            {
+              "CreatedAt": 1481289211.615,
+              "PackageID": "string",
+              "PackageName": "string",
+              "PackageType": "string",
+              "ErrorDetails": {
+                "ErrorType": "string",
+                "ErrorMessage": "string"
+              },
+              "LastUpdatedAt": 1481289211.615,
+              "PackageStatus": "string",
+              "PackageDescription": "string",
+              "AvailablePackageVersion": "string"
+            }
+          ]
+        }
+      ]
+  DescribeReservedElasticsearchInstanceOfferings:
+    description: |-
+      Lists available reserved Elasticsearch instance offerings.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/describe-reserved-elasticsearch-instance-offerings.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ReservedElasticsearchInstanceOfferingId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ReservedElasticsearchInstanceOfferings": [
+            {
+              "Duration": 1,
+              "FixedPrice": 0.1,
+              "UsagePrice": 0.1,
+              "CurrencyCode": "string",
+              "PaymentOption": "string",
+              "RecurringCharges": [
+                {
+                  "RecurringChargeAmount": 0.1,
+                  "RecurringChargeFrequency": "string"
+                }
+              ],
+              "ElasticsearchInstanceType": "string",
+              "ReservedElasticsearchInstanceOfferingId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeReservedElasticsearchInstances:
+    description: |-
+      Returns information about reserved Elasticsearch instances for this account.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/describe-reserved-elasticsearch-instances.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ReservedElasticsearchInstanceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ReservedElasticsearchInstances": [
+            {
+              "State": "string",
+              "Duration": 1,
+              "StartTime": 1481289211.615,
+              "FixedPrice": 0.1,
+              "UsagePrice": 0.1,
+              "CurrencyCode": "string",
+              "PaymentOption": "string",
+              "ReservationName": "string",
+              "RecurringCharges": [
+                {
+                  "RecurringChargeAmount": 0.1,
+                  "RecurringChargeFrequency": "string"
+                }
+              ],
+              "ElasticsearchInstanceType": "string",
+              "ElasticsearchInstanceCount": 1,
+              "ReservedElasticsearchInstanceId": "string",
+              "ReservedElasticsearchInstanceOfferingId": "string"
+            }
+          ]
+        }
+      ]
+  DissociatePackage:
+    description: |-
+      Dissociates a package from the Amazon ES domain.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/dissociate-package.html
+    example:
+      inputs: [
+        {
+          "PackageID": "string",
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DomainPackageDetails": {
+            "PackageID": "string",
+            "DomainName": "string",
+            "LastUpdated": 1481289211.615,
+            "PackageName": "string",
+            "PackageType": "string",
+            "ErrorDetails": {
+              "ErrorType": "string",
+              "ErrorMessage": "string"
+            },
+            "ReferencePath": "string",
+            "PackageVersion": "string",
+            "DomainPackageStatus": "string"
+          }
+        }
+      ]
+  GetCompatibleElasticsearchVersions:
+    description: |-
+      Returns a list of upgrade compatible Elastisearch versions. You can optionally pass a `` DomainName `` to get all upgrade compatible Elasticsearch versions for that specific domain.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/get-compatible-elasticsearch-versions.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CompatibleElasticsearchVersions": [
+            {
+              "SourceVersion": "string",
+              "TargetVersions": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  GetPackageVersionHistory:
+    description: |-
+      Returns a list of versions of the package, along with their creation time and commit message.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/get-package-version-history.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "PackageID": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "PackageID": "string",
+          "PackageVersionHistoryList": [
+            {
+              "CreatedAt": 1481289211.615,
+              "CommitMessage": "string",
+              "PackageVersion": "string"
+            }
+          ]
+        }
+      ]
+  GetUpgradeHistory:
+    description: |-
+      Retrieves the complete history of the last 10 upgrades that were performed on the domain.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/get-upgrade-history.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "DomainName": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "UpgradeHistories": [
+            {
+              "StepsList": [
+                {
+                  "Issues": [
+                    "string"
+                  ],
+                  "UpgradeStep": "string",
+                  "ProgressPercent": 0.1,
+                  "UpgradeStepStatus": "string"
+                }
+              ],
+              "UpgradeName": "string",
+              "UpgradeStatus": "string",
+              "StartTimestamp": 1481289211.615
+            }
+          ]
+        }
+      ]
+  GetUpgradeStatus:
+    description: |-
+      Retrieves the latest status of the last upgrade or upgrade eligibility check that was performed on the domain.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/get-upgrade-status.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "StepStatus": "string",
+          "UpgradeName": "string",
+          "UpgradeStep": "string"
+        }
+      ]
+  ListDomainNames:
+    description: |-
+      Returns the name of all Elasticsearch domains owned by the current user’s account.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/list-domain-names.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "DomainNames": [
+            {
+              "DomainName": "string"
+            }
+          ]
+        }
+      ]
+  ListDomainsForPackage:
+    description: |-
+      Lists all Amazon ES domains associated with the package.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/list-domains-for-package.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "PackageID": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DomainPackageDetailsList": [
+            {
+              "PackageID": "string",
+              "DomainName": "string",
+              "LastUpdated": 1481289211.615,
+              "PackageName": "string",
+              "PackageType": "string",
+              "ErrorDetails": {
+                "ErrorType": "string",
+                "ErrorMessage": "string"
+              },
+              "ReferencePath": "string",
+              "PackageVersion": "string",
+              "DomainPackageStatus": "string"
+            }
+          ]
+        }
+      ]
+  ListElasticsearchInstanceTypes:
+    description: |-
+      List all Elasticsearch instance types that are supported for given ElasticsearchVersion
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/list-elasticsearch-instance-types.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "DomainName": "string",
+          "MaxResults": 1,
+          "ElasticsearchVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ElasticsearchInstanceTypes": [
+            "string"
+          ]
+        }
+      ]
+  ListElasticsearchVersions:
+    description: |-
+      List all supported Elasticsearch versions
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/list-elasticsearch-versions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ElasticsearchVersions": [
+            "string"
+          ]
+        }
+      ]
+  ListPackagesForDomain:
+    description: |-
+      Lists all packages associated with the Amazon ES domain.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/list-packages-for-domain.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "DomainName": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DomainPackageDetailsList": [
+            {
+              "PackageID": "string",
+              "DomainName": "string",
+              "LastUpdated": 1481289211.615,
+              "PackageName": "string",
+              "PackageType": "string",
+              "ErrorDetails": {
+                "ErrorType": "string",
+                "ErrorMessage": "string"
+              },
+              "ReferencePath": "string",
+              "PackageVersion": "string",
+              "DomainPackageStatus": "string"
+            }
+          ]
+        }
+      ]
+  ListTags:
+    description: |-
+      Returns all tags for the given Elasticsearch domain.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/list-tags.html
+    example:
+      inputs: [
+        {
+          "ARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TagList": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  PurchaseReservedElasticsearchInstanceOffering:
+    description: |-
+      Allows you to purchase reserved Elasticsearch instances.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/purchase-reserved-elasticsearch-instance-offering.html
+    example:
+      inputs: [
+        {
+          "InstanceCount": 1,
+          "ReservationName": "string",
+          "ReservedElasticsearchInstanceOfferingId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ReservationName": "string",
+          "ReservedElasticsearchInstanceId": "string"
+        }
+      ]
+  RejectInboundCrossClusterSearchConnection:
+    description: |-
+      Allows the destination domain owner to reject an inbound cross-cluster search connection request.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/reject-inbound-cross-cluster-search-connection.html
+    example:
+      inputs: [
+        {
+          "CrossClusterSearchConnectionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CrossClusterSearchConnection": {
+            "ConnectionStatus": {
+              "Message": "string",
+              "StatusCode": "string"
+            },
+            "SourceDomainInfo": {
+              "Region": "string",
+              "OwnerId": "string",
+              "DomainName": "string"
+            },
+            "DestinationDomainInfo": {
+              "Region": "string",
+              "OwnerId": "string",
+              "DomainName": "string"
+            },
+            "CrossClusterSearchConnectionId": "string"
+          }
+        }
+      ]
+  RemoveTags:
+    description: |-
+      Removes the specified set of tags from the specified Elasticsearch domain.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/remove-tags.html
+    example:
+      inputs: [
+        {
+          "ARN": "string",
+          "TagKeys": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartElasticsearchServiceSoftwareUpdate:
+    description: |-
+      Schedules a service software update for an Amazon ES domain.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/start-elasticsearch-service-software-update.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ServiceSoftwareOptions": {
+            "NewVersion": "string",
+            "Cancellable": false,
+            "Description": "string",
+            "UpdateStatus": "string",
+            "CurrentVersion": "string",
+            "UpdateAvailable": false,
+            "OptionalDeployment": false,
+            "AutomatedUpdateDate": 1481289211.615
+          }
+        }
+      ]
+  UpdateElasticsearchDomainConfig:
+    description: |-
+      Modifies the cluster configuration of the specified Elasticsearch domain, setting as setting the instance type and the number of instances.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/update-elasticsearch-domain-config.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string",
+          "EBSOptions": {
+            "Iops": 1,
+            "EBSEnabled": false,
+            "VolumeSize": 1,
+            "VolumeType": "string"
+          },
+          "VPCOptions": {
+            "SubnetIds": [
+              "string"
+            ],
+            "SecurityGroupIds": [
+              "string"
+            ]
+          },
+          "AccessPolicies": "string",
+          "CognitoOptions": {
+            "Enabled": false,
+            "RoleArn": "string",
+            "UserPoolId": "string",
+            "IdentityPoolId": "string"
+          },
+          "AdvancedOptions": {
+            "string": "string"
+          },
+          "AutoTuneOptions": {
+            "DesiredState": "string",
+            "RollbackOnDisable": "string",
+            "MaintenanceSchedules": [
+              {
+                "StartAt": 1481289211.615,
+                "Duration": {
+                  "Unit": "string",
+                  "Value": 1
+                },
+                "CronExpressionForRecurrence": "string"
+              }
+            ]
+          },
+          "SnapshotOptions": {
+            "AutomatedSnapshotStartHour": 1
+          },
+          "LogPublishingOptions": {
+            "string": {
+              "Enabled": false,
+              "CloudWatchLogsLogGroupArn": "string"
+            }
+          },
+          "DomainEndpointOptions": {
+            "EnforceHTTPS": false,
+            "CustomEndpoint": "string",
+            "TLSSecurityPolicy": "string",
+            "CustomEndpointEnabled": false,
+            "CustomEndpointCertificateArn": "string"
+          },
+          "AdvancedSecurityOptions": {
+            "Enabled": false,
+            "SAMLOptions": {
+              "Idp": {
+                "EntityId": "string",
+                "MetadataContent": "string"
+              },
+              "Enabled": false,
+              "RolesKey": "string",
+              "SubjectKey": "string",
+              "MasterUserName": "string",
+              "MasterBackendRole": "string",
+              "SessionTimeoutMinutes": 1
+            },
+            "MasterUserOptions": {
+              "MasterUserARN": "string",
+              "MasterUserName": "string",
+              "MasterUserPassword": "string"
+            },
+            "InternalUserDatabaseEnabled": false
+          },
+          "EncryptionAtRestOptions": {
+            "Enabled": false,
+            "KmsKeyId": "string"
+          },
+          "ElasticsearchClusterConfig": {
+            "WarmType": "string",
+            "WarmCount": 1,
+            "WarmEnabled": false,
+            "InstanceType": "string",
+            "InstanceCount": 1,
+            "DedicatedMasterType": "string",
+            "ZoneAwarenessConfig": {
+              "AvailabilityZoneCount": 1
+            },
+            "DedicatedMasterCount": 1,
+            "ZoneAwarenessEnabled": false,
+            "DedicatedMasterEnabled": false
+          },
+          "NodeToNodeEncryptionOptions": {
+            "Enabled": false
+          }
+        }
+      ]
+      outputs: [
+        {
+          "DomainConfig": {
+            "EBSOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Iops": 1,
+                "EBSEnabled": false,
+                "VolumeSize": 1,
+                "VolumeType": "string"
+              }
+            },
+            "VPCOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "VPCId": "string",
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ],
+                "AvailabilityZones": [
+                  "string"
+                ]
+              }
+            },
+            "AccessPolicies": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": "string"
+            },
+            "CognitoOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Enabled": false,
+                "RoleArn": "string",
+                "UserPoolId": "string",
+                "IdentityPoolId": "string"
+              }
+            },
+            "AdvancedOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "string": "string"
+              }
+            },
+            "AutoTuneOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "ErrorMessage": "string",
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "DesiredState": "string",
+                "RollbackOnDisable": "string",
+                "MaintenanceSchedules": [
+                  {
+                    "StartAt": 1481289211.615,
+                    "Duration": {
+                      "Unit": "string",
+                      "Value": 1
+                    },
+                    "CronExpressionForRecurrence": "string"
+                  }
+                ]
+              }
+            },
+            "SnapshotOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "AutomatedSnapshotStartHour": 1
+              }
+            },
+            "ElasticsearchVersion": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": "string"
+            },
+            "LogPublishingOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "string": {
+                  "Enabled": false,
+                  "CloudWatchLogsLogGroupArn": "string"
+                }
+              }
+            },
+            "DomainEndpointOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "EnforceHTTPS": false,
+                "CustomEndpoint": "string",
+                "TLSSecurityPolicy": "string",
+                "CustomEndpointEnabled": false,
+                "CustomEndpointCertificateArn": "string"
+              }
+            },
+            "AdvancedSecurityOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Enabled": false,
+                "SAMLOptions": {
+                  "Idp": {
+                    "EntityId": "string",
+                    "MetadataContent": "string"
+                  },
+                  "Enabled": false,
+                  "RolesKey": "string",
+                  "SubjectKey": "string",
+                  "SessionTimeoutMinutes": 1
+                },
+                "InternalUserDatabaseEnabled": false
+              }
+            },
+            "EncryptionAtRestOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Enabled": false,
+                "KmsKeyId": "string"
+              }
+            },
+            "ElasticsearchClusterConfig": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "WarmType": "string",
+                "WarmCount": 1,
+                "WarmEnabled": false,
+                "InstanceType": "string",
+                "InstanceCount": 1,
+                "DedicatedMasterType": "string",
+                "ZoneAwarenessConfig": {
+                  "AvailabilityZoneCount": 1
+                },
+                "DedicatedMasterCount": 1,
+                "ZoneAwarenessEnabled": false,
+                "DedicatedMasterEnabled": false
+              }
+            },
+            "NodeToNodeEncryptionOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Enabled": false
+              }
+            }
+          }
+        }
+      ]
+  UpdatePackage:
+    description: |-
+      Updates a package for use with Amazon ES domains.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/update-package.html
+    example:
+      inputs: [
+        {
+          "PackageID": "string",
+          "CommitMessage": "string",
+          "PackageSource": {
+            "S3Key": "string",
+            "S3BucketName": "string"
+          },
+          "PackageDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PackageDetails": {
+            "CreatedAt": 1481289211.615,
+            "PackageID": "string",
+            "PackageName": "string",
+            "PackageType": "string",
+            "ErrorDetails": {
+              "ErrorType": "string",
+              "ErrorMessage": "string"
+            },
+            "LastUpdatedAt": 1481289211.615,
+            "PackageStatus": "string",
+            "PackageDescription": "string",
+            "AvailablePackageVersion": "string"
+          }
+        }
+      ]
+  UpgradeElasticsearchDomain:
+    description: |-
+      Allows you to either upgrade your domain or perform an Upgrade eligibility check to a compatible Elasticsearch version.
+    versions:
+      from: 2015.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/es/upgrade-elasticsearch-domain.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string",
+          "TargetVersion": "string",
+          "PerformCheckOnly": false
+        }
+      ]
+      outputs: [
+        {}
+      ]

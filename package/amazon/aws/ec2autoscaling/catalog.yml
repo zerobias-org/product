@@ -1,0 +1,1795 @@
+Product:
+  name: Amazon EC2 Auto Scaling
+  versions: [2011.1.1]
+  package: amazon.aws.ec2autoscaling
+  description: |-
+    Amazon EC2 Auto Scaling
+  link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AttachInstances:
+    description: |-
+      Attaches one or more EC2 instances to the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_AttachInstances.html
+    example:
+      inputs: [
+        {
+          "InstanceIds": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  AttachLoadBalancers:
+    description: |-
+      Attaches one or more Classic Load Balancers to the specified Auto Scaling group. Amazon EC2 Auto Scaling registers the running instances with these Classic Load Balancers.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_AttachLoadBalancers.html
+    example:
+      inputs: [
+        {
+          "LoadBalancerNames": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  AttachLoadBalancerTargetGroups:
+    description: |-
+      Attaches one or more target groups to the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_AttachLoadBalancerTargetGroups.html
+    example:
+      inputs: [
+        {
+          "TargetGroupARNs": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  BatchDeleteScheduledAction:
+    description: |-
+      Deletes one or more scheduled actions for the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_BatchDeleteScheduledAction.html
+    example:
+      inputs: [
+        {
+          "AutoScalingGroupName": "string",
+          "ScheduledActionNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "FailedScheduledActions": [
+            {
+              "ErrorCode": "string",
+              "ErrorMessage": "string",
+              "ScheduledActionName": "string"
+            }
+          ]
+        }
+      ]
+  BatchPutScheduledUpdateGroupAction:
+    description: |-
+      Creates or updates one or more scheduled scaling actions for an Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_BatchPutScheduledUpdateGroupAction.html
+    example:
+      inputs: [
+        {
+          "AutoScalingGroupName": "string",
+          "ScheduledUpdateGroupActions": [
+            {
+              "EndTime": 1481289211.615,
+              "MaxSize": 1,
+              "MinSize": 1,
+              "TimeZone": "string",
+              "StartTime": 1481289211.615,
+              "Recurrence": "string",
+              "DesiredCapacity": 1,
+              "ScheduledActionName": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "FailedScheduledUpdateGroupActions": [
+            {
+              "ErrorCode": "string",
+              "ErrorMessage": "string",
+              "ScheduledActionName": "string"
+            }
+          ]
+        }
+      ]
+  CancelInstanceRefresh:
+    description: |-
+      Cancels an instance refresh operation in progress. Cancellation does not roll back any replacements that have already been completed, but it prevents new replacements from being started.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CancelInstanceRefresh.html
+    example:
+      inputs: [
+        {
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "InstanceRefreshId": "string"
+        }
+      ]
+  CompleteLifecycleAction:
+    description: |-
+      Completes the lifecycle action for the specified token or instance with the specified result.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CompleteLifecycleAction.html
+    example:
+      inputs: [
+        {
+          "InstanceId": "string",
+          "LifecycleHookName": "string",
+          "AutoScalingGroupName": "string",
+          "LifecycleActionToken": "string",
+          "LifecycleActionResult": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateAutoScalingGroup:
+    description: |-
+      We strongly recommend using a launch template when calling this operation to ensure full functionality for Amazon EC2 Auto Scaling and Amazon EC2.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CreateAutoScalingGroup.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string",
+              "ResourceId": "string",
+              "ResourceType": "string",
+              "PropagateAtLaunch": false
+            }
+          ],
+          "MaxSize": 1,
+          "MinSize": 1,
+          "InstanceId": "string",
+          "LaunchTemplate": {
+            "Version": "string",
+            "LaunchTemplateId": "string",
+            "LaunchTemplateName": "string"
+          },
+          "PlacementGroup": "string",
+          "DefaultCooldown": 1,
+          "DesiredCapacity": 1,
+          "HealthCheckType": "string",
+          "TargetGroupARNs": [
+            "string"
+          ],
+          "AvailabilityZones": [
+            "string"
+          ],
+          "CapacityRebalance": false,
+          "LoadBalancerNames": [
+            "string"
+          ],
+          "VPCZoneIdentifier": "string",
+          "MaxInstanceLifetime": 1,
+          "TerminationPolicies": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string",
+          "MixedInstancesPolicy": {
+            "LaunchTemplate": {
+              "Overrides": [
+                {
+                  "InstanceType": "string",
+                  "WeightedCapacity": "string",
+                  "LaunchTemplateSpecification": {
+                    "Version": "string",
+                    "LaunchTemplateId": "string",
+                    "LaunchTemplateName": "string"
+                  }
+                }
+              ],
+              "LaunchTemplateSpecification": {
+                "Version": "string",
+                "LaunchTemplateId": "string",
+                "LaunchTemplateName": "string"
+              }
+            },
+            "InstancesDistribution": {
+              "SpotMaxPrice": "string",
+              "SpotInstancePools": 1,
+              "OnDemandBaseCapacity": 1,
+              "SpotAllocationStrategy": "string",
+              "OnDemandAllocationStrategy": "string",
+              "OnDemandPercentageAboveBaseCapacity": 1
+            }
+          },
+          "ServiceLinkedRoleARN": "string",
+          "HealthCheckGracePeriod": 1,
+          "LaunchConfigurationName": "string",
+          "LifecycleHookSpecificationList": [
+            {
+              "RoleARN": "string",
+              "DefaultResult": "string",
+              "HeartbeatTimeout": 1,
+              "LifecycleHookName": "string",
+              "LifecycleTransition": "string",
+              "NotificationMetadata": "string",
+              "NotificationTargetARN": "string"
+            }
+          ],
+          "NewInstancesProtectedFromScaleIn": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateLaunchConfiguration:
+    description: |-
+      Creates a launch configuration.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CreateLaunchConfiguration.html
+    example:
+      inputs: [
+        {
+          "ImageId": "string",
+          "KeyName": "string",
+          "KernelId": "string",
+          "UserData": "string",
+          "RamdiskId": "string",
+          "SpotPrice": "string",
+          "InstanceId": "string",
+          "EbsOptimized": false,
+          "InstanceType": "string",
+          "SecurityGroups": [
+            "string"
+          ],
+          "MetadataOptions": {
+            "HttpTokens": "string",
+            "HttpEndpoint": "string",
+            "HttpPutResponseHopLimit": 1
+          },
+          "ClassicLinkVPCId": "string",
+          "PlacementTenancy": "string",
+          "IamInstanceProfile": "string",
+          "InstanceMonitoring": {
+            "Enabled": false
+          },
+          "BlockDeviceMappings": [
+            {
+              "Ebs": {
+                "Iops": 1,
+                "Encrypted": false,
+                "SnapshotId": "string",
+                "VolumeSize": 1,
+                "VolumeType": "string",
+                "DeleteOnTermination": false
+              },
+              "NoDevice": false,
+              "DeviceName": "string",
+              "VirtualName": "string"
+            }
+          ],
+          "LaunchConfigurationName": "string",
+          "AssociatePublicIpAddress": false,
+          "ClassicLinkVPCSecurityGroups": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateOrUpdateTags:
+    description: |-
+      Creates or updates tags for the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CreateOrUpdateTags.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string",
+              "ResourceId": "string",
+              "ResourceType": "string",
+              "PropagateAtLaunch": false
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteAutoScalingGroup:
+    description: |-
+      Deletes the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeleteAutoScalingGroup.html
+    example:
+      inputs: [
+        {
+          "ForceDelete": false,
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteLaunchConfiguration:
+    description: |-
+      Deletes the specified launch configuration.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeleteLaunchConfiguration.html
+    example:
+      inputs: [
+        {
+          "LaunchConfigurationName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteLifecycleHook:
+    description: |-
+      Deletes the specified lifecycle hook.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeleteLifecycleHook.html
+    example:
+      inputs: [
+        {
+          "LifecycleHookName": "string",
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteNotificationConfiguration:
+    description: |-
+      Deletes the specified notification.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeleteNotificationConfiguration.html
+    example:
+      inputs: [
+        {
+          "TopicARN": "string",
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeletePolicy:
+    description: |-
+      Deletes the specified scaling policy.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeletePolicy.html
+    example:
+      inputs: [
+        {
+          "PolicyName": "string",
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteScheduledAction:
+    description: |-
+      Deletes the specified scheduled action.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeleteScheduledAction.html
+    example:
+      inputs: [
+        {
+          "ScheduledActionName": "string",
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteTags:
+    description: |-
+      Deletes the specified tags.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeleteTags.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string",
+              "ResourceId": "string",
+              "ResourceType": "string",
+              "PropagateAtLaunch": false
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteWarmPool:
+    description: |-
+      Deletes the warm pool for the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeleteWarmPool.html
+    example:
+      inputs: [
+        {
+          "ForceDelete": false,
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeAccountLimits:
+    description: |-
+      Describes the current Amazon EC2 Auto Scaling resource quotas for your AWS account.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeAccountLimits.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "NumberOfAutoScalingGroups": 1,
+          "MaxNumberOfAutoScalingGroups": 1,
+          "NumberOfLaunchConfigurations": 1,
+          "MaxNumberOfLaunchConfigurations": 1
+        }
+      ]
+  DescribeAdjustmentTypes:
+    description: |-
+      Describes the available adjustment types for Amazon EC2 Auto Scaling scaling policies. These settings apply to step scaling policies and simple scaling policies; they do not apply to target tracking scaling policies.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeAdjustmentTypes.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "AdjustmentTypes": [
+            {
+              "AdjustmentType": "string"
+            }
+          ]
+        }
+      ]
+  DescribeAutoScalingGroups:
+    description: |-
+      Describes one or more Auto Scaling groups.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeAutoScalingGroups.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxRecords": 1,
+          "AutoScalingGroupNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "AutoScalingGroups": [
+            {
+              "Tags": [
+                {
+                  "Key": "string",
+                  "Value": "string",
+                  "ResourceId": "string",
+                  "ResourceType": "string",
+                  "PropagateAtLaunch": false
+                }
+              ],
+              "Status": "string",
+              "MaxSize": 1,
+              "MinSize": 1,
+              "Instances": [
+                {
+                  "InstanceId": "string",
+                  "HealthStatus": "string",
+                  "InstanceType": "string",
+                  "LaunchTemplate": {
+                    "Version": "string",
+                    "LaunchTemplateId": "string",
+                    "LaunchTemplateName": "string"
+                  },
+                  "LifecycleState": "string",
+                  "AvailabilityZone": "string",
+                  "WeightedCapacity": "string",
+                  "ProtectedFromScaleIn": false,
+                  "LaunchConfigurationName": "string"
+                }
+              ],
+              "CreatedTime": 1481289211.615,
+              "WarmPoolSize": 1,
+              "EnabledMetrics": [
+                {
+                  "Metric": "string",
+                  "Granularity": "string"
+                }
+              ],
+              "LaunchTemplate": {
+                "Version": "string",
+                "LaunchTemplateId": "string",
+                "LaunchTemplateName": "string"
+              },
+              "PlacementGroup": "string",
+              "DefaultCooldown": 1,
+              "DesiredCapacity": 1,
+              "HealthCheckType": "string",
+              "TargetGroupARNs": [
+                "string"
+              ],
+              "AvailabilityZones": [
+                "string"
+              ],
+              "CapacityRebalance": false,
+              "LoadBalancerNames": [
+                "string"
+              ],
+              "VPCZoneIdentifier": "string",
+              "SuspendedProcesses": [
+                {
+                  "ProcessName": "string",
+                  "SuspensionReason": "string"
+                }
+              ],
+              "AutoScalingGroupARN": "string",
+              "MaxInstanceLifetime": 1,
+              "TerminationPolicies": [
+                "string"
+              ],
+              "AutoScalingGroupName": "string",
+              "MixedInstancesPolicy": {
+                "LaunchTemplate": {
+                  "Overrides": [
+                    {
+                      "InstanceType": "string",
+                      "WeightedCapacity": "string",
+                      "LaunchTemplateSpecification": {
+                        "Version": "string",
+                        "LaunchTemplateId": "string",
+                        "LaunchTemplateName": "string"
+                      }
+                    }
+                  ],
+                  "LaunchTemplateSpecification": {
+                    "Version": "string",
+                    "LaunchTemplateId": "string",
+                    "LaunchTemplateName": "string"
+                  }
+                },
+                "InstancesDistribution": {
+                  "SpotMaxPrice": "string",
+                  "SpotInstancePools": 1,
+                  "OnDemandBaseCapacity": 1,
+                  "SpotAllocationStrategy": "string",
+                  "OnDemandAllocationStrategy": "string",
+                  "OnDemandPercentageAboveBaseCapacity": 1
+                }
+              },
+              "ServiceLinkedRoleARN": "string",
+              "WarmPoolConfiguration": {
+                "Status": "string",
+                "MinSize": 1,
+                "PoolState": "string",
+                "MaxGroupPreparedCapacity": 1
+              },
+              "HealthCheckGracePeriod": 1,
+              "LaunchConfigurationName": "string",
+              "NewInstancesProtectedFromScaleIn": false
+            }
+          ]
+        }
+      ]
+  DescribeAutoScalingInstances:
+    description: |-
+      Describes one or more Auto Scaling instances.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeAutoScalingInstances.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxRecords": 1,
+          "InstanceIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "AutoScalingInstances": [
+            {
+              "InstanceId": "string",
+              "HealthStatus": "string",
+              "InstanceType": "string",
+              "LaunchTemplate": {
+                "Version": "string",
+                "LaunchTemplateId": "string",
+                "LaunchTemplateName": "string"
+              },
+              "LifecycleState": "string",
+              "AvailabilityZone": "string",
+              "WeightedCapacity": "string",
+              "AutoScalingGroupName": "string",
+              "ProtectedFromScaleIn": false,
+              "LaunchConfigurationName": "string"
+            }
+          ]
+        }
+      ]
+  DescribeAutoScalingNotificationTypes:
+    description: |-
+      Describes the notification types that are supported by Amazon EC2 Auto Scaling.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeAutoScalingNotificationTypes.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "AutoScalingNotificationTypes": [
+            "string"
+          ]
+        }
+      ]
+  DescribeInstanceRefreshes:
+    description: |-
+      Describes one or more instance refreshes.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeInstanceRefreshes.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxRecords": 1,
+          "InstanceRefreshIds": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "InstanceRefreshes": [
+            {
+              "Status": "string",
+              "EndTime": 1481289211.615,
+              "StartTime": 1481289211.615,
+              "StatusReason": "string",
+              "ProgressDetails": {
+                "LivePoolProgress": {
+                  "InstancesToUpdate": 1,
+                  "PercentageComplete": 1
+                },
+                "WarmPoolProgress": {
+                  "InstancesToUpdate": 1,
+                  "PercentageComplete": 1
+                }
+              },
+              "InstanceRefreshId": "string",
+              "InstancesToUpdate": 1,
+              "PercentageComplete": 1,
+              "AutoScalingGroupName": "string"
+            }
+          ]
+        }
+      ]
+  DescribeLaunchConfigurations:
+    description: |-
+      Describes one or more launch configurations.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeLaunchConfigurations.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxRecords": 1,
+          "LaunchConfigurationNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "LaunchConfigurations": [
+            {
+              "ImageId": "string",
+              "KeyName": "string",
+              "KernelId": "string",
+              "UserData": "string",
+              "RamdiskId": "string",
+              "SpotPrice": "string",
+              "CreatedTime": 1481289211.615,
+              "EbsOptimized": false,
+              "InstanceType": "string",
+              "SecurityGroups": [
+                "string"
+              ],
+              "MetadataOptions": {
+                "HttpTokens": "string",
+                "HttpEndpoint": "string",
+                "HttpPutResponseHopLimit": 1
+              },
+              "ClassicLinkVPCId": "string",
+              "PlacementTenancy": "string",
+              "IamInstanceProfile": "string",
+              "InstanceMonitoring": {
+                "Enabled": false
+              },
+              "BlockDeviceMappings": [
+                {
+                  "Ebs": {
+                    "Iops": 1,
+                    "Encrypted": false,
+                    "SnapshotId": "string",
+                    "VolumeSize": 1,
+                    "VolumeType": "string",
+                    "DeleteOnTermination": false
+                  },
+                  "NoDevice": false,
+                  "DeviceName": "string",
+                  "VirtualName": "string"
+                }
+              ],
+              "LaunchConfigurationARN": "string",
+              "LaunchConfigurationName": "string",
+              "AssociatePublicIpAddress": false,
+              "ClassicLinkVPCSecurityGroups": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  DescribeLifecycleHooks:
+    description: |-
+      Describes the lifecycle hooks for the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeLifecycleHooks.html
+    example:
+      inputs: [
+        {
+          "LifecycleHookNames": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LifecycleHooks": [
+            {
+              "RoleARN": "string",
+              "DefaultResult": "string",
+              "GlobalTimeout": 1,
+              "HeartbeatTimeout": 1,
+              "LifecycleHookName": "string",
+              "LifecycleTransition": "string",
+              "AutoScalingGroupName": "string",
+              "NotificationMetadata": "string",
+              "NotificationTargetARN": "string"
+            }
+          ]
+        }
+      ]
+  DescribeLifecycleHookTypes:
+    description: |-
+      Describes the available types of lifecycle hooks.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeLifecycleHookTypes.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "LifecycleHookTypes": [
+            "string"
+          ]
+        }
+      ]
+  DescribeLoadBalancers:
+    description: |-
+      Describes the load balancers for the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeLoadBalancers.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxRecords": 1,
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "LoadBalancers": [
+            {
+              "State": "string",
+              "LoadBalancerName": "string"
+            }
+          ]
+        }
+      ]
+  DescribeLoadBalancerTargetGroups:
+    description: |-
+      Describes the target groups for the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeLoadBalancerTargetGroups.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxRecords": 1,
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "LoadBalancerTargetGroups": [
+            {
+              "State": "string",
+              "LoadBalancerTargetGroupARN": "string"
+            }
+          ]
+        }
+      ]
+  DescribeMetricCollectionTypes:
+    description: |-
+      Describes the available CloudWatch metrics for Amazon EC2 Auto Scaling.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeMetricCollectionTypes.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Metrics": [
+            {
+              "Metric": "string"
+            }
+          ],
+          "Granularities": [
+            {
+              "Granularity": "string"
+            }
+          ]
+        }
+      ]
+  DescribeNotificationConfigurations:
+    description: |-
+      Describes the notification actions associated with the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeNotificationConfigurations.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxRecords": 1,
+          "AutoScalingGroupNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "NotificationConfigurations": [
+            {
+              "TopicARN": "string",
+              "NotificationType": "string",
+              "AutoScalingGroupName": "string"
+            }
+          ]
+        }
+      ]
+  DescribePolicies:
+    description: |-
+      Describes the policies for the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribePolicies.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxRecords": 1,
+          "PolicyNames": [
+            "string"
+          ],
+          "PolicyTypes": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ScalingPolicies": [
+            {
+              "Alarms": [
+                {
+                  "AlarmARN": "string",
+                  "AlarmName": "string"
+                }
+              ],
+              "Enabled": false,
+              "Cooldown": 1,
+              "PolicyARN": "string",
+              "PolicyName": "string",
+              "PolicyType": "string",
+              "AdjustmentType": "string",
+              "StepAdjustments": [
+                {
+                  "ScalingAdjustment": 1,
+                  "MetricIntervalLowerBound": 0.1,
+                  "MetricIntervalUpperBound": 0.1
+                }
+              ],
+              "MinAdjustmentStep": 1,
+              "ScalingAdjustment": 1,
+              "AutoScalingGroupName": "string",
+              "MetricAggregationType": "string",
+              "MinAdjustmentMagnitude": 1,
+              "EstimatedInstanceWarmup": 1,
+              "TargetTrackingConfiguration": {
+                "TargetValue": 0.1,
+                "DisableScaleIn": false,
+                "CustomizedMetricSpecification": {
+                  "Unit": "string",
+                  "Namespace": "string",
+                  "Statistic": "string",
+                  "Dimensions": [
+                    {
+                      "Name": "string",
+                      "Value": "string"
+                    }
+                  ],
+                  "MetricName": "string"
+                },
+                "PredefinedMetricSpecification": {
+                  "ResourceLabel": "string",
+                  "PredefinedMetricType": "string"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  DescribeScalingActivities:
+    description: |-
+      Describes one or more scaling activities for the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeScalingActivities.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxRecords": 1,
+          "ActivityIds": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string",
+          "IncludeDeletedGroups": false
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Activities": [
+            {
+              "Cause": "string",
+              "Details": "string",
+              "EndTime": 1481289211.615,
+              "Progress": 1,
+              "StartTime": 1481289211.615,
+              "ActivityId": "string",
+              "StatusCode": "string",
+              "Description": "string",
+              "StatusMessage": "string",
+              "AutoScalingGroupARN": "string",
+              "AutoScalingGroupName": "string",
+              "AutoScalingGroupState": "string"
+            }
+          ]
+        }
+      ]
+  DescribeScalingProcessTypes:
+    description: |-
+      Describes the scaling process types for use with the ResumeProcesses and SuspendProcesses APIs.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeScalingProcessTypes.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Processes": [
+            {
+              "ProcessName": "string"
+            }
+          ]
+        }
+      ]
+  DescribeScheduledActions:
+    description: |-
+      Describes the actions scheduled for your Auto Scaling group that haven't run or that have not reached their end time. To describe the actions that have already run, call the DescribeScalingActivities API.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeScheduledActions.html
+    example:
+      inputs: [
+        {
+          "EndTime": 1481289211.615,
+          "NextToken": "string",
+          "StartTime": 1481289211.615,
+          "MaxRecords": 1,
+          "AutoScalingGroupName": "string",
+          "ScheduledActionNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ScheduledUpdateGroupActions": [
+            {
+              "Time": 1481289211.615,
+              "EndTime": 1481289211.615,
+              "MaxSize": 1,
+              "MinSize": 1,
+              "TimeZone": "string",
+              "StartTime": 1481289211.615,
+              "Recurrence": "string",
+              "DesiredCapacity": 1,
+              "ScheduledActionARN": "string",
+              "ScheduledActionName": "string",
+              "AutoScalingGroupName": "string"
+            }
+          ]
+        }
+      ]
+  DescribeTags:
+    description: |-
+      Describes the specified tags.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeTags.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxRecords": 1
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string",
+              "ResourceId": "string",
+              "ResourceType": "string",
+              "PropagateAtLaunch": false
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeTerminationPolicyTypes:
+    description: |-
+      Describes the termination policies supported by Amazon EC2 Auto Scaling.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeTerminationPolicyTypes.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "TerminationPolicyTypes": [
+            "string"
+          ]
+        }
+      ]
+  DescribeWarmPool:
+    description: |-
+      Describes a warm pool and its instances.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeWarmPool.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxRecords": 1,
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Instances": [
+            {
+              "InstanceId": "string",
+              "HealthStatus": "string",
+              "InstanceType": "string",
+              "LaunchTemplate": {
+                "Version": "string",
+                "LaunchTemplateId": "string",
+                "LaunchTemplateName": "string"
+              },
+              "LifecycleState": "string",
+              "AvailabilityZone": "string",
+              "WeightedCapacity": "string",
+              "ProtectedFromScaleIn": false,
+              "LaunchConfigurationName": "string"
+            }
+          ],
+          "NextToken": "string",
+          "WarmPoolConfiguration": {
+            "Status": "string",
+            "MinSize": 1,
+            "PoolState": "string",
+            "MaxGroupPreparedCapacity": 1
+          }
+        }
+      ]
+  DetachInstances:
+    description: |-
+      Removes one or more instances from the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DetachInstances.html
+    example:
+      inputs: [
+        {
+          "InstanceIds": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string",
+          "ShouldDecrementDesiredCapacity": false
+        }
+      ]
+      outputs: [
+        {
+          "Activities": [
+            {
+              "Cause": "string",
+              "Details": "string",
+              "EndTime": 1481289211.615,
+              "Progress": 1,
+              "StartTime": 1481289211.615,
+              "ActivityId": "string",
+              "StatusCode": "string",
+              "Description": "string",
+              "StatusMessage": "string",
+              "AutoScalingGroupARN": "string",
+              "AutoScalingGroupName": "string",
+              "AutoScalingGroupState": "string"
+            }
+          ]
+        }
+      ]
+  DetachLoadBalancers:
+    description: |-
+      Detaches one or more Classic Load Balancers from the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DetachLoadBalancers.html
+    example:
+      inputs: [
+        {
+          "LoadBalancerNames": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DetachLoadBalancerTargetGroups:
+    description: |-
+      Detaches one or more target groups from the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DetachLoadBalancerTargetGroups.html
+    example:
+      inputs: [
+        {
+          "TargetGroupARNs": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DisableMetricsCollection:
+    description: |-
+      Disables group metrics for the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DisableMetricsCollection.html
+    example:
+      inputs: [
+        {
+          "Metrics": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  EnableMetricsCollection:
+    description: |-
+      Enables group metrics for the specified Auto Scaling group. For more information, see Monitoring CloudWatch metrics for your Auto Scaling groups and instances in the Amazon EC2 Auto Scaling User Guide.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_EnableMetricsCollection.html
+    example:
+      inputs: [
+        {
+          "Metrics": [
+            "string"
+          ],
+          "Granularity": "string",
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  EnterStandby:
+    description: |-
+      Moves the specified instances into the standby state.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_EnterStandby.html
+    example:
+      inputs: [
+        {
+          "InstanceIds": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string",
+          "ShouldDecrementDesiredCapacity": false
+        }
+      ]
+      outputs: [
+        {
+          "Activities": [
+            {
+              "Cause": "string",
+              "Details": "string",
+              "EndTime": 1481289211.615,
+              "Progress": 1,
+              "StartTime": 1481289211.615,
+              "ActivityId": "string",
+              "StatusCode": "string",
+              "Description": "string",
+              "StatusMessage": "string",
+              "AutoScalingGroupARN": "string",
+              "AutoScalingGroupName": "string",
+              "AutoScalingGroupState": "string"
+            }
+          ]
+        }
+      ]
+  ExecutePolicy:
+    description: |-
+      Executes the specified policy. This can be useful for testing the design of your scaling policy.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_ExecutePolicy.html
+    example:
+      inputs: [
+        {
+          "PolicyName": "string",
+          "MetricValue": 0.1,
+          "HonorCooldown": false,
+          "BreachThreshold": 0.1,
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ExitStandby:
+    description: |-
+      Moves the specified instances out of the standby state.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_ExitStandby.html
+    example:
+      inputs: [
+        {
+          "InstanceIds": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Activities": [
+            {
+              "Cause": "string",
+              "Details": "string",
+              "EndTime": 1481289211.615,
+              "Progress": 1,
+              "StartTime": 1481289211.615,
+              "ActivityId": "string",
+              "StatusCode": "string",
+              "Description": "string",
+              "StatusMessage": "string",
+              "AutoScalingGroupARN": "string",
+              "AutoScalingGroupName": "string",
+              "AutoScalingGroupState": "string"
+            }
+          ]
+        }
+      ]
+  PutLifecycleHook:
+    description: |-
+      Creates or updates a lifecycle hook for the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutLifecycleHook.html
+    example:
+      inputs: [
+        {
+          "RoleARN": "string",
+          "DefaultResult": "string",
+          "HeartbeatTimeout": 1,
+          "LifecycleHookName": "string",
+          "LifecycleTransition": "string",
+          "AutoScalingGroupName": "string",
+          "NotificationMetadata": "string",
+          "NotificationTargetARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutNotificationConfiguration:
+    description: |-
+      Configures an Auto Scaling group to send notifications when specified events take place. Subscribers to the specified topic can have messages delivered to an endpoint such as a web server or an email address.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutNotificationConfiguration.html
+    example:
+      inputs: [
+        {
+          "TopicARN": "string",
+          "NotificationTypes": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutScalingPolicy:
+    description: |-
+      Creates or updates a scaling policy for an Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutScalingPolicy.html
+    example:
+      inputs: [
+        {
+          "Enabled": false,
+          "Cooldown": 1,
+          "PolicyName": "string",
+          "PolicyType": "string",
+          "AdjustmentType": "string",
+          "StepAdjustments": [
+            {
+              "ScalingAdjustment": 1,
+              "MetricIntervalLowerBound": 0.1,
+              "MetricIntervalUpperBound": 0.1
+            }
+          ],
+          "MinAdjustmentStep": 1,
+          "ScalingAdjustment": 1,
+          "AutoScalingGroupName": "string",
+          "MetricAggregationType": "string",
+          "MinAdjustmentMagnitude": 1,
+          "EstimatedInstanceWarmup": 1,
+          "TargetTrackingConfiguration": {
+            "TargetValue": 0.1,
+            "DisableScaleIn": false,
+            "CustomizedMetricSpecification": {
+              "Unit": "string",
+              "Namespace": "string",
+              "Statistic": "string",
+              "Dimensions": [
+                {
+                  "Name": "string",
+                  "Value": "string"
+                }
+              ],
+              "MetricName": "string"
+            },
+            "PredefinedMetricSpecification": {
+              "ResourceLabel": "string",
+              "PredefinedMetricType": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Alarms": [
+            {
+              "AlarmARN": "string",
+              "AlarmName": "string"
+            }
+          ],
+          "PolicyARN": "string"
+        }
+      ]
+  PutScheduledUpdateGroupAction:
+    description: |-
+      Creates or updates a scheduled scaling action for an Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutScheduledUpdateGroupAction.html
+    example:
+      inputs: [
+        {
+          "Time": 1481289211.615,
+          "EndTime": 1481289211.615,
+          "MaxSize": 1,
+          "MinSize": 1,
+          "TimeZone": "string",
+          "StartTime": 1481289211.615,
+          "Recurrence": "string",
+          "DesiredCapacity": 1,
+          "ScheduledActionName": "string",
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutWarmPool:
+    description: |-
+      Adds a warm pool to the specified Auto Scaling group. A warm pool is a pool of pre-initialized EC2 instances that sits alongside the Auto Scaling group. Whenever your application needs to scale out, the Auto Scaling group can draw on the warm pool to meet its new desired capacity. For more information, see Warm pools for Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutWarmPool.html
+    example:
+      inputs: [
+        {
+          "MinSize": 1,
+          "PoolState": "string",
+          "AutoScalingGroupName": "string",
+          "MaxGroupPreparedCapacity": 1
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RecordLifecycleActionHeartbeat:
+    description: |-
+      Records a heartbeat for the lifecycle action associated with the specified token or instance. This extends the timeout by the length of time defined using the PutLifecycleHook API call.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_RecordLifecycleActionHeartbeat.html
+    example:
+      inputs: [
+        {
+          "InstanceId": "string",
+          "LifecycleHookName": "string",
+          "AutoScalingGroupName": "string",
+          "LifecycleActionToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ResumeProcesses:
+    description: |-
+      Resumes the specified suspended auto scaling processes, or all suspended process, for the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_ResumeProcesses.html
+    example:
+      inputs: [
+        {
+          "ScalingProcesses": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SetDesiredCapacity:
+    description: |-
+      Sets the size of the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_SetDesiredCapacity.html
+    example:
+      inputs: [
+        {
+          "HonorCooldown": false,
+          "DesiredCapacity": 1,
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SetInstanceHealth:
+    description: |-
+      Sets the health status of the specified instance.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_SetInstanceHealth.html
+    example:
+      inputs: [
+        {
+          "InstanceId": "string",
+          "HealthStatus": "string",
+          "ShouldRespectGracePeriod": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SetInstanceProtection:
+    description: |-
+      Updates the instance protection settings of the specified instances. This operation cannot be called on instances in a warm pool.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_SetInstanceProtection.html
+    example:
+      inputs: [
+        {
+          "InstanceIds": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string",
+          "ProtectedFromScaleIn": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartInstanceRefresh:
+    description: |-
+      Starts a new instance refresh operation, which triggers a rolling replacement of previously launched instances in the Auto Scaling group with a new group of instances.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_StartInstanceRefresh.html
+    example:
+      inputs: [
+        {
+          "Strategy": "string",
+          "Preferences": {
+            "InstanceWarmup": 1,
+            "CheckpointDelay": 1,
+            "MinHealthyPercentage": 1,
+            "CheckpointPercentages": [
+              1
+            ]
+          },
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "InstanceRefreshId": "string"
+        }
+      ]
+  SuspendProcesses:
+    description: |-
+      Suspends the specified auto scaling processes, or all processes, for the specified Auto Scaling group.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_SuspendProcesses.html
+    example:
+      inputs: [
+        {
+          "ScalingProcesses": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TerminateInstanceInAutoScalingGroup:
+    description: |-
+      Terminates the specified instance and optionally adjusts the desired group size. This operation cannot be called on instances in a warm pool.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_TerminateInstanceInAutoScalingGroup.html
+    example:
+      inputs: [
+        {
+          "InstanceId": "string",
+          "ShouldDecrementDesiredCapacity": false
+        }
+      ]
+      outputs: [
+        {
+          "Activity": {
+            "Cause": "string",
+            "Details": "string",
+            "EndTime": 1481289211.615,
+            "Progress": 1,
+            "StartTime": 1481289211.615,
+            "ActivityId": "string",
+            "StatusCode": "string",
+            "Description": "string",
+            "StatusMessage": "string",
+            "AutoScalingGroupARN": "string",
+            "AutoScalingGroupName": "string",
+            "AutoScalingGroupState": "string"
+          }
+        }
+      ]
+  UpdateAutoScalingGroup:
+    description: |-
+      We strongly recommend that all Auto Scaling groups use launch templates to ensure full functionality for Amazon EC2 Auto Scaling and Amazon EC2.
+    versions:
+      from: 2011.1.1
+    link: https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_UpdateAutoScalingGroup.html
+    example:
+      inputs: [
+        {
+          "MaxSize": 1,
+          "MinSize": 1,
+          "LaunchTemplate": {
+            "Version": "string",
+            "LaunchTemplateId": "string",
+            "LaunchTemplateName": "string"
+          },
+          "PlacementGroup": "string",
+          "DefaultCooldown": 1,
+          "DesiredCapacity": 1,
+          "HealthCheckType": "string",
+          "AvailabilityZones": [
+            "string"
+          ],
+          "CapacityRebalance": false,
+          "VPCZoneIdentifier": "string",
+          "MaxInstanceLifetime": 1,
+          "TerminationPolicies": [
+            "string"
+          ],
+          "AutoScalingGroupName": "string",
+          "MixedInstancesPolicy": {
+            "LaunchTemplate": {
+              "Overrides": [
+                {
+                  "InstanceType": "string",
+                  "WeightedCapacity": "string",
+                  "LaunchTemplateSpecification": {
+                    "Version": "string",
+                    "LaunchTemplateId": "string",
+                    "LaunchTemplateName": "string"
+                  }
+                }
+              ],
+              "LaunchTemplateSpecification": {
+                "Version": "string",
+                "LaunchTemplateId": "string",
+                "LaunchTemplateName": "string"
+              }
+            },
+            "InstancesDistribution": {
+              "SpotMaxPrice": "string",
+              "SpotInstancePools": 1,
+              "OnDemandBaseCapacity": 1,
+              "SpotAllocationStrategy": "string",
+              "OnDemandAllocationStrategy": "string",
+              "OnDemandPercentageAboveBaseCapacity": 1
+            }
+          },
+          "ServiceLinkedRoleARN": "string",
+          "HealthCheckGracePeriod": 1,
+          "LaunchConfigurationName": "string",
+          "NewInstancesProtectedFromScaleIn": false
+        }
+      ]
+      outputs: [
+        {}
+      ]

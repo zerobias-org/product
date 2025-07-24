@@ -1,0 +1,355 @@
+Product:
+  name: Azure Custom Providers
+  versions: [2018.9.1-preview]
+  package: microsoft.azure.customproviders
+  description: |-
+    CustomProviders
+  link: https://docs.microsoft.com/en-us/azure/azure-resource-manager/custom-providers/
+  contentType: json
+Operations:
+  Associations.CreateOrUpdate:
+    description: |-
+      Create or update an association.
+    versions:
+      from: 2018.9.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/customproviders/associations/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "targetResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/appRG/providers/Microsoft.Solutions/applications/applicationName"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/scope/providers/Microsoft.CustomProviders/associations/associationName",
+          "name": "associationName",
+          "type": "Microsoft.CustomProviders/associations",
+          "properties": {
+            "targetResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/appRG/providers/Microsoft.Solutions/applications/applicationName",
+            "provisioningState": "Accepted"
+          }
+        }
+      ]
+  Associations.Delete:
+    description: |-
+      Delete an association.
+    versions:
+      from: 2018.9.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/customproviders/associations/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Associations.Get:
+    description: |-
+      Get an association.
+    versions:
+      from: 2018.9.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/customproviders/associations/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "scope/providers/Microsoft.CustomProviders/associations/associationName",
+          "name": "associationName",
+          "type": "Microsoft.CustomProviders/associations",
+          "properties": {
+            "targetResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/appRG/providers/Microsoft.Solutions/applications/applicationName",
+            "provisioningState": "Succeeded"
+          }
+        }
+      ]
+  Associations.ListAll:
+    description: |-
+      Gets all association for the given scope.
+    versions:
+      from: 2018.9.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/customproviders/associations/listall
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "scope/providers/Microsoft.CustomProviders/associations/associationName",
+              "name": "associationName",
+              "type": "Microsoft.CustomProviders/associations",
+              "properties": {
+                "targetResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/appRG/providers/Microsoft.Solutions/applications/applicationName",
+                "provisioningState": "Succeeded"
+              }
+            }
+          ]
+        }
+      ]
+  CustomResourceProvider.CreateOrUpdate:
+    description: |-
+      Creates or updates the custom resource provider.
+    versions:
+      from: 2018.9.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/customproviders/customresourceprovider/createorupdate
+    example:
+      inputs: [
+        {
+          "location": "eastus",
+          "properties": {
+            "actions": [
+              {
+                "name": "TestAction",
+                "endpoint": "https://mytestendpoint/",
+                "routingType": "Proxy"
+              }
+            ],
+            "resourceTypes": [
+              {
+                "name": "TestResource",
+                "endpoint": "https://mytestendpoint2/",
+                "routingType": "Proxy,Cache"
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testRG/providers/Microsoft.CustomProviders/resourceProviders/newrp",
+          "name": "newrp",
+          "type": "Microsoft.CustomProviders/resourceProviders",
+          "location": "East US",
+          "properties": {
+            "actions": [
+              {
+                "name": "TestAction",
+                "endpoint": "https://mytestendpoint/",
+                "routingType": "Proxy"
+              }
+            ],
+            "resourceTypes": [
+              {
+                "name": "TestResource",
+                "endpoint": "https://mytestendpoint2/",
+                "routingType": "Proxy,Cache"
+              }
+            ],
+            "provisioningState": "Accepted"
+          }
+        }
+      ]
+  CustomResourceProvider.Delete:
+    description: |-
+      Deletes the custom resource provider.
+    versions:
+      from: 2018.9.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/customproviders/customresourceprovider/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  CustomResourceProvider.Get:
+    description: |-
+      Gets the custom resource provider manifest.
+    versions:
+      from: 2018.9.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/customproviders/customresourceprovider/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testRG/providers/Microsoft.CustomProviders/resourceProviders/newrp",
+          "name": "newrp",
+          "type": "Microsoft.CustomProviders/resourceProviders",
+          "location": "East US",
+          "properties": {
+            "actions": [
+              {
+                "name": "TestAction",
+                "endpoint": "https://mytestendpoint/",
+                "routingType": "Proxy"
+              }
+            ],
+            "resourceTypes": [
+              {
+                "name": "TestResource",
+                "endpoint": "https://mytestendpoint2/",
+                "routingType": "Proxy,Cache"
+              }
+            ],
+            "provisioningState": "Succeeded"
+          }
+        }
+      ]
+  CustomResourceProvider.ListByResourceGroup:
+    description: |-
+      Gets all the custom resource providers within a resource group.
+    versions:
+      from: 2018.9.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/customproviders/customresourceprovider/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testRG/providers/Microsoft.CustomProviders/resourceProviders/newrp1",
+              "name": "newrp1",
+              "type": "Microsoft.CustomProviders/resourceProviders",
+              "location": "East US",
+              "properties": {
+                "actions": [
+                  {
+                    "name": "TestAction",
+                    "endpoint": "https://mytestendpoint/",
+                    "routingType": "Proxy"
+                  }
+                ],
+                "resourceTypes": [
+                  {
+                    "name": "TestResource",
+                    "endpoint": "https://mytestendpoint2/",
+                    "routingType": "Proxy,Cache"
+                  }
+                ],
+                "provisioningState": "Succeeded"
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testRG/providers/Microsoft.CustomProviders/resourceProviders/newrp2",
+              "name": "newrp2",
+              "type": "Microsoft.CustomProviders/resourceProviders",
+              "location": "East US",
+              "properties": {
+                "actions": [
+                  {
+                    "name": "TestAction",
+                    "endpoint": "https://mytestendpoint/",
+                    "routingType": "Proxy"
+                  }
+                ],
+                "resourceTypes": [
+                  {
+                    "name": "TestResource",
+                    "endpoint": "https://mytestendpoint2/",
+                    "routingType": "Proxy,Cache"
+                  }
+                ],
+                "provisioningState": "Succeeded"
+              }
+            }
+          ]
+        }
+      ]
+  CustomResourceProvider.ListBySubscription:
+    description: |-
+      Gets all the custom resource providers within a subscription.
+    versions:
+      from: 2018.9.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/customproviders/customresourceprovider/listbysubscription
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testRG/providers/Microsoft.CustomProviders/resourceProviders/newrp1",
+              "name": "newrp1",
+              "type": "Microsoft.CustomProviders/resourceProviders",
+              "location": "East US",
+              "properties": {
+                "actions": [
+                  {
+                    "name": "TestAction",
+                    "endpoint": "https://mytestendpoint/",
+                    "routingType": "Proxy"
+                  }
+                ],
+                "resourceTypes": [
+                  {
+                    "name": "TestResource",
+                    "endpoint": "https://mytestendpoint2/",
+                    "routingType": "Proxy,Cache"
+                  }
+                ],
+                "provisioningState": "Succeeded"
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testRG2/providers/Microsoft.CustomProviders/resourceProviders/newrp2",
+              "name": "newrp2",
+              "type": "Microsoft.CustomProviders/resourceProviders",
+              "location": "East US",
+              "properties": {
+                "actions": [
+                  {
+                    "name": "TestAction",
+                    "endpoint": "https://mytestendpoint/",
+                    "routingType": "Proxy"
+                  }
+                ],
+                "resourceTypes": [
+                  {
+                    "name": "TestResource",
+                    "endpoint": "https://mytestendpoint2/",
+                    "routingType": "Proxy,Cache"
+                  }
+                ],
+                "provisioningState": "Succeeded"
+              }
+            }
+          ]
+        }
+      ]
+  CustomResourceProvider.Update:
+    description: |-
+      Updates an existing custom resource provider. The only value that can be updated via PATCH currently is the tags.
+    versions:
+      from: 2018.9.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/customproviders/customresourceprovider/update
+    example:
+      inputs: [
+        {
+          "tags": {}
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testRG/providers/Microsoft.CustomProviders/resourceProviders/newrp",
+          "name": "newrp",
+          "type": "Microsoft.CustomProviders/resourceProviders",
+          "location": "East US",
+          "properties": {
+            "actions": [
+              {
+                "name": "TestAction",
+                "endpoint": "https://mytestendpoint/",
+                "routingType": "Proxy"
+              }
+            ],
+            "resourceTypes": [
+              {
+                "name": "TestResource",
+                "endpoint": "https://mytestendpoint2/",
+                "routingType": "Proxy,Cache"
+              }
+            ],
+            "provisioningState": "Succeeded"
+          }
+        }
+      ]

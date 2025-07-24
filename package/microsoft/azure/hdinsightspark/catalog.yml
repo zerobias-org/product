@@ -1,0 +1,282 @@
+Product:
+  name: Azure HDInsight Spark
+  versions: [1.0.0]
+  package: microsoft.azure.hdinsightspark
+  description: |-
+    HdInsightSpark
+  link: https://docs.microsoft.com/en-us/azure/hdinsight/
+  contentType: json
+Operations:
+  BatchJob.Create:
+    description: |-
+      Submit a new batch job from a jar.
+    versions:
+      from: 1.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/hdinsightspark/hdinsight-spark-batch-job
+    example:
+      inputs: [
+        {
+          "args": [
+            "arg0",
+            "arg1"
+          ],
+          "file": "wasb://<BlobStorageContainerName>@<StorageAccountName>.blob.core.windows.net/sample.jar",
+          "jars": [
+            "wasb://<BlobStorageContainerName>@<StorageAccountName>.blob.core.windows.net/helper.jar"
+          ],
+          "files": [
+            "wasb://<BlobStorageContainerName>@<StorageAccountName>.blob.core.windows.net/config.xml"
+          ],
+          "className": "com.sample.Job1",
+          "driverCores": 2,
+          "driverMemory": "1G",
+          "numExecutors": 10,
+          "executorCores": 10,
+          "executorMemory": "1G"
+        }
+      ]
+      outputs: [
+        {
+          "id": 1,
+          "log": [
+            "logline"
+          ],
+          "state": "starting"
+        }
+      ]
+  BatchJob.GetLog:
+    description: |-
+      Gets the state of a batch job.
+    versions:
+      from: 1.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/hdinsightspark/hdinsight-spark-batch-job
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": 1,
+          "log": [
+            "logline1",
+            "logline2"
+          ],
+          "from": 0,
+          "total": 54
+        }
+      ]
+  BatchJob.GetState:
+    description: |-
+      Get the state of a batch job.
+    versions:
+      from: 1.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/hdinsightspark/hdinsight-spark-batch-job
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": 1,
+          "log": [
+            "logline"
+          ],
+          "state": "starting"
+        }
+      ]
+  BatchJob.Kill:
+    description: |-
+      Kill a batch job.
+    versions:
+      from: 1.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/hdinsightspark/hdinsight-spark-batch-job
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "msg": "deleted"
+        }
+      ]
+  BatchJob.List:
+    description: |-
+      Returns all active batch jobs.
+    versions:
+      from: 1.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/hdinsightspark/hdinsight-spark-batch-job
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "from": 0,
+          "total": 2,
+          "sessions": [
+            {
+              "id": 1,
+              "log": [
+                "logline"
+              ],
+              "state": "starting"
+            },
+            {
+              "id": 0,
+              "log": [
+                "logline"
+              ],
+              "state": "idle"
+            }
+          ]
+        }
+      ]
+  InteractiveSession.Create:
+    description: |-
+      Create a new interactive session
+    versions:
+      from: 1.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/hdinsightspark/hdinsight-spark-interactive-session
+    example:
+      inputs: [
+        {
+          "jars": [
+            "wasb://<BlobStorageContainerName>@<StorageAccountName>.blob.core.windows.net/helper.jar"
+          ],
+          "kind": "spark",
+          "files": [
+            "wasb://<BlobStorageContainerName>@<StorageAccountName>.blob.core.windows.net/config.xml"
+          ],
+          "driverCores": 2,
+          "driverMemory": "1G",
+          "numExecutors": 10,
+          "executorCores": 10,
+          "executorMemory": "1G"
+        }
+      ]
+      outputs: [
+        {
+          "id": 1,
+          "log": [
+            "logline"
+          ],
+          "kind": "spark",
+          "state": "starting"
+        }
+      ]
+  InteractiveSession.GetState:
+    description: |-
+      Get the state of an interactive session
+    versions:
+      from: 1.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/hdinsightspark/hdinsight-spark-interactive-session
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": 1,
+          "log": [
+            "logline"
+          ],
+          "kind": "spark",
+          "state": "starting"
+        }
+      ]
+  InteractiveSession.List:
+    description: |-
+      Return all active interactive sessions
+    versions:
+      from: 1.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/hdinsightspark/hdinsight-spark-interactive-session
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "from": 0,
+          "total": 2,
+          "sessions": [
+            {
+              "id": 1,
+              "log": [
+                "logline"
+              ],
+              "kind": "spark",
+              "state": "starting"
+            },
+            {
+              "id": 0,
+              "log": [
+                "logline"
+              ],
+              "kind": "spark",
+              "state": "idle"
+            }
+          ]
+        }
+      ]
+  InteractiveSession.ListStatements:
+    description: |-
+      Retrieve statement results of an interactive session
+    versions:
+      from: 1.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/hdinsightspark/hdinsight-spark-interactive-session
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "statements": [
+            {
+              "id": 0,
+              "state": "available",
+              "output": {
+                "data": {
+                  "text/plain": "res1: Int = 2"
+                },
+                "status": "ok",
+                "execution_count": 1
+              }
+            }
+          ],
+          "total_statements": 1
+        }
+      ]
+  InteractiveSession.SubmitStatement:
+    description: |-
+      Submit statement(s) to an interactive session
+    versions:
+      from: 1.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/hdinsightspark/hdinsight-spark-interactive-session
+    example:
+      inputs: [
+        {
+          "code": "1 + 1"
+        }
+      ]
+      outputs: [
+        {
+          "id": 1,
+          "state": "running",
+          "output": null
+        }
+      ]
+  InteractiveSession.Terminate:
+    description: |-
+      Terminate an interactive session
+    versions:
+      from: 1.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/hdinsightspark/hdinsight-spark-interactive-session
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "msg": "deleted"
+        }
+      ]

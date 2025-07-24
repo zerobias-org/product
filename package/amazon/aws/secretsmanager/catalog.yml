@@ -1,0 +1,588 @@
+Product:
+  name: AWS Secrets Manager
+  versions: [2017.10.17]
+  package: amazon.aws.secretsmanager
+  description: |-
+    AWS Secrets Manager
+  link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/Welcome.html
+  contentType: json
+Operations:
+  CancelRotateSecret:
+    description: |-
+      Disables automatic scheduled rotation and cancels the rotation of a secret if currently in progress.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CancelRotateSecret.html
+    example:
+      inputs: [
+        {
+          "SecretId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "Name": "string",
+          "VersionId": "string"
+        }
+      ]
+  CreateSecret:
+    description: |-
+      Creates a new secret. A secret in Secrets Manager consists of both the protected secret data and the important information needed to manage the secret.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CreateSecret.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "KmsKeyId": "string",
+          "Description": "string",
+          "SecretBinary": "blob",
+          "SecretString": "string",
+          "AddReplicaRegions": [
+            {
+              "Region": "string",
+              "KmsKeyId": "string"
+            }
+          ],
+          "ClientRequestToken": "string",
+          "ForceOverwriteReplicaSecret": false
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "Name": "string",
+          "VersionId": "string",
+          "ReplicationStatus": [
+            {
+              "Region": "string",
+              "Status": "string",
+              "KmsKeyId": "string",
+              "StatusMessage": "string",
+              "LastAccessedDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  DeleteResourcePolicy:
+    description: |-
+      Deletes the resource-based permission policy attached to the secret.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteResourcePolicy.html
+    example:
+      inputs: [
+        {
+          "SecretId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteSecret:
+    description: |-
+      Deletes an entire secret and all of the versions. You can optionally include a recovery window during which you can restore the secret. If you don't specify a recovery window value, the operation defaults to 30 days. Secrets Manager attaches a DeletionDate stamp to the secret that specifies the end of the recovery window. At the end of the recovery window, Secrets Manager deletes the secret permanently.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DeleteSecret.html
+    example:
+      inputs: [
+        {
+          "SecretId": "string",
+          "RecoveryWindowInDays": 1,
+          "ForceDeleteWithoutRecovery": false
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "Name": "string",
+          "DeletionDate": 1481289211.615
+        }
+      ]
+  DescribeSecret:
+    description: |-
+      Retrieves the details of a secret. It does not include the encrypted fields. Secrets Manager only returns fields populated with a value in the response.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DescribeSecret.html
+    example:
+      inputs: [
+        {
+          "SecretId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "KmsKeyId": "string",
+          "CreatedDate": 1481289211.615,
+          "DeletedDate": 1481289211.615,
+          "Description": "string",
+          "OwningService": "string",
+          "PrimaryRegion": "string",
+          "RotationRules": {
+            "AutomaticallyAfterDays": 1
+          },
+          "LastChangedDate": 1481289211.615,
+          "LastRotatedDate": 1481289211.615,
+          "RotationEnabled": false,
+          "LastAccessedDate": 1481289211.615,
+          "ReplicationStatus": [
+            {
+              "Region": "string",
+              "Status": "string",
+              "KmsKeyId": "string",
+              "StatusMessage": "string",
+              "LastAccessedDate": 1481289211.615
+            }
+          ],
+          "RotationLambdaARN": "string",
+          "VersionIdsToStages": {
+            "string": [
+              "string"
+            ]
+          }
+        }
+      ]
+  GetRandomPassword:
+    description: |-
+      Generates a random password of the specified complexity. This operation is intended for use in the Lambda rotation function. Per best practice, we recommend that you specify the maximum length and include every character type that the system you are generating a password for can support.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetRandomPassword.html
+    example:
+      inputs: [
+        {
+          "IncludeSpace": false,
+          "ExcludeNumbers": false,
+          "PasswordLength": 1,
+          "ExcludeLowercase": false,
+          "ExcludeUppercase": false,
+          "ExcludeCharacters": "string",
+          "ExcludePunctuation": false,
+          "RequireEachIncludedType": false
+        }
+      ]
+      outputs: [
+        {
+          "RandomPassword": "string"
+        }
+      ]
+  GetResourcePolicy:
+    description: |-
+      Retrieves the JSON text of the resource-based policy document attached to the specified secret. The JSON request string input and response output displays formatted code with white space and line breaks for better readability. Submit your input as a single line JSON string.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetResourcePolicy.html
+    example:
+      inputs: [
+        {
+          "SecretId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "Name": "string",
+          "ResourcePolicy": "string"
+        }
+      ]
+  GetSecretValue:
+    description: |-
+      Retrieves the contents of the encrypted fields SecretString or SecretBinary from the specified version of a secret, whichever contains content.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+    example:
+      inputs: [
+        {
+          "SecretId": "string",
+          "VersionId": "string",
+          "VersionStage": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "Name": "string",
+          "VersionId": "string",
+          "CreatedDate": 1481289211.615,
+          "SecretBinary": "blob",
+          "SecretString": "string",
+          "VersionStages": [
+            "string"
+          ]
+        }
+      ]
+  ListSecrets:
+    description: |-
+      Lists all of the secrets that are stored by Secrets Manager in the AWS account. To list the versions currently stored for a specific secret, use ListSecretVersionIds. The encrypted fields SecretString and SecretBinary are not included in the output. To get that information, call the GetSecretValue operation.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_ListSecrets.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "SortOrder": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "SecretList": [
+            {
+              "ARN": "string",
+              "Name": "string",
+              "Tags": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ],
+              "KmsKeyId": "string",
+              "CreatedDate": 1481289211.615,
+              "DeletedDate": 1481289211.615,
+              "Description": "string",
+              "OwningService": "string",
+              "PrimaryRegion": "string",
+              "RotationRules": {
+                "AutomaticallyAfterDays": 1
+              },
+              "LastChangedDate": 1481289211.615,
+              "LastRotatedDate": 1481289211.615,
+              "RotationEnabled": false,
+              "LastAccessedDate": 1481289211.615,
+              "RotationLambdaARN": "string",
+              "SecretVersionsToStages": {
+                "string": [
+                  "string"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+  ListSecretVersionIds:
+    description: |-
+      Lists all of the versions attached to the specified secret. The output does not include the SecretString or SecretBinary fields. By default, the list includes only versions that have at least one staging label in VersionStage attached.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_ListSecretVersionIds.html
+    example:
+      inputs: [
+        {
+          "SecretId": "string",
+          "NextToken": "string",
+          "MaxResults": 1,
+          "IncludeDeprecated": false
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "Name": "string",
+          "Versions": [
+            {
+              "VersionId": "string",
+              "CreatedDate": 1481289211.615,
+              "VersionStages": [
+                "string"
+              ],
+              "LastAccessedDate": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  PutResourcePolicy:
+    description: |-
+      Attaches the contents of the specified resource-based permission policy to a secret. A resource-based policy is optional. Alternatively, you can use IAM identity-based policies that specify the secret's Amazon Resource Name (ARN) in the policy statement's Resources element. You can also use a combination of both identity-based and resource-based policies. The affected users and roles receive the permissions that are permitted by all of the relevant policies. For more information, see Using Resource-Based Policies for AWS Secrets Manager. For the complete description of the AWS policy syntax and grammar, see IAM JSON Policy Reference in the IAM User Guide.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_PutResourcePolicy.html
+    example:
+      inputs: [
+        {
+          "SecretId": "string",
+          "ResourcePolicy": "string",
+          "BlockPublicPolicy": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutSecretValue:
+    description: |-
+      Stores a new encrypted secret value in the specified secret. To do this, the operation creates a new version and attaches it to the secret. The version can contain a new SecretString value or a new SecretBinary value. You can also specify the staging labels that are initially attached to the new version.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_PutSecretValue.html
+    example:
+      inputs: [
+        {
+          "SecretId": "string",
+          "SecretBinary": "blob",
+          "SecretString": "string",
+          "VersionStages": [
+            "string"
+          ],
+          "ClientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "Name": "string",
+          "VersionId": "string",
+          "VersionStages": [
+            "string"
+          ]
+        }
+      ]
+  RemoveRegionsFromReplication:
+    description: |-
+      Remove regions from replication.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_RemoveRegionsFromReplication.html
+    example:
+      inputs: [
+        {
+          "SecretId": "string",
+          "RemoveReplicaRegions": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "ReplicationStatus": [
+            {
+              "Region": "string",
+              "Status": "string",
+              "KmsKeyId": "string",
+              "StatusMessage": "string",
+              "LastAccessedDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ReplicateSecretToRegions:
+    description: |-
+      Converts an existing secret to a multi-Region secret and begins replication the secret to a list of new regions.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_ReplicateSecretToRegions.html
+    example:
+      inputs: [
+        {
+          "SecretId": "string",
+          "AddReplicaRegions": [
+            {
+              "Region": "string",
+              "KmsKeyId": "string"
+            }
+          ],
+          "ForceOverwriteReplicaSecret": false
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "ReplicationStatus": [
+            {
+              "Region": "string",
+              "Status": "string",
+              "KmsKeyId": "string",
+              "StatusMessage": "string",
+              "LastAccessedDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  RestoreSecret:
+    description: |-
+      Cancels the scheduled deletion of a secret by removing the DeletedDate time stamp. This makes the secret accessible to query once again.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_RestoreSecret.html
+    example:
+      inputs: [
+        {
+          "SecretId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RotateSecret:
+    description: |-
+      Configures and starts the asynchronous process of rotating this secret. If you include the configuration parameters, the operation sets those values for the secret and then immediately starts a rotation. If you do not include the configuration parameters, the operation starts a rotation with the values already stored in the secret. After the rotation completes, the protected service and its clients all use the new version of the secret.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_RotateSecret.html
+    example:
+      inputs: [
+        {
+          "SecretId": "string",
+          "RotationRules": {
+            "AutomaticallyAfterDays": 1
+          },
+          "RotationLambdaARN": "string",
+          "ClientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "Name": "string",
+          "VersionId": "string"
+        }
+      ]
+  StopReplicationToReplica:
+    description: |-
+      Removes the secret from replication and promotes the secret to a regional secret in the replica Region.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_StopReplicationToReplica.html
+    example:
+      inputs: [
+        {
+          "SecretId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Attaches one or more tags, each consisting of a key name and a value, to the specified secret. Tags are part of the secret's overall metadata, and are not associated with any specific version of the secret. This operation only appends tags to the existing list of tags. To remove tags, you must use UntagResource.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "SecretId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes one or more tags from the specified secret.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "SecretId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateSecret:
+    description: |-
+      Modifies many of the details of the specified secret. If you include a ClientRequestToken and either SecretString or SecretBinary then it also creates a new version attached to the secret.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_UpdateSecret.html
+    example:
+      inputs: [
+        {
+          "KmsKeyId": "string",
+          "SecretId": "string",
+          "Description": "string",
+          "SecretBinary": "blob",
+          "SecretString": "string",
+          "ClientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "Name": "string",
+          "VersionId": "string"
+        }
+      ]
+  UpdateSecretVersionStage:
+    description: |-
+      Modifies the staging labels attached to a version of a secret. Staging labels are used to track a version as it progresses through the secret rotation process. You can attach a staging label to only one version of a secret at a time. If a staging label to be added is already attached to another version, then it is moved--removed from the other version first and then attached to this one. For more information about staging labels, see Staging Labels in the AWS Secrets Manager User Guide.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_UpdateSecretVersionStage.html
+    example:
+      inputs: [
+        {
+          "SecretId": "string",
+          "VersionStage": "string",
+          "MoveToVersionId": "string",
+          "RemoveFromVersionId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ValidateResourcePolicy:
+    description: |-
+      Validates that the resource policy does not grant a wide range of IAM principals access to your secret. The JSON request string input and response output displays formatted code with white space and line breaks for better readability. Submit your input as a single line JSON string. A resource-based policy is optional for secrets.
+    versions:
+      from: 2017.10.17
+    link: https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_ValidateResourcePolicy.html
+    example:
+      inputs: [
+        {
+          "SecretId": "string",
+          "ResourcePolicy": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ValidationErrors": [
+            {
+              "CheckName": "string",
+              "ErrorMessage": "string"
+            }
+          ],
+          "PolicyValidationPassed": false
+        }
+      ]

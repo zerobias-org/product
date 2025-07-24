@@ -1,0 +1,1774 @@
+Product:
+  name: Amazon Kinesis Analytics
+  versions: [2018.5.23]
+  package: amazon.aws.kinesisanalytics
+  description: |-
+    Amazon Kinesis Analytics
+  link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/Welcome.html
+  contentType: json
+Operations:
+  AddApplicationCloudWatchLoggingOption:
+    description: |-
+      Adds an Amazon CloudWatch log stream to monitor application configuration errors.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_AddApplicationCloudWatchLoggingOption.html
+    example:
+      inputs: [
+        {
+          "ApplicationName": "string",
+          "CloudWatchLoggingOption": {
+            "LogStreamARN": "string"
+          },
+          "CurrentApplicationVersionId": 1
+        }
+      ]
+      outputs: [
+        {
+          "ApplicationARN": "string",
+          "ApplicationVersionId": 1,
+          "CloudWatchLoggingOptionDescriptions": [
+            {
+              "RoleARN": "string",
+              "LogStreamARN": "string",
+              "CloudWatchLoggingOptionId": "string"
+            }
+          ]
+        }
+      ]
+  AddApplicationInput:
+    description: |-
+      Adds a streaming source to your SQL-based Kinesis Data Analytics application.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_AddApplicationInput.html
+    example:
+      inputs: [
+        {
+          "Input": {
+            "NamePrefix": "string",
+            "InputSchema": {
+              "RecordFormat": {
+                "RecordFormatType": "string",
+                "MappingParameters": {
+                  "CSVMappingParameters": {
+                    "RecordRowDelimiter": "string",
+                    "RecordColumnDelimiter": "string"
+                  },
+                  "JSONMappingParameters": {
+                    "RecordRowPath": "string"
+                  }
+                }
+              },
+              "RecordColumns": [
+                {
+                  "Name": "string",
+                  "Mapping": "string",
+                  "SqlType": "string"
+                }
+              ],
+              "RecordEncoding": "string"
+            },
+            "InputParallelism": {
+              "Count": 1
+            },
+            "KinesisStreamsInput": {
+              "ResourceARN": "string"
+            },
+            "KinesisFirehoseInput": {
+              "ResourceARN": "string"
+            },
+            "InputProcessingConfiguration": {
+              "InputLambdaProcessor": {
+                "ResourceARN": "string"
+              }
+            }
+          },
+          "ApplicationName": "string",
+          "CurrentApplicationVersionId": 1
+        }
+      ]
+      outputs: [
+        {
+          "ApplicationARN": "string",
+          "InputDescriptions": [
+            {
+              "InputId": "string",
+              "NamePrefix": "string",
+              "InputSchema": {
+                "RecordFormat": {
+                  "RecordFormatType": "string",
+                  "MappingParameters": {
+                    "CSVMappingParameters": {
+                      "RecordRowDelimiter": "string",
+                      "RecordColumnDelimiter": "string"
+                    },
+                    "JSONMappingParameters": {
+                      "RecordRowPath": "string"
+                    }
+                  }
+                },
+                "RecordColumns": [
+                  {
+                    "Name": "string",
+                    "Mapping": "string",
+                    "SqlType": "string"
+                  }
+                ],
+                "RecordEncoding": "string"
+              },
+              "InAppStreamNames": [
+                "string"
+              ],
+              "InputParallelism": {
+                "Count": 1
+              },
+              "KinesisStreamsInputDescription": {
+                "RoleARN": "string",
+                "ResourceARN": "string"
+              },
+              "KinesisFirehoseInputDescription": {
+                "RoleARN": "string",
+                "ResourceARN": "string"
+              },
+              "InputStartingPositionConfiguration": {
+                "InputStartingPosition": "string"
+              },
+              "InputProcessingConfigurationDescription": {
+                "InputLambdaProcessorDescription": {
+                  "RoleARN": "string",
+                  "ResourceARN": "string"
+                }
+              }
+            }
+          ],
+          "ApplicationVersionId": 1
+        }
+      ]
+  AddApplicationInputProcessingConfiguration:
+    description: |-
+      Adds an InputProcessingConfiguration to a SQL-based Kinesis Data Analytics application. An input processor pre-processes records on the input stream before the application's SQL code executes. Currently, the only input processor available is AWS Lambda.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_AddApplicationInputProcessingConfiguration.html
+    example:
+      inputs: [
+        {
+          "InputId": "string",
+          "ApplicationName": "string",
+          "CurrentApplicationVersionId": 1,
+          "InputProcessingConfiguration": {
+            "InputLambdaProcessor": {
+              "ResourceARN": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "InputId": "string",
+          "ApplicationARN": "string",
+          "ApplicationVersionId": 1,
+          "InputProcessingConfigurationDescription": {
+            "InputLambdaProcessorDescription": {
+              "RoleARN": "string",
+              "ResourceARN": "string"
+            }
+          }
+        }
+      ]
+  AddApplicationOutput:
+    description: |-
+      Adds an external destination to your SQL-based Kinesis Data Analytics application.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_AddApplicationOutput.html
+    example:
+      inputs: [
+        {
+          "Output": {
+            "Name": "string",
+            "LambdaOutput": {
+              "ResourceARN": "string"
+            },
+            "DestinationSchema": {
+              "RecordFormatType": "string"
+            },
+            "KinesisStreamsOutput": {
+              "ResourceARN": "string"
+            },
+            "KinesisFirehoseOutput": {
+              "ResourceARN": "string"
+            }
+          },
+          "ApplicationName": "string",
+          "CurrentApplicationVersionId": 1
+        }
+      ]
+      outputs: [
+        {
+          "ApplicationARN": "string",
+          "OutputDescriptions": [
+            {
+              "Name": "string",
+              "OutputId": "string",
+              "DestinationSchema": {
+                "RecordFormatType": "string"
+              },
+              "LambdaOutputDescription": {
+                "RoleARN": "string",
+                "ResourceARN": "string"
+              },
+              "KinesisStreamsOutputDescription": {
+                "RoleARN": "string",
+                "ResourceARN": "string"
+              },
+              "KinesisFirehoseOutputDescription": {
+                "RoleARN": "string",
+                "ResourceARN": "string"
+              }
+            }
+          ],
+          "ApplicationVersionId": 1
+        }
+      ]
+  AddApplicationReferenceDataSource:
+    description: |-
+      Adds a reference data source to an existing SQL-based Kinesis Data Analytics application.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_AddApplicationReferenceDataSource.html
+    example:
+      inputs: [
+        {
+          "ApplicationName": "string",
+          "ReferenceDataSource": {
+            "TableName": "string",
+            "ReferenceSchema": {
+              "RecordFormat": {
+                "RecordFormatType": "string",
+                "MappingParameters": {
+                  "CSVMappingParameters": {
+                    "RecordRowDelimiter": "string",
+                    "RecordColumnDelimiter": "string"
+                  },
+                  "JSONMappingParameters": {
+                    "RecordRowPath": "string"
+                  }
+                }
+              },
+              "RecordColumns": [
+                {
+                  "Name": "string",
+                  "Mapping": "string",
+                  "SqlType": "string"
+                }
+              ],
+              "RecordEncoding": "string"
+            },
+            "S3ReferenceDataSource": {
+              "FileKey": "string",
+              "BucketARN": "string"
+            }
+          },
+          "CurrentApplicationVersionId": 1
+        }
+      ]
+      outputs: [
+        {
+          "ApplicationARN": "string",
+          "ApplicationVersionId": 1,
+          "ReferenceDataSourceDescriptions": [
+            {
+              "TableName": "string",
+              "ReferenceId": "string",
+              "ReferenceSchema": {
+                "RecordFormat": {
+                  "RecordFormatType": "string",
+                  "MappingParameters": {
+                    "CSVMappingParameters": {
+                      "RecordRowDelimiter": "string",
+                      "RecordColumnDelimiter": "string"
+                    },
+                    "JSONMappingParameters": {
+                      "RecordRowPath": "string"
+                    }
+                  }
+                },
+                "RecordColumns": [
+                  {
+                    "Name": "string",
+                    "Mapping": "string",
+                    "SqlType": "string"
+                  }
+                ],
+                "RecordEncoding": "string"
+              },
+              "S3ReferenceDataSourceDescription": {
+                "FileKey": "string",
+                "BucketARN": "string",
+                "ReferenceRoleARN": "string"
+              }
+            }
+          ]
+        }
+      ]
+  AddApplicationVpcConfiguration:
+    description: |-
+      Adds a Virtual Private Cloud (VPC) configuration to the application. Applications can use VPCs to store and access resources securely.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_AddApplicationVpcConfiguration.html
+    example:
+      inputs: [
+        {
+          "ApplicationName": "string",
+          "VpcConfiguration": {
+            "SubnetIds": [
+              "string"
+            ],
+            "SecurityGroupIds": [
+              "string"
+            ]
+          },
+          "CurrentApplicationVersionId": 1
+        }
+      ]
+      outputs: [
+        {
+          "ApplicationARN": "string",
+          "ApplicationVersionId": 1,
+          "VpcConfigurationDescription": {
+            "VpcId": "string",
+            "SubnetIds": [
+              "string"
+            ],
+            "SecurityGroupIds": [
+              "string"
+            ],
+            "VpcConfigurationId": "string"
+          }
+        }
+      ]
+  CreateApplication:
+    description: |-
+      Creates a Kinesis Data Analytics application. For information about creating a Kinesis Data Analytics application, see Creating an Application.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_CreateApplication.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ApplicationName": "string",
+          "RuntimeEnvironment": "string",
+          "ServiceExecutionRole": "string",
+          "ApplicationDescription": "string",
+          "ApplicationConfiguration": {
+            "VpcConfigurations": [
+              {
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ]
+              }
+            ],
+            "EnvironmentProperties": {
+              "PropertyGroups": [
+                {
+                  "PropertyMap": {
+                    "string": "string"
+                  },
+                  "PropertyGroupId": "string"
+                }
+              ]
+            },
+            "SqlApplicationConfiguration": {
+              "Inputs": [
+                {
+                  "NamePrefix": "string",
+                  "InputSchema": {
+                    "RecordFormat": {
+                      "RecordFormatType": "string",
+                      "MappingParameters": {
+                        "CSVMappingParameters": {
+                          "RecordRowDelimiter": "string",
+                          "RecordColumnDelimiter": "string"
+                        },
+                        "JSONMappingParameters": {
+                          "RecordRowPath": "string"
+                        }
+                      }
+                    },
+                    "RecordColumns": [
+                      {
+                        "Name": "string",
+                        "Mapping": "string",
+                        "SqlType": "string"
+                      }
+                    ],
+                    "RecordEncoding": "string"
+                  },
+                  "InputParallelism": {
+                    "Count": 1
+                  },
+                  "KinesisStreamsInput": {
+                    "ResourceARN": "string"
+                  },
+                  "KinesisFirehoseInput": {
+                    "ResourceARN": "string"
+                  },
+                  "InputProcessingConfiguration": {
+                    "InputLambdaProcessor": {
+                      "ResourceARN": "string"
+                    }
+                  }
+                }
+              ],
+              "Outputs": [
+                {
+                  "Name": "string",
+                  "LambdaOutput": {
+                    "ResourceARN": "string"
+                  },
+                  "DestinationSchema": {
+                    "RecordFormatType": "string"
+                  },
+                  "KinesisStreamsOutput": {
+                    "ResourceARN": "string"
+                  },
+                  "KinesisFirehoseOutput": {
+                    "ResourceARN": "string"
+                  }
+                }
+              ],
+              "ReferenceDataSources": [
+                {
+                  "TableName": "string",
+                  "ReferenceSchema": {
+                    "RecordFormat": {
+                      "RecordFormatType": "string",
+                      "MappingParameters": {
+                        "CSVMappingParameters": {
+                          "RecordRowDelimiter": "string",
+                          "RecordColumnDelimiter": "string"
+                        },
+                        "JSONMappingParameters": {
+                          "RecordRowPath": "string"
+                        }
+                      }
+                    },
+                    "RecordColumns": [
+                      {
+                        "Name": "string",
+                        "Mapping": "string",
+                        "SqlType": "string"
+                      }
+                    ],
+                    "RecordEncoding": "string"
+                  },
+                  "S3ReferenceDataSource": {
+                    "FileKey": "string",
+                    "BucketARN": "string"
+                  }
+                }
+              ]
+            },
+            "ApplicationCodeConfiguration": {
+              "CodeContent": {
+                "TextContent": "string",
+                "ZipFileContent": "blob",
+                "S3ContentLocation": {
+                  "FileKey": "string",
+                  "BucketARN": "string",
+                  "ObjectVersion": "string"
+                }
+              },
+              "CodeContentType": "string"
+            },
+            "FlinkApplicationConfiguration": {
+              "CheckpointConfiguration": {
+                "ConfigurationType": "string",
+                "CheckpointInterval": 1,
+                "CheckpointingEnabled": false,
+                "MinPauseBetweenCheckpoints": 1
+              },
+              "MonitoringConfiguration": {
+                "LogLevel": "string",
+                "MetricsLevel": "string",
+                "ConfigurationType": "string"
+              },
+              "ParallelismConfiguration": {
+                "Parallelism": 1,
+                "ConfigurationType": "string",
+                "ParallelismPerKPU": 1,
+                "AutoScalingEnabled": false
+              }
+            },
+            "ApplicationSnapshotConfiguration": {
+              "SnapshotsEnabled": false
+            }
+          },
+          "CloudWatchLoggingOptions": [
+            {
+              "LogStreamARN": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ApplicationDetail": {
+            "ApplicationARN": "string",
+            "ApplicationName": "string",
+            "CreateTimestamp": 1481289211.615,
+            "ApplicationStatus": "string",
+            "RuntimeEnvironment": "string",
+            "LastUpdateTimestamp": 1481289211.615,
+            "ApplicationVersionId": 1,
+            "ServiceExecutionRole": "string",
+            "ApplicationDescription": "string",
+            "ApplicationConfigurationDescription": {
+              "RunConfigurationDescription": {
+                "FlinkRunConfigurationDescription": {
+                  "AllowNonRestoredState": false
+                },
+                "ApplicationRestoreConfigurationDescription": {
+                  "SnapshotName": "string",
+                  "ApplicationRestoreType": "string"
+                }
+              },
+              "VpcConfigurationDescriptions": [
+                {
+                  "VpcId": "string",
+                  "SubnetIds": [
+                    "string"
+                  ],
+                  "SecurityGroupIds": [
+                    "string"
+                  ],
+                  "VpcConfigurationId": "string"
+                }
+              ],
+              "EnvironmentPropertyDescriptions": {
+                "PropertyGroupDescriptions": [
+                  {
+                    "PropertyMap": {
+                      "string": "string"
+                    },
+                    "PropertyGroupId": "string"
+                  }
+                ]
+              },
+              "SqlApplicationConfigurationDescription": {
+                "InputDescriptions": [
+                  {
+                    "InputId": "string",
+                    "NamePrefix": "string",
+                    "InputSchema": {
+                      "RecordFormat": {
+                        "RecordFormatType": "string",
+                        "MappingParameters": {
+                          "CSVMappingParameters": {
+                            "RecordRowDelimiter": "string",
+                            "RecordColumnDelimiter": "string"
+                          },
+                          "JSONMappingParameters": {
+                            "RecordRowPath": "string"
+                          }
+                        }
+                      },
+                      "RecordColumns": [
+                        {
+                          "Name": "string",
+                          "Mapping": "string",
+                          "SqlType": "string"
+                        }
+                      ],
+                      "RecordEncoding": "string"
+                    },
+                    "InAppStreamNames": [
+                      "string"
+                    ],
+                    "InputParallelism": {
+                      "Count": 1
+                    },
+                    "KinesisStreamsInputDescription": {
+                      "RoleARN": "string",
+                      "ResourceARN": "string"
+                    },
+                    "KinesisFirehoseInputDescription": {
+                      "RoleARN": "string",
+                      "ResourceARN": "string"
+                    },
+                    "InputStartingPositionConfiguration": {
+                      "InputStartingPosition": "string"
+                    },
+                    "InputProcessingConfigurationDescription": {
+                      "InputLambdaProcessorDescription": {
+                        "RoleARN": "string",
+                        "ResourceARN": "string"
+                      }
+                    }
+                  }
+                ],
+                "OutputDescriptions": [
+                  {
+                    "Name": "string",
+                    "OutputId": "string",
+                    "DestinationSchema": {
+                      "RecordFormatType": "string"
+                    },
+                    "LambdaOutputDescription": {
+                      "RoleARN": "string",
+                      "ResourceARN": "string"
+                    },
+                    "KinesisStreamsOutputDescription": {
+                      "RoleARN": "string",
+                      "ResourceARN": "string"
+                    },
+                    "KinesisFirehoseOutputDescription": {
+                      "RoleARN": "string",
+                      "ResourceARN": "string"
+                    }
+                  }
+                ],
+                "ReferenceDataSourceDescriptions": [
+                  {
+                    "TableName": "string",
+                    "ReferenceId": "string",
+                    "ReferenceSchema": {
+                      "RecordFormat": {
+                        "RecordFormatType": "string",
+                        "MappingParameters": {
+                          "CSVMappingParameters": {
+                            "RecordRowDelimiter": "string",
+                            "RecordColumnDelimiter": "string"
+                          },
+                          "JSONMappingParameters": {
+                            "RecordRowPath": "string"
+                          }
+                        }
+                      },
+                      "RecordColumns": [
+                        {
+                          "Name": "string",
+                          "Mapping": "string",
+                          "SqlType": "string"
+                        }
+                      ],
+                      "RecordEncoding": "string"
+                    },
+                    "S3ReferenceDataSourceDescription": {
+                      "FileKey": "string",
+                      "BucketARN": "string",
+                      "ReferenceRoleARN": "string"
+                    }
+                  }
+                ]
+              },
+              "ApplicationCodeConfigurationDescription": {
+                "CodeContentType": "string",
+                "CodeContentDescription": {
+                  "CodeMD5": "string",
+                  "CodeSize": 1,
+                  "TextContent": "string",
+                  "S3ApplicationCodeLocationDescription": {
+                    "FileKey": "string",
+                    "BucketARN": "string",
+                    "ObjectVersion": "string"
+                  }
+                }
+              },
+              "FlinkApplicationConfigurationDescription": {
+                "JobPlanDescription": "string",
+                "CheckpointConfigurationDescription": {
+                  "ConfigurationType": "string",
+                  "CheckpointInterval": 1,
+                  "CheckpointingEnabled": false,
+                  "MinPauseBetweenCheckpoints": 1
+                },
+                "MonitoringConfigurationDescription": {
+                  "LogLevel": "string",
+                  "MetricsLevel": "string",
+                  "ConfigurationType": "string"
+                },
+                "ParallelismConfigurationDescription": {
+                  "Parallelism": 1,
+                  "ConfigurationType": "string",
+                  "ParallelismPerKPU": 1,
+                  "AutoScalingEnabled": false,
+                  "CurrentParallelism": 1
+                }
+              },
+              "ApplicationSnapshotConfigurationDescription": {
+                "SnapshotsEnabled": false
+              }
+            },
+            "CloudWatchLoggingOptionDescriptions": [
+              {
+                "RoleARN": "string",
+                "LogStreamARN": "string",
+                "CloudWatchLoggingOptionId": "string"
+              }
+            ],
+            "ApplicationMaintenanceConfigurationDescription": {
+              "ApplicationMaintenanceWindowEndTime": "string",
+              "ApplicationMaintenanceWindowStartTime": "string"
+            }
+          }
+        }
+      ]
+  CreateApplicationPresignedUrl:
+    description: |-
+      Creates and returns a URL that you can use to connect to an application's extension. Currently, the only available extension is the Apache Flink dashboard.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_CreateApplicationPresignedUrl.html
+    example:
+      inputs: [
+        {
+          "UrlType": "string",
+          "ApplicationName": "string",
+          "SessionExpirationDurationInSeconds": 1
+        }
+      ]
+      outputs: [
+        {
+          "AuthorizedUrl": "string"
+        }
+      ]
+  CreateApplicationSnapshot:
+    description: |-
+      Creates a snapshot of the application's state data.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_CreateApplicationSnapshot.html
+    example:
+      inputs: [
+        {
+          "SnapshotName": "string",
+          "ApplicationName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteApplicationCloudWatchLoggingOption:
+    description: |-
+      Deletes an Amazon CloudWatch log stream from an Kinesis Data Analytics application.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_DeleteApplicationCloudWatchLoggingOption.html
+    example:
+      inputs: [
+        {
+          "ApplicationName": "string",
+          "CloudWatchLoggingOptionId": "string",
+          "CurrentApplicationVersionId": 1
+        }
+      ]
+      outputs: [
+        {
+          "ApplicationARN": "string",
+          "ApplicationVersionId": 1,
+          "CloudWatchLoggingOptionDescriptions": [
+            {
+              "RoleARN": "string",
+              "LogStreamARN": "string",
+              "CloudWatchLoggingOptionId": "string"
+            }
+          ]
+        }
+      ]
+  DeleteApplication:
+    description: |-
+      Deletes the specified application. Kinesis Data Analytics halts application execution and deletes the application.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_DeleteApplication.html
+    example:
+      inputs: [
+        {
+          "ApplicationName": "string",
+          "CreateTimestamp": 1481289211.615
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteApplicationInputProcessingConfiguration:
+    description: |-
+      Deletes an InputProcessingConfiguration from an input.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_DeleteApplicationInputProcessingConfiguration.html
+    example:
+      inputs: [
+        {
+          "InputId": "string",
+          "ApplicationName": "string",
+          "CurrentApplicationVersionId": 1
+        }
+      ]
+      outputs: [
+        {
+          "ApplicationARN": "string",
+          "ApplicationVersionId": 1
+        }
+      ]
+  DeleteApplicationOutput:
+    description: |-
+      Deletes the output destination configuration from your SQL-based Kinesis Data Analytics application's configuration. Kinesis Data Analytics will no longer write data from the corresponding in-application stream to the external output destination.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_DeleteApplicationOutput.html
+    example:
+      inputs: [
+        {
+          "OutputId": "string",
+          "ApplicationName": "string",
+          "CurrentApplicationVersionId": 1
+        }
+      ]
+      outputs: [
+        {
+          "ApplicationARN": "string",
+          "ApplicationVersionId": 1
+        }
+      ]
+  DeleteApplicationReferenceDataSource:
+    description: |-
+      Deletes a reference data source configuration from the specified SQL-based Kinesis Data Analytics application's configuration.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_DeleteApplicationReferenceDataSource.html
+    example:
+      inputs: [
+        {
+          "ReferenceId": "string",
+          "ApplicationName": "string",
+          "CurrentApplicationVersionId": 1
+        }
+      ]
+      outputs: [
+        {
+          "ApplicationARN": "string",
+          "ApplicationVersionId": 1
+        }
+      ]
+  DeleteApplicationSnapshot:
+    description: |-
+      Deletes a snapshot of application state.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_DeleteApplicationSnapshot.html
+    example:
+      inputs: [
+        {
+          "SnapshotName": "string",
+          "ApplicationName": "string",
+          "SnapshotCreationTimestamp": 1481289211.615
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteApplicationVpcConfiguration:
+    description: |-
+      Removes a VPC configuration from a Kinesis Data Analytics application.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_DeleteApplicationVpcConfiguration.html
+    example:
+      inputs: [
+        {
+          "ApplicationName": "string",
+          "VpcConfigurationId": "string",
+          "CurrentApplicationVersionId": 1
+        }
+      ]
+      outputs: [
+        {
+          "ApplicationARN": "string",
+          "ApplicationVersionId": 1
+        }
+      ]
+  DescribeApplication:
+    description: |-
+      Returns information about a specific Kinesis Data Analytics application.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_DescribeApplication.html
+    example:
+      inputs: [
+        {
+          "ApplicationName": "string",
+          "IncludeAdditionalDetails": false
+        }
+      ]
+      outputs: [
+        {
+          "ApplicationDetail": {
+            "ApplicationARN": "string",
+            "ApplicationName": "string",
+            "CreateTimestamp": 1481289211.615,
+            "ApplicationStatus": "string",
+            "RuntimeEnvironment": "string",
+            "LastUpdateTimestamp": 1481289211.615,
+            "ApplicationVersionId": 1,
+            "ServiceExecutionRole": "string",
+            "ApplicationDescription": "string",
+            "ApplicationConfigurationDescription": {
+              "RunConfigurationDescription": {
+                "FlinkRunConfigurationDescription": {
+                  "AllowNonRestoredState": false
+                },
+                "ApplicationRestoreConfigurationDescription": {
+                  "SnapshotName": "string",
+                  "ApplicationRestoreType": "string"
+                }
+              },
+              "VpcConfigurationDescriptions": [
+                {
+                  "VpcId": "string",
+                  "SubnetIds": [
+                    "string"
+                  ],
+                  "SecurityGroupIds": [
+                    "string"
+                  ],
+                  "VpcConfigurationId": "string"
+                }
+              ],
+              "EnvironmentPropertyDescriptions": {
+                "PropertyGroupDescriptions": [
+                  {
+                    "PropertyMap": {
+                      "string": "string"
+                    },
+                    "PropertyGroupId": "string"
+                  }
+                ]
+              },
+              "SqlApplicationConfigurationDescription": {
+                "InputDescriptions": [
+                  {
+                    "InputId": "string",
+                    "NamePrefix": "string",
+                    "InputSchema": {
+                      "RecordFormat": {
+                        "RecordFormatType": "string",
+                        "MappingParameters": {
+                          "CSVMappingParameters": {
+                            "RecordRowDelimiter": "string",
+                            "RecordColumnDelimiter": "string"
+                          },
+                          "JSONMappingParameters": {
+                            "RecordRowPath": "string"
+                          }
+                        }
+                      },
+                      "RecordColumns": [
+                        {
+                          "Name": "string",
+                          "Mapping": "string",
+                          "SqlType": "string"
+                        }
+                      ],
+                      "RecordEncoding": "string"
+                    },
+                    "InAppStreamNames": [
+                      "string"
+                    ],
+                    "InputParallelism": {
+                      "Count": 1
+                    },
+                    "KinesisStreamsInputDescription": {
+                      "RoleARN": "string",
+                      "ResourceARN": "string"
+                    },
+                    "KinesisFirehoseInputDescription": {
+                      "RoleARN": "string",
+                      "ResourceARN": "string"
+                    },
+                    "InputStartingPositionConfiguration": {
+                      "InputStartingPosition": "string"
+                    },
+                    "InputProcessingConfigurationDescription": {
+                      "InputLambdaProcessorDescription": {
+                        "RoleARN": "string",
+                        "ResourceARN": "string"
+                      }
+                    }
+                  }
+                ],
+                "OutputDescriptions": [
+                  {
+                    "Name": "string",
+                    "OutputId": "string",
+                    "DestinationSchema": {
+                      "RecordFormatType": "string"
+                    },
+                    "LambdaOutputDescription": {
+                      "RoleARN": "string",
+                      "ResourceARN": "string"
+                    },
+                    "KinesisStreamsOutputDescription": {
+                      "RoleARN": "string",
+                      "ResourceARN": "string"
+                    },
+                    "KinesisFirehoseOutputDescription": {
+                      "RoleARN": "string",
+                      "ResourceARN": "string"
+                    }
+                  }
+                ],
+                "ReferenceDataSourceDescriptions": [
+                  {
+                    "TableName": "string",
+                    "ReferenceId": "string",
+                    "ReferenceSchema": {
+                      "RecordFormat": {
+                        "RecordFormatType": "string",
+                        "MappingParameters": {
+                          "CSVMappingParameters": {
+                            "RecordRowDelimiter": "string",
+                            "RecordColumnDelimiter": "string"
+                          },
+                          "JSONMappingParameters": {
+                            "RecordRowPath": "string"
+                          }
+                        }
+                      },
+                      "RecordColumns": [
+                        {
+                          "Name": "string",
+                          "Mapping": "string",
+                          "SqlType": "string"
+                        }
+                      ],
+                      "RecordEncoding": "string"
+                    },
+                    "S3ReferenceDataSourceDescription": {
+                      "FileKey": "string",
+                      "BucketARN": "string",
+                      "ReferenceRoleARN": "string"
+                    }
+                  }
+                ]
+              },
+              "ApplicationCodeConfigurationDescription": {
+                "CodeContentType": "string",
+                "CodeContentDescription": {
+                  "CodeMD5": "string",
+                  "CodeSize": 1,
+                  "TextContent": "string",
+                  "S3ApplicationCodeLocationDescription": {
+                    "FileKey": "string",
+                    "BucketARN": "string",
+                    "ObjectVersion": "string"
+                  }
+                }
+              },
+              "FlinkApplicationConfigurationDescription": {
+                "JobPlanDescription": "string",
+                "CheckpointConfigurationDescription": {
+                  "ConfigurationType": "string",
+                  "CheckpointInterval": 1,
+                  "CheckpointingEnabled": false,
+                  "MinPauseBetweenCheckpoints": 1
+                },
+                "MonitoringConfigurationDescription": {
+                  "LogLevel": "string",
+                  "MetricsLevel": "string",
+                  "ConfigurationType": "string"
+                },
+                "ParallelismConfigurationDescription": {
+                  "Parallelism": 1,
+                  "ConfigurationType": "string",
+                  "ParallelismPerKPU": 1,
+                  "AutoScalingEnabled": false,
+                  "CurrentParallelism": 1
+                }
+              },
+              "ApplicationSnapshotConfigurationDescription": {
+                "SnapshotsEnabled": false
+              }
+            },
+            "CloudWatchLoggingOptionDescriptions": [
+              {
+                "RoleARN": "string",
+                "LogStreamARN": "string",
+                "CloudWatchLoggingOptionId": "string"
+              }
+            ],
+            "ApplicationMaintenanceConfigurationDescription": {
+              "ApplicationMaintenanceWindowEndTime": "string",
+              "ApplicationMaintenanceWindowStartTime": "string"
+            }
+          }
+        }
+      ]
+  DescribeApplicationSnapshot:
+    description: |-
+      Returns information about a snapshot of application state data.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_DescribeApplicationSnapshot.html
+    example:
+      inputs: [
+        {
+          "SnapshotName": "string",
+          "ApplicationName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "SnapshotDetails": {
+            "SnapshotName": "string",
+            "SnapshotStatus": "string",
+            "ApplicationVersionId": 1,
+            "SnapshotCreationTimestamp": 1481289211.615
+          }
+        }
+      ]
+  DiscoverInputSchema:
+    description: |-
+      Infers a schema for a SQL-based Kinesis Data Analytics application by evaluating sample records on the specified streaming source (Kinesis data stream or Kinesis Data Firehose delivery stream) or Amazon S3 object. In the response, the operation returns the inferred schema and also the sample records that the operation used to infer the schema.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_DiscoverInputSchema.html
+    example:
+      inputs: [
+        {
+          "ResourceARN": "string",
+          "S3Configuration": {
+            "FileKey": "string",
+            "BucketARN": "string"
+          },
+          "ServiceExecutionRole": "string",
+          "InputProcessingConfiguration": {
+            "InputLambdaProcessor": {
+              "ResourceARN": "string"
+            }
+          },
+          "InputStartingPositionConfiguration": {
+            "InputStartingPosition": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "InputSchema": {
+            "RecordFormat": {
+              "RecordFormatType": "string",
+              "MappingParameters": {
+                "CSVMappingParameters": {
+                  "RecordRowDelimiter": "string",
+                  "RecordColumnDelimiter": "string"
+                },
+                "JSONMappingParameters": {
+                  "RecordRowPath": "string"
+                }
+              }
+            },
+            "RecordColumns": [
+              {
+                "Name": "string",
+                "Mapping": "string",
+                "SqlType": "string"
+              }
+            ],
+            "RecordEncoding": "string"
+          },
+          "RawInputRecords": [
+            "string"
+          ],
+          "ParsedInputRecords": [
+            {
+              "0": "string"
+            }
+          ],
+          "ProcessedInputRecords": [
+            "string"
+          ]
+        }
+      ]
+  ListApplications:
+    description: |-
+      Returns a list of Kinesis Data Analytics applications in your account. For each application, the response includes the application name, Amazon Resource Name (ARN), and status.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_ListApplications.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ApplicationSummaries": [
+            {
+              "ApplicationARN": "string",
+              "ApplicationName": "string",
+              "ApplicationStatus": "string",
+              "RuntimeEnvironment": "string",
+              "ApplicationVersionId": 1
+            }
+          ]
+        }
+      ]
+  ListApplicationSnapshots:
+    description: |-
+      Lists information about the current application snapshots.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_ListApplicationSnapshots.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "ApplicationName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "SnapshotSummaries": [
+            {
+              "SnapshotName": "string",
+              "SnapshotStatus": "string",
+              "ApplicationVersionId": 1,
+              "SnapshotCreationTimestamp": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Retrieves the list of key-value tags assigned to the application. For more information, see Using Tagging.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  StartApplication:
+    description: |-
+      Starts the specified Kinesis Data Analytics application. After creating an application, you must exclusively call this operation to start your application.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_StartApplication.html
+    example:
+      inputs: [
+        {
+          "ApplicationName": "string",
+          "RunConfiguration": {
+            "SqlRunConfigurations": [
+              {
+                "InputId": "string",
+                "InputStartingPositionConfiguration": {
+                  "InputStartingPosition": "string"
+                }
+              }
+            ],
+            "FlinkRunConfiguration": {
+              "AllowNonRestoredState": false
+            },
+            "ApplicationRestoreConfiguration": {
+              "SnapshotName": "string",
+              "ApplicationRestoreType": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StopApplication:
+    description: |-
+      Stops the application from processing data. You can stop an application only if it is in the running status, unless you set the Force parameter to true.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_StopApplication.html
+    example:
+      inputs: [
+        {
+          "Force": false,
+          "ApplicationName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Adds one or more key-value tags to a Kinesis Data Analytics application. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50. For more information, see Using Tagging.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes one or more tags from a Kinesis Data Analytics application. For more information, see Using Tagging.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateApplication:
+    description: |-
+      Updates an existing Kinesis Data Analytics application. Using this operation, you can update application code, input configuration, and output configuration.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_UpdateApplication.html
+    example:
+      inputs: [
+        {
+          "ApplicationName": "string",
+          "RunConfigurationUpdate": {
+            "FlinkRunConfiguration": {
+              "AllowNonRestoredState": false
+            },
+            "ApplicationRestoreConfiguration": {
+              "SnapshotName": "string",
+              "ApplicationRestoreType": "string"
+            }
+          },
+          "ServiceExecutionRoleUpdate": "string",
+          "CurrentApplicationVersionId": 1,
+          "ApplicationConfigurationUpdate": {
+            "VpcConfigurationUpdates": [
+              {
+                "SubnetIdUpdates": [
+                  "string"
+                ],
+                "VpcConfigurationId": "string",
+                "SecurityGroupIdUpdates": [
+                  "string"
+                ]
+              }
+            ],
+            "EnvironmentPropertyUpdates": {
+              "PropertyGroups": [
+                {
+                  "PropertyMap": {
+                    "string": "string"
+                  },
+                  "PropertyGroupId": "string"
+                }
+              ]
+            },
+            "SqlApplicationConfigurationUpdate": {
+              "InputUpdates": [
+                {
+                  "InputId": "string",
+                  "NamePrefixUpdate": "string",
+                  "InputSchemaUpdate": {
+                    "RecordFormatUpdate": {
+                      "RecordFormatType": "string",
+                      "MappingParameters": {
+                        "CSVMappingParameters": {
+                          "RecordRowDelimiter": "string",
+                          "RecordColumnDelimiter": "string"
+                        },
+                        "JSONMappingParameters": {
+                          "RecordRowPath": "string"
+                        }
+                      }
+                    },
+                    "RecordColumnUpdates": [
+                      {
+                        "Name": "string",
+                        "Mapping": "string",
+                        "SqlType": "string"
+                      }
+                    ],
+                    "RecordEncodingUpdate": "string"
+                  },
+                  "InputParallelismUpdate": {
+                    "CountUpdate": 1
+                  },
+                  "KinesisStreamsInputUpdate": {
+                    "ResourceARNUpdate": "string"
+                  },
+                  "KinesisFirehoseInputUpdate": {
+                    "ResourceARNUpdate": "string"
+                  },
+                  "InputProcessingConfigurationUpdate": {
+                    "InputLambdaProcessorUpdate": {
+                      "ResourceARNUpdate": "string"
+                    }
+                  }
+                }
+              ],
+              "OutputUpdates": [
+                {
+                  "OutputId": "string",
+                  "NameUpdate": "string",
+                  "LambdaOutputUpdate": {
+                    "ResourceARNUpdate": "string"
+                  },
+                  "DestinationSchemaUpdate": {
+                    "RecordFormatType": "string"
+                  },
+                  "KinesisStreamsOutputUpdate": {
+                    "ResourceARNUpdate": "string"
+                  },
+                  "KinesisFirehoseOutputUpdate": {
+                    "ResourceARNUpdate": "string"
+                  }
+                }
+              ],
+              "ReferenceDataSourceUpdates": [
+                {
+                  "ReferenceId": "string",
+                  "TableNameUpdate": "string",
+                  "ReferenceSchemaUpdate": {
+                    "RecordFormat": {
+                      "RecordFormatType": "string",
+                      "MappingParameters": {
+                        "CSVMappingParameters": {
+                          "RecordRowDelimiter": "string",
+                          "RecordColumnDelimiter": "string"
+                        },
+                        "JSONMappingParameters": {
+                          "RecordRowPath": "string"
+                        }
+                      }
+                    },
+                    "RecordColumns": [
+                      {
+                        "Name": "string",
+                        "Mapping": "string",
+                        "SqlType": "string"
+                      }
+                    ],
+                    "RecordEncoding": "string"
+                  },
+                  "S3ReferenceDataSourceUpdate": {
+                    "FileKeyUpdate": "string",
+                    "BucketARNUpdate": "string"
+                  }
+                }
+              ]
+            },
+            "ApplicationCodeConfigurationUpdate": {
+              "CodeContentUpdate": {
+                "TextContentUpdate": "string",
+                "ZipFileContentUpdate": "blob",
+                "S3ContentLocationUpdate": {
+                  "FileKeyUpdate": "string",
+                  "BucketARNUpdate": "string",
+                  "ObjectVersionUpdate": "string"
+                }
+              },
+              "CodeContentTypeUpdate": "string"
+            },
+            "FlinkApplicationConfigurationUpdate": {
+              "CheckpointConfigurationUpdate": {
+                "ConfigurationTypeUpdate": "string",
+                "CheckpointIntervalUpdate": 1,
+                "CheckpointingEnabledUpdate": false,
+                "MinPauseBetweenCheckpointsUpdate": 1
+              },
+              "MonitoringConfigurationUpdate": {
+                "LogLevelUpdate": "string",
+                "MetricsLevelUpdate": "string",
+                "ConfigurationTypeUpdate": "string"
+              },
+              "ParallelismConfigurationUpdate": {
+                "ParallelismUpdate": 1,
+                "ConfigurationTypeUpdate": "string",
+                "ParallelismPerKPUUpdate": 1,
+                "AutoScalingEnabledUpdate": false
+              }
+            },
+            "ApplicationSnapshotConfigurationUpdate": {
+              "SnapshotsEnabledUpdate": false
+            }
+          },
+          "CloudWatchLoggingOptionUpdates": [
+            {
+              "LogStreamARNUpdate": "string",
+              "CloudWatchLoggingOptionId": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ApplicationDetail": {
+            "ApplicationARN": "string",
+            "ApplicationName": "string",
+            "CreateTimestamp": 1481289211.615,
+            "ApplicationStatus": "string",
+            "RuntimeEnvironment": "string",
+            "LastUpdateTimestamp": 1481289211.615,
+            "ApplicationVersionId": 1,
+            "ServiceExecutionRole": "string",
+            "ApplicationDescription": "string",
+            "ApplicationConfigurationDescription": {
+              "RunConfigurationDescription": {
+                "FlinkRunConfigurationDescription": {
+                  "AllowNonRestoredState": false
+                },
+                "ApplicationRestoreConfigurationDescription": {
+                  "SnapshotName": "string",
+                  "ApplicationRestoreType": "string"
+                }
+              },
+              "VpcConfigurationDescriptions": [
+                {
+                  "VpcId": "string",
+                  "SubnetIds": [
+                    "string"
+                  ],
+                  "SecurityGroupIds": [
+                    "string"
+                  ],
+                  "VpcConfigurationId": "string"
+                }
+              ],
+              "EnvironmentPropertyDescriptions": {
+                "PropertyGroupDescriptions": [
+                  {
+                    "PropertyMap": {
+                      "string": "string"
+                    },
+                    "PropertyGroupId": "string"
+                  }
+                ]
+              },
+              "SqlApplicationConfigurationDescription": {
+                "InputDescriptions": [
+                  {
+                    "InputId": "string",
+                    "NamePrefix": "string",
+                    "InputSchema": {
+                      "RecordFormat": {
+                        "RecordFormatType": "string",
+                        "MappingParameters": {
+                          "CSVMappingParameters": {
+                            "RecordRowDelimiter": "string",
+                            "RecordColumnDelimiter": "string"
+                          },
+                          "JSONMappingParameters": {
+                            "RecordRowPath": "string"
+                          }
+                        }
+                      },
+                      "RecordColumns": [
+                        {
+                          "Name": "string",
+                          "Mapping": "string",
+                          "SqlType": "string"
+                        }
+                      ],
+                      "RecordEncoding": "string"
+                    },
+                    "InAppStreamNames": [
+                      "string"
+                    ],
+                    "InputParallelism": {
+                      "Count": 1
+                    },
+                    "KinesisStreamsInputDescription": {
+                      "RoleARN": "string",
+                      "ResourceARN": "string"
+                    },
+                    "KinesisFirehoseInputDescription": {
+                      "RoleARN": "string",
+                      "ResourceARN": "string"
+                    },
+                    "InputStartingPositionConfiguration": {
+                      "InputStartingPosition": "string"
+                    },
+                    "InputProcessingConfigurationDescription": {
+                      "InputLambdaProcessorDescription": {
+                        "RoleARN": "string",
+                        "ResourceARN": "string"
+                      }
+                    }
+                  }
+                ],
+                "OutputDescriptions": [
+                  {
+                    "Name": "string",
+                    "OutputId": "string",
+                    "DestinationSchema": {
+                      "RecordFormatType": "string"
+                    },
+                    "LambdaOutputDescription": {
+                      "RoleARN": "string",
+                      "ResourceARN": "string"
+                    },
+                    "KinesisStreamsOutputDescription": {
+                      "RoleARN": "string",
+                      "ResourceARN": "string"
+                    },
+                    "KinesisFirehoseOutputDescription": {
+                      "RoleARN": "string",
+                      "ResourceARN": "string"
+                    }
+                  }
+                ],
+                "ReferenceDataSourceDescriptions": [
+                  {
+                    "TableName": "string",
+                    "ReferenceId": "string",
+                    "ReferenceSchema": {
+                      "RecordFormat": {
+                        "RecordFormatType": "string",
+                        "MappingParameters": {
+                          "CSVMappingParameters": {
+                            "RecordRowDelimiter": "string",
+                            "RecordColumnDelimiter": "string"
+                          },
+                          "JSONMappingParameters": {
+                            "RecordRowPath": "string"
+                          }
+                        }
+                      },
+                      "RecordColumns": [
+                        {
+                          "Name": "string",
+                          "Mapping": "string",
+                          "SqlType": "string"
+                        }
+                      ],
+                      "RecordEncoding": "string"
+                    },
+                    "S3ReferenceDataSourceDescription": {
+                      "FileKey": "string",
+                      "BucketARN": "string",
+                      "ReferenceRoleARN": "string"
+                    }
+                  }
+                ]
+              },
+              "ApplicationCodeConfigurationDescription": {
+                "CodeContentType": "string",
+                "CodeContentDescription": {
+                  "CodeMD5": "string",
+                  "CodeSize": 1,
+                  "TextContent": "string",
+                  "S3ApplicationCodeLocationDescription": {
+                    "FileKey": "string",
+                    "BucketARN": "string",
+                    "ObjectVersion": "string"
+                  }
+                }
+              },
+              "FlinkApplicationConfigurationDescription": {
+                "JobPlanDescription": "string",
+                "CheckpointConfigurationDescription": {
+                  "ConfigurationType": "string",
+                  "CheckpointInterval": 1,
+                  "CheckpointingEnabled": false,
+                  "MinPauseBetweenCheckpoints": 1
+                },
+                "MonitoringConfigurationDescription": {
+                  "LogLevel": "string",
+                  "MetricsLevel": "string",
+                  "ConfigurationType": "string"
+                },
+                "ParallelismConfigurationDescription": {
+                  "Parallelism": 1,
+                  "ConfigurationType": "string",
+                  "ParallelismPerKPU": 1,
+                  "AutoScalingEnabled": false,
+                  "CurrentParallelism": 1
+                }
+              },
+              "ApplicationSnapshotConfigurationDescription": {
+                "SnapshotsEnabled": false
+              }
+            },
+            "CloudWatchLoggingOptionDescriptions": [
+              {
+                "RoleARN": "string",
+                "LogStreamARN": "string",
+                "CloudWatchLoggingOptionId": "string"
+              }
+            ],
+            "ApplicationMaintenanceConfigurationDescription": {
+              "ApplicationMaintenanceWindowEndTime": "string",
+              "ApplicationMaintenanceWindowStartTime": "string"
+            }
+          }
+        }
+      ]
+  UpdateApplicationMaintenanceConfiguration:
+    description: |-
+      Updates the maintenance configuration of the Kinesis Data Analytics application.
+    versions:
+      from: 2018.5.23
+    link: https://docs.aws.amazon.com/kinesisanalytics/latest/apiv2/API_UpdateApplicationMaintenanceConfiguration.html
+    example:
+      inputs: [
+        {
+          "ApplicationName": "string",
+          "ApplicationMaintenanceConfigurationUpdate": {
+            "ApplicationMaintenanceWindowStartTimeUpdate": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ApplicationARN": "string",
+          "ApplicationMaintenanceConfigurationDescription": {
+            "ApplicationMaintenanceWindowEndTime": "string",
+            "ApplicationMaintenanceWindowStartTime": "string"
+          }
+        }
+      ]

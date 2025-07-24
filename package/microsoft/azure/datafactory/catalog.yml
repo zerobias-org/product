@@ -1,0 +1,3506 @@
+Product:
+  name: Azure Data Factory
+  versions: [2018.6.1]
+  package: microsoft.azure.datafactory
+  description: |-
+    DataFactory
+  link: https://docs.microsoft.com/en-us/azure/data-factory/
+  contentType: json
+Operations:
+  ActivityRuns.QueryByPipelineRun:
+    description: |-
+      Query activity runs based on input filter conditions.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/activityruns/querybypipelinerun
+    example:
+      inputs: [
+        {
+          "lastUpdatedAfter": "2018-06-16T00:36:44.3345758Z",
+          "lastUpdatedBefore": "2018-06-16T00:49:48.3686473Z"
+        }
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "error": {
+                "target": "ExampleForeachActivity",
+                "message": "",
+                "errorCode": "",
+                "failureType": ""
+              },
+              "input": {},
+              "output": {},
+              "status": "Succeeded",
+              "activityName": "ExampleForeachActivity",
+              "activityType": "ForEach",
+              "durationInMs": 22064,
+              "pipelineName": "examplePipeline",
+              "retryAttempt": null,
+              "activityRunId": "f30c5514-fb85-43ed-9fa4-768d42e58680",
+              "pipelineRunId": "2f7fdb90-5df1-4b8e-ac2f-064cfa58202b",
+              "activityRunEnd": "2018-06-16T00:38:11.5445431Z",
+              "userProperties": {},
+              "activityRunStart": "2018-06-16T00:37:49.4804925Z",
+              "linkedServiceName": ""
+            },
+            {
+              "error": {
+                "target": "ExampleCopyActivity",
+                "message": "",
+                "errorCode": "",
+                "failureType": ""
+              },
+              "input": {
+                "sink": {
+                  "type": "BlobSink"
+                },
+                "source": {
+                  "type": "BlobSource"
+                },
+                "dataIntegrationUnits": 32
+              },
+              "output": {
+                "errors": [],
+                "dataRead": 142000,
+                "filesRead": 1,
+                "throughput": 23.112,
+                "dataWritten": 142000,
+                "copyDuration": 6,
+                "filesWritten": 1,
+                "executionDetails": [
+                  {
+                    "sink": {
+                      "type": "AzureBlob"
+                    },
+                    "start": "2018-06-16T00:37:50.68834Z",
+                    "source": {
+                      "type": "AzureBlob"
+                    },
+                    "status": "Succeeded",
+                    "duration": 6,
+                    "detailedDurations": {
+                      "queuingDuration": 4,
+                      "transferDuration": 2
+                    },
+                    "usedParallelCopies": 1,
+                    "usedCloudDataMovementUnits": 4
+                  }
+                ],
+                "usedParallelCopies": 1,
+                "usedCloudDataMovementUnits": 4,
+                "effectiveIntegrationRuntime": "DefaultIntegrationRuntime (East US)"
+              },
+              "status": "Succeeded",
+              "activityName": "ExampleCopyActivity",
+              "activityType": "Copy",
+              "durationInMs": 17172,
+              "pipelineName": "examplePipeline",
+              "retryAttempt": null,
+              "activityRunId": "a96678c8-7167-4f00-b629-afccfbad4e51",
+              "pipelineRunId": "2f7fdb90-5df1-4b8e-ac2f-064cfa58202b",
+              "activityRunEnd": "2018-06-16T00:38:07.4188923Z",
+              "userProperties": {},
+              "activityRunStart": "2018-06-16T00:37:50.2460952Z",
+              "linkedServiceName": ""
+            }
+          ]
+        }
+      ]
+  DataFlowDebugSession.AddDataFlow:
+    description: |-
+      Add a data flow into debug session.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/dataflowdebugsession/adddataflow
+    example:
+      inputs: [
+        {
+          "dataFlow": {
+            "name": "dataflow1",
+            "properties": {
+              "type": "MappingDataFlow",
+              "typeProperties": {
+                "sinks": [],
+                "script": "\n\nsource(output(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source1",
+                "sources": [
+                  {
+                    "name": "source1",
+                    "dataset": {
+                      "type": "DatasetReference",
+                      "referenceName": "DelimitedText2"
+                    }
+                  }
+                ],
+                "transformations": []
+              }
+            }
+          },
+          "datasets": [
+            {
+              "name": "dataset1",
+              "properties": {
+                "type": "DelimitedText",
+                "schema": [
+                  {
+                    "type": "String"
+                  }
+                ],
+                "annotations": [],
+                "typeProperties": {
+                  "location": {
+                    "type": "AzureBlobStorageLocation",
+                    "fileName": "Ansiencoding.csv",
+                    "container": "dataflow-sample-data"
+                  },
+                  "quoteChar": "\"",
+                  "escapeChar": "\\",
+                  "columnDelimiter": ",",
+                  "firstRowAsHeader": true
+                },
+                "linkedServiceName": {
+                  "type": "LinkedServiceReference",
+                  "referenceName": "linkedService5"
+                }
+              }
+            }
+          ],
+          "sessionId": "f06ed247-9d07-49b2-b05e-2cb4a2fc871e",
+          "debugSettings": {
+            "parameters": {
+              "sourcePath": "Toy"
+            },
+            "sourceSettings": [
+              {
+                "rowLimit": 1000,
+                "sourceName": "source1"
+              },
+              {
+                "rowLimit": 222,
+                "sourceName": "source2"
+              }
+            ],
+            "datasetParameters": {
+              "Movies": {
+                "path": "abc"
+              },
+              "Output": {
+                "time": "def"
+              }
+            }
+          },
+          "linkedServices": [
+            {
+              "name": "linkedService1",
+              "properties": {
+                "type": "AzureBlobStorage",
+                "annotations": [],
+                "typeProperties": {
+                  "connectionString": "DefaultEndpointsProtocol=https;AccountName=<storageName>;EndpointSuffix=core.windows.net;",
+                  "encryptedCredential": "<credential>"
+                }
+              }
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "jobVersion": "e5328ee7-c524-4207-8ba4-b709010db33d"
+        }
+      ]
+  DataFlowDebugSession.Create:
+    description: |-
+      Creates a data flow debug session.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/dataflowdebugsession/create
+    example:
+      inputs: [
+        {
+          "timeToLive": 60,
+          "integrationRuntime": {
+            "name": "ir1",
+            "properties": {
+              "type": "Managed",
+              "typeProperties": {
+                "computeProperties": {
+                  "location": "AutoResolve",
+                  "dataFlowProperties": {
+                    "coreCount": 48,
+                    "timeToLive": 10,
+                    "computeType": "General"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "status": "Succeeded",
+          "sessionId": "229c688c-944c-44ac-b31a-82d50f347154"
+        }
+      ]
+  DataFlowDebugSession.Delete:
+    description: |-
+      Deletes a data flow debug session.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/dataflowdebugsession/delete
+    example:
+      inputs: [
+        {
+          "sessionId": "91fb57e0-8292-47be-89ff-c8f2d2bb2a7e"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DataFlowDebugSession.ExecuteCommand:
+    description: |-
+      Execute a data flow debug command.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/dataflowdebugsession/executecommand
+    example:
+      inputs: [
+        {
+          "command": "executePreviewQuery",
+          "sessionId": "f06ed247-9d07-49b2-b05e-2cb4a2fc871e",
+          "commandPayload": {
+            "rowLimits": 100,
+            "streamName": "source1"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "data": "some output",
+          "status": "Succeeded"
+        }
+      ]
+  DataFlowDebugSession.QueryByFactory:
+    description: |-
+      Query all active data flow debug sessions.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/dataflowdebugsession/querybyfactory
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "coreCount": 48,
+              "sessionId": "229c688c-944c-44ac-b31a-82d50f347154",
+              "startTime": "2019-09-05T18:23:20.3257799+00:00",
+              "computeType": "General",
+              "dataflowName": "DebugSession-0a7e0d6e-f2b7-48cc-8cd8-618326f5662f",
+              "userObjectId": "0a7e0d6e-f2b7-48cc-8cd8-618326f5662f",
+              "lastActivityTime": "2019-09-05T18:28:00.9459674+00:00",
+              "timeToLiveInMinutes": 60
+            }
+          ]
+        }
+      ]
+  DataFlows.CreateOrUpdate:
+    description: |-
+      Creates or updates a data flow.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/dataflows/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "type": "MappingDataFlow",
+            "description": "Sample demo data flow to convert currencies showing usage of union, derive and conditional split transformation.",
+            "typeProperties": {
+              "sinks": [
+                {
+                  "name": "USDSink",
+                  "dataset": {
+                    "type": "DatasetReference",
+                    "referenceName": "USDOutput"
+                  }
+                },
+                {
+                  "name": "CADSink",
+                  "dataset": {
+                    "type": "DatasetReference",
+                    "referenceName": "CADOutput"
+                  }
+                }
+              ],
+              "script": "source(output(PreviousConversionRate as double,Country as string,DateTime1 as string,CurrentConversionRate as double),allowSchemaDrift: false,validateSchema: false) ~> USDCurrency\nsource(output(PreviousConversionRate as double,Country as string,DateTime1 as string,CurrentConversionRate as double),allowSchemaDrift: true,validateSchema: false) ~> CADSource\nUSDCurrency, CADSource union(byName: true)~> Union\nUnion derive(NewCurrencyRate = round(CurrentConversionRate*1.25)) ~> NewCurrencyColumn\nNewCurrencyColumn split(Country == 'USD',Country == 'CAD',disjoint: false) ~> ConditionalSplit1@(USD, CAD)\nConditionalSplit1@USD sink(saveMode:'overwrite' ) ~> USDSink\nConditionalSplit1@CAD sink(saveMode:'overwrite' ) ~> CADSink",
+              "sources": [
+                {
+                  "name": "USDCurrency",
+                  "dataset": {
+                    "type": "DatasetReference",
+                    "referenceName": "CurrencyDatasetUSD"
+                  }
+                },
+                {
+                  "name": "CADSource",
+                  "dataset": {
+                    "type": "DatasetReference",
+                    "referenceName": "CurrencyDatasetCAD"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/datasets/exampleDataset",
+          "etag": "0a0066d4-0000-0000-0000-5b245bd20000",
+          "name": "exampleDataFlow",
+          "type": "Microsoft.DataFactory/factories/dataflows",
+          "properties": {
+            "type": "MappingDataFlow",
+            "description": "Sample demo data flow to convert currencies showing usage of union, derive and conditional split transformation.",
+            "typeProperties": {
+              "sinks": [
+                {
+                  "name": "USDSink",
+                  "dataset": {
+                    "type": "DatasetReference",
+                    "referenceName": "USDOutput"
+                  }
+                },
+                {
+                  "name": "CADSink",
+                  "dataset": {
+                    "type": "DatasetReference",
+                    "referenceName": "CADOutput"
+                  }
+                }
+              ],
+              "script": "source(output(PreviousConversionRate as double,Country as string,DateTime1 as string,CurrentConversionRate as double),allowSchemaDrift: false,validateSchema: false) ~> USDCurrency\nsource(output(PreviousConversionRate as double,Country as string,DateTime1 as string,CurrentConversionRate as double),allowSchemaDrift: true,validateSchema: false) ~> CADSource\nUSDCurrency, CADSource union(byName: true)~> Union\nUnion derive(NewCurrencyRate = round(CurrentConversionRate*1.25)) ~> NewCurrencyColumn\nNewCurrencyColumn split(Country == 'USD',Country == 'CAD',disjoint: false) ~> ConditionalSplit1@(USD, CAD)\nConditionalSplit1@USD sink(saveMode:'overwrite' ) ~> USDSink\nConditionalSplit1@CAD sink(saveMode:'overwrite' ) ~> CADSink",
+              "sources": [
+                {
+                  "name": "USDCurrency",
+                  "dataset": {
+                    "type": "DatasetReference",
+                    "referenceName": "CurrencyDatasetUSD"
+                  }
+                },
+                {
+                  "name": "CADSource",
+                  "dataset": {
+                    "type": "DatasetReference",
+                    "referenceName": "CurrencyDatasetCAD"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+  DataFlows.Delete:
+    description: |-
+      Deletes a data flow.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/dataflows/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DataFlows.Get:
+    description: |-
+      Gets a data flow.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/dataflows/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/dataflows/exampleDataFlow",
+          "etag": "15004c4f-0000-0200-0000-5cbe090e0000",
+          "name": "exampleDataFlow",
+          "type": "Microsoft.DataFactory/factories/dataflows",
+          "properties": {
+            "type": "MappingDataFlow",
+            "description": "Sample demo data flow to convert currencies showing usage of union, derive and conditional split transformation.",
+            "typeProperties": {
+              "sinks": [
+                {
+                  "name": "USDSink",
+                  "dataset": {
+                    "type": "DatasetReference",
+                    "referenceName": "USDOutput"
+                  }
+                },
+                {
+                  "name": "CADSink",
+                  "dataset": {
+                    "type": "DatasetReference",
+                    "referenceName": "CADOutput"
+                  }
+                }
+              ],
+              "script": "source(output(PreviousConversionRate as double,Country as string,DateTime1 as string,CurrentConversionRate as double),allowSchemaDrift: false,validateSchema: false) ~> USDCurrency\nsource(output(PreviousConversionRate as double,Country as string,DateTime1 as string,CurrentConversionRate as double),allowSchemaDrift: true,validateSchema: false) ~> CADSource\nUSDCurrency, CADSource union(byName: true)~> Union\nUnion derive(NewCurrencyRate = round(CurrentConversionRate*1.25)) ~> NewCurrencyColumn\nNewCurrencyColumn split(Country == 'USD',Country == 'CAD',disjoint: false) ~> ConditionalSplit1@(USD, CAD)\nConditionalSplit1@USD sink(saveMode:'overwrite' ) ~> USDSink\nConditionalSplit1@CAD sink(saveMode:'overwrite' ) ~> CADSink",
+              "sources": [
+                {
+                  "name": "USDCurrency",
+                  "dataset": {
+                    "type": "DatasetReference",
+                    "referenceName": "CurrencyDatasetUSD"
+                  }
+                },
+                {
+                  "name": "CADSource",
+                  "dataset": {
+                    "type": "DatasetReference",
+                    "referenceName": "CurrencyDatasetCAD"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+  DataFlows.ListByFactory:
+    description: |-
+      Lists data flows.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/dataflows/listbyfactory
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/dataflows/exampleDataFlow",
+              "etag": "0a0068d4-0000-0000-0000-5b245bd30000",
+              "name": "exampleDataFlow",
+              "type": "Microsoft.DataFactory/factories/dataflows",
+              "properties": {
+                "type": "MappingDataFlow",
+                "description": "Sample demo data flow to convert currencies showing usage of union, derive and conditional split transformation.",
+                "typeProperties": {
+                  "sinks": [
+                    {
+                      "name": "USDSink",
+                      "dataset": {
+                        "type": "DatasetReference",
+                        "referenceName": "USDOutput"
+                      }
+                    },
+                    {
+                      "name": "CADSink",
+                      "dataset": {
+                        "type": "DatasetReference",
+                        "referenceName": "CADOutput"
+                      }
+                    }
+                  ],
+                  "script": "source(output(PreviousConversionRate as double,Country as string,DateTime1 as string,CurrentConversionRate as double),allowSchemaDrift: false,validateSchema: false) ~> USDCurrency\nsource(output(PreviousConversionRate as double,Country as string,DateTime1 as string,CurrentConversionRate as double),allowSchemaDrift: true,validateSchema: false) ~> CADSource\nUSDCurrency, CADSource union(byName: true)~> Union\nUnion derive(NewCurrencyRate = round(CurrentConversionRate*1.25)) ~> NewCurrencyColumn\nNewCurrencyColumn split(Country == 'USD',Country == 'CAD',disjoint: false) ~> ConditionalSplit1@(USD, CAD)\nConditionalSplit1@USD sink(saveMode:'overwrite' ) ~> USDSink\nConditionalSplit1@CAD sink(saveMode:'overwrite' ) ~> CADSink",
+                  "sources": [
+                    {
+                      "name": "USDCurrency",
+                      "dataset": {
+                        "type": "DatasetReference",
+                        "referenceName": "CurrencyDatasetUSD"
+                      }
+                    },
+                    {
+                      "name": "CADSource",
+                      "dataset": {
+                        "type": "DatasetReference",
+                        "referenceName": "CurrencyDatasetCAD"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+  Datasets.CreateOrUpdate:
+    description: |-
+      Creates or updates a dataset.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/datasets/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "type": "AzureBlob",
+            "parameters": {
+              "MyFileName": {
+                "type": "String"
+              },
+              "MyFolderPath": {
+                "type": "String"
+              }
+            },
+            "typeProperties": {
+              "format": {
+                "type": "TextFormat"
+              },
+              "fileName": {
+                "type": "Expression",
+                "value": "@dataset().MyFileName"
+              },
+              "folderPath": {
+                "type": "Expression",
+                "value": "@dataset().MyFolderPath"
+              }
+            },
+            "linkedServiceName": {
+              "type": "LinkedServiceReference",
+              "referenceName": "exampleLinkedService"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/datasets/exampleDataset",
+          "etag": "0a0066d4-0000-0000-0000-5b245bd20000",
+          "name": "exampleDataset",
+          "type": "Microsoft.DataFactory/factories/datasets",
+          "properties": {
+            "type": "AzureBlob",
+            "schema": [
+              {
+                "name": "col1",
+                "type": "INT_32"
+              },
+              {
+                "name": "col2",
+                "type": "Decimal",
+                "scale": "2",
+                "precision": "38"
+              }
+            ],
+            "parameters": {
+              "MyFileName": {
+                "type": "String"
+              },
+              "MyFolderPath": {
+                "type": "String"
+              }
+            },
+            "typeProperties": {
+              "format": {
+                "type": "TextFormat"
+              },
+              "fileName": {
+                "type": "Expression",
+                "value": "@dataset().MyFileName"
+              },
+              "folderPath": {
+                "type": "Expression",
+                "value": "@dataset().MyFolderPath"
+              }
+            },
+            "linkedServiceName": {
+              "type": "LinkedServiceReference",
+              "referenceName": "exampleLinkedService"
+            }
+          }
+        }
+      ]
+  Datasets.Delete:
+    description: |-
+      Deletes a dataset.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/datasets/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Datasets.Get:
+    description: |-
+      Gets a dataset.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/datasets/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/datasets/exampleDataset",
+          "etag": "15004c4f-0000-0200-0000-5cbe090e0000",
+          "name": "exampleDataset",
+          "type": "Microsoft.DataFactory/factories/datasets",
+          "properties": {
+            "type": "AzureBlob",
+            "parameters": {
+              "MyFileName": {
+                "type": "String"
+              },
+              "MyFolderPath": {
+                "type": "String"
+              }
+            },
+            "description": "Example description",
+            "typeProperties": {
+              "format": {
+                "type": "TextFormat"
+              },
+              "fileName": {
+                "type": "Expression",
+                "value": "@dataset().MyFileName"
+              },
+              "folderPath": {
+                "type": "Expression",
+                "value": "@dataset().MyFolderPath"
+              }
+            },
+            "linkedServiceName": {
+              "type": "LinkedServiceReference",
+              "referenceName": "exampleLinkedService"
+            }
+          }
+        }
+      ]
+  Datasets.ListByFactory:
+    description: |-
+      Lists datasets.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/datasets/listbyfactory
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/datasets/exampleDataset",
+              "etag": "0a0068d4-0000-0000-0000-5b245bd30000",
+              "name": "exampleDataset",
+              "type": "Microsoft.DataFactory/factories/datasets",
+              "properties": {
+                "type": "AzureBlob",
+                "parameters": {
+                  "MyFileName": {
+                    "type": "String"
+                  },
+                  "MyFolderPath": {
+                    "type": "String"
+                  }
+                },
+                "description": "Example description",
+                "typeProperties": {
+                  "format": {
+                    "type": "TextFormat"
+                  },
+                  "fileName": {
+                    "type": "Expression",
+                    "value": "@dataset().MyFileName"
+                  },
+                  "folderPath": {
+                    "type": "Expression",
+                    "value": "@dataset().MyFolderPath"
+                  }
+                },
+                "linkedServiceName": {
+                  "type": "LinkedServiceReference",
+                  "referenceName": "exampleLinkedService"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  ExposureControl.GetFeatureValue:
+    description: |-
+      Get exposure control feature for specific location.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/exposurecontrol/getfeaturevalue
+    example:
+      inputs: [
+        {
+          "featureName": "ADFIntegrationRuntimeSharingRbac",
+          "featureType": "Feature"
+        }
+      ]
+      outputs: [
+        {
+          "value": "False",
+          "featureName": "ADFIntegrationRuntimeSharingRbac"
+        }
+      ]
+  ExposureControl.GetFeatureValueByFactory:
+    description: |-
+      Get exposure control feature for specific factory.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/exposurecontrol/getfeaturevaluebyfactory
+    example:
+      inputs: [
+        {
+          "featureName": "ADFIntegrationRuntimeSharingRbac",
+          "featureType": "Feature"
+        }
+      ]
+      outputs: [
+        {
+          "value": "False",
+          "featureName": "ADFIntegrationRuntimeSharingRbac"
+        }
+      ]
+  ExposureControl.QueryFeatureValuesByFactory:
+    description: |-
+      Get list of exposure control features for specific factory.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/exposurecontrol/queryfeaturevaluesbyfactory
+    example:
+      inputs: [
+        {
+          "exposureControlRequests": [
+            {
+              "featureName": "ADFIntegrationRuntimeSharingRbac",
+              "featureType": "Feature"
+            },
+            {
+              "featureName": "ADFSampleFeature",
+              "featureType": "Feature"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "exposureControlResponses": [
+            {
+              "value": "False",
+              "featureName": "ADFIntegrationRuntimeSharingRbac"
+            },
+            {
+              "value": "True",
+              "featureName": "ADFSampleFeature"
+            }
+          ]
+        }
+      ]
+  Factories.ConfigureFactoryRepo:
+    description: |-
+      Updates a factory's repo information.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/factories/configurefactoryrepo
+    example:
+      inputs: [
+        {
+          "factoryResourceId": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName",
+          "repoConfiguration": {
+            "type": "FactoryVSTSConfiguration",
+            "tenantId": "",
+            "rootFolder": "/",
+            "accountName": "ADF",
+            "projectName": "project",
+            "lastCommitId": "",
+            "repositoryName": "repo",
+            "collaborationBranch": "master"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName",
+          "eTag": "\"00004004-0000-0000-0000-5b28979e0000\"",
+          "name": "exampleFactoryName",
+          "tags": {
+            "exampleTag": "exampleValue"
+          },
+          "type": "Microsoft.DataFactory/factories",
+          "location": "East US",
+          "properties": {
+            "version": "2018-06-01",
+            "createTime": "2018-06-19T05:41:50.0041314Z",
+            "provisioningState": "Succeeded",
+            "repoConfiguration": {
+              "type": "FactoryVSTSConfiguration",
+              "tenantId": "",
+              "rootFolder": "/",
+              "accountName": "ADF",
+              "projectName": "project",
+              "lastCommitId": "",
+              "repositoryName": "repo",
+              "collaborationBranch": "master"
+            }
+          }
+        }
+      ]
+  Factories.CreateOrUpdate:
+    description: |-
+      Creates or updates a factory.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/factories/createorupdate
+    example:
+      inputs: [
+        {
+          "location": "East US"
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName",
+          "eTag": "\"00003e04-0000-0000-0000-5b28979e0000\"",
+          "name": "exampleFactoryName",
+          "tags": {},
+          "type": "Microsoft.DataFactory/factories",
+          "location": "East US",
+          "properties": {
+            "version": "2018-06-01",
+            "createTime": "2018-06-19T05:41:50.0041314Z",
+            "provisioningState": "Succeeded"
+          }
+        }
+      ]
+  Factories.Delete:
+    description: |-
+      Deletes a factory.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/factories/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Factories.Get:
+    description: |-
+      Gets a factory.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/factories/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName",
+          "eTag": "\"00004004-0000-0000-0000-5b28979e0000\"",
+          "name": "exampleFactoryName",
+          "tags": {
+            "exampleTag": "exampleValue"
+          },
+          "type": "Microsoft.DataFactory/factories",
+          "location": "East US",
+          "properties": {
+            "version": "2018-06-01",
+            "createTime": "2018-06-19T05:41:50.0041314Z",
+            "provisioningState": "Succeeded",
+            "repoConfiguration": {
+              "type": "FactoryVSTSConfiguration",
+              "tenantId": "",
+              "rootFolder": "/",
+              "accountName": "ADF",
+              "projectName": "project",
+              "lastCommitId": "",
+              "repositoryName": "repo",
+              "collaborationBranch": "master"
+            }
+          }
+        }
+      ]
+  Factories.GetDataPlaneAccess:
+    description: |-
+      Get Data Plane access.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/factories/getdataplaneaccess
+    example:
+      inputs: [
+        {
+          "startTime": "2018-11-10T02:46:20.2659347Z",
+          "expireTime": "2018-11-10T09:46:20.2659347Z",
+          "permissions": "r",
+          "profileName": "DefaultProfile",
+          "accessResourcePath": ""
+        }
+      ]
+      outputs: [
+        {
+          "policy": {
+            "startTime": "2018-11-10T02:46:20.2659347Z",
+            "expireTime": "2018-11-10T09:46:20.2659347Z",
+            "permissions": "r",
+            "profileName": "DefaultProfile",
+            "accessResourcePath": ""
+          },
+          "accessToken": "**********",
+          "dataPlaneUrl": "https://rpeastus.svc.datafactory.azure.com:4433"
+        }
+      ]
+  Factories.GetGitHubAccessToken:
+    description: |-
+      Get GitHub Access Token.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/factories/getgithubaccesstoken
+    example:
+      inputs: [
+        {
+          "gitHubClientId": "some",
+          "gitHubAccessCode": "some",
+          "gitHubAccessTokenBaseUrl": "some"
+        }
+      ]
+      outputs: [
+        {
+          "gitHubAccessToken": "myAccessTokenExample"
+        }
+      ]
+  Factories.List:
+    description: |-
+      Lists factories under the specified subscription.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/factories/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/rg-yanzhang-dfv2/providers/Microsoft.DataFactory/factories/rpv2origdf-72c7d3d4-5e17-4ec6-91de-9ab433f15e79",
+              "eTag": "\"0000aa0d-0000-0000-0000-5b0d58170000\"",
+              "name": "rpV2OrigDF-72c7d3d4-5e17-4ec6-91de-9ab433f15e79",
+              "tags": {},
+              "type": "Microsoft.DataFactory/factories",
+              "identity": {
+                "type": "SystemAssigned",
+                "tenantId": "12345678-1234-1234-1234-123456789abc",
+                "principalId": "399c3de2-6072-4326-bfa9-4d0c116f1a7b"
+              },
+              "location": "East US",
+              "properties": {
+                "version": "2017-09-01-preview",
+                "createTime": "2018-05-29T13:39:35.615921Z",
+                "provisioningState": "Succeeded"
+              }
+            },
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/rg-yanzhang-dfv2/providers/Microsoft.DataFactory/factories/df-dogfood-yanzhang-we",
+              "eTag": "\"0000f301-0000-0000-0000-5b21b16c0000\"",
+              "name": "df-dogfood-yanzhang-we",
+              "tags": {},
+              "type": "Microsoft.DataFactory/factories",
+              "identity": {
+                "type": "SystemAssigned",
+                "tenantId": "12345678-1234-1234-1234-123456789abc",
+                "principalId": "e8dd6df9-bad5-4dea-8fb8-0d13d1845d9e"
+              },
+              "location": "West Europe",
+              "properties": {
+                "version": "2017-09-01-preview",
+                "createTime": "2018-06-14T00:06:04.6667461Z",
+                "provisioningState": "Succeeded"
+              }
+            },
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName-linked",
+              "eTag": "\"00008a02-0000-0000-0000-5b237f270000\"",
+              "name": "exampleFactoryName-linked",
+              "tags": {},
+              "type": "Microsoft.DataFactory/factories",
+              "identity": {
+                "type": "SystemAssigned",
+                "tenantId": "12345678-1234-1234-1234-123456789abc",
+                "principalId": "10743799-44d2-42fe-8c4d-5bc5c51c0684"
+              },
+              "location": "East US",
+              "properties": {
+                "version": "2017-09-01-preview",
+                "createTime": "2018-06-15T08:56:07.1828318Z",
+                "provisioningState": "Succeeded"
+              }
+            },
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/factorytoupgrade",
+              "eTag": "\"00003d04-0000-0000-0000-5b28962f0000\"",
+              "name": "FactoryToUpgrade",
+              "tags": {},
+              "type": "Microsoft.DataFactory/factories",
+              "location": "East US",
+              "properties": {
+                "version": "2018-06-01",
+                "createTime": "2018-06-19T05:35:35.7133828Z",
+                "provisioningState": "Succeeded"
+              }
+            },
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName",
+              "eTag": "\"00004004-0000-0000-0000-5b28979e0000\"",
+              "name": "exampleFactoryName",
+              "tags": {
+                "exampleTag": "exampleValue"
+              },
+              "type": "Microsoft.DataFactory/factories",
+              "location": "East US",
+              "properties": {
+                "version": "2018-06-01",
+                "createTime": "2018-06-19T05:41:50.0041314Z",
+                "provisioningState": "Succeeded",
+                "repoConfiguration": {
+                  "type": "FactoryVSTSConfiguration",
+                  "tenantId": "",
+                  "rootFolder": "/",
+                  "accountName": "ADF",
+                  "projectName": "project",
+                  "lastCommitId": "",
+                  "repositoryName": "repo",
+                  "collaborationBranch": "master"
+                }
+              }
+            },
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/rg-yanzhang-dfv2/providers/Microsoft.DataFactory/factories/rpv2origdf-72c7d3d4-5e17-4ec6-91de-9ab433f15e79",
+              "eTag": "\"0000aa0d-0000-0000-0000-5b0d58170000\"",
+              "name": "rpV2OrigDF-72c7d3d4-5e17-4ec6-91de-9ab433f15e79",
+              "tags": {},
+              "type": "Microsoft.DataFactory/factories",
+              "identity": {
+                "type": "SystemAssigned",
+                "tenantId": "12345678-1234-1234-1234-123456789abc",
+                "principalId": "399c3de2-6072-4326-bfa9-4d0c116f1a7b"
+              },
+              "location": "East US",
+              "properties": {
+                "version": "2017-09-01-preview",
+                "createTime": "2018-05-29T13:39:35.615921Z",
+                "provisioningState": "Succeeded"
+              }
+            },
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/rg-yanzhang-dfv2/providers/Microsoft.DataFactory/factories/df-dogfood-yanzhang-we",
+              "eTag": "\"0000f301-0000-0000-0000-5b21b16c0000\"",
+              "name": "df-dogfood-yanzhang-we",
+              "tags": {},
+              "type": "Microsoft.DataFactory/factories",
+              "identity": {
+                "type": "SystemAssigned",
+                "tenantId": "12345678-1234-1234-1234-123456789abc",
+                "principalId": "e8dd6df9-bad5-4dea-8fb8-0d13d1845d9e"
+              },
+              "location": "West Europe",
+              "properties": {
+                "version": "2017-09-01-preview",
+                "createTime": "2018-06-14T00:06:04.6667461Z",
+                "provisioningState": "Succeeded"
+              }
+            },
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName-linked",
+              "eTag": "\"00008a02-0000-0000-0000-5b237f270000\"",
+              "name": "exampleFactoryName-linked",
+              "tags": {},
+              "type": "Microsoft.DataFactory/factories",
+              "identity": {
+                "type": "SystemAssigned",
+                "tenantId": "12345678-1234-1234-1234-123456789abc",
+                "principalId": "10743799-44d2-42fe-8c4d-5bc5c51c0684"
+              },
+              "location": "East US",
+              "properties": {
+                "version": "2017-09-01-preview",
+                "createTime": "2018-06-15T08:56:07.1828318Z",
+                "provisioningState": "Succeeded"
+              }
+            },
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/factorytoupgrade",
+              "eTag": "\"00003d04-0000-0000-0000-5b28962f0000\"",
+              "name": "FactoryToUpgrade",
+              "tags": {},
+              "type": "Microsoft.DataFactory/factories",
+              "location": "East US",
+              "properties": {
+                "version": "2018-06-01",
+                "createTime": "2018-06-19T05:35:35.7133828Z",
+                "provisioningState": "Succeeded"
+              }
+            },
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName",
+              "eTag": "\"00004004-0000-0000-0000-5b28979e0000\"",
+              "name": "exampleFactoryName",
+              "tags": {
+                "exampleTag": "exampleValue"
+              },
+              "type": "Microsoft.DataFactory/factories",
+              "location": "East US",
+              "properties": {
+                "version": "2018-06-01",
+                "createTime": "2018-06-19T05:41:50.0041314Z",
+                "provisioningState": "Succeeded",
+                "repoConfiguration": {
+                  "type": "FactoryVSTSConfiguration",
+                  "tenantId": "",
+                  "rootFolder": "/",
+                  "accountName": "ADF",
+                  "projectName": "project",
+                  "lastCommitId": "",
+                  "repositoryName": "repo",
+                  "collaborationBranch": "master"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  Factories.ListByResourceGroup:
+    description: |-
+      Lists factories.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/factories/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName-linked",
+              "eTag": "\"00008a02-0000-0000-0000-5b237f270000\"",
+              "name": "exampleFactoryName-linked",
+              "tags": {},
+              "type": "Microsoft.DataFactory/factories",
+              "identity": {
+                "type": "SystemAssigned",
+                "tenantId": "12345678-1234-1234-1234-123456789abc",
+                "principalId": "10743799-44d2-42fe-8c4d-5bc5c51c0684"
+              },
+              "location": "East US",
+              "properties": {
+                "version": "2017-09-01-preview",
+                "createTime": "2018-06-15T08:56:07.1828318Z",
+                "provisioningState": "Succeeded"
+              }
+            },
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/factorytoupgrade",
+              "eTag": "\"00003d04-0000-0000-0000-5b28962f0000\"",
+              "name": "FactoryToUpgrade",
+              "tags": {},
+              "type": "Microsoft.DataFactory/factories",
+              "location": "East US",
+              "properties": {
+                "version": "2018-06-01",
+                "createTime": "2018-06-19T05:35:35.7133828Z",
+                "provisioningState": "Succeeded"
+              }
+            },
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName",
+              "eTag": "\"00004004-0000-0000-0000-5b28979e0000\"",
+              "name": "exampleFactoryName",
+              "tags": {
+                "exampleTag": "exampleValue"
+              },
+              "type": "Microsoft.DataFactory/factories",
+              "location": "East US",
+              "properties": {
+                "version": "2018-06-01",
+                "createTime": "2018-06-19T05:41:50.0041314Z",
+                "provisioningState": "Succeeded",
+                "repoConfiguration": {
+                  "type": "FactoryVSTSConfiguration",
+                  "tenantId": "",
+                  "rootFolder": "/",
+                  "accountName": "ADF",
+                  "projectName": "project",
+                  "lastCommitId": "",
+                  "repositoryName": "repo",
+                  "collaborationBranch": "master"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  Factories.Update:
+    description: |-
+      Updates a factory.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/factories/update
+    example:
+      inputs: [
+        {
+          "tags": {
+            "exampleTag": "exampleValue"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName",
+          "eTag": "\"00003f04-0000-0000-0000-5b28979e0000\"",
+          "name": "exampleFactoryName",
+          "tags": {
+            "exampleTag": "exampleValue"
+          },
+          "type": "Microsoft.DataFactory/factories",
+          "location": "East US",
+          "properties": {
+            "version": "2018-06-01",
+            "createTime": "2018-06-19T05:41:50.0041314Z",
+            "provisioningState": "Succeeded"
+          }
+        }
+      ]
+  IntegrationRuntimeNodes.Delete:
+    description: |-
+      Deletes a self-hosted integration runtime node.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimenodes/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  IntegrationRuntimeNodes.Get:
+    description: |-
+      Gets a self-hosted integration runtime node.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimenodes/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "status": "Online",
+          "version": "3.8.6743.6",
+          "nodeName": "Node_1",
+          "machineName": "YANZHANG-DT",
+          "capabilities": {
+            "nodeEnabled": "True",
+            "credentialInSync": "True",
+            "httpsPortEnabled": "True",
+            "serviceBusConnected": "True",
+            "connectedToResourceManager": "True"
+          },
+          "registerTime": "2018-08-17T03:44:55.8012825Z",
+          "lastStartTime": "2018-08-17T03:45:30.8499851Z",
+          "versionStatus": "UpToDate",
+          "hostServiceUri": "https://yanzhang-dt.fareast.corp.microsoft.com:8050/HostServiceRemote.svc/",
+          "lastConnectTime": "2018-08-17T06:30:46.6262976Z",
+          "lastUpdateResult": "None",
+          "maxConcurrentJobs": 20,
+          "isActiveDispatcher": true
+        }
+      ]
+  IntegrationRuntimeNodes.GetIpAddress:
+    description: |-
+      Get the IP address of self-hosted integration runtime node.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimenodes/getipaddress
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "ipAddress": "**********"
+        }
+      ]
+  IntegrationRuntimeNodes.Update:
+    description: |-
+      Updates a self-hosted integration runtime node.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimenodes/update
+    example:
+      inputs: [
+        {
+          "concurrentJobsLimit": 2
+        }
+      ]
+      outputs: [
+        {
+          "status": "Online",
+          "version": "3.8.6730.2",
+          "nodeName": "Node_1",
+          "machineName": "YANZHANG-DT",
+          "capabilities": {
+            "nodeEnabled": "True",
+            "credentialInSync": "True",
+            "httpsPortEnabled": "True",
+            "serviceBusConnected": "True",
+            "connectedToResourceManager": "True"
+          },
+          "registerTime": "2018-06-14T14:51:44.9237069Z",
+          "lastStartTime": "2018-06-14T14:52:59.8933313Z",
+          "versionStatus": "UpToDate",
+          "hostServiceUri": "https://yanzhang-dt.fareast.corp.microsoft.com:8050/HostServiceRemote.svc/",
+          "lastConnectTime": "2018-06-14T15:00:35.7544322Z",
+          "lastUpdateResult": "None",
+          "maxConcurrentJobs": 56,
+          "isActiveDispatcher": true,
+          "concurrentJobsLimit": 2
+        }
+      ]
+  IntegrationRuntimeObjectMetadata.Get:
+    description: |-
+      Get a SSIS integration runtime object metadata by specified path. The return is pageable metadata list.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimeobjectmetadata/get
+    example:
+      inputs: [
+        {
+          "metadataPath": "ssisFolders"
+        }
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": 1,
+              "name": "TestFolder",
+              "description": ""
+            },
+            {
+              "id": 2,
+              "name": "EnvironmentFolder",
+              "description": ""
+            },
+            {
+              "id": 3,
+              "name": "ActivityTest",
+              "description": ""
+            },
+            {
+              "id": 4,
+              "name": "这是文件夹",
+              "description": ""
+            },
+            {
+              "id": 5,
+              "name": "1"
+            },
+            {
+              "id": 6,
+              "name": "2"
+            },
+            {
+              "id": 7,
+              "name": "3"
+            },
+            {
+              "id": 8,
+              "name": "4"
+            },
+            {
+              "id": 9,
+              "name": "5"
+            },
+            {
+              "id": 10,
+              "name": "6"
+            },
+            {
+              "id": 11,
+              "name": "7"
+            },
+            {
+              "id": 12,
+              "name": "8"
+            },
+            {
+              "id": 13,
+              "name": "9"
+            },
+            {
+              "id": 14,
+              "name": "10"
+            },
+            {
+              "id": 15,
+              "name": "11"
+            },
+            {
+              "id": 16,
+              "name": "12"
+            },
+            {
+              "id": 17,
+              "name": "13"
+            },
+            {
+              "id": 18,
+              "name": "14"
+            },
+            {
+              "id": 19,
+              "name": "15"
+            },
+            {
+              "id": 20,
+              "name": "16"
+            },
+            {
+              "id": 21,
+              "name": "17"
+            },
+            {
+              "id": 22,
+              "name": "18"
+            },
+            {
+              "id": 23,
+              "name": "19"
+            },
+            {
+              "id": 24,
+              "name": "20"
+            },
+            {
+              "id": 25,
+              "name": "21"
+            },
+            {
+              "id": 26,
+              "name": "22"
+            },
+            {
+              "id": 27,
+              "name": "23"
+            },
+            {
+              "id": 28,
+              "name": "24"
+            },
+            {
+              "id": 29,
+              "name": "25"
+            },
+            {
+              "id": 30,
+              "name": "26"
+            },
+            {
+              "id": 31,
+              "name": "27"
+            },
+            {
+              "id": 32,
+              "name": "28"
+            },
+            {
+              "id": 33,
+              "name": "29"
+            },
+            {
+              "id": 34,
+              "name": "30"
+            },
+            {
+              "id": 35,
+              "name": "31"
+            },
+            {
+              "id": 36,
+              "name": "32"
+            },
+            {
+              "id": 37,
+              "name": "33"
+            },
+            {
+              "id": 38,
+              "name": "34"
+            },
+            {
+              "id": 39,
+              "name": "35"
+            },
+            {
+              "id": 40,
+              "name": "36"
+            },
+            {
+              "id": 41,
+              "name": "37"
+            },
+            {
+              "id": 42,
+              "name": "38"
+            },
+            {
+              "id": 43,
+              "name": "39"
+            },
+            {
+              "id": 44,
+              "name": "40"
+            },
+            {
+              "id": 45,
+              "name": "41"
+            },
+            {
+              "id": 46,
+              "name": "42"
+            },
+            {
+              "id": 47,
+              "name": "43"
+            },
+            {
+              "id": 48,
+              "name": "44"
+            },
+            {
+              "id": 49,
+              "name": "45"
+            },
+            {
+              "id": 50,
+              "name": "46"
+            },
+            {
+              "id": 51,
+              "name": "47"
+            },
+            {
+              "id": 52,
+              "name": "48"
+            },
+            {
+              "id": 53,
+              "name": "49"
+            },
+            {
+              "id": 54,
+              "name": "50"
+            },
+            {
+              "id": 55,
+              "name": "51"
+            },
+            {
+              "id": 56,
+              "name": "52"
+            },
+            {
+              "id": 57,
+              "name": "53"
+            },
+            {
+              "id": 58,
+              "name": "54"
+            },
+            {
+              "id": 59,
+              "name": "55"
+            },
+            {
+              "id": 60,
+              "name": "56"
+            },
+            {
+              "id": 61,
+              "name": "57"
+            },
+            {
+              "id": 62,
+              "name": "58"
+            },
+            {
+              "id": 63,
+              "name": "59"
+            },
+            {
+              "id": 64,
+              "name": "60"
+            },
+            {
+              "id": 65,
+              "name": "61"
+            },
+            {
+              "id": 66,
+              "name": "62"
+            },
+            {
+              "id": 67,
+              "name": "63"
+            },
+            {
+              "id": 68,
+              "name": "64"
+            },
+            {
+              "id": 69,
+              "name": "65"
+            },
+            {
+              "id": 70,
+              "name": "66"
+            },
+            {
+              "id": 71,
+              "name": "67"
+            },
+            {
+              "id": 72,
+              "name": "68"
+            },
+            {
+              "id": 73,
+              "name": "69"
+            },
+            {
+              "id": 74,
+              "name": "70"
+            },
+            {
+              "id": 75,
+              "name": "71"
+            },
+            {
+              "id": 76,
+              "name": "72"
+            },
+            {
+              "id": 77,
+              "name": "73"
+            },
+            {
+              "id": 78,
+              "name": "74"
+            },
+            {
+              "id": 79,
+              "name": "75"
+            },
+            {
+              "id": 80,
+              "name": "76"
+            },
+            {
+              "id": 81,
+              "name": "77"
+            },
+            {
+              "id": 82,
+              "name": "78"
+            },
+            {
+              "id": 83,
+              "name": "79"
+            },
+            {
+              "id": 84,
+              "name": "80"
+            },
+            {
+              "id": 85,
+              "name": "81"
+            },
+            {
+              "id": 86,
+              "name": "82"
+            },
+            {
+              "id": 87,
+              "name": "83"
+            },
+            {
+              "id": 88,
+              "name": "84"
+            },
+            {
+              "id": 89,
+              "name": "85"
+            },
+            {
+              "id": 90,
+              "name": "86"
+            },
+            {
+              "id": 91,
+              "name": "87"
+            },
+            {
+              "id": 92,
+              "name": "88"
+            },
+            {
+              "id": 93,
+              "name": "89"
+            },
+            {
+              "id": 94,
+              "name": "90"
+            },
+            {
+              "id": 95,
+              "name": "91"
+            },
+            {
+              "id": 96,
+              "name": "92"
+            },
+            {
+              "id": 97,
+              "name": "93"
+            },
+            {
+              "id": 98,
+              "name": "94"
+            },
+            {
+              "id": 99,
+              "name": "95"
+            },
+            {
+              "id": 100,
+              "name": "96"
+            }
+          ],
+          "nextLink": "https://management.azure.com/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/integrationRuntimes/testactivityv2/getObjectMetadata?api-version=2018-06-01&%24skipToken=https%3a%2f%2fwcu.frontend.clouddatahub.net%2fsubscriptions%2f12345678-1234-1234-1234-12345678abc%2fdatafactories%2f6C8E7C90-FD45-4010-8B7C-B5227D0F0CB7%2fintegrationruntimes%2fTESTACTIVITYV2%2fgetSsisObjectMetadata%3f%24skipToken%3dc3Npc0ZvbGRlcnNAQDIwMTgtMTEtMjlUMDM6NTk6MzIuMDQ1Mzc1MiswMDowMEBAZm9sZGVyQEAwMDAwMDAwMDAwMDAwMDAwMTAx0%26api-version%3d1.0"
+        }
+      ]
+  IntegrationRuntimeObjectMetadata.Refresh:
+    description: |-
+      Refresh a SSIS integration runtime object metadata.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimeobjectmetadata/refresh
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "name": "ca63c855b72d44959653ffcc6eb0b96c",
+          "error": null,
+          "status": "Succeeded",
+          "properties": null
+        }
+      ]
+  IntegrationRuntimes.CreateLinkedIntegrationRuntime:
+    description: |-
+      Create a linked integration runtime entry in a shared integration runtime.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimes/createlinkedintegrationruntime
+    example:
+      inputs: [
+        {
+          "name": "bfa92911-9fb6-4fbe-8f23-beae87bc1c83",
+          "subscriptionId": "061774c7-4b5a-4159-a55b-365581830283",
+          "dataFactoryName": "e9955d6d-56ea-4be3-841c-52a12c1a9981",
+          "dataFactoryLocation": "West US"
+        }
+      ]
+      outputs: [
+        {
+          "name": "exampleIntegrationRuntime",
+          "properties": {
+            "type": "SelfHosted",
+            "state": "Online",
+            "typeProperties": {
+              "links": [
+                {
+                  "name": "bfa92911-9fb6-4fbe-8f23-beae87bc1c83",
+                  "createTime": "2018-08-17T06:31:04.0617928Z",
+                  "subscriptionId": "061774c7-4b5a-4159-a55b-365581830283",
+                  "dataFactoryName": "e9955d6d-56ea-4be3-841c-52a12c1a9981",
+                  "dataFactoryLocation": "West US"
+                }
+              ],
+              "nodes": [
+                {
+                  "status": "Online",
+                  "version": "3.8.6743.6",
+                  "nodeName": "Node_1",
+                  "machineName": "YANZHANG-DT",
+                  "capabilities": {
+                    "nodeEnabled": "True",
+                    "credentialInSync": "True",
+                    "httpsPortEnabled": "True",
+                    "serviceBusConnected": "True",
+                    "connectedToResourceManager": "True"
+                  },
+                  "registerTime": "2018-08-17T03:44:55.8012825Z",
+                  "lastStartTime": "2018-08-17T03:45:30.8499851Z",
+                  "versionStatus": "UpToDate",
+                  "hostServiceUri": "https://yanzhang-dt.fareast.corp.microsoft.com:8050/HostServiceRemote.svc/",
+                  "lastConnectTime": "2018-08-17T06:30:46.6262976Z",
+                  "lastUpdateResult": "None",
+                  "maxConcurrentJobs": 20,
+                  "isActiveDispatcher": true
+                }
+              ],
+              "version": "3.8.6743.6",
+              "autoUpdate": "On",
+              "createTime": "2018-08-17T03:43:25.7055573Z",
+              "serviceUrls": [
+                "wu.frontend.int.clouddatahub-int.net",
+                "*.servicebus.windows.net"
+              ],
+              "taskQueueId": "823da112-f2d9-426b-a0d8-5f361b94f72a",
+              "capabilities": {
+                "nodeEnabled": "True",
+                "credentialInSync": "True",
+                "httpsPortEnabled": "True",
+                "serviceBusConnected": "True",
+                "connectedToResourceManager": "True"
+              },
+              "autoUpdateETA": "2018-08-20T19:00:00Z",
+              "latestVersion": "3.9.6774.1",
+              "pushedVersion": "3.9.6774.1",
+              "versionStatus": "UpdateAvailable",
+              "updateDelayOffset": "PT19H",
+              "localTimeZoneOffset": "PT8H",
+              "scheduledUpdateDate": "2018-08-20T00:00:00Z"
+            },
+            "dataFactoryName": "exampleFactoryName"
+          }
+        }
+      ]
+  IntegrationRuntimes.CreateOrUpdate:
+    description: |-
+      Creates or updates an integration runtime.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimes/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "type": "SelfHosted",
+            "description": "A selfhosted integration runtime"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/integrationruntimes/exampleIntegrationRuntime",
+          "etag": "000046c4-0000-0000-0000-5b2198bf0000",
+          "name": "exampleIntegrationRuntime",
+          "type": "Microsoft.DataFactory/factories/integrationruntimes",
+          "properties": {
+            "type": "SelfHosted",
+            "description": "A selfhosted integration runtime"
+          }
+        }
+      ]
+  IntegrationRuntimes.Delete:
+    description: |-
+      Deletes an integration runtime.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimes/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  IntegrationRuntimes.Get:
+    description: |-
+      Gets an integration runtime.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimes/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/integrationruntimes/exampleIntegrationRuntime",
+          "etag": "15003c4f-0000-0200-0000-5cbe090b0000",
+          "name": "exampleIntegrationRuntime",
+          "type": "Microsoft.DataFactory/factories/integrationruntimes",
+          "properties": {
+            "type": "SelfHosted",
+            "description": "A selfhosted integration runtime"
+          }
+        }
+      ]
+  IntegrationRuntimes.GetConnectionInfo:
+    description: |-
+      Gets the on-premises integration runtime connection information for encrypting the on-premises data source credentials.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimes/getconnectioninfo
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "version": "3.8.6730.2",
+          "publicKey": "**********",
+          "serviceToken": "**********",
+          "hostServiceUri": "https://yanzhang-dt.fareast.corp.microsoft.com:8050/HostServiceRemote.svc/",
+          "identityCertThumbprint": "**********",
+          "isIdentityCertExprired": false
+        }
+      ]
+  IntegrationRuntimes.GetMonitoringData:
+    description: |-
+      Get the integration runtime monitoring data, which includes the monitor data for all the nodes under this integration runtime.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimes/getmonitoringdata
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "name": "exampleIntegrationRuntime",
+          "nodes": [
+            {
+              "nodeName": "Node_1",
+              "sentBytes": 2.647491693496704,
+              "receivedBytes": 6.731423377990723,
+              "cpuUtilization": 15,
+              "availableMemoryInMB": 16740,
+              "concurrentJobsLimit": 28,
+              "concurrentJobsRunning": 0
+            }
+          ]
+        }
+      ]
+  IntegrationRuntimes.GetStatus:
+    description: |-
+      Gets detailed status information for an integration runtime.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimes/getstatus
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "name": "exampleIntegrationRuntime",
+          "properties": {
+            "type": "SelfHosted",
+            "state": "Online",
+            "typeProperties": {
+              "nodes": [
+                {
+                  "status": "Online",
+                  "version": "3.8.6730.2",
+                  "nodeName": "Node_1",
+                  "machineName": "YANZHANG-DT",
+                  "capabilities": {
+                    "nodeEnabled": "True",
+                    "credentialInSync": "True",
+                    "httpsPortEnabled": "True",
+                    "serviceBusConnected": "True",
+                    "connectedToResourceManager": "True"
+                  },
+                  "registerTime": "2018-06-14T14:51:44.9237069Z",
+                  "lastStartTime": "2018-06-14T14:52:59.8933313Z",
+                  "versionStatus": "UpToDate",
+                  "hostServiceUri": "https://yanzhang-dt.fareast.corp.microsoft.com:8050/HostServiceRemote.svc/",
+                  "lastConnectTime": "2018-06-14T14:52:59.8933313Z",
+                  "lastUpdateResult": "None",
+                  "maxConcurrentJobs": 56,
+                  "isActiveDispatcher": true
+                }
+              ],
+              "version": "3.8.6730.2",
+              "autoUpdate": "Off",
+              "createTime": "2018-06-14T09:17:45.1839685Z",
+              "serviceUrls": [
+                "wu.frontend.int.clouddatahub-int.net",
+                "*.servicebus.windows.net"
+              ],
+              "taskQueueId": "1a6296ab-423c-4346-9bcc-85a78c2c0582",
+              "capabilities": {
+                "nodeEnabled": "True",
+                "credentialInSync": "True",
+                "httpsPortEnabled": "True",
+                "serviceBusConnected": "True",
+                "connectedToResourceManager": "True"
+              },
+              "latestVersion": "3.7.6711.1",
+              "versionStatus": "UpToDate",
+              "updateDelayOffset": "PT3H",
+              "localTimeZoneOffset": "PT8H"
+            }
+          }
+        }
+      ]
+  IntegrationRuntimes.ListAuthKeys:
+    description: |-
+      Retrieves the authentication keys for an integration runtime.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimes/listauthkeys
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "authKey1": "**********",
+          "authKey2": "**********"
+        }
+      ]
+  IntegrationRuntimes.ListByFactory:
+    description: |-
+      Lists integration runtimes.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimes/listbyfactory
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/integrationruntimes/exampleIntegrationRuntime",
+              "etag": "0400f1a1-0000-0000-0000-5b2188640000",
+              "name": "exampleIntegrationRuntime",
+              "type": "Microsoft.DataFactory/factories/integrationruntimes",
+              "properties": {
+                "type": "SelfHosted",
+                "description": "A selfhosted integration runtime"
+              }
+            }
+          ]
+        }
+      ]
+  IntegrationRuntimes.RegenerateAuthKey:
+    description: |-
+      Regenerates the authentication key for an integration runtime.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimes/regenerateauthkey
+    example:
+      inputs: [
+        {
+          "keyName": "authKey2"
+        }
+      ]
+      outputs: [
+        {
+          "authKey2": "**********"
+        }
+      ]
+  IntegrationRuntimes.RemoveLinks:
+    description: |-
+      Remove all linked integration runtimes under specific data factory in a self-hosted integration runtime.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimes/removelinks
+    example:
+      inputs: [
+        {
+          "factoryName": "exampleFactoryName-linked"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  IntegrationRuntimes.Start:
+    description: |-
+      Starts a ManagedReserved type integration runtime.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimes/start
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "name": "exampleManagedIntegrationRuntime",
+          "properties": {
+            "type": "Managed",
+            "state": "Started",
+            "typeProperties": {
+              "nodes": [],
+              "createTime": "2018-06-13T21:11:01.8695494Z",
+              "otherErrors": []
+            },
+            "dataFactoryName": "exampleFactoryName"
+          }
+        }
+      ]
+  IntegrationRuntimes.Stop:
+    description: |-
+      Stops a ManagedReserved type integration runtime.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimes/stop
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  IntegrationRuntimes.SyncCredentials:
+    description: |-
+      Force the integration runtime to synchronize credentials across integration runtime nodes, and this will override the credentials across all worker nodes with those available on the dispatcher node. If you already have the latest credential backup file, you should manually import it (preferred) on any self-hosted integration runtime node than using this API directly.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimes/synccredentials
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  IntegrationRuntimes.Update:
+    description: |-
+      Updates an integration runtime.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimes/update
+    example:
+      inputs: [
+        {
+          "autoUpdate": "Off",
+          "updateDelayOffset": "\"PT3H\""
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/integrationruntimes/exampleIntegrationRuntime",
+          "etag": "0400f1a1-0000-0000-0000-5b2188640000",
+          "name": "exampleIntegrationRuntime",
+          "type": "Microsoft.DataFactory/factories/integrationruntimes",
+          "properties": {
+            "type": "SelfHosted",
+            "description": "A selfhosted integration runtime"
+          }
+        }
+      ]
+  IntegrationRuntimes.Upgrade:
+    description: |-
+      Upgrade self-hosted integration runtime to latest version if availability.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/integrationruntimes/upgrade
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  LinkedServices.CreateOrUpdate:
+    description: |-
+      Creates or updates a linked service.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/linkedservices/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "type": "AzureStorage",
+            "typeProperties": {
+              "connectionString": {
+                "type": "SecureString",
+                "value": "DefaultEndpointsProtocol=https;AccountName=examplestorageaccount;AccountKey=<storage key>"
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/linkedservices/exampleLinkedService",
+          "etag": "0a0062d4-0000-0000-0000-5b245bcf0000",
+          "name": "exampleLinkedService",
+          "type": "Microsoft.DataFactory/factories/linkedservices",
+          "properties": {
+            "type": "AzureStorage",
+            "typeProperties": {
+              "connectionString": {
+                "type": "SecureString",
+                "value": "**********"
+              },
+              "encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRGLURPR0ZPT0QtWUFOWkhBTkctV1VfM2FiMTk0NjYtNWUxNi00NzU1LWJlNzktMjI2ZTVmZWU3YzY0Ig0KfQ=="
+            }
+          }
+        }
+      ]
+  LinkedServices.Delete:
+    description: |-
+      Deletes a linked service.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/linkedservices/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  LinkedServices.Get:
+    description: |-
+      Gets a linked service.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/linkedservices/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/linkedservices/exampleLinkedService",
+          "etag": "1500474f-0000-0200-0000-5cbe090d0000",
+          "name": "exampleLinkedService",
+          "type": "Microsoft.DataFactory/factories/linkedservices",
+          "properties": {
+            "type": "AzureStorage",
+            "description": "Example description",
+            "typeProperties": {
+              "connectionString": {
+                "type": "SecureString",
+                "value": "**********"
+              },
+              "encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkhWVEVTVEVYQU1QTEVTXzg5MjU1NGY0LTViNGItNDFhOS1hYWYxLTg4ZWI5ZDBjOWIzMyINCn0="
+            }
+          }
+        }
+      ]
+  LinkedServices.ListByFactory:
+    description: |-
+      Lists linked services.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/linkedservices/listbyfactory
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/linkedservices/exampleLinkedService",
+              "etag": "0a0064d4-0000-0000-0000-5b245bd00000",
+              "name": "exampleLinkedService",
+              "type": "Microsoft.DataFactory/factories/linkedservices",
+              "properties": {
+                "type": "AzureStorage",
+                "description": "Example description",
+                "typeProperties": {
+                  "connectionString": {
+                    "type": "SecureString",
+                    "value": "**********"
+                  },
+                  "encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRGLURPR0ZPT0QtWUFOWkhBTkctV1VfMGI2M2EyMmYtMGEzNC00NDg2LWIzMDktNzM0NTlkODUyY2Q1Ig0KfQ=="
+                }
+              }
+            }
+          ]
+        }
+      ]
+  ManagedPrivateEndpoints.CreateOrUpdate:
+    description: |-
+      Creates or updates a managed private endpoint.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/managedprivateendpoints/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "fqdns": [],
+            "groupId": "blob",
+            "privateLinkResourceId": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.Storage/storageAccounts/exampleBlobStorage"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/managedVirtualNetworks/exampleManagedVirtualNetworkName/managedPrivateEndpoints/exampleManagedPrivateEndpointName",
+          "etag": "000046c4-0000-0000-0000-5b2198bf0000",
+          "name": "exampleManagedPrivateEndpointName",
+          "type": "Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints",
+          "properties": {
+            "fqdns": [],
+            "groupId": "blob",
+            "connectionState": {
+              "status": "Pending",
+              "description": "",
+              "actionsRequired": "None"
+            },
+            "provisioningState": "Succeeded",
+            "privateLinkResourceId": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.Storage/storageAccounts/exampleBlobStorage"
+          }
+        }
+      ]
+  ManagedPrivateEndpointsStable.Delete:
+    description: |-
+      Deletes a managed private endpoint.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/managedprivateendpoints(stable)/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  ManagedPrivateEndpointsStable.Get:
+    description: |-
+      Gets a managed private endpoint.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/managedprivateendpoints(stable)/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/managedVirtualNetworks/exampleManagedVirtualNetworkName/managedPrivateEndpoints/exampleManagedPrivateEndpointName",
+          "etag": "000046c4-0000-0000-0000-5b2198bf0000",
+          "name": "exampleManagedPrivateEndpointName",
+          "type": "Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints",
+          "properties": {
+            "fqdns": [],
+            "groupId": "blob",
+            "connectionState": {
+              "status": "Pending",
+              "description": "",
+              "actionsRequired": "None"
+            },
+            "provisioningState": "Succeeded",
+            "privateLinkResourceId": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.Storage/storageAccounts/exampleBlobStorage"
+          }
+        }
+      ]
+  ManagedPrivateEndpointsStable.ListByFactory:
+    description: |-
+      Lists managed private endpoints.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/managedprivateendpoints(stable)/listbyfactory
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/managedVirtualNetworks/exampleManagedVirtualNetworkName/managedPrivateEndpoints/exampleManagedPrivateEndpointName",
+              "etag": "000046c4-0000-0000-0000-5b2198bf0000",
+              "name": "exampleManagedPrivateEndpointName",
+              "type": "Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints",
+              "properties": {
+                "fqdns": [],
+                "groupId": "blob",
+                "connectionState": {
+                  "status": "Pending",
+                  "description": "",
+                  "actionsRequired": "None"
+                },
+                "provisioningState": "Succeeded",
+                "privateLinkResourceId": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.Storage/storageAccounts/exampleBlobStorage"
+              }
+            }
+          ]
+        }
+      ]
+  ManagedVirtualNetworks.CreateOrUpdate:
+    description: |-
+      Creates or updates a managed Virtual Network.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/managedvirtualnetworks/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {}
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/managedVirtualNetworks/exampleManagedVirtualNetworkName",
+          "etag": "000046c4-0000-0000-0000-5b2198bf0000",
+          "name": "exampleManagedVirtualNetworkName",
+          "type": "Microsoft.DataFactory/factories/managedVirtualNetworks",
+          "properties": {
+            "alias": "exampleFactoryName",
+            "vNetId": "12345678-1234-1234-1234-12345678123"
+          }
+        }
+      ]
+  ManagedVirtualNetworks.Get:
+    description: |-
+      Gets a managed Virtual Network.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/managedvirtualnetworks/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/managedVirtualNetworks/exampleManagedVirtualNetworkName",
+          "etag": "15003c4f-0000-0200-0000-5cbe090b0000",
+          "name": "exampleManagedVirtualNetworkName",
+          "type": "Microsoft.DataFactory/factories/managedVirtualNetworks",
+          "properties": {
+            "alias": "exampleFactoryName",
+            "vNetId": "5a7bd944-87e6-454a-8d4d-9fba446514fd"
+          }
+        }
+      ]
+  ManagedVirtualNetworks.ListByFactory:
+    description: |-
+      Lists managed Virtual Networks.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/managedvirtualnetworks/listbyfactory
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/managedVirtualNetworks/exampleManagedVirtualNetworkName",
+              "etag": "0400f1a1-0000-0000-0000-5b2188640000",
+              "name": "exampleManagedVirtualNetworkName",
+              "type": "Microsoft.DataFactory/factories/managedVirtualNetworks",
+              "properties": {
+                "alias": "exampleFactoryName",
+                "vNetId": "5a7bd944-87e6-454a-8d4d-9fba446514fd"
+              }
+            }
+          ]
+        }
+      ]
+  PipelineRuns.Cancel:
+    description: |-
+      Cancel a pipeline run by its run ID.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/pipelineruns/cancel
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  PipelineRuns.Get:
+    description: |-
+      Get a pipeline run by its run ID.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/pipelineruns/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "runId": "2f7fdb90-5df1-4b8e-ac2f-064cfa58202b",
+          "runEnd": "2018-06-16T00:38:12.7314495Z",
+          "status": "Succeeded",
+          "message": "",
+          "runStart": "2018-06-16T00:37:44.6257014Z",
+          "invokedBy": {
+            "id": "80a01654a9d34ad18b3fcac5d5d76b67",
+            "name": "Manual"
+          },
+          "parameters": {
+            "OutputBlobNameList": "[\"exampleoutput.csv\"]"
+          },
+          "annotations": [],
+          "lastUpdated": "2018-06-16T00:38:12.7314495Z",
+          "durationInMs": 28105,
+          "pipelineName": "examplePipeline"
+        }
+      ]
+  PipelineRuns.QueryByFactory:
+    description: |-
+      Query pipeline runs in the factory based on input filter conditions.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/pipelineruns/querybyfactory
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "values": [
+                "examplePipeline"
+              ],
+              "operand": "PipelineName",
+              "operator": "Equals"
+            }
+          ],
+          "lastUpdatedAfter": "2018-06-16T00:36:44.3345758Z",
+          "lastUpdatedBefore": "2018-06-16T00:49:48.3686473Z"
+        }
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "runId": "2f7fdb90-5df1-4b8e-ac2f-064cfa58202b",
+              "runEnd": "2018-06-16T00:38:12.7314495Z",
+              "status": "Succeeded",
+              "message": "",
+              "runStart": "2018-06-16T00:37:44.6257014Z",
+              "invokedBy": {
+                "id": "80a01654a9d34ad18b3fcac5d5d76b67",
+                "name": "Manual"
+              },
+              "parameters": {
+                "OutputBlobNameList": "[\"exampleoutput.csv\"]"
+              },
+              "annotations": [],
+              "lastUpdated": "2018-06-16T00:38:12.7314495Z",
+              "durationInMs": 28105,
+              "pipelineName": "examplePipeline",
+              "runDimension": {
+                "JobId": "79c1cc52-265f-41a5-9553-be65e736fbd3"
+              }
+            },
+            {
+              "runId": "16ac5348-ff82-4f95-a80d-638c1d47b721",
+              "runEnd": null,
+              "status": "Cancelled",
+              "message": "",
+              "runStart": "2018-06-16T00:39:49.2745128Z",
+              "invokedBy": {
+                "id": "7c5fd7ef7e8a464b98b931cf15fcac66",
+                "name": "Manual"
+              },
+              "parameters": {
+                "OutputBlobNameList": "[\"exampleoutput.csv\"]"
+              },
+              "annotations": [],
+              "lastUpdated": "2018-06-16T00:39:51.216097Z",
+              "durationInMs": null,
+              "pipelineName": "examplePipeline",
+              "runDimension": {
+                "JobId": "84a3c493-0628-4b44-852f-ef5b3a11bdab"
+              }
+            }
+          ]
+        }
+      ]
+  Pipelines.CreateOrUpdate:
+    description: |-
+      Creates or updates a pipeline.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/pipelines/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "policy": {
+              "elapsedTimeMetric": {
+                "duration": "0.00:10:00"
+              }
+            },
+            "variables": {
+              "TestVariableArray": {
+                "type": "Array"
+              }
+            },
+            "activities": [
+              {
+                "name": "ExampleForeachActivity",
+                "type": "ForEach",
+                "typeProperties": {
+                  "items": {
+                    "type": "Expression",
+                    "value": "@pipeline().parameters.OutputBlobNameList"
+                  },
+                  "activities": [
+                    {
+                      "name": "ExampleCopyActivity",
+                      "type": "Copy",
+                      "inputs": [
+                        {
+                          "type": "DatasetReference",
+                          "parameters": {
+                            "MyFileName": "examplecontainer.csv",
+                            "MyFolderPath": "examplecontainer"
+                          },
+                          "referenceName": "exampleDataset"
+                        }
+                      ],
+                      "outputs": [
+                        {
+                          "type": "DatasetReference",
+                          "parameters": {
+                            "MyFileName": {
+                              "type": "Expression",
+                              "value": "@item()"
+                            },
+                            "MyFolderPath": "examplecontainer"
+                          },
+                          "referenceName": "exampleDataset"
+                        }
+                      ],
+                      "typeProperties": {
+                        "sink": {
+                          "type": "BlobSink"
+                        },
+                        "source": {
+                          "type": "BlobSource"
+                        },
+                        "dataIntegrationUnits": 32
+                      }
+                    }
+                  ],
+                  "isSequential": true
+                }
+              }
+            ],
+            "parameters": {
+              "JobId": {
+                "type": "String"
+              },
+              "OutputBlobNameList": {
+                "type": "Array"
+              }
+            },
+            "runDimensions": {
+              "JobId": {
+                "type": "Expression",
+                "value": "@pipeline().parameters.JobId"
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/pipelines/examplePipeline",
+          "etag": "0a0069d4-0000-0000-0000-5b245bd50000",
+          "name": "examplePipeline",
+          "type": "Microsoft.DataFactory/factories/pipelines",
+          "properties": {
+            "variables": {
+              "TestVariableArray": {
+                "type": "Array"
+              }
+            },
+            "activities": [
+              {
+                "name": "ExampleForeachActivity",
+                "type": "ForEach",
+                "typeProperties": {
+                  "items": {
+                    "type": "Expression",
+                    "value": "@pipeline().parameters.OutputBlobNameList"
+                  },
+                  "activities": [
+                    {
+                      "name": "ExampleCopyActivity",
+                      "type": "Copy",
+                      "inputs": [
+                        {
+                          "type": "DatasetReference",
+                          "parameters": {
+                            "MyFileName": "examplecontainer.csv",
+                            "MyFolderPath": "examplecontainer"
+                          },
+                          "referenceName": "exampleDataset"
+                        }
+                      ],
+                      "outputs": [
+                        {
+                          "type": "DatasetReference",
+                          "parameters": {
+                            "MyFileName": {
+                              "type": "Expression",
+                              "value": "@item()"
+                            },
+                            "MyFolderPath": "examplecontainer"
+                          },
+                          "referenceName": "exampleDataset"
+                        }
+                      ],
+                      "typeProperties": {
+                        "sink": {
+                          "type": "BlobSink"
+                        },
+                        "source": {
+                          "type": "BlobSource"
+                        },
+                        "dataIntegrationUnits": 32
+                      }
+                    }
+                  ],
+                  "isSequential": true
+                }
+              }
+            ],
+            "parameters": {
+              "JobId": {
+                "type": "String"
+              },
+              "OutputBlobNameList": {
+                "type": "Array"
+              }
+            },
+            "runDimensions": {
+              "JobId": {
+                "type": "Expression",
+                "value": "@pipeline().parameters.JobId"
+              }
+            }
+          }
+        }
+      ]
+  Pipelines.CreateRun:
+    description: |-
+      Creates a run of a pipeline.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/pipelines/createrun
+    example:
+      inputs: [
+        {
+          "OutputBlobNameList": [
+            "exampleoutput.csv"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "runId": "2f7fdb90-5df1-4b8e-ac2f-064cfa58202b"
+        }
+      ]
+  Pipelines.Delete:
+    description: |-
+      Deletes a pipeline.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/pipelines/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Pipelines.Get:
+    description: |-
+      Gets a pipeline.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/pipelines/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/pipelines/examplePipeline",
+          "etag": "1500504f-0000-0200-0000-5cbe090f0000",
+          "name": "examplePipeline",
+          "type": "Microsoft.DataFactory/factories/pipelines",
+          "properties": {
+            "policy": {
+              "elapsedTimeMetric": {
+                "duration": "0.00:10:00"
+              }
+            },
+            "variables": {
+              "TestVariableArray": {
+                "type": "Array"
+              }
+            },
+            "activities": [
+              {
+                "name": "ExampleForeachActivity",
+                "type": "ForEach",
+                "typeProperties": {
+                  "items": {
+                    "type": "Expression",
+                    "value": "@pipeline().parameters.OutputBlobNameList"
+                  },
+                  "activities": [
+                    {
+                      "name": "ExampleCopyActivity",
+                      "type": "Copy",
+                      "inputs": [
+                        {
+                          "type": "DatasetReference",
+                          "parameters": {
+                            "MyFileName": "examplecontainer.csv",
+                            "MyFolderPath": "examplecontainer"
+                          },
+                          "referenceName": "exampleDataset"
+                        }
+                      ],
+                      "outputs": [
+                        {
+                          "type": "DatasetReference",
+                          "parameters": {
+                            "MyFileName": {
+                              "type": "Expression",
+                              "value": "@item()"
+                            },
+                            "MyFolderPath": "examplecontainer"
+                          },
+                          "referenceName": "exampleDataset"
+                        }
+                      ],
+                      "typeProperties": {
+                        "sink": {
+                          "type": "BlobSink"
+                        },
+                        "source": {
+                          "type": "BlobSource"
+                        },
+                        "dataIntegrationUnits": 32
+                      }
+                    }
+                  ],
+                  "isSequential": true
+                }
+              }
+            ],
+            "parameters": {
+              "OutputBlobNameList": {
+                "type": "Array"
+              }
+            },
+            "description": "Example description"
+          }
+        }
+      ]
+  Pipelines.ListByFactory:
+    description: |-
+      Lists pipelines.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/pipelines/listbyfactory
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/pipelines/examplePipeline",
+              "etag": "0a006cd4-0000-0000-0000-5b245bd60000",
+              "name": "examplePipeline",
+              "type": "Microsoft.DataFactory/factories/pipelines",
+              "properties": {
+                "activities": [
+                  {
+                    "name": "ExampleForeachActivity",
+                    "type": "ForEach",
+                    "typeProperties": {
+                      "items": {
+                        "type": "Expression",
+                        "value": "@pipeline().parameters.OutputBlobNameList"
+                      },
+                      "activities": [
+                        {
+                          "name": "ExampleCopyActivity",
+                          "type": "Copy",
+                          "inputs": [
+                            {
+                              "type": "DatasetReference",
+                              "parameters": {
+                                "MyFileName": "examplecontainer.csv",
+                                "MyFolderPath": "examplecontainer"
+                              },
+                              "referenceName": "exampleDataset"
+                            }
+                          ],
+                          "outputs": [
+                            {
+                              "type": "DatasetReference",
+                              "parameters": {
+                                "MyFileName": {
+                                  "type": "Expression",
+                                  "value": "@item()"
+                                },
+                                "MyFolderPath": "examplecontainer"
+                              },
+                              "referenceName": "exampleDataset"
+                            }
+                          ],
+                          "typeProperties": {
+                            "sink": {
+                              "type": "BlobSink"
+                            },
+                            "source": {
+                              "type": "BlobSource"
+                            },
+                            "dataIntegrationUnits": 32
+                          }
+                        }
+                      ],
+                      "isSequential": true
+                    }
+                  }
+                ],
+                "parameters": {
+                  "OutputBlobNameList": {
+                    "type": "Array"
+                  }
+                },
+                "description": "Example description"
+              }
+            }
+          ]
+        }
+      ]
+  PrivateEndpointConnection.CreateOrUpdate:
+    description: |-
+      Approves or rejects a private endpoint connection
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/privateendpointconnection/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "privateLinkServiceConnectionState": {
+              "status": "Approved",
+              "description": "Approved by admin.",
+              "actionsRequired": ""
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName",
+          "name": "exampleFactoryName",
+          "type": "Microsoft.DataFactory/factories/privateEndpointConnections",
+          "properties": {
+            "privateEndpoint": {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/privateEndpoints/myPrivateEndpoint"
+            },
+            "provisioningState": "Succeeded",
+            "privateLinkServiceConnectionState": {
+              "status": "Approved",
+              "description": "Approved by admin.",
+              "actionsRequired": ""
+            }
+          }
+        }
+      ]
+  PrivateEndpointConnection.Delete:
+    description: |-
+      Deletes a private endpoint connection
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/privateendpointconnection/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  PrivateEndpointConnection.Get:
+    description: |-
+      Gets a private endpoint connection
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/privateendpointconnection/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName",
+          "name": "exampleFactoryName",
+          "type": "Microsoft.DataFactory/factories/privateEndpointConnections",
+          "properties": {
+            "privateEndpoint": {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/privateEndpoints/myPrivateEndpoint"
+            },
+            "provisioningState": "Succeeded",
+            "privateLinkServiceConnectionState": {
+              "status": "Approved",
+              "description": "Approved by admin.",
+              "actionsRequired": ""
+            }
+          }
+        }
+      ]
+  PrivateEndPointConnections.ListByFactory:
+    description: |-
+      Lists Private endpoint connections
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/privateendpointconnections/listbyfactory
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/privateEndpoints/myPrivateEndpoint",
+              "name": "factories",
+              "type": "Microsoft.DataFactory/factories/privateEndpointConnections",
+              "properties": {
+                "privateEndpoint": {
+                  "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/managedVirtualNetworks/myPrivateEndpoint"
+                },
+                "provisioningState": "Succeeded",
+                "privateLinkServiceConnectionState": {
+                  "status": "Approved",
+                  "description": "Approved by admin.",
+                  "actionsRequired": "exampleActionsRequired"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  PrivateLinkResources.Get:
+    description: |-
+      Gets the private link resources
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/privatelinkresources/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName",
+              "name": "exampleFactoryName",
+              "type": "Microsoft.DataFactory/factories/privateLinkResources",
+              "properties": {
+                "groupId": "dataFactory",
+                "requiredMembers": [
+                  "dataFactory"
+                ],
+                "requiredZoneNames": [
+                  "privatelink.datafactory.azure.net"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+  TriggerRuns.Cancel:
+    description: |-
+      Cancel a single trigger instance by runId.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/triggerruns/cancel
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  TriggerRuns.QueryByFactory:
+    description: |-
+      Query trigger runs.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/triggerruns/querybyfactory
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "values": [
+                "exampleTrigger"
+              ],
+              "operand": "TriggerName",
+              "operator": "Equals"
+            }
+          ],
+          "lastUpdatedAfter": "2018-06-16T00:36:44.3345758Z",
+          "lastUpdatedBefore": "2018-06-16T00:49:48.3686473Z"
+        }
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "status": "Succeeded",
+              "message": "",
+              "properties": {
+                "TriggerTime": "6/16/2018 12:43:15 AM",
+                "ScheduleTime": "6/16/2018 12:43:14 AM"
+              },
+              "triggerName": "exampleTrigger",
+              "triggerType": "ScheduleTrigger",
+              "triggerRunId": "08586724970898148904457116912CU27",
+              "triggeredPipelines": {
+                "examplePipeline": "9f3ce8b3-37d7-43eb-96ac-a656c0476283"
+              },
+              "triggerRunTimestamp": "2018-06-16T00:43:15.660141Z"
+            }
+          ]
+        }
+      ]
+  TriggerRuns.Rerun:
+    description: |-
+      Rerun single trigger instance by runId.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/triggerruns/rerun
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Triggers.CreateOrUpdate:
+    description: |-
+      Creates or updates a trigger.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/triggers/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "type": "ScheduleTrigger",
+            "pipelines": [
+              {
+                "parameters": {
+                  "OutputBlobNameList": [
+                    "exampleoutput.csv"
+                  ]
+                },
+                "pipelineReference": {
+                  "type": "PipelineReference",
+                  "referenceName": "examplePipeline"
+                }
+              }
+            ],
+            "typeProperties": {
+              "recurrence": {
+                "endTime": "2018-06-16T00:55:13.8441801Z",
+                "interval": 4,
+                "timeZone": "UTC",
+                "frequency": "Minute",
+                "startTime": "2018-06-16T00:39:13.8441801Z"
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/triggers/exampleTrigger",
+          "etag": "0a008ad4-0000-0000-0000-5b245c6e0000",
+          "name": "exampleTrigger",
+          "type": "Microsoft.DataFactory/factories/triggers",
+          "properties": {
+            "type": "ScheduleTrigger",
+            "pipelines": [
+              {
+                "parameters": {
+                  "OutputBlobNameList": [
+                    "exampleoutput.csv"
+                  ]
+                },
+                "pipelineReference": {
+                  "type": "PipelineReference",
+                  "referenceName": "examplePipeline"
+                }
+              }
+            ],
+            "runtimeState": "Stopped",
+            "typeProperties": {
+              "recurrence": {
+                "endTime": "2018-06-16T00:55:13.8441801Z",
+                "interval": 4,
+                "timeZone": "UTC",
+                "frequency": "Minute",
+                "startTime": "2018-06-16T00:39:13.8441801Z"
+              }
+            }
+          }
+        }
+      ]
+  Triggers.Delete:
+    description: |-
+      Deletes a trigger.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/triggers/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Triggers.Get:
+    description: |-
+      Gets a trigger.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/triggers/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/triggers/exampleTrigger",
+          "etag": "1500544f-0000-0200-0000-5cbe09100000",
+          "name": "exampleTrigger",
+          "type": "Microsoft.DataFactory/factories/triggers",
+          "properties": {
+            "type": "ScheduleTrigger",
+            "pipelines": [
+              {
+                "parameters": {
+                  "OutputBlobNameList": [
+                    "exampleoutput.csv"
+                  ]
+                },
+                "pipelineReference": {
+                  "type": "PipelineReference",
+                  "referenceName": "examplePipeline"
+                }
+              }
+            ],
+            "runtimeState": "Stopped",
+            "typeProperties": {
+              "recurrence": {
+                "endTime": "2019-04-22T18:48:52.5281747Z",
+                "interval": 4,
+                "timeZone": "UTC",
+                "frequency": "Minute",
+                "startTime": "2019-04-22T18:32:52.527912Z"
+              }
+            }
+          }
+        }
+      ]
+  Triggers.GetEventSubscriptionStatus:
+    description: |-
+      Get a trigger's event subscription status.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/triggers/geteventsubscriptionstatus
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "status": "Enabled",
+          "triggerName": "exampleTrigger"
+        }
+      ]
+  Triggers.ListByFactory:
+    description: |-
+      Lists triggers.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/triggers/listbyfactory
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/triggers/exampleTrigger",
+              "etag": "0a008ed4-0000-0000-0000-5b245c740000",
+              "name": "exampleTrigger",
+              "type": "Microsoft.DataFactory/factories/triggers",
+              "properties": {
+                "type": "ScheduleTrigger",
+                "pipelines": [
+                  {
+                    "parameters": {
+                      "OutputBlobNameList": [
+                        "exampleoutput.csv"
+                      ]
+                    },
+                    "pipelineReference": {
+                      "type": "PipelineReference",
+                      "referenceName": "examplePipeline"
+                    }
+                  }
+                ],
+                "description": "Example description",
+                "runtimeState": "Started",
+                "typeProperties": {
+                  "recurrence": {
+                    "endTime": "2018-06-16T00:55:14.905167Z",
+                    "interval": 4,
+                    "timeZone": "UTC",
+                    "frequency": "Minute",
+                    "startTime": "2018-06-16T00:39:14.905167Z"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+  Triggers.QueryByFactory:
+    description: |-
+      Query triggers.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/triggers/querybyfactory
+    example:
+      inputs: [
+        {
+          "parentTriggerName": "exampleTrigger"
+        }
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/12345678-1234-1234-1234-12345678abc/resourceGroups/exampleResourceGroup/providers/Microsoft.DataFactory/factories/exampleFactoryName/triggers/exampleRerunTrigger",
+              "name": "exampleRerunTrigger",
+              "type": "Microsoft.DataFactory/factories/triggers",
+              "properties": {
+                "type": "RerunTumblingWindowTrigger",
+                "description": "Example description",
+                "typeProperties": {
+                  "parentTrigger": "exampleTrigger",
+                  "requestedEndTime": "2018-06-16T00:55:14.905167Z",
+                  "rerunConcurrency": 4,
+                  "requestedStartTime": "2018-06-16T00:39:14.905167Z"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  Triggers.Start:
+    description: |-
+      Starts a trigger.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/triggers/start
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Triggers.Stop:
+    description: |-
+      Stops a trigger.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/triggers/stop
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Triggers.SubscribeToEvents:
+    description: |-
+      Subscribe event trigger to events.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/triggers/subscribetoevents
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "status": "Enabled",
+          "triggerName": "exampleTrigger"
+        }
+      ]
+  Triggers.UnsubscribeFromEvents:
+    description: |-
+      Unsubscribe event trigger from events.
+    versions:
+      from: 2018.6.1
+    link: https://docs.microsoft.com/en-us/rest/api/datafactory/triggers/unsubscribefromevents
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "status": "Disabled",
+          "triggerName": "exampleTrigger"
+        }
+      ]

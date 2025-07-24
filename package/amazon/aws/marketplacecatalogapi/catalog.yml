@@ -1,0 +1,208 @@
+Product:
+  name: AWS Marketplace Catalog API
+  versions: [2018.9.17]
+  package: amazon.aws.marketplacecatalogapi
+  description: |-
+    AWS Marketplace Catalog API
+  link: https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html
+  contentType: json
+Operations:
+  CancelChangeSet:
+    description: |-
+      Used to cancel an open change request. Must be sent before the status of the request changes to APPLYING, the final stage of completing your change request. You can describe a change during the 60-day request history retention period for API calls.
+    versions:
+      from: 2018.9.17
+    link: https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_CancelChangeSet.html
+    example:
+      inputs: [
+        {
+          "Catalog": "string",
+          "ChangeSetId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ChangeSetId": "string",
+          "ChangeSetArn": "string"
+        }
+      ]
+  DescribeChangeSet:
+    description: |-
+      Provides information about a given change set.
+    versions:
+      from: 2018.9.17
+    link: https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_DescribeChangeSet.html
+    example:
+      inputs: [
+        {
+          "Catalog": "string",
+          "ChangeSetId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "EndTime": "string",
+          "ChangeSet": [
+            {
+              "Entity": {
+                "Type": "string",
+                "Identifier": "string"
+              },
+              "Details": "string",
+              "ChangeType": "string",
+              "ErrorDetailList": [
+                {
+                  "ErrorCode": "string",
+                  "ErrorMessage": "string"
+                }
+              ]
+            }
+          ],
+          "StartTime": "string",
+          "ChangeSetId": "string",
+          "FailureCode": "string",
+          "ChangeSetArn": "string",
+          "ChangeSetName": "string",
+          "FailureDescription": "string"
+        }
+      ]
+  DescribeEntity:
+    description: |-
+      Returns the metadata and content of the entity.
+    versions:
+      from: 2018.9.17
+    link: https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_DescribeEntity.html
+    example:
+      inputs: [
+        {
+          "Catalog": "string",
+          "EntityId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Details": "string",
+          "EntityArn": "string",
+          "EntityType": "string",
+          "EntityIdentifier": "string",
+          "LastModifiedDate": "string"
+        }
+      ]
+  ListChangeSets:
+    description: |-
+      Returns the list of change sets owned by the account being used to make the call. You can filter this list by providing any combination of entityId, ChangeSetName, and status. If you provide more than one filter, the API operation applies a logical AND between the filters.
+    versions:
+      from: 2018.9.17
+    link: https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_ListChangeSets.html
+    example:
+      inputs: [
+        {
+          "Sort": {
+            "SortBy": "string",
+            "SortOrder": "string"
+          },
+          "Catalog": "string",
+          "NextToken": "string",
+          "FilterList": [
+            {
+              "Name": "string",
+              "ValueList": [
+                "string"
+              ]
+            }
+          ],
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ChangeSetSummaryList": [
+            {
+              "Status": "string",
+              "EndTime": "string",
+              "StartTime": "string",
+              "ChangeSetId": "string",
+              "FailureCode": "string",
+              "ChangeSetArn": "string",
+              "EntityIdList": [
+                "string"
+              ],
+              "ChangeSetName": "string"
+            }
+          ]
+        }
+      ]
+  ListEntities:
+    description: |-
+      Provides the list of entities of a given type.
+    versions:
+      from: 2018.9.17
+    link: https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_ListEntities.html
+    example:
+      inputs: [
+        {
+          "Sort": {
+            "SortBy": "string",
+            "SortOrder": "string"
+          },
+          "Catalog": "string",
+          "NextToken": "string",
+          "EntityType": "string",
+          "FilterList": [
+            {
+              "Name": "string",
+              "ValueList": [
+                "string"
+              ]
+            }
+          ],
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "EntitySummaryList": [
+            {
+              "Name": "string",
+              "EntityId": "string",
+              "EntityArn": "string",
+              "EntityType": "string",
+              "Visibility": "string",
+              "LastModifiedDate": "string"
+            }
+          ]
+        }
+      ]
+  StartChangeSet:
+    description: |-
+      This operation allows you to request changes for your entities. Within a single ChangeSet, you cannot start the same change type against the same entity multiple times. Additionally, when a ChangeSet is running, all the entities targeted by the different changes are locked until the ChangeSet has completed (either succeeded, cancelled, or failed). If you try to start a ChangeSet containing a change against an entity that is already locked, you will receive a ResourceInUseException.
+    versions:
+      from: 2018.9.17
+    link: https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html
+    example:
+      inputs: [
+        {
+          "Catalog": "string",
+          "ChangeSet": [
+            {
+              "Entity": {
+                "Type": "string",
+                "Identifier": "string"
+              },
+              "Details": "string",
+              "ChangeType": "string"
+            }
+          ],
+          "ChangeSetName": "string",
+          "ClientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ChangeSetId": "string",
+          "ChangeSetArn": "string"
+        }
+      ]

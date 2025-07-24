@@ -1,0 +1,1244 @@
+Product:
+  name: ServiceNow
+  versions: [18.0.0]
+  package: servicenow.servicenow
+  description: |-
+    ServiceNow
+  link: https://www.servicenow.com/
+  contentType: json
+  relatedProducts:
+    - name : ServiceNow GRC
+      package: servicenow.grc
+Operations:
+  CSMAttachment.DeleteAttachment:
+    description: |-
+      Deletes the specified attachment.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/attachment_csm-api.html#attachment_csm-DELETE
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  CSMAttachment.ListAttachmentMetadata:
+    description: |-
+      Returns the metadata for multiple attachments.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/attachment_csm-api.html#attachment_csm-GET
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "result": [
+            {
+              "sys_id": "615ea769c0a80166001cf5f2367302f5",
+              "sys_tags": "",
+              "file_name": "blocks.swf",
+              "compressed": "true",
+              "size_bytes": "462",
+              "table_name": "content_block_programmatic",
+              "image_width": "",
+              "content_type": "application/x-shockwave-flash",
+              "image_height": "",
+              "table_sys_id": "5054b6f8c0a800060056addcf551ecf8",
+              "download_link": "https://instance.service-now.com/api/now/v1/attachment_csm/615ea769c0a80166001cf5f2367302f5/file",
+              "sys_mod_count": "0",
+              "sys_created_by": "glide.maint",
+              "sys_created_on": "2009-05-21 04:12:21",
+              "sys_updated_by": "glide.maint",
+              "sys_updated_on": "2009-05-21 04:12:21",
+              "created_by_name": "John Smith",
+              "size_compressed": "485",
+              "updated_by_name": "John Smith",
+              "average_image_color": ""
+            }
+          ]
+        }
+      ]
+  CSMAttachment.GetAttachment:
+    description: |-
+      Returns the binary file attachment for the specified attachment sys_id.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/attachment_csm-api.html#attachment_csm-GET-file
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "response": "binary file"
+        }
+      ]
+  CSMAttachment.GetAttachmentMetadata:
+    description: |-
+      Returns the metadata for the attachment file with the specific attachment sys_id.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/attachment_csm-api.html#attachment_csm-GET-sys_id
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "result": {
+            "sys_id": "615ea769c0a80166001cf5f2367302f5",
+            "sys_tags": "",
+            "file_name": "blocks.swf",
+            "compressed": "true",
+            "size_bytes": "462",
+            "table_name": "content_block_programmatic",
+            "image_width": "",
+            "content_type": "application/x-shockwave-flash",
+            "image_height": "",
+            "table_sys_id": "5054b6f8c0a800060056addcf551ecf8",
+            "download_link": "https://instance.service-now.com/api/now/v1/attachment_csm/615ea769c0a80166001cf5f2367302f5/file",
+            "sys_mod_count": "0",
+            "sys_created_by": "glide.maint",
+            "sys_created_on": "2019-05-21 04:12:21",
+            "sys_updated_by": "glide.maint",
+            "sys_updated_on": "2019-05-21 04:12:21",
+            "created_by_name": "John Smith",
+            "size_compressed": "485",
+            "updated_by_name": "John Smith",
+            "average_image_color": ""
+          }
+        }
+      ]
+  CSMAttachment.UploadAttachment:
+    description: |-
+      Uploads a specified binary file as an attachment to a specified record. The endpoint also returns the metadata for the saved attachment.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/attachment_csm-api.html#attachment_csm-POST-file
+    example:
+      inputs: [
+        {
+          "data": "@/images/Issue_screenshot.jpg"
+        }
+      ]
+      outputs: [
+        {
+          "result": {
+            "sys_id": "6ea10fe64f411200adf9f8e18110c739",
+            "sys_tags": "",
+            "file_name": "Issue_screenshot",
+            "compressed": "true",
+            "size_bytes": "36597",
+            "table_name": "incident",
+            "image_width": "",
+            "content_type": "image/jpeg",
+            "image_height": "",
+            "table_sys_id": "d71f7935c0a8016700802b64c67c11c6",
+            "download_link": "https://instance.service-now.com/api/now/v1/attachment_csm/6ea10fe64f411200adf9f8e18110c739/file",
+            "sys_mod_count": "0",
+            "sys_created_by": "username",
+            "sys_created_on": "2019-01-22 15:14:07",
+            "sys_updated_by": "username",
+            "sys_updated_on": "2019-01-22 15:14:07",
+            "created_by_name": "John Smith",
+            "size_compressed": "25130",
+            "updated_by_name": "John Smith",
+            "average_image_color": ""
+          }
+        }
+      ]
+  CSMAttachment.UploadMultipartAttachment:
+    description: |-
+      Uploads a multipart file attachment. The multipart POST method does not accept any parameters. You must specify the table name and record sys_id values within the form body. See the cURL example below for a sample of a multipart/form-data request. Note: When using multipart POST, ensure the file content is contained in the final part of the message only. Earlier parts should contain only metadata such as table name and record sys_id. When sending a multipart/form-data POST request to upload a file attachment, include attachment data in the form body, not in the URL parameters or request body.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/attachment_csm-api.html#attachment_csm-POST-upload
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "result": {
+            "sys_id": "994adbc64f511200adf9f8e18110c796",
+            "sys_tags": "",
+            "file_name": "banner-CS0001345_v1_1.jpeg",
+            "compressed": "true",
+            "size_bytes": "36597",
+            "table_name": "incident",
+            "image_width": "",
+            "content_type": "image/jpeg",
+            "image_height": "",
+            "table_sys_id": "d71f7935c0a8016700802b64c67c11c6",
+            "download_link": "https://instance.service-now.com/api/now/v1/attachment_csm/994adbc64f511200adf9f8e18110c796/file",
+            "sys_mod_count": "0",
+            "sys_created_by": "username",
+            "sys_created_on": "2019-02-02 14:00:21",
+            "sys_updated_by": "username",
+            "sys_updated_on": "2019-02-02 14:00:21",
+            "created_by_name": "John Smith",
+            "size_compressed": "25130",
+            "updated_by_name": "John Smith",
+            "average_image_color": ""
+          }
+        }
+      ]
+  Batch.SendRequests:
+    description: |-
+      Sends multiple REST API requests in a single call. You can include any API available on the instance in a Batch API call. For performance reasons, avoid including long-running requests and requests that retrieve large amounts of data.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/batch-api.html#batch-POST
+    example:
+      inputs: [
+        {
+          "rest_requests": [
+            {
+              "id": "11",
+              "url": "/api/global/user_role_inheritance",
+              "method": "GET",
+              "headers": [
+                {
+                  "name": "Content-Type",
+                  "value": "application/xml"
+                },
+                {
+                  "name": "Accept",
+                  "value": "application/xml"
+                }
+              ]
+            },
+            {
+              "id": "12",
+              "url": "/api/now/table/incident?sysparm_limit=1",
+              "method": "GET",
+              "headers": [
+                {
+                  "name": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "name": "Accept",
+                  "value": "application/json"
+                }
+              ],
+              "exclude_response_headers": true
+            },
+            {
+              "id": "13",
+              "url": "/api/now/table/incident",
+              "body": "eyd1cmdlbmN5JzonMScsICdzaG9ydF9kZXNjcmlwdGlvbic6J015IGNvbXB1dGVyIG Jyb2tlJywgJ2NvbW1lbnRzJzonRWxldmF0aW5nIHVyZ2VuY3ksIHRoaXMgaXMgYSBibG9ja2luZyBpc3N1ZSd9",
+              "method": "POST",
+              "headers": [
+                {
+                  "name": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "name": "Accept",
+                  "value": "application/json"
+                }
+              ],
+              "exclude_response_headers": true
+            }
+          ],
+          "batch_request_id": "1"
+        }
+      ]
+      outputs: [
+        {
+          "batch_request_id": "1",
+          "serviced_requests": [
+            {
+              "id": "11",
+              "body": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48cmVzcG9uc2U+PHJlc3VsdD48dX Nlcl9uYW1lLz48L3Jlc3VsdD48L3Jlc3BvbnNlPg==",
+              "headers": [
+                {
+                  "name": "Pragma",
+                  "value": "no-store,no-cache"
+                },
+                {
+                  "name": "Expires",
+                  "value": "0"
+                },
+                {
+                  "name": "Content-Length",
+                  "value": "88"
+                },
+                {
+                  "name": "Content-Type",
+                  "value": "application/xml; charset=UTF-8"
+                },
+                {
+                  "name": "Cache-control",
+                  "value": "no-cache,no-store,must-revalidate,max-age=-1"
+                }
+              ],
+              "status_code": 200,
+              "status_text": "OK",
+              "execution_time": 5
+            },
+            {
+              "id": "12",
+              "body": "eyJyZXN1bHQiOlt7InBhcmVudCI6IiIsIm1hZGVfc2xhIjoidHJ1ZSIsImNhdXNlZF9 ieSI6IiIsIndhdGNoX2xpc3QiOiIiLCJ1cG9uX3JlamVjdCI6ImNhbmNlbCIsInN5c191cGRhdGV kX29uIjoiMjAxNi0xMi0xNCAwMjo0Njo0NCIsImNoaWxkX2luY2lkZW50cyI6IjAiLCJob2xkX3J lYXNvbiI6IiIsInRhc2tfZWZmZWN0aXZlX251bWJlciI6IklOQzAwMDAwNjAiLCJhcHByb3ZhbF9 oaXN0b3J5IjoiIiwibnVtYmVyIjoiSU5DMDAwMDA2MCIsInJlc29sdmVkX2J5Ijp7ImxpbmsiOiJ odHRwczovL2s4czAwNjc5Nzgtbm9kZTEudGh1bmRlci5sYWIzLnNlcnZpY2Utbm93LmNvbS9hcGk vbm93L3RhYmxlL3N5c191c2VyLzUxMzcxNTNjYzYxMTIyN2MwMDBiYmQxYmQ4Y2QyMDA3IiwidmF sdWUiOiI1MTM3MTUzY2M2MTEyMjdjMDAwYmJkMWJkOGNkMjAwNyJ9LCJzeXNfdXBkYXRlZF9ieSI 6ImVtcGxveWVlIiwib3BlbmVkX2J5Ijp7ImxpbmsiOiJodHRwczovL2s4czAwNjc5Nzgtbm9kZTE udGh1bmRlci5sYWIzLnNlcnZpY2Utbm93LmNvbS9hcGkvbm93L3RhYmxlL3N5c191c2VyLzY4MWN jYWY5YzBhODAxNjQwMGI5OGEwNjgxOGQ1N2M3IiwidmFsdWUiOiI2ODFjY2FmOWMwYTgwMTY0MDB iOThhMDY4MThkNTdjNyJ9LCJ1c2VyX2lucHV0IjoiIiwic3lzX2NyZWF0ZWRfb24iOiIyMDE2LTE yLTEyIDE1OjE5OjU3Iiwic3lzX2RvbWFpbiI6eyJsaW5rIjoiaHR0cHM6Ly9rOHMwMDY3OTc4LW5 vZGUxLnRodW5kZXIubGFiMy5zZXJ2aWNlLW5vdy5jb20vYXBpL25vdy90YWJsZS9zeXNfdXNlcl9 ncm91cC9nbG9iYWwiLCJ2YWx1ZSI6Imdsb2JhbCJ9LCJzdGF0ZSI6IjciLCJyb3V0ZV9yZWFzb24 iOiIiLCJzeXNfY3JlYXRlZF9ieSI6ImVtcGxveWVlIiwia25vd2xlZGdlIjoiZmFsc2UiLCJvcmR lciI6IiIsImNhbGVuZGFyX3N0YyI6IjEwMjE5NyIsImNsb3NlZF9hdCI6IjIwMTYtMTItMTQgMDI",
+              "headers": [],
+              "status_code": 200,
+              "status_text": "OK",
+              "execution_time": 8
+            },
+            {
+              "id": "13",
+              "body": "eyJyZXN1bHQiOnsicGFyZW50IjoiIiwibWFkZV9zbGEiOiJ0cnVlIiwiY2F1c2VkX2J 5IjoiIiwid2F0Y2hfbGlzdCI6IiIsInVwb25fcmVqZWN0IjoiY2FuY2VsIiwic3lzX3VwZGF0ZWR fb24iOiIyMDIwLTA1LTEyIDAxOjQ0OjM1IiwiY2hpbGRfaW5jaWRlbnRzIjoiMCIsImhvbGRfcmV hc29uIjoiIiwidGFza19lZmZlY3RpdmVfbnVtYmVyIjoiSU5DMDAxMDAwNCIsImFwcHJvdmFsX2h pc3RvcnkiOiIiLCJudW1iZXIiOiJJTkMwMDEwMDA0IiwicmVzb2x2ZWRfYnkiOiIiLCJzeXNfdXB kYXRlZF9ieSI6ImFkbWluIiwib3BlbmVkX2J5Ijp7ImxpbmsiOiJodHRwczovL2s4czAwNjc5Nzg tbm9kZTEudGh1bmRlci5sYWIzLnNlcnZpY2Utbm93LmNvbS9hcGkvbm93L3RhYmxlL3N5c191c2V yLzY4MTZmNzljYzBhODAxNjQwMWM1YTMzYmUwNGJlNDQxIiwidmFsdWUiOiI2ODE2Zjc5Y2MwYTg wMTY0MDFjNWEzM2JlMDRiZTQ0MSJ9LCJ1c2VyX2lucHV0IjoiIiwic3lzX2NyZWF0ZWRfb24iOiI yMDIwLTA1LTEyIDAxOjQ0OjM1Iiwic3lzX2RvbWFpbiI6eyJsaW5rIjoiaHR0cHM6Ly9rOHMwMDY 3OTc4LW5vZGUxLnRodW5kZXIubGFiMy5zZXJ2aWNlLW5vdy5jb20vYXBpL25vdy90YWJsZS9zeXN fdXNlcl9ncm91cC9nbG9iYWwiLCJ2YWx1ZSI6Imdsb2JhbCJ9LCJzdGF0ZSI6IjEiLCJyb3V0ZV9 yZWFzb24iOiIiLCJzeXNfY3JlYXRlZF9ieSI6ImFkbWluIiwia25vd2xlZGdlIjoiZmFsc2UiLCJ",
+              "headers": [],
+              "status_code": 201,
+              "status_text": "Created",
+              "execution_time": 2638
+            }
+          ],
+          "unserviced_requests": []
+        }
+      ]
+  Attachment.Delete:
+    description: |-
+      This method deletes the attachment with a specific sys_id value.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/c_AttachmentAPI.html#attachment-DELETE
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Attachment.ListMetadata:
+    description: |-
+      Returns the metadata for multiple attachments.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/c_AttachmentAPI.html#attachment-GET
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "result": [
+            {
+              "sys_id": "615ea769c0a80166001cf5f2367302f5",
+              "sys_tags": "",
+              "file_name": "blocks.swf",
+              "compressed": "true",
+              "size_bytes": "462",
+              "table_name": "content_block_programmatic",
+              "image_width": "",
+              "content_type": "application/x-shockwave-flash",
+              "image_height": "",
+              "table_sys_id": "5054b6f8c0a800060056addcf551ecf8",
+              "download_link": "https://instance.service-now.com/api/now/attachment/615ea769c0a80166001cf5f2367302f5/file",
+              "sys_mod_count": "0",
+              "sys_created_by": "glide.maint",
+              "sys_created_on": "2009-05-21 04:12:21",
+              "sys_updated_by": "glide.maint",
+              "sys_updated_on": "2009-05-21 04:12:21",
+              "size_compressed": "485",
+              "average_image_color": ""
+            }
+          ]
+        }
+      ]
+  Attachment.GetAttachment:
+    description: |-
+      Returns the binary file attachment with a specific sys_id value.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/c_AttachmentAPI.html#attachment-GET-file
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "response": "binary response"
+        }
+      ]
+  Attachment.GetMetadata:
+    description: |-
+      Returns the metadata for the attachment file with a specific sys_id value.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/c_AttachmentAPI.html#attachment-GET-sys_id
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "result": {
+            "sys_id": "615ea769c0a80166001cf5f2367302f5",
+            "sys_tags": "",
+            "file_name": "blocks.swf",
+            "compressed": "true",
+            "size_bytes": "462",
+            "table_name": "content_block_programmatic",
+            "image_width": "",
+            "content_type": "application/x-shockwave-flash",
+            "image_height": "",
+            "table_sys_id": "5054b6f8c0a800060056addcf551ecf8",
+            "download_link": "https://instance.service-now.com/api/now/attachment/615ea769c0a80166001cf5f2367302f5/file",
+            "sys_mod_count": "0",
+            "sys_created_by": "glide.maint",
+            "sys_created_on": "2009-05-21 04:12:21",
+            "sys_updated_by": "glide.maint",
+            "sys_updated_on": "2009-05-21 04:12:21",
+            "size_compressed": "485",
+            "average_image_color": ""
+          }
+        }
+      ]
+  Attachment.UploadBinaryFile:
+    description: |-
+      Uploads a specified binary file as an attachment to a specified record.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/c_AttachmentAPI.html#attachment-POST-file
+    example:
+      inputs: [
+        {
+          "data-binary": "@ location of the file on file system"
+        }
+      ]
+      outputs: [
+        {
+          "result": {
+            "sys_id": "6ea10fe64f411200adf9f8e18110c739",
+            "sys_tags": "",
+            "file_name": "Issue_screenshot",
+            "compressed": "true",
+            "size_bytes": "36597",
+            "table_name": "incident",
+            "image_width": "",
+            "content_type": "image/jpeg",
+            "image_height": "",
+            "table_sys_id": "d71f7935c0a8016700802b64c67c11c6",
+            "download_link": "https://instance.servicenow.com/api/now/attachment/6ea10fe64f411200adf9f8e18110c739/file",
+            "sys_mod_count": "0",
+            "sys_created_by": "admin",
+            "sys_created_on": "2016-01-22 15:14:07",
+            "sys_updated_by": "admin",
+            "sys_updated_on": "2016-01-22 15:14:07",
+            "size_compressed": "25130",
+            "average_image_color": ""
+          }
+        }
+      ]
+  Attachment.UploadMultipartFile:
+    description: |-
+      Uploads a multipart file attachment. The multipart POST method does not accept any parameters. You must specify the table name and record sys_id values within the form body. See the cURL example for a sample of a multipart/form-data request.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/c_AttachmentAPI.html#attachment-POST-upload
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "result": {
+            "sys_id": "994adbc64f511200adf9f8e18110c796",
+            "sys_tags": "",
+            "file_name": "banner-CS0001345_v1_1.jpeg",
+            "compressed": "true",
+            "size_bytes": "36597",
+            "table_name": "incident",
+            "image_width": "",
+            "content_type": "image/jpeg",
+            "image_height": "",
+            "table_sys_id": "d71f7935c0a8016700802b64c67c11c6",
+            "download_link": "https://instance.service-now.com/api/now/attachment/994adbc64f511200adf9f8e18110c796/file",
+            "sys_mod_count": "0",
+            "sys_created_by": "admin",
+            "sys_created_on": "2016-02-02 14:00:21",
+            "sys_updated_by": "admin",
+            "sys_updated_on": "2016-02-02 14:00:21",
+            "size_compressed": "25130",
+            "average_image_color": ""
+          }
+        }
+      ]
+  Scorecards.ListScorecards:
+    description: |-
+      Retrieves details about indicators from the Analytics Hub. Access to tables through the REST API is restricted by BasicAuth. Access control lists defined for tables are enforced to restrict access to data. To make queries using the Performance Analytics API, you must also have the pa_viewer role.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/c_PerformanceAnalyticsAPI.html#pa-GET-scorecards
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "result": [
+            {
+              "gap": -6,
+              "key": false,
+              "name": "Number of open incidents > Priority = 1 - Critical",
+              "unit": {
+                "link": "https://instance.service-now.com/api/now/v1/table/pa_units/17b365e2d7320100ba986f14ce6103ad",
+                "type": "formatted",
+                "value": "17b365e2d7320100ba986f14ce6103ad",
+                "display_value": "#"
+              },
+              "uuid": "fb007202d7130100b96d45a3ce6103b4:0df47e02d7130100b96d45a3ce610399:5f012106db5123003ee8f93baf9619bd",
+              "query": "opened_atONToday@javascript:gs.beginningOfToday()@javascript:gs.endOfToday()^ORopened_at<javascript:gs.beginningOfToday()^resolved_atISEMPTY^ORresolved_at>javascript:gs.endOfToday()^state!=8^priority=1^EQ",
+              "value": 76,
+              "change": 0,
+              "period": "Dec 12",
+              "target": 70,
+              "element": {
+                "link": "https://instance.service-now.com/api/now/v1/table/sys_choice/5f012106db5123003ee8f93baf9619bd",
+                "value": "5f012106db5123003ee8f93baf9619bd",
+                "display_value": "1 - Critical"
+              },
+              "gapperc": -0.08571428571428572,
+              "favorite": true,
+              "breakdown": {
+                "link": "https://instance.service-now.com/api/now/v1/table/pa_breakdowns/0df47e02d7130100b96d45a3ce610399",
+                "value": "0df47e02d7130100b96d45a3ce610399",
+                "display_value": "Priority"
+              },
+              "direction": 2,
+              "frequency": 10,
+              "indicator": {
+                "link": "https://instance.service-now.com/api/now/v1/table/pa_indicators/fb007202d7130100b96d45a3ce6103b4",
+                "value": "fb007202d7130100b96d45a3ce6103b4",
+                "display_value": "Number of open incidents"
+              },
+              "precision": 0,
+              "changeperc": 0,
+              "value_unit": "76",
+              "description": "Number of incidents open based on resolved date is empty.",
+              "facts_table": {
+                "name": "incident",
+                "label": "Incidents"
+              },
+              "value_color": "#ff8c00",
+              "benchmarking": false,
+              "period_title": "Dec 12",
+              "gap_formatted": "-6",
+              "direction_label": "Minimize",
+              "frequency_label": "Daily",
+              "personal_target": null,
+              "value_formatted": "76",
+              "change_formatted": "0",
+              "realtime_enabled": true,
+              "target_formatted": "70",
+              "gapperc_formatted": "-8.6%",
+              "indicator_aggregate": 1,
+              "indicator_frequency": 10,
+              "changeperc_formatted": "0.0%",
+              "indicator_frequency_label": "Daily",
+              "personal_target_formatted": ""
+            }
+          ]
+        }
+      ]
+  Table.DeleteRecord:
+    description: |-
+      Deletes the specified record from the specified table.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/c_TableAPI.html#table-DELETE
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Table.ListRecords:
+    description: |-
+      Retrieves multiple records for the specified table.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/c_TableAPI.html#table-GET
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "result": [
+            {
+              "order": "",
+              "state": "4",
+              "active": "false",
+              "impact": "3",
+              "number": "PRB0000050",
+              "parent": "",
+              "sys_id": "04ce72c9c0a8016600b5b7f75ac67b5b",
+              "cmdb_ci": {
+                "link": "https://instance.servicenow.com/api/now/table/cmdb_ci/55b35562c0a8010e01cff22378e0aea9",
+                "value": "55b35562c0a8010e01cff22378e0aea9"
+              },
+              "company": "",
+              "sla_due": "",
+              "urgency": "3",
+              "approval": "not requested",
+              "comments": "",
+              "due_date": "",
+              "location": "",
+              "made_sla": "true",
+              "priority": "4",
+              "sys_tags": "",
+              "work_end": "",
+              "closed_at": "2016-01-19 04:52:04",
+              "closed_by": "",
+              "follow_up": "",
+              "knowledge": "false",
+              "opened_at": "2016-01-19 04:49:47",
+              "opened_by": {
+                "link": "https://instance.servicenow.com/api/now/table/sys_user/glide.maint",
+                "value": "glide.maint"
+              },
+              "escalation": "0",
+              "group_list": "",
+              "sys_domain": {
+                "link": "https://instance.servicenow.com/api/now/table/sys_user_group/global",
+                "value": "global"
+              },
+              "user_input": "",
+              "watch_list": "",
+              "work_notes": "",
+              "work_start": "",
+              "assigned_to": "",
+              "close_notes": "updated firmware",
+              "description": "Switch occasionally drops connections",
+              "time_worked": "",
+              "upon_reject": "cancel",
+              "wf_activity": "",
+              "activity_due": "",
+              "approval_set": "",
+              "contact_type": "phone",
+              "delivery_plan": "",
+              "delivery_task": "",
+              "sys_mod_count": "1",
+              "upon_approval": "proceed",
+              "correlation_id": "",
+              "expected_start": "",
+              "rejection_goto": "",
+              "sys_class_name": "problem",
+              "sys_created_by": "glide.maint",
+              "sys_created_on": "2016-01-19 04:51:19",
+              "sys_updated_by": "glide.maint",
+              "sys_updated_on": "2016-01-19 04:52:04",
+              "sys_domain_path": "/",
+              "work_notes_list": "",
+              "approval_history": "",
+              "assignment_group": "",
+              "business_service": "",
+              "business_duration": "1970-01-01 00:00:00",
+              "calendar_duration": "1970-01-01 00:02:17",
+              "short_description": "Switch occasionally drops connections",
+              "reassignment_count": "",
+              "correlation_display": "",
+              "comments_and_work_notes": "",
+              "additional_assignee_list": ""
+            }
+          ]
+        }
+      ]
+  Table.GetRecord:
+    description: |-
+      Retrieves the record identified by the specified sys_id from the specified table.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/c_TableAPI.html#table-GET-id
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "result": {
+            "rfc": "",
+            "order": "",
+            "state": "1",
+            "active": "true",
+            "impact": "1",
+            "notify": "1",
+            "number": "INC0000046",
+            "parent": "",
+            "sys_id": "a9e30c7dc61122760116894de7bcc7bd",
+            "cmdb_ci": {
+              "link": "https://instance.servicenow.com/api/now/table/cmdb_ci/a9c0c8d2c6112276018f7705562f9cb0",
+              "value": "a9c0c8d2c6112276018f7705562f9cb0"
+            },
+            "company": "",
+            "sla_due": "2015-11-11 22:04:15",
+            "urgency": "3",
+            "approval": "not requested",
+            "category": "software",
+            "comments": "",
+            "due_date": "",
+            "location": {
+              "link": "https://instance.servicenow.com/api/now/table/cmn_location/105cf7f3c611227501e75e08b14a38ba",
+              "value": "105cf7f3c611227501e75e08b14a38ba"
+            },
+            "made_sla": "false",
+            "priority": "3",
+            "severity": "3",
+            "sys_tags": "",
+            "work_end": "",
+            "caller_id": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user/46c6f9efa9fe198101ddf5eed9adf6e7",
+              "value": "46c6f9efa9fe198101ddf5eed9adf6e7"
+            },
+            "caused_by": "",
+            "closed_at": "",
+            "closed_by": "",
+            "follow_up": "",
+            "knowledge": "false",
+            "opened_at": "2015-11-02 22:04:15",
+            "opened_by": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user/46c6f9efa9fe198101ddf5eed9adf6e7",
+              "value": "46c6f9efa9fe198101ddf5eed9adf6e7"
+            },
+            "close_code": "",
+            "escalation": "0",
+            "group_list": "",
+            "problem_id": {
+              "link": "https://instance.servicenow.com/api/now/table/problem/a9e4890bc6112276003d7a5a5c774a74",
+              "value": "a9e4890bc6112276003d7a5a5c774a74"
+            },
+            "sys_domain": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user_group/global",
+              "value": "global"
+            },
+            "user_input": "",
+            "watch_list": "",
+            "work_notes": "",
+            "work_start": "",
+            "assigned_to": "",
+            "close_notes": "",
+            "description": "",
+            "resolved_at": "",
+            "resolved_by": "",
+            "subcategory": "",
+            "time_worked": "",
+            "upon_reject": "",
+            "wf_activity": "",
+            "activity_due": "",
+            "approval_set": "",
+            "business_stc": "",
+            "calendar_stc": "",
+            "contact_type": "phone",
+            "reopen_count": "",
+            "delivery_plan": "",
+            "delivery_task": "",
+            "sys_mod_count": "4",
+            "upon_approval": "",
+            "correlation_id": "",
+            "expected_start": "",
+            "incident_state": "1",
+            "rejection_goto": "",
+            "sys_class_name": "incident",
+            "sys_created_by": "admin",
+            "sys_created_on": "2015-11-01 22:05:30",
+            "sys_updated_by": "glide.maint",
+            "sys_updated_on": "2015-11-01 22:37:27",
+            "child_incidents": "",
+            "parent_incident": "",
+            "sys_domain_path": "/",
+            "work_notes_list": "",
+            "approval_history": "",
+            "assignment_group": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user_group/8a4dde73c6112278017a6a4baf547aa7",
+              "value": "8a4dde73c6112278017a6a4baf547aa7"
+            },
+            "business_service": "",
+            "business_duration": "",
+            "calendar_duration": "",
+            "short_description": "Can't access SFA software",
+            "reassignment_count": "1",
+            "correlation_display": "",
+            "comments_and_work_notes": "",
+            "additional_assignee_list": ""
+          }
+        }
+      ]
+  Table.UpdateRecordPatch:
+    description: |-
+      Updates the specified record with the name-value pairs included in the request body.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/c_TableAPI.html#table-PATCH
+    example:
+      inputs: [
+        {
+          "urgency": "1",
+          "comments": "Elevating urgency, this is a blocking issue",
+          "assigned_to": "681b365ec0a80164000fb0b05854a0cd"
+        }
+      ]
+      outputs: [
+        {
+          "result": {
+            "rfc": "",
+            "order": "",
+            "state": "2",
+            "active": "true",
+            "impact": "1",
+            "notify": "1",
+            "number": "INC0000050",
+            "parent": "",
+            "sys_id": "ef43c6d40a0a0b5700c77f9bf387afe3",
+            "cmdb_ci": {
+              "link": "https://instance.servicenow.com/api/now/table/cmdb_ci/281190e3c0a8000b003f593aa3f20ca6",
+              "value": "281190e3c0a8000b003f593aa3f20ca6"
+            },
+            "company": {
+              "link": "https://instance.servicenow.com/api/now/table/core_company/31bea3d53790200044e0bfc8bcbe5dec",
+              "value": "31bea3d53790200044e0bfc8bcbe5dec"
+            },
+            "sla_due": "2017-07-05 05:58:24",
+            "urgency": "1",
+            "approval": "not requested",
+            "category": "hardware",
+            "comments": "",
+            "due_date": "",
+            "location": {
+              "link": "https://instance.servicenow.com/api/now/table/cmn_location/108752c8c611227501d4ab0e392ba97f",
+              "value": "108752c8c611227501d4ab0e392ba97f"
+            },
+            "made_sla": "true",
+            "priority": "1",
+            "severity": "3",
+            "sys_tags": "",
+            "work_end": "",
+            "caller_id": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user/5b7c200d0a640069006b3845b5d0fa7c",
+              "value": "5b7c200d0a640069006b3845b5d0fa7c"
+            },
+            "caused_by": "",
+            "closed_at": "",
+            "closed_by": "",
+            "follow_up": "",
+            "knowledge": "false",
+            "opened_at": "2015-11-02 21:58:24",
+            "opened_by": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user/glide.maint",
+              "value": "glide.maint"
+            },
+            "close_code": "",
+            "escalation": "3",
+            "group_list": "",
+            "problem_id": "",
+            "sys_domain": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user_group/global",
+              "value": "global"
+            },
+            "user_input": "",
+            "watch_list": "",
+            "work_notes": "",
+            "work_start": "",
+            "assigned_to": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user/681b365ec0a80164000fb0b05854a0cd",
+              "value": "681b365ec0a80164000fb0b05854a0cd"
+            },
+            "close_notes": "",
+            "description": "",
+            "resolved_at": "",
+            "resolved_by": "",
+            "subcategory": "",
+            "time_worked": "",
+            "upon_reject": "cancel",
+            "wf_activity": "",
+            "activity_due": "2016-01-22 16:12:37",
+            "approval_set": "",
+            "business_stc": "",
+            "calendar_stc": "",
+            "contact_type": "phone",
+            "reopen_count": "",
+            "delivery_plan": "",
+            "delivery_task": "",
+            "sys_mod_count": "7",
+            "upon_approval": "proceed",
+            "correlation_id": "",
+            "expected_start": "",
+            "incident_state": "2",
+            "rejection_goto": "",
+            "sys_class_name": "incident",
+            "sys_created_by": "glide.maint",
+            "sys_created_on": "2015-11-02 18:05:40",
+            "sys_updated_by": "admin",
+            "sys_updated_on": "2016-01-22 14:12:37",
+            "child_incidents": "",
+            "parent_incident": "",
+            "sys_domain_path": "/",
+            "work_notes_list": "",
+            "approval_history": "",
+            "assignment_group": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user_group/8a5055c9c61122780043563ef53438e3",
+              "value": "8a5055c9c61122780043563ef53438e3"
+            },
+            "business_service": "",
+            "business_duration": "",
+            "calendar_duration": "",
+            "short_description": "Can't access Exchange server - is it down?",
+            "reassignment_count": "0",
+            "correlation_display": "",
+            "comments_and_work_notes": "",
+            "additional_assignee_list": ""
+          }
+        }
+      ]
+  Table.InsertRecord:
+    description: |-
+      Inserts one record in the specified table. Multiple record insertion is not supported by this method.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/c_TableAPI.html#table-POST
+    example:
+      inputs: [
+        {
+          "impact": "2",
+          "urgency": "2",
+          "assignment_group": "287ebd7da9fe198100f92cc8d1d2154e",
+          "short_description": "Unable to connect to office wifi"
+        }
+      ]
+      outputs: [
+        {
+          "result": {
+            "rfc": "",
+            "order": "",
+            "state": "1",
+            "active": "true",
+            "impact": "2",
+            "notify": "1",
+            "number": "INC0010002",
+            "parent": "",
+            "sys_id": "c537bae64f411200adf9f8e18110c76e",
+            "cmdb_ci": "",
+            "company": "",
+            "sla_due": "",
+            "urgency": "2",
+            "approval": "not requested",
+            "category": "inquiry",
+            "comments": "",
+            "due_date": "",
+            "location": "",
+            "made_sla": "true",
+            "priority": "3",
+            "severity": "3",
+            "sys_tags": "",
+            "work_end": "",
+            "caller_id": "",
+            "caused_by": "",
+            "closed_at": "",
+            "closed_by": "",
+            "follow_up": "",
+            "knowledge": "false",
+            "opened_at": "2016-01-22 14:28:24",
+            "opened_by": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user/6816f79cc0a8016401c5a33be04be441",
+              "value": "6816f79cc0a8016401c5a33be04be441"
+            },
+            "close_code": "",
+            "escalation": "0",
+            "group_list": "",
+            "problem_id": "",
+            "sys_domain": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user_group/global",
+              "value": "global"
+            },
+            "user_input": "",
+            "watch_list": "",
+            "work_notes": "",
+            "work_start": "",
+            "assigned_to": "",
+            "close_notes": "",
+            "description": "",
+            "resolved_at": "",
+            "resolved_by": "",
+            "subcategory": "",
+            "time_worked": "",
+            "upon_reject": "cancel",
+            "wf_activity": "",
+            "activity_due": "",
+            "approval_set": "",
+            "business_stc": "",
+            "calendar_stc": "",
+            "contact_type": "phone",
+            "reopen_count": "0",
+            "delivery_plan": "",
+            "delivery_task": "",
+            "sys_mod_count": "0",
+            "upon_approval": "proceed",
+            "correlation_id": "",
+            "expected_start": "",
+            "incident_state": "1",
+            "rejection_goto": "",
+            "sys_class_name": "incident",
+            "sys_created_by": "admin",
+            "sys_created_on": "2016-01-22 14:28:24",
+            "sys_updated_by": "admin",
+            "sys_updated_on": "2016-01-22 14:28:24",
+            "child_incidents": "0",
+            "parent_incident": "",
+            "sys_domain_path": "/",
+            "work_notes_list": "",
+            "approval_history": "",
+            "assignment_group": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user_group/287ebd7da9fe198100f92cc8d1d2154e",
+              "value": "287ebd7da9fe198100f92cc8d1d2154e"
+            },
+            "business_service": "",
+            "business_duration": "",
+            "calendar_duration": "",
+            "short_description": "Unable to connect to office wifi",
+            "reassignment_count": "0",
+            "correlation_display": "",
+            "comments_and_work_notes": "",
+            "additional_assignee_list": ""
+          }
+        }
+      ]
+  Table.UpdateRecordPut:
+    description: |-
+      Updates the specified record with the request body.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/c_TableAPI.html#table-PUT
+    example:
+      inputs: [
+        {
+          "urgency": "1",
+          "comments": "Elevating urgency, this is a blocking issue",
+          "assigned_to": "681b365ec0a80164000fb0b05854a0cd"
+        }
+      ]
+      outputs: [
+        {
+          "result": {
+            "rfc": "",
+            "order": "",
+            "state": "2",
+            "active": "true",
+            "impact": "1",
+            "notify": "1",
+            "number": "INC0000050",
+            "parent": "",
+            "sys_id": "ef43c6d40a0a0b5700c77f9bf387afe3",
+            "cmdb_ci": {
+              "link": "https://instance.servicenow.com/api/now/table/cmdb_ci/281190e3c0a8000b003f593aa3f20ca6",
+              "value": "281190e3c0a8000b003f593aa3f20ca6"
+            },
+            "company": {
+              "link": "https://instance.servicenow.com/api/now/table/core_company/31bea3d53790200044e0bfc8bcbe5dec",
+              "value": "31bea3d53790200044e0bfc8bcbe5dec"
+            },
+            "sla_due": "2017-07-05 05:58:24",
+            "urgency": "1",
+            "approval": "not requested",
+            "category": "hardware",
+            "comments": "",
+            "due_date": "",
+            "location": {
+              "link": "https://instance.servicenow.com/api/now/table/cmn_location/108752c8c611227501d4ab0e392ba97f",
+              "value": "108752c8c611227501d4ab0e392ba97f"
+            },
+            "made_sla": "true",
+            "priority": "1",
+            "severity": "3",
+            "sys_tags": "",
+            "work_end": "",
+            "caller_id": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user/5b7c200d0a640069006b3845b5d0fa7c",
+              "value": "5b7c200d0a640069006b3845b5d0fa7c"
+            },
+            "caused_by": "",
+            "closed_at": "",
+            "closed_by": "",
+            "follow_up": "",
+            "knowledge": "false",
+            "opened_at": "2015-11-02 21:58:24",
+            "opened_by": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user/glide.maint",
+              "value": "glide.maint"
+            },
+            "close_code": "",
+            "escalation": "3",
+            "group_list": "",
+            "problem_id": "",
+            "sys_domain": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user_group/global",
+              "value": "global"
+            },
+            "user_input": "",
+            "watch_list": "",
+            "work_notes": "",
+            "work_start": "",
+            "assigned_to": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user/681b365ec0a80164000fb0b05854a0cd",
+              "value": "681b365ec0a80164000fb0b05854a0cd"
+            },
+            "close_notes": "",
+            "description": "",
+            "resolved_at": "",
+            "resolved_by": "",
+            "subcategory": "",
+            "time_worked": "",
+            "upon_reject": "cancel",
+            "wf_activity": "",
+            "activity_due": "2016-01-22 16:12:37",
+            "approval_set": "",
+            "business_stc": "",
+            "calendar_stc": "",
+            "contact_type": "phone",
+            "reopen_count": "",
+            "delivery_plan": "",
+            "delivery_task": "",
+            "sys_mod_count": "7",
+            "upon_approval": "proceed",
+            "correlation_id": "",
+            "expected_start": "",
+            "incident_state": "2",
+            "rejection_goto": "",
+            "sys_class_name": "incident",
+            "sys_created_by": "glide.maint",
+            "sys_created_on": "2015-11-02 18:05:40",
+            "sys_updated_by": "admin",
+            "sys_updated_on": "2016-01-22 14:12:37",
+            "child_incidents": "",
+            "parent_incident": "",
+            "sys_domain_path": "/",
+            "work_notes_list": "",
+            "approval_history": "",
+            "assignment_group": {
+              "link": "https://instance.servicenow.com/api/now/table/sys_user_group/8a5055c9c61122780043563ef53438e3",
+              "value": "8a5055c9c61122780043563ef53438e3"
+            },
+            "business_service": "",
+            "business_duration": "",
+            "calendar_duration": "",
+            "short_description": "Can't access Exchange server - is it down?",
+            "reassignment_count": "0",
+            "correlation_display": "",
+            "comments_and_work_notes": "",
+            "additional_assignee_list": ""
+          }
+        }
+      ]
+  Email.GetEmail:
+    description: |-
+      Returns the email details for the specified email record.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/email-api.html#email-GET
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "result": {
+            "cc": [
+              ""
+            ],
+            "id": "06e095427f0022007f005212bdfa91b3",
+            "to": [
+              "alejandro.mascall@example.com"
+            ],
+            "bcc": [
+              ""
+            ],
+            "html": "<html><head></head><body><div><p><font size=\"5\" color=\"#808080\" face=\"helvetica\"><strong>Incident has been closed.</strong></font></p></div>\n\t\t<div><p><font size=\"4\" color=\"#808080\" face=\"helvetica\"><strong>Summary details</strong></font></p><p><font size=\"3\" color=\"#808080\" face=\"helvetica\">Closed by: System Administrator</font></p><p><font size=\"3\" color=\"#808080\" face=\"helvetica\">Closed notes: Fixed</font></p></div>\n\t\t<div><p><font size=\"3\" color=\"#808080\" face=\"helvetica\">You can view all the details of the incident by following the link below:</font></p><font face=\"helvetica\"><a href=\"incident.do?sys_id=e8e875b0c0a80164009dc852b4d677d5&amp;sysparm_stack=incident_list.do?sysparm_query=active=true\" style=\"background-color: #278efc;border: 1px solid #0368d4;color: #ffffff;font-size: 16px;font-family: Helvetica, Arial, sans-serif;text-decoration: none; border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;display: inline-block;padding: 5px;\">Take me to the Incident</a></font><br /><br /><p><font size=\"3\" color=\"#808080\" face=\"helvetica\">Thank you.</font></p></div><div>&nbsp;</div><div style=\"display:inline\">Ref:MSG0000006</div></body></html>",
+            "text": "",
+            "type": "send-ready",
+            "state": "ready",
+            "headers": {
+              "X-ServiceNow-Source": "Notification-24e34b54c61122aa0108c1b7a33697cf",
+              "X-ServiceNow-SysEmail-Version": "2"
+            },
+            "subject": "Your incident INC0000005 has been closed",
+            "importance": ""
+          }
+        }
+      ]
+  Email.CreateEmail:
+    description: |-
+      Creates an email record using the passed information.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/email-api.html#email-POST
+    example:
+      inputs: [
+        {
+          "cc": [
+            "User3 <user3@example.com>",
+            "User4 <user4@example.com>"
+          ],
+          "to": [
+            "User1 <user1@example.com>",
+            "User2 <user2@example.com>"
+          ],
+          "bcc": [
+            "User5 <user5@example.com>",
+            "User6 <user6@example.com>"
+          ],
+          "html": "<b>Test Message</b>",
+          "text": "Test Message",
+          "headers": {
+            "X-Custom": "header"
+          },
+          "subject": "Hello There",
+          "table_name": "incident",
+          "table_record_id": "136b2140bd0312004d7d1371f1abbdb6"
+        }
+      ]
+      outputs: [
+        {
+          "result": {
+            "id": "b963219a44b02200964f63773cd6adfc",
+            "links": [
+              {
+                "rel": "self",
+                "href": "/now/v1/email/b963219a44b02200964f63773cd6adfc"
+              },
+              {
+                "rel": "status",
+                "href": "/now/v1/email/b963219a44b02200964f63773cd6adfc?sysparm_fields=id,type,state,error"
+              }
+            ]
+          }
+        }
+      ]
+  AWARouting.CreateItemOrRoute:
+    description: |-
+      If an active work item exists, routes a document to a queue. If an active work item does not exist for the specified document, creates a work item and set its fields accordingly.
+    versions:
+      from: 18.0.0
+    link: https://docs.servicenow.com/bundle/quebec-application-development/page/integrate/inbound-rest/concept/queue-api.html#awa-POST-queues-work_item
+    example:
+      inputs: [
+        {
+          "document_table": "incident",
+          "document_sys_id": "9c573169c611228700193229fff72400"
+        }
+      ]
+      outputs: [
+        {
+          "result": {
+            "sys_id": "cd57f90ddbb26300db2051735e9619f0",
+            "display_name": "Incident: INC0000001",
+            "queue_sys_id": "339eed3f3b892300a2bac9bb34efc4c3",
+            "document_table": "incident",
+            "document_sys_id": "9c573169c611228700193229fff72400"
+          }
+        }
+      ]

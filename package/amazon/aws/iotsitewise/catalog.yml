@@ -1,0 +1,2025 @@
+Product:
+  name: AWS IoT SiteWise
+  versions: [2019.12.2]
+  package: amazon.aws.iotsitewise
+  description: |-
+    AWS IoT SiteWise
+  link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AssociateAssets:
+    description: |-
+      Associates a child asset with the given parent asset through a hierarchy defined in the parent asset's model. For more information, see Associating assets in the AWS IoT SiteWise User Guide.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_AssociateAssets.html
+    example:
+      inputs: [
+        {
+          "assetId": "string",
+          "clientToken": "string",
+          "hierarchyId": "string",
+          "childAssetId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  BatchAssociateProjectAssets:
+    description: |-
+      Associates a group (batch) of assets with an AWS IoT SiteWise Monitor project.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchAssociateProjectAssets.html
+    example:
+      inputs: [
+        {
+          "assetIds": [
+            "string"
+          ],
+          "projectId": "string",
+          "clientToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "errors": [
+            {
+              "code": "string",
+              "assetId": "string",
+              "message": "string"
+            }
+          ]
+        }
+      ]
+  BatchDisassociateProjectAssets:
+    description: |-
+      Disassociates a group (batch) of assets from an AWS IoT SiteWise Monitor project.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchDisassociateProjectAssets.html
+    example:
+      inputs: [
+        {
+          "assetIds": [
+            "string"
+          ],
+          "projectId": "string",
+          "clientToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "errors": [
+            {
+              "code": "string",
+              "assetId": "string",
+              "message": "string"
+            }
+          ]
+        }
+      ]
+  BatchPutAssetPropertyValue:
+    description: |-
+      Sends a list of asset property values to AWS IoT SiteWise. Each value is a timestamp-quality-value (TQV) data point. For more information, see Ingesting data using the API in the AWS IoT SiteWise User Guide.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchPutAssetPropertyValue.html
+    example:
+      inputs: [
+        {
+          "entries": [
+            {
+              "assetId": "string",
+              "entryId": "string",
+              "propertyId": "string",
+              "propertyAlias": "string",
+              "propertyValues": [
+                {
+                  "value": {
+                    "doubleValue": 0.1,
+                    "stringValue": "string",
+                    "booleanValue": false,
+                    "integerValue": 1
+                  },
+                  "quality": "string",
+                  "timestamp": {
+                    "offsetInNanos": 1,
+                    "timeInSeconds": 1
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "errorEntries": [
+            {
+              "errors": [
+                {
+                  "errorCode": "string",
+                  "timestamps": [
+                    {
+                      "offsetInNanos": 1,
+                      "timeInSeconds": 1
+                    }
+                  ],
+                  "errorMessage": "string"
+                }
+              ],
+              "entryId": "string"
+            }
+          ]
+        }
+      ]
+  CreateAccessPolicy:
+    description: |-
+      Creates an access policy that grants the specified identity (AWS SSO user, AWS SSO group, or IAM user) access to the specified AWS IoT SiteWise Monitor portal or project resource.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_CreateAccessPolicy.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "clientToken": "string",
+          "accessPolicyIdentity": {
+            "user": {
+              "id": "string"
+            },
+            "group": {
+              "id": "string"
+            },
+            "iamRole": {
+              "arn": "string"
+            },
+            "iamUser": {
+              "arn": "string"
+            }
+          },
+          "accessPolicyResource": {
+            "portal": {
+              "id": "string"
+            },
+            "project": {
+              "id": "string"
+            }
+          },
+          "accessPolicyPermission": "string"
+        }
+      ]
+      outputs: [
+        {
+          "accessPolicyId": "string",
+          "accessPolicyArn": "string"
+        }
+      ]
+  CreateAsset:
+    description: |-
+      Creates an asset from an existing asset model. For more information, see Creating assets in the AWS IoT SiteWise User Guide.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_CreateAsset.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "assetName": "string",
+          "clientToken": "string",
+          "assetModelId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "assetId": "string",
+          "assetArn": "string",
+          "assetStatus": {
+            "error": {
+              "code": "string",
+              "message": "string"
+            },
+            "state": "string"
+          }
+        }
+      ]
+  CreateAssetModel:
+    description: |-
+      Creates an asset model from specified property and hierarchy definitions. You create assets from asset models. With asset models, you can easily create assets of the same type that have standardized definitions. Each asset created from a model inherits the asset model's property and hierarchy definitions. For more information, see Defining asset models in the AWS IoT SiteWise User Guide.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_CreateAssetModel.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "clientToken": "string",
+          "assetModelName": "string",
+          "assetModelProperties": [
+            {
+              "name": "string",
+              "type": {
+                "metric": {
+                  "window": {
+                    "tumbling": {
+                      "interval": "string"
+                    }
+                  },
+                  "variables": [
+                    {
+                      "name": "string",
+                      "value": {
+                        "propertyId": "string",
+                        "hierarchyId": "string"
+                      }
+                    }
+                  ],
+                  "expression": "string"
+                },
+                "attribute": {
+                  "defaultValue": "string"
+                },
+                "transform": {
+                  "variables": [
+                    {
+                      "name": "string",
+                      "value": {
+                        "propertyId": "string",
+                        "hierarchyId": "string"
+                      }
+                    }
+                  ],
+                  "expression": "string"
+                },
+                "measurement": {}
+              },
+              "unit": "string",
+              "dataType": "string",
+              "dataTypeSpec": "string"
+            }
+          ],
+          "assetModelDescription": "string",
+          "assetModelHierarchies": [
+            {
+              "name": "string",
+              "childAssetModelId": "string"
+            }
+          ],
+          "assetModelCompositeModels": [
+            {
+              "name": "string",
+              "type": "string",
+              "properties": [
+                {
+                  "name": "string",
+                  "type": {
+                    "metric": {
+                      "window": {
+                        "tumbling": {
+                          "interval": "string"
+                        }
+                      },
+                      "variables": [
+                        {
+                          "name": "string",
+                          "value": {
+                            "propertyId": "string",
+                            "hierarchyId": "string"
+                          }
+                        }
+                      ],
+                      "expression": "string"
+                    },
+                    "attribute": {
+                      "defaultValue": "string"
+                    },
+                    "transform": {
+                      "variables": [
+                        {
+                          "name": "string",
+                          "value": {
+                            "propertyId": "string",
+                            "hierarchyId": "string"
+                          }
+                        }
+                      ],
+                      "expression": "string"
+                    },
+                    "measurement": {}
+                  },
+                  "unit": "string",
+                  "dataType": "string",
+                  "dataTypeSpec": "string"
+                }
+              ],
+              "description": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "assetModelId": "string",
+          "assetModelArn": "string",
+          "assetModelStatus": {
+            "error": {
+              "code": "string",
+              "message": "string"
+            },
+            "state": "string"
+          }
+        }
+      ]
+  CreateDashboard:
+    description: |-
+      Creates a dashboard in an AWS IoT SiteWise Monitor project.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_CreateDashboard.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "projectId": "string",
+          "clientToken": "string",
+          "dashboardName": "string",
+          "dashboardDefinition": "string",
+          "dashboardDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "dashboardId": "string",
+          "dashboardArn": "string"
+        }
+      ]
+  CreateGateway:
+    description: |-
+      Creates a gateway, which is a virtual or edge device that delivers industrial data streams from local servers to AWS IoT SiteWise. For more information, see Ingesting data using a gateway in the AWS IoT SiteWise User Guide.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_CreateGateway.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "gatewayName": "string",
+          "gatewayPlatform": {
+            "greengrass": {
+              "groupArn": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "gatewayId": "string",
+          "gatewayArn": "string"
+        }
+      ]
+  CreatePortal:
+    description: |-
+      Creates a portal, which can contain projects and dashboards. AWS IoT SiteWise Monitor uses AWS SSO or IAM to authenticate portal users and manage user permissions.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_CreatePortal.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "roleArn": "string",
+          "portalName": "string",
+          "clientToken": "string",
+          "portalAuthMode": "string",
+          "portalDescription": "string",
+          "portalContactEmail": "string",
+          "portalLogoImageFile": {
+            "data": "blob",
+            "type": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "portalId": "string",
+          "portalArn": "string",
+          "portalStatus": {
+            "error": {
+              "code": "string",
+              "message": "string"
+            },
+            "state": "string"
+          },
+          "portalStartUrl": "string",
+          "ssoApplicationId": "string"
+        }
+      ]
+  CreateProject:
+    description: |-
+      Creates a project in the specified portal.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_CreateProject.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "portalId": "string",
+          "clientToken": "string",
+          "projectName": "string",
+          "projectDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "projectId": "string",
+          "projectArn": "string"
+        }
+      ]
+  DeleteAccessPolicy:
+    description: |-
+      Deletes an access policy that grants the specified identity access to the specified AWS IoT SiteWise Monitor resource. You can use this operation to revoke access to an AWS IoT SiteWise Monitor resource.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DeleteAccessPolicy.html
+    example:
+      inputs: [
+        {
+          "clientToken": "string",
+          "accessPolicyId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteAsset:
+    description: |-
+      Deletes an asset. This action can't be undone. For more information, see Deleting assets and models in the AWS IoT SiteWise User Guide.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DeleteAsset.html
+    example:
+      inputs: [
+        {
+          "assetId": "string",
+          "clientToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "assetStatus": {
+            "error": {
+              "code": "string",
+              "message": "string"
+            },
+            "state": "string"
+          }
+        }
+      ]
+  DeleteAssetModel:
+    description: |-
+      Deletes an asset model. This action can't be undone. You must delete all assets created from an asset model before you can delete the model. Also, you can't delete an asset model if a parent asset model exists that contains a property formula expression that depends on the asset model that you want to delete. For more information, see Deleting assets and models in the AWS IoT SiteWise User Guide.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DeleteAssetModel.html
+    example:
+      inputs: [
+        {
+          "clientToken": "string",
+          "assetModelId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "assetModelStatus": {
+            "error": {
+              "code": "string",
+              "message": "string"
+            },
+            "state": "string"
+          }
+        }
+      ]
+  DeleteDashboard:
+    description: |-
+      Deletes a dashboard from AWS IoT SiteWise Monitor.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DeleteDashboard.html
+    example:
+      inputs: [
+        {
+          "clientToken": "string",
+          "dashboardId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteGateway:
+    description: |-
+      Deletes a gateway from AWS IoT SiteWise. When you delete a gateway, some of the gateway's files remain in your gateway's file system.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DeleteGateway.html
+    example:
+      inputs: [
+        {
+          "gatewayId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeletePortal:
+    description: |-
+      Deletes a portal from AWS IoT SiteWise Monitor.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DeletePortal.html
+    example:
+      inputs: [
+        {
+          "portalId": "string",
+          "clientToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "portalStatus": {
+            "error": {
+              "code": "string",
+              "message": "string"
+            },
+            "state": "string"
+          }
+        }
+      ]
+  DeleteProject:
+    description: |-
+      Deletes a project from AWS IoT SiteWise Monitor.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DeleteProject.html
+    example:
+      inputs: [
+        {
+          "projectId": "string",
+          "clientToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeAccessPolicy:
+    description: |-
+      Describes an access policy, which specifies an identity's access to an AWS IoT SiteWise Monitor portal or project.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAccessPolicy.html
+    example:
+      inputs: [
+        {
+          "accessPolicyId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "accessPolicyId": "string",
+          "accessPolicyArn": "string",
+          "accessPolicyIdentity": {
+            "user": {
+              "id": "string"
+            },
+            "group": {
+              "id": "string"
+            },
+            "iamRole": {
+              "arn": "string"
+            },
+            "iamUser": {
+              "arn": "string"
+            }
+          },
+          "accessPolicyResource": {
+            "portal": {
+              "id": "string"
+            },
+            "project": {
+              "id": "string"
+            }
+          },
+          "accessPolicyPermission": "string",
+          "accessPolicyCreationDate": 1481289211.615,
+          "accessPolicyLastUpdateDate": 1481289211.615
+        }
+      ]
+  DescribeAsset:
+    description: |-
+      Retrieves information about an asset.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAsset.html
+    example:
+      inputs: [
+        {
+          "assetId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "assetId": "string",
+          "assetArn": "string",
+          "assetName": "string",
+          "assetStatus": {
+            "error": {
+              "code": "string",
+              "message": "string"
+            },
+            "state": "string"
+          },
+          "assetModelId": "string",
+          "assetProperties": [
+            {
+              "id": "string",
+              "name": "string",
+              "unit": "string",
+              "alias": "string",
+              "dataType": "string",
+              "dataTypeSpec": "string",
+              "notification": {
+                "state": "string",
+                "topic": "string"
+              }
+            }
+          ],
+          "assetHierarchies": [
+            {
+              "id": "string",
+              "name": "string"
+            }
+          ],
+          "assetCreationDate": 1481289211.615,
+          "assetLastUpdateDate": 1481289211.615,
+          "assetCompositeModels": [
+            {
+              "name": "string",
+              "type": "string",
+              "properties": [
+                {
+                  "id": "string",
+                  "name": "string",
+                  "unit": "string",
+                  "alias": "string",
+                  "dataType": "string",
+                  "dataTypeSpec": "string",
+                  "notification": {
+                    "state": "string",
+                    "topic": "string"
+                  }
+                }
+              ],
+              "description": "string"
+            }
+          ]
+        }
+      ]
+  DescribeAssetModel:
+    description: |-
+      Retrieves information about an asset model.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html
+    example:
+      inputs: [
+        {
+          "assetModelId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "assetModelId": "string",
+          "assetModelArn": "string",
+          "assetModelName": "string",
+          "assetModelStatus": {
+            "error": {
+              "code": "string",
+              "message": "string"
+            },
+            "state": "string"
+          },
+          "assetModelProperties": [
+            {
+              "id": "string",
+              "name": "string",
+              "type": {
+                "metric": {
+                  "window": {
+                    "tumbling": {
+                      "interval": "string"
+                    }
+                  },
+                  "variables": [
+                    {
+                      "name": "string",
+                      "value": {
+                        "propertyId": "string",
+                        "hierarchyId": "string"
+                      }
+                    }
+                  ],
+                  "expression": "string"
+                },
+                "attribute": {
+                  "defaultValue": "string"
+                },
+                "transform": {
+                  "variables": [
+                    {
+                      "name": "string",
+                      "value": {
+                        "propertyId": "string",
+                        "hierarchyId": "string"
+                      }
+                    }
+                  ],
+                  "expression": "string"
+                },
+                "measurement": {}
+              },
+              "unit": "string",
+              "dataType": "string",
+              "dataTypeSpec": "string"
+            }
+          ],
+          "assetModelDescription": "string",
+          "assetModelHierarchies": [
+            {
+              "id": "string",
+              "name": "string",
+              "childAssetModelId": "string"
+            }
+          ],
+          "assetModelCreationDate": 1481289211.615,
+          "assetModelLastUpdateDate": 1481289211.615,
+          "assetModelCompositeModels": [
+            {
+              "name": "string",
+              "type": "string",
+              "properties": [
+                {
+                  "id": "string",
+                  "name": "string",
+                  "type": {
+                    "metric": {
+                      "window": {
+                        "tumbling": {
+                          "interval": "string"
+                        }
+                      },
+                      "variables": [
+                        {
+                          "name": "string",
+                          "value": {
+                            "propertyId": "string",
+                            "hierarchyId": "string"
+                          }
+                        }
+                      ],
+                      "expression": "string"
+                    },
+                    "attribute": {
+                      "defaultValue": "string"
+                    },
+                    "transform": {
+                      "variables": [
+                        {
+                          "name": "string",
+                          "value": {
+                            "propertyId": "string",
+                            "hierarchyId": "string"
+                          }
+                        }
+                      ],
+                      "expression": "string"
+                    },
+                    "measurement": {}
+                  },
+                  "unit": "string",
+                  "dataType": "string",
+                  "dataTypeSpec": "string"
+                }
+              ],
+              "description": "string"
+            }
+          ]
+        }
+      ]
+  DescribeAssetProperty:
+    description: |-
+      Retrieves information about an asset property.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetProperty.html
+    example:
+      inputs: [
+        {
+          "assetId": "string",
+          "propertyId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "assetId": "string",
+          "assetName": "string",
+          "assetModelId": "string",
+          "assetProperty": {
+            "id": "string",
+            "name": "string",
+            "type": {
+              "metric": {
+                "window": {
+                  "tumbling": {
+                    "interval": "string"
+                  }
+                },
+                "variables": [
+                  {
+                    "name": "string",
+                    "value": {
+                      "propertyId": "string",
+                      "hierarchyId": "string"
+                    }
+                  }
+                ],
+                "expression": "string"
+              },
+              "attribute": {
+                "defaultValue": "string"
+              },
+              "transform": {
+                "variables": [
+                  {
+                    "name": "string",
+                    "value": {
+                      "propertyId": "string",
+                      "hierarchyId": "string"
+                    }
+                  }
+                ],
+                "expression": "string"
+              },
+              "measurement": {}
+            },
+            "unit": "string",
+            "alias": "string",
+            "dataType": "string",
+            "notification": {
+              "state": "string",
+              "topic": "string"
+            }
+          },
+          "compositeModel": {
+            "name": "string",
+            "type": "string",
+            "assetProperty": {
+              "id": "string",
+              "name": "string",
+              "type": {
+                "metric": {
+                  "window": {
+                    "tumbling": {
+                      "interval": "string"
+                    }
+                  },
+                  "variables": [
+                    {
+                      "name": "string",
+                      "value": {
+                        "propertyId": "string",
+                        "hierarchyId": "string"
+                      }
+                    }
+                  ],
+                  "expression": "string"
+                },
+                "attribute": {
+                  "defaultValue": "string"
+                },
+                "transform": {
+                  "variables": [
+                    {
+                      "name": "string",
+                      "value": {
+                        "propertyId": "string",
+                        "hierarchyId": "string"
+                      }
+                    }
+                  ],
+                  "expression": "string"
+                },
+                "measurement": {}
+              },
+              "unit": "string",
+              "alias": "string",
+              "dataType": "string",
+              "notification": {
+                "state": "string",
+                "topic": "string"
+              }
+            }
+          }
+        }
+      ]
+  DescribeDashboard:
+    description: |-
+      Retrieves information about a dashboard.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeDashboard.html
+    example:
+      inputs: [
+        {
+          "dashboardId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "projectId": "string",
+          "dashboardId": "string",
+          "dashboardArn": "string",
+          "dashboardName": "string",
+          "dashboardDefinition": "string",
+          "dashboardDescription": "string",
+          "dashboardCreationDate": 1481289211.615,
+          "dashboardLastUpdateDate": 1481289211.615
+        }
+      ]
+  DescribeDefaultEncryptionConfiguration:
+    description: |-
+      Retrieves information about the default encryption configuration for the AWS account in the default or specified region. For more information, see Key management in the AWS IoT SiteWise User Guide.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeDefaultEncryptionConfiguration.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "kmsKeyArn": "string",
+          "encryptionType": "string",
+          "configurationStatus": {
+            "error": {
+              "code": "string",
+              "message": "string"
+            },
+            "state": "string"
+          }
+        }
+      ]
+  DescribeGatewayCapabilityConfiguration:
+    description: |-
+      Retrieves information about a gateway capability configuration. Each gateway capability defines data sources for a gateway. A capability configuration can contain multiple data source configurations. If you define OPC-UA sources for a gateway in the AWS IoT SiteWise console, all of your OPC-UA sources are stored in one capability configuration. To list all capability configurations for a gateway, use DescribeGateway.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeGatewayCapabilityConfiguration.html
+    example:
+      inputs: [
+        {
+          "gatewayId": "string",
+          "capabilityNamespace": "string"
+        }
+      ]
+      outputs: [
+        {
+          "gatewayId": "string",
+          "capabilityNamespace": "string",
+          "capabilitySyncStatus": "string",
+          "capabilityConfiguration": "string"
+        }
+      ]
+  DescribeGateway:
+    description: |-
+      Retrieves information about a gateway.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeGateway.html
+    example:
+      inputs: [
+        {
+          "gatewayId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "gatewayId": "string",
+          "gatewayArn": "string",
+          "gatewayName": "string",
+          "creationDate": 1481289211.615,
+          "lastUpdateDate": 1481289211.615,
+          "gatewayPlatform": {
+            "greengrass": {
+              "groupArn": "string"
+            }
+          },
+          "gatewayCapabilitySummaries": [
+            {
+              "capabilityNamespace": "string",
+              "capabilitySyncStatus": "string"
+            }
+          ]
+        }
+      ]
+  DescribeLoggingOptions:
+    description: |-
+      Retrieves the current AWS IoT SiteWise logging options.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeLoggingOptions.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "loggingOptions": {
+            "level": "string"
+          }
+        }
+      ]
+  DescribePortal:
+    description: |-
+      Retrieves information about a portal.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribePortal.html
+    example:
+      inputs: [
+        {
+          "portalId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "roleArn": "string",
+          "portalId": "string",
+          "portalArn": "string",
+          "portalName": "string",
+          "portalStatus": {
+            "error": {
+              "code": "string",
+              "message": "string"
+            },
+            "state": "string"
+          },
+          "portalAuthMode": "string",
+          "portalClientId": "string",
+          "portalStartUrl": "string",
+          "portalDescription": "string",
+          "portalContactEmail": "string",
+          "portalCreationDate": 1481289211.615,
+          "portalLastUpdateDate": 1481289211.615,
+          "portalLogoImageLocation": {
+            "id": "string",
+            "url": "string"
+          }
+        }
+      ]
+  DescribeProject:
+    description: |-
+      Retrieves information about a project.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeProject.html
+    example:
+      inputs: [
+        {
+          "projectId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "portalId": "string",
+          "projectId": "string",
+          "projectArn": "string",
+          "projectName": "string",
+          "projectDescription": "string",
+          "projectCreationDate": 1481289211.615,
+          "projectLastUpdateDate": 1481289211.615
+        }
+      ]
+  DisassociateAssets:
+    description: |-
+      Disassociates a child asset from the given parent asset through a hierarchy defined in the parent asset's model.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DisassociateAssets.html
+    example:
+      inputs: [
+        {
+          "assetId": "string",
+          "clientToken": "string",
+          "hierarchyId": "string",
+          "childAssetId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetAssetPropertyAggregates:
+    description: |-
+      Gets aggregated values for an asset property. For more information, see Querying aggregates in the AWS IoT SiteWise User Guide.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_GetAssetPropertyAggregates.html
+    example:
+      inputs: [
+        {
+          "assetId": "string",
+          "endDate": 1481289211.615,
+          "nextToken": "string",
+          "qualities": [
+            "string"
+          ],
+          "startDate": 1481289211.615,
+          "maxResults": 1,
+          "propertyId": "string",
+          "resolution": "string",
+          "timeOrdering": "string",
+          "propertyAlias": "string",
+          "aggregateTypes": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "aggregatedValues": [
+            {
+              "value": {
+                "sum": 0.1,
+                "count": 0.1,
+                "average": 0.1,
+                "maximum": 0.1,
+                "minimum": 0.1,
+                "standardDeviation": 0.1
+              },
+              "quality": "string",
+              "timestamp": 1481289211.615
+            }
+          ]
+        }
+      ]
+  GetAssetPropertyValueHistory:
+    description: |-
+      Gets the history of an asset property's values. For more information, see Querying historical values in the AWS IoT SiteWise User Guide.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_GetAssetPropertyValueHistory.html
+    example:
+      inputs: [
+        {
+          "assetId": "string",
+          "endDate": 1481289211.615,
+          "nextToken": "string",
+          "qualities": [
+            "string"
+          ],
+          "startDate": 1481289211.615,
+          "maxResults": 1,
+          "propertyId": "string",
+          "timeOrdering": "string",
+          "propertyAlias": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "assetPropertyValueHistory": [
+            {
+              "value": {
+                "doubleValue": 0.1,
+                "stringValue": "string",
+                "booleanValue": false,
+                "integerValue": 1
+              },
+              "quality": "string",
+              "timestamp": {
+                "offsetInNanos": 1,
+                "timeInSeconds": 1
+              }
+            }
+          ]
+        }
+      ]
+  GetAssetPropertyValue:
+    description: |-
+      Gets an asset property's current value. For more information, see Querying current values in the AWS IoT SiteWise User Guide.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_GetAssetPropertyValue.html
+    example:
+      inputs: [
+        {
+          "assetId": "string",
+          "propertyId": "string",
+          "propertyAlias": "string"
+        }
+      ]
+      outputs: [
+        {
+          "propertyValue": {
+            "value": {
+              "doubleValue": 0.1,
+              "stringValue": "string",
+              "booleanValue": false,
+              "integerValue": 1
+            },
+            "quality": "string",
+            "timestamp": {
+              "offsetInNanos": 1,
+              "timeInSeconds": 1
+            }
+          }
+        }
+      ]
+  ListAccessPolicies:
+    description: |-
+      Retrieves a paginated list of access policies for an identity (an AWS SSO user, an AWS SSO group, or an IAM user) or an AWS IoT SiteWise Monitor resource (a portal or project).
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_ListAccessPolicies.html
+    example:
+      inputs: [
+        {
+          "iamArn": "string",
+          "nextToken": "string",
+          "identityId": "string",
+          "maxResults": 1,
+          "resourceId": "string",
+          "identityType": "string",
+          "resourceType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "accessPolicySummaries": [
+            {
+              "id": "string",
+              "identity": {
+                "user": {
+                  "id": "string"
+                },
+                "group": {
+                  "id": "string"
+                },
+                "iamRole": {
+                  "arn": "string"
+                },
+                "iamUser": {
+                  "arn": "string"
+                }
+              },
+              "resource": {
+                "portal": {
+                  "id": "string"
+                },
+                "project": {
+                  "id": "string"
+                }
+              },
+              "permission": "string",
+              "creationDate": 1481289211.615,
+              "lastUpdateDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListAssetModels:
+    description: |-
+      Retrieves a paginated list of summaries of all asset models.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_ListAssetModels.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "assetModelSummaries": [
+            {
+              "id": "string",
+              "arn": "string",
+              "name": "string",
+              "status": {
+                "error": {
+                  "code": "string",
+                  "message": "string"
+                },
+                "state": "string"
+              },
+              "description": "string",
+              "creationDate": 1481289211.615,
+              "lastUpdateDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListAssetRelationships:
+    description: |-
+      Retrieves a paginated list of asset relationships for an asset. You can use this operation to identify an asset's root asset and all associated assets between that asset and its root.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_ListAssetRelationships.html
+    example:
+      inputs: [
+        {
+          "assetId": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "traversalType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "assetRelationshipSummaries": [
+            {
+              "hierarchyInfo": {
+                "childAssetId": "string",
+                "parentAssetId": "string"
+              },
+              "relationshipType": "string"
+            }
+          ]
+        }
+      ]
+  ListAssets:
+    description: |-
+      Retrieves a paginated list of asset summaries.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_ListAssets.html
+    example:
+      inputs: [
+        {
+          "filter": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "assetModelId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "assetSummaries": [
+            {
+              "id": "string",
+              "arn": "string",
+              "name": "string",
+              "status": {
+                "error": {
+                  "code": "string",
+                  "message": "string"
+                },
+                "state": "string"
+              },
+              "hierarchies": [
+                {
+                  "id": "string",
+                  "name": "string"
+                }
+              ],
+              "assetModelId": "string",
+              "creationDate": 1481289211.615,
+              "lastUpdateDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListAssociatedAssets:
+    description: |-
+      Retrieves a paginated list of associated assets.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_ListAssociatedAssets.html
+    example:
+      inputs: [
+        {
+          "assetId": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "hierarchyId": "string",
+          "traversalDirection": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "assetSummaries": [
+            {
+              "id": "string",
+              "arn": "string",
+              "name": "string",
+              "status": {
+                "error": {
+                  "code": "string",
+                  "message": "string"
+                },
+                "state": "string"
+              },
+              "hierarchies": [
+                {
+                  "id": "string",
+                  "name": "string"
+                }
+              ],
+              "assetModelId": "string",
+              "creationDate": 1481289211.615,
+              "lastUpdateDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListDashboards:
+    description: |-
+      Retrieves a paginated list of dashboards for an AWS IoT SiteWise Monitor project.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_ListDashboards.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "projectId": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "dashboardSummaries": [
+            {
+              "id": "string",
+              "name": "string",
+              "description": "string",
+              "creationDate": 1481289211.615,
+              "lastUpdateDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListGateways:
+    description: |-
+      Retrieves a paginated list of gateways.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_ListGateways.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "gatewaySummaries": [
+            {
+              "gatewayId": "string",
+              "gatewayName": "string",
+              "creationDate": 1481289211.615,
+              "lastUpdateDate": 1481289211.615,
+              "gatewayCapabilitySummaries": [
+                {
+                  "capabilityNamespace": "string",
+                  "capabilitySyncStatus": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  ListPortals:
+    description: |-
+      Retrieves a paginated list of AWS IoT SiteWise Monitor portals.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_ListPortals.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "portalSummaries": [
+            {
+              "id": "string",
+              "name": "string",
+              "status": {
+                "error": {
+                  "code": "string",
+                  "message": "string"
+                },
+                "state": "string"
+              },
+              "roleArn": "string",
+              "startUrl": "string",
+              "description": "string",
+              "creationDate": 1481289211.615,
+              "lastUpdateDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListProjectAssets:
+    description: |-
+      Retrieves a paginated list of assets associated with an AWS IoT SiteWise Monitor project.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_ListProjectAssets.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "projectId": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "assetIds": [
+            "string"
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListProjects:
+    description: |-
+      Retrieves a paginated list of projects for an AWS IoT SiteWise Monitor portal.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_ListProjects.html
+    example:
+      inputs: [
+        {
+          "portalId": "string",
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "projectSummaries": [
+            {
+              "id": "string",
+              "name": "string",
+              "description": "string",
+              "creationDate": 1481289211.615,
+              "lastUpdateDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Retrieves the list of tags for an AWS IoT SiteWise resource.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": {
+            "string": "string"
+          }
+        }
+      ]
+  PutDefaultEncryptionConfiguration:
+    description: |-
+      Sets the default encryption configuration for the AWS account. For more information, see Key management in the AWS IoT SiteWise User Guide.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_PutDefaultEncryptionConfiguration.html
+    example:
+      inputs: [
+        {
+          "kmsKeyId": "string",
+          "encryptionType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "kmsKeyArn": "string",
+          "encryptionType": "string",
+          "configurationStatus": {
+            "error": {
+              "code": "string",
+              "message": "string"
+            },
+            "state": "string"
+          }
+        }
+      ]
+  PutLoggingOptions:
+    description: |-
+      Sets logging options for AWS IoT SiteWise.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_PutLoggingOptions.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Adds tags to an AWS IoT SiteWise resource. If a tag already exists for the resource, this operation updates the tag's value.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes a tag from an AWS IoT SiteWise resource.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateAccessPolicy:
+    description: |-
+      Updates an existing access policy that specifies an identity's access to an AWS IoT SiteWise Monitor portal or project resource.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAccessPolicy.html
+    example:
+      inputs: [
+        {
+          "clientToken": "string",
+          "accessPolicyId": "string",
+          "accessPolicyIdentity": {
+            "user": {
+              "id": "string"
+            },
+            "group": {
+              "id": "string"
+            },
+            "iamRole": {
+              "arn": "string"
+            },
+            "iamUser": {
+              "arn": "string"
+            }
+          },
+          "accessPolicyResource": {
+            "portal": {
+              "id": "string"
+            },
+            "project": {
+              "id": "string"
+            }
+          },
+          "accessPolicyPermission": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateAsset:
+    description: |-
+      Updates an asset's name. For more information, see Updating assets and models in the AWS IoT SiteWise User Guide.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAsset.html
+    example:
+      inputs: [
+        {
+          "assetId": "string",
+          "assetName": "string",
+          "clientToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "assetStatus": {
+            "error": {
+              "code": "string",
+              "message": "string"
+            },
+            "state": "string"
+          }
+        }
+      ]
+  UpdateAssetModel:
+    description: |-
+      Updates an asset model and all of the assets that were created from the model. Each asset created from the model inherits the updated asset model's property and hierarchy definitions. For more information, see Updating assets and models in the AWS IoT SiteWise User Guide.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetModel.html
+    example:
+      inputs: [
+        {
+          "clientToken": "string",
+          "assetModelId": "string",
+          "assetModelName": "string",
+          "assetModelProperties": [
+            {
+              "id": "string",
+              "name": "string",
+              "type": {
+                "metric": {
+                  "window": {
+                    "tumbling": {
+                      "interval": "string"
+                    }
+                  },
+                  "variables": [
+                    {
+                      "name": "string",
+                      "value": {
+                        "propertyId": "string",
+                        "hierarchyId": "string"
+                      }
+                    }
+                  ],
+                  "expression": "string"
+                },
+                "attribute": {
+                  "defaultValue": "string"
+                },
+                "transform": {
+                  "variables": [
+                    {
+                      "name": "string",
+                      "value": {
+                        "propertyId": "string",
+                        "hierarchyId": "string"
+                      }
+                    }
+                  ],
+                  "expression": "string"
+                },
+                "measurement": {}
+              },
+              "unit": "string",
+              "dataType": "string",
+              "dataTypeSpec": "string"
+            }
+          ],
+          "assetModelDescription": "string",
+          "assetModelHierarchies": [
+            {
+              "id": "string",
+              "name": "string",
+              "childAssetModelId": "string"
+            }
+          ],
+          "assetModelCompositeModels": [
+            {
+              "name": "string",
+              "type": "string",
+              "properties": [
+                {
+                  "id": "string",
+                  "name": "string",
+                  "type": {
+                    "metric": {
+                      "window": {
+                        "tumbling": {
+                          "interval": "string"
+                        }
+                      },
+                      "variables": [
+                        {
+                          "name": "string",
+                          "value": {
+                            "propertyId": "string",
+                            "hierarchyId": "string"
+                          }
+                        }
+                      ],
+                      "expression": "string"
+                    },
+                    "attribute": {
+                      "defaultValue": "string"
+                    },
+                    "transform": {
+                      "variables": [
+                        {
+                          "name": "string",
+                          "value": {
+                            "propertyId": "string",
+                            "hierarchyId": "string"
+                          }
+                        }
+                      ],
+                      "expression": "string"
+                    },
+                    "measurement": {}
+                  },
+                  "unit": "string",
+                  "dataType": "string",
+                  "dataTypeSpec": "string"
+                }
+              ],
+              "description": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "assetModelStatus": {
+            "error": {
+              "code": "string",
+              "message": "string"
+            },
+            "state": "string"
+          }
+        }
+      ]
+  UpdateAssetProperty:
+    description: |-
+      Updates an asset property's alias and notification state.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html
+    example:
+      inputs: [
+        {
+          "assetId": "string",
+          "propertyId": "string",
+          "clientToken": "string",
+          "propertyAlias": "string",
+          "propertyNotificationState": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateDashboard:
+    description: |-
+      Updates an AWS IoT SiteWise Monitor dashboard.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateDashboard.html
+    example:
+      inputs: [
+        {
+          "clientToken": "string",
+          "dashboardId": "string",
+          "dashboardName": "string",
+          "dashboardDefinition": "string",
+          "dashboardDescription": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateGatewayCapabilityConfiguration:
+    description: |-
+      Updates a gateway capability configuration or defines a new capability configuration. Each gateway capability defines data sources for a gateway. A capability configuration can contain multiple data source configurations. If you define OPC-UA sources for a gateway in the AWS IoT SiteWise console, all of your OPC-UA sources are stored in one capability configuration. To list all capability configurations for a gateway, use DescribeGateway.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateGatewayCapabilityConfiguration.html
+    example:
+      inputs: [
+        {
+          "gatewayId": "string",
+          "capabilityNamespace": "string",
+          "capabilityConfiguration": "string"
+        }
+      ]
+      outputs: [
+        {
+          "capabilityNamespace": "string",
+          "capabilitySyncStatus": "string"
+        }
+      ]
+  UpdateGateway:
+    description: |-
+      Updates a gateway's name.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateGateway.html
+    example:
+      inputs: [
+        {
+          "gatewayId": "string",
+          "gatewayName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdatePortal:
+    description: |-
+      Updates an AWS IoT SiteWise Monitor portal.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdatePortal.html
+    example:
+      inputs: [
+        {
+          "roleArn": "string",
+          "portalId": "string",
+          "portalName": "string",
+          "clientToken": "string",
+          "portalLogoImage": {
+            "id": "string",
+            "file": {
+              "data": "blob",
+              "type": "string"
+            }
+          },
+          "portalDescription": "string",
+          "portalContactEmail": "string"
+        }
+      ]
+      outputs: [
+        {
+          "portalStatus": {
+            "error": {
+              "code": "string",
+              "message": "string"
+            },
+            "state": "string"
+          }
+        }
+      ]
+  UpdateProject:
+    description: |-
+      Updates an AWS IoT SiteWise Monitor project.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateProject.html
+    example:
+      inputs: [
+        {
+          "projectId": "string",
+          "clientToken": "string",
+          "projectName": "string",
+          "projectDescription": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

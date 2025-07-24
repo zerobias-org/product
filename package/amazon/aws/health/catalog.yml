@@ -1,0 +1,576 @@
+Product:
+  name: AWS Health
+  versions: [2016.8.4]
+  package: amazon.aws.health
+  description: |-
+    AWS Health
+  link: https://docs.aws.amazon.com/health/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  DescribeAffectedAccountsForOrganization:
+    description: |-
+      Returns a list of accounts in the organization from AWS Organizations that are affected by the provided event. For more information about the different types of AWS Health events, see Event.
+    versions:
+      from: 2016.8.4
+    link: https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeAffectedAccountsForOrganization.html
+    example:
+      inputs: [
+        {
+          "eventArn": "string",
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "eventScopeCode": "string",
+          "affectedAccounts": [
+            "string"
+          ]
+        }
+      ]
+  DescribeAffectedEntitiesForOrganization:
+    description: |-
+      Returns a list of entities that have been affected by one or more events for one or more accounts in your organization in AWS Organizations, based on the filter criteria. Entities can refer to individual customer resources, groups of customer resources, or any other construct, depending on the AWS service.
+    versions:
+      from: 2016.8.4
+    link: https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeAffectedEntitiesForOrganization.html
+    example:
+      inputs: [
+        {
+          "locale": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "organizationEntityFilters": [
+            {
+              "eventArn": "string",
+              "awsAccountId": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "entities": [
+            {
+              "tags": {
+                "string": "string"
+              },
+              "eventArn": "string",
+              "entityArn": "string",
+              "entityUrl": "string",
+              "statusCode": "string",
+              "entityValue": "string",
+              "awsAccountId": "string",
+              "lastUpdatedTime": 1481289211.615
+            }
+          ],
+          "failedSet": [
+            {
+              "eventArn": "string",
+              "errorName": "string",
+              "awsAccountId": "string",
+              "errorMessage": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  DescribeAffectedEntities:
+    description: |-
+      Returns a list of entities that have been affected by the specified events, based on the specified filter criteria. Entities can refer to individual customer resources, groups of customer resources, or any other construct, depending on the AWS service. Events that have impact beyond that of the affected entities, or where the extent of impact is unknown, include at least one entity indicating this.
+    versions:
+      from: 2016.8.4
+    link: https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeAffectedEntities.html
+    example:
+      inputs: [
+        {
+          "filter": {
+            "tags": [
+              {
+                "string": "string"
+              }
+            ],
+            "eventArns": [
+              "string"
+            ],
+            "entityArns": [
+              "string"
+            ],
+            "statusCodes": [
+              "string"
+            ],
+            "entityValues": [
+              "string"
+            ],
+            "lastUpdatedTimes": [
+              {
+                "to": 1481289211.615,
+                "from": 1481289211.615
+              }
+            ]
+          },
+          "locale": "string",
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "entities": [
+            {
+              "tags": {
+                "string": "string"
+              },
+              "eventArn": "string",
+              "entityArn": "string",
+              "entityUrl": "string",
+              "statusCode": "string",
+              "entityValue": "string",
+              "awsAccountId": "string",
+              "lastUpdatedTime": 1481289211.615
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  DescribeEntityAggregates:
+    description: |-
+      Returns the number of entities that are affected by each of the specified events. If no events are specified, the counts of all affected entities are returned.
+    versions:
+      from: 2016.8.4
+    link: https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEntityAggregates.html
+    example:
+      inputs: [
+        {
+          "eventArns": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "entityAggregates": [
+            {
+              "count": 1,
+              "eventArn": "string"
+            }
+          ]
+        }
+      ]
+  DescribeEventAggregates:
+    description: |-
+      Returns the number of events of each event type (issue, scheduled change, and account notification). If no filter is specified, the counts of all events in each category are returned.
+    versions:
+      from: 2016.8.4
+    link: https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventAggregates.html
+    example:
+      inputs: [
+        {
+          "filter": {
+            "tags": [
+              {
+                "string": "string"
+              }
+            ],
+            "regions": [
+              "string"
+            ],
+            "endTimes": [
+              {
+                "to": 1481289211.615,
+                "from": 1481289211.615
+              }
+            ],
+            "services": [
+              "string"
+            ],
+            "eventArns": [
+              "string"
+            ],
+            "entityArns": [
+              "string"
+            ],
+            "startTimes": [
+              {
+                "to": 1481289211.615,
+                "from": 1481289211.615
+              }
+            ],
+            "entityValues": [
+              "string"
+            ],
+            "eventTypeCodes": [
+              "string"
+            ],
+            "eventStatusCodes": [
+              "string"
+            ],
+            "lastUpdatedTimes": [
+              {
+                "to": 1481289211.615,
+                "from": 1481289211.615
+              }
+            ],
+            "availabilityZones": [
+              "string"
+            ],
+            "eventTypeCategories": [
+              "string"
+            ]
+          },
+          "nextToken": "string",
+          "maxResults": 1,
+          "aggregateField": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "eventAggregates": [
+            {
+              "count": 1,
+              "aggregateValue": "string"
+            }
+          ]
+        }
+      ]
+  DescribeEventDetailsForOrganization:
+    description: |-
+      Returns detailed information about one or more specified events for one or more AWS accounts in your organization. This information includes standard event data (such as the AWS Region and service), an event description, and (depending on the event) possible metadata. This operation doesn't return affected entities, such as the resources related to the event. To return affected entities, use the DescribeAffectedEntitiesForOrganization operation.
+    versions:
+      from: 2016.8.4
+    link: https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventDetailsForOrganization.html
+    example:
+      inputs: [
+        {
+          "locale": "string",
+          "organizationEventDetailFilters": [
+            {
+              "eventArn": "string",
+              "awsAccountId": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "failedSet": [
+            {
+              "eventArn": "string",
+              "errorName": "string",
+              "awsAccountId": "string",
+              "errorMessage": "string"
+            }
+          ],
+          "successfulSet": [
+            {
+              "event": {
+                "arn": "string",
+                "region": "string",
+                "endTime": 1481289211.615,
+                "service": "string",
+                "startTime": 1481289211.615,
+                "statusCode": "string",
+                "eventTypeCode": "string",
+                "eventScopeCode": "string",
+                "lastUpdatedTime": 1481289211.615,
+                "availabilityZone": "string",
+                "eventTypeCategory": "string"
+              },
+              "awsAccountId": "string",
+              "eventMetadata": {
+                "string": "string"
+              },
+              "eventDescription": {
+                "latestDescription": "string"
+              }
+            }
+          ]
+        }
+      ]
+  DescribeEventDetails:
+    description: |-
+      Returns detailed information about one or more specified events. Information includes standard event data (AWS Region, service, and so on, as returned by DescribeEvents), a detailed event description, and possible additional metadata that depends upon the nature of the event. Affected entities are not included. To retrieve the entities, use the DescribeAffectedEntities operation.
+    versions:
+      from: 2016.8.4
+    link: https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventDetails.html
+    example:
+      inputs: [
+        {
+          "locale": "string",
+          "eventArns": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "failedSet": [
+            {
+              "eventArn": "string",
+              "errorName": "string",
+              "errorMessage": "string"
+            }
+          ],
+          "successfulSet": [
+            {
+              "event": {
+                "arn": "string",
+                "region": "string",
+                "endTime": 1481289211.615,
+                "service": "string",
+                "startTime": 1481289211.615,
+                "statusCode": "string",
+                "eventTypeCode": "string",
+                "eventScopeCode": "string",
+                "lastUpdatedTime": 1481289211.615,
+                "availabilityZone": "string",
+                "eventTypeCategory": "string"
+              },
+              "eventMetadata": {
+                "string": "string"
+              },
+              "eventDescription": {
+                "latestDescription": "string"
+              }
+            }
+          ]
+        }
+      ]
+  DescribeEventsForOrganization:
+    description: |-
+      Returns information about events across your organization in AWS Organizations. You can use thefilters parameter to specify the events that you want to return. Events are returned in a summary form and don't include the affected accounts, detailed description, any additional metadata that depends on the event type, or any affected resources.
+    versions:
+      from: 2016.8.4
+    link: https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventsForOrganization.html
+    example:
+      inputs: [
+        {
+          "filter": {
+            "endTime": {
+              "to": 1481289211.615,
+              "from": 1481289211.615
+            },
+            "regions": [
+              "string"
+            ],
+            "services": [
+              "string"
+            ],
+            "startTime": {
+              "to": 1481289211.615,
+              "from": 1481289211.615
+            },
+            "entityArns": [
+              "string"
+            ],
+            "entityValues": [
+              "string"
+            ],
+            "awsAccountIds": [
+              "string"
+            ],
+            "eventTypeCodes": [
+              "string"
+            ],
+            "lastUpdatedTime": {
+              "to": 1481289211.615,
+              "from": 1481289211.615
+            },
+            "eventStatusCodes": [
+              "string"
+            ],
+            "eventTypeCategories": [
+              "string"
+            ]
+          },
+          "locale": "string",
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "events": [
+            {
+              "arn": "string",
+              "region": "string",
+              "endTime": 1481289211.615,
+              "service": "string",
+              "startTime": 1481289211.615,
+              "statusCode": "string",
+              "eventTypeCode": "string",
+              "eventScopeCode": "string",
+              "lastUpdatedTime": 1481289211.615,
+              "eventTypeCategory": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  DescribeEvents:
+    description: |-
+      Returns information about events that meet the specified filter criteria. Events are returned in a summary form and do not include the detailed description, any additional metadata that depends on the event type, or any affected resources. To retrieve that information, use the DescribeEventDetails and DescribeAffectedEntities operations.
+    versions:
+      from: 2016.8.4
+    link: https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEvents.html
+    example:
+      inputs: [
+        {
+          "filter": {
+            "tags": [
+              {
+                "string": "string"
+              }
+            ],
+            "regions": [
+              "string"
+            ],
+            "endTimes": [
+              {
+                "to": 1481289211.615,
+                "from": 1481289211.615
+              }
+            ],
+            "services": [
+              "string"
+            ],
+            "eventArns": [
+              "string"
+            ],
+            "entityArns": [
+              "string"
+            ],
+            "startTimes": [
+              {
+                "to": 1481289211.615,
+                "from": 1481289211.615
+              }
+            ],
+            "entityValues": [
+              "string"
+            ],
+            "eventTypeCodes": [
+              "string"
+            ],
+            "eventStatusCodes": [
+              "string"
+            ],
+            "lastUpdatedTimes": [
+              {
+                "to": 1481289211.615,
+                "from": 1481289211.615
+              }
+            ],
+            "availabilityZones": [
+              "string"
+            ],
+            "eventTypeCategories": [
+              "string"
+            ]
+          },
+          "locale": "string",
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "events": [
+            {
+              "arn": "string",
+              "region": "string",
+              "endTime": 1481289211.615,
+              "service": "string",
+              "startTime": 1481289211.615,
+              "statusCode": "string",
+              "eventTypeCode": "string",
+              "eventScopeCode": "string",
+              "lastUpdatedTime": 1481289211.615,
+              "availabilityZone": "string",
+              "eventTypeCategory": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  DescribeEventTypes:
+    description: |-
+      Returns the event types that meet the specified filter criteria. You can use this API operation to find information about the AWS Health event, such as the category, AWS service, and event code. The metadata for each event appears in the EventType object.
+    versions:
+      from: 2016.8.4
+    link: https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventTypes.html
+    example:
+      inputs: [
+        {
+          "filter": {
+            "services": [
+              "string"
+            ],
+            "eventTypeCodes": [
+              "string"
+            ],
+            "eventTypeCategories": [
+              "string"
+            ]
+          },
+          "locale": "string",
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "eventTypes": [
+            {
+              "code": "string",
+              "service": "string",
+              "category": "string"
+            }
+          ]
+        }
+      ]
+  DescribeHealthServiceStatusForOrganization:
+    description: |-
+      This operation provides status information on enabling or disabling AWS Health to work with your organization. To call this operation, you must sign in as an IAM user, assume an IAM role, or sign in as the root user (not recommended) in the organization's management account.
+    versions:
+      from: 2016.8.4
+    link: https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeHealthServiceStatusForOrganization.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "healthServiceAccessStatusForOrganization": "string"
+        }
+      ]
+  DisableHealthServiceAccessForOrganization:
+    description: |-
+      Disables AWS Health from working with AWS Organizations. To call this operation, you must sign in as an AWS Identity and Access Management (IAM) user, assume an IAM role, or sign in as the root user (not recommended) in the organization's management account. For more information, see Aggregating AWS Health events in the AWS Health User Guide.
+    versions:
+      from: 2016.8.4
+    link: https://docs.aws.amazon.com/health/latest/APIReference/API_DisableHealthServiceAccessForOrganization.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  EnableHealthServiceAccessForOrganization:
+    description: |-
+      Enables AWS Health to work with AWS Organizations. You can use the organizational view feature to aggregate events from all AWS accounts in your organization in a centralized location.
+    versions:
+      from: 2016.8.4
+    link: https://docs.aws.amazon.com/health/latest/APIReference/API_EnableHealthServiceAccessForOrganization.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]

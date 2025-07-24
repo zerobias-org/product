@@ -1,0 +1,896 @@
+Product:
+  name: AWS IoT Things Graph
+  versions: [2018.9.6]
+  package: amazon.aws.iotthingsgraph
+  description: |-
+    AWS IoT Things Graph
+  link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AssociateEntityToThing:
+    description: |-
+      Associates a device with a concrete thing that is in the user's registry.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_AssociateEntityToThing.html
+    example:
+      inputs: [
+        {
+          "entityId": "string",
+          "thingName": "string",
+          "namespaceVersion": 1
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateFlowTemplate:
+    description: |-
+      Creates a workflow template. Workflows can be created only in the user's namespace. (The public namespace contains only entities.) The workflow can contain only entities in the specified namespace. The workflow is validated against the entities in the latest version of the user's namespace unless another namespace version is specified in the request.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_CreateFlowTemplate.html
+    example:
+      inputs: [
+        {
+          "definition": {
+            "text": "string",
+            "language": "string"
+          },
+          "compatibleNamespaceVersion": 1
+        }
+      ]
+      outputs: [
+        {
+          "summary": {
+            "id": "string",
+            "arn": "string",
+            "createdAt": 1481289211.615,
+            "revisionNumber": 1
+          }
+        }
+      ]
+  CreateSystemInstance:
+    description: |-
+      Creates a system instance.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_CreateSystemInstance.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "target": "string",
+          "definition": {
+            "text": "string",
+            "language": "string"
+          },
+          "s3BucketName": "string",
+          "flowActionsRoleArn": "string",
+          "greengrassGroupName": "string",
+          "metricsConfiguration": {
+            "metricRuleRoleArn": "string",
+            "cloudMetricEnabled": false
+          }
+        }
+      ]
+      outputs: [
+        {
+          "summary": {
+            "id": "string",
+            "arn": "string",
+            "status": "string",
+            "target": "string",
+            "createdAt": 1481289211.615,
+            "updatedAt": 1481289211.615,
+            "greengrassGroupId": "string",
+            "greengrassGroupName": "string",
+            "greengrassGroupVersionId": "string"
+          }
+        }
+      ]
+  CreateSystemTemplate:
+    description: |-
+      Creates a system. The system is validated against the entities in the latest version of the user's namespace unless another namespace version is specified in the request.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_CreateSystemTemplate.html
+    example:
+      inputs: [
+        {
+          "definition": {
+            "text": "string",
+            "language": "string"
+          },
+          "compatibleNamespaceVersion": 1
+        }
+      ]
+      outputs: [
+        {
+          "summary": {
+            "id": "string",
+            "arn": "string",
+            "createdAt": 1481289211.615,
+            "revisionNumber": 1
+          }
+        }
+      ]
+  DeleteFlowTemplate:
+    description: |-
+      Deletes a workflow. Any new system or deployment that contains this workflow will fail to update or deploy. Existing deployments that contain the workflow will continue to run (since they use a snapshot of the workflow taken at the time of deployment).
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_DeleteFlowTemplate.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteNamespace:
+    description: |-
+      Deletes the specified namespace. This action deletes all of the entities in the namespace. Delete the systems and flows that use entities in the namespace before performing this action. This action takes no request parameters.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_DeleteNamespace.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "namespaceArn": "string",
+          "namespaceName": "string"
+        }
+      ]
+  DeleteSystemInstance:
+    description: |-
+      Deletes a system instance. Only system instances that have never been deployed, or that have been undeployed can be deleted.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_DeleteSystemInstance.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteSystemTemplate:
+    description: |-
+      Deletes a system. New deployments can't contain the system after its deletion. Existing deployments that contain the system will continue to work because they use a snapshot of the system that is taken when it is deployed.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_DeleteSystemTemplate.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeploySystemInstance:
+    description: |-
+      Greengrass and Cloud Deployments
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_DeploySystemInstance.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "summary": {
+            "id": "string",
+            "arn": "string",
+            "status": "string",
+            "target": "string",
+            "createdAt": 1481289211.615,
+            "updatedAt": 1481289211.615,
+            "greengrassGroupId": "string",
+            "greengrassGroupName": "string",
+            "greengrassGroupVersionId": "string"
+          },
+          "greengrassDeploymentId": "string"
+        }
+      ]
+  DeprecateFlowTemplate:
+    description: |-
+      Deprecates the specified workflow. This action marks the workflow for deletion. Deprecated flows can't be deployed, but existing deployments will continue to run.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_DeprecateFlowTemplate.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeprecateSystemTemplate:
+    description: |-
+      Deprecates the specified system.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_DeprecateSystemTemplate.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeNamespace:
+    description: |-
+      Gets the latest version of the user's namespace and the public version that it is tracking.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_DescribeNamespace.html
+    example:
+      inputs: [
+        {
+          "namespaceName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "namespaceArn": "string",
+          "namespaceName": "string",
+          "namespaceVersion": 1,
+          "trackingNamespaceName": "string",
+          "trackingNamespaceVersion": 1
+        }
+      ]
+  DissociateEntityFromThing:
+    description: |-
+      Dissociates a device entity from a concrete thing. The action takes only the type of the entity that you need to dissociate because only one entity of a particular type can be associated with a thing.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_DissociateEntityFromThing.html
+    example:
+      inputs: [
+        {
+          "thingName": "string",
+          "entityType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetEntities:
+    description: |-
+      Gets definitions of the specified entities. Uses the latest version of the user's namespace by default. This API returns the following TDM entities.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_GetEntities.html
+    example:
+      inputs: [
+        {
+          "ids": [
+            "string"
+          ],
+          "namespaceVersion": 1
+        }
+      ]
+      outputs: [
+        {
+          "descriptions": [
+            {
+              "id": "string",
+              "arn": "string",
+              "type": "string",
+              "createdAt": 1481289211.615,
+              "definition": {
+                "text": "string",
+                "language": "string"
+              }
+            }
+          ]
+        }
+      ]
+  GetFlowTemplate:
+    description: |-
+      Gets the latest version of the DefinitionDocument and FlowTemplateSummary for the specified workflow.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_GetFlowTemplate.html
+    example:
+      inputs: [
+        {
+          "id": "string",
+          "revisionNumber": 1
+        }
+      ]
+      outputs: [
+        {
+          "description": {
+            "summary": {
+              "id": "string",
+              "arn": "string",
+              "createdAt": 1481289211.615,
+              "revisionNumber": 1
+            },
+            "definition": {
+              "text": "string",
+              "language": "string"
+            },
+            "validatedNamespaceVersion": 1
+          }
+        }
+      ]
+  GetFlowTemplateRevisions:
+    description: |-
+      Gets revisions of the specified workflow. Only the last 100 revisions are stored. If the workflow has been deprecated, this action will return revisions that occurred before the deprecation. This action won't work for workflows that have been deleted.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_GetFlowTemplateRevisions.html
+    example:
+      inputs: [
+        {
+          "id": "string",
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "summaries": [
+            {
+              "id": "string",
+              "arn": "string",
+              "createdAt": 1481289211.615,
+              "revisionNumber": 1
+            }
+          ]
+        }
+      ]
+  GetNamespaceDeletionStatus:
+    description: |-
+      Gets the status of a namespace deletion task.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_GetNamespaceDeletionStatus.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "status": "string",
+          "errorCode": "string",
+          "errorMessage": "string",
+          "namespaceArn": "string",
+          "namespaceName": "string"
+        }
+      ]
+  GetSystemInstance:
+    description: |-
+      Gets a system instance.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_GetSystemInstance.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "description": {
+            "summary": {
+              "id": "string",
+              "arn": "string",
+              "status": "string",
+              "target": "string",
+              "createdAt": 1481289211.615,
+              "updatedAt": 1481289211.615,
+              "greengrassGroupId": "string",
+              "greengrassGroupName": "string",
+              "greengrassGroupVersionId": "string"
+            },
+            "definition": {
+              "text": "string",
+              "language": "string"
+            },
+            "s3BucketName": "string",
+            "flowActionsRoleArn": "string",
+            "metricsConfiguration": {
+              "metricRuleRoleArn": "string",
+              "cloudMetricEnabled": false
+            },
+            "validatedNamespaceVersion": 1,
+            "validatedDependencyRevisions": [
+              {
+                "id": "string",
+                "revisionNumber": 1
+              }
+            ]
+          }
+        }
+      ]
+  GetSystemTemplate:
+    description: |-
+      Gets a system.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_GetSystemTemplate.html
+    example:
+      inputs: [
+        {
+          "id": "string",
+          "revisionNumber": 1
+        }
+      ]
+      outputs: [
+        {
+          "description": {
+            "summary": {
+              "id": "string",
+              "arn": "string",
+              "createdAt": 1481289211.615,
+              "revisionNumber": 1
+            },
+            "definition": {
+              "text": "string",
+              "language": "string"
+            },
+            "validatedNamespaceVersion": 1
+          }
+        }
+      ]
+  GetSystemTemplateRevisions:
+    description: |-
+      Gets revisions made to the specified system template. Only the previous 100 revisions are stored. If the system has been deprecated, this action will return the revisions that occurred before its deprecation. This action won't work with systems that have been deleted.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_GetSystemTemplateRevisions.html
+    example:
+      inputs: [
+        {
+          "id": "string",
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "summaries": [
+            {
+              "id": "string",
+              "arn": "string",
+              "createdAt": 1481289211.615,
+              "revisionNumber": 1
+            }
+          ]
+        }
+      ]
+  GetUploadStatus:
+    description: |-
+      Gets the status of the specified upload.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_GetUploadStatus.html
+    example:
+      inputs: [
+        {
+          "uploadId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "uploadId": "string",
+          "createdDate": 1481289211.615,
+          "namespaceArn": "string",
+          "uploadStatus": "string",
+          "failureReason": [
+            "string"
+          ],
+          "namespaceName": "string",
+          "namespaceVersion": 1
+        }
+      ]
+  ListFlowExecutionMessages:
+    description: |-
+      Returns a list of objects that contain information about events in a flow execution.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_ListFlowExecutionMessages.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "flowExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "messages": [
+            {
+              "payload": "string",
+              "eventType": "string",
+              "messageId": "string",
+              "timestamp": 1481289211.615
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists all tags on an AWS IoT Things Graph resource.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  SearchEntities:
+    description: |-
+      Searches for entities of the specified type. You can search for entities in your namespace and the public namespace that you're tracking.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_SearchEntities.html
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "name": "string",
+              "value": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "maxResults": 1,
+          "entityTypes": [
+            "string"
+          ],
+          "namespaceVersion": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "descriptions": [
+            {
+              "id": "string",
+              "arn": "string",
+              "type": "string",
+              "createdAt": 1481289211.615,
+              "definition": {
+                "text": "string",
+                "language": "string"
+              }
+            }
+          ]
+        }
+      ]
+  SearchFlowExecutions:
+    description: |-
+      Searches for AWS IoT Things Graph workflow execution instances.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_SearchFlowExecutions.html
+    example:
+      inputs: [
+        {
+          "endTime": 1481289211.615,
+          "nextToken": "string",
+          "startTime": 1481289211.615,
+          "maxResults": 1,
+          "flowExecutionId": "string",
+          "systemInstanceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "summaries": [
+            {
+              "status": "string",
+              "createdAt": 1481289211.615,
+              "updatedAt": 1481289211.615,
+              "flowTemplateId": "string",
+              "flowExecutionId": "string",
+              "systemInstanceId": "string"
+            }
+          ]
+        }
+      ]
+  SearchFlowTemplates:
+    description: |-
+      Searches for summary information about workflows.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_SearchFlowTemplates.html
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "name": "string",
+              "value": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "summaries": [
+            {
+              "id": "string",
+              "arn": "string",
+              "createdAt": 1481289211.615,
+              "revisionNumber": 1
+            }
+          ]
+        }
+      ]
+  SearchSystemInstances:
+    description: |-
+      Searches for system instances in the user's account.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_SearchSystemInstances.html
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "name": "string",
+              "value": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "summaries": [
+            {
+              "id": "string",
+              "arn": "string",
+              "status": "string",
+              "target": "string",
+              "createdAt": 1481289211.615,
+              "updatedAt": 1481289211.615,
+              "greengrassGroupId": "string",
+              "greengrassGroupName": "string",
+              "greengrassGroupVersionId": "string"
+            }
+          ]
+        }
+      ]
+  SearchSystemTemplates:
+    description: |-
+      Searches for summary information about systems in the user's account. You can filter by the ID of a workflow to return only systems that use the specified workflow.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_SearchSystemTemplates.html
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "name": "string",
+              "value": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "summaries": [
+            {
+              "id": "string",
+              "arn": "string",
+              "createdAt": 1481289211.615,
+              "revisionNumber": 1
+            }
+          ]
+        }
+      ]
+  SearchThings:
+    description: |-
+      Searches for things associated with the specified entity. You can search by both device and device model.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_SearchThings.html
+    example:
+      inputs: [
+        {
+          "entityId": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "namespaceVersion": 1
+        }
+      ]
+      outputs: [
+        {
+          "things": [
+            {
+              "thingArn": "string",
+              "thingName": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Creates a tag for the specified resource.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UndeploySystemInstance:
+    description: |-
+      Removes a system instance from its target (Cloud or Greengrass).
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_UndeploySystemInstance.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "summary": {
+            "id": "string",
+            "arn": "string",
+            "status": "string",
+            "target": "string",
+            "createdAt": 1481289211.615,
+            "updatedAt": 1481289211.615,
+            "greengrassGroupId": "string",
+            "greengrassGroupName": "string",
+            "greengrassGroupVersionId": "string"
+          }
+        }
+      ]
+  UntagResource:
+    description: |-
+      Removes a tag from the specified resource.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateFlowTemplate:
+    description: |-
+      Updates the specified workflow. All deployed systems and system instances that use the workflow will see the changes in the flow when it is redeployed. If you don't want this behavior, copy the workflow (creating a new workflow with a different ID), and update the copy. The workflow can contain only entities in the specified namespace.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_UpdateFlowTemplate.html
+    example:
+      inputs: [
+        {
+          "id": "string",
+          "definition": {
+            "text": "string",
+            "language": "string"
+          },
+          "compatibleNamespaceVersion": 1
+        }
+      ]
+      outputs: [
+        {
+          "summary": {
+            "id": "string",
+            "arn": "string",
+            "createdAt": 1481289211.615,
+            "revisionNumber": 1
+          }
+        }
+      ]
+  UpdateSystemTemplate:
+    description: |-
+      Updates the specified system. You don't need to run this action after updating a workflow. Any deployment that uses the system will see the changes in the system when it is redeployed.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_UpdateSystemTemplate.html
+    example:
+      inputs: [
+        {
+          "id": "string",
+          "definition": {
+            "text": "string",
+            "language": "string"
+          },
+          "compatibleNamespaceVersion": 1
+        }
+      ]
+      outputs: [
+        {
+          "summary": {
+            "id": "string",
+            "arn": "string",
+            "createdAt": 1481289211.615,
+            "revisionNumber": 1
+          }
+        }
+      ]
+  UploadEntityDefinitions:
+    description: |-
+      Asynchronously uploads one or more entity definitions to the user's namespace. The document parameter is required if syncWithPublicNamespace and deleteExistingEntites are false. If the syncWithPublicNamespace parameter is set to true, the user's namespace will synchronize with the latest version of the public namespace. If deprecateExistingEntities is set to true, all entities in the latest version will be deleted before the new DefinitionDocument is uploaded.
+    versions:
+      from: 2018.9.6
+    link: https://docs.aws.amazon.com/thingsgraph/latest/APIReference/API_UploadEntityDefinitions.html
+    example:
+      inputs: [
+        {
+          "document": {
+            "text": "string",
+            "language": "string"
+          },
+          "syncWithPublicNamespace": false,
+          "deprecateExistingEntities": false
+        }
+      ]
+      outputs: [
+        {}
+      ]

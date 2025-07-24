@@ -1,0 +1,1534 @@
+Product:
+  name: AWS Elemental MediaConnect
+  versions: [2018.11.14]
+  package: amazon.aws.elementalmediaconnect
+  description: |-
+    AWS Elemental MediaConnect
+  link: https://docs.aws.amazon.com/mediaconnect/latest/api/what-is-mediaconnect.html
+  contentType: json
+Operations:
+  ListTagsForResource:
+    description: |-
+      Lists all tags associated with the resource.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/tags-resourcearn.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  TagResource:
+    description: |-
+      Associates the specified tags to a resource. If the request does not mention an existing tag associated with the resource, that tag is not changed.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/tags-resourcearn.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Deletes the specified tags from a resource.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/tags-resourcearn.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListEntitlements:
+    description: |-
+      Displays a list of all entitlements that have been granted to the account. This request returns 20 results per page.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-entitlements.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Entitlements": [
+            {
+              "EntitlementArn": "string",
+              "EntitlementName": "string",
+              "DataTransferSubscriberFeePercent": 1
+            }
+          ]
+        }
+      ]
+  RevokeFlowEntitlement:
+    description: |-
+      Revokes an entitlement from a flow. When you revoke an entitlement is revoked, the content becomes unavailable to the subscriber and MediaConnect removes the associated output.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows-flowarn-entitlements-entitlementarn.html
+    example:
+      inputs: [
+        {
+          "FlowArn": "string",
+          "EntitlementArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateFlowEntitlement:
+    description: |-
+      Changes an entitlement on a flow. You can change an entitlement's description, subscriber account ID, and encryption. If you change the subscriber account ID, the service will remove the output that was generated when the original subscriber set up their flow.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows-flowarn-entitlements-entitlementarn.html
+    example:
+      inputs: [
+        {
+          "FlowArn": "string",
+          "Encryption": {
+            "Url": "string",
+            "Region": "string",
+            "KeyType": "string",
+            "RoleArn": "string",
+            "DeviceId": "string",
+            "Algorithm": "string",
+            "SecretArn": "string",
+            "ResourceId": "string",
+            "ConstantInitializationVector": "string"
+          },
+          "Description": "string",
+          "Subscribers": [
+            "string"
+          ],
+          "EntitlementArn": "string",
+          "EntitlementStatus": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FlowArn": "string",
+          "Entitlement": {
+            "Name": "string",
+            "Encryption": {
+              "Url": "string",
+              "Region": "string",
+              "KeyType": "string",
+              "RoleArn": "string",
+              "DeviceId": "string",
+              "Algorithm": "string",
+              "SecretArn": "string",
+              "ResourceId": "string",
+              "ConstantInitializationVector": "string"
+            },
+            "Description": "string",
+            "Subscribers": [
+              "string"
+            ],
+            "EntitlementArn": "string",
+            "EntitlementStatus": "string",
+            "DataTransferSubscriberFeePercent": 1
+          }
+        }
+      ]
+  GrantFlowEntitlements:
+    description: |-
+      Grants entitlements to an existing flow.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows-flowarn-entitlements.html
+    example:
+      inputs: [
+        {
+          "FlowArn": "string",
+          "Entitlements": [
+            {
+              "Name": "string",
+              "Encryption": {
+                "Url": "string",
+                "Region": "string",
+                "KeyType": "string",
+                "RoleArn": "string",
+                "DeviceId": "string",
+                "Algorithm": "string",
+                "SecretArn": "string",
+                "ResourceId": "string",
+                "ConstantInitializationVector": "string"
+              },
+              "Description": "string",
+              "Subscribers": [
+                "string"
+              ],
+              "EntitlementStatus": "string",
+              "DataTransferSubscriberFeePercent": 1
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "FlowArn": "string",
+          "Entitlements": [
+            {
+              "Name": "string",
+              "Encryption": {
+                "Url": "string",
+                "Region": "string",
+                "KeyType": "string",
+                "RoleArn": "string",
+                "DeviceId": "string",
+                "Algorithm": "string",
+                "SecretArn": "string",
+                "ResourceId": "string",
+                "ConstantInitializationVector": "string"
+              },
+              "Description": "string",
+              "Subscribers": [
+                "string"
+              ],
+              "EntitlementArn": "string",
+              "EntitlementStatus": "string",
+              "DataTransferSubscriberFeePercent": 1
+            }
+          ]
+        }
+      ]
+  DeleteFlow:
+    description: |-
+      Deletes a flow. Before you can delete a flow, you must stop the flow.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows-flowarn.html
+    example:
+      inputs: [
+        {
+          "FlowArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "FlowArn": "string"
+        }
+      ]
+  DescribeFlow:
+    description: |-
+      Displays the details of a flow. The response includes the flow ARN, name, and Availability Zone, as well as details about the source, outputs, and entitlements.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows-flowarn.html
+    example:
+      inputs: [
+        {
+          "FlowArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Flow": {
+            "Name": "string",
+            "Source": {
+              "Name": "string",
+              "IngestIp": "string",
+              "SourceArn": "string",
+              "Transport": {
+                "Protocol": "string",
+                "RemoteId": "string",
+                "StreamId": "string",
+                "MaxBitrate": 1,
+                "MaxLatency": 1,
+                "MinLatency": 1,
+                "CidrAllowList": [
+                  "string"
+                ],
+                "SmoothingLatency": 1
+              },
+              "Decryption": {
+                "Url": "string",
+                "Region": "string",
+                "KeyType": "string",
+                "RoleArn": "string",
+                "DeviceId": "string",
+                "Algorithm": "string",
+                "SecretArn": "string",
+                "ResourceId": "string",
+                "ConstantInitializationVector": "string"
+              },
+              "IngestPort": 1,
+              "Description": "string",
+              "WhitelistCidr": "string",
+              "EntitlementArn": "string",
+              "VpcInterfaceName": "string",
+              "DataTransferSubscriberFeePercent": 1
+            },
+            "Status": "string",
+            "FlowArn": "string",
+            "Outputs": [
+              {
+                "Name": "string",
+                "Port": 1,
+                "OutputArn": "string",
+                "Transport": {
+                  "Protocol": "string",
+                  "RemoteId": "string",
+                  "StreamId": "string",
+                  "MaxBitrate": 1,
+                  "MaxLatency": 1,
+                  "MinLatency": 1,
+                  "CidrAllowList": [
+                    "string"
+                  ],
+                  "SmoothingLatency": 1
+                },
+                "Encryption": {
+                  "Url": "string",
+                  "Region": "string",
+                  "KeyType": "string",
+                  "RoleArn": "string",
+                  "DeviceId": "string",
+                  "Algorithm": "string",
+                  "SecretArn": "string",
+                  "ResourceId": "string",
+                  "ConstantInitializationVector": "string"
+                },
+                "Description": "string",
+                "Destination": "string",
+                "EntitlementArn": "string",
+                "ListenerAddress": "string",
+                "MediaLiveInputArn": "string",
+                "VpcInterfaceAttachment": {
+                  "VpcInterfaceName": "string"
+                },
+                "DataTransferSubscriberFeePercent": 1
+              }
+            ],
+            "Sources": [
+              {
+                "Name": "string",
+                "IngestIp": "string",
+                "SourceArn": "string",
+                "Transport": {
+                  "Protocol": "string",
+                  "RemoteId": "string",
+                  "StreamId": "string",
+                  "MaxBitrate": 1,
+                  "MaxLatency": 1,
+                  "MinLatency": 1,
+                  "CidrAllowList": [
+                    "string"
+                  ],
+                  "SmoothingLatency": 1
+                },
+                "Decryption": {
+                  "Url": "string",
+                  "Region": "string",
+                  "KeyType": "string",
+                  "RoleArn": "string",
+                  "DeviceId": "string",
+                  "Algorithm": "string",
+                  "SecretArn": "string",
+                  "ResourceId": "string",
+                  "ConstantInitializationVector": "string"
+                },
+                "IngestPort": 1,
+                "Description": "string",
+                "WhitelistCidr": "string",
+                "EntitlementArn": "string",
+                "VpcInterfaceName": "string",
+                "DataTransferSubscriberFeePercent": 1
+              }
+            ],
+            "EgressIp": "string",
+            "Description": "string",
+            "Entitlements": [
+              {
+                "Name": "string",
+                "Encryption": {
+                  "Url": "string",
+                  "Region": "string",
+                  "KeyType": "string",
+                  "RoleArn": "string",
+                  "DeviceId": "string",
+                  "Algorithm": "string",
+                  "SecretArn": "string",
+                  "ResourceId": "string",
+                  "ConstantInitializationVector": "string"
+                },
+                "Description": "string",
+                "Subscribers": [
+                  "string"
+                ],
+                "EntitlementArn": "string",
+                "EntitlementStatus": "string",
+                "DataTransferSubscriberFeePercent": 1
+              }
+            ],
+            "VpcInterfaces": [
+              {
+                "Name": "string",
+                "RoleArn": "string",
+                "SubnetId": "string",
+                "SecurityGroupIds": [
+                  "string"
+                ],
+                "NetworkInterfaceIds": [
+                  "string"
+                ]
+              }
+            ],
+            "AvailabilityZone": "string",
+            "SourceFailoverConfig": {
+              "State": "string",
+              "RecoveryWindow": 1
+            }
+          },
+          "Messages": {
+            "Errors": [
+              "string"
+            ]
+          }
+        }
+      ]
+  UpdateFlow:
+    description: |-
+      Updates the properties of the flow, including the source failover configuration.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows-flowarn.html
+    example:
+      inputs: [
+        {
+          "FlowArn": "string",
+          "SourceFailoverConfig": {
+            "State": "string",
+            "RecoveryWindow": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Flow": {
+            "Name": "string",
+            "Source": {
+              "Name": "string",
+              "IngestIp": "string",
+              "SourceArn": "string",
+              "Transport": {
+                "Protocol": "string",
+                "RemoteId": "string",
+                "StreamId": "string",
+                "MaxBitrate": 1,
+                "MaxLatency": 1,
+                "MinLatency": 1,
+                "CidrAllowList": [
+                  "string"
+                ],
+                "SmoothingLatency": 1
+              },
+              "Decryption": {
+                "Url": "string",
+                "Region": "string",
+                "KeyType": "string",
+                "RoleArn": "string",
+                "DeviceId": "string",
+                "Algorithm": "string",
+                "SecretArn": "string",
+                "ResourceId": "string",
+                "ConstantInitializationVector": "string"
+              },
+              "IngestPort": 1,
+              "Description": "string",
+              "WhitelistCidr": "string",
+              "EntitlementArn": "string",
+              "VpcInterfaceName": "string",
+              "DataTransferSubscriberFeePercent": 1
+            },
+            "Status": "string",
+            "FlowArn": "string",
+            "Outputs": [
+              {
+                "Name": "string",
+                "Port": 1,
+                "OutputArn": "string",
+                "Transport": {
+                  "Protocol": "string",
+                  "RemoteId": "string",
+                  "StreamId": "string",
+                  "MaxBitrate": 1,
+                  "MaxLatency": 1,
+                  "MinLatency": 1,
+                  "CidrAllowList": [
+                    "string"
+                  ],
+                  "SmoothingLatency": 1
+                },
+                "Encryption": {
+                  "Url": "string",
+                  "Region": "string",
+                  "KeyType": "string",
+                  "RoleArn": "string",
+                  "DeviceId": "string",
+                  "Algorithm": "string",
+                  "SecretArn": "string",
+                  "ResourceId": "string",
+                  "ConstantInitializationVector": "string"
+                },
+                "Description": "string",
+                "Destination": "string",
+                "EntitlementArn": "string",
+                "ListenerAddress": "string",
+                "MediaLiveInputArn": "string",
+                "VpcInterfaceAttachment": {
+                  "VpcInterfaceName": "string"
+                },
+                "DataTransferSubscriberFeePercent": 1
+              }
+            ],
+            "Sources": [
+              {
+                "Name": "string",
+                "IngestIp": "string",
+                "SourceArn": "string",
+                "Transport": {
+                  "Protocol": "string",
+                  "RemoteId": "string",
+                  "StreamId": "string",
+                  "MaxBitrate": 1,
+                  "MaxLatency": 1,
+                  "MinLatency": 1,
+                  "CidrAllowList": [
+                    "string"
+                  ],
+                  "SmoothingLatency": 1
+                },
+                "Decryption": {
+                  "Url": "string",
+                  "Region": "string",
+                  "KeyType": "string",
+                  "RoleArn": "string",
+                  "DeviceId": "string",
+                  "Algorithm": "string",
+                  "SecretArn": "string",
+                  "ResourceId": "string",
+                  "ConstantInitializationVector": "string"
+                },
+                "IngestPort": 1,
+                "Description": "string",
+                "WhitelistCidr": "string",
+                "EntitlementArn": "string",
+                "VpcInterfaceName": "string",
+                "DataTransferSubscriberFeePercent": 1
+              }
+            ],
+            "EgressIp": "string",
+            "Description": "string",
+            "Entitlements": [
+              {
+                "Name": "string",
+                "Encryption": {
+                  "Url": "string",
+                  "Region": "string",
+                  "KeyType": "string",
+                  "RoleArn": "string",
+                  "DeviceId": "string",
+                  "Algorithm": "string",
+                  "SecretArn": "string",
+                  "ResourceId": "string",
+                  "ConstantInitializationVector": "string"
+                },
+                "Description": "string",
+                "Subscribers": [
+                  "string"
+                ],
+                "EntitlementArn": "string",
+                "EntitlementStatus": "string",
+                "DataTransferSubscriberFeePercent": 1
+              }
+            ],
+            "VpcInterfaces": [
+              {
+                "Name": "string",
+                "RoleArn": "string",
+                "SubnetId": "string",
+                "SecurityGroupIds": [
+                  "string"
+                ],
+                "NetworkInterfaceIds": [
+                  "string"
+                ]
+              }
+            ],
+            "AvailabilityZone": "string",
+            "SourceFailoverConfig": {
+              "State": "string",
+              "RecoveryWindow": 1
+            }
+          }
+        }
+      ]
+  AddFlowOutputs:
+    description: |-
+      Adds outputs to an existing flow. You can create up to 50 outputs per flow.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows-flowarn-outputs.html
+    example:
+      inputs: [
+        {
+          "FlowArn": "string",
+          "Outputs": [
+            {
+              "Name": "string",
+              "Port": 1,
+              "Protocol": "string",
+              "RemoteId": "string",
+              "StreamId": "string",
+              "Encryption": {
+                "Url": "string",
+                "Region": "string",
+                "KeyType": "string",
+                "RoleArn": "string",
+                "DeviceId": "string",
+                "Algorithm": "string",
+                "SecretArn": "string",
+                "ResourceId": "string",
+                "ConstantInitializationVector": "string"
+              },
+              "MaxLatency": 1,
+              "MinLatency": 1,
+              "Description": "string",
+              "Destination": "string",
+              "CidrAllowList": [
+                "string"
+              ],
+              "SmoothingLatency": 1,
+              "VpcInterfaceAttachment": {
+                "VpcInterfaceName": "string"
+              }
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "FlowArn": "string",
+          "Outputs": [
+            {
+              "Name": "string",
+              "Port": 1,
+              "OutputArn": "string",
+              "Transport": {
+                "Protocol": "string",
+                "RemoteId": "string",
+                "StreamId": "string",
+                "MaxBitrate": 1,
+                "MaxLatency": 1,
+                "MinLatency": 1,
+                "CidrAllowList": [
+                  "string"
+                ],
+                "SmoothingLatency": 1
+              },
+              "Encryption": {
+                "Url": "string",
+                "Region": "string",
+                "KeyType": "string",
+                "RoleArn": "string",
+                "DeviceId": "string",
+                "Algorithm": "string",
+                "SecretArn": "string",
+                "ResourceId": "string",
+                "ConstantInitializationVector": "string"
+              },
+              "Description": "string",
+              "Destination": "string",
+              "EntitlementArn": "string",
+              "ListenerAddress": "string",
+              "MediaLiveInputArn": "string",
+              "VpcInterfaceAttachment": {
+                "VpcInterfaceName": "string"
+              },
+              "DataTransferSubscriberFeePercent": 1
+            }
+          ]
+        }
+      ]
+  RemoveFlowOutput:
+    description: |-
+      Removes an output from an existing flow. This request can be made only on an output that does not have an entitlement associated with it. If the output has an entitlement, you must revoke the entitlement instead. When an entitlement is revoked from a flow, the service automatically removes the associated output.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows-flowarn-outputs-outputarn.html
+    example:
+      inputs: [
+        {
+          "FlowArn": "string",
+          "OutputArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateFlowOutput:
+    description: |-
+      Updates an existing flow output.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows-flowarn-outputs-outputarn.html
+    example:
+      inputs: [
+        {
+          "Port": 1,
+          "FlowArn": "string",
+          "Protocol": "string",
+          "RemoteId": "string",
+          "StreamId": "string",
+          "OutputArn": "string",
+          "Encryption": {
+            "Url": "string",
+            "Region": "string",
+            "KeyType": "string",
+            "RoleArn": "string",
+            "DeviceId": "string",
+            "Algorithm": "string",
+            "SecretArn": "string",
+            "ResourceId": "string",
+            "ConstantInitializationVector": "string"
+          },
+          "MaxLatency": 1,
+          "MinLatency": 1,
+          "Description": "string",
+          "Destination": "string",
+          "CidrAllowList": [
+            "string"
+          ],
+          "SmoothingLatency": 1,
+          "VpcInterfaceAttachment": {
+            "VpcInterfaceName": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Output": {
+            "Name": "string",
+            "Port": 1,
+            "OutputArn": "string",
+            "Transport": {
+              "Protocol": "string",
+              "RemoteId": "string",
+              "StreamId": "string",
+              "MaxBitrate": 1,
+              "MaxLatency": 1,
+              "MinLatency": 1,
+              "CidrAllowList": [
+                "string"
+              ],
+              "SmoothingLatency": 1
+            },
+            "Encryption": {
+              "Url": "string",
+              "Region": "string",
+              "KeyType": "string",
+              "RoleArn": "string",
+              "DeviceId": "string",
+              "Algorithm": "string",
+              "SecretArn": "string",
+              "ResourceId": "string",
+              "ConstantInitializationVector": "string"
+            },
+            "Description": "string",
+            "Destination": "string",
+            "EntitlementArn": "string",
+            "ListenerAddress": "string",
+            "MediaLiveInputArn": "string",
+            "VpcInterfaceAttachment": {
+              "VpcInterfaceName": "string"
+            },
+            "DataTransferSubscriberFeePercent": 1
+          },
+          "FlowArn": "string"
+        }
+      ]
+  AddFlowSources:
+    description: |-
+      Adds sources to an existing flow. You can add up to one additional source, for a total of two, to each flow. You must enable source failover on the flow before you can add a second source.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows-flowarn-source.html
+    example:
+      inputs: [
+        {
+          "FlowArn": "string",
+          "Sources": [
+            {
+              "Name": "string",
+              "Protocol": "string",
+              "StreamId": "string",
+              "Decryption": {
+                "Url": "string",
+                "Region": "string",
+                "KeyType": "string",
+                "RoleArn": "string",
+                "DeviceId": "string",
+                "Algorithm": "string",
+                "SecretArn": "string",
+                "ResourceId": "string",
+                "ConstantInitializationVector": "string"
+              },
+              "IngestPort": 1,
+              "MaxBitrate": 1,
+              "MaxLatency": 1,
+              "MinLatency": 1,
+              "Description": "string",
+              "WhitelistCidr": "string",
+              "EntitlementArn": "string",
+              "VpcInterfaceName": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "FlowArn": "string",
+          "Sources": [
+            {
+              "Name": "string",
+              "IngestIp": "string",
+              "SourceArn": "string",
+              "Transport": {
+                "Protocol": "string",
+                "RemoteId": "string",
+                "StreamId": "string",
+                "MaxBitrate": 1,
+                "MaxLatency": 1,
+                "MinLatency": 1,
+                "CidrAllowList": [
+                  "string"
+                ],
+                "SmoothingLatency": 1
+              },
+              "Decryption": {
+                "Url": "string",
+                "Region": "string",
+                "KeyType": "string",
+                "RoleArn": "string",
+                "DeviceId": "string",
+                "Algorithm": "string",
+                "SecretArn": "string",
+                "ResourceId": "string",
+                "ConstantInitializationVector": "string"
+              },
+              "IngestPort": 1,
+              "Description": "string",
+              "WhitelistCidr": "string",
+              "EntitlementArn": "string",
+              "VpcInterfaceName": "string",
+              "DataTransferSubscriberFeePercent": 1
+            }
+          ]
+        }
+      ]
+  RemoveFlowSource:
+    description: |-
+      Removes a source from a flow. Because a flow must have at least one source at all times, you can remove a source only from a flow that has two sources.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows-flowarn-source-sourcearn.html
+    example:
+      inputs: [
+        {
+          "FlowArn": "string",
+          "SourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateFlowSource:
+    description: |-
+      Updates the source of a flow.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows-flowarn-source-sourcearn.html
+    example:
+      inputs: [
+        {
+          "FlowArn": "string",
+          "Protocol": "string",
+          "StreamId": "string",
+          "SourceArn": "string",
+          "Decryption": {
+            "Url": "string",
+            "Region": "string",
+            "KeyType": "string",
+            "RoleArn": "string",
+            "DeviceId": "string",
+            "Algorithm": "string",
+            "SecretArn": "string",
+            "ResourceId": "string",
+            "ConstantInitializationVector": "string"
+          },
+          "IngestPort": 1,
+          "MaxBitrate": 1,
+          "MaxLatency": 1,
+          "MinLatency": 1,
+          "Description": "string",
+          "WhitelistCidr": "string",
+          "EntitlementArn": "string",
+          "VpcInterfaceName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Source": {
+            "Name": "string",
+            "IngestIp": "string",
+            "SourceArn": "string",
+            "Transport": {
+              "Protocol": "string",
+              "RemoteId": "string",
+              "StreamId": "string",
+              "MaxBitrate": 1,
+              "MaxLatency": 1,
+              "MinLatency": 1,
+              "CidrAllowList": [
+                "string"
+              ],
+              "SmoothingLatency": 1
+            },
+            "Decryption": {
+              "Url": "string",
+              "Region": "string",
+              "KeyType": "string",
+              "RoleArn": "string",
+              "DeviceId": "string",
+              "Algorithm": "string",
+              "SecretArn": "string",
+              "ResourceId": "string",
+              "ConstantInitializationVector": "string"
+            },
+            "IngestPort": 1,
+            "Description": "string",
+            "WhitelistCidr": "string",
+            "EntitlementArn": "string",
+            "VpcInterfaceName": "string",
+            "DataTransferSubscriberFeePercent": 1
+          },
+          "FlowArn": "string"
+        }
+      ]
+  AddFlowVpcInterfaces:
+    description: |-
+      Adds VPC interfaces to a flow.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows-flowarn-vpcinterfaces.html
+    example:
+      inputs: [
+        {
+          "FlowArn": "string",
+          "VpcInterfaces": [
+            {
+              "Name": "string",
+              "RoleArn": "string",
+              "SubnetId": "string",
+              "SecurityGroupIds": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "FlowArn": "string",
+          "VpcInterfaces": [
+            {
+              "Name": "string",
+              "RoleArn": "string",
+              "SubnetId": "string",
+              "SecurityGroupIds": [
+                "string"
+              ],
+              "NetworkInterfaceIds": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  RemoveFlowVpcInterface:
+    description: |-
+      Removes a VPC interface from a flow. You can only remove a VPC interface if it isn't doesn't have a source or output associated with it.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows-flowarn-vpcinterfaces-vpcinterfacename.html
+    example:
+      inputs: [
+        {
+          "FlowArn": "string",
+          "VpcInterfaceName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FlowArn": "string",
+          "VpcInterfaceName": "string",
+          "NonDeletedNetworkInterfaceIds": [
+            "string"
+          ]
+        }
+      ]
+  CreateFlow:
+    description: |-
+      Creates a new flow. The request must include one source. The request optionally can include outputs (up to 50) and entitlements (up to 50).
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Source": {
+            "Name": "string",
+            "Protocol": "string",
+            "StreamId": "string",
+            "Decryption": {
+              "Url": "string",
+              "Region": "string",
+              "KeyType": "string",
+              "RoleArn": "string",
+              "DeviceId": "string",
+              "Algorithm": "string",
+              "SecretArn": "string",
+              "ResourceId": "string",
+              "ConstantInitializationVector": "string"
+            },
+            "IngestPort": 1,
+            "MaxBitrate": 1,
+            "MaxLatency": 1,
+            "MinLatency": 1,
+            "Description": "string",
+            "WhitelistCidr": "string",
+            "EntitlementArn": "string",
+            "VpcInterfaceName": "string"
+          },
+          "Outputs": [
+            {
+              "Name": "string",
+              "Port": 1,
+              "Protocol": "string",
+              "RemoteId": "string",
+              "StreamId": "string",
+              "Encryption": {
+                "Url": "string",
+                "Region": "string",
+                "KeyType": "string",
+                "RoleArn": "string",
+                "DeviceId": "string",
+                "Algorithm": "string",
+                "SecretArn": "string",
+                "ResourceId": "string",
+                "ConstantInitializationVector": "string"
+              },
+              "MaxLatency": 1,
+              "MinLatency": 1,
+              "Description": "string",
+              "Destination": "string",
+              "CidrAllowList": [
+                "string"
+              ],
+              "SmoothingLatency": 1,
+              "VpcInterfaceAttachment": {
+                "VpcInterfaceName": "string"
+              }
+            }
+          ],
+          "Sources": [
+            {
+              "Name": "string",
+              "Protocol": "string",
+              "StreamId": "string",
+              "Decryption": {
+                "Url": "string",
+                "Region": "string",
+                "KeyType": "string",
+                "RoleArn": "string",
+                "DeviceId": "string",
+                "Algorithm": "string",
+                "SecretArn": "string",
+                "ResourceId": "string",
+                "ConstantInitializationVector": "string"
+              },
+              "IngestPort": 1,
+              "MaxBitrate": 1,
+              "MaxLatency": 1,
+              "MinLatency": 1,
+              "Description": "string",
+              "WhitelistCidr": "string",
+              "EntitlementArn": "string",
+              "VpcInterfaceName": "string"
+            }
+          ],
+          "Entitlements": [
+            {
+              "Name": "string",
+              "Encryption": {
+                "Url": "string",
+                "Region": "string",
+                "KeyType": "string",
+                "RoleArn": "string",
+                "DeviceId": "string",
+                "Algorithm": "string",
+                "SecretArn": "string",
+                "ResourceId": "string",
+                "ConstantInitializationVector": "string"
+              },
+              "Description": "string",
+              "Subscribers": [
+                "string"
+              ],
+              "EntitlementStatus": "string",
+              "DataTransferSubscriberFeePercent": 1
+            }
+          ],
+          "VpcInterfaces": [
+            {
+              "Name": "string",
+              "RoleArn": "string",
+              "SubnetId": "string",
+              "SecurityGroupIds": [
+                "string"
+              ]
+            }
+          ],
+          "AvailabilityZone": "string",
+          "SourceFailoverConfig": {
+            "State": "string",
+            "RecoveryWindow": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Flow": {
+            "Name": "string",
+            "Source": {
+              "Name": "string",
+              "IngestIp": "string",
+              "SourceArn": "string",
+              "Transport": {
+                "Protocol": "string",
+                "RemoteId": "string",
+                "StreamId": "string",
+                "MaxBitrate": 1,
+                "MaxLatency": 1,
+                "MinLatency": 1,
+                "CidrAllowList": [
+                  "string"
+                ],
+                "SmoothingLatency": 1
+              },
+              "Decryption": {
+                "Url": "string",
+                "Region": "string",
+                "KeyType": "string",
+                "RoleArn": "string",
+                "DeviceId": "string",
+                "Algorithm": "string",
+                "SecretArn": "string",
+                "ResourceId": "string",
+                "ConstantInitializationVector": "string"
+              },
+              "IngestPort": 1,
+              "Description": "string",
+              "WhitelistCidr": "string",
+              "EntitlementArn": "string",
+              "VpcInterfaceName": "string",
+              "DataTransferSubscriberFeePercent": 1
+            },
+            "Status": "string",
+            "FlowArn": "string",
+            "Outputs": [
+              {
+                "Name": "string",
+                "Port": 1,
+                "OutputArn": "string",
+                "Transport": {
+                  "Protocol": "string",
+                  "RemoteId": "string",
+                  "StreamId": "string",
+                  "MaxBitrate": 1,
+                  "MaxLatency": 1,
+                  "MinLatency": 1,
+                  "CidrAllowList": [
+                    "string"
+                  ],
+                  "SmoothingLatency": 1
+                },
+                "Encryption": {
+                  "Url": "string",
+                  "Region": "string",
+                  "KeyType": "string",
+                  "RoleArn": "string",
+                  "DeviceId": "string",
+                  "Algorithm": "string",
+                  "SecretArn": "string",
+                  "ResourceId": "string",
+                  "ConstantInitializationVector": "string"
+                },
+                "Description": "string",
+                "Destination": "string",
+                "EntitlementArn": "string",
+                "ListenerAddress": "string",
+                "MediaLiveInputArn": "string",
+                "VpcInterfaceAttachment": {
+                  "VpcInterfaceName": "string"
+                },
+                "DataTransferSubscriberFeePercent": 1
+              }
+            ],
+            "Sources": [
+              {
+                "Name": "string",
+                "IngestIp": "string",
+                "SourceArn": "string",
+                "Transport": {
+                  "Protocol": "string",
+                  "RemoteId": "string",
+                  "StreamId": "string",
+                  "MaxBitrate": 1,
+                  "MaxLatency": 1,
+                  "MinLatency": 1,
+                  "CidrAllowList": [
+                    "string"
+                  ],
+                  "SmoothingLatency": 1
+                },
+                "Decryption": {
+                  "Url": "string",
+                  "Region": "string",
+                  "KeyType": "string",
+                  "RoleArn": "string",
+                  "DeviceId": "string",
+                  "Algorithm": "string",
+                  "SecretArn": "string",
+                  "ResourceId": "string",
+                  "ConstantInitializationVector": "string"
+                },
+                "IngestPort": 1,
+                "Description": "string",
+                "WhitelistCidr": "string",
+                "EntitlementArn": "string",
+                "VpcInterfaceName": "string",
+                "DataTransferSubscriberFeePercent": 1
+              }
+            ],
+            "EgressIp": "string",
+            "Description": "string",
+            "Entitlements": [
+              {
+                "Name": "string",
+                "Encryption": {
+                  "Url": "string",
+                  "Region": "string",
+                  "KeyType": "string",
+                  "RoleArn": "string",
+                  "DeviceId": "string",
+                  "Algorithm": "string",
+                  "SecretArn": "string",
+                  "ResourceId": "string",
+                  "ConstantInitializationVector": "string"
+                },
+                "Description": "string",
+                "Subscribers": [
+                  "string"
+                ],
+                "EntitlementArn": "string",
+                "EntitlementStatus": "string",
+                "DataTransferSubscriberFeePercent": 1
+              }
+            ],
+            "VpcInterfaces": [
+              {
+                "Name": "string",
+                "RoleArn": "string",
+                "SubnetId": "string",
+                "SecurityGroupIds": [
+                  "string"
+                ],
+                "NetworkInterfaceIds": [
+                  "string"
+                ]
+              }
+            ],
+            "AvailabilityZone": "string",
+            "SourceFailoverConfig": {
+              "State": "string",
+              "RecoveryWindow": 1
+            }
+          }
+        }
+      ]
+  ListFlows:
+    description: |-
+      Displays a list of flows that are associated with the account. This request returns a paginated result.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Flows": [
+            {
+              "Name": "string",
+              "Status": "string",
+              "FlowArn": "string",
+              "SourceType": "string",
+              "Description": "string",
+              "AvailabilityZone": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  StartFlow:
+    description: |-
+      Starts a flow.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows-start-flowarn.html
+    example:
+      inputs: [
+        {
+          "FlowArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "FlowArn": "string"
+        }
+      ]
+  StopFlow:
+    description: |-
+      Stops a flow.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-flows-stop-flowarn.html
+    example:
+      inputs: [
+        {
+          "FlowArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "FlowArn": "string"
+        }
+      ]
+  ListOfferings:
+    description: |-
+      Displays a list of all offerings that are available to this account in the current AWS Region. If you have an active reservation (which means you've purchased an offering that has already started and hasn't expired yet), your account isn't eligible for other offerings.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-offerings.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Offerings": [
+            {
+              "Duration": 1,
+              "PriceUnits": "string",
+              "OfferingArn": "string",
+              "CurrencyCode": "string",
+              "PricePerUnit": "string",
+              "DurationUnits": "string",
+              "OfferingDescription": "string",
+              "ResourceSpecification": {
+                "ResourceType": "string",
+                "ReservedBitrate": 1
+              }
+            }
+          ]
+        }
+      ]
+  DescribeOffering:
+    description: |-
+      Displays the details of an offering. The response includes the offering description, duration, outbound bandwidth, price, and Amazon Resource Name (ARN).
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-offerings-offeringarn.html
+    example:
+      inputs: [
+        {
+          "OfferingArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Offering": {
+            "Duration": 1,
+            "PriceUnits": "string",
+            "OfferingArn": "string",
+            "CurrencyCode": "string",
+            "PricePerUnit": "string",
+            "DurationUnits": "string",
+            "OfferingDescription": "string",
+            "ResourceSpecification": {
+              "ResourceType": "string",
+              "ReservedBitrate": 1
+            }
+          }
+        }
+      ]
+  PurchaseOffering:
+    description: |-
+      Submits a request to purchase an offering. If you already have an active reservation, you can't purchase another offering.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-offerings-offeringarn.html
+    example:
+      inputs: [
+        {
+          "Start": "string",
+          "OfferingArn": "string",
+          "ReservationName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Reservation": {
+            "End": "string",
+            "Start": "string",
+            "Duration": 1,
+            "PriceUnits": "string",
+            "OfferingArn": "string",
+            "CurrencyCode": "string",
+            "PricePerUnit": "string",
+            "DurationUnits": "string",
+            "ReservationArn": "string",
+            "ReservationName": "string",
+            "ReservationState": "string",
+            "OfferingDescription": "string",
+            "ResourceSpecification": {
+              "ResourceType": "string",
+              "ReservedBitrate": 1
+            }
+          }
+        }
+      ]
+  ListReservations:
+    description: |-
+      Displays a list of all reservations that have been purchased by this account in the current AWS Region. This list includes all reservations in all stages (such as active and expired).
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-reservations.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Reservations": [
+            {
+              "End": "string",
+              "Start": "string",
+              "Duration": 1,
+              "PriceUnits": "string",
+              "OfferingArn": "string",
+              "CurrencyCode": "string",
+              "PricePerUnit": "string",
+              "DurationUnits": "string",
+              "ReservationArn": "string",
+              "ReservationName": "string",
+              "ReservationState": "string",
+              "OfferingDescription": "string",
+              "ResourceSpecification": {
+                "ResourceType": "string",
+                "ReservedBitrate": 1
+              }
+            }
+          ]
+        }
+      ]
+  DescribeReservation:
+    description: |-
+      Displays the details of a reservation. The response includes the reservation name, state, start date and time, and the details of the offering that make up the rest of the reservation (such as price, duration, and outbound bandwidth).
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/mediaconnect/latest/api/v1-reservations-reservationarn.html
+    example:
+      inputs: [
+        {
+          "ReservationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Reservation": {
+            "End": "string",
+            "Start": "string",
+            "Duration": 1,
+            "PriceUnits": "string",
+            "OfferingArn": "string",
+            "CurrencyCode": "string",
+            "PricePerUnit": "string",
+            "DurationUnits": "string",
+            "ReservationArn": "string",
+            "ReservationName": "string",
+            "ReservationState": "string",
+            "OfferingDescription": "string",
+            "ResourceSpecification": {
+              "ResourceType": "string",
+              "ReservedBitrate": 1
+            }
+          }
+        }
+      ]

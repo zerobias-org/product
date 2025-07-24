@@ -1,0 +1,1516 @@
+Product:
+  name: AWS Backup
+  versions: [2018.11.15]
+  package: amazon.aws.backup
+  description: |-
+    AWS Backup
+  link: https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html
+  contentType: json
+Operations:
+  CreateBackupPlan:
+    description: |-
+      Creates a backup plan using a backup plan name and backup rules. A backup plan is a document that contains information that AWS Backup uses to schedule tasks that create recovery points for resources.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_CreateBackupPlan.html
+    example:
+      inputs: [
+        {
+          "BackupPlan": {
+            "Rules": [
+              {
+                "RuleName": "string",
+                "Lifecycle": {
+                  "DeleteAfterDays": 1,
+                  "MoveToColdStorageAfterDays": 1
+                },
+                "CopyActions": [
+                  {
+                    "Lifecycle": {
+                      "DeleteAfterDays": 1,
+                      "MoveToColdStorageAfterDays": 1
+                    },
+                    "DestinationBackupVaultArn": "string"
+                  }
+                ],
+                "RecoveryPointTags": {
+                  "string": "string"
+                },
+                "ScheduleExpression": "string",
+                "StartWindowMinutes": 1,
+                "TargetBackupVaultName": "string",
+                "EnableContinuousBackup": false,
+                "CompletionWindowMinutes": 1
+              }
+            ],
+            "BackupPlanName": "string",
+            "AdvancedBackupSettings": [
+              {
+                "ResourceType": "string",
+                "BackupOptions": {
+                  "string": "string"
+                }
+              }
+            ]
+          },
+          "BackupPlanTags": {
+            "string": "string"
+          },
+          "CreatorRequestId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "VersionId": "string",
+          "BackupPlanId": "string",
+          "CreationDate": 1481289211.615,
+          "BackupPlanArn": "string",
+          "AdvancedBackupSettings": [
+            {
+              "ResourceType": "string",
+              "BackupOptions": {
+                "string": "string"
+              }
+            }
+          ]
+        }
+      ]
+  CreateBackupSelection:
+    description: |-
+      Creates a JSON document that specifies a set of resources to assign to a backup plan. Resources can be included by specifying patterns for a ListOfTags and selected Resources.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_CreateBackupSelection.html
+    example:
+      inputs: [
+        {
+          "BackupPlanId": "string",
+          "BackupSelection": {
+            "Resources": [
+              "string"
+            ],
+            "IamRoleArn": "string",
+            "ListOfTags": [
+              {
+                "ConditionKey": "string",
+                "ConditionType": "string",
+                "ConditionValue": "string"
+              }
+            ],
+            "SelectionName": "string"
+          },
+          "CreatorRequestId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "SelectionId": "string",
+          "BackupPlanId": "string",
+          "CreationDate": 1481289211.615
+        }
+      ]
+  CreateBackupVault:
+    description: |-
+      Creates a logical container where backups are stored. A CreateBackupVault request includes a name, optionally one or more resource tags, an encryption key, and a request ID.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_CreateBackupVault.html
+    example:
+      inputs: [
+        {
+          "BackupVaultName": "string",
+          "BackupVaultTags": {
+            "string": "string"
+          },
+          "CreatorRequestId": "string",
+          "EncryptionKeyArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CreationDate": 1481289211.615,
+          "BackupVaultArn": "string",
+          "BackupVaultName": "string"
+        }
+      ]
+  DeleteBackupPlan:
+    description: |-
+      Deletes a backup plan. A backup plan can only be deleted after all associated selections of resources have been deleted. Deleting a backup plan deletes the current version of a backup plan. Previous versions, if any, will still exist.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_DeleteBackupPlan.html
+    example:
+      inputs: [
+        {
+          "BackupPlanId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "VersionId": "string",
+          "BackupPlanId": "string",
+          "DeletionDate": 1481289211.615,
+          "BackupPlanArn": "string"
+        }
+      ]
+  DeleteBackupSelection:
+    description: |-
+      Deletes the resource selection associated with a backup plan that is specified by the SelectionId.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_DeleteBackupSelection.html
+    example:
+      inputs: [
+        {
+          "SelectionId": "string",
+          "BackupPlanId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBackupVaultAccessPolicy:
+    description: |-
+      Deletes the policy document that manages permissions on a backup vault.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_DeleteBackupVaultAccessPolicy.html
+    example:
+      inputs: [
+        {
+          "BackupVaultName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBackupVault:
+    description: |-
+      Deletes the backup vault identified by its name. A vault can be deleted only if it is empty.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_DeleteBackupVault.html
+    example:
+      inputs: [
+        {
+          "BackupVaultName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBackupVaultNotifications:
+    description: |-
+      Deletes event notifications for the specified backup vault.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_DeleteBackupVaultNotifications.html
+    example:
+      inputs: [
+        {
+          "BackupVaultName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteRecoveryPoint:
+    description: |-
+      Deletes the recovery point specified by a recovery point ID.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_DeleteRecoveryPoint.html
+    example:
+      inputs: [
+        {
+          "BackupVaultName": "string",
+          "RecoveryPointArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeBackupJob:
+    description: |-
+      Returns backup job details for the specified BackupJobId.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_DescribeBackupJob.html
+    example:
+      inputs: [
+        {
+          "BackupJobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "State": "string",
+          "StartBy": 1481289211.615,
+          "AccountId": "string",
+          "CreatedBy": {
+            "BackupPlanId": "string",
+            "BackupRuleId": "string",
+            "BackupPlanArn": "string",
+            "BackupPlanVersion": "string"
+          },
+          "BackupType": "string",
+          "IamRoleArn": "string",
+          "BackupJobId": "string",
+          "PercentDone": "string",
+          "ResourceArn": "string",
+          "CreationDate": 1481289211.615,
+          "ResourceType": "string",
+          "BackupOptions": {
+            "string": "string"
+          },
+          "StatusMessage": "string",
+          "BackupVaultArn": "string",
+          "CompletionDate": 1481289211.615,
+          "BackupVaultName": "string",
+          "BytesTransferred": 1,
+          "RecoveryPointArn": "string",
+          "BackupSizeInBytes": 1,
+          "ExpectedCompletionDate": 1481289211.615
+        }
+      ]
+  DescribeBackupVault:
+    description: |-
+      Returns metadata about a backup vault specified by its name.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_DescribeBackupVault.html
+    example:
+      inputs: [
+        {
+          "BackupVaultName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CreationDate": 1481289211.615,
+          "BackupVaultArn": "string",
+          "BackupVaultName": "string",
+          "CreatorRequestId": "string",
+          "EncryptionKeyArn": "string",
+          "NumberOfRecoveryPoints": 1
+        }
+      ]
+  DescribeCopyJob:
+    description: |-
+      Returns metadata associated with creating a copy of a resource.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_DescribeCopyJob.html
+    example:
+      inputs: [
+        {
+          "CopyJobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CopyJob": {
+            "State": "string",
+            "AccountId": "string",
+            "CopyJobId": "string",
+            "CreatedBy": {
+              "BackupPlanId": "string",
+              "BackupRuleId": "string",
+              "BackupPlanArn": "string",
+              "BackupPlanVersion": "string"
+            },
+            "IamRoleArn": "string",
+            "ResourceArn": "string",
+            "CreationDate": 1481289211.615,
+            "ResourceType": "string",
+            "StatusMessage": "string",
+            "CompletionDate": 1481289211.615,
+            "BackupSizeInBytes": 1,
+            "SourceBackupVaultArn": "string",
+            "SourceRecoveryPointArn": "string",
+            "DestinationBackupVaultArn": "string",
+            "DestinationRecoveryPointArn": "string"
+          }
+        }
+      ]
+  DescribeGlobalSettings:
+    description: |-
+      Describes the global settings of the AWS account, including whether it is opted in to cross-account backup.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_DescribeGlobalSettings.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "GlobalSettings": {
+            "string": "string"
+          },
+          "LastUpdateTime": 1481289211.615
+        }
+      ]
+  DescribeProtectedResource:
+    description: |-
+      Returns information about a saved resource, including the last time it was backed up, its Amazon Resource Name (ARN), and the AWS service type of the saved resource.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_DescribeProtectedResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResourceArn": "string",
+          "ResourceType": "string",
+          "LastBackupTime": 1481289211.615
+        }
+      ]
+  DescribeRecoveryPoint:
+    description: |-
+      Returns metadata associated with a recovery point, including ID, status, encryption, and lifecycle.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_DescribeRecoveryPoint.html
+    example:
+      inputs: [
+        {
+          "BackupVaultName": "string",
+          "RecoveryPointArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "CreatedBy": {
+            "BackupPlanId": "string",
+            "BackupRuleId": "string",
+            "BackupPlanArn": "string",
+            "BackupPlanVersion": "string"
+          },
+          "Lifecycle": {
+            "DeleteAfterDays": 1,
+            "MoveToColdStorageAfterDays": 1
+          },
+          "IamRoleArn": "string",
+          "IsEncrypted": false,
+          "ResourceArn": "string",
+          "CreationDate": 1481289211.615,
+          "ResourceType": "string",
+          "StorageClass": "string",
+          "BackupVaultArn": "string",
+          "CompletionDate": 1481289211.615,
+          "BackupVaultName": "string",
+          "LastRestoreTime": 1481289211.615,
+          "EncryptionKeyArn": "string",
+          "RecoveryPointArn": "string",
+          "BackupSizeInBytes": 1,
+          "CalculatedLifecycle": {
+            "DeleteAt": 1481289211.615,
+            "MoveToColdStorageAt": 1481289211.615
+          },
+          "SourceBackupVaultArn": "string"
+        }
+      ]
+  DescribeRegionSettings:
+    description: |-
+      Returns the current service opt-in settings for the Region. If service-opt-in is enabled for a service, AWS Backup tries to protect that service's resources in this Region, when the resource is included in an on-demand backup or scheduled backup plan. Otherwise, AWS Backup does not try to protect that service's resources in this Region, AWS Backup does not try to protect that service's resources in this Region.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_DescribeRegionSettings.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "ResourceTypeOptInPreference": {
+            "string": false
+          }
+        }
+      ]
+  DescribeRestoreJob:
+    description: |-
+      Returns metadata associated with a restore job that is specified by a job ID.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_DescribeRestoreJob.html
+    example:
+      inputs: [
+        {
+          "RestoreJobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "AccountId": "string",
+          "IamRoleArn": "string",
+          "PercentDone": "string",
+          "CreationDate": 1481289211.615,
+          "ResourceType": "string",
+          "RestoreJobId": "string",
+          "StatusMessage": "string",
+          "CompletionDate": 1481289211.615,
+          "RecoveryPointArn": "string",
+          "BackupSizeInBytes": 1,
+          "CreatedResourceArn": "string",
+          "ExpectedCompletionTimeMinutes": 1
+        }
+      ]
+  DisassociateRecoveryPoint:
+    description: |-
+      Deletes the specified continuous backup recovery point from AWS Backup and releases control of that continuous backup to the source service, such as Amazon RDS. The source service will continue to create and retain continuous backups using the lifecycle that you specified in your original backup plan.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_DisassociateRecoveryPoint.html
+    example:
+      inputs: [
+        {
+          "BackupVaultName": "string",
+          "RecoveryPointArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ExportBackupPlanTemplate:
+    description: |-
+      Returns the backup plan that is specified by the plan ID as a backup template.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ExportBackupPlanTemplate.html
+    example:
+      inputs: [
+        {
+          "BackupPlanId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "BackupPlanTemplateJson": "string"
+        }
+      ]
+  GetBackupPlanFromJSON:
+    description: |-
+      Returns a valid JSON document specifying a backup plan or an error.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_GetBackupPlanFromJSON.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "BackupPlan": {
+            "Rules": [
+              {
+                "RuleId": "string",
+                "RuleName": "string",
+                "Lifecycle": {
+                  "DeleteAfterDays": 1,
+                  "MoveToColdStorageAfterDays": 1
+                },
+                "CopyActions": [
+                  {
+                    "Lifecycle": {
+                      "DeleteAfterDays": 1,
+                      "MoveToColdStorageAfterDays": 1
+                    },
+                    "DestinationBackupVaultArn": "string"
+                  }
+                ],
+                "RecoveryPointTags": {
+                  "string": "string"
+                },
+                "ScheduleExpression": "string",
+                "StartWindowMinutes": 1,
+                "TargetBackupVaultName": "string",
+                "EnableContinuousBackup": false,
+                "CompletionWindowMinutes": 1
+              }
+            ],
+            "BackupPlanName": "string",
+            "AdvancedBackupSettings": [
+              {
+                "ResourceType": "string",
+                "BackupOptions": {
+                  "string": "string"
+                }
+              }
+            ]
+          }
+        }
+      ]
+  GetBackupPlanFromTemplate:
+    description: |-
+      Returns the template specified by its templateId as a backup plan.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_GetBackupPlanFromTemplate.html
+    example:
+      inputs: [
+        {
+          "BackupPlanTemplateId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "BackupPlanDocument": {
+            "Rules": [
+              {
+                "RuleId": "string",
+                "RuleName": "string",
+                "Lifecycle": {
+                  "DeleteAfterDays": 1,
+                  "MoveToColdStorageAfterDays": 1
+                },
+                "CopyActions": [
+                  {
+                    "Lifecycle": {
+                      "DeleteAfterDays": 1,
+                      "MoveToColdStorageAfterDays": 1
+                    },
+                    "DestinationBackupVaultArn": "string"
+                  }
+                ],
+                "RecoveryPointTags": {
+                  "string": "string"
+                },
+                "ScheduleExpression": "string",
+                "StartWindowMinutes": 1,
+                "TargetBackupVaultName": "string",
+                "EnableContinuousBackup": false,
+                "CompletionWindowMinutes": 1
+              }
+            ],
+            "BackupPlanName": "string",
+            "AdvancedBackupSettings": [
+              {
+                "ResourceType": "string",
+                "BackupOptions": {
+                  "string": "string"
+                }
+              }
+            ]
+          }
+        }
+      ]
+  GetBackupPlan:
+    description: |-
+      Returns BackupPlan details for the specified BackupPlanId. The details are the body of a backup plan in JSON format, in addition to plan metadata.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_GetBackupPlan.html
+    example:
+      inputs: [
+        {
+          "VersionId": "string",
+          "BackupPlanId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "VersionId": "string",
+          "BackupPlan": {
+            "Rules": [
+              {
+                "RuleId": "string",
+                "RuleName": "string",
+                "Lifecycle": {
+                  "DeleteAfterDays": 1,
+                  "MoveToColdStorageAfterDays": 1
+                },
+                "CopyActions": [
+                  {
+                    "Lifecycle": {
+                      "DeleteAfterDays": 1,
+                      "MoveToColdStorageAfterDays": 1
+                    },
+                    "DestinationBackupVaultArn": "string"
+                  }
+                ],
+                "RecoveryPointTags": {
+                  "string": "string"
+                },
+                "ScheduleExpression": "string",
+                "StartWindowMinutes": 1,
+                "TargetBackupVaultName": "string",
+                "EnableContinuousBackup": false,
+                "CompletionWindowMinutes": 1
+              }
+            ],
+            "BackupPlanName": "string",
+            "AdvancedBackupSettings": [
+              {
+                "ResourceType": "string",
+                "BackupOptions": {
+                  "string": "string"
+                }
+              }
+            ]
+          },
+          "BackupPlanId": "string",
+          "CreationDate": 1481289211.615,
+          "DeletionDate": 1481289211.615,
+          "BackupPlanArn": "string",
+          "CreatorRequestId": "string",
+          "LastExecutionDate": 1481289211.615,
+          "AdvancedBackupSettings": [
+            {
+              "ResourceType": "string",
+              "BackupOptions": {
+                "string": "string"
+              }
+            }
+          ]
+        }
+      ]
+  GetBackupSelection:
+    description: |-
+      Returns selection metadata and a document in JSON format that specifies a list of resources that are associated with a backup plan.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_GetBackupSelection.html
+    example:
+      inputs: [
+        {
+          "SelectionId": "string",
+          "BackupPlanId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "SelectionId": "string",
+          "BackupPlanId": "string",
+          "CreationDate": 1481289211.615,
+          "BackupSelection": {
+            "Resources": [
+              "string"
+            ],
+            "IamRoleArn": "string",
+            "ListOfTags": [
+              {
+                "ConditionKey": "string",
+                "ConditionType": "string",
+                "ConditionValue": "string"
+              }
+            ],
+            "SelectionName": "string"
+          },
+          "CreatorRequestId": "string"
+        }
+      ]
+  GetBackupVaultAccessPolicy:
+    description: |-
+      Returns the access policy document that is associated with the named backup vault.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_GetBackupVaultAccessPolicy.html
+    example:
+      inputs: [
+        {
+          "BackupVaultName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Policy": "string",
+          "BackupVaultArn": "string",
+          "BackupVaultName": "string"
+        }
+      ]
+  GetBackupVaultNotifications:
+    description: |-
+      Returns event notifications for the specified backup vault.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_GetBackupVaultNotifications.html
+    example:
+      inputs: [
+        {
+          "BackupVaultName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "SNSTopicArn": "string",
+          "BackupVaultArn": "string",
+          "BackupVaultName": "string",
+          "BackupVaultEvents": [
+            "string"
+          ]
+        }
+      ]
+  GetRecoveryPointRestoreMetadata:
+    description: |-
+      Returns a set of metadata key-value pairs that were used to create the backup.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_GetRecoveryPointRestoreMetadata.html
+    example:
+      inputs: [
+        {
+          "BackupVaultName": "string",
+          "RecoveryPointArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "BackupVaultArn": "string",
+          "RestoreMetadata": {
+            "string": "string"
+          },
+          "RecoveryPointArn": "string"
+        }
+      ]
+  GetSupportedResourceTypes:
+    description: |-
+      Returns the AWS resource types supported by AWS Backup.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_GetSupportedResourceTypes.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "ResourceTypes": [
+            "string"
+          ]
+        }
+      ]
+  ListBackupJobs:
+    description: |-
+      Returns a list of existing backup jobs for an authenticated account for the last 30 days. For a longer period of time, consider using these monitoring tools.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListBackupJobs.html
+    example:
+      inputs: [
+        {
+          "ByState": "string",
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ByAccountId": "string",
+          "ByResourceArn": "string",
+          "ByCreatedAfter": 1481289211.615,
+          "ByResourceType": "string",
+          "ByCreatedBefore": 1481289211.615,
+          "ByBackupVaultName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "BackupJobs": [
+            {
+              "State": "string",
+              "StartBy": 1481289211.615,
+              "AccountId": "string",
+              "CreatedBy": {
+                "BackupPlanId": "string",
+                "BackupRuleId": "string",
+                "BackupPlanArn": "string",
+                "BackupPlanVersion": "string"
+              },
+              "BackupType": "string",
+              "IamRoleArn": "string",
+              "BackupJobId": "string",
+              "PercentDone": "string",
+              "ResourceArn": "string",
+              "CreationDate": 1481289211.615,
+              "ResourceType": "string",
+              "BackupOptions": {
+                "string": "string"
+              },
+              "StatusMessage": "string",
+              "BackupVaultArn": "string",
+              "CompletionDate": 1481289211.615,
+              "BackupVaultName": "string",
+              "BytesTransferred": 1,
+              "RecoveryPointArn": "string",
+              "BackupSizeInBytes": 1,
+              "ExpectedCompletionDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListBackupPlans:
+    description: |-
+      Returns a list of existing backup plans for an authenticated account. The list is populated only if the advanced option is set for the backup plan. The list contains information such as Amazon Resource Names (ARNs), plan IDs, creation and deletion dates, version IDs, plan names, and creator request IDs.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListBackupPlans.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "IncludeDeleted": false
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "BackupPlansList": [
+            {
+              "VersionId": "string",
+              "BackupPlanId": "string",
+              "CreationDate": 1481289211.615,
+              "DeletionDate": 1481289211.615,
+              "BackupPlanArn": "string",
+              "BackupPlanName": "string",
+              "CreatorRequestId": "string",
+              "LastExecutionDate": 1481289211.615,
+              "AdvancedBackupSettings": [
+                {
+                  "ResourceType": "string",
+                  "BackupOptions": {
+                    "string": "string"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  ListBackupPlanTemplates:
+    description: |-
+      Returns metadata of your saved backup plan templates, including the template ID, name, and the creation and deletion dates.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListBackupPlanTemplates.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "BackupPlanTemplatesList": [
+            {
+              "BackupPlanTemplateId": "string",
+              "BackupPlanTemplateName": "string"
+            }
+          ]
+        }
+      ]
+  ListBackupPlanVersions:
+    description: |-
+      Returns version metadata of your backup plans, including Amazon Resource Names (ARNs), backup plan IDs, creation and deletion dates, plan names, and version IDs.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListBackupPlanVersions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "BackupPlanId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "BackupPlanVersionsList": [
+            {
+              "VersionId": "string",
+              "BackupPlanId": "string",
+              "CreationDate": 1481289211.615,
+              "DeletionDate": 1481289211.615,
+              "BackupPlanArn": "string",
+              "BackupPlanName": "string",
+              "CreatorRequestId": "string",
+              "LastExecutionDate": 1481289211.615,
+              "AdvancedBackupSettings": [
+                {
+                  "ResourceType": "string",
+                  "BackupOptions": {
+                    "string": "string"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  ListBackupSelections:
+    description: |-
+      Returns an array containing metadata of the resources associated with the target backup plan.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListBackupSelections.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "BackupPlanId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "BackupSelectionsList": [
+            {
+              "IamRoleArn": "string",
+              "SelectionId": "string",
+              "BackupPlanId": "string",
+              "CreationDate": 1481289211.615,
+              "SelectionName": "string",
+              "CreatorRequestId": "string"
+            }
+          ]
+        }
+      ]
+  ListBackupVaults:
+    description: |-
+      Returns a list of recovery point storage containers along with information about them.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListBackupVaults.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "BackupVaultList": [
+            {
+              "CreationDate": 1481289211.615,
+              "BackupVaultArn": "string",
+              "BackupVaultName": "string",
+              "CreatorRequestId": "string",
+              "EncryptionKeyArn": "string",
+              "NumberOfRecoveryPoints": 1
+            }
+          ]
+        }
+      ]
+  ListCopyJobs:
+    description: |-
+      Returns metadata about your copy jobs.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListCopyJobs.html
+    example:
+      inputs: [
+        {
+          "ByState": "string",
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ByAccountId": "string",
+          "ByResourceArn": "string",
+          "ByCreatedAfter": 1481289211.615,
+          "ByResourceType": "string",
+          "ByCreatedBefore": 1481289211.615,
+          "ByDestinationVaultArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CopyJobs": [
+            {
+              "State": "string",
+              "AccountId": "string",
+              "CopyJobId": "string",
+              "CreatedBy": {
+                "BackupPlanId": "string",
+                "BackupRuleId": "string",
+                "BackupPlanArn": "string",
+                "BackupPlanVersion": "string"
+              },
+              "IamRoleArn": "string",
+              "ResourceArn": "string",
+              "CreationDate": 1481289211.615,
+              "ResourceType": "string",
+              "StatusMessage": "string",
+              "CompletionDate": 1481289211.615,
+              "BackupSizeInBytes": 1,
+              "SourceBackupVaultArn": "string",
+              "SourceRecoveryPointArn": "string",
+              "DestinationBackupVaultArn": "string",
+              "DestinationRecoveryPointArn": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListProtectedResources:
+    description: |-
+      Returns an array of resources successfully backed up by AWS Backup, including the time the resource was saved, an Amazon Resource Name (ARN) of the resource, and a resource type.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListProtectedResources.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Results": [
+            {
+              "ResourceArn": "string",
+              "ResourceType": "string",
+              "LastBackupTime": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListRecoveryPointsByBackupVault:
+    description: |-
+      Returns detailed information about the recovery points stored in a backup vault.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListRecoveryPointsByBackupVault.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ByResourceArn": "string",
+          "ByBackupPlanId": "string",
+          "ByCreatedAfter": 1481289211.615,
+          "ByResourceType": "string",
+          "BackupVaultName": "string",
+          "ByCreatedBefore": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "RecoveryPoints": [
+            {
+              "Status": "string",
+              "CreatedBy": {
+                "BackupPlanId": "string",
+                "BackupRuleId": "string",
+                "BackupPlanArn": "string",
+                "BackupPlanVersion": "string"
+              },
+              "Lifecycle": {
+                "DeleteAfterDays": 1,
+                "MoveToColdStorageAfterDays": 1
+              },
+              "IamRoleArn": "string",
+              "IsEncrypted": false,
+              "ResourceArn": "string",
+              "CreationDate": 1481289211.615,
+              "ResourceType": "string",
+              "BackupVaultArn": "string",
+              "CompletionDate": 1481289211.615,
+              "BackupVaultName": "string",
+              "LastRestoreTime": 1481289211.615,
+              "EncryptionKeyArn": "string",
+              "RecoveryPointArn": "string",
+              "BackupSizeInBytes": 1,
+              "CalculatedLifecycle": {
+                "DeleteAt": 1481289211.615,
+                "MoveToColdStorageAt": 1481289211.615
+              },
+              "SourceBackupVaultArn": "string"
+            }
+          ]
+        }
+      ]
+  ListRecoveryPointsByResource:
+    description: |-
+      Returns detailed information about all the recovery points of the type specified by a resource Amazon Resource Name (ARN).
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListRecoveryPointsByResource.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "RecoveryPoints": [
+            {
+              "Status": "string",
+              "CreationDate": 1481289211.615,
+              "BackupSizeBytes": 1,
+              "BackupVaultName": "string",
+              "EncryptionKeyArn": "string",
+              "RecoveryPointArn": "string"
+            }
+          ]
+        }
+      ]
+  ListRestoreJobs:
+    description: |-
+      Returns a list of jobs that AWS Backup initiated to restore a saved resource, including metadata about the recovery process.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListRestoreJobs.html
+    example:
+      inputs: [
+        {
+          "ByStatus": "string",
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ByAccountId": "string",
+          "ByCreatedAfter": 1481289211.615,
+          "ByCreatedBefore": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "RestoreJobs": [
+            {
+              "Status": "string",
+              "AccountId": "string",
+              "IamRoleArn": "string",
+              "PercentDone": "string",
+              "CreationDate": 1481289211.615,
+              "ResourceType": "string",
+              "RestoreJobId": "string",
+              "StatusMessage": "string",
+              "CompletionDate": 1481289211.615,
+              "RecoveryPointArn": "string",
+              "BackupSizeInBytes": 1,
+              "CreatedResourceArn": "string",
+              "ExpectedCompletionTimeMinutes": 1
+            }
+          ]
+        }
+      ]
+  ListTags:
+    description: |-
+      Returns a list of key-value pairs assigned to a target recovery point, backup plan, or backup vault.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListTags.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "NextToken": "string"
+        }
+      ]
+  PutBackupVaultAccessPolicy:
+    description: |-
+      Sets a resource-based policy that is used to manage access permissions on the target backup vault. Requires a backup vault name and an access policy document in JSON format.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_PutBackupVaultAccessPolicy.html
+    example:
+      inputs: [
+        {
+          "Policy": "string",
+          "BackupVaultName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBackupVaultNotifications:
+    description: |-
+      Turns on notifications on a backup vault for the specified topic and events.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_PutBackupVaultNotifications.html
+    example:
+      inputs: [
+        {
+          "SNSTopicArn": "string",
+          "BackupVaultName": "string",
+          "BackupVaultEvents": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartBackupJob:
+    description: |-
+      Starts an on-demand backup job for the specified resource.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_StartBackupJob.html
+    example:
+      inputs: [
+        {
+          "Lifecycle": {
+            "DeleteAfterDays": 1,
+            "MoveToColdStorageAfterDays": 1
+          },
+          "IamRoleArn": "string",
+          "ResourceArn": "string",
+          "BackupOptions": {
+            "string": "string"
+          },
+          "BackupVaultName": "string",
+          "IdempotencyToken": "string",
+          "RecoveryPointTags": {
+            "string": "string"
+          },
+          "StartWindowMinutes": 1,
+          "CompleteWindowMinutes": 1
+        }
+      ]
+      outputs: [
+        {
+          "BackupJobId": "string",
+          "CreationDate": 1481289211.615,
+          "RecoveryPointArn": "string"
+        }
+      ]
+  StartCopyJob:
+    description: |-
+      Starts a job to create a one-time copy of the specified resource.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_StartCopyJob.html
+    example:
+      inputs: [
+        {
+          "Lifecycle": {
+            "DeleteAfterDays": 1,
+            "MoveToColdStorageAfterDays": 1
+          },
+          "IamRoleArn": "string",
+          "IdempotencyToken": "string",
+          "RecoveryPointArn": "string",
+          "SourceBackupVaultName": "string",
+          "DestinationBackupVaultArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CopyJobId": "string",
+          "CreationDate": 1481289211.615
+        }
+      ]
+  StartRestoreJob:
+    description: |-
+      Recovers the saved resource identified by an Amazon Resource Name (ARN).
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_StartRestoreJob.html
+    example:
+      inputs: [
+        {
+          "Metadata": {
+            "string": "string"
+          },
+          "IamRoleArn": "string",
+          "ResourceType": "string",
+          "IdempotencyToken": "string",
+          "RecoveryPointArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StopBackupJob:
+    description: |-
+      Attempts to cancel a job to create a one-time backup of a resource.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_StopBackupJob.html
+    example:
+      inputs: [
+        {
+          "BackupJobId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Assigns a set of key-value pairs to a recovery point, backup plan, or backup vault identified by an Amazon Resource Name (ARN).
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes a set of key-value pairs from a recovery point, backup plan, or backup vault identified by an Amazon Resource Name (ARN)
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeyList": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateBackupPlan:
+    description: |-
+      Updates an existing backup plan identified by its backupPlanId with the input document in JSON format. The new version is uniquely identified by a VersionId.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_UpdateBackupPlan.html
+    example:
+      inputs: [
+        {
+          "BackupPlan": {
+            "Rules": [
+              {
+                "RuleName": "string",
+                "Lifecycle": {
+                  "DeleteAfterDays": 1,
+                  "MoveToColdStorageAfterDays": 1
+                },
+                "CopyActions": [
+                  {
+                    "Lifecycle": {
+                      "DeleteAfterDays": 1,
+                      "MoveToColdStorageAfterDays": 1
+                    },
+                    "DestinationBackupVaultArn": "string"
+                  }
+                ],
+                "RecoveryPointTags": {
+                  "string": "string"
+                },
+                "ScheduleExpression": "string",
+                "StartWindowMinutes": 1,
+                "TargetBackupVaultName": "string",
+                "EnableContinuousBackup": false,
+                "CompletionWindowMinutes": 1
+              }
+            ],
+            "BackupPlanName": "string",
+            "AdvancedBackupSettings": [
+              {
+                "ResourceType": "string",
+                "BackupOptions": {
+                  "string": "string"
+                }
+              }
+            ]
+          },
+          "BackupPlanId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "VersionId": "string",
+          "BackupPlanId": "string",
+          "CreationDate": 1481289211.615,
+          "BackupPlanArn": "string",
+          "AdvancedBackupSettings": [
+            {
+              "ResourceType": "string",
+              "BackupOptions": {
+                "string": "string"
+              }
+            }
+          ]
+        }
+      ]
+  UpdateGlobalSettings:
+    description: |-
+      Updates the current global settings for the AWS account. Use the DescribeGlobalSettings API to determine the current settings.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_UpdateGlobalSettings.html
+    example:
+      inputs: [
+        {
+          "GlobalSettings": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateRecoveryPointLifecycle:
+    description: |-
+      Sets the transition lifecycle of a recovery point.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_UpdateRecoveryPointLifecycle.html
+    example:
+      inputs: [
+        {
+          "Lifecycle": {
+            "DeleteAfterDays": 1,
+            "MoveToColdStorageAfterDays": 1
+          },
+          "BackupVaultName": "string",
+          "RecoveryPointArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Lifecycle": {
+            "DeleteAfterDays": 1,
+            "MoveToColdStorageAfterDays": 1
+          },
+          "BackupVaultArn": "string",
+          "RecoveryPointArn": "string",
+          "CalculatedLifecycle": {
+            "DeleteAt": 1481289211.615,
+            "MoveToColdStorageAt": 1481289211.615
+          }
+        }
+      ]
+  UpdateRegionSettings:
+    description: |-
+      Updates the current service opt-in settings for the Region. If service-opt-in is enabled for a service, AWS Backup tries to protect that service's resources in this Region, when the resource is included in an on-demand backup or scheduled backup plan. Otherwise, AWS Backup does not try to protect that service's resources in this Region. Use the DescribeRegionSettings API to determine the resource types that are supported.
+    versions:
+      from: 2018.11.15
+    link: https://docs.aws.amazon.com/aws-backup/latest/devguide/API_UpdateRegionSettings.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]

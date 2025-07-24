@@ -1,0 +1,4803 @@
+Product:
+  name: AWS App Mesh
+  versions: [2019.1.25]
+  package: amazon.aws.appmesh
+  description: |-
+    AWS App Mesh
+  link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CreateGatewayRoute:
+    description: |-
+      Creates a gateway route.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_CreateGatewayRoute.html
+    example:
+      inputs: [
+        {
+          "spec": {
+            "grpcRoute": {
+              "match": {
+                "serviceName": "string"
+              },
+              "action": {
+                "target": {
+                  "virtualService": {
+                    "virtualServiceName": "string"
+                  }
+                }
+              }
+            },
+            "httpRoute": {
+              "match": {
+                "prefix": "string"
+              },
+              "action": {
+                "target": {
+                  "virtualService": {
+                    "virtualServiceName": "string"
+                  }
+                }
+              }
+            },
+            "http2Route": {
+              "match": {
+                "prefix": "string"
+              },
+              "action": {
+                "target": {
+                  "virtualService": {
+                    "virtualServiceName": "string"
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "meshName": "string",
+          "meshOwner": "string",
+          "clientToken": "string",
+          "gatewayRouteName": "string",
+          "virtualGatewayName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "gatewayRoute": {
+            "spec": {
+              "grpcRoute": {
+                "match": {
+                  "serviceName": "string"
+                },
+                "action": {
+                  "target": {
+                    "virtualService": {
+                      "virtualServiceName": "string"
+                    }
+                  }
+                }
+              },
+              "httpRoute": {
+                "match": {
+                  "prefix": "string"
+                },
+                "action": {
+                  "target": {
+                    "virtualService": {
+                      "virtualServiceName": "string"
+                    }
+                  }
+                }
+              },
+              "http2Route": {
+                "match": {
+                  "prefix": "string"
+                },
+                "action": {
+                  "target": {
+                    "virtualService": {
+                      "virtualServiceName": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "gatewayRouteName": "string",
+            "virtualGatewayName": "string"
+          }
+        }
+      ]
+  CreateMesh:
+    description: |-
+      Creates a service mesh.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_CreateMesh.html
+    example:
+      inputs: [
+        {
+          "spec": {
+            "egressFilter": {
+              "type": "string"
+            }
+          },
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "meshName": "string",
+          "clientToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "mesh": {
+            "spec": {
+              "egressFilter": {
+                "type": "string"
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            }
+          }
+        }
+      ]
+  CreateRoute:
+    description: |-
+      Creates a route that is associated with a virtual router.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_CreateRoute.html
+    example:
+      inputs: [
+        {
+          "spec": {
+            "priority": 1,
+            "tcpRoute": {
+              "action": {
+                "weightedTargets": [
+                  {
+                    "weight": 1,
+                    "virtualNode": "string"
+                  }
+                ]
+              },
+              "timeout": {
+                "idle": {
+                  "unit": "string",
+                  "value": 1
+                }
+              }
+            },
+            "grpcRoute": {
+              "match": {
+                "metadata": [
+                  {
+                    "name": "string",
+                    "match": {
+                      "exact": "string",
+                      "range": {
+                        "end": 1,
+                        "start": 1
+                      },
+                      "regex": "string",
+                      "prefix": "string",
+                      "suffix": "string"
+                    },
+                    "invert": false
+                  }
+                ],
+                "methodName": "string",
+                "serviceName": "string"
+              },
+              "action": {
+                "weightedTargets": [
+                  {
+                    "weight": 1,
+                    "virtualNode": "string"
+                  }
+                ]
+              },
+              "timeout": {
+                "idle": {
+                  "unit": "string",
+                  "value": 1
+                },
+                "perRequest": {
+                  "unit": "string",
+                  "value": 1
+                }
+              },
+              "retryPolicy": {
+                "maxRetries": 1,
+                "tcpRetryEvents": [
+                  "string"
+                ],
+                "grpcRetryEvents": [
+                  "string"
+                ],
+                "httpRetryEvents": [
+                  "string"
+                ],
+                "perRetryTimeout": {
+                  "unit": "string",
+                  "value": 1
+                }
+              }
+            },
+            "httpRoute": {
+              "match": {
+                "method": "string",
+                "prefix": "string",
+                "scheme": "string",
+                "headers": [
+                  {
+                    "name": "string",
+                    "match": {
+                      "exact": "string",
+                      "range": {
+                        "end": 1,
+                        "start": 1
+                      },
+                      "regex": "string",
+                      "prefix": "string",
+                      "suffix": "string"
+                    },
+                    "invert": false
+                  }
+                ]
+              },
+              "action": {
+                "weightedTargets": [
+                  {
+                    "weight": 1,
+                    "virtualNode": "string"
+                  }
+                ]
+              },
+              "timeout": {
+                "idle": {
+                  "unit": "string",
+                  "value": 1
+                },
+                "perRequest": {
+                  "unit": "string",
+                  "value": 1
+                }
+              },
+              "retryPolicy": {
+                "maxRetries": 1,
+                "tcpRetryEvents": [
+                  "string"
+                ],
+                "httpRetryEvents": [
+                  "string"
+                ],
+                "perRetryTimeout": {
+                  "unit": "string",
+                  "value": 1
+                }
+              }
+            },
+            "http2Route": {
+              "match": {
+                "method": "string",
+                "prefix": "string",
+                "scheme": "string",
+                "headers": [
+                  {
+                    "name": "string",
+                    "match": {
+                      "exact": "string",
+                      "range": {
+                        "end": 1,
+                        "start": 1
+                      },
+                      "regex": "string",
+                      "prefix": "string",
+                      "suffix": "string"
+                    },
+                    "invert": false
+                  }
+                ]
+              },
+              "action": {
+                "weightedTargets": [
+                  {
+                    "weight": 1,
+                    "virtualNode": "string"
+                  }
+                ]
+              },
+              "timeout": {
+                "idle": {
+                  "unit": "string",
+                  "value": 1
+                },
+                "perRequest": {
+                  "unit": "string",
+                  "value": 1
+                }
+              },
+              "retryPolicy": {
+                "maxRetries": 1,
+                "tcpRetryEvents": [
+                  "string"
+                ],
+                "httpRetryEvents": [
+                  "string"
+                ],
+                "perRetryTimeout": {
+                  "unit": "string",
+                  "value": 1
+                }
+              }
+            }
+          },
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "meshName": "string",
+          "meshOwner": "string",
+          "routeName": "string",
+          "clientToken": "string",
+          "virtualRouterName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "route": {
+            "spec": {
+              "priority": 1,
+              "tcpRoute": {
+                "action": {
+                  "weightedTargets": [
+                    {
+                      "weight": 1,
+                      "virtualNode": "string"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "idle": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              },
+              "grpcRoute": {
+                "match": {
+                  "metadata": [
+                    {
+                      "name": "string",
+                      "match": {
+                        "exact": "string",
+                        "range": {
+                          "end": 1,
+                          "start": 1
+                        },
+                        "regex": "string",
+                        "prefix": "string",
+                        "suffix": "string"
+                      },
+                      "invert": false
+                    }
+                  ],
+                  "methodName": "string",
+                  "serviceName": "string"
+                },
+                "action": {
+                  "weightedTargets": [
+                    {
+                      "weight": 1,
+                      "virtualNode": "string"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "idle": {
+                    "unit": "string",
+                    "value": 1
+                  },
+                  "perRequest": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                },
+                "retryPolicy": {
+                  "maxRetries": 1,
+                  "tcpRetryEvents": [
+                    "string"
+                  ],
+                  "grpcRetryEvents": [
+                    "string"
+                  ],
+                  "httpRetryEvents": [
+                    "string"
+                  ],
+                  "perRetryTimeout": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              },
+              "httpRoute": {
+                "match": {
+                  "method": "string",
+                  "prefix": "string",
+                  "scheme": "string",
+                  "headers": [
+                    {
+                      "name": "string",
+                      "match": {
+                        "exact": "string",
+                        "range": {
+                          "end": 1,
+                          "start": 1
+                        },
+                        "regex": "string",
+                        "prefix": "string",
+                        "suffix": "string"
+                      },
+                      "invert": false
+                    }
+                  ]
+                },
+                "action": {
+                  "weightedTargets": [
+                    {
+                      "weight": 1,
+                      "virtualNode": "string"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "idle": {
+                    "unit": "string",
+                    "value": 1
+                  },
+                  "perRequest": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                },
+                "retryPolicy": {
+                  "maxRetries": 1,
+                  "tcpRetryEvents": [
+                    "string"
+                  ],
+                  "httpRetryEvents": [
+                    "string"
+                  ],
+                  "perRetryTimeout": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              },
+              "http2Route": {
+                "match": {
+                  "method": "string",
+                  "prefix": "string",
+                  "scheme": "string",
+                  "headers": [
+                    {
+                      "name": "string",
+                      "match": {
+                        "exact": "string",
+                        "range": {
+                          "end": 1,
+                          "start": 1
+                        },
+                        "regex": "string",
+                        "prefix": "string",
+                        "suffix": "string"
+                      },
+                      "invert": false
+                    }
+                  ]
+                },
+                "action": {
+                  "weightedTargets": [
+                    {
+                      "weight": 1,
+                      "virtualNode": "string"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "idle": {
+                    "unit": "string",
+                    "value": 1
+                  },
+                  "perRequest": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                },
+                "retryPolicy": {
+                  "maxRetries": 1,
+                  "tcpRetryEvents": [
+                    "string"
+                  ],
+                  "httpRetryEvents": [
+                    "string"
+                  ],
+                  "perRetryTimeout": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "routeName": "string",
+            "virtualRouterName": "string"
+          }
+        }
+      ]
+  CreateVirtualGateway:
+    description: |-
+      Creates a virtual gateway.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_CreateVirtualGateway.html
+    example:
+      inputs: [
+        {
+          "spec": {
+            "logging": {
+              "accessLog": {
+                "file": {
+                  "path": "string"
+                }
+              }
+            },
+            "listeners": [
+              {
+                "tls": {
+                  "mode": "string",
+                  "validation": {
+                    "trust": {
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "certificateChain": "string"
+                      }
+                    },
+                    "subjectAlternativeNames": {
+                      "match": {
+                        "exact": [
+                          "string"
+                        ]
+                      }
+                    }
+                  },
+                  "certificate": {
+                    "acm": {
+                      "certificateArn": "string"
+                    },
+                    "sds": {
+                      "secretName": "string"
+                    },
+                    "file": {
+                      "privateKey": "string",
+                      "certificateChain": "string"
+                    }
+                  }
+                },
+                "healthCheck": {
+                  "path": "string",
+                  "port": 1,
+                  "protocol": "string",
+                  "timeoutMillis": 1,
+                  "intervalMillis": 1,
+                  "healthyThreshold": 1,
+                  "unhealthyThreshold": 1
+                },
+                "portMapping": {
+                  "port": 1,
+                  "protocol": "string"
+                },
+                "connectionPool": {
+                  "grpc": {
+                    "maxRequests": 1
+                  },
+                  "http": {
+                    "maxConnections": 1,
+                    "maxPendingRequests": 1
+                  },
+                  "http2": {
+                    "maxRequests": 1
+                  }
+                }
+              }
+            ],
+            "backendDefaults": {
+              "clientPolicy": {
+                "tls": {
+                  "ports": [
+                    1
+                  ],
+                  "enforce": false,
+                  "validation": {
+                    "trust": {
+                      "acm": {
+                        "certificateAuthorityArns": [
+                          "string"
+                        ]
+                      },
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "certificateChain": "string"
+                      }
+                    },
+                    "subjectAlternativeNames": {
+                      "match": {
+                        "exact": [
+                          "string"
+                        ]
+                      }
+                    }
+                  },
+                  "certificate": {
+                    "sds": {
+                      "secretName": "string"
+                    },
+                    "file": {
+                      "privateKey": "string",
+                      "certificateChain": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "meshName": "string",
+          "meshOwner": "string",
+          "clientToken": "string",
+          "virtualGatewayName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualGateway": {
+            "spec": {
+              "logging": {
+                "accessLog": {
+                  "file": {
+                    "path": "string"
+                  }
+                }
+              },
+              "listeners": [
+                {
+                  "tls": {
+                    "mode": "string",
+                    "validation": {
+                      "trust": {
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "certificateChain": "string"
+                        }
+                      },
+                      "subjectAlternativeNames": {
+                        "match": {
+                          "exact": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "certificate": {
+                      "acm": {
+                        "certificateArn": "string"
+                      },
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "privateKey": "string",
+                        "certificateChain": "string"
+                      }
+                    }
+                  },
+                  "healthCheck": {
+                    "path": "string",
+                    "port": 1,
+                    "protocol": "string",
+                    "timeoutMillis": 1,
+                    "intervalMillis": 1,
+                    "healthyThreshold": 1,
+                    "unhealthyThreshold": 1
+                  },
+                  "portMapping": {
+                    "port": 1,
+                    "protocol": "string"
+                  },
+                  "connectionPool": {
+                    "grpc": {
+                      "maxRequests": 1
+                    },
+                    "http": {
+                      "maxConnections": 1,
+                      "maxPendingRequests": 1
+                    },
+                    "http2": {
+                      "maxRequests": 1
+                    }
+                  }
+                }
+              ],
+              "backendDefaults": {
+                "clientPolicy": {
+                  "tls": {
+                    "ports": [
+                      1
+                    ],
+                    "enforce": false,
+                    "validation": {
+                      "trust": {
+                        "acm": {
+                          "certificateAuthorityArns": [
+                            "string"
+                          ]
+                        },
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "certificateChain": "string"
+                        }
+                      },
+                      "subjectAlternativeNames": {
+                        "match": {
+                          "exact": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "certificate": {
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "privateKey": "string",
+                        "certificateChain": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "virtualGatewayName": "string"
+          }
+        }
+      ]
+  CreateVirtualNode:
+    description: |-
+      Creates a virtual node within a service mesh.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_CreateVirtualNode.html
+    example:
+      inputs: [
+        {
+          "spec": {
+            "logging": {
+              "accessLog": {
+                "file": {
+                  "path": "string"
+                }
+              }
+            },
+            "backends": [
+              {
+                "virtualService": {
+                  "clientPolicy": {
+                    "tls": {
+                      "ports": [
+                        1
+                      ],
+                      "enforce": false,
+                      "validation": {
+                        "trust": {
+                          "acm": {
+                            "certificateAuthorityArns": [
+                              "string"
+                            ]
+                          },
+                          "sds": {
+                            "secretName": "string"
+                          },
+                          "file": {
+                            "certificateChain": "string"
+                          }
+                        },
+                        "subjectAlternativeNames": {
+                          "match": {
+                            "exact": [
+                              "string"
+                            ]
+                          }
+                        }
+                      },
+                      "certificate": {
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "privateKey": "string",
+                          "certificateChain": "string"
+                        }
+                      }
+                    }
+                  },
+                  "virtualServiceName": "string"
+                }
+              }
+            ],
+            "listeners": [
+              {
+                "tls": {
+                  "mode": "string",
+                  "validation": {
+                    "trust": {
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "certificateChain": "string"
+                      }
+                    },
+                    "subjectAlternativeNames": {
+                      "match": {
+                        "exact": [
+                          "string"
+                        ]
+                      }
+                    }
+                  },
+                  "certificate": {
+                    "acm": {
+                      "certificateArn": "string"
+                    },
+                    "sds": {
+                      "secretName": "string"
+                    },
+                    "file": {
+                      "privateKey": "string",
+                      "certificateChain": "string"
+                    }
+                  }
+                },
+                "timeout": {
+                  "tcp": {
+                    "idle": {
+                      "unit": "string",
+                      "value": 1
+                    }
+                  },
+                  "grpc": {
+                    "idle": {
+                      "unit": "string",
+                      "value": 1
+                    },
+                    "perRequest": {
+                      "unit": "string",
+                      "value": 1
+                    }
+                  },
+                  "http": {
+                    "idle": {
+                      "unit": "string",
+                      "value": 1
+                    },
+                    "perRequest": {
+                      "unit": "string",
+                      "value": 1
+                    }
+                  },
+                  "http2": {
+                    "idle": {
+                      "unit": "string",
+                      "value": 1
+                    },
+                    "perRequest": {
+                      "unit": "string",
+                      "value": 1
+                    }
+                  }
+                },
+                "healthCheck": {
+                  "path": "string",
+                  "port": 1,
+                  "protocol": "string",
+                  "timeoutMillis": 1,
+                  "intervalMillis": 1,
+                  "healthyThreshold": 1,
+                  "unhealthyThreshold": 1
+                },
+                "portMapping": {
+                  "port": 1,
+                  "protocol": "string"
+                },
+                "connectionPool": {
+                  "tcp": {
+                    "maxConnections": 1
+                  },
+                  "grpc": {
+                    "maxRequests": 1
+                  },
+                  "http": {
+                    "maxConnections": 1,
+                    "maxPendingRequests": 1
+                  },
+                  "http2": {
+                    "maxRequests": 1
+                  }
+                },
+                "outlierDetection": {
+                  "interval": {
+                    "unit": "string",
+                    "value": 1
+                  },
+                  "maxServerErrors": 1,
+                  "maxEjectionPercent": 1,
+                  "baseEjectionDuration": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              }
+            ],
+            "backendDefaults": {
+              "clientPolicy": {
+                "tls": {
+                  "ports": [
+                    1
+                  ],
+                  "enforce": false,
+                  "validation": {
+                    "trust": {
+                      "acm": {
+                        "certificateAuthorityArns": [
+                          "string"
+                        ]
+                      },
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "certificateChain": "string"
+                      }
+                    },
+                    "subjectAlternativeNames": {
+                      "match": {
+                        "exact": [
+                          "string"
+                        ]
+                      }
+                    }
+                  },
+                  "certificate": {
+                    "sds": {
+                      "secretName": "string"
+                    },
+                    "file": {
+                      "privateKey": "string",
+                      "certificateChain": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "serviceDiscovery": {
+              "dns": {
+                "hostname": "string"
+              },
+              "awsCloudMap": {
+                "attributes": [
+                  {
+                    "key": "string",
+                    "value": "string"
+                  }
+                ],
+                "serviceName": "string",
+                "namespaceName": "string"
+              }
+            }
+          },
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "meshName": "string",
+          "meshOwner": "string",
+          "clientToken": "string",
+          "virtualNodeName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualNode": {
+            "spec": {
+              "logging": {
+                "accessLog": {
+                  "file": {
+                    "path": "string"
+                  }
+                }
+              },
+              "backends": [
+                {
+                  "virtualService": {
+                    "clientPolicy": {
+                      "tls": {
+                        "ports": [
+                          1
+                        ],
+                        "enforce": false,
+                        "validation": {
+                          "trust": {
+                            "acm": {
+                              "certificateAuthorityArns": [
+                                "string"
+                              ]
+                            },
+                            "sds": {
+                              "secretName": "string"
+                            },
+                            "file": {
+                              "certificateChain": "string"
+                            }
+                          },
+                          "subjectAlternativeNames": {
+                            "match": {
+                              "exact": [
+                                "string"
+                              ]
+                            }
+                          }
+                        },
+                        "certificate": {
+                          "sds": {
+                            "secretName": "string"
+                          },
+                          "file": {
+                            "privateKey": "string",
+                            "certificateChain": "string"
+                          }
+                        }
+                      }
+                    },
+                    "virtualServiceName": "string"
+                  }
+                }
+              ],
+              "listeners": [
+                {
+                  "tls": {
+                    "mode": "string",
+                    "validation": {
+                      "trust": {
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "certificateChain": "string"
+                        }
+                      },
+                      "subjectAlternativeNames": {
+                        "match": {
+                          "exact": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "certificate": {
+                      "acm": {
+                        "certificateArn": "string"
+                      },
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "privateKey": "string",
+                        "certificateChain": "string"
+                      }
+                    }
+                  },
+                  "timeout": {
+                    "tcp": {
+                      "idle": {
+                        "unit": "string",
+                        "value": 1
+                      }
+                    },
+                    "grpc": {
+                      "idle": {
+                        "unit": "string",
+                        "value": 1
+                      },
+                      "perRequest": {
+                        "unit": "string",
+                        "value": 1
+                      }
+                    },
+                    "http": {
+                      "idle": {
+                        "unit": "string",
+                        "value": 1
+                      },
+                      "perRequest": {
+                        "unit": "string",
+                        "value": 1
+                      }
+                    },
+                    "http2": {
+                      "idle": {
+                        "unit": "string",
+                        "value": 1
+                      },
+                      "perRequest": {
+                        "unit": "string",
+                        "value": 1
+                      }
+                    }
+                  },
+                  "healthCheck": {
+                    "path": "string",
+                    "port": 1,
+                    "protocol": "string",
+                    "timeoutMillis": 1,
+                    "intervalMillis": 1,
+                    "healthyThreshold": 1,
+                    "unhealthyThreshold": 1
+                  },
+                  "portMapping": {
+                    "port": 1,
+                    "protocol": "string"
+                  },
+                  "connectionPool": {
+                    "tcp": {
+                      "maxConnections": 1
+                    },
+                    "grpc": {
+                      "maxRequests": 1
+                    },
+                    "http": {
+                      "maxConnections": 1,
+                      "maxPendingRequests": 1
+                    },
+                    "http2": {
+                      "maxRequests": 1
+                    }
+                  },
+                  "outlierDetection": {
+                    "interval": {
+                      "unit": "string",
+                      "value": 1
+                    },
+                    "maxServerErrors": 1,
+                    "maxEjectionPercent": 1,
+                    "baseEjectionDuration": {
+                      "unit": "string",
+                      "value": 1
+                    }
+                  }
+                }
+              ],
+              "backendDefaults": {
+                "clientPolicy": {
+                  "tls": {
+                    "ports": [
+                      1
+                    ],
+                    "enforce": false,
+                    "validation": {
+                      "trust": {
+                        "acm": {
+                          "certificateAuthorityArns": [
+                            "string"
+                          ]
+                        },
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "certificateChain": "string"
+                        }
+                      },
+                      "subjectAlternativeNames": {
+                        "match": {
+                          "exact": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "certificate": {
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "privateKey": "string",
+                        "certificateChain": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "serviceDiscovery": {
+                "dns": {
+                  "hostname": "string"
+                },
+                "awsCloudMap": {
+                  "attributes": [
+                    {
+                      "key": "string",
+                      "value": "string"
+                    }
+                  ],
+                  "serviceName": "string",
+                  "namespaceName": "string"
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "virtualNodeName": "string"
+          }
+        }
+      ]
+  CreateVirtualRouter:
+    description: |-
+      Creates a virtual router within a service mesh.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_CreateVirtualRouter.html
+    example:
+      inputs: [
+        {
+          "spec": {
+            "listeners": [
+              {
+                "portMapping": {
+                  "port": 1,
+                  "protocol": "string"
+                }
+              }
+            ]
+          },
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "meshName": "string",
+          "meshOwner": "string",
+          "clientToken": "string",
+          "virtualRouterName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualRouter": {
+            "spec": {
+              "listeners": [
+                {
+                  "portMapping": {
+                    "port": 1,
+                    "protocol": "string"
+                  }
+                }
+              ]
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "virtualRouterName": "string"
+          }
+        }
+      ]
+  CreateVirtualService:
+    description: |-
+      Creates a virtual service within a service mesh.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_CreateVirtualService.html
+    example:
+      inputs: [
+        {
+          "spec": {
+            "provider": {
+              "virtualNode": {
+                "virtualNodeName": "string"
+              },
+              "virtualRouter": {
+                "virtualRouterName": "string"
+              }
+            }
+          },
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "meshName": "string",
+          "meshOwner": "string",
+          "clientToken": "string",
+          "virtualServiceName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualService": {
+            "spec": {
+              "provider": {
+                "virtualNode": {
+                  "virtualNodeName": "string"
+                },
+                "virtualRouter": {
+                  "virtualRouterName": "string"
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "virtualServiceName": "string"
+          }
+        }
+      ]
+  DeleteGatewayRoute:
+    description: |-
+      Deletes an existing gateway route.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_DeleteGatewayRoute.html
+    example:
+      inputs: [
+        {
+          "meshName": "string",
+          "meshOwner": "string",
+          "gatewayRouteName": "string",
+          "virtualGatewayName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "gatewayRoute": {
+            "spec": {
+              "grpcRoute": {
+                "match": {
+                  "serviceName": "string"
+                },
+                "action": {
+                  "target": {
+                    "virtualService": {
+                      "virtualServiceName": "string"
+                    }
+                  }
+                }
+              },
+              "httpRoute": {
+                "match": {
+                  "prefix": "string"
+                },
+                "action": {
+                  "target": {
+                    "virtualService": {
+                      "virtualServiceName": "string"
+                    }
+                  }
+                }
+              },
+              "http2Route": {
+                "match": {
+                  "prefix": "string"
+                },
+                "action": {
+                  "target": {
+                    "virtualService": {
+                      "virtualServiceName": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "gatewayRouteName": "string",
+            "virtualGatewayName": "string"
+          }
+        }
+      ]
+  DeleteMesh:
+    description: |-
+      Deletes an existing service mesh.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_DeleteMesh.html
+    example:
+      inputs: [
+        {
+          "meshName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "mesh": {
+            "spec": {
+              "egressFilter": {
+                "type": "string"
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            }
+          }
+        }
+      ]
+  DeleteRoute:
+    description: |-
+      Deletes an existing route.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_DeleteRoute.html
+    example:
+      inputs: [
+        {
+          "meshName": "string",
+          "meshOwner": "string",
+          "routeName": "string",
+          "virtualRouterName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "route": {
+            "spec": {
+              "priority": 1,
+              "tcpRoute": {
+                "action": {
+                  "weightedTargets": [
+                    {
+                      "weight": 1,
+                      "virtualNode": "string"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "idle": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              },
+              "grpcRoute": {
+                "match": {
+                  "metadata": [
+                    {
+                      "name": "string",
+                      "match": {
+                        "exact": "string",
+                        "range": {
+                          "end": 1,
+                          "start": 1
+                        },
+                        "regex": "string",
+                        "prefix": "string",
+                        "suffix": "string"
+                      },
+                      "invert": false
+                    }
+                  ],
+                  "methodName": "string",
+                  "serviceName": "string"
+                },
+                "action": {
+                  "weightedTargets": [
+                    {
+                      "weight": 1,
+                      "virtualNode": "string"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "idle": {
+                    "unit": "string",
+                    "value": 1
+                  },
+                  "perRequest": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                },
+                "retryPolicy": {
+                  "maxRetries": 1,
+                  "tcpRetryEvents": [
+                    "string"
+                  ],
+                  "grpcRetryEvents": [
+                    "string"
+                  ],
+                  "httpRetryEvents": [
+                    "string"
+                  ],
+                  "perRetryTimeout": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              },
+              "httpRoute": {
+                "match": {
+                  "method": "string",
+                  "prefix": "string",
+                  "scheme": "string",
+                  "headers": [
+                    {
+                      "name": "string",
+                      "match": {
+                        "exact": "string",
+                        "range": {
+                          "end": 1,
+                          "start": 1
+                        },
+                        "regex": "string",
+                        "prefix": "string",
+                        "suffix": "string"
+                      },
+                      "invert": false
+                    }
+                  ]
+                },
+                "action": {
+                  "weightedTargets": [
+                    {
+                      "weight": 1,
+                      "virtualNode": "string"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "idle": {
+                    "unit": "string",
+                    "value": 1
+                  },
+                  "perRequest": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                },
+                "retryPolicy": {
+                  "maxRetries": 1,
+                  "tcpRetryEvents": [
+                    "string"
+                  ],
+                  "httpRetryEvents": [
+                    "string"
+                  ],
+                  "perRetryTimeout": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              },
+              "http2Route": {
+                "match": {
+                  "method": "string",
+                  "prefix": "string",
+                  "scheme": "string",
+                  "headers": [
+                    {
+                      "name": "string",
+                      "match": {
+                        "exact": "string",
+                        "range": {
+                          "end": 1,
+                          "start": 1
+                        },
+                        "regex": "string",
+                        "prefix": "string",
+                        "suffix": "string"
+                      },
+                      "invert": false
+                    }
+                  ]
+                },
+                "action": {
+                  "weightedTargets": [
+                    {
+                      "weight": 1,
+                      "virtualNode": "string"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "idle": {
+                    "unit": "string",
+                    "value": 1
+                  },
+                  "perRequest": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                },
+                "retryPolicy": {
+                  "maxRetries": 1,
+                  "tcpRetryEvents": [
+                    "string"
+                  ],
+                  "httpRetryEvents": [
+                    "string"
+                  ],
+                  "perRetryTimeout": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "routeName": "string",
+            "virtualRouterName": "string"
+          }
+        }
+      ]
+  DeleteVirtualGateway:
+    description: |-
+      Deletes an existing virtual gateway. You cannot delete a virtual gateway if any gateway routes are associated to it.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_DeleteVirtualGateway.html
+    example:
+      inputs: [
+        {
+          "meshName": "string",
+          "meshOwner": "string",
+          "virtualGatewayName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualGateway": {
+            "spec": {
+              "logging": {
+                "accessLog": {
+                  "file": {
+                    "path": "string"
+                  }
+                }
+              },
+              "listeners": [
+                {
+                  "tls": {
+                    "mode": "string",
+                    "validation": {
+                      "trust": {
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "certificateChain": "string"
+                        }
+                      },
+                      "subjectAlternativeNames": {
+                        "match": {
+                          "exact": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "certificate": {
+                      "acm": {
+                        "certificateArn": "string"
+                      },
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "privateKey": "string",
+                        "certificateChain": "string"
+                      }
+                    }
+                  },
+                  "healthCheck": {
+                    "path": "string",
+                    "port": 1,
+                    "protocol": "string",
+                    "timeoutMillis": 1,
+                    "intervalMillis": 1,
+                    "healthyThreshold": 1,
+                    "unhealthyThreshold": 1
+                  },
+                  "portMapping": {
+                    "port": 1,
+                    "protocol": "string"
+                  },
+                  "connectionPool": {
+                    "grpc": {
+                      "maxRequests": 1
+                    },
+                    "http": {
+                      "maxConnections": 1,
+                      "maxPendingRequests": 1
+                    },
+                    "http2": {
+                      "maxRequests": 1
+                    }
+                  }
+                }
+              ],
+              "backendDefaults": {
+                "clientPolicy": {
+                  "tls": {
+                    "ports": [
+                      1
+                    ],
+                    "enforce": false,
+                    "validation": {
+                      "trust": {
+                        "acm": {
+                          "certificateAuthorityArns": [
+                            "string"
+                          ]
+                        },
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "certificateChain": "string"
+                        }
+                      },
+                      "subjectAlternativeNames": {
+                        "match": {
+                          "exact": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "certificate": {
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "privateKey": "string",
+                        "certificateChain": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "virtualGatewayName": "string"
+          }
+        }
+      ]
+  DeleteVirtualNode:
+    description: |-
+      Deletes an existing virtual node.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_DeleteVirtualNode.html
+    example:
+      inputs: [
+        {
+          "meshName": "string",
+          "meshOwner": "string",
+          "virtualNodeName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualNode": {
+            "spec": {
+              "logging": {
+                "accessLog": {
+                  "file": {
+                    "path": "string"
+                  }
+                }
+              },
+              "backends": [
+                {
+                  "virtualService": {
+                    "clientPolicy": {
+                      "tls": {
+                        "ports": [
+                          1
+                        ],
+                        "enforce": false,
+                        "validation": {
+                          "trust": {
+                            "acm": {
+                              "certificateAuthorityArns": [
+                                "string"
+                              ]
+                            },
+                            "sds": {
+                              "secretName": "string"
+                            },
+                            "file": {
+                              "certificateChain": "string"
+                            }
+                          },
+                          "subjectAlternativeNames": {
+                            "match": {
+                              "exact": [
+                                "string"
+                              ]
+                            }
+                          }
+                        },
+                        "certificate": {
+                          "sds": {
+                            "secretName": "string"
+                          },
+                          "file": {
+                            "privateKey": "string",
+                            "certificateChain": "string"
+                          }
+                        }
+                      }
+                    },
+                    "virtualServiceName": "string"
+                  }
+                }
+              ],
+              "listeners": [
+                {
+                  "tls": {
+                    "mode": "string",
+                    "validation": {
+                      "trust": {
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "certificateChain": "string"
+                        }
+                      },
+                      "subjectAlternativeNames": {
+                        "match": {
+                          "exact": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "certificate": {
+                      "acm": {
+                        "certificateArn": "string"
+                      },
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "privateKey": "string",
+                        "certificateChain": "string"
+                      }
+                    }
+                  },
+                  "timeout": {
+                    "tcp": {
+                      "idle": {
+                        "unit": "string",
+                        "value": 1
+                      }
+                    },
+                    "grpc": {
+                      "idle": {
+                        "unit": "string",
+                        "value": 1
+                      },
+                      "perRequest": {
+                        "unit": "string",
+                        "value": 1
+                      }
+                    },
+                    "http": {
+                      "idle": {
+                        "unit": "string",
+                        "value": 1
+                      },
+                      "perRequest": {
+                        "unit": "string",
+                        "value": 1
+                      }
+                    },
+                    "http2": {
+                      "idle": {
+                        "unit": "string",
+                        "value": 1
+                      },
+                      "perRequest": {
+                        "unit": "string",
+                        "value": 1
+                      }
+                    }
+                  },
+                  "healthCheck": {
+                    "path": "string",
+                    "port": 1,
+                    "protocol": "string",
+                    "timeoutMillis": 1,
+                    "intervalMillis": 1,
+                    "healthyThreshold": 1,
+                    "unhealthyThreshold": 1
+                  },
+                  "portMapping": {
+                    "port": 1,
+                    "protocol": "string"
+                  },
+                  "connectionPool": {
+                    "tcp": {
+                      "maxConnections": 1
+                    },
+                    "grpc": {
+                      "maxRequests": 1
+                    },
+                    "http": {
+                      "maxConnections": 1,
+                      "maxPendingRequests": 1
+                    },
+                    "http2": {
+                      "maxRequests": 1
+                    }
+                  },
+                  "outlierDetection": {
+                    "interval": {
+                      "unit": "string",
+                      "value": 1
+                    },
+                    "maxServerErrors": 1,
+                    "maxEjectionPercent": 1,
+                    "baseEjectionDuration": {
+                      "unit": "string",
+                      "value": 1
+                    }
+                  }
+                }
+              ],
+              "backendDefaults": {
+                "clientPolicy": {
+                  "tls": {
+                    "ports": [
+                      1
+                    ],
+                    "enforce": false,
+                    "validation": {
+                      "trust": {
+                        "acm": {
+                          "certificateAuthorityArns": [
+                            "string"
+                          ]
+                        },
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "certificateChain": "string"
+                        }
+                      },
+                      "subjectAlternativeNames": {
+                        "match": {
+                          "exact": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "certificate": {
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "privateKey": "string",
+                        "certificateChain": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "serviceDiscovery": {
+                "dns": {
+                  "hostname": "string"
+                },
+                "awsCloudMap": {
+                  "attributes": [
+                    {
+                      "key": "string",
+                      "value": "string"
+                    }
+                  ],
+                  "serviceName": "string",
+                  "namespaceName": "string"
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "virtualNodeName": "string"
+          }
+        }
+      ]
+  DeleteVirtualRouter:
+    description: |-
+      Deletes an existing virtual router.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_DeleteVirtualRouter.html
+    example:
+      inputs: [
+        {
+          "meshName": "string",
+          "meshOwner": "string",
+          "virtualRouterName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualRouter": {
+            "spec": {
+              "listeners": [
+                {
+                  "portMapping": {
+                    "port": 1,
+                    "protocol": "string"
+                  }
+                }
+              ]
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "virtualRouterName": "string"
+          }
+        }
+      ]
+  DeleteVirtualService:
+    description: |-
+      Deletes an existing virtual service.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_DeleteVirtualService.html
+    example:
+      inputs: [
+        {
+          "meshName": "string",
+          "meshOwner": "string",
+          "virtualServiceName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualService": {
+            "spec": {
+              "provider": {
+                "virtualNode": {
+                  "virtualNodeName": "string"
+                },
+                "virtualRouter": {
+                  "virtualRouterName": "string"
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "virtualServiceName": "string"
+          }
+        }
+      ]
+  DescribeGatewayRoute:
+    description: |-
+      Describes an existing gateway route.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_DescribeGatewayRoute.html
+    example:
+      inputs: [
+        {
+          "meshName": "string",
+          "meshOwner": "string",
+          "gatewayRouteName": "string",
+          "virtualGatewayName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "gatewayRoute": {
+            "spec": {
+              "grpcRoute": {
+                "match": {
+                  "serviceName": "string"
+                },
+                "action": {
+                  "target": {
+                    "virtualService": {
+                      "virtualServiceName": "string"
+                    }
+                  }
+                }
+              },
+              "httpRoute": {
+                "match": {
+                  "prefix": "string"
+                },
+                "action": {
+                  "target": {
+                    "virtualService": {
+                      "virtualServiceName": "string"
+                    }
+                  }
+                }
+              },
+              "http2Route": {
+                "match": {
+                  "prefix": "string"
+                },
+                "action": {
+                  "target": {
+                    "virtualService": {
+                      "virtualServiceName": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "gatewayRouteName": "string",
+            "virtualGatewayName": "string"
+          }
+        }
+      ]
+  DescribeMesh:
+    description: |-
+      Describes an existing service mesh.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_DescribeMesh.html
+    example:
+      inputs: [
+        {
+          "meshName": "string",
+          "meshOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "mesh": {
+            "spec": {
+              "egressFilter": {
+                "type": "string"
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            }
+          }
+        }
+      ]
+  DescribeRoute:
+    description: |-
+      Describes an existing route.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_DescribeRoute.html
+    example:
+      inputs: [
+        {
+          "meshName": "string",
+          "meshOwner": "string",
+          "routeName": "string",
+          "virtualRouterName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "route": {
+            "spec": {
+              "priority": 1,
+              "tcpRoute": {
+                "action": {
+                  "weightedTargets": [
+                    {
+                      "weight": 1,
+                      "virtualNode": "string"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "idle": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              },
+              "grpcRoute": {
+                "match": {
+                  "metadata": [
+                    {
+                      "name": "string",
+                      "match": {
+                        "exact": "string",
+                        "range": {
+                          "end": 1,
+                          "start": 1
+                        },
+                        "regex": "string",
+                        "prefix": "string",
+                        "suffix": "string"
+                      },
+                      "invert": false
+                    }
+                  ],
+                  "methodName": "string",
+                  "serviceName": "string"
+                },
+                "action": {
+                  "weightedTargets": [
+                    {
+                      "weight": 1,
+                      "virtualNode": "string"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "idle": {
+                    "unit": "string",
+                    "value": 1
+                  },
+                  "perRequest": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                },
+                "retryPolicy": {
+                  "maxRetries": 1,
+                  "tcpRetryEvents": [
+                    "string"
+                  ],
+                  "grpcRetryEvents": [
+                    "string"
+                  ],
+                  "httpRetryEvents": [
+                    "string"
+                  ],
+                  "perRetryTimeout": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              },
+              "httpRoute": {
+                "match": {
+                  "method": "string",
+                  "prefix": "string",
+                  "scheme": "string",
+                  "headers": [
+                    {
+                      "name": "string",
+                      "match": {
+                        "exact": "string",
+                        "range": {
+                          "end": 1,
+                          "start": 1
+                        },
+                        "regex": "string",
+                        "prefix": "string",
+                        "suffix": "string"
+                      },
+                      "invert": false
+                    }
+                  ]
+                },
+                "action": {
+                  "weightedTargets": [
+                    {
+                      "weight": 1,
+                      "virtualNode": "string"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "idle": {
+                    "unit": "string",
+                    "value": 1
+                  },
+                  "perRequest": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                },
+                "retryPolicy": {
+                  "maxRetries": 1,
+                  "tcpRetryEvents": [
+                    "string"
+                  ],
+                  "httpRetryEvents": [
+                    "string"
+                  ],
+                  "perRetryTimeout": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              },
+              "http2Route": {
+                "match": {
+                  "method": "string",
+                  "prefix": "string",
+                  "scheme": "string",
+                  "headers": [
+                    {
+                      "name": "string",
+                      "match": {
+                        "exact": "string",
+                        "range": {
+                          "end": 1,
+                          "start": 1
+                        },
+                        "regex": "string",
+                        "prefix": "string",
+                        "suffix": "string"
+                      },
+                      "invert": false
+                    }
+                  ]
+                },
+                "action": {
+                  "weightedTargets": [
+                    {
+                      "weight": 1,
+                      "virtualNode": "string"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "idle": {
+                    "unit": "string",
+                    "value": 1
+                  },
+                  "perRequest": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                },
+                "retryPolicy": {
+                  "maxRetries": 1,
+                  "tcpRetryEvents": [
+                    "string"
+                  ],
+                  "httpRetryEvents": [
+                    "string"
+                  ],
+                  "perRetryTimeout": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "routeName": "string",
+            "virtualRouterName": "string"
+          }
+        }
+      ]
+  DescribeVirtualGateway:
+    description: |-
+      Describes an existing virtual gateway.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_DescribeVirtualGateway.html
+    example:
+      inputs: [
+        {
+          "meshName": "string",
+          "meshOwner": "string",
+          "virtualGatewayName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualGateway": {
+            "spec": {
+              "logging": {
+                "accessLog": {
+                  "file": {
+                    "path": "string"
+                  }
+                }
+              },
+              "listeners": [
+                {
+                  "tls": {
+                    "mode": "string",
+                    "validation": {
+                      "trust": {
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "certificateChain": "string"
+                        }
+                      },
+                      "subjectAlternativeNames": {
+                        "match": {
+                          "exact": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "certificate": {
+                      "acm": {
+                        "certificateArn": "string"
+                      },
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "privateKey": "string",
+                        "certificateChain": "string"
+                      }
+                    }
+                  },
+                  "healthCheck": {
+                    "path": "string",
+                    "port": 1,
+                    "protocol": "string",
+                    "timeoutMillis": 1,
+                    "intervalMillis": 1,
+                    "healthyThreshold": 1,
+                    "unhealthyThreshold": 1
+                  },
+                  "portMapping": {
+                    "port": 1,
+                    "protocol": "string"
+                  },
+                  "connectionPool": {
+                    "grpc": {
+                      "maxRequests": 1
+                    },
+                    "http": {
+                      "maxConnections": 1,
+                      "maxPendingRequests": 1
+                    },
+                    "http2": {
+                      "maxRequests": 1
+                    }
+                  }
+                }
+              ],
+              "backendDefaults": {
+                "clientPolicy": {
+                  "tls": {
+                    "ports": [
+                      1
+                    ],
+                    "enforce": false,
+                    "validation": {
+                      "trust": {
+                        "acm": {
+                          "certificateAuthorityArns": [
+                            "string"
+                          ]
+                        },
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "certificateChain": "string"
+                        }
+                      },
+                      "subjectAlternativeNames": {
+                        "match": {
+                          "exact": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "certificate": {
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "privateKey": "string",
+                        "certificateChain": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "virtualGatewayName": "string"
+          }
+        }
+      ]
+  DescribeVirtualNode:
+    description: |-
+      Describes an existing virtual node.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_DescribeVirtualNode.html
+    example:
+      inputs: [
+        {
+          "meshName": "string",
+          "meshOwner": "string",
+          "virtualNodeName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualNode": {
+            "spec": {
+              "logging": {
+                "accessLog": {
+                  "file": {
+                    "path": "string"
+                  }
+                }
+              },
+              "backends": [
+                {
+                  "virtualService": {
+                    "clientPolicy": {
+                      "tls": {
+                        "ports": [
+                          1
+                        ],
+                        "enforce": false,
+                        "validation": {
+                          "trust": {
+                            "acm": {
+                              "certificateAuthorityArns": [
+                                "string"
+                              ]
+                            },
+                            "sds": {
+                              "secretName": "string"
+                            },
+                            "file": {
+                              "certificateChain": "string"
+                            }
+                          },
+                          "subjectAlternativeNames": {
+                            "match": {
+                              "exact": [
+                                "string"
+                              ]
+                            }
+                          }
+                        },
+                        "certificate": {
+                          "sds": {
+                            "secretName": "string"
+                          },
+                          "file": {
+                            "privateKey": "string",
+                            "certificateChain": "string"
+                          }
+                        }
+                      }
+                    },
+                    "virtualServiceName": "string"
+                  }
+                }
+              ],
+              "listeners": [
+                {
+                  "tls": {
+                    "mode": "string",
+                    "validation": {
+                      "trust": {
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "certificateChain": "string"
+                        }
+                      },
+                      "subjectAlternativeNames": {
+                        "match": {
+                          "exact": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "certificate": {
+                      "acm": {
+                        "certificateArn": "string"
+                      },
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "privateKey": "string",
+                        "certificateChain": "string"
+                      }
+                    }
+                  },
+                  "timeout": {
+                    "tcp": {
+                      "idle": {
+                        "unit": "string",
+                        "value": 1
+                      }
+                    },
+                    "grpc": {
+                      "idle": {
+                        "unit": "string",
+                        "value": 1
+                      },
+                      "perRequest": {
+                        "unit": "string",
+                        "value": 1
+                      }
+                    },
+                    "http": {
+                      "idle": {
+                        "unit": "string",
+                        "value": 1
+                      },
+                      "perRequest": {
+                        "unit": "string",
+                        "value": 1
+                      }
+                    },
+                    "http2": {
+                      "idle": {
+                        "unit": "string",
+                        "value": 1
+                      },
+                      "perRequest": {
+                        "unit": "string",
+                        "value": 1
+                      }
+                    }
+                  },
+                  "healthCheck": {
+                    "path": "string",
+                    "port": 1,
+                    "protocol": "string",
+                    "timeoutMillis": 1,
+                    "intervalMillis": 1,
+                    "healthyThreshold": 1,
+                    "unhealthyThreshold": 1
+                  },
+                  "portMapping": {
+                    "port": 1,
+                    "protocol": "string"
+                  },
+                  "connectionPool": {
+                    "tcp": {
+                      "maxConnections": 1
+                    },
+                    "grpc": {
+                      "maxRequests": 1
+                    },
+                    "http": {
+                      "maxConnections": 1,
+                      "maxPendingRequests": 1
+                    },
+                    "http2": {
+                      "maxRequests": 1
+                    }
+                  },
+                  "outlierDetection": {
+                    "interval": {
+                      "unit": "string",
+                      "value": 1
+                    },
+                    "maxServerErrors": 1,
+                    "maxEjectionPercent": 1,
+                    "baseEjectionDuration": {
+                      "unit": "string",
+                      "value": 1
+                    }
+                  }
+                }
+              ],
+              "backendDefaults": {
+                "clientPolicy": {
+                  "tls": {
+                    "ports": [
+                      1
+                    ],
+                    "enforce": false,
+                    "validation": {
+                      "trust": {
+                        "acm": {
+                          "certificateAuthorityArns": [
+                            "string"
+                          ]
+                        },
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "certificateChain": "string"
+                        }
+                      },
+                      "subjectAlternativeNames": {
+                        "match": {
+                          "exact": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "certificate": {
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "privateKey": "string",
+                        "certificateChain": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "serviceDiscovery": {
+                "dns": {
+                  "hostname": "string"
+                },
+                "awsCloudMap": {
+                  "attributes": [
+                    {
+                      "key": "string",
+                      "value": "string"
+                    }
+                  ],
+                  "serviceName": "string",
+                  "namespaceName": "string"
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "virtualNodeName": "string"
+          }
+        }
+      ]
+  DescribeVirtualRouter:
+    description: |-
+      Describes an existing virtual router.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_DescribeVirtualRouter.html
+    example:
+      inputs: [
+        {
+          "meshName": "string",
+          "meshOwner": "string",
+          "virtualRouterName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualRouter": {
+            "spec": {
+              "listeners": [
+                {
+                  "portMapping": {
+                    "port": 1,
+                    "protocol": "string"
+                  }
+                }
+              ]
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "virtualRouterName": "string"
+          }
+        }
+      ]
+  DescribeVirtualService:
+    description: |-
+      Describes an existing virtual service.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_DescribeVirtualService.html
+    example:
+      inputs: [
+        {
+          "meshName": "string",
+          "meshOwner": "string",
+          "virtualServiceName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualService": {
+            "spec": {
+              "provider": {
+                "virtualNode": {
+                  "virtualNodeName": "string"
+                },
+                "virtualRouter": {
+                  "virtualRouterName": "string"
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "virtualServiceName": "string"
+          }
+        }
+      ]
+  ListGatewayRoutes:
+    description: |-
+      Returns a list of existing gateway routes that are associated to a virtual gateway.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_ListGatewayRoutes.html
+    example:
+      inputs: [
+        {
+          "limit": 1,
+          "meshName": "string",
+          "meshOwner": "string",
+          "nextToken": "string",
+          "virtualGatewayName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "gatewayRoutes": [
+            {
+              "arn": "string",
+              "version": 1,
+              "meshName": "string",
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string",
+              "gatewayRouteName": "string",
+              "virtualGatewayName": "string"
+            }
+          ]
+        }
+      ]
+  ListMeshes:
+    description: |-
+      Returns a list of existing service meshes.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_ListMeshes.html
+    example:
+      inputs: [
+        {
+          "limit": 1,
+          "nextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "meshes": [
+            {
+              "arn": "string",
+              "version": 1,
+              "meshName": "string",
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListRoutes:
+    description: |-
+      Returns a list of existing routes in a service mesh.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_ListRoutes.html
+    example:
+      inputs: [
+        {
+          "limit": 1,
+          "meshName": "string",
+          "meshOwner": "string",
+          "nextToken": "string",
+          "virtualRouterName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "routes": [
+            {
+              "arn": "string",
+              "version": 1,
+              "meshName": "string",
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "routeName": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string",
+              "virtualRouterName": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      List the tags for an App Mesh resource.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "limit": 1,
+          "nextToken": "string",
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListVirtualGateways:
+    description: |-
+      Returns a list of existing virtual gateways in a service mesh.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_ListVirtualGateways.html
+    example:
+      inputs: [
+        {
+          "limit": 1,
+          "meshName": "string",
+          "meshOwner": "string",
+          "nextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "virtualGateways": [
+            {
+              "arn": "string",
+              "version": 1,
+              "meshName": "string",
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string",
+              "virtualGatewayName": "string"
+            }
+          ]
+        }
+      ]
+  ListVirtualNodes:
+    description: |-
+      Returns a list of existing virtual nodes.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_ListVirtualNodes.html
+    example:
+      inputs: [
+        {
+          "limit": 1,
+          "meshName": "string",
+          "meshOwner": "string",
+          "nextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "virtualNodes": [
+            {
+              "arn": "string",
+              "version": 1,
+              "meshName": "string",
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string",
+              "virtualNodeName": "string"
+            }
+          ]
+        }
+      ]
+  ListVirtualRouters:
+    description: |-
+      Returns a list of existing virtual routers in a service mesh.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_ListVirtualRouters.html
+    example:
+      inputs: [
+        {
+          "limit": 1,
+          "meshName": "string",
+          "meshOwner": "string",
+          "nextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "virtualRouters": [
+            {
+              "arn": "string",
+              "version": 1,
+              "meshName": "string",
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string",
+              "virtualRouterName": "string"
+            }
+          ]
+        }
+      ]
+  ListVirtualServices:
+    description: |-
+      Returns a list of existing virtual services in a service mesh.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_ListVirtualServices.html
+    example:
+      inputs: [
+        {
+          "limit": 1,
+          "meshName": "string",
+          "meshOwner": "string",
+          "nextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "virtualServices": [
+            {
+              "arn": "string",
+              "version": 1,
+              "meshName": "string",
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string",
+              "virtualServiceName": "string"
+            }
+          ]
+        }
+      ]
+  TagResource:
+    description: |-
+      Associates the specified tags to a resource with the specified resourceArn. If existing tags on a resource aren't specified in the request parameters, they aren't changed. When a resource is deleted, the tags associated with that resource are also deleted.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Deletes specified tags from a resource.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateGatewayRoute:
+    description: |-
+      Updates an existing gateway route that is associated to a specified virtual gateway in a service mesh.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_UpdateGatewayRoute.html
+    example:
+      inputs: [
+        {
+          "spec": {
+            "grpcRoute": {
+              "match": {
+                "serviceName": "string"
+              },
+              "action": {
+                "target": {
+                  "virtualService": {
+                    "virtualServiceName": "string"
+                  }
+                }
+              }
+            },
+            "httpRoute": {
+              "match": {
+                "prefix": "string"
+              },
+              "action": {
+                "target": {
+                  "virtualService": {
+                    "virtualServiceName": "string"
+                  }
+                }
+              }
+            },
+            "http2Route": {
+              "match": {
+                "prefix": "string"
+              },
+              "action": {
+                "target": {
+                  "virtualService": {
+                    "virtualServiceName": "string"
+                  }
+                }
+              }
+            }
+          },
+          "meshName": "string",
+          "meshOwner": "string",
+          "clientToken": "string",
+          "gatewayRouteName": "string",
+          "virtualGatewayName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "gatewayRoute": {
+            "spec": {
+              "grpcRoute": {
+                "match": {
+                  "serviceName": "string"
+                },
+                "action": {
+                  "target": {
+                    "virtualService": {
+                      "virtualServiceName": "string"
+                    }
+                  }
+                }
+              },
+              "httpRoute": {
+                "match": {
+                  "prefix": "string"
+                },
+                "action": {
+                  "target": {
+                    "virtualService": {
+                      "virtualServiceName": "string"
+                    }
+                  }
+                }
+              },
+              "http2Route": {
+                "match": {
+                  "prefix": "string"
+                },
+                "action": {
+                  "target": {
+                    "virtualService": {
+                      "virtualServiceName": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "gatewayRouteName": "string",
+            "virtualGatewayName": "string"
+          }
+        }
+      ]
+  UpdateMesh:
+    description: |-
+      Updates an existing service mesh.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_UpdateMesh.html
+    example:
+      inputs: [
+        {
+          "spec": {
+            "egressFilter": {
+              "type": "string"
+            }
+          },
+          "meshName": "string",
+          "clientToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "mesh": {
+            "spec": {
+              "egressFilter": {
+                "type": "string"
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            }
+          }
+        }
+      ]
+  UpdateRoute:
+    description: |-
+      Updates an existing route for a specified service mesh and virtual router.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_UpdateRoute.html
+    example:
+      inputs: [
+        {
+          "spec": {
+            "priority": 1,
+            "tcpRoute": {
+              "action": {
+                "weightedTargets": [
+                  {
+                    "weight": 1,
+                    "virtualNode": "string"
+                  }
+                ]
+              },
+              "timeout": {
+                "idle": {
+                  "unit": "string",
+                  "value": 1
+                }
+              }
+            },
+            "grpcRoute": {
+              "match": {
+                "metadata": [
+                  {
+                    "name": "string",
+                    "match": {
+                      "exact": "string",
+                      "range": {
+                        "end": 1,
+                        "start": 1
+                      },
+                      "regex": "string",
+                      "prefix": "string",
+                      "suffix": "string"
+                    },
+                    "invert": false
+                  }
+                ],
+                "methodName": "string",
+                "serviceName": "string"
+              },
+              "action": {
+                "weightedTargets": [
+                  {
+                    "weight": 1,
+                    "virtualNode": "string"
+                  }
+                ]
+              },
+              "timeout": {
+                "idle": {
+                  "unit": "string",
+                  "value": 1
+                },
+                "perRequest": {
+                  "unit": "string",
+                  "value": 1
+                }
+              },
+              "retryPolicy": {
+                "maxRetries": 1,
+                "tcpRetryEvents": [
+                  "string"
+                ],
+                "grpcRetryEvents": [
+                  "string"
+                ],
+                "httpRetryEvents": [
+                  "string"
+                ],
+                "perRetryTimeout": {
+                  "unit": "string",
+                  "value": 1
+                }
+              }
+            },
+            "httpRoute": {
+              "match": {
+                "method": "string",
+                "prefix": "string",
+                "scheme": "string",
+                "headers": [
+                  {
+                    "name": "string",
+                    "match": {
+                      "exact": "string",
+                      "range": {
+                        "end": 1,
+                        "start": 1
+                      },
+                      "regex": "string",
+                      "prefix": "string",
+                      "suffix": "string"
+                    },
+                    "invert": false
+                  }
+                ]
+              },
+              "action": {
+                "weightedTargets": [
+                  {
+                    "weight": 1,
+                    "virtualNode": "string"
+                  }
+                ]
+              },
+              "timeout": {
+                "idle": {
+                  "unit": "string",
+                  "value": 1
+                },
+                "perRequest": {
+                  "unit": "string",
+                  "value": 1
+                }
+              },
+              "retryPolicy": {
+                "maxRetries": 1,
+                "tcpRetryEvents": [
+                  "string"
+                ],
+                "httpRetryEvents": [
+                  "string"
+                ],
+                "perRetryTimeout": {
+                  "unit": "string",
+                  "value": 1
+                }
+              }
+            },
+            "http2Route": {
+              "match": {
+                "method": "string",
+                "prefix": "string",
+                "scheme": "string",
+                "headers": [
+                  {
+                    "name": "string",
+                    "match": {
+                      "exact": "string",
+                      "range": {
+                        "end": 1,
+                        "start": 1
+                      },
+                      "regex": "string",
+                      "prefix": "string",
+                      "suffix": "string"
+                    },
+                    "invert": false
+                  }
+                ]
+              },
+              "action": {
+                "weightedTargets": [
+                  {
+                    "weight": 1,
+                    "virtualNode": "string"
+                  }
+                ]
+              },
+              "timeout": {
+                "idle": {
+                  "unit": "string",
+                  "value": 1
+                },
+                "perRequest": {
+                  "unit": "string",
+                  "value": 1
+                }
+              },
+              "retryPolicy": {
+                "maxRetries": 1,
+                "tcpRetryEvents": [
+                  "string"
+                ],
+                "httpRetryEvents": [
+                  "string"
+                ],
+                "perRetryTimeout": {
+                  "unit": "string",
+                  "value": 1
+                }
+              }
+            }
+          },
+          "meshName": "string",
+          "meshOwner": "string",
+          "routeName": "string",
+          "clientToken": "string",
+          "virtualRouterName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "route": {
+            "spec": {
+              "priority": 1,
+              "tcpRoute": {
+                "action": {
+                  "weightedTargets": [
+                    {
+                      "weight": 1,
+                      "virtualNode": "string"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "idle": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              },
+              "grpcRoute": {
+                "match": {
+                  "metadata": [
+                    {
+                      "name": "string",
+                      "match": {
+                        "exact": "string",
+                        "range": {
+                          "end": 1,
+                          "start": 1
+                        },
+                        "regex": "string",
+                        "prefix": "string",
+                        "suffix": "string"
+                      },
+                      "invert": false
+                    }
+                  ],
+                  "methodName": "string",
+                  "serviceName": "string"
+                },
+                "action": {
+                  "weightedTargets": [
+                    {
+                      "weight": 1,
+                      "virtualNode": "string"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "idle": {
+                    "unit": "string",
+                    "value": 1
+                  },
+                  "perRequest": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                },
+                "retryPolicy": {
+                  "maxRetries": 1,
+                  "tcpRetryEvents": [
+                    "string"
+                  ],
+                  "grpcRetryEvents": [
+                    "string"
+                  ],
+                  "httpRetryEvents": [
+                    "string"
+                  ],
+                  "perRetryTimeout": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              },
+              "httpRoute": {
+                "match": {
+                  "method": "string",
+                  "prefix": "string",
+                  "scheme": "string",
+                  "headers": [
+                    {
+                      "name": "string",
+                      "match": {
+                        "exact": "string",
+                        "range": {
+                          "end": 1,
+                          "start": 1
+                        },
+                        "regex": "string",
+                        "prefix": "string",
+                        "suffix": "string"
+                      },
+                      "invert": false
+                    }
+                  ]
+                },
+                "action": {
+                  "weightedTargets": [
+                    {
+                      "weight": 1,
+                      "virtualNode": "string"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "idle": {
+                    "unit": "string",
+                    "value": 1
+                  },
+                  "perRequest": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                },
+                "retryPolicy": {
+                  "maxRetries": 1,
+                  "tcpRetryEvents": [
+                    "string"
+                  ],
+                  "httpRetryEvents": [
+                    "string"
+                  ],
+                  "perRetryTimeout": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              },
+              "http2Route": {
+                "match": {
+                  "method": "string",
+                  "prefix": "string",
+                  "scheme": "string",
+                  "headers": [
+                    {
+                      "name": "string",
+                      "match": {
+                        "exact": "string",
+                        "range": {
+                          "end": 1,
+                          "start": 1
+                        },
+                        "regex": "string",
+                        "prefix": "string",
+                        "suffix": "string"
+                      },
+                      "invert": false
+                    }
+                  ]
+                },
+                "action": {
+                  "weightedTargets": [
+                    {
+                      "weight": 1,
+                      "virtualNode": "string"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "idle": {
+                    "unit": "string",
+                    "value": 1
+                  },
+                  "perRequest": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                },
+                "retryPolicy": {
+                  "maxRetries": 1,
+                  "tcpRetryEvents": [
+                    "string"
+                  ],
+                  "httpRetryEvents": [
+                    "string"
+                  ],
+                  "perRetryTimeout": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "routeName": "string",
+            "virtualRouterName": "string"
+          }
+        }
+      ]
+  UpdateVirtualGateway:
+    description: |-
+      Updates an existing virtual gateway in a specified service mesh.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_UpdateVirtualGateway.html
+    example:
+      inputs: [
+        {
+          "spec": {
+            "logging": {
+              "accessLog": {
+                "file": {
+                  "path": "string"
+                }
+              }
+            },
+            "listeners": [
+              {
+                "tls": {
+                  "mode": "string",
+                  "validation": {
+                    "trust": {
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "certificateChain": "string"
+                      }
+                    },
+                    "subjectAlternativeNames": {
+                      "match": {
+                        "exact": [
+                          "string"
+                        ]
+                      }
+                    }
+                  },
+                  "certificate": {
+                    "acm": {
+                      "certificateArn": "string"
+                    },
+                    "sds": {
+                      "secretName": "string"
+                    },
+                    "file": {
+                      "privateKey": "string",
+                      "certificateChain": "string"
+                    }
+                  }
+                },
+                "healthCheck": {
+                  "path": "string",
+                  "port": 1,
+                  "protocol": "string",
+                  "timeoutMillis": 1,
+                  "intervalMillis": 1,
+                  "healthyThreshold": 1,
+                  "unhealthyThreshold": 1
+                },
+                "portMapping": {
+                  "port": 1,
+                  "protocol": "string"
+                },
+                "connectionPool": {
+                  "grpc": {
+                    "maxRequests": 1
+                  },
+                  "http": {
+                    "maxConnections": 1,
+                    "maxPendingRequests": 1
+                  },
+                  "http2": {
+                    "maxRequests": 1
+                  }
+                }
+              }
+            ],
+            "backendDefaults": {
+              "clientPolicy": {
+                "tls": {
+                  "ports": [
+                    1
+                  ],
+                  "enforce": false,
+                  "validation": {
+                    "trust": {
+                      "acm": {
+                        "certificateAuthorityArns": [
+                          "string"
+                        ]
+                      },
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "certificateChain": "string"
+                      }
+                    },
+                    "subjectAlternativeNames": {
+                      "match": {
+                        "exact": [
+                          "string"
+                        ]
+                      }
+                    }
+                  },
+                  "certificate": {
+                    "sds": {
+                      "secretName": "string"
+                    },
+                    "file": {
+                      "privateKey": "string",
+                      "certificateChain": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "meshName": "string",
+          "meshOwner": "string",
+          "clientToken": "string",
+          "virtualGatewayName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualGateway": {
+            "spec": {
+              "logging": {
+                "accessLog": {
+                  "file": {
+                    "path": "string"
+                  }
+                }
+              },
+              "listeners": [
+                {
+                  "tls": {
+                    "mode": "string",
+                    "validation": {
+                      "trust": {
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "certificateChain": "string"
+                        }
+                      },
+                      "subjectAlternativeNames": {
+                        "match": {
+                          "exact": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "certificate": {
+                      "acm": {
+                        "certificateArn": "string"
+                      },
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "privateKey": "string",
+                        "certificateChain": "string"
+                      }
+                    }
+                  },
+                  "healthCheck": {
+                    "path": "string",
+                    "port": 1,
+                    "protocol": "string",
+                    "timeoutMillis": 1,
+                    "intervalMillis": 1,
+                    "healthyThreshold": 1,
+                    "unhealthyThreshold": 1
+                  },
+                  "portMapping": {
+                    "port": 1,
+                    "protocol": "string"
+                  },
+                  "connectionPool": {
+                    "grpc": {
+                      "maxRequests": 1
+                    },
+                    "http": {
+                      "maxConnections": 1,
+                      "maxPendingRequests": 1
+                    },
+                    "http2": {
+                      "maxRequests": 1
+                    }
+                  }
+                }
+              ],
+              "backendDefaults": {
+                "clientPolicy": {
+                  "tls": {
+                    "ports": [
+                      1
+                    ],
+                    "enforce": false,
+                    "validation": {
+                      "trust": {
+                        "acm": {
+                          "certificateAuthorityArns": [
+                            "string"
+                          ]
+                        },
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "certificateChain": "string"
+                        }
+                      },
+                      "subjectAlternativeNames": {
+                        "match": {
+                          "exact": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "certificate": {
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "privateKey": "string",
+                        "certificateChain": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "virtualGatewayName": "string"
+          }
+        }
+      ]
+  UpdateVirtualNode:
+    description: |-
+      Updates an existing virtual node in a specified service mesh.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_UpdateVirtualNode.html
+    example:
+      inputs: [
+        {
+          "spec": {
+            "logging": {
+              "accessLog": {
+                "file": {
+                  "path": "string"
+                }
+              }
+            },
+            "backends": [
+              {
+                "virtualService": {
+                  "clientPolicy": {
+                    "tls": {
+                      "ports": [
+                        1
+                      ],
+                      "enforce": false,
+                      "validation": {
+                        "trust": {
+                          "acm": {
+                            "certificateAuthorityArns": [
+                              "string"
+                            ]
+                          },
+                          "sds": {
+                            "secretName": "string"
+                          },
+                          "file": {
+                            "certificateChain": "string"
+                          }
+                        },
+                        "subjectAlternativeNames": {
+                          "match": {
+                            "exact": [
+                              "string"
+                            ]
+                          }
+                        }
+                      },
+                      "certificate": {
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "privateKey": "string",
+                          "certificateChain": "string"
+                        }
+                      }
+                    }
+                  },
+                  "virtualServiceName": "string"
+                }
+              }
+            ],
+            "listeners": [
+              {
+                "tls": {
+                  "mode": "string",
+                  "validation": {
+                    "trust": {
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "certificateChain": "string"
+                      }
+                    },
+                    "subjectAlternativeNames": {
+                      "match": {
+                        "exact": [
+                          "string"
+                        ]
+                      }
+                    }
+                  },
+                  "certificate": {
+                    "acm": {
+                      "certificateArn": "string"
+                    },
+                    "sds": {
+                      "secretName": "string"
+                    },
+                    "file": {
+                      "privateKey": "string",
+                      "certificateChain": "string"
+                    }
+                  }
+                },
+                "timeout": {
+                  "tcp": {
+                    "idle": {
+                      "unit": "string",
+                      "value": 1
+                    }
+                  },
+                  "grpc": {
+                    "idle": {
+                      "unit": "string",
+                      "value": 1
+                    },
+                    "perRequest": {
+                      "unit": "string",
+                      "value": 1
+                    }
+                  },
+                  "http": {
+                    "idle": {
+                      "unit": "string",
+                      "value": 1
+                    },
+                    "perRequest": {
+                      "unit": "string",
+                      "value": 1
+                    }
+                  },
+                  "http2": {
+                    "idle": {
+                      "unit": "string",
+                      "value": 1
+                    },
+                    "perRequest": {
+                      "unit": "string",
+                      "value": 1
+                    }
+                  }
+                },
+                "healthCheck": {
+                  "path": "string",
+                  "port": 1,
+                  "protocol": "string",
+                  "timeoutMillis": 1,
+                  "intervalMillis": 1,
+                  "healthyThreshold": 1,
+                  "unhealthyThreshold": 1
+                },
+                "portMapping": {
+                  "port": 1,
+                  "protocol": "string"
+                },
+                "connectionPool": {
+                  "tcp": {
+                    "maxConnections": 1
+                  },
+                  "grpc": {
+                    "maxRequests": 1
+                  },
+                  "http": {
+                    "maxConnections": 1,
+                    "maxPendingRequests": 1
+                  },
+                  "http2": {
+                    "maxRequests": 1
+                  }
+                },
+                "outlierDetection": {
+                  "interval": {
+                    "unit": "string",
+                    "value": 1
+                  },
+                  "maxServerErrors": 1,
+                  "maxEjectionPercent": 1,
+                  "baseEjectionDuration": {
+                    "unit": "string",
+                    "value": 1
+                  }
+                }
+              }
+            ],
+            "backendDefaults": {
+              "clientPolicy": {
+                "tls": {
+                  "ports": [
+                    1
+                  ],
+                  "enforce": false,
+                  "validation": {
+                    "trust": {
+                      "acm": {
+                        "certificateAuthorityArns": [
+                          "string"
+                        ]
+                      },
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "certificateChain": "string"
+                      }
+                    },
+                    "subjectAlternativeNames": {
+                      "match": {
+                        "exact": [
+                          "string"
+                        ]
+                      }
+                    }
+                  },
+                  "certificate": {
+                    "sds": {
+                      "secretName": "string"
+                    },
+                    "file": {
+                      "privateKey": "string",
+                      "certificateChain": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "serviceDiscovery": {
+              "dns": {
+                "hostname": "string"
+              },
+              "awsCloudMap": {
+                "attributes": [
+                  {
+                    "key": "string",
+                    "value": "string"
+                  }
+                ],
+                "serviceName": "string",
+                "namespaceName": "string"
+              }
+            }
+          },
+          "meshName": "string",
+          "meshOwner": "string",
+          "clientToken": "string",
+          "virtualNodeName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualNode": {
+            "spec": {
+              "logging": {
+                "accessLog": {
+                  "file": {
+                    "path": "string"
+                  }
+                }
+              },
+              "backends": [
+                {
+                  "virtualService": {
+                    "clientPolicy": {
+                      "tls": {
+                        "ports": [
+                          1
+                        ],
+                        "enforce": false,
+                        "validation": {
+                          "trust": {
+                            "acm": {
+                              "certificateAuthorityArns": [
+                                "string"
+                              ]
+                            },
+                            "sds": {
+                              "secretName": "string"
+                            },
+                            "file": {
+                              "certificateChain": "string"
+                            }
+                          },
+                          "subjectAlternativeNames": {
+                            "match": {
+                              "exact": [
+                                "string"
+                              ]
+                            }
+                          }
+                        },
+                        "certificate": {
+                          "sds": {
+                            "secretName": "string"
+                          },
+                          "file": {
+                            "privateKey": "string",
+                            "certificateChain": "string"
+                          }
+                        }
+                      }
+                    },
+                    "virtualServiceName": "string"
+                  }
+                }
+              ],
+              "listeners": [
+                {
+                  "tls": {
+                    "mode": "string",
+                    "validation": {
+                      "trust": {
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "certificateChain": "string"
+                        }
+                      },
+                      "subjectAlternativeNames": {
+                        "match": {
+                          "exact": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "certificate": {
+                      "acm": {
+                        "certificateArn": "string"
+                      },
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "privateKey": "string",
+                        "certificateChain": "string"
+                      }
+                    }
+                  },
+                  "timeout": {
+                    "tcp": {
+                      "idle": {
+                        "unit": "string",
+                        "value": 1
+                      }
+                    },
+                    "grpc": {
+                      "idle": {
+                        "unit": "string",
+                        "value": 1
+                      },
+                      "perRequest": {
+                        "unit": "string",
+                        "value": 1
+                      }
+                    },
+                    "http": {
+                      "idle": {
+                        "unit": "string",
+                        "value": 1
+                      },
+                      "perRequest": {
+                        "unit": "string",
+                        "value": 1
+                      }
+                    },
+                    "http2": {
+                      "idle": {
+                        "unit": "string",
+                        "value": 1
+                      },
+                      "perRequest": {
+                        "unit": "string",
+                        "value": 1
+                      }
+                    }
+                  },
+                  "healthCheck": {
+                    "path": "string",
+                    "port": 1,
+                    "protocol": "string",
+                    "timeoutMillis": 1,
+                    "intervalMillis": 1,
+                    "healthyThreshold": 1,
+                    "unhealthyThreshold": 1
+                  },
+                  "portMapping": {
+                    "port": 1,
+                    "protocol": "string"
+                  },
+                  "connectionPool": {
+                    "tcp": {
+                      "maxConnections": 1
+                    },
+                    "grpc": {
+                      "maxRequests": 1
+                    },
+                    "http": {
+                      "maxConnections": 1,
+                      "maxPendingRequests": 1
+                    },
+                    "http2": {
+                      "maxRequests": 1
+                    }
+                  },
+                  "outlierDetection": {
+                    "interval": {
+                      "unit": "string",
+                      "value": 1
+                    },
+                    "maxServerErrors": 1,
+                    "maxEjectionPercent": 1,
+                    "baseEjectionDuration": {
+                      "unit": "string",
+                      "value": 1
+                    }
+                  }
+                }
+              ],
+              "backendDefaults": {
+                "clientPolicy": {
+                  "tls": {
+                    "ports": [
+                      1
+                    ],
+                    "enforce": false,
+                    "validation": {
+                      "trust": {
+                        "acm": {
+                          "certificateAuthorityArns": [
+                            "string"
+                          ]
+                        },
+                        "sds": {
+                          "secretName": "string"
+                        },
+                        "file": {
+                          "certificateChain": "string"
+                        }
+                      },
+                      "subjectAlternativeNames": {
+                        "match": {
+                          "exact": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "certificate": {
+                      "sds": {
+                        "secretName": "string"
+                      },
+                      "file": {
+                        "privateKey": "string",
+                        "certificateChain": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "serviceDiscovery": {
+                "dns": {
+                  "hostname": "string"
+                },
+                "awsCloudMap": {
+                  "attributes": [
+                    {
+                      "key": "string",
+                      "value": "string"
+                    }
+                  ],
+                  "serviceName": "string",
+                  "namespaceName": "string"
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "virtualNodeName": "string"
+          }
+        }
+      ]
+  UpdateVirtualRouter:
+    description: |-
+      Updates an existing virtual router in a specified service mesh.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_UpdateVirtualRouter.html
+    example:
+      inputs: [
+        {
+          "spec": {
+            "listeners": [
+              {
+                "portMapping": {
+                  "port": 1,
+                  "protocol": "string"
+                }
+              }
+            ]
+          },
+          "meshName": "string",
+          "meshOwner": "string",
+          "clientToken": "string",
+          "virtualRouterName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualRouter": {
+            "spec": {
+              "listeners": [
+                {
+                  "portMapping": {
+                    "port": 1,
+                    "protocol": "string"
+                  }
+                }
+              ]
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "virtualRouterName": "string"
+          }
+        }
+      ]
+  UpdateVirtualService:
+    description: |-
+      Updates an existing virtual service in a specified service mesh.
+    versions:
+      from: 2019.1.25
+    link: https://docs.aws.amazon.com/app-mesh/latest/APIReference/API_UpdateVirtualService.html
+    example:
+      inputs: [
+        {
+          "spec": {
+            "provider": {
+              "virtualNode": {
+                "virtualNodeName": "string"
+              },
+              "virtualRouter": {
+                "virtualRouterName": "string"
+              }
+            }
+          },
+          "meshName": "string",
+          "meshOwner": "string",
+          "clientToken": "string",
+          "virtualServiceName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualService": {
+            "spec": {
+              "provider": {
+                "virtualNode": {
+                  "virtualNodeName": "string"
+                },
+                "virtualRouter": {
+                  "virtualRouterName": "string"
+                }
+              }
+            },
+            "status": {
+              "status": "string"
+            },
+            "meshName": "string",
+            "metadata": {
+              "arn": "string",
+              "uid": "string",
+              "version": 1,
+              "createdAt": 1481289211.615,
+              "meshOwner": "string",
+              "lastUpdatedAt": 1481289211.615,
+              "resourceOwner": "string"
+            },
+            "virtualServiceName": "string"
+          }
+        }
+      ]

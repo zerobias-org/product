@@ -1,0 +1,320 @@
+Product:
+  name: AWS CodeStar Connections
+  versions: [2019.12.1]
+  package: amazon.aws.codestarconnections
+  description: |-
+    AWS CodeStar connections
+  link: https://docs.aws.amazon.com/codestar-connections/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CreateConnection:
+    description: |-
+      Creates a connection that can then be given to other AWS services like CodePipeline so that it can access third-party code repositories. The connection is in pending status until the third-party connection handshake is completed from the console.
+    versions:
+      from: 2019.12.1
+    link: https://docs.aws.amazon.com/codestar-connections/latest/APIReference/API_CreateConnection.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "HostArn": "string",
+          "ProviderType": "string",
+          "ConnectionName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ConnectionArn": "string"
+        }
+      ]
+  CreateHost:
+    description: |-
+      Creates a resource that represents the infrastructure where a third-party provider is installed. The host is used when you create connections to an installed third-party provider type, such as GitHub Enterprise Server. You create one host for all connections to that provider.
+    versions:
+      from: 2019.12.1
+    link: https://docs.aws.amazon.com/codestar-connections/latest/APIReference/API_CreateHost.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ProviderType": "string",
+          "ProviderEndpoint": "string",
+          "VpcConfiguration": {
+            "VpcId": "string",
+            "SubnetIds": [
+              "string"
+            ],
+            "TlsCertificate": "string",
+            "SecurityGroupIds": [
+              "string"
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "HostArn": "string"
+        }
+      ]
+  DeleteConnection:
+    description: |-
+      The connection to be deleted.
+    versions:
+      from: 2019.12.1
+    link: https://docs.aws.amazon.com/codestar-connections/latest/APIReference/API_DeleteConnection.html
+    example:
+      inputs: [
+        {
+          "ConnectionArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteHost:
+    description: |-
+      The host to be deleted. Before you delete a host, all connections associated to the host must be deleted.
+    versions:
+      from: 2019.12.1
+    link: https://docs.aws.amazon.com/codestar-connections/latest/APIReference/API_DeleteHost.html
+    example:
+      inputs: [
+        {
+          "HostArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetConnection:
+    description: |-
+      Returns the connection ARN and details such as status, owner, and provider type.
+    versions:
+      from: 2019.12.1
+    link: https://docs.aws.amazon.com/codestar-connections/latest/APIReference/API_GetConnection.html
+    example:
+      inputs: [
+        {
+          "ConnectionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Connection": {
+            "HostArn": "string",
+            "ProviderType": "string",
+            "ConnectionArn": "string",
+            "ConnectionName": "string",
+            "OwnerAccountId": "string",
+            "ConnectionStatus": "string"
+          }
+        }
+      ]
+  GetHost:
+    description: |-
+      Returns the host ARN and details such as status, provider type, endpoint, and, if applicable, the VPC configuration.
+    versions:
+      from: 2019.12.1
+    link: https://docs.aws.amazon.com/codestar-connections/latest/APIReference/API_GetHost.html
+    example:
+      inputs: [
+        {
+          "HostArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Status": "string",
+          "ProviderType": "string",
+          "ProviderEndpoint": "string",
+          "VpcConfiguration": {
+            "VpcId": "string",
+            "SubnetIds": [
+              "string"
+            ],
+            "TlsCertificate": "string",
+            "SecurityGroupIds": [
+              "string"
+            ]
+          }
+        }
+      ]
+  ListConnections:
+    description: |-
+      Lists the connections associated with your account.
+    versions:
+      from: 2019.12.1
+    link: https://docs.aws.amazon.com/codestar-connections/latest/APIReference/API_ListConnections.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "HostArnFilter": "string",
+          "ProviderTypeFilter": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Connections": [
+            {
+              "HostArn": "string",
+              "ProviderType": "string",
+              "ConnectionArn": "string",
+              "ConnectionName": "string",
+              "OwnerAccountId": "string",
+              "ConnectionStatus": "string"
+            }
+          ]
+        }
+      ]
+  ListHosts:
+    description: |-
+      Lists the hosts associated with your account.
+    versions:
+      from: 2019.12.1
+    link: https://docs.aws.amazon.com/codestar-connections/latest/APIReference/API_ListHosts.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Hosts": [
+            {
+              "Name": "string",
+              "Status": "string",
+              "HostArn": "string",
+              "ProviderType": "string",
+              "StatusMessage": "string",
+              "ProviderEndpoint": "string",
+              "VpcConfiguration": {
+                "VpcId": "string",
+                "SubnetIds": [
+                  "string"
+                ],
+                "TlsCertificate": "string",
+                "SecurityGroupIds": [
+                  "string"
+                ]
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Gets the set of key-value pairs (metadata) that are used to manage the resource.
+    versions:
+      from: 2019.12.1
+    link: https://docs.aws.amazon.com/codestar-connections/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds to or modifies the tags of the given resource. Tags are metadata that can be used to manage a resource.
+    versions:
+      from: 2019.12.1
+    link: https://docs.aws.amazon.com/codestar-connections/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes tags from an AWS resource.
+    versions:
+      from: 2019.12.1
+    link: https://docs.aws.amazon.com/codestar-connections/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateHost:
+    description: |-
+      Updates a specified host with the provided configurations.
+    versions:
+      from: 2019.12.1
+    link: https://docs.aws.amazon.com/codestar-connections/latest/APIReference/API_UpdateHost.html
+    example:
+      inputs: [
+        {
+          "HostArn": "string",
+          "ProviderEndpoint": "string",
+          "VpcConfiguration": {
+            "VpcId": "string",
+            "SubnetIds": [
+              "string"
+            ],
+            "TlsCertificate": "string",
+            "SecurityGroupIds": [
+              "string"
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]

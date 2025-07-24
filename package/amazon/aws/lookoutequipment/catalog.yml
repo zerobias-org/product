@@ -1,0 +1,667 @@
+Product:
+  name: Amazon Lookout for Equipment
+  versions: [2020.12.15]
+  package: amazon.aws.lookoutequipment
+  description: |-
+    Amazon Lookout for Equipment
+  link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/what-is.html
+  contentType: json
+Operations:
+  CreateDataset:
+    description: |-
+      Creates a container for a collection of data being ingested for analysis. The dataset contains the metadata describing where the data is and what the data actually looks like. In other words, it contains the location of the data source, the data schema, and other information. A dataset also contains any tags associated with the ingested data.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_CreateDataset.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ClientToken": "string",
+          "DatasetName": "string",
+          "DatasetSchema": {
+            "InlineDataSchema": "string"
+          },
+          "ServerSideKmsKeyId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "DatasetArn": "string",
+          "DatasetName": "string"
+        }
+      ]
+  CreateInferenceScheduler:
+    description: |-
+      Creates a scheduled inference. Scheduling an inference is setting up a continuous real-time inference plan to analyze new measurement data. When setting up the schedule, you provide an S3 bucket location for the input data, assign it a delimiter between separate entries in the data, set an offset delay if desired, and set the frequency of inferencing. You must also provide an S3 bucket location for the output data.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_CreateInferenceScheduler.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "RoleArn": "string",
+          "ModelName": "string",
+          "ClientToken": "string",
+          "ServerSideKmsKeyId": "string",
+          "DataUploadFrequency": "string",
+          "DataInputConfiguration": {
+            "InputTimeZoneOffset": "string",
+            "S3InputConfiguration": {
+              "Bucket": "string",
+              "Prefix": "string"
+            },
+            "InferenceInputNameConfiguration": {
+              "TimestampFormat": "string",
+              "ComponentTimestampDelimiter": "string"
+            }
+          },
+          "InferenceSchedulerName": "string",
+          "DataOutputConfiguration": {
+            "KmsKeyId": "string",
+            "S3OutputConfiguration": {
+              "Bucket": "string",
+              "Prefix": "string"
+            }
+          },
+          "DataDelayOffsetInMinutes": 1
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "InferenceSchedulerArn": "string",
+          "InferenceSchedulerName": "string"
+        }
+      ]
+  CreateModel:
+    description: |-
+      Creates an ML model for data inference.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_CreateModel.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "RoleArn": "string",
+          "ModelName": "string",
+          "ClientToken": "string",
+          "DatasetName": "string",
+          "DatasetSchema": {
+            "InlineDataSchema": "string"
+          },
+          "ServerSideKmsKeyId": "string",
+          "TrainingDataEndTime": 1481289211.615,
+          "EvaluationDataEndTime": 1481289211.615,
+          "TrainingDataStartTime": 1481289211.615,
+          "EvaluationDataStartTime": 1481289211.615,
+          "LabelsInputConfiguration": {
+            "S3InputConfiguration": {
+              "Bucket": "string",
+              "Prefix": "string"
+            }
+          },
+          "DataPreProcessingConfiguration": {
+            "TargetSamplingRate": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "ModelArn": "string"
+        }
+      ]
+  DeleteDataset:
+    description: |-
+      Deletes a dataset and associated artifacts. The operation will check to see if any inference scheduler or data ingestion job is currently using the dataset, and if there isn't, the dataset, its metadata, and any associated data stored in S3 will be deleted. This does not affect any models that used this dataset for training and evaluation, but does prevent it from being used in the future.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_DeleteDataset.html
+    example:
+      inputs: [
+        {
+          "DatasetName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteInferenceScheduler:
+    description: |-
+      Deletes an inference scheduler that has been set up. Already processed output results are not affected.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_DeleteInferenceScheduler.html
+    example:
+      inputs: [
+        {
+          "InferenceSchedulerName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteModel:
+    description: |-
+      Deletes an ML model currently available for Amazon Lookout for Equipment. This will prevent it from being used with an inference scheduler, even one that is already set up.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_DeleteModel.html
+    example:
+      inputs: [
+        {
+          "ModelName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeDataIngestionJob:
+    description: |-
+      Provides information on a specific data ingestion job such as creation time, dataset ARN, status, and so on.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_DescribeDataIngestionJob.html
+    example:
+      inputs: [
+        {
+          "JobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "JobId": "string",
+          "Status": "string",
+          "RoleArn": "string",
+          "CreatedAt": 1481289211.615,
+          "DatasetArn": "string",
+          "FailedReason": "string",
+          "IngestionInputConfiguration": {
+            "S3InputConfiguration": {
+              "Bucket": "string",
+              "Prefix": "string"
+            }
+          }
+        }
+      ]
+  DescribeDataset:
+    description: |-
+      Provides a JSON description of the data that is in each time series dataset, including names, column names, and data types.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_DescribeDataset.html
+    example:
+      inputs: [
+        {
+          "DatasetName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Schema": "string",
+          "Status": "string",
+          "CreatedAt": 1481289211.615,
+          "DatasetArn": "string",
+          "DatasetName": "string",
+          "LastUpdatedAt": 1481289211.615,
+          "ServerSideKmsKeyId": "string",
+          "IngestionInputConfiguration": {
+            "S3InputConfiguration": {
+              "Bucket": "string",
+              "Prefix": "string"
+            }
+          }
+        }
+      ]
+  DescribeInferenceScheduler:
+    description: |-
+      Specifies information about the inference scheduler being used, including name, model, status, and associated metadata
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_DescribeInferenceScheduler.html
+    example:
+      inputs: [
+        {
+          "InferenceSchedulerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "RoleArn": "string",
+          "ModelArn": "string",
+          "CreatedAt": 1481289211.615,
+          "ModelName": "string",
+          "UpdatedAt": 1481289211.615,
+          "ServerSideKmsKeyId": "string",
+          "DataUploadFrequency": "string",
+          "InferenceSchedulerArn": "string",
+          "DataInputConfiguration": {
+            "InputTimeZoneOffset": "string",
+            "S3InputConfiguration": {
+              "Bucket": "string",
+              "Prefix": "string"
+            },
+            "InferenceInputNameConfiguration": {
+              "TimestampFormat": "string",
+              "ComponentTimestampDelimiter": "string"
+            }
+          },
+          "InferenceSchedulerName": "string",
+          "DataOutputConfiguration": {
+            "KmsKeyId": "string",
+            "S3OutputConfiguration": {
+              "Bucket": "string",
+              "Prefix": "string"
+            }
+          },
+          "DataDelayOffsetInMinutes": 1
+        }
+      ]
+  DescribeModel:
+    description: |-
+      Provides a JSON containing the overall information about a specific ML model, including model name and ARN, dataset, training and evaluation information, status, and so on.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_DescribeModel.html
+    example:
+      inputs: [
+        {
+          "ModelName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Schema": "string",
+          "Status": "string",
+          "RoleArn": "string",
+          "ModelArn": "string",
+          "CreatedAt": 1481289211.615,
+          "ModelName": "string",
+          "DatasetArn": "string",
+          "DatasetName": "string",
+          "FailedReason": "string",
+          "ModelMetrics": "string",
+          "LastUpdatedTime": 1481289211.615,
+          "ServerSideKmsKeyId": "string",
+          "TrainingDataEndTime": 1481289211.615,
+          "EvaluationDataEndTime": 1481289211.615,
+          "TrainingDataStartTime": 1481289211.615,
+          "EvaluationDataStartTime": 1481289211.615,
+          "LabelsInputConfiguration": {
+            "S3InputConfiguration": {
+              "Bucket": "string",
+              "Prefix": "string"
+            }
+          },
+          "TrainingExecutionEndTime": 1481289211.615,
+          "TrainingExecutionStartTime": 1481289211.615,
+          "DataPreProcessingConfiguration": {
+            "TargetSamplingRate": "string"
+          }
+        }
+      ]
+  ListDataIngestionJobs:
+    description: |-
+      Provides a list of all data ingestion jobs, including dataset name and ARN, S3 location of the input data, status, and so on.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_ListDataIngestionJobs.html
+    example:
+      inputs: [
+        {
+          "Status": "string",
+          "NextToken": "string",
+          "MaxResults": 1,
+          "DatasetName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DataIngestionJobSummaries": [
+            {
+              "JobId": "string",
+              "Status": "string",
+              "DatasetArn": "string",
+              "DatasetName": "string",
+              "IngestionInputConfiguration": {
+                "S3InputConfiguration": {
+                  "Bucket": "string",
+                  "Prefix": "string"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  ListDatasets:
+    description: |-
+      Lists all datasets currently available in your account, filtering on the dataset name.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_ListDatasets.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "DatasetNameBeginsWith": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DatasetSummaries": [
+            {
+              "Status": "string",
+              "CreatedAt": 1481289211.615,
+              "DatasetArn": "string",
+              "DatasetName": "string"
+            }
+          ]
+        }
+      ]
+  ListInferenceExecutions:
+    description: |-
+      Lists all inference executions that have been performed by the specified inference scheduler.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_ListInferenceExecutions.html
+    example:
+      inputs: [
+        {
+          "Status": "string",
+          "NextToken": "string",
+          "MaxResults": 1,
+          "DataEndTimeBefore": 1481289211.615,
+          "DataStartTimeAfter": 1481289211.615,
+          "InferenceSchedulerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "InferenceExecutionSummaries": [
+            {
+              "Status": "string",
+              "ModelArn": "string",
+              "ModelName": "string",
+              "DataEndTime": 1481289211.615,
+              "FailedReason": "string",
+              "DataStartTime": 1481289211.615,
+              "ScheduledStartTime": 1481289211.615,
+              "CustomerResultObject": {
+                "Key": "string",
+                "Bucket": "string"
+              },
+              "InferenceSchedulerArn": "string",
+              "DataInputConfiguration": {
+                "InputTimeZoneOffset": "string",
+                "S3InputConfiguration": {
+                  "Bucket": "string",
+                  "Prefix": "string"
+                },
+                "InferenceInputNameConfiguration": {
+                  "TimestampFormat": "string",
+                  "ComponentTimestampDelimiter": "string"
+                }
+              },
+              "InferenceSchedulerName": "string",
+              "DataOutputConfiguration": {
+                "KmsKeyId": "string",
+                "S3OutputConfiguration": {
+                  "Bucket": "string",
+                  "Prefix": "string"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  ListInferenceSchedulers:
+    description: |-
+      Retrieves a list of all inference schedulers currently available for your account.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_ListInferenceSchedulers.html
+    example:
+      inputs: [
+        {
+          "ModelName": "string",
+          "NextToken": "string",
+          "MaxResults": 1,
+          "InferenceSchedulerNameBeginsWith": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "InferenceSchedulerSummaries": [
+            {
+              "Status": "string",
+              "ModelArn": "string",
+              "ModelName": "string",
+              "DataUploadFrequency": "string",
+              "InferenceSchedulerArn": "string",
+              "InferenceSchedulerName": "string",
+              "DataDelayOffsetInMinutes": 1
+            }
+          ]
+        }
+      ]
+  ListModels:
+    description: |-
+      Generates a list of all models in the account, including model name and ARN, dataset, and status.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_ListModels.html
+    example:
+      inputs: [
+        {
+          "Status": "string",
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ModelNameBeginsWith": "string",
+          "DatasetNameBeginsWith": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ModelSummaries": [
+            {
+              "Status": "string",
+              "ModelArn": "string",
+              "CreatedAt": 1481289211.615,
+              "ModelName": "string",
+              "DatasetArn": "string",
+              "DatasetName": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists all the tags for a specified resource, including key and value.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  StartDataIngestionJob:
+    description: |-
+      Starts a data ingestion job. Amazon Lookout for Equipment returns the job status.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_StartDataIngestionJob.html
+    example:
+      inputs: [
+        {
+          "RoleArn": "string",
+          "ClientToken": "string",
+          "DatasetName": "string",
+          "IngestionInputConfiguration": {
+            "S3InputConfiguration": {
+              "Bucket": "string",
+              "Prefix": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "JobId": "string",
+          "Status": "string"
+        }
+      ]
+  StartInferenceScheduler:
+    description: |-
+      Starts an inference scheduler.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_StartInferenceScheduler.html
+    example:
+      inputs: [
+        {
+          "InferenceSchedulerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "ModelArn": "string",
+          "ModelName": "string",
+          "InferenceSchedulerArn": "string",
+          "InferenceSchedulerName": "string"
+        }
+      ]
+  StopInferenceScheduler:
+    description: |-
+      Stops an inference scheduler.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_StopInferenceScheduler.html
+    example:
+      inputs: [
+        {
+          "InferenceSchedulerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "ModelArn": "string",
+          "ModelName": "string",
+          "InferenceSchedulerArn": "string",
+          "InferenceSchedulerName": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Associates a given tag to a resource in your account. A tag is a key-value pair which can be added to an Amazon Lookout for Equipment resource as metadata. Tags can be used for organizing your resources as well as helping you to search and filter by tag. Multiple tags can be added to a resource, either when you create it, or later. Up to 50 tags can be associated with each resource.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes a specific tag from a given resource. The tag is specified by its key.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateInferenceScheduler:
+    description: |-
+      Updates an inference scheduler.
+    versions:
+      from: 2020.12.15
+    link: https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/API_UpdateInferenceScheduler.html
+    example:
+      inputs: [
+        {
+          "RoleArn": "string",
+          "DataUploadFrequency": "string",
+          "DataInputConfiguration": {
+            "InputTimeZoneOffset": "string",
+            "S3InputConfiguration": {
+              "Bucket": "string",
+              "Prefix": "string"
+            },
+            "InferenceInputNameConfiguration": {
+              "TimestampFormat": "string",
+              "ComponentTimestampDelimiter": "string"
+            }
+          },
+          "InferenceSchedulerName": "string",
+          "DataOutputConfiguration": {
+            "KmsKeyId": "string",
+            "S3OutputConfiguration": {
+              "Bucket": "string",
+              "Prefix": "string"
+            }
+          },
+          "DataDelayOffsetInMinutes": 1
+        }
+      ]
+      outputs: [
+        {}
+      ]

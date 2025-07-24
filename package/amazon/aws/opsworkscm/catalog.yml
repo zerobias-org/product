@@ -1,0 +1,680 @@
+Product:
+  name: AWS OpsWorks CM
+  versions: [2016.11.1]
+  package: amazon.aws.opsworkscm
+  description: |-
+    AWS OpsWorks CM
+  link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AssociateNode:
+    description: |-
+      Associates a new node with the server. For more information about how to disassociate a node, see DisassociateNode.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_AssociateNode.html
+    example:
+      inputs: [
+        {
+          "NodeName": "string",
+          "ServerName": "string",
+          "EngineAttributes": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NodeAssociationStatusToken": "string"
+        }
+      ]
+  CreateBackup:
+    description: |-
+      Creates an application-level backup of a server. While the server is in the BACKING_UP state, the server cannot be changed, and no additional backup can be created.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_CreateBackup.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ServerName": "string",
+          "Description": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Backup": {
+            "Engine": "string",
+            "Status": "string",
+            "KeyPair": "string",
+            "UserArn": "string",
+            "BackupId": "string",
+            "S3LogUrl": "string",
+            "BackupArn": "string",
+            "CreatedAt": 1481289211.615,
+            "S3DataUrl": "string",
+            "SubnetIds": [
+              "string"
+            ],
+            "BackupType": "string",
+            "S3DataSize": 1,
+            "ServerName": "string",
+            "Description": "string",
+            "EngineModel": "string",
+            "InstanceType": "string",
+            "ToolsVersion": "string",
+            "EngineVersion": "string",
+            "ServiceRoleArn": "string",
+            "SecurityGroupIds": [
+              "string"
+            ],
+            "StatusDescription": "string",
+            "InstanceProfileArn": "string",
+            "PreferredBackupWindow": "string",
+            "PreferredMaintenanceWindow": "string"
+          }
+        }
+      ]
+  CreateServer:
+    description: |-
+      Creates and immedately starts a new server. The server is ready to use when it is in the HEALTHY state. By default, you can create a maximum of 10 servers.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_CreateServer.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Engine": "string",
+          "KeyPair": "string",
+          "BackupId": "string",
+          "SubnetIds": [
+            "string"
+          ],
+          "ServerName": "string",
+          "EngineModel": "string",
+          "CustomDomain": "string",
+          "InstanceType": "string",
+          "EngineVersion": "string",
+          "ServiceRoleArn": "string",
+          "CustomPrivateKey": "string",
+          "EngineAttributes": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ],
+          "SecurityGroupIds": [
+            "string"
+          ],
+          "CustomCertificate": "string",
+          "InstanceProfileArn": "string",
+          "BackupRetentionCount": 1,
+          "PreferredBackupWindow": "string",
+          "DisableAutomatedBackup": false,
+          "AssociatePublicIpAddress": false,
+          "PreferredMaintenanceWindow": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Server": {
+            "Engine": "string",
+            "Status": "string",
+            "KeyPair": "string",
+            "Endpoint": "string",
+            "CreatedAt": 1481289211.615,
+            "ServerArn": "string",
+            "SubnetIds": [
+              "string"
+            ],
+            "ServerName": "string",
+            "EngineModel": "string",
+            "CustomDomain": "string",
+            "InstanceType": "string",
+            "StatusReason": "string",
+            "EngineVersion": "string",
+            "ServiceRoleArn": "string",
+            "EngineAttributes": [
+              {
+                "Name": "string",
+                "Value": "string"
+              }
+            ],
+            "SecurityGroupIds": [
+              "string"
+            ],
+            "MaintenanceStatus": "string",
+            "InstanceProfileArn": "string",
+            "BackupRetentionCount": 1,
+            "PreferredBackupWindow": "string",
+            "CloudFormationStackArn": "string",
+            "DisableAutomatedBackup": false,
+            "AssociatePublicIpAddress": false,
+            "PreferredMaintenanceWindow": "string"
+          }
+        }
+      ]
+  DeleteBackup:
+    description: |-
+      Deletes a backup. You can delete both manual and automated backups. This operation is asynchronous.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_DeleteBackup.html
+    example:
+      inputs: [
+        {
+          "BackupId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteServer:
+    description: |-
+      Deletes the server and the underlying AWS CloudFormation stacks (including the server's EC2 instance). When you run this command, the server state is updated to DELETING. After the server is deleted, it is no longer returned by DescribeServer requests. If the AWS CloudFormation stack cannot be deleted, the server cannot be deleted.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_DeleteServer.html
+    example:
+      inputs: [
+        {
+          "ServerName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeAccountAttributes:
+    description: |-
+      Describes your OpsWorks-CM account attributes.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_DescribeAccountAttributes.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Attributes": [
+            {
+              "Name": "string",
+              "Used": 1,
+              "Maximum": 1
+            }
+          ]
+        }
+      ]
+  DescribeBackups:
+    description: |-
+      Describes backups. The results are ordered by time, with newest backups first. If you do not specify a BackupId or ServerName, the command returns all backups.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_DescribeBackups.html
+    example:
+      inputs: [
+        {
+          "BackupId": "string",
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ServerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Backups": [
+            {
+              "Engine": "string",
+              "Status": "string",
+              "KeyPair": "string",
+              "UserArn": "string",
+              "BackupId": "string",
+              "S3LogUrl": "string",
+              "BackupArn": "string",
+              "CreatedAt": 1481289211.615,
+              "S3DataUrl": "string",
+              "SubnetIds": [
+                "string"
+              ],
+              "BackupType": "string",
+              "S3DataSize": 1,
+              "ServerName": "string",
+              "Description": "string",
+              "EngineModel": "string",
+              "InstanceType": "string",
+              "ToolsVersion": "string",
+              "EngineVersion": "string",
+              "ServiceRoleArn": "string",
+              "SecurityGroupIds": [
+                "string"
+              ],
+              "StatusDescription": "string",
+              "InstanceProfileArn": "string",
+              "PreferredBackupWindow": "string",
+              "PreferredMaintenanceWindow": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeEvents:
+    description: |-
+      Describes events for a specified server. Results are ordered by time, with newest events first.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_DescribeEvents.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ServerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ServerEvents": [
+            {
+              "LogUrl": "string",
+              "Message": "string",
+              "CreatedAt": 1481289211.615,
+              "ServerName": "string"
+            }
+          ]
+        }
+      ]
+  DescribeNodeAssociationStatus:
+    description: |-
+      Returns the current status of an existing association or disassociation request.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_DescribeNodeAssociationStatus.html
+    example:
+      inputs: [
+        {
+          "ServerName": "string",
+          "NodeAssociationStatusToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EngineAttributes": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ],
+          "NodeAssociationStatus": "string"
+        }
+      ]
+  DescribeServers:
+    description: |-
+      Lists all configuration management servers that are identified with your account. Only the stored results from Amazon DynamoDB are returned. AWS OpsWorks CM does not query other services.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_DescribeServers.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ServerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Servers": [
+            {
+              "Engine": "string",
+              "Status": "string",
+              "KeyPair": "string",
+              "Endpoint": "string",
+              "CreatedAt": 1481289211.615,
+              "ServerArn": "string",
+              "SubnetIds": [
+                "string"
+              ],
+              "ServerName": "string",
+              "EngineModel": "string",
+              "CustomDomain": "string",
+              "InstanceType": "string",
+              "StatusReason": "string",
+              "EngineVersion": "string",
+              "ServiceRoleArn": "string",
+              "EngineAttributes": [
+                {
+                  "Name": "string",
+                  "Value": "string"
+                }
+              ],
+              "SecurityGroupIds": [
+                "string"
+              ],
+              "MaintenanceStatus": "string",
+              "InstanceProfileArn": "string",
+              "BackupRetentionCount": 1,
+              "PreferredBackupWindow": "string",
+              "CloudFormationStackArn": "string",
+              "DisableAutomatedBackup": false,
+              "AssociatePublicIpAddress": false,
+              "PreferredMaintenanceWindow": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DisassociateNode:
+    description: |-
+      Disassociates a node from an AWS OpsWorks CM server, and removes the node from the server's managed nodes. After a node is disassociated, the node key pair is no longer valid for accessing the configuration manager's API. For more information about how to associate a node, see AssociateNode.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_DisassociateNode.html
+    example:
+      inputs: [
+        {
+          "NodeName": "string",
+          "ServerName": "string",
+          "EngineAttributes": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NodeAssociationStatusToken": "string"
+        }
+      ]
+  ExportServerEngineAttribute:
+    description: |-
+      Exports a specified server engine attribute as a base64-encoded string. For example, you can export user data that you can use in EC2 to associate nodes with a server.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_ExportServerEngineAttribute.html
+    example:
+      inputs: [
+        {
+          "ServerName": "string",
+          "InputAttributes": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ],
+          "ExportAttributeName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ServerName": "string",
+          "EngineAttribute": {
+            "Name": "string",
+            "Value": "string"
+          }
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns a list of tags that are applied to the specified AWS OpsWorks for Chef Automate or AWS OpsWorks for Puppet Enterprise servers or backups.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  RestoreServer:
+    description: |-
+      Restores a backup to a server that is in a CONNECTION_LOST, HEALTHY, RUNNING, UNHEALTHY, or TERMINATED state. When you run RestoreServer, the server's EC2 instance is deleted, and a new EC2 instance is configured. RestoreServer maintains the existing server endpoint, so configuration management of the server's client devices (nodes) should continue to work.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_RestoreServer.html
+    example:
+      inputs: [
+        {
+          "KeyPair": "string",
+          "BackupId": "string",
+          "ServerName": "string",
+          "InstanceType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartMaintenance:
+    description: |-
+      Manually starts server maintenance. This command can be useful if an earlier maintenance attempt failed, and the underlying cause of maintenance failure has been resolved. The server is in an UNDER_MAINTENANCE state while maintenance is in progress.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_StartMaintenance.html
+    example:
+      inputs: [
+        {
+          "ServerName": "string",
+          "EngineAttributes": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Server": {
+            "Engine": "string",
+            "Status": "string",
+            "KeyPair": "string",
+            "Endpoint": "string",
+            "CreatedAt": 1481289211.615,
+            "ServerArn": "string",
+            "SubnetIds": [
+              "string"
+            ],
+            "ServerName": "string",
+            "EngineModel": "string",
+            "CustomDomain": "string",
+            "InstanceType": "string",
+            "StatusReason": "string",
+            "EngineVersion": "string",
+            "ServiceRoleArn": "string",
+            "EngineAttributes": [
+              {
+                "Name": "string",
+                "Value": "string"
+              }
+            ],
+            "SecurityGroupIds": [
+              "string"
+            ],
+            "MaintenanceStatus": "string",
+            "InstanceProfileArn": "string",
+            "BackupRetentionCount": 1,
+            "PreferredBackupWindow": "string",
+            "CloudFormationStackArn": "string",
+            "DisableAutomatedBackup": false,
+            "AssociatePublicIpAddress": false,
+            "PreferredMaintenanceWindow": "string"
+          }
+        }
+      ]
+  TagResource:
+    description: |-
+      Applies tags to an AWS OpsWorks for Chef Automate or AWS OpsWorks for Puppet Enterprise server, or to server backups.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes specified tags from an AWS OpsWorks-CM server or backup.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateServerEngineAttributes:
+    description: |-
+      Updates engine-specific attributes on a specified server. The server enters the MODIFYING state when this operation is in progress. Only one update can occur at a time. You can use this command to reset a Chef server's public key (CHEF_PIVOTAL_KEY) or a Puppet server's admin password (PUPPET_ADMIN_PASSWORD).
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_UpdateServerEngineAttributes.html
+    example:
+      inputs: [
+        {
+          "ServerName": "string",
+          "AttributeName": "string",
+          "AttributeValue": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Server": {
+            "Engine": "string",
+            "Status": "string",
+            "KeyPair": "string",
+            "Endpoint": "string",
+            "CreatedAt": 1481289211.615,
+            "ServerArn": "string",
+            "SubnetIds": [
+              "string"
+            ],
+            "ServerName": "string",
+            "EngineModel": "string",
+            "CustomDomain": "string",
+            "InstanceType": "string",
+            "StatusReason": "string",
+            "EngineVersion": "string",
+            "ServiceRoleArn": "string",
+            "EngineAttributes": [
+              {
+                "Name": "string",
+                "Value": "string"
+              }
+            ],
+            "SecurityGroupIds": [
+              "string"
+            ],
+            "MaintenanceStatus": "string",
+            "InstanceProfileArn": "string",
+            "BackupRetentionCount": 1,
+            "PreferredBackupWindow": "string",
+            "CloudFormationStackArn": "string",
+            "DisableAutomatedBackup": false,
+            "AssociatePublicIpAddress": false,
+            "PreferredMaintenanceWindow": "string"
+          }
+        }
+      ]
+  UpdateServer:
+    description: |-
+      Updates settings for a server.
+    versions:
+      from: 2016.11.1
+    link: https://docs.aws.amazon.com/opsworks-cm/latest/APIReference/API_UpdateServer.html
+    example:
+      inputs: [
+        {
+          "ServerName": "string",
+          "BackupRetentionCount": 1,
+          "PreferredBackupWindow": "string",
+          "DisableAutomatedBackup": false,
+          "PreferredMaintenanceWindow": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Server": {
+            "Engine": "string",
+            "Status": "string",
+            "KeyPair": "string",
+            "Endpoint": "string",
+            "CreatedAt": 1481289211.615,
+            "ServerArn": "string",
+            "SubnetIds": [
+              "string"
+            ],
+            "ServerName": "string",
+            "EngineModel": "string",
+            "CustomDomain": "string",
+            "InstanceType": "string",
+            "StatusReason": "string",
+            "EngineVersion": "string",
+            "ServiceRoleArn": "string",
+            "EngineAttributes": [
+              {
+                "Name": "string",
+                "Value": "string"
+              }
+            ],
+            "SecurityGroupIds": [
+              "string"
+            ],
+            "MaintenanceStatus": "string",
+            "InstanceProfileArn": "string",
+            "BackupRetentionCount": 1,
+            "PreferredBackupWindow": "string",
+            "CloudFormationStackArn": "string",
+            "DisableAutomatedBackup": false,
+            "AssociatePublicIpAddress": false,
+            "PreferredMaintenanceWindow": "string"
+          }
+        }
+      ]

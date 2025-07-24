@@ -1,0 +1,747 @@
+Product:
+  name: Azure Mixed Reality
+  versions: [2020.4.6-preview,2021.1.1-preview,2021.1.1]
+  package: microsoft.azure.mixedreality
+  description: |-
+    MixedReality
+  link: https://docs.microsoft.com/en-us/windows/mixed-reality/
+  contentType: json
+Operations:
+  CheckNameAvailabilityLocal.CheckNameAvailabilityLocal:
+    description: |-
+      Check Name Availability for local uniqueness
+    versions:
+      from: 2020.4.6-preview
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/checknameavailabilitylocal/checknameavailabilitylocal
+    example:
+      inputs: [
+        {
+          "name": "MyAccount",
+          "type": "Microsoft.MixedReality/spatialAnchorsAccounts"
+        }
+      ]
+      outputs: [
+        {
+          "reason": "AlreadyExists",
+          "message": "...",
+          "nameAvailable": false
+        }
+      ]
+  RemoteRendering.CreateConversion:
+    description: |-
+      Creates a conversion using an asset stored in an Azure Blob Storage account.
+    versions:
+      from: 2021.1.1-preview
+      to: 2021.1.1
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01preview/remoterendering/createconversion
+    example:
+      inputs: [
+        {
+          "settings": {
+            "inputLocation": {
+              "blobPrefix": "models/",
+              "storageContainerUri": "https://contosostorage01.blob.core.windows.net/arrInput",
+              "relativeInputAssetPath": "house.fbx"
+            },
+            "outputLocation": {
+              "blobPrefix": "conversionOutput/fbc3646c-0b97-4553-81ca-6fae2bfb754e",
+              "outputAssetFilename": "convertedHouse.arrAsset",
+              "storageContainerUri": "https://contosostorage01.blob.core.windows.net/arrOutput"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "contoso-conversion-fbc3646c-0b97-4553-81ca-6fae2bfb754e",
+          "error": null,
+          "status": "NotStarted",
+          "settings": {
+            "inputLocation": {
+              "blobPrefix": "models/",
+              "storageContainerUri": "https://contosostorage01.blob.core.windows.net/arrInput",
+              "relativeInputAssetPath": "house.fbx"
+            },
+            "outputLocation": {
+              "blobPrefix": "conversionOutput/fbc3646c-0b97-4553-81ca-6fae2bfb754e",
+              "outputAssetFilename": "convertedHouse.arrAsset",
+              "storageContainerUri": "https://contosostorage01.blob.core.windows.net/arrOutput"
+            }
+          },
+          "creationTime": "2021-01-01T11:11:11.111Z"
+        }
+      ]
+  RemoteRendering.CreateSession:
+    description: |-
+      Creates a new rendering session.
+    versions:
+      from: 2021.1.1-preview
+      to: 2021.1.1
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01preview/remoterendering/createsession
+    example:
+      inputs: [
+        {
+          "size": "Standard",
+          "maxLeaseTimeMinutes": 60
+        }
+      ]
+      outputs: [
+        {
+          "id": "contoso-session-c2b8ac1d-9494-4852-a59c-8c28813adc28",
+          "size": "Standard",
+          "error": null,
+          "status": "Starting",
+          "creationTime": "2020-11-11T11:11:11.111Z",
+          "maxLeaseTimeMinutes": 60
+        }
+      ]
+  RemoteRendering.GetConversion:
+    description: |-
+      Gets the status of a particular conversion.
+    versions:
+      from: 2021.1.1-preview
+      to: 2021.1.1
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01preview/remoterendering/getconversion
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "contoso-conversion-fbc3646c-0b97-4553-81ca-6fae2bfb754e",
+          "error": null,
+          "output": {
+            "outputAssetUri": "https://contosostorage01.blob.core.windows.net/arrOutput/conversionOutput/fbc3646c-0b97-4553-81ca-6fae2bfb754e/convertedHouse.arrAsset"
+          },
+          "status": "Succeeded",
+          "settings": {
+            "inputLocation": {
+              "blobPrefix": "models/",
+              "storageContainerUri": "https://contosostorage01.blob.core.windows.net/arrInput",
+              "relativeInputAssetPath": "house.fbx"
+            },
+            "outputLocation": {
+              "blobPrefix": "conversionOutput/fbc3646c-0b97-4553-81ca-6fae2bfb754e",
+              "outputAssetFilename": "convertedHouse.arrAsset",
+              "storageContainerUri": "https://contosostorage01.blob.core.windows.net/arrOutput"
+            }
+          },
+          "creationTime": "2021-01-01T11:11:11.111Z"
+        }
+      ]
+  RemoteRendering.GetSession:
+    description: |-
+      Gets the properties of a particular rendering session.
+    versions:
+      from: 2021.1.1-preview
+      to: 2021.1.1
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01preview/remoterendering/getsession
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "contoso-session-c2b8ac1d-9494-4852-a59c-8c28813adc28",
+          "size": "Standard",
+          "error": null,
+          "status": "Ready",
+          "hostname": "d4cefb7b-10b9-4631-934d-67445ffa9126.remoterenderingvm.westus2.mixedreality.azure.com",
+          "teraflops": 10.6,
+          "creationTime": "2020-11-11T11:11:11.111Z",
+          "handshakePort": 50051,
+          "arrInspectorPort": 50052,
+          "elapsedTimeMinutes": 10,
+          "maxLeaseTimeMinutes": 60
+        }
+      ]
+  RemoteRendering.ListConversions:
+    description: |-
+      Gets a list of all conversions.
+    versions:
+      from: 2021.1.1-preview
+      to: 2021.1.1
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01preview/remoterendering/listconversions
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "conversions": [
+            {
+              "id": "contoso-conversion-fbc3646c-0b97-4553-81ca-6fae2bfb754e",
+              "error": null,
+              "output": {
+                "outputAssetUri": "https://contosostorage01.blob.core.windows.net/arrOutput/conversionOutput/fbc3646c-0b97-4553-81ca-6fae2bfb754e/convertedHouse.arrAsset"
+              },
+              "status": "Succeeded",
+              "settings": {
+                "inputLocation": {
+                  "blobPrefix": "models/",
+                  "storageContainerUri": "https://contosostorage01.blob.core.windows.net/arrInput",
+                  "relativeInputAssetPath": "house.fbx"
+                },
+                "outputLocation": {
+                  "blobPrefix": "conversionOutput/fbc3646c-0b97-4553-81ca-6fae2bfb754e",
+                  "outputAssetFilename": "convertedHouse.arrAsset",
+                  "storageContainerUri": "https://contosostorage01.blob.core.windows.net/arrOutput"
+                }
+              },
+              "creationTime": "2021-01-01T11:11:11.111Z"
+            },
+            {
+              "id": "contoso-conversion-7da568fb-f3da-4b6d-ba75-d18c8e5a015e",
+              "error": null,
+              "status": "Running",
+              "settings": {
+                "inputLocation": {
+                  "blobPrefix": "models/",
+                  "storageContainerUri": "https://contosostorage01.blob.core.windows.net/arrInput",
+                  "relativeInputAssetPath": "barrel.fbx"
+                },
+                "outputLocation": {
+                  "blobPrefix": "conversionOutput/7da568fb-f3da-4b6d-ba75-d18c8e5a015e",
+                  "storageContainerUri": "https://contosostorage01.blob.core.windows.net/arrOutput"
+                }
+              },
+              "creationTime": "2021-02-02T11:11:11.111Z"
+            }
+          ]
+        }
+      ]
+  RemoteRendering.ListSessions:
+    description: |-
+      Gets a list of all rendering sessions.
+    versions:
+      from: 2021.1.1-preview
+      to: 2021.1.1
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01preview/remoterendering/listsessions
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "sessions": [
+            {
+              "id": "contoso-session-c2b8ac1d-9494-4852-a59c-8c28813adc28",
+              "size": "Standard",
+              "error": null,
+              "status": "Stopped",
+              "hostname": "d4cefb7b-10b9-4631-934d-67445ffa9126.remoterenderingvm.westus2.mixedreality.azure.com",
+              "teraflops": 10.6,
+              "creationTime": "2020-11-11T11:11:11.111Z",
+              "handshakePort": 50051,
+              "arrInspectorPort": 50052,
+              "elapsedTimeMinutes": 59,
+              "maxLeaseTimeMinutes": 60
+            },
+            {
+              "id": "contoso-session-03c200ce-faf8-4238-8db9-872ac9dd501d",
+              "size": "Standard",
+              "error": null,
+              "status": "Ready",
+              "hostname": "615854b8-1748-4f2e-9522-bf8523d7299c.remoterenderingvm.westus2.mixedreality.azure.com",
+              "teraflops": 10.6,
+              "creationTime": "2021-01-01T11:11:11.111Z",
+              "handshakePort": 50052,
+              "arrInspectorPort": 50053,
+              "elapsedTimeMinutes": 12,
+              "maxLeaseTimeMinutes": 72
+            }
+          ]
+        }
+      ]
+  RemoteRendering.StopSession:
+    description: |-
+      Stops a particular rendering session.
+    versions:
+      from: 2021.1.1-preview
+      to: 2021.1.1
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01preview/remoterendering/stopsession
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "error": {
+            "code": "InternalServerError",
+            "message": "An internal server error occurred."
+          }
+        }
+      ]
+  RemoteRendering.UpdateSession:
+    description: |-
+      Updates the max lease time of a particular rendering session.
+    versions:
+      from: 2021.1.1-preview
+      to: 2021.1.1
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01preview/remoterendering/updatesession
+    example:
+      inputs: [
+        {
+          "maxLeaseTimeMinutes": 72
+        }
+      ]
+      outputs: [
+        {
+          "id": "contoso-session-c2b8ac1d-9494-4852-a59c-8c28813adc28",
+          "size": "Standard",
+          "error": null,
+          "status": "Ready",
+          "hostname": "d4cefb7b-10b9-4631-934d-67445ffa9126.remoterenderingvm.westus2.mixedreality.azure.com",
+          "teraflops": 10.6,
+          "creationTime": "2020-11-11T11:11:11.111Z",
+          "handshakePort": 50051,
+          "arrInspectorPort": 50052,
+          "elapsedTimeMinutes": 10,
+          "maxLeaseTimeMinutes": 72
+        }
+      ]
+  RemoteRenderingAccounts.Create:
+    description: |-
+      Creating or Updating a Remote Rendering Account.
+    versions:
+      from: 2020.4.6-preview
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/remoterenderingaccounts/create
+    example:
+      inputs: [
+        {
+          "identity": {
+            "type": "SystemAssigned"
+          },
+          "location": "eastus2euap"
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/MyResourceGroup/providers/Microsoft.MixedReality/remoteRenderingAccounts/MyAccount",
+          "name": "MyAccount",
+          "tags": {},
+          "type": "Microsoft.MixedReality/remoteRenderingAccounts",
+          "identity": {
+            "type": "SystemAssigned"
+          },
+          "location": "eastus2euap",
+          "properties": {
+            "accountId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "accountDomain": "mixedreality.azure.com"
+          }
+        }
+      ]
+  RemoteRenderingAccounts.Delete:
+    description: |-
+      Delete a Remote Rendering Account.
+    versions:
+      from: 2020.4.6-preview
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/remoterenderingaccounts/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  RemoteRenderingAccounts.Get:
+    description: |-
+      Retrieve a Remote Rendering Account.
+    versions:
+      from: 2020.4.6-preview
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/remoterenderingaccounts/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/MyResourceGroup/providers/Microsoft.MixedReality/remoteRenderingAccounts/MyAccount",
+          "name": "MyAccount",
+          "tags": {},
+          "type": "Microsoft.MixedReality/remoteRenderingAccounts",
+          "identity": {
+            "type": "SystemAssigned"
+          },
+          "location": "eastus2euap",
+          "properties": {
+            "accountId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "accountDomain": "mixedreality.azure.com"
+          }
+        }
+      ]
+  RemoteRenderingAccounts.ListByResourceGroup:
+    description: |-
+      List Resources by Resource Group
+    versions:
+      from: 2020.4.6-preview
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/remoterenderingaccounts/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/MyResourceGroup/providers/Microsoft.MixedReality/remoteRenderingAccounts/alpha",
+              "name": "alpha",
+              "tags": {},
+              "type": "Microsoft.MixedReality/remoteRenderingAccounts",
+              "identity": {
+                "type": "SystemAssigned"
+              },
+              "location": "eastus2euap",
+              "properties": {
+                "accountId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "accountDomain": "mixedreality.azure.com"
+              }
+            },
+            {
+              "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/MyResourceGroup/providers/Microsoft.MixedReality/remoteRenderingAccounts/omega",
+              "name": "omega",
+              "tags": {},
+              "type": "Microsoft.MixedReality/remoteRenderingAccounts",
+              "identity": {
+                "type": "SystemAssigned"
+              },
+              "location": "eastus2euap",
+              "properties": {
+                "accountId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "accountDomain": "mixedreality.azure.com"
+              }
+            }
+          ],
+          "nextLink": "https://aka.ms/&^FDKKAR"
+        }
+      ]
+  RemoteRenderingAccounts.ListBySubscription:
+    description: |-
+      List Remote Rendering Accounts by Subscription
+    versions:
+      from: 2020.4.6-preview
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/remoterenderingaccounts/listbysubscription
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/MyResourceGroup/providers/Microsoft.MixedReality/remoteRenderingAccounts/alpha",
+              "name": "alpha",
+              "tags": {},
+              "type": "Microsoft.MixedReality/remoteRenderingAccounts",
+              "identity": {
+                "type": "SystemAssigned"
+              },
+              "location": "eastus2euap",
+              "properties": {
+                "accountId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "accountDomain": "mixedreality.azure.com"
+              }
+            },
+            {
+              "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/MyResourceGroup/providers/Microsoft.MixedReality/remoteRenderingAccounts/omega",
+              "name": "omega",
+              "tags": {},
+              "type": "Microsoft.MixedReality/remoteRenderingAccounts",
+              "identity": {
+                "type": "SystemAssigned"
+              },
+              "location": "eastus2euap",
+              "properties": {
+                "accountId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "accountDomain": "mixedreality.azure.com"
+              }
+            }
+          ],
+          "nextLink": "https://aka.ms/&^FDKKAR"
+        }
+      ]
+  RemoteRenderingAccounts.ListKeys:
+    description: |-
+      List Both of the 2 Keys of a Remote Rendering Account
+    versions:
+      from: 2020.4.6-preview
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/remoterenderingaccounts/listkeys
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "primaryKey": "<primaryKey>",
+          "secondaryKey": "<secondaryKey>"
+        }
+      ]
+  RemoteRenderingAccounts.RegenerateKeys:
+    description: |-
+      Regenerate specified Key of a Remote Rendering Account
+    versions:
+      from: 2020.4.6-preview
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/remoterenderingaccounts/regeneratekeys
+    example:
+      inputs: [
+        {
+          "serial": 1
+        }
+      ]
+      outputs: [
+        {
+          "primaryKey": "************",
+          "secondaryKey": "************"
+        }
+      ]
+  RemoteRenderingAccounts.Update:
+    description: |-
+      Updating a Remote Rendering Account
+    versions:
+      from: 2020.4.6-preview
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/remoterenderingaccounts/update
+    example:
+      inputs: [
+        {
+          "tags": {
+            "hero": "romeo",
+            "heroine": "juliet"
+          },
+          "identity": {
+            "type": "SystemAssigned"
+          },
+          "location": "eastus2euap"
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/MyResourceGroup/providers/Microsoft.MixedReality/remoteRenderingAccounts/MyAccount",
+          "name": "MyAccount",
+          "tags": {
+            "hero": "romeo",
+            "heroine": "juliet"
+          },
+          "type": "Microsoft.MixedReality/remoteRenderingAccounts",
+          "identity": {
+            "type": "SystemAssigned"
+          },
+          "location": "eastus2euap",
+          "properties": {
+            "accountId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "accountDomain": "mixedreality.azure.com"
+          }
+        }
+      ]
+  SpatialAnchorsAccounts.Create:
+    description: |-
+      Creating or Updating a Spatial Anchors Account.
+    versions:
+      from: 2021.1.1-preview
+      to: 2021.1.1
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/spatialanchorsaccounts/create
+    example:
+      inputs: [
+        {
+          "location": "eastus2euap"
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/MyResourceGroup/providers/Microsoft.MixedReality/spatialAnchorsAccounts/MyAccount",
+          "name": "MyAccount",
+          "tags": {},
+          "type": "Microsoft.MixedReality/spatialAnchorsAccounts",
+          "location": "eastus2euap",
+          "properties": {
+            "accountId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "accountDomain": "mixedreality.azure.com"
+          }
+        }
+      ]
+  SpatialAnchorsAccounts.Delete:
+    description: |-
+      Delete a Spatial Anchors Account.
+    versions:
+      from: 2021.1.1-preview
+      to: 2021.1.1
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/spatialanchorsaccounts/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  SpatialAnchorsAccounts.Get:
+    description: |-
+      Retrieve a Spatial Anchors Account.
+    versions:
+      from: 2021.1.1-preview
+      to: 2021.1.1
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/spatialanchorsaccounts/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/MyResourceGroup/providers/Microsoft.MixedReality/spatialAnchorsAccounts/MyAccount",
+          "name": "MyAccount",
+          "tags": {},
+          "type": "Microsoft.MixedReality/spatialAnchorsAccounts",
+          "location": "eastus2euap",
+          "properties": {
+            "accountId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "accountDomain": "mixedreality.azure.com"
+          }
+        }
+      ]
+  SpatialAnchorsAccounts.ListByResourceGroup:
+    description: |-
+      List Resources by Resource Group
+    versions:
+      from: 2021.1.1-preview
+      to: 2021.1.1
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/spatialanchorsaccounts/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/MyResourceGroup/providers/Microsoft.MixedReality/spatialAnchorsAccounts/alpha",
+              "name": "alpha",
+              "tags": {},
+              "type": "Microsoft.MixedReality/spatialAnchorsAccounts",
+              "location": "eastus2euap",
+              "properties": {
+                "accountId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "accountDomain": "mixedreality.azure.com"
+              }
+            },
+            {
+              "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/MyResourceGroup/providers/Microsoft.MixedReality/spatialAnchorsAccounts/omega",
+              "name": "omega",
+              "tags": {},
+              "type": "Microsoft.MixedReality/spatialAnchorsAccounts",
+              "location": "eastus2euap",
+              "properties": {
+                "accountId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "accountDomain": "mixedreality.azure.com"
+              }
+            }
+          ],
+          "nextLink": "https://aka.ms/&^FDKKAR"
+        }
+      ]
+  SpatialAnchorsAccounts.ListBySubscription:
+    description: |-
+      List Spatial Anchors Accounts by Subscription
+    versions:
+      from: 2021.1.1-preview
+      to: 2021.1.1
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/spatialanchorsaccounts/listbysubscription
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/MyResourceGroup/providers/Microsoft.MixedReality/spatialAnchorsAccounts/alpha",
+              "name": "alpha",
+              "tags": {},
+              "type": "Microsoft.MixedReality/spatialAnchorsAccounts",
+              "location": "eastus2euap",
+              "properties": {
+                "accountId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "accountDomain": "mixedreality.azure.com"
+              }
+            },
+            {
+              "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/MyResourceGroup/providers/Microsoft.MixedReality/spatialAnchorsAccounts/omega",
+              "name": "omega",
+              "tags": {},
+              "type": "Microsoft.MixedReality/spatialAnchorsAccounts",
+              "location": "eastus2euap",
+              "properties": {
+                "accountId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                "accountDomain": "mixedreality.azure.com"
+              }
+            }
+          ],
+          "nextLink": "https://aka.ms/&^FDKKAR"
+        }
+      ]
+  SpatialAnchorsAccounts.ListKeys:
+    description: |-
+      List Both of the 2 Keys of a Spatial Anchors Account
+    versions:
+      from: 2021.1.1-preview
+      to: 2021.1.1
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/spatialanchorsaccounts/listkeys
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "primaryKey": "************",
+          "secondaryKey": "************"
+        }
+      ]
+  SpatialAnchorsAccounts.RegenerateKeys:
+    description: |-
+      Regenerate specified Key of a Spatial Anchors Account
+    versions:
+      from: 2021.1.1-preview
+      to: 2021.1.1
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/spatialanchorsaccounts/regeneratekeys
+    example:
+      inputs: [
+        {
+          "serial": 1
+        }
+      ]
+      outputs: [
+        {
+          "primaryKey": "************",
+          "secondaryKey": "************"
+        }
+      ]
+  SpatialAnchorsAccounts.Update:
+    description: |-
+      Updating a Spatial Anchors Account
+    versions:
+      from: 2021.1.1-preview
+      to: 2021.1.1
+    link: https://docs.microsoft.com/en-us/rest/api/mixedreality/2021-01-01/spatialanchorsaccounts/update
+    example:
+      inputs: [
+        {
+          "tags": {
+            "hero": "romeo",
+            "heroine": "juliet"
+          },
+          "location": "eastus2euap"
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/MyResourceGroup/providers/Microsoft.MixedReality/spatialAnchorsAccounts/MyAccount",
+          "name": "MyAccount",
+          "tags": {
+            "hero": "romeo",
+            "heroine": "juliet"
+          },
+          "type": "Microsoft.MixedReality/spatialAnchorsAccounts",
+          "location": "eastus2euap",
+          "properties": {
+            "accountId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "accountDomain": "mixedreality.azure.com"
+          }
+        }
+      ]

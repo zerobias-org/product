@@ -1,0 +1,356 @@
+Product:
+  name: Amazon RDS Data Service
+  versions: [2018.8.1]
+  package: amazon.aws.rdsdataservice
+  description: |-
+    Amazon RDS Data Service
+  link: https://docs.aws.amazon.com/rdsdataservice/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  BatchExecuteStatement:
+    description: |-
+      Runs a batch SQL statement over an array of data.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/rdsdataservice/latest/APIReference/API_BatchExecuteStatement.html
+    example:
+      inputs: [
+        {
+          "sql": "string",
+          "schema": "string",
+          "database": "string",
+          "secretArn": "string",
+          "resourceArn": "string",
+          "parameterSets": [
+            [
+              {
+                "name": "string",
+                "value": {
+                  "isNull": "boolean",
+                  "blobValue": "blob",
+                  "longValue": "number",
+                  "arrayValue": {
+                    "longValues": [
+                      "number"
+                    ],
+                    "arrayValues": [
+                      "ArrayValue"
+                    ],
+                    "doubleValues": [
+                      "number"
+                    ],
+                    "stringValues": [
+                      "string"
+                    ],
+                    "booleanValues": [
+                      "boolean"
+                    ]
+                  },
+                  "doubleValue": "number",
+                  "stringValue": "string",
+                  "booleanValue": "boolean"
+                },
+                "typeHint": "string"
+              }
+            ]
+          ],
+          "transactionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "updateResults": [
+            {
+              "generatedFields": [
+                {
+                  "isNull": "boolean",
+                  "blobValue": "blob",
+                  "longValue": "number",
+                  "arrayValue": {
+                    "longValues": [
+                      "number"
+                    ],
+                    "arrayValues": [
+                      "ArrayValue"
+                    ],
+                    "doubleValues": [
+                      "number"
+                    ],
+                    "stringValues": [
+                      "string"
+                    ],
+                    "booleanValues": [
+                      "boolean"
+                    ]
+                  },
+                  "doubleValue": "number",
+                  "stringValue": "string",
+                  "booleanValue": "boolean"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  BeginTransaction:
+    description: |-
+      Starts a SQL transaction.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/rdsdataservice/latest/APIReference/API_BeginTransaction.html
+    example:
+      inputs: [
+        {
+          "schema": "string",
+          "database": "string",
+          "secretArn": "string",
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "transactionId": "string"
+        }
+      ]
+  CommitTransaction:
+    description: |-
+      Ends a SQL transaction started with the BeginTransaction operation and commits the changes.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/rdsdataservice/latest/APIReference/API_CommitTransaction.html
+    example:
+      inputs: [
+        {
+          "secretArn": "string",
+          "resourceArn": "string",
+          "transactionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "transactionStatus": "string"
+        }
+      ]
+  ExecuteSql:
+    description: |-
+      Runs one or more SQL statements.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/rdsdataservice/latest/APIReference/API_ExecuteSql.html
+    example:
+      inputs: [
+        {
+          "schema": "string",
+          "database": "string",
+          "sqlStatements": "string",
+          "awsSecretStoreArn": "string",
+          "dbClusterOrInstanceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "sqlStatementResults": [
+            {
+              "resultFrame": {
+                "records": [
+                  {
+                    "values": [
+                      {
+                        "isNull": "boolean",
+                        "bitValue": "boolean",
+                        "intValue": "number",
+                        "blobValue": "blob",
+                        "realValue": "number",
+                        "arrayValues": [
+                          "Value"
+                        ],
+                        "bigIntValue": "number",
+                        "doubleValue": "number",
+                        "stringValue": "string",
+                        "structValue": {
+                          "attributes": [
+                            "Value"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "resultSetMetadata": {
+                  "columnCount": "number",
+                  "columnMetadata": [
+                    {
+                      "name": "string",
+                      "type": "number",
+                      "label": "string",
+                      "scale": "number",
+                      "isSigned": "boolean",
+                      "nullable": "number",
+                      "typeName": "string",
+                      "precision": "number",
+                      "tableName": "string",
+                      "isCurrency": "boolean",
+                      "schemaName": "string",
+                      "isAutoIncrement": "boolean",
+                      "isCaseSensitive": "boolean",
+                      "arrayBaseColumnType": "number"
+                    }
+                  ]
+                }
+              },
+              "numberOfRecordsUpdated": "number"
+            }
+          ]
+        }
+      ]
+  ExecuteStatement:
+    description: |-
+      Runs a SQL statement against a database.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/rdsdataservice/latest/APIReference/API_ExecuteStatement.html
+    example:
+      inputs: [
+        {
+          "sql": "string",
+          "schema": "string",
+          "database": "string",
+          "secretArn": "string",
+          "parameters": [
+            {
+              "name": "string",
+              "value": {
+                "isNull": "boolean",
+                "blobValue": "blob",
+                "longValue": "number",
+                "arrayValue": {
+                  "longValues": [
+                    "number"
+                  ],
+                  "arrayValues": [
+                    "ArrayValue"
+                  ],
+                  "doubleValues": [
+                    "number"
+                  ],
+                  "stringValues": [
+                    "string"
+                  ],
+                  "booleanValues": [
+                    "boolean"
+                  ]
+                },
+                "doubleValue": "number",
+                "stringValue": "string",
+                "booleanValue": "boolean"
+              },
+              "typeHint": "string"
+            }
+          ],
+          "resourceArn": "string",
+          "transactionId": "string",
+          "resultSetOptions": {
+            "decimalReturnType": "string"
+          },
+          "continueAfterTimeout": "boolean",
+          "includeResultMetadata": "boolean"
+        }
+      ]
+      outputs: [
+        {
+          "records": [
+            [
+              {
+                "isNull": "boolean",
+                "blobValue": "blob",
+                "longValue": "number",
+                "arrayValue": {
+                  "longValues": [
+                    "number"
+                  ],
+                  "arrayValues": [
+                    "ArrayValue"
+                  ],
+                  "doubleValues": [
+                    "number"
+                  ],
+                  "stringValues": [
+                    "string"
+                  ],
+                  "booleanValues": [
+                    "boolean"
+                  ]
+                },
+                "doubleValue": "number",
+                "stringValue": "string",
+                "booleanValue": "boolean"
+              }
+            ]
+          ],
+          "columnMetadata": [
+            {
+              "name": "string",
+              "type": "number",
+              "label": "string",
+              "scale": "number",
+              "isSigned": "boolean",
+              "nullable": "number",
+              "typeName": "string",
+              "precision": "number",
+              "tableName": "string",
+              "isCurrency": "boolean",
+              "schemaName": "string",
+              "isAutoIncrement": "boolean",
+              "isCaseSensitive": "boolean",
+              "arrayBaseColumnType": "number"
+            }
+          ],
+          "generatedFields": [
+            {
+              "isNull": "boolean",
+              "blobValue": "blob",
+              "longValue": "number",
+              "arrayValue": {
+                "longValues": [
+                  "number"
+                ],
+                "arrayValues": [
+                  "ArrayValue"
+                ],
+                "doubleValues": [
+                  "number"
+                ],
+                "stringValues": [
+                  "string"
+                ],
+                "booleanValues": [
+                  "boolean"
+                ]
+              },
+              "doubleValue": "number",
+              "stringValue": "string",
+              "booleanValue": "boolean"
+            }
+          ],
+          "numberOfRecordsUpdated": "number"
+        }
+      ]
+  RollbackTransaction:
+    description: |-
+      Performs a rollback of a transaction. Rolling back a transaction cancels its changes.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/rdsdataservice/latest/APIReference/API_RollbackTransaction.html
+    example:
+      inputs: [
+        {
+          "secretArn": "string",
+          "resourceArn": "string",
+          "transactionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "transactionStatus": "string"
+        }
+      ]

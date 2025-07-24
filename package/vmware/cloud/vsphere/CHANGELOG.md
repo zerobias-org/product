@@ -1,0 +1,130 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.4.5](https://github.com/auditlogic/product/compare/@auditlogic/product-vmware-cloud-vsphere@0.4.4...@auditlogic/product-vmware-cloud-vsphere@0.4.5) (2024-08-26)
+
+
+### Bug Fixes
+
+* update index yml and package json for prod/service cat changes a… ([#138](https://github.com/auditlogic/product/issues/138)) ([08fe9be](https://github.com/auditlogic/product/commit/08fe9beb1c8457462a19bc69caa02e6212d97e1a))
+
+
+
+
+
+## [0.4.5-rc.0](https://github.com/auditlogic/product/compare/@auditlogic/product-vmware-cloud-vsphere@0.4.4...@auditlogic/product-vmware-cloud-vsphere@0.4.5-rc.0) (2024-08-26)
+
+
+### Bug Fixes
+
+* update index yml and package json for prod/service cat changes and deps ([2250303](https://github.com/auditlogic/product/commit/225030363a363608240135b7ebed386b28f01e4b))
+
+
+
+
+
+## [0.4.4](https://github.com/auditlogic/product/compare/@auditlogic/product-vmware-cloud-vsphere@0.4.3...@auditlogic/product-vmware-cloud-vsphere@0.4.4) (2024-08-05)
+
+**Note:** Version bump only for package @auditlogic/product-vmware-cloud-vsphere
+
+
+
+
+
+## [0.4.4-rc.0](https://github.com/auditlogic/product/compare/@auditlogic/product-vmware-cloud-vsphere@0.4.3...@auditlogic/product-vmware-cloud-vsphere@0.4.4-rc.0) (2024-08-01)
+
+**Note:** Version bump only for package @auditlogic/product-vmware-cloud-vsphere
+
+
+
+
+
+## [0.4.3](https://github.com/auditlogic/product/compare/@auditlogic/product-vmware-cloud-vsphere@0.4.3-rc.1...@auditlogic/product-vmware-cloud-vsphere@0.4.3) (2024-06-21)
+
+**Note:** Version bump only for package @auditlogic/product-vmware-cloud-vsphere
+
+
+
+
+
+## [0.4.3-rc.1](https://github.com/auditlogic/product/compare/@auditlogic/product-vmware-cloud-vsphere@0.4.3-rc.0...@auditlogic/product-vmware-cloud-vsphere@0.4.3-rc.1) (2024-06-21)
+
+
+### Bug Fixes
+
+* shrinks ([cac1420](https://github.com/auditlogic/product/commit/cac14200fefcd8183ab69fe89a47bd3f70f563e9))
+
+
+
+
+
+## [0.4.3-rc.0](https://github.com/auditlogic/product/compare/@auditlogic/product-vmware-cloud-vsphere@0.4.1...@auditlogic/product-vmware-cloud-vsphere@0.4.3-rc.0) (2024-06-21)
+
+
+### Bug Fixes
+
+* bump versions ([7e91302](https://github.com/auditlogic/product/commit/7e913023b8b312150ed7762c32fbbe616be71de5))
+* correct products logos and categories back ([a2ebaf2](https://github.com/auditlogic/product/commit/a2ebaf2efe8e232e6ff22c774c456048771f9469))
+* update all deps as well, some weirdness ([e0f4a86](https://github.com/auditlogic/product/commit/e0f4a864714e2d3de6bbf3da014d5312fe53be2f))
+
+
+
+
+
+## [0.4.1](https://github.com/auditlogic/product/compare/@auditlogic/product-vmware-cloud-vsphere@0.4.0...@auditlogic/product-vmware-cloud-vsphere@0.4.1) (2024-06-18)
+
+
+### Bug Fixes
+
+* publishing new artifact @auditlogic/product-vmware-cloud-vsphere ([1333240](https://github.com/auditlogic/product/commit/1333240a526c1ded7e8a11e0d4c5c4c22a5ccfbd))
+
+
+
+
+
+# [0.4.0](https://github.com/auditlogic/product/compare/@auditlogic/product-vmware-cloud-vsphere@0.3.0...@auditlogic/product-vmware-cloud-vsphere@0.4.0) (2024-04-03)
+
+
+### Features
+
+* factoryTypes ([4346de9](https://github.com/auditlogic/product/commit/4346de92693aee892fccf725338ffc7b80ab182b))
+
+
+
+
+
+# [0.3.0](https://github.com/auditlogic/product/compare/@auditlogic/product-vmware-cloud-vsphere@0.2.0...@auditlogic/product-vmware-cloud-vsphere@0.3.0) (2023-08-25)
+
+**Note:** Version bump only for package @auditlogic/product-vmware-cloud-vsphere
+
+
+
+
+
+# [0.3.0-rc.0](https://github.com/auditlogic/product/compare/@auditlogic/product-vmware-cloud-vsphere@0.2.0...@auditlogic/product-vmware-cloud-vsphere@0.3.0-rc.0) (2023-08-25)
+
+
+### Features
+
+* set vSphere active ([0c9b56b](https://github.com/auditlogic/product/commit/0c9b56bb736d89cc8745e5c38fb0d6aaab9c436a))
+
+
+
+
+
+# 0.2.0 (2023-08-25)
+
+**Note:** Version bump only for package @auditlogic/product-vmware-cloud-vsphere
+
+
+
+
+
+# 0.2.0-rc.0 (2023-08-25)
+
+
+### Features
+
+* PRO-73-order-v-mware-v-sphere ([b0d5350](https://github.com/auditlogic/product/commit/b0d53505bbf9ab5563d87c118b64dc5493f9c025))

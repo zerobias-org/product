@@ -1,0 +1,1942 @@
+Product:
+  name: Amazon EC2 Image Builder
+  versions: [2019.12.2]
+  package: amazon.aws.ec2imagebuilder
+  description: |-
+    EC2 Image Builder
+  link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CancelImageCreation:
+    description: |-
+      CancelImageCreation cancels the creation of Image. This operation can only be used on images in a non-terminal state.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_CancelImageCreation.html
+    example:
+      inputs: [
+        {
+          "clientToken": "string",
+          "imageBuildVersionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "clientToken": "string",
+          "imageBuildVersionArn": "string"
+        }
+      ]
+  CreateComponent:
+    description: |-
+      Creates a new component that can be used to build, validate, test, and assess your image.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_CreateComponent.html
+    example:
+      inputs: [
+        {
+          "uri": "string",
+          "data": "string",
+          "name": "string",
+          "tags": {
+            "string": "string"
+          },
+          "kmsKeyId": "string",
+          "platform": "string",
+          "clientToken": "string",
+          "description": "string",
+          "semanticVersion": "string",
+          "changeDescription": "string",
+          "supportedOsVersions": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "clientToken": "string",
+          "componentBuildVersionArn": "string"
+        }
+      ]
+  CreateContainerRecipe:
+    description: |-
+      Creates a new container recipe. Container recipes define how images are configured, tested, and assessed.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_CreateContainerRecipe.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "tags": {
+            "string": "string"
+          },
+          "kmsKeyId": "string",
+          "components": [
+            {
+              "componentArn": "string"
+            }
+          ],
+          "clientToken": "string",
+          "description": "string",
+          "parentImage": "string",
+          "containerType": "string",
+          "semanticVersion": "string",
+          "platformOverride": "string",
+          "targetRepository": {
+            "service": "string",
+            "repositoryName": "string"
+          },
+          "workingDirectory": "string",
+          "dockerfileTemplateUri": "string",
+          "instanceConfiguration": {
+            "image": "string",
+            "blockDeviceMappings": [
+              {
+                "ebs": {
+                  "iops": 1,
+                  "kmsKeyId": "string",
+                  "encrypted": false,
+                  "snapshotId": "string",
+                  "volumeSize": 1,
+                  "volumeType": "string",
+                  "deleteOnTermination": false
+                },
+                "noDevice": "string",
+                "deviceName": "string",
+                "virtualName": "string"
+              }
+            ]
+          },
+          "dockerfileTemplateData": "string",
+          "imageOsVersionOverride": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "clientToken": "string",
+          "containerRecipeArn": "string"
+        }
+      ]
+  CreateDistributionConfiguration:
+    description: |-
+      Creates a new distribution configuration. Distribution configurations define and configure the outputs of your pipeline.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_CreateDistributionConfiguration.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "tags": {
+            "string": "string"
+          },
+          "clientToken": "string",
+          "description": "string",
+          "distributions": [
+            {
+              "region": "string",
+              "licenseConfigurationArns": [
+                "string"
+              ],
+              "amiDistributionConfiguration": {
+                "name": "string",
+                "amiTags": {
+                  "string": "string"
+                },
+                "kmsKeyId": "string",
+                "description": "string",
+                "launchPermission": {
+                  "userIds": [
+                    "string"
+                  ],
+                  "userGroups": [
+                    "string"
+                  ]
+                },
+                "targetAccountIds": [
+                  "string"
+                ]
+              },
+              "launchTemplateConfigurations": [
+                {
+                  "accountId": "string",
+                  "launchTemplateId": "string",
+                  "setDefaultVersion": false
+                }
+              ],
+              "containerDistributionConfiguration": {
+                "description": "string",
+                "containerTags": [
+                  "string"
+                ],
+                "targetRepository": {
+                  "service": "string",
+                  "repositoryName": "string"
+                }
+              }
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "clientToken": "string",
+          "distributionConfigurationArn": "string"
+        }
+      ]
+  CreateImage:
+    description: |-
+      Creates a new image. This request will create a new image along with all of the configured output resources defined in the distribution configuration.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_CreateImage.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "clientToken": "string",
+          "imageRecipeArn": "string",
+          "containerRecipeArn": "string",
+          "imageTestsConfiguration": {
+            "timeoutMinutes": 1,
+            "imageTestsEnabled": false
+          },
+          "distributionConfigurationArn": "string",
+          "enhancedImageMetadataEnabled": false,
+          "infrastructureConfigurationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "clientToken": "string",
+          "imageBuildVersionArn": "string"
+        }
+      ]
+  CreateImagePipeline:
+    description: |-
+      Creates a new image pipeline. Image pipelines enable you to automate the creation and distribution of images.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_CreateImagePipeline.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "tags": {
+            "string": "string"
+          },
+          "status": "string",
+          "schedule": {
+            "timezone": "string",
+            "scheduleExpression": "string",
+            "pipelineExecutionStartCondition": "string"
+          },
+          "clientToken": "string",
+          "description": "string",
+          "imageRecipeArn": "string",
+          "containerRecipeArn": "string",
+          "imageTestsConfiguration": {
+            "timeoutMinutes": 1,
+            "imageTestsEnabled": false
+          },
+          "distributionConfigurationArn": "string",
+          "enhancedImageMetadataEnabled": false,
+          "infrastructureConfigurationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "clientToken": "string",
+          "imagePipelineArn": "string"
+        }
+      ]
+  CreateImageRecipe:
+    description: |-
+      Creates a new image recipe. Image recipes define how images are configured, tested, and assessed.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_CreateImageRecipe.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "tags": {
+            "string": "string"
+          },
+          "components": [
+            {
+              "componentArn": "string"
+            }
+          ],
+          "clientToken": "string",
+          "description": "string",
+          "parentImage": "string",
+          "semanticVersion": "string",
+          "workingDirectory": "string",
+          "blockDeviceMappings": [
+            {
+              "ebs": {
+                "iops": 1,
+                "kmsKeyId": "string",
+                "encrypted": false,
+                "snapshotId": "string",
+                "volumeSize": 1,
+                "volumeType": "string",
+                "deleteOnTermination": false
+              },
+              "noDevice": "string",
+              "deviceName": "string",
+              "virtualName": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "clientToken": "string",
+          "imageRecipeArn": "string"
+        }
+      ]
+  CreateInfrastructureConfiguration:
+    description: |-
+      Creates a new infrastructure configuration. An infrastructure configuration defines the environment in which your image will be built and tested.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_CreateInfrastructureConfiguration.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "tags": {
+            "string": "string"
+          },
+          "keyPair": "string",
+          "logging": {
+            "s3Logs": {
+              "s3KeyPrefix": "string",
+              "s3BucketName": "string"
+            }
+          },
+          "subnetId": "string",
+          "clientToken": "string",
+          "description": "string",
+          "snsTopicArn": "string",
+          "resourceTags": {
+            "string": "string"
+          },
+          "instanceTypes": [
+            "string"
+          ],
+          "securityGroupIds": [
+            "string"
+          ],
+          "instanceProfileName": "string",
+          "terminateInstanceOnFailure": false
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "clientToken": "string",
+          "infrastructureConfigurationArn": "string"
+        }
+      ]
+  DeleteComponent:
+    description: |-
+      Deletes a component build version.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_DeleteComponent.html
+    example:
+      inputs: [
+        {
+          "componentBuildVersionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "componentBuildVersionArn": "string"
+        }
+      ]
+  DeleteContainerRecipe:
+    description: |-
+      Deletes a container recipe.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_DeleteContainerRecipe.html
+    example:
+      inputs: [
+        {
+          "containerRecipeArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "containerRecipeArn": "string"
+        }
+      ]
+  DeleteDistributionConfiguration:
+    description: |-
+      Deletes a distribution configuration.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_DeleteDistributionConfiguration.html
+    example:
+      inputs: [
+        {
+          "distributionConfigurationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "distributionConfigurationArn": "string"
+        }
+      ]
+  DeleteImage:
+    description: |-
+      Deletes an image.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_DeleteImage.html
+    example:
+      inputs: [
+        {
+          "imageBuildVersionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "imageBuildVersionArn": "string"
+        }
+      ]
+  DeleteImagePipeline:
+    description: |-
+      Deletes an image pipeline.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_DeleteImagePipeline.html
+    example:
+      inputs: [
+        {
+          "imagePipelineArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "imagePipelineArn": "string"
+        }
+      ]
+  DeleteImageRecipe:
+    description: |-
+      Deletes an image recipe.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_DeleteImageRecipe.html
+    example:
+      inputs: [
+        {
+          "imageRecipeArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "imageRecipeArn": "string"
+        }
+      ]
+  DeleteInfrastructureConfiguration:
+    description: |-
+      Deletes an infrastructure configuration.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_DeleteInfrastructureConfiguration.html
+    example:
+      inputs: [
+        {
+          "infrastructureConfigurationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "infrastructureConfigurationArn": "string"
+        }
+      ]
+  GetComponent:
+    description: |-
+      Gets a component object.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_GetComponent.html
+    example:
+      inputs: [
+        {
+          "componentBuildVersionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "component": {
+            "arn": "string",
+            "data": "string",
+            "name": "string",
+            "tags": {
+              "string": "string"
+            },
+            "type": "string",
+            "owner": "string",
+            "version": "string",
+            "kmsKeyId": "string",
+            "platform": "string",
+            "encrypted": false,
+            "dateCreated": "string",
+            "description": "string",
+            "changeDescription": "string",
+            "supportedOsVersions": [
+              "string"
+            ]
+          },
+          "requestId": "string"
+        }
+      ]
+  GetComponentPolicy:
+    description: |-
+      Gets a component policy.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_GetComponentPolicy.html
+    example:
+      inputs: [
+        {
+          "componentArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "policy": "string",
+          "requestId": "string"
+        }
+      ]
+  GetContainerRecipe:
+    description: |-
+      Retrieves a container recipe.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_GetContainerRecipe.html
+    example:
+      inputs: [
+        {
+          "containerRecipeArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "containerRecipe": {
+            "arn": "string",
+            "name": "string",
+            "tags": {
+              "string": "string"
+            },
+            "owner": "string",
+            "version": "string",
+            "kmsKeyId": "string",
+            "platform": "string",
+            "encrypted": false,
+            "components": [
+              {
+                "componentArn": "string"
+              }
+            ],
+            "dateCreated": "string",
+            "description": "string",
+            "parentImage": "string",
+            "containerType": "string",
+            "targetRepository": {
+              "service": "string",
+              "repositoryName": "string"
+            },
+            "workingDirectory": "string",
+            "instanceConfiguration": {
+              "image": "string",
+              "blockDeviceMappings": [
+                {
+                  "ebs": {
+                    "iops": 1,
+                    "kmsKeyId": "string",
+                    "encrypted": false,
+                    "snapshotId": "string",
+                    "volumeSize": 1,
+                    "volumeType": "string",
+                    "deleteOnTermination": false
+                  },
+                  "noDevice": "string",
+                  "deviceName": "string",
+                  "virtualName": "string"
+                }
+              ]
+            },
+            "dockerfileTemplateData": "string"
+          }
+        }
+      ]
+  GetContainerRecipePolicy:
+    description: |-
+      Retrieves the policy for a container recipe.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_GetContainerRecipePolicy.html
+    example:
+      inputs: [
+        {
+          "containerRecipeArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "policy": "string",
+          "requestId": "string"
+        }
+      ]
+  GetDistributionConfiguration:
+    description: |-
+      Gets a distribution configuration.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_GetDistributionConfiguration.html
+    example:
+      inputs: [
+        {
+          "distributionConfigurationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "distributionConfiguration": {
+            "arn": "string",
+            "name": "string",
+            "tags": {
+              "string": "string"
+            },
+            "dateCreated": "string",
+            "dateUpdated": "string",
+            "description": "string",
+            "distributions": [
+              {
+                "region": "string",
+                "licenseConfigurationArns": [
+                  "string"
+                ],
+                "amiDistributionConfiguration": {
+                  "name": "string",
+                  "amiTags": {
+                    "string": "string"
+                  },
+                  "kmsKeyId": "string",
+                  "description": "string",
+                  "launchPermission": {
+                    "userIds": [
+                      "string"
+                    ],
+                    "userGroups": [
+                      "string"
+                    ]
+                  },
+                  "targetAccountIds": [
+                    "string"
+                  ]
+                },
+                "launchTemplateConfigurations": [
+                  {
+                    "accountId": "string",
+                    "launchTemplateId": "string",
+                    "setDefaultVersion": false
+                  }
+                ],
+                "containerDistributionConfiguration": {
+                  "description": "string",
+                  "containerTags": [
+                    "string"
+                  ],
+                  "targetRepository": {
+                    "service": "string",
+                    "repositoryName": "string"
+                  }
+                }
+              }
+            ],
+            "timeoutMinutes": 1
+          }
+        }
+      ]
+  GetImage:
+    description: |-
+      Gets an image.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_GetImage.html
+    example:
+      inputs: [
+        {
+          "imageBuildVersionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "image": {
+            "arn": "string",
+            "name": "string",
+            "tags": {
+              "string": "string"
+            },
+            "type": "string",
+            "state": {
+              "reason": "string",
+              "status": "string"
+            },
+            "version": "string",
+            "platform": "string",
+            "osVersion": "string",
+            "dateCreated": "string",
+            "imageRecipe": {
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "type": "string",
+              "owner": "string",
+              "version": "string",
+              "platform": "string",
+              "components": [
+                {
+                  "componentArn": "string"
+                }
+              ],
+              "dateCreated": "string",
+              "description": "string",
+              "parentImage": "string",
+              "workingDirectory": "string",
+              "blockDeviceMappings": [
+                {
+                  "ebs": {
+                    "iops": 1,
+                    "kmsKeyId": "string",
+                    "encrypted": false,
+                    "snapshotId": "string",
+                    "volumeSize": 1,
+                    "volumeType": "string",
+                    "deleteOnTermination": false
+                  },
+                  "noDevice": "string",
+                  "deviceName": "string",
+                  "virtualName": "string"
+                }
+              ]
+            },
+            "containerRecipe": {
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "owner": "string",
+              "version": "string",
+              "kmsKeyId": "string",
+              "platform": "string",
+              "encrypted": false,
+              "components": [
+                {
+                  "componentArn": "string"
+                }
+              ],
+              "dateCreated": "string",
+              "description": "string",
+              "parentImage": "string",
+              "containerType": "string",
+              "targetRepository": {
+                "service": "string",
+                "repositoryName": "string"
+              },
+              "workingDirectory": "string",
+              "instanceConfiguration": {
+                "image": "string",
+                "blockDeviceMappings": [
+                  {
+                    "ebs": {
+                      "iops": 1,
+                      "kmsKeyId": "string",
+                      "encrypted": false,
+                      "snapshotId": "string",
+                      "volumeSize": 1,
+                      "volumeType": "string",
+                      "deleteOnTermination": false
+                    },
+                    "noDevice": "string",
+                    "deviceName": "string",
+                    "virtualName": "string"
+                  }
+                ]
+              },
+              "dockerfileTemplateData": "string"
+            },
+            "outputResources": {
+              "amis": [
+                {
+                  "name": "string",
+                  "image": "string",
+                  "state": {
+                    "reason": "string",
+                    "status": "string"
+                  },
+                  "region": "string",
+                  "accountId": "string",
+                  "description": "string"
+                }
+              ],
+              "containers": [
+                {
+                  "region": "string",
+                  "imageUris": [
+                    "string"
+                  ]
+                }
+              ]
+            },
+            "sourcePipelineArn": "string",
+            "sourcePipelineName": "string",
+            "imageTestsConfiguration": {
+              "timeoutMinutes": 1,
+              "imageTestsEnabled": false
+            },
+            "distributionConfiguration": {
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "dateCreated": "string",
+              "dateUpdated": "string",
+              "description": "string",
+              "distributions": [
+                {
+                  "region": "string",
+                  "licenseConfigurationArns": [
+                    "string"
+                  ],
+                  "amiDistributionConfiguration": {
+                    "name": "string",
+                    "amiTags": {
+                      "string": "string"
+                    },
+                    "kmsKeyId": "string",
+                    "description": "string",
+                    "launchPermission": {
+                      "userIds": [
+                        "string"
+                      ],
+                      "userGroups": [
+                        "string"
+                      ]
+                    },
+                    "targetAccountIds": [
+                      "string"
+                    ]
+                  },
+                  "launchTemplateConfigurations": [
+                    {
+                      "accountId": "string",
+                      "launchTemplateId": "string",
+                      "setDefaultVersion": false
+                    }
+                  ],
+                  "containerDistributionConfiguration": {
+                    "description": "string",
+                    "containerTags": [
+                      "string"
+                    ],
+                    "targetRepository": {
+                      "service": "string",
+                      "repositoryName": "string"
+                    }
+                  }
+                }
+              ],
+              "timeoutMinutes": 1
+            },
+            "infrastructureConfiguration": {
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "keyPair": "string",
+              "logging": {
+                "s3Logs": {
+                  "s3KeyPrefix": "string",
+                  "s3BucketName": "string"
+                }
+              },
+              "subnetId": "string",
+              "dateCreated": "string",
+              "dateUpdated": "string",
+              "description": "string",
+              "snsTopicArn": "string",
+              "resourceTags": {
+                "string": "string"
+              },
+              "instanceTypes": [
+                "string"
+              ],
+              "securityGroupIds": [
+                "string"
+              ],
+              "instanceProfileName": "string",
+              "terminateInstanceOnFailure": false
+            },
+            "enhancedImageMetadataEnabled": false
+          },
+          "requestId": "string"
+        }
+      ]
+  GetImagePipeline:
+    description: |-
+      Gets an image pipeline.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_GetImagePipeline.html
+    example:
+      inputs: [
+        {
+          "imagePipelineArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "imagePipeline": {
+            "arn": "string",
+            "name": "string",
+            "tags": {
+              "string": "string"
+            },
+            "status": "string",
+            "platform": "string",
+            "schedule": {
+              "timezone": "string",
+              "scheduleExpression": "string",
+              "pipelineExecutionStartCondition": "string"
+            },
+            "dateCreated": "string",
+            "dateLastRun": "string",
+            "dateNextRun": "string",
+            "dateUpdated": "string",
+            "description": "string",
+            "imageRecipeArn": "string",
+            "containerRecipeArn": "string",
+            "imageTestsConfiguration": {
+              "timeoutMinutes": 1,
+              "imageTestsEnabled": false
+            },
+            "distributionConfigurationArn": "string",
+            "enhancedImageMetadataEnabled": false,
+            "infrastructureConfigurationArn": "string"
+          }
+        }
+      ]
+  GetImagePolicy:
+    description: |-
+      Gets an image policy.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_GetImagePolicy.html
+    example:
+      inputs: [
+        {
+          "imageArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "policy": "string",
+          "requestId": "string"
+        }
+      ]
+  GetImageRecipe:
+    description: |-
+      Gets an image recipe.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_GetImageRecipe.html
+    example:
+      inputs: [
+        {
+          "imageRecipeArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "imageRecipe": {
+            "arn": "string",
+            "name": "string",
+            "tags": {
+              "string": "string"
+            },
+            "type": "string",
+            "owner": "string",
+            "version": "string",
+            "platform": "string",
+            "components": [
+              {
+                "componentArn": "string"
+              }
+            ],
+            "dateCreated": "string",
+            "description": "string",
+            "parentImage": "string",
+            "workingDirectory": "string",
+            "blockDeviceMappings": [
+              {
+                "ebs": {
+                  "iops": 1,
+                  "kmsKeyId": "string",
+                  "encrypted": false,
+                  "snapshotId": "string",
+                  "volumeSize": 1,
+                  "volumeType": "string",
+                  "deleteOnTermination": false
+                },
+                "noDevice": "string",
+                "deviceName": "string",
+                "virtualName": "string"
+              }
+            ]
+          }
+        }
+      ]
+  GetImageRecipePolicy:
+    description: |-
+      Gets an image recipe policy.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_GetImageRecipePolicy.html
+    example:
+      inputs: [
+        {
+          "imageRecipeArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "policy": "string",
+          "requestId": "string"
+        }
+      ]
+  GetInfrastructureConfiguration:
+    description: |-
+      Gets an infrastructure configuration.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_GetInfrastructureConfiguration.html
+    example:
+      inputs: [
+        {
+          "infrastructureConfigurationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "infrastructureConfiguration": {
+            "arn": "string",
+            "name": "string",
+            "tags": {
+              "string": "string"
+            },
+            "keyPair": "string",
+            "logging": {
+              "s3Logs": {
+                "s3KeyPrefix": "string",
+                "s3BucketName": "string"
+              }
+            },
+            "subnetId": "string",
+            "dateCreated": "string",
+            "dateUpdated": "string",
+            "description": "string",
+            "snsTopicArn": "string",
+            "resourceTags": {
+              "string": "string"
+            },
+            "instanceTypes": [
+              "string"
+            ],
+            "securityGroupIds": [
+              "string"
+            ],
+            "instanceProfileName": "string",
+            "terminateInstanceOnFailure": false
+          }
+        }
+      ]
+  ImportComponent:
+    description: |-
+      Imports a component and transforms its data into a component document.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_ImportComponent.html
+    example:
+      inputs: [
+        {
+          "uri": "string",
+          "data": "string",
+          "name": "string",
+          "tags": {
+            "string": "string"
+          },
+          "type": "string",
+          "format": "string",
+          "kmsKeyId": "string",
+          "platform": "string",
+          "clientToken": "string",
+          "description": "string",
+          "semanticVersion": "string",
+          "changeDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "clientToken": "string",
+          "componentBuildVersionArn": "string"
+        }
+      ]
+  ListComponentBuildVersions:
+    description: |-
+      Returns the list of component build versions for the specified semantic version.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_ListComponentBuildVersions.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "componentVersionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "requestId": "string",
+          "componentSummaryList": [
+            {
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "type": "string",
+              "owner": "string",
+              "version": "string",
+              "platform": "string",
+              "dateCreated": "string",
+              "description": "string",
+              "changeDescription": "string",
+              "supportedOsVersions": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  ListComponents:
+    description: |-
+      Returns the list of component build versions for the specified semantic version.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_ListComponents.html
+    example:
+      inputs: [
+        {
+          "owner": "string",
+          "byName": false,
+          "filters": [
+            {
+              "name": "string",
+              "values": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "requestId": "string",
+          "componentVersionList": [
+            {
+              "arn": "string",
+              "name": "string",
+              "type": "string",
+              "owner": "string",
+              "version": "string",
+              "platform": "string",
+              "dateCreated": "string",
+              "description": "string",
+              "supportedOsVersions": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  ListContainerRecipes:
+    description: |-
+      Returns a list of container recipes.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_ListContainerRecipes.html
+    example:
+      inputs: [
+        {
+          "owner": "string",
+          "filters": [
+            {
+              "name": "string",
+              "values": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "requestId": "string",
+          "containerRecipeSummaryList": [
+            {
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "owner": "string",
+              "platform": "string",
+              "dateCreated": "string",
+              "parentImage": "string",
+              "containerType": "string"
+            }
+          ]
+        }
+      ]
+  ListDistributionConfigurations:
+    description: |-
+      Returns a list of distribution configurations.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_ListDistributionConfigurations.html
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "name": "string",
+              "values": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "requestId": "string",
+          "distributionConfigurationSummaryList": [
+            {
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "regions": [
+                "string"
+              ],
+              "dateCreated": "string",
+              "dateUpdated": "string",
+              "description": "string"
+            }
+          ]
+        }
+      ]
+  ListImageBuildVersions:
+    description: |-
+      Returns a list of image build versions.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_ListImageBuildVersions.html
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "name": "string",
+              "values": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "maxResults": 1,
+          "imageVersionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "requestId": "string",
+          "imageSummaryList": [
+            {
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "type": "string",
+              "owner": "string",
+              "state": {
+                "reason": "string",
+                "status": "string"
+              },
+              "version": "string",
+              "platform": "string",
+              "osVersion": "string",
+              "dateCreated": "string",
+              "outputResources": {
+                "amis": [
+                  {
+                    "name": "string",
+                    "image": "string",
+                    "state": {
+                      "reason": "string",
+                      "status": "string"
+                    },
+                    "region": "string",
+                    "accountId": "string",
+                    "description": "string"
+                  }
+                ],
+                "containers": [
+                  {
+                    "region": "string",
+                    "imageUris": [
+                      "string"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+  ListImagePackages:
+    description: |-
+      List the Packages that are associated with an Image Build Version, as determined by AWS Systems Manager Inventory at build time.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_ListImagePackages.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "imageBuildVersionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "requestId": "string",
+          "imagePackageList": [
+            {
+              "packageName": "string",
+              "packageVersion": "string"
+            }
+          ]
+        }
+      ]
+  ListImagePipelineImages:
+    description: |-
+      Returns a list of images created by the specified pipeline.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_ListImagePipelineImages.html
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "name": "string",
+              "values": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "maxResults": 1,
+          "imagePipelineArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "requestId": "string",
+          "imageSummaryList": [
+            {
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "type": "string",
+              "owner": "string",
+              "state": {
+                "reason": "string",
+                "status": "string"
+              },
+              "version": "string",
+              "platform": "string",
+              "osVersion": "string",
+              "dateCreated": "string",
+              "outputResources": {
+                "amis": [
+                  {
+                    "name": "string",
+                    "image": "string",
+                    "state": {
+                      "reason": "string",
+                      "status": "string"
+                    },
+                    "region": "string",
+                    "accountId": "string",
+                    "description": "string"
+                  }
+                ],
+                "containers": [
+                  {
+                    "region": "string",
+                    "imageUris": [
+                      "string"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+  ListImagePipelines:
+    description: |-
+      Returns a list of image pipelines.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_ListImagePipelines.html
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "name": "string",
+              "values": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "requestId": "string",
+          "imagePipelineList": [
+            {
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "status": "string",
+              "platform": "string",
+              "schedule": {
+                "timezone": "string",
+                "scheduleExpression": "string",
+                "pipelineExecutionStartCondition": "string"
+              },
+              "dateCreated": "string",
+              "dateLastRun": "string",
+              "dateNextRun": "string",
+              "dateUpdated": "string",
+              "description": "string",
+              "imageRecipeArn": "string",
+              "containerRecipeArn": "string",
+              "imageTestsConfiguration": {
+                "timeoutMinutes": 1,
+                "imageTestsEnabled": false
+              },
+              "distributionConfigurationArn": "string",
+              "enhancedImageMetadataEnabled": false,
+              "infrastructureConfigurationArn": "string"
+            }
+          ]
+        }
+      ]
+  ListImageRecipes:
+    description: |-
+      Returns a list of image recipes.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_ListImageRecipes.html
+    example:
+      inputs: [
+        {
+          "owner": "string",
+          "filters": [
+            {
+              "name": "string",
+              "values": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "requestId": "string",
+          "imageRecipeSummaryList": [
+            {
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "owner": "string",
+              "platform": "string",
+              "dateCreated": "string",
+              "parentImage": "string"
+            }
+          ]
+        }
+      ]
+  ListImages:
+    description: |-
+      Returns the list of images that you have access to.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_ListImages.html
+    example:
+      inputs: [
+        {
+          "owner": "string",
+          "byName": false,
+          "filters": [
+            {
+              "name": "string",
+              "values": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "maxResults": 1,
+          "includeDeprecated": false
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "requestId": "string",
+          "imageVersionList": [
+            {
+              "arn": "string",
+              "name": "string",
+              "type": "string",
+              "owner": "string",
+              "version": "string",
+              "platform": "string",
+              "osVersion": "string",
+              "dateCreated": "string"
+            }
+          ]
+        }
+      ]
+  ListInfrastructureConfigurations:
+    description: |-
+      Returns a list of infrastructure configurations.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_ListInfrastructureConfigurations.html
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "name": "string",
+              "values": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "requestId": "string",
+          "infrastructureConfigurationSummaryList": [
+            {
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "dateCreated": "string",
+              "dateUpdated": "string",
+              "description": "string",
+              "resourceTags": {
+                "string": "string"
+              },
+              "instanceTypes": [
+                "string"
+              ],
+              "instanceProfileName": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns the list of tags for the specified resource.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": {
+            "string": "string"
+          }
+        }
+      ]
+  PutComponentPolicy:
+    description: |-
+      Applies a policy to a component. We recommend that you call the RAM API CreateResourceShare to share resources. If you call the Image Builder API PutComponentPolicy, you must also call the RAM API PromoteResourceShareCreatedFromPolicy in order for the resource to be visible to all principals with whom the resource is shared.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_PutComponentPolicy.html
+    example:
+      inputs: [
+        {
+          "policy": "string",
+          "componentArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "componentArn": "string"
+        }
+      ]
+  PutContainerRecipePolicy:
+    description: |-
+      Applies a policy to a container image. We recommend that you call the RAM API CreateResourceShare (https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html) to share resources. If you call the Image Builder API PutContainerImagePolicy, you must also call the RAM API PromoteResourceShareCreatedFromPolicy (https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html) in order for the resource to be visible to all principals with whom the resource is shared.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_PutContainerRecipePolicy.html
+    example:
+      inputs: [
+        {
+          "policy": "string",
+          "containerRecipeArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "containerRecipeArn": "string"
+        }
+      ]
+  PutImagePolicy:
+    description: |-
+      Applies a policy to an image. We recommend that you call the RAM API CreateResourceShare to share resources. If you call the Image Builder API PutImagePolicy, you must also call the RAM API PromoteResourceShareCreatedFromPolicy in order for the resource to be visible to all principals with whom the resource is shared.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_PutImagePolicy.html
+    example:
+      inputs: [
+        {
+          "policy": "string",
+          "imageArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "imageArn": "string",
+          "requestId": "string"
+        }
+      ]
+  PutImageRecipePolicy:
+    description: |-
+      Applies a policy to an image recipe. We recommend that you call the RAM API CreateResourceShare to share resources. If you call the Image Builder API PutImageRecipePolicy, you must also call the RAM API PromoteResourceShareCreatedFromPolicy in order for the resource to be visible to all principals with whom the resource is shared.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_PutImageRecipePolicy.html
+    example:
+      inputs: [
+        {
+          "policy": "string",
+          "imageRecipeArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "imageRecipeArn": "string"
+        }
+      ]
+  StartImagePipelineExecution:
+    description: |-
+      Manually triggers a pipeline to create an image.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_StartImagePipelineExecution.html
+    example:
+      inputs: [
+        {
+          "clientToken": "string",
+          "imagePipelineArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "clientToken": "string",
+          "imageBuildVersionArn": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds a tag to a resource.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes a tag from a resource.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateDistributionConfiguration:
+    description: |-
+      Updates a new distribution configuration. Distribution configurations define and configure the outputs of your pipeline.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_UpdateDistributionConfiguration.html
+    example:
+      inputs: [
+        {
+          "clientToken": "string",
+          "description": "string",
+          "distributions": [
+            {
+              "region": "string",
+              "licenseConfigurationArns": [
+                "string"
+              ],
+              "amiDistributionConfiguration": {
+                "name": "string",
+                "amiTags": {
+                  "string": "string"
+                },
+                "kmsKeyId": "string",
+                "description": "string",
+                "launchPermission": {
+                  "userIds": [
+                    "string"
+                  ],
+                  "userGroups": [
+                    "string"
+                  ]
+                },
+                "targetAccountIds": [
+                  "string"
+                ]
+              },
+              "launchTemplateConfigurations": [
+                {
+                  "accountId": "string",
+                  "launchTemplateId": "string",
+                  "setDefaultVersion": false
+                }
+              ],
+              "containerDistributionConfiguration": {
+                "description": "string",
+                "containerTags": [
+                  "string"
+                ],
+                "targetRepository": {
+                  "service": "string",
+                  "repositoryName": "string"
+                }
+              }
+            }
+          ],
+          "distributionConfigurationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "clientToken": "string",
+          "distributionConfigurationArn": "string"
+        }
+      ]
+  UpdateImagePipeline:
+    description: |-
+      Updates a new image pipeline. Image pipelines enable you to automate the creation and distribution of images.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_UpdateImagePipeline.html
+    example:
+      inputs: [
+        {
+          "status": "string",
+          "schedule": {
+            "timezone": "string",
+            "scheduleExpression": "string",
+            "pipelineExecutionStartCondition": "string"
+          },
+          "clientToken": "string",
+          "description": "string",
+          "imageRecipeArn": "string",
+          "imagePipelineArn": "string",
+          "containerRecipeArn": "string",
+          "imageTestsConfiguration": {
+            "timeoutMinutes": 1,
+            "imageTestsEnabled": false
+          },
+          "distributionConfigurationArn": "string",
+          "enhancedImageMetadataEnabled": false,
+          "infrastructureConfigurationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "clientToken": "string",
+          "imagePipelineArn": "string"
+        }
+      ]
+  UpdateInfrastructureConfiguration:
+    description: |-
+      Updates a new infrastructure configuration. An infrastructure configuration defines the environment in which your image will be built and tested.
+    versions:
+      from: 2019.12.2
+    link: https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_UpdateInfrastructureConfiguration.html
+    example:
+      inputs: [
+        {
+          "keyPair": "string",
+          "logging": {
+            "s3Logs": {
+              "s3KeyPrefix": "string",
+              "s3BucketName": "string"
+            }
+          },
+          "subnetId": "string",
+          "clientToken": "string",
+          "description": "string",
+          "snsTopicArn": "string",
+          "resourceTags": {
+            "string": "string"
+          },
+          "instanceTypes": [
+            "string"
+          ],
+          "securityGroupIds": [
+            "string"
+          ],
+          "instanceProfileName": "string",
+          "terminateInstanceOnFailure": false,
+          "infrastructureConfigurationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "requestId": "string",
+          "clientToken": "string",
+          "infrastructureConfigurationArn": "string"
+        }
+      ]

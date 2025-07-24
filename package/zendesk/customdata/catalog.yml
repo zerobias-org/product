@@ -1,0 +1,1703 @@
+Product:
+  name: Zendesk Custom Data
+  versions: [2.0.0]
+  package: zendesk.customdata
+  description: |-
+    Zendesk Custom Data
+  link: ''
+  contentType: json
+  relatedProducts:
+    - name : Zendesk
+      package: zendesk.zendesk
+Operations:
+  jobs.createJob:
+    description: |-
+      Creates a job with supported type and action.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/jobs/#create-job
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": {
+            "id": "8b72559ae838-c9a0-11e7-abc4-cec278b6b50a6e6",
+            "results": [],
+            "created_at": "2017-11-03T16:00:06Z",
+            "job_status": "queued",
+            "updated_at": "2017-11-03T16:00:06Z",
+            "completed_at": null
+          }
+        }
+      ]
+  jobs.listJobs:
+    description: |-
+      Returns all current jobs or a list filtered by status. See Job statuses.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/jobs/#list-jobs
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": [
+            {
+              "id": "559ae838-c9a0-11e7-abc4-cec278b6b50a",
+              "created_at": "2017-11-03T16:00:06Z",
+              "job_status": "completed",
+              "updated_at": "2017-11-03T16:04:06Z",
+              "completed_at": "2017-11-03T16:04:06Z"
+            },
+            {
+              "id": "886ae838-c9a0-11e7-abc4-cec278b6b50a",
+              "created_at": "2017-11-03T16:02:06Z",
+              "job_status": "processing",
+              "updated_at": "2017-11-03T16:04:06Z",
+              "completed_at": null
+            }
+          ]
+        }
+      ]
+  jobs.showJob:
+    description: |-
+      Returns the status of the specified job. See Job statuses.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/jobs/#show-job
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": {
+            "id": "8b72559ae838-c9a0-11e7-abc4-cec278b6b50a6e6",
+            "results": [
+              {
+                "data": {
+                  "id": "73c698be-cb64-4678-ba73-29683d2c32er"
+                },
+                "success": true
+              },
+              {
+                "errors": [
+                  {
+                    "code": "UnprocessableEntity",
+                    "title": "Unprocessable Entity",
+                    "detail": "External Id is already in use for the Resource Type key: product",
+                    "status": "422"
+                  }
+                ],
+                "success": false
+              }
+            ],
+            "created_at": "2017-11-03T16:00:06Z",
+            "job_status": "completed",
+            "updated_at": "2017-11-03T16:00:16Z",
+            "completed_at": "2017-11-03T16:00:16Z"
+          }
+        }
+      ]
+  limits.listLimitsForTheAccount:
+    description: |-
+      Returns the current limits of the account.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/limits/#list-limits-for-the-account
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": [
+            {
+              "key": "resources",
+              "count": 0,
+              "limit": 1000000
+            },
+            {
+              "key": "relationships",
+              "count": 0,
+              "limit": 1000000
+            },
+            {
+              "key": "resource_types",
+              "count": 0,
+              "limit": 50
+            },
+            {
+              "key": "relationship_types",
+              "count": 0,
+              "limit": 50
+            }
+          ]
+        }
+      ]
+  objectEvents.listCustomObjectEvents:
+    description: |-
+      Retrieves all create, update, delete events for custom object records and types for a given account.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/object_events/#list-custom-object-events
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": [
+            {
+              "id": "5a93a697-51bf-11e9-bcd6-63c9631d595a",
+              "object_id": "5a7967d6-51bf-11e9-bcd6-e1d3e751878e",
+              "created_at": "2019-03-29T01:09:00.000Z",
+              "event_type": "create_object",
+              "properties": {
+                "attributes": {
+                  "id": "10",
+                  "name": "Macbook Air"
+                }
+              },
+              "object_type": "test_object",
+              "event_source": "zen:sunshine"
+            }
+          ],
+          "links": {
+            "next": null,
+            "previous": null
+          }
+        }
+      ]
+  permissions.showObjectTypePolicies:
+    description: |-
+      Returns the policies for the specified object type.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/permissions/#show-object-type-policies
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": {
+            "rbac": {
+              "admin": {
+                "read": true,
+                "create": true,
+                "delete": true,
+                "update": true
+              },
+              "agent": {
+                "read": true,
+                "create": true,
+                "delete": true,
+                "update": true
+              },
+              "end_user": {
+                "read": false,
+                "create": false,
+                "delete": false,
+                "update": false
+              }
+            }
+          }
+        }
+      ]
+  permissions.showRelationshipTypePolicies:
+    description: |-
+      Returns the policies for the specified relationship type.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/permissions/#show-relationship-type-policies
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": {
+            "rbac": {
+              "admin": {
+                "read": true,
+                "create": true,
+                "delete": true,
+                "update": true
+              },
+              "agent": {
+                "read": true,
+                "create": true,
+                "delete": true,
+                "update": true
+              },
+              "end_user": {
+                "read": false,
+                "create": false,
+                "delete": false,
+                "update": false
+              }
+            }
+          }
+        }
+      ]
+  permissions.updateObjectTypePolicies:
+    description: |-
+      Updates the policies for the specified object type. If no updates to the RBAC policy have occurred, then the default RBAC policy is used. If a request creates a new ReBAC policy for an object type and a property is omitted from the ReBAC policy, then the corresponding property from the default ReBAC policy is used. If a request updates an existing RBAC policy or ReBAC policy and a property is omitted, then the corresponding property from the previous policy is used.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/permissions/#update-object-type-policies
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": {
+            "rbac": {
+              "admin": {
+                "read": true,
+                "create": true,
+                "delete": true,
+                "update": true
+              },
+              "agent": {
+                "read": true,
+                "create": true,
+                "delete": false,
+                "update": true
+              },
+              "end_user": {
+                "read": true,
+                "create": false,
+                "delete": false,
+                "update": false
+              }
+            },
+            "rebac": {
+              "user_to_many_products": {
+                "admin": {
+                  "read": true,
+                  "update": true
+                },
+                "agent": {
+                  "read": false,
+                  "update": false
+                },
+                "end_user": {
+                  "read": false,
+                  "update": true
+                }
+              }
+            }
+          }
+        }
+      ]
+  permissions.updateRelationshipTypePolicies:
+    description: |-
+      Updates the policies for the specified relationship type. If no updates to the RBAC policy have occurred, then the default RBAC policy is used. ReBAC policies cannot be created for relationship types. If a request updates an existing RBAC policy or ReBAC policy and a property is omitted, then the corresponding property from the previous policy is used.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/permissions/#update-relationship-type-policies
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": {
+            "rbac": {
+              "admin": {
+                "read": true,
+                "create": true,
+                "delete": true,
+                "update": true
+              },
+              "agent": {
+                "read": true,
+                "create": true,
+                "delete": false,
+                "update": true
+              },
+              "end_user": {
+                "read": true,
+                "create": false,
+                "delete": false,
+                "update": false
+              }
+            },
+            "rebac": {}
+          }
+        }
+      ]
+  relationships.createRelationshipRecord:
+    description: |-
+      Creates a relationship record between two object records based on a relationship type. The relationship type defines the object types of the two object records.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/relationships/#create-relationship-record
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": {
+            "id": "eae75774-18a6-448f-bca7-dda5c11bb125",
+            "source": "e5f3f5b2-536a-4f1d-bca2-985c454362bb",
+            "target": "zen:user:10002",
+            "created_at": "2019-01-01T10:20:30Z",
+            "relationship_type": "zen_users"
+          }
+        }
+      ]
+  relationships.deleteRelationshipRecord:
+    description: |-
+      Deletes the specified relationship record.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/relationships/#delete-relationship-record
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  relationships.listRelationshipRecordsByObjectRecord:
+    description: |-
+      The record id must be the relationship record's source record id, not its target record id.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/relationships/#list-relationship-records-by-object-record
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": [
+            {
+              "id": "eae75774-18a6-448f-bca7-dda5c11bb125",
+              "ref": "/api/sunshine/objects/records/f2771449-861e-43f0-8936-e16c3bd492d2",
+              "target": "f2771449-861e-43f0-8936-e16c3bd492d2"
+            },
+            {
+              "id": "517e916a-7099-11e7-8cf7-a6006ad3dba0",
+              "ref": "/api/v2/users/849294839",
+              "target": "849294839"
+            }
+          ],
+          "links": {
+            "next": null,
+            "previous": null
+          }
+        }
+      ]
+  relationships.listRelationshipRecordsByType:
+    description: |-
+      Returns all the relationship records of the specified relationship type. For the type, specify a relationship type key.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/relationships/#list-relationship-records-by-type
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": [
+            {
+              "id": "6ea29370-a224-11e7-b1f0-191589292d4f",
+              "source": "e5f3f5b2-536a-4f1d-bca2-985c454362bb",
+              "target": "zen:user:10002",
+              "created_at": "2019-01-01T10:20:30Z",
+              "relationship_type": "zen_users"
+            },
+            {
+              "id": "890dfe2f-a223-11e7-b1f0-4316e017a51a",
+              "source": "e5f3f5b2-536a-4f1d-bca2-985c454362bb",
+              "target": "zen:user:10002",
+              "created_at": "2019-01-01T10:20:35Z",
+              "relationship_type": "zen_users"
+            }
+          ],
+          "links": {
+            "next": null,
+            "previous": null
+          }
+        }
+      ]
+  relationships.showRelationshipRecord:
+    description: |-
+      Returns a relationship record specified by id.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/relationships/#show-relationship-record
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": {
+            "id": "1a034055-6485-11ea-a338-a7395da450f1",
+            "source": "fa6dec91-6484-11ea-a338-6d0d189da5e0",
+            "target": "fc7925e3-6484-11ea-a338-19eb2b9d27d1",
+            "created_at": "2019-03-12T17:15:41.807Z",
+            "relationship_type": "zen_users"
+          }
+        }
+      ]
+  relationshipTypes.createRelationshipType:
+    description: |-
+      Creates a relationship type.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/relationship_types/#create-relationship-type
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": {
+            "key": "manufacturer",
+            "source": "product",
+            "target": "manufacturer",
+            "created_at": "2017-01-01T10:20:30Z",
+            "updated_at": "2017-01-01T10:20:30Z"
+          }
+        }
+      ]
+  relationshipTypes.deleteRelationshipType:
+    description: |-
+      Deletes the relationship type with the specified key.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/relationship_types/#delete-relationship-type
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  relationshipTypes.listRelationshipTypes:
+    description: |-
+      Returns the account's relationship types.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/relationship_types/#list-relationship-types
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": [
+            {
+              "key": "manufacturer",
+              "source": "product",
+              "target": "manufacturer",
+              "created_at": "2017-01-01T10:20:30Z",
+              "updated_at": "2017-01-01T10:20:30Z"
+            }
+          ]
+        }
+      ]
+  relationshipTypes.showRelationshipType:
+    description: |-
+      Returns the relationship type with the specified key.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/relationship_types/#show-relationship-type
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": {
+            "key": "manufacturer",
+            "source": "product",
+            "target": "manufacturer",
+            "created_at": "2017-01-01T10:20:30Z",
+            "updated_at": "2017-01-01T10:20:30Z"
+          }
+        }
+      ]
+  resources.createObjectRecord:
+    description: |-
+      Creates an object record.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/resources/#create-object-record
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": {
+            "id": "14c6c4be-cb64-4678-ba73-296e3d2c32cf",
+            "type": "product",
+            "attributes": {
+              "id": "3",
+              "name": "Strawberry Chewing Gum"
+            },
+            "created_at": "2017-01-03T12:35:45Z",
+            "updated_at": "2017-01-03T12:35:45Z",
+            "external_id": "3",
+            "type_version": 1
+          }
+        }
+      ]
+  resources.deleteObjectRecord:
+    description: |-
+      Deletes the specified object record.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/resources/#delete-object-record
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  resources.deleteObjectRecordByExternalIdAndType:
+    description: |-
+      Deletes the specified object record if it exists.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/resources/#delete-object-record-by-external-id-and-type
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  resources.listObjectRecords:
+    description: |-
+      You must use at least one query parameter to filter the returned collection.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/resources/#list-object-records
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": [
+            {
+              "id": "14c6c4be-cb64-4678-ba73-296e3d2c32cf",
+              "type": "product",
+              "attributes": {
+                "id": "3",
+                "name": "Strawberry Chewing Gum"
+              },
+              "created_at": "2017-01-03T12:35:45Z",
+              "updated_at": "2017-01-03T12:35:45Z",
+              "external_id": "3",
+              "type_version": 1
+            },
+            {
+              "id": "d07b6206-1ea1-43c4-ae68-ef743aa36169",
+              "type": "product",
+              "attributes": {
+                "id": "4",
+                "name": "Coffee Chewing Gum"
+              },
+              "created_at": "2017-01-03T12:35:45Z",
+              "updated_at": "2017-01-03T12:35:45Z",
+              "external_id": "4",
+              "type_version": 1
+            }
+          ],
+          "links": {
+            "next": null,
+            "previous": null
+          }
+        }
+      ]
+  resources.listRelatedObjectRecords:
+    description: |-
+      Returns all the object records that the specified object record has relationship records with for the specified relationship type. For the relationship type, specify a relationship type key. For the specified object record, specify a custom object record id or a Zendesk object record id.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/resources/#list-related-object-records
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": [
+            {
+              "id": "14c6c4be-cb64-4678-ba73-296e3d2c32cf",
+              "type": "product",
+              "attributes": {
+                "id": "3",
+                "name": "Strawberry Chewing Gum"
+              },
+              "created_at": "2017-01-03T12:35:45Z",
+              "updated_at": "2017-01-03T12:35:45Z",
+              "external_id": "3",
+              "type_version": 1
+            },
+            {
+              "id": "d07b6206-1ea1-43c4-ae68-ef743aa36169",
+              "type": "product",
+              "attributes": {
+                "id": "4",
+                "name": "Coffee Chewing Gum"
+              },
+              "created_at": "2017-01-03T12:35:45Z",
+              "updated_at": "2017-01-03T12:35:45Z",
+              "external_id": "4",
+              "type_version": 1
+            }
+          ],
+          "links": {
+            "next": null,
+            "previous": null
+          }
+        }
+      ]
+  resources.setObjectRecordByExternalId:
+    description: |-
+      Creates a new object if an object with given external id does not exist and updates the attributes object of the specified object record if an object with the given external id does exist. This endpoint does not update any other record properties.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/resources/#set-object-record-by-external-id
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": {
+            "id": "d07b6206-1ea1-43c4-ae68-ef743aa36169",
+            "type": "product",
+            "attributes": {
+              "id": "4",
+              "name": "Hotdog Chewing Gum"
+            },
+            "created_at": "2017-01-03T12:35:45Z",
+            "updated_at": "2017-01-04T18:15:00Z",
+            "external_id": "4",
+            "type_version": 1
+          }
+        }
+      ]
+  resources.showObjectRecord:
+    description: |-
+      Returns the specified object record.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/resources/#show-object-record
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": {
+            "id": "14c6c4be-cb64-4678-ba73-296e3d2c32cf",
+            "type": "product",
+            "attributes": {
+              "id": "3",
+              "name": "Strawberry Chewing Gum"
+            },
+            "created_at": "2017-01-03T12:35:45Z",
+            "updated_at": "2017-01-03T12:35:45Z",
+            "external_id": "3"
+          }
+        }
+      ]
+  resources.updateObjectRecord:
+    description: |-
+      Updates the attributes object of the specified object record. It does not update any other record properties.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/resources/#update-object-record
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": {
+            "id": "d07b6206-1ea1-43c4-ae68-ef743aa36169",
+            "type": "product",
+            "attributes": {
+              "id": "4",
+              "name": "Hotdog Chewing Gum"
+            },
+            "created_at": "2017-01-03T12:35:45Z",
+            "updated_at": "2017-01-04T18:15:00Z",
+            "external_id": "4",
+            "type_version": 1
+          }
+        }
+      ]
+  resourceTypes.createObjectType:
+    description: |-
+      Creates an object type describing the properties of the object records to be created of that type.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/resource_types/#create-object-type
+    example:
+      inputs: [
+        {
+          "data": {
+            "key": "product",
+            "schema": {
+              "required": [
+                "id",
+                "name"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "product id"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "product name"
+                }
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "data": {
+            "key": "product",
+            "schema": {
+              "required": [
+                "id",
+                "name"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "product id"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "product name"
+                }
+              }
+            },
+            "created_at": "2018-01-01T10:20:30Z",
+            "updated_at": "2018-01-01T10:20:30Z"
+          }
+        }
+      ]
+  resourceTypes.deleteObjectType:
+    description: |-
+      Deletes the object type with the specified key.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/resource_types/#delete-object-type
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  resourceTypes.listObjectTypes:
+    description: |-
+      Returns the account's object types. Zendesk object types such as zen:user are not included.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/resource_types/#list-object-types
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": [
+            {
+              "key": "product",
+              "schema": {
+                "required": [
+                  "id",
+                  "name"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "product id"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "product name"
+                  }
+                }
+              },
+              "version": 1,
+              "created_at": "2018-01-01T10:20:30Z",
+              "updated_at": "2018-01-01T10:20:30Z"
+            },
+            {
+              "key": "user",
+              "schema": {
+                "required": [
+                  "id",
+                  "name"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "user id"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "user name"
+                  }
+                }
+              },
+              "version": 2,
+              "created_at": "2018-01-01T10:20:30Z",
+              "updated_at": "2018-01-01T10:20:30Z"
+            }
+          ]
+        }
+      ]
+  resourceTypes.showObjectType:
+    description: |-
+      Returns the object type with the specified key.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/resource_types/#show-object-type
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": {
+            "key": "product",
+            "schema": {
+              "required": [
+                "id",
+                "name"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "product id"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "product name"
+                }
+              }
+            },
+            "created_at": "2018-01-01T10:20:30Z",
+            "updated_at": "2018-01-01T10:20:30Z"
+          }
+        }
+      ]
+  resourceTypes.updateObjectType:
+    description: ''
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/resource_types/#update-object-type
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": {
+            "key": "product",
+            "schema": {
+              "required": [
+                "id",
+                "name"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "product id"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "product name"
+                },
+                "features": {
+                  "type": "string",
+                  "description": "product features"
+                }
+              }
+            },
+            "created_at": "2019-01-01T10:20:30Z",
+            "updated_at": "2019-01-02T06:45:00Z"
+          }
+        }
+      ]
+  resourceTypes.validateObjectTypes:
+    description: |-
+      Validates and generates a report of all the object types in the account. The report is based on the latest validations rules that have been implemented.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/resource_types/#validate-object-types
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": [
+            {
+              "message": [
+                "The properties element of a schema cannot be empty."
+              ],
+              "object_type_key": "empty_schema_type"
+            },
+            {
+              "message": [
+                "data.schema instance value not found in enum",
+                "Invalid property name '_nested': Property name cannot start with '_'."
+              ],
+              "object_type_key": "nested_schema"
+            }
+          ]
+        }
+      ]
+  search.searchObjectRecords:
+    description: |-
+      Returns object records that match the query parameters.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/custom-objects-api/search/#search-object-records
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "data": [
+            {
+              "id": "5d13764c-cf5f-11e9-aa86-2f9bb45ad15c",
+              "type": "book",
+              "attributes": {
+                "name": "The Doomsday Conspiracy",
+                "author": "Sidney Sheldon",
+                "publisher": "Bloomsbury publications",
+                "book_price": 542,
+                "book_available": true
+              },
+              "created_at": "2019-09-04T22:00:10.191Z",
+              "updated_at": "2019-09-04T22:00:10.191Z",
+              "external_id": null
+            },
+            {
+              "id": "70588682-ca8d-11e9-893a-63225c9f1206",
+              "type": "book",
+              "attributes": {
+                "name": "If Tomorrow Comes",
+                "author": "Sidney Sheldon",
+                "publisher": "Bloomsbury publications",
+                "book_price": 542,
+                "book_available": true
+              },
+              "created_at": "2019-08-29T18:47:23.556Z",
+              "updated_at": "2019-08-29T18:47:23.556Z",
+              "external_id": null
+            }
+          ]
+        }
+      ]
+  events.getEventsBySunshineProfile:
+    description: |-
+      Returns events for a Sunshine profile.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/events-api/events-api/#get-events-by-sunshine-profile
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "meta": {
+            "has_more": true,
+            "after_cursor": "hkjhdjk"
+          },
+          "links": [
+            {
+              "next": "https://yoursubdomain.zendesk.com/api/v2/user_profiles/1/events?page[after]=hkjhdjk"
+            }
+          ],
+          "events": [
+            {
+              "type": "checkout",
+              "source": "shoppingnow",
+              "created_at": "2020-01-31T00:44:07+00:00",
+              "properties": {
+                "item": {
+                  "name": "Zendesk Swag"
+                },
+                "billing": {
+                  "city": "San Francisco",
+                  "state": "CA",
+                  "zipcode": "94103",
+                  "address1": "1019 Market St"
+                }
+              },
+              "description": "Order complete"
+            }
+          ]
+        }
+      ]
+  events.getEventsBySunshineProfileId:
+    description: |-
+      Returns events for a given Sunshine profile. To retrieve a profile ID, see Get profile by identifier.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/events-api/events-api/#get-events-by-sunshine-profile-id
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "meta": {
+            "has_more": true,
+            "after_cursor": "hkjhdjk"
+          },
+          "links": [
+            {
+              "next": "https://yoursubdomain.zendesk.com/api/v2/user_profiles/1/events?page[after]=hkjhdjk"
+            }
+          ],
+          "events": [
+            {
+              "type": "checkout",
+              "source": "shoppingnow",
+              "created_at": "2020-01-31T00:44:07+00:00",
+              "properties": {
+                "item": {
+                  "name": "Zendesk Swag"
+                },
+                "billing": {
+                  "city": "San Francisco",
+                  "state": "CA",
+                  "zipcode": "94103",
+                  "address1": "1019 Market St"
+                }
+              },
+              "description": "Order complete"
+            }
+          ]
+        }
+      ]
+  events.getZendeskUserEvents:
+    description: |-
+      Returns events for a given Zendesk user.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/events-api/events-api/#get-zendesk-user-events
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "meta": {
+            "has_more": true,
+            "after_cursor": "hkjhdjk"
+          },
+          "links": [
+            {
+              "next": "https://yoursubdomain.zendesk.com/api/v2/user_profiles/1/events?page[after]=hkjhdjk"
+            }
+          ],
+          "events": [
+            {
+              "type": "checkout",
+              "source": "shoppingnow",
+              "created_at": "2020-01-31T00:44:07+00:00",
+              "properties": {
+                "item": {
+                  "name": "Zendesk Swag"
+                },
+                "billing": {
+                  "city": "San Francisco",
+                  "state": "CA",
+                  "zipcode": "94103",
+                  "address1": "1019 Market St"
+                }
+              },
+              "description": "Order complete"
+            }
+          ]
+        }
+      ]
+  events.trackEventAgainstASunshineProfile:
+    description: |-
+      Stores an event against the given Sunshine profile. If the profile does not exist, it will be created. Any additional identifier information provided is added to the profile.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/events-api/events-api/#track-event-against-a-sunshine-profile
+    example:
+      inputs: [
+        {
+          "event": {
+            "type": "checkout",
+            "source": "shoppingnow",
+            "created_at": "2020-01-31T00:44:07+00:00",
+            "properties": {
+              "item": {
+                "name": "Zendesk Swag"
+              },
+              "billing": {
+                "city": "San Francisco",
+                "state": "CA",
+                "zipcode": "94103",
+                "address1": "1019 Market St"
+              }
+            },
+            "description": "Order complete"
+          },
+          "profile": {
+            "name": "Jane Smith",
+            "type": "customer",
+            "source": "shoppingnow",
+            "identifiers": [
+              {
+                "type": "email",
+                "value": "jane@example.com"
+              },
+              {
+                "type": "external_id",
+                "value": "0987654321"
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "status": "received",
+          "user_id": "123456",
+          "profile_id": "01E1DPYAA7HW7645KMJEY9CXRJ"
+        }
+      ]
+  events.trackEventAgainstASunshineProfileUsingProfileId:
+    description: |-
+      Stores an event against the given Sunshine profile. If the profile does not exist, it will return an error.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/events-api/events-api/#track-event-against-a-sunshine-profile-using-profile_id
+    example:
+      inputs: [
+        {
+          "event": {
+            "type": "checkout",
+            "source": "shoppingnow",
+            "created_at": "2020-01-31T00:44:07+00:00",
+            "properties": {
+              "item": {
+                "name": "Zendesk Swag"
+              },
+              "billing": {
+                "city": "San Francisco",
+                "state": "CA",
+                "zipcode": "94103",
+                "address1": "1019 Market St"
+              }
+            },
+            "description": "Order complete"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "status": "received",
+          "user_id": "123456",
+          "profile_id": "01E1DPYAA7HW7645KMJEY9CXRJ"
+        }
+      ]
+  events.trackEventAgainstZendeskUserAndGivenProfile:
+    description: |-
+      Stores an event for a given Zendesk user and profile.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/events-api/events-api/#track-event-against-zendesk-user-and-given-profile
+    example:
+      inputs: [
+        {
+          "event": {
+            "type": "checkout",
+            "source": "shoppingnow",
+            "created_at": "2020-01-31T00:44:07+00:00",
+            "properties": {
+              "item": {
+                "name": "Zendesk Swag"
+              },
+              "billing": {
+                "city": "San Francisco",
+                "state": "CA",
+                "zipcode": "94103",
+                "address1": "1019 Market St"
+              }
+            },
+            "description": "Order complete"
+          },
+          "profile": {
+            "name": "Jane Smith",
+            "type": "customer",
+            "source": "shoppingnow",
+            "identifiers": [
+              {
+                "type": "email",
+                "value": "jane@example.com"
+              },
+              {
+                "type": "external_id",
+                "value": "0987654321"
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "status": "received",
+          "user_id": "123456",
+          "profile_id": "01E1DPYAA7HW7645KMJEY9CXRJ"
+        }
+      ]
+  profiles.createOrUpdateProfileByIdentifier:
+    description: |-
+      Creates or updates a profile. See Creating Sunshine profiles for details.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/profiles_api/profiles_api/#create-or-update-profile-by-identifier
+    example:
+      inputs: [
+        {
+          "profile": {
+            "name": "Jane Smith",
+            "attributes": {
+              "membership": "gold"
+            },
+            "identifiers": [
+              {
+                "type": "email",
+                "value": "jane@example.com"
+              },
+              {
+                "type": "external_id",
+                "value": "0987654321"
+              },
+              {
+                "type": "phone_number",
+                "value": "+612345678"
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "profile": {
+            "id": "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+            "name": "Jane Smith",
+            "type": "contact",
+            "source": "company",
+            "user_id": "123456",
+            "attributes": {
+              "membership": "gold"
+            },
+            "created_at": "2020-02-03T01:37:16Z",
+            "updated_at": "2020-02-03T01:37:16Z",
+            "identifiers": [
+              {
+                "type": "email",
+                "value": "jane@example.com"
+              },
+              {
+                "type": "external_id",
+                "value": "0987654321"
+              },
+              {
+                "type": "phone_number",
+                "value": "+612345678"
+              }
+            ]
+          }
+        }
+      ]
+  profiles.createOrUpdateProfileByUserId:
+    description: |-
+      Creates or updates a profile of a Zendesk user.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/profiles_api/profiles_api/#create-or-update-profile-by-user-id
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "profile": {
+            "id": "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+            "name": "Jane Smith",
+            "type": "contact",
+            "source": "company",
+            "user_id": "123456",
+            "attributes": {
+              "membership": "gold"
+            },
+            "created_at": "2020-02-03T01:37:16Z",
+            "updated_at": "2020-02-03T01:37:16Z",
+            "identifiers": [
+              {
+                "type": "email",
+                "value": "jane@example.com"
+              },
+              {
+                "type": "external_id",
+                "value": "0987654321"
+              },
+              {
+                "type": "phone_number",
+                "value": "+612345678"
+              }
+            ]
+          }
+        }
+      ]
+  profiles.deleteProfileByProfileId:
+    description: |-
+      Deletes the profile specified by the profile ID.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/profiles_api/profiles_api/#delete-profile-by-profile-id
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  profiles.getProfileByIdentifier:
+    description: |-
+      Returns a profile that matches the given identifier query criteria. See Using identifier queries with profiles.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/profiles_api/profiles_api/#get-profile-by-identifier
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "profile": {
+            "id": "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+            "name": "Jane Smith",
+            "type": "contact",
+            "source": "company",
+            "user_id": "123456",
+            "attributes": {
+              "membership": "gold"
+            },
+            "created_at": "2020-02-03T01:37:16Z",
+            "updated_at": "2020-02-03T01:37:16Z",
+            "identifiers": [
+              {
+                "type": "email",
+                "value": "jane@example.com"
+              },
+              {
+                "type": "external_id",
+                "value": "0987654321"
+              },
+              {
+                "type": "phone_number",
+                "value": "+612345678"
+              }
+            ]
+          }
+        }
+      ]
+  profiles.getProfileByProfileId:
+    description: |-
+      Returns a profile for a given profile ID.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/profiles_api/profiles_api/#get-profile-by-profile-id
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "profile": {
+            "id": "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+            "name": "Jane Smith",
+            "type": "contact",
+            "source": "company",
+            "user_id": "123456",
+            "attributes": {
+              "membership": "gold"
+            },
+            "created_at": "2020-02-03T01:37:16Z",
+            "updated_at": "2020-02-03T01:37:16Z",
+            "identifiers": [
+              {
+                "type": "email",
+                "value": "jane@example.com"
+              },
+              {
+                "type": "external_id",
+                "value": "0987654321"
+              },
+              {
+                "type": "phone_number",
+                "value": "+612345678"
+              }
+            ]
+          }
+        }
+      ]
+  profiles.getProfilesByUserId:
+    description: |-
+      Retrieves the profiles of a specified Zendesk user.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/profiles_api/profiles_api/#get-profiles-by-user-id
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "profiles": [
+            {
+              "id": "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+              "name": "Jane Smith",
+              "type": "contact",
+              "source": "company",
+              "user_id": "123456",
+              "attributes": {
+                "membership": "gold"
+              },
+              "created_at": "2020-02-03T01:37:16Z",
+              "updated_at": "2020-02-03T01:37:16Z",
+              "identifiers": [
+                {
+                  "type": "email",
+                  "value": "jane@example.com"
+                },
+                {
+                  "type": "external_id",
+                  "value": "0987654321"
+                },
+                {
+                  "type": "phone_number",
+                  "value": "+612345678"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  profiles.partialUpdateProfileByIdentifier:
+    description: |-
+      Partially updates the specified profile. See Patching a profile.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/profiles_api/profiles_api/#partial-update-profile-by-identifier
+    example:
+      inputs: [
+        {
+          "profile": {
+            "name": "Jane Smith",
+            "attributes": {
+              "membership": "gold"
+            },
+            "identifiers": [
+              {
+                "type": "email",
+                "value": "jane@example.com"
+              },
+              {
+                "type": "external_id",
+                "value": "0987654321"
+              },
+              {
+                "type": "phone_number",
+                "value": "+612345678"
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "profile": {
+            "id": "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+            "name": "Jane Smith",
+            "type": "contact",
+            "source": "company",
+            "user_id": "123456",
+            "attributes": {
+              "membership": "gold"
+            },
+            "created_at": "2020-02-03T01:37:16Z",
+            "updated_at": "2020-02-03T01:37:16Z",
+            "identifiers": [
+              {
+                "type": "email",
+                "value": "jane@example.com"
+              },
+              {
+                "type": "external_id",
+                "value": "0987654321"
+              },
+              {
+                "type": "phone_number",
+                "value": "+612345678"
+              }
+            ]
+          }
+        }
+      ]
+  profiles.partialUpdateProfileByProfileId:
+    description: |-
+      Partially updates of a profile with profile ID using a JSON merge patch. See Patching a profile.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/profiles_api/profiles_api/#partial-update-profile-by-profile-id
+    example:
+      inputs: [
+        {
+          "profile": {
+            "name": "Jane Smith",
+            "attributes": {
+              "membership": "gold"
+            },
+            "identifiers": [
+              {
+                "type": "email",
+                "value": "jane@example.com"
+              },
+              {
+                "type": "external_id",
+                "value": "0987654321"
+              },
+              {
+                "type": "phone_number",
+                "value": "+612345678"
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "profile": {
+            "id": "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+            "name": "Jane Smith",
+            "type": "contact",
+            "source": "company",
+            "user_id": "123456",
+            "attributes": {
+              "membership": "gold"
+            },
+            "created_at": "2020-02-03T01:37:16Z",
+            "updated_at": "2020-02-03T01:37:16Z",
+            "identifiers": [
+              {
+                "type": "email",
+                "value": "jane@example.com"
+              },
+              {
+                "type": "external_id",
+                "value": "0987654321"
+              },
+              {
+                "type": "phone_number",
+                "value": "+612345678"
+              }
+            ]
+          }
+        }
+      ]
+  profiles.updateProfileByProfileId:
+    description: |-
+      Updates a profile specified by a profile ID. If the profile has more than one identifier, all the identifiers should belong to a single user and a single profile. When identifiers for multiple users are provided, the request fails.
+    versions:
+      from: 2.0.0
+    link: https://developer.zendesk.com/api-reference/custom-data/profiles_api/profiles_api/#update-profile-by-profile-id
+    example:
+      inputs: [
+        {
+          "profile": {
+            "name": "Jane Smith",
+            "attributes": {
+              "membership": "gold"
+            },
+            "identifiers": [
+              {
+                "type": "email",
+                "value": "jane@example.com"
+              },
+              {
+                "type": "external_id",
+                "value": "0987654321"
+              },
+              {
+                "type": "phone_number",
+                "value": "+612345678"
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "profile": {
+            "id": "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+            "name": "Jane Smith",
+            "type": "contact",
+            "source": "company",
+            "user_id": "123456",
+            "attributes": {
+              "membership": "gold"
+            },
+            "created_at": "2020-02-03T01:37:16Z",
+            "updated_at": "2020-02-03T01:37:16Z",
+            "identifiers": [
+              {
+                "type": "email",
+                "value": "jane@example.com"
+              },
+              {
+                "type": "external_id",
+                "value": "0987654321"
+              },
+              {
+                "type": "phone_number",
+                "value": "+612345678"
+              }
+            ]
+          }
+        }
+      ]

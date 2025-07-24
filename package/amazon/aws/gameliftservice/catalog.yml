@@ -1,0 +1,3408 @@
+Product:
+  name: Amazon GameLift Service
+  versions: [2015.10.1]
+  package: amazon.aws.gameliftservice
+  description: |-
+    Amazon GameLift Service
+  link: https://docs.aws.amazon.com/gamelift/latest/apireference/Welcome.html
+  contentType: json
+Operations:
+  AcceptMatch:
+    description: |-
+      Registers a player's acceptance or rejection of a proposed FlexMatch match. A matchmaking configuration may require player acceptance; if so, then matches built with that configuration cannot be completed unless all players accept the proposed match within a specified time limit.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_AcceptMatch.html
+    example:
+      inputs: [
+        {
+          "TicketId": "string",
+          "PlayerIds": [
+            "string"
+          ],
+          "AcceptanceType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ClaimGameServer:
+    description: |-
+      This operation is used with the GameLift FleetIQ solution and game server groups.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_ClaimGameServer.html
+    example:
+      inputs: [
+        {
+          "GameServerId": "string",
+          "GameServerData": "string",
+          "GameServerGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GameServer": {
+            "InstanceId": "string",
+            "ClaimStatus": "string",
+            "GameServerId": "string",
+            "LastClaimTime": 1481289211.615,
+            "ConnectionInfo": "string",
+            "GameServerData": "string",
+            "RegistrationTime": 1481289211.615,
+            "UtilizationStatus": "string",
+            "GameServerGroupArn": "string",
+            "GameServerGroupName": "string",
+            "LastHealthCheckTime": 1481289211.615
+          }
+        }
+      ]
+  CreateAlias:
+    description: |-
+      Creates an alias for a fleet. In most situations, you can use an alias ID in place of a fleet ID. An alias provides a level of abstraction for a fleet that is useful when redirecting player traffic from one fleet to another, such as when updating your game build.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateAlias.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Description": "string",
+          "RoutingStrategy": {
+            "Type": "string",
+            "FleetId": "string",
+            "Message": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Alias": {
+            "Name": "string",
+            "AliasId": "string",
+            "AliasArn": "string",
+            "Description": "string",
+            "CreationTime": 1481289211.615,
+            "LastUpdatedTime": 1481289211.615,
+            "RoutingStrategy": {
+              "Type": "string",
+              "FleetId": "string",
+              "Message": "string"
+            }
+          }
+        }
+      ]
+  CreateBuild:
+    description: |-
+      Creates a new Amazon GameLift build resource for your game server binary files. Game server binaries must be combined into a zip file for use with Amazon GameLift.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateBuild.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Version": "string",
+          "OperatingSystem": "string",
+          "StorageLocation": {
+            "Key": "string",
+            "Bucket": "string",
+            "RoleArn": "string",
+            "ObjectVersion": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Build": {
+            "Name": "string",
+            "Status": "string",
+            "BuildId": "string",
+            "Version": "string",
+            "BuildArn": "string",
+            "SizeOnDisk": 1,
+            "CreationTime": 1481289211.615,
+            "OperatingSystem": "string"
+          },
+          "StorageLocation": {
+            "Key": "string",
+            "Bucket": "string",
+            "RoleArn": "string",
+            "ObjectVersion": "string"
+          },
+          "UploadCredentials": {
+            "AccessKeyId": "string",
+            "SessionToken": "string",
+            "SecretAccessKey": "string"
+          }
+        }
+      ]
+  CreateFleet:
+    description: |-
+      Creates a fleet of Amazon Elastic Compute Cloud (Amazon EC2) instances to host your custom game server or Realtime Servers. Use this operation to configure the computing resources for your fleet and provide instructions for running game servers on each instance.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateFleet.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "BuildId": "string",
+          "LogPaths": [
+            "string"
+          ],
+          "ScriptId": "string",
+          "FleetType": "string",
+          "Locations": [
+            {
+              "Location": "string"
+            }
+          ],
+          "PeerVpcId": "string",
+          "Description": "string",
+          "MetricGroups": [
+            "string"
+          ],
+          "EC2InstanceType": "string",
+          "InstanceRoleArn": "string",
+          "ServerLaunchPath": "string",
+          "PeerVpcAwsAccountId": "string",
+          "RuntimeConfiguration": {
+            "ServerProcesses": [
+              {
+                "LaunchPath": "string",
+                "Parameters": "string",
+                "ConcurrentExecutions": 1
+              }
+            ],
+            "GameSessionActivationTimeoutSeconds": 1,
+            "MaxConcurrentGameSessionActivations": 1
+          },
+          "EC2InboundPermissions": [
+            {
+              "ToPort": 1,
+              "IpRange": "string",
+              "FromPort": 1,
+              "Protocol": "string"
+            }
+          ],
+          "ServerLaunchParameters": "string",
+          "CertificateConfiguration": {
+            "CertificateType": "string"
+          },
+          "ResourceCreationLimitPolicy": {
+            "PolicyPeriodInMinutes": 1,
+            "NewGameSessionsPerCreator": 1
+          },
+          "NewGameSessionProtectionPolicy": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LocationStates": [
+            {
+              "Status": "string",
+              "Location": "string"
+            }
+          ],
+          "FleetAttributes": {
+            "Name": "string",
+            "Status": "string",
+            "BuildId": "string",
+            "FleetId": "string",
+            "BuildArn": "string",
+            "FleetArn": "string",
+            "LogPaths": [
+              "string"
+            ],
+            "ScriptId": "string",
+            "FleetType": "string",
+            "ScriptArn": "string",
+            "Description": "string",
+            "CreationTime": 1481289211.615,
+            "InstanceType": "string",
+            "MetricGroups": [
+              "string"
+            ],
+            "StoppedActions": [
+              "string"
+            ],
+            "InstanceRoleArn": "string",
+            "OperatingSystem": "string",
+            "TerminationTime": 1481289211.615,
+            "ServerLaunchPath": "string",
+            "ServerLaunchParameters": "string",
+            "CertificateConfiguration": {
+              "CertificateType": "string"
+            },
+            "ResourceCreationLimitPolicy": {
+              "PolicyPeriodInMinutes": 1,
+              "NewGameSessionsPerCreator": 1
+            },
+            "NewGameSessionProtectionPolicy": "string"
+          }
+        }
+      ]
+  CreateFleetLocations:
+    description: |-
+      Adds remote locations to a fleet and begins populating the new locations with EC2 instances. The new instances conform to the fleet's instance type, auto-scaling, and other configuration settings.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateFleetLocations.html
+    example:
+      inputs: [
+        {
+          "FleetId": "string",
+          "Locations": [
+            {
+              "Location": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "FleetId": "string",
+          "FleetArn": "string",
+          "LocationStates": [
+            {
+              "Status": "string",
+              "Location": "string"
+            }
+          ]
+        }
+      ]
+  CreateGameServerGroup:
+    description: |-
+      This operation is used with the GameLift FleetIQ solution and game server groups.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateGameServerGroup.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "MaxSize": 1,
+          "MinSize": 1,
+          "RoleArn": "string",
+          "VpcSubnets": [
+            "string"
+          ],
+          "LaunchTemplate": {
+            "Version": "string",
+            "LaunchTemplateId": "string",
+            "LaunchTemplateName": "string"
+          },
+          "AutoScalingPolicy": {
+            "EstimatedInstanceWarmup": 1,
+            "TargetTrackingConfiguration": {
+              "TargetValue": 0.1
+            }
+          },
+          "BalancingStrategy": "string",
+          "GameServerGroupName": "string",
+          "InstanceDefinitions": [
+            {
+              "InstanceType": "string",
+              "WeightedCapacity": "string"
+            }
+          ],
+          "GameServerProtectionPolicy": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GameServerGroup": {
+            "Status": "string",
+            "RoleArn": "string",
+            "CreationTime": 1481289211.615,
+            "StatusReason": "string",
+            "LastUpdatedTime": 1481289211.615,
+            "SuspendedActions": [
+              "string"
+            ],
+            "BalancingStrategy": "string",
+            "GameServerGroupArn": "string",
+            "AutoScalingGroupArn": "string",
+            "GameServerGroupName": "string",
+            "InstanceDefinitions": [
+              {
+                "InstanceType": "string",
+                "WeightedCapacity": "string"
+              }
+            ],
+            "GameServerProtectionPolicy": "string"
+          }
+        }
+      ]
+  CreateGameSession:
+    description: |-
+      Creates a multiplayer game session for players in a specific fleet location. This operation prompts an available server process to start a game session and retrieves connection information for the new game session. As an alternative, consider using the GameLift game session placement feature with
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateGameSession.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AliasId": "string",
+          "FleetId": "string",
+          "Location": "string",
+          "CreatorId": "string",
+          "GameSessionId": "string",
+          "GameProperties": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "GameSessionData": "string",
+          "IdempotencyToken": "string",
+          "MaximumPlayerSessionCount": 1
+        }
+      ]
+      outputs: [
+        {
+          "GameSession": {
+            "Name": "string",
+            "Port": 1,
+            "Status": "string",
+            "DnsName": "string",
+            "FleetId": "string",
+            "FleetArn": "string",
+            "Location": "string",
+            "CreatorId": "string",
+            "IpAddress": "string",
+            "CreationTime": 1481289211.615,
+            "StatusReason": "string",
+            "GameSessionId": "string",
+            "GameProperties": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "MatchmakerData": "string",
+            "GameSessionData": "string",
+            "TerminationTime": 1481289211.615,
+            "CurrentPlayerSessionCount": 1,
+            "MaximumPlayerSessionCount": 1,
+            "PlayerSessionCreationPolicy": "string"
+          }
+        }
+      ]
+  CreateGameSessionQueue:
+    description: |-
+      Creates a placement queue that processes requests for new game sessions. A queue uses FleetIQ algorithms to determine the best placement locations and find an available game server there, then prompts the game server process to start a new game session.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateGameSessionQueue.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Destinations": [
+            {
+              "DestinationArn": "string"
+            }
+          ],
+          "CustomEventData": "string",
+          "TimeoutInSeconds": 1,
+          "NotificationTarget": "string",
+          "FilterConfiguration": {
+            "AllowedLocations": [
+              "string"
+            ]
+          },
+          "PlayerLatencyPolicies": [
+            {
+              "PolicyDurationSeconds": 1,
+              "MaximumIndividualPlayerLatencyMilliseconds": 1
+            }
+          ],
+          "PriorityConfiguration": {
+            "LocationOrder": [
+              "string"
+            ],
+            "PriorityOrder": [
+              "string"
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "GameSessionQueue": {
+            "Name": "string",
+            "Destinations": [
+              {
+                "DestinationArn": "string"
+              }
+            ],
+            "CustomEventData": "string",
+            "TimeoutInSeconds": 1,
+            "NotificationTarget": "string",
+            "FilterConfiguration": {
+              "AllowedLocations": [
+                "string"
+              ]
+            },
+            "GameSessionQueueArn": "string",
+            "PlayerLatencyPolicies": [
+              {
+                "PolicyDurationSeconds": 1,
+                "MaximumIndividualPlayerLatencyMilliseconds": 1
+              }
+            ],
+            "PriorityConfiguration": {
+              "LocationOrder": [
+                "string"
+              ],
+              "PriorityOrder": [
+                "string"
+              ]
+            }
+          }
+        }
+      ]
+  CreateMatchmakingConfiguration:
+    description: |-
+      Defines a new matchmaking configuration for use with FlexMatch. Whether your are using FlexMatch with GameLift hosting or as a standalone matchmaking service, the matchmaking configuration sets out rules for matching players and forming teams. If you're also using GameLift hosting, it defines how to start game sessions for each match. Your matchmaking system can use multiple configurations to handle different game scenarios. All matchmaking requests (StartMatchmaking or StartMatchBackfill) identify the matchmaking configuration to use and provide player attributes consistent with that configuration.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateMatchmakingConfiguration.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Description": "string",
+          "RuleSetName": "string",
+          "BackfillMode": "string",
+          "FlexMatchMode": "string",
+          "GameProperties": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "CustomEventData": "string",
+          "GameSessionData": "string",
+          "AcceptanceRequired": false,
+          "NotificationTarget": "string",
+          "GameSessionQueueArns": [
+            "string"
+          ],
+          "AdditionalPlayerCount": 1,
+          "RequestTimeoutSeconds": 1,
+          "AcceptanceTimeoutSeconds": 1
+        }
+      ]
+      outputs: [
+        {
+          "Configuration": {
+            "Name": "string",
+            "RuleSetArn": "string",
+            "Description": "string",
+            "RuleSetName": "string",
+            "BackfillMode": "string",
+            "CreationTime": 1481289211.615,
+            "FlexMatchMode": "string",
+            "GameProperties": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "CustomEventData": "string",
+            "GameSessionData": "string",
+            "ConfigurationArn": "string",
+            "AcceptanceRequired": false,
+            "NotificationTarget": "string",
+            "GameSessionQueueArns": [
+              "string"
+            ],
+            "AdditionalPlayerCount": 1,
+            "RequestTimeoutSeconds": 1,
+            "AcceptanceTimeoutSeconds": 1
+          }
+        }
+      ]
+  CreateMatchmakingRuleSet:
+    description: |-
+      Creates a new rule set for FlexMatch matchmaking. A rule set describes the type of match to create, such as the number and size of teams. It also sets the parameters for acceptable player matches, such as minimum skill level or character type. A rule set is used by a MatchmakingConfiguration.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateMatchmakingRuleSet.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "RuleSetBody": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RuleSet": {
+            "RuleSetArn": "string",
+            "RuleSetBody": "string",
+            "RuleSetName": "string",
+            "CreationTime": 1481289211.615
+          }
+        }
+      ]
+  CreatePlayerSession:
+    description: |-
+      Reserves an open player slot in a game session for a player. New player sessions can be created in any game session with an open slot that is in ACTIVE status and has a player creation policy of ACCEPT_ALL. You can add a group of players to a game session with CreatePlayerSessions.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreatePlayerSession.html
+    example:
+      inputs: [
+        {
+          "PlayerId": "string",
+          "PlayerData": "string",
+          "GameSessionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PlayerSession": {
+            "Port": 1,
+            "Status": "string",
+            "DnsName": "string",
+            "FleetId": "string",
+            "FleetArn": "string",
+            "PlayerId": "string",
+            "IpAddress": "string",
+            "PlayerData": "string",
+            "CreationTime": 1481289211.615,
+            "GameSessionId": "string",
+            "PlayerSessionId": "string",
+            "TerminationTime": 1481289211.615
+          }
+        }
+      ]
+  CreatePlayerSessions:
+    description: |-
+      Reserves open slots in a game session for a group of players. New player sessions can be created in any game session with an open slot that is in ACTIVE status and has a player creation policy of ACCEPT_ALL. To add a single player to a game session, use CreatePlayerSession.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreatePlayerSessions.html
+    example:
+      inputs: [
+        {
+          "PlayerIds": [
+            "string"
+          ],
+          "GameSessionId": "string",
+          "PlayerDataMap": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "PlayerSessions": [
+            {
+              "Port": 1,
+              "Status": "string",
+              "DnsName": "string",
+              "FleetId": "string",
+              "FleetArn": "string",
+              "PlayerId": "string",
+              "IpAddress": "string",
+              "PlayerData": "string",
+              "CreationTime": 1481289211.615,
+              "GameSessionId": "string",
+              "PlayerSessionId": "string",
+              "TerminationTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  CreateScript:
+    description: |-
+      Creates a new script record for your Realtime Servers script. Realtime scripts are JavaScript that provide configuration settings and optional custom game logic for your game. The script is deployed when you create a Realtime Servers fleet to host your game sessions. Script logic is executed during an active game session.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateScript.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Version": "string",
+          "ZipFile": "blob",
+          "StorageLocation": {
+            "Key": "string",
+            "Bucket": "string",
+            "RoleArn": "string",
+            "ObjectVersion": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Script": {
+            "Name": "string",
+            "Version": "string",
+            "ScriptId": "string",
+            "ScriptArn": "string",
+            "SizeOnDisk": 1,
+            "CreationTime": 1481289211.615,
+            "StorageLocation": {
+              "Key": "string",
+              "Bucket": "string",
+              "RoleArn": "string",
+              "ObjectVersion": "string"
+            }
+          }
+        }
+      ]
+  CreateVpcPeeringAuthorization:
+    description: |-
+      Requests authorization to create or delete a peer connection between the VPC for your Amazon GameLift fleet and a virtual private cloud (VPC) in your AWS account. VPC peering enables the game servers on your fleet to communicate directly with other AWS resources. Once you've received authorization, call CreateVpcPeeringConnection to establish the peering connection. For more information, see VPC Peering with Amazon GameLift Fleets.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateVpcPeeringAuthorization.html
+    example:
+      inputs: [
+        {
+          "PeerVpcId": "string",
+          "GameLiftAwsAccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "VpcPeeringAuthorization": {
+            "PeerVpcId": "string",
+            "CreationTime": 1481289211.615,
+            "ExpirationTime": 1481289211.615,
+            "PeerVpcAwsAccountId": "string",
+            "GameLiftAwsAccountId": "string"
+          }
+        }
+      ]
+  CreateVpcPeeringConnection:
+    description: |-
+      Establishes a VPC peering connection between a virtual private cloud (VPC) in an AWS account with the VPC for your Amazon GameLift fleet. VPC peering enables the game servers on your fleet to communicate directly with other AWS resources. You can peer with VPCs in any AWS account that you have access to, including the account that you use to manage your Amazon GameLift fleets. You cannot peer with VPCs that are in different Regions. For more information, see VPC Peering with Amazon GameLift Fleets.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_CreateVpcPeeringConnection.html
+    example:
+      inputs: [
+        {
+          "FleetId": "string",
+          "PeerVpcId": "string",
+          "PeerVpcAwsAccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteAlias:
+    description: |-
+      Deletes an alias. This operation removes all record of the alias. Game clients attempting to access a server process using the deleted alias receive an error. To delete an alias, specify the alias ID to be deleted.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeleteAlias.html
+    example:
+      inputs: [
+        {
+          "AliasId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBuild:
+    description: |-
+      Deletes a build. This operation permanently deletes the build resource and any uploaded build files. Deleting a build does not affect the status of any active fleets using the build, but you can no longer create new fleets with the deleted build.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeleteBuild.html
+    example:
+      inputs: [
+        {
+          "BuildId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteFleet:
+    description: |-
+      Deletes all resources and information related a fleet. Any current fleet instances, including those in remote locations, are shut down. You don't need to call DeleteFleetLocations separately.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeleteFleet.html
+    example:
+      inputs: [
+        {
+          "FleetId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteFleetLocations:
+    description: |-
+      Removes locations from a multi-location fleet. When deleting a location, all game server process and all instances that are still active in the location are shut down.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeleteFleetLocations.html
+    example:
+      inputs: [
+        {
+          "FleetId": "string",
+          "Locations": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "FleetId": "string",
+          "FleetArn": "string",
+          "LocationStates": [
+            {
+              "Status": "string",
+              "Location": "string"
+            }
+          ]
+        }
+      ]
+  DeleteGameServerGroup:
+    description: |-
+      This operation is used with the GameLift FleetIQ solution and game server groups.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeleteGameServerGroup.html
+    example:
+      inputs: [
+        {
+          "DeleteOption": "string",
+          "GameServerGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GameServerGroup": {
+            "Status": "string",
+            "RoleArn": "string",
+            "CreationTime": 1481289211.615,
+            "StatusReason": "string",
+            "LastUpdatedTime": 1481289211.615,
+            "SuspendedActions": [
+              "string"
+            ],
+            "BalancingStrategy": "string",
+            "GameServerGroupArn": "string",
+            "AutoScalingGroupArn": "string",
+            "GameServerGroupName": "string",
+            "InstanceDefinitions": [
+              {
+                "InstanceType": "string",
+                "WeightedCapacity": "string"
+              }
+            ],
+            "GameServerProtectionPolicy": "string"
+          }
+        }
+      ]
+  DeleteGameSessionQueue:
+    description: |-
+      Deletes a game session queue. Once a queue is successfully deleted, unfulfilled StartGameSessionPlacement requests that reference the queue will fail. To delete a queue, specify the queue name.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeleteGameSessionQueue.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteMatchmakingConfiguration:
+    description: |-
+      Permanently removes a FlexMatch matchmaking configuration. To delete, specify the configuration name. A matchmaking configuration cannot be deleted if it is being used in any active matchmaking tickets.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeleteMatchmakingConfiguration.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteMatchmakingRuleSet:
+    description: |-
+      Deletes an existing matchmaking rule set. To delete the rule set, provide the rule set name. Rule sets cannot be deleted if they are currently being used by a matchmaking configuration.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeleteMatchmakingRuleSet.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteScalingPolicy:
+    description: |-
+      Deletes a fleet scaling policy. Once deleted, the policy is no longer in force and GameLift removes all record of it. To delete a scaling policy, specify both the scaling policy name and the fleet ID it is associated with.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeleteScalingPolicy.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "FleetId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteScript:
+    description: |-
+      Deletes a Realtime script. This operation permanently deletes the script record. If script files were uploaded, they are also deleted (files stored in an S3 bucket are not deleted).
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeleteScript.html
+    example:
+      inputs: [
+        {
+          "ScriptId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteVpcPeeringAuthorization:
+    description: |-
+      Cancels a pending VPC peering authorization for the specified VPC. If you need to delete an existing VPC peering connection, call DeleteVpcPeeringConnection.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeleteVpcPeeringAuthorization.html
+    example:
+      inputs: [
+        {
+          "PeerVpcId": "string",
+          "GameLiftAwsAccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteVpcPeeringConnection:
+    description: |-
+      Removes a VPC peering connection. To delete the connection, you must have a valid authorization for the VPC peering connection that you want to delete. You can check for an authorization by calling DescribeVpcPeeringAuthorizations or request a new one using CreateVpcPeeringAuthorization.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeleteVpcPeeringConnection.html
+    example:
+      inputs: [
+        {
+          "FleetId": "string",
+          "VpcPeeringConnectionId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeregisterGameServer:
+    description: |-
+      This operation is used with the GameLift FleetIQ solution and game server groups.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DeregisterGameServer.html
+    example:
+      inputs: [
+        {
+          "GameServerId": "string",
+          "GameServerGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeAlias:
+    description: |-
+      Retrieves properties for an alias. This operation returns all alias metadata and settings. To get an alias's target fleet ID only, use ResolveAlias.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeAlias.html
+    example:
+      inputs: [
+        {
+          "AliasId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Alias": {
+            "Name": "string",
+            "AliasId": "string",
+            "AliasArn": "string",
+            "Description": "string",
+            "CreationTime": 1481289211.615,
+            "LastUpdatedTime": 1481289211.615,
+            "RoutingStrategy": {
+              "Type": "string",
+              "FleetId": "string",
+              "Message": "string"
+            }
+          }
+        }
+      ]
+  DescribeBuild:
+    description: |-
+      Retrieves properties for a custom game build. To request a build resource, specify a build ID. If successful, an object containing the build properties is returned.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeBuild.html
+    example:
+      inputs: [
+        {
+          "BuildId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Build": {
+            "Name": "string",
+            "Status": "string",
+            "BuildId": "string",
+            "Version": "string",
+            "BuildArn": "string",
+            "SizeOnDisk": 1,
+            "CreationTime": 1481289211.615,
+            "OperatingSystem": "string"
+          }
+        }
+      ]
+  DescribeEC2InstanceLimits:
+    description: |-
+      The GameLift service limits and current utilization for an AWS Region or location. Instance limits control the number of instances, per instance type, per location, that your AWS account can use. Learn more at Amazon EC2 Instance Types. The information returned includes the maximum number of instances allowed and your account's current usage across all fleets. This information can affect your ability to scale your GameLift fleets. You can request a limit increase for your account by using the Service limits page in the GameLift console.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeEC2InstanceLimits.html
+    example:
+      inputs: [
+        {
+          "Location": "string",
+          "EC2InstanceType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EC2InstanceLimits": [
+            {
+              "Location": "string",
+              "InstanceLimit": 1,
+              "EC2InstanceType": "string",
+              "CurrentInstances": 1
+            }
+          ]
+        }
+      ]
+  DescribeFleetAttributes:
+    description: |-
+      Retrieves core fleet-wide properties, including the computing hardware and deployment configuration for all instances in the fleet.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetAttributes.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "FleetIds": [
+            "string"
+          ],
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "FleetAttributes": [
+            {
+              "Name": "string",
+              "Status": "string",
+              "BuildId": "string",
+              "FleetId": "string",
+              "BuildArn": "string",
+              "FleetArn": "string",
+              "LogPaths": [
+                "string"
+              ],
+              "ScriptId": "string",
+              "FleetType": "string",
+              "ScriptArn": "string",
+              "Description": "string",
+              "CreationTime": 1481289211.615,
+              "InstanceType": "string",
+              "MetricGroups": [
+                "string"
+              ],
+              "StoppedActions": [
+                "string"
+              ],
+              "InstanceRoleArn": "string",
+              "OperatingSystem": "string",
+              "TerminationTime": 1481289211.615,
+              "ServerLaunchPath": "string",
+              "ServerLaunchParameters": "string",
+              "CertificateConfiguration": {
+                "CertificateType": "string"
+              },
+              "ResourceCreationLimitPolicy": {
+                "PolicyPeriodInMinutes": 1,
+                "NewGameSessionsPerCreator": 1
+              },
+              "NewGameSessionProtectionPolicy": "string"
+            }
+          ]
+        }
+      ]
+  DescribeFleetCapacity:
+    description: |-
+      Retrieves the resource capacity settings for one or more fleets. The data returned includes the current fleet capacity (number of EC2 instances), and settings that can control how capacity scaling. For fleets with remote locations, this operation retrieves data for the fleet's home Region only. See DescribeFleetLocationCapacity to get capacity settings for a fleet's remote locations.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetCapacity.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "FleetIds": [
+            "string"
+          ],
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "FleetCapacity": [
+            {
+              "FleetId": "string",
+              "FleetArn": "string",
+              "Location": "string",
+              "InstanceType": "string",
+              "InstanceCounts": {
+                "IDLE": 1,
+                "ACTIVE": 1,
+                "DESIRED": 1,
+                "MAXIMUM": 1,
+                "MINIMUM": 1,
+                "PENDING": 1,
+                "TERMINATING": 1
+              }
+            }
+          ]
+        }
+      ]
+  DescribeFleetEvents:
+    description: |-
+      Retrieves entries from a fleet's event log. Fleet events are initiated by changes in status, such as during fleet creation and termination, changes in capacity, etc. If a fleet has multiple locations, events are also initiated by changes to status and capacity in remote locations.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetEvents.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "EndTime": 1481289211.615,
+          "FleetId": "string",
+          "NextToken": "string",
+          "StartTime": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "Events": [
+            {
+              "EventId": "string",
+              "Message": "string",
+              "EventCode": "string",
+              "EventTime": 1481289211.615,
+              "ResourceId": "string",
+              "PreSignedLogUrl": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeFleetLocationAttributes:
+    description: |-
+      Retrieves information on a fleet's remote locations, including life-cycle status and any suspended fleet activity.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetLocationAttributes.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "FleetId": "string",
+          "Locations": [
+            "string"
+          ],
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FleetId": "string",
+          "FleetArn": "string",
+          "NextToken": "string",
+          "LocationAttributes": [
+            {
+              "UpdateStatus": "string",
+              "LocationState": {
+                "Status": "string",
+                "Location": "string"
+              },
+              "StoppedActions": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  DescribeFleetLocationCapacity:
+    description: |-
+      Retrieves the resource capacity settings for a fleet location. The data returned includes the current capacity (number of EC2 instances) and some scaling settings for the requested fleet location. Use this operation to retrieve capacity information for a fleet's remote location or home Region (you can also retrieve home Region capacity by calling DescribeFleetCapacity).
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetLocationCapacity.html
+    example:
+      inputs: [
+        {
+          "FleetId": "string",
+          "Location": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FleetCapacity": {
+            "FleetId": "string",
+            "FleetArn": "string",
+            "Location": "string",
+            "InstanceType": "string",
+            "InstanceCounts": {
+              "IDLE": 1,
+              "ACTIVE": 1,
+              "DESIRED": 1,
+              "MAXIMUM": 1,
+              "MINIMUM": 1,
+              "PENDING": 1,
+              "TERMINATING": 1
+            }
+          }
+        }
+      ]
+  DescribeFleetLocationUtilization:
+    description: |-
+      Retrieves current usage data for a fleet location. Utilization data provides a snapshot of current game hosting activity at the requested location. Use this operation to retrieve utilization information for a fleet's remote location or home Region (you can also retrieve home Region utilization by calling DescribeFleetUtilization).
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetLocationUtilization.html
+    example:
+      inputs: [
+        {
+          "FleetId": "string",
+          "Location": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FleetUtilization": {
+            "FleetId": "string",
+            "FleetArn": "string",
+            "Location": "string",
+            "ActiveGameSessionCount": 1,
+            "ActiveServerProcessCount": 1,
+            "CurrentPlayerSessionCount": 1,
+            "MaximumPlayerSessionCount": 1
+          }
+        }
+      ]
+  DescribeFleetPortSettings:
+    description: |-
+      Retrieves a fleet's inbound connection permissions. Connection permissions specify the range of IP addresses and port settings that incoming traffic can use to access server processes in the fleet. Game sessions that are running on instances in the fleet must use connections that fall in this range.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetPortSettings.html
+    example:
+      inputs: [
+        {
+          "FleetId": "string",
+          "Location": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FleetId": "string",
+          "FleetArn": "string",
+          "Location": "string",
+          "UpdateStatus": "string",
+          "InboundPermissions": [
+            {
+              "ToPort": 1,
+              "IpRange": "string",
+              "FromPort": 1,
+              "Protocol": "string"
+            }
+          ]
+        }
+      ]
+  DescribeFleetUtilization:
+    description: |-
+      Retrieves utilization statistics for one or more fleets. Utilization data provides a snapshot of how the fleet's hosting resources are currently being used. For fleets with remote locations, this operation retrieves data for the fleet's home Region only. See DescribeFleetLocationUtilization to get utilization statistics for a fleet's remote locations.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetUtilization.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "FleetIds": [
+            "string"
+          ],
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "FleetUtilization": [
+            {
+              "FleetId": "string",
+              "FleetArn": "string",
+              "Location": "string",
+              "ActiveGameSessionCount": 1,
+              "ActiveServerProcessCount": 1,
+              "CurrentPlayerSessionCount": 1,
+              "MaximumPlayerSessionCount": 1
+            }
+          ]
+        }
+      ]
+  DescribeGameServerGroup:
+    description: |-
+      This operation is used with the GameLift FleetIQ solution and game server groups.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeGameServerGroup.html
+    example:
+      inputs: [
+        {
+          "GameServerGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GameServerGroup": {
+            "Status": "string",
+            "RoleArn": "string",
+            "CreationTime": 1481289211.615,
+            "StatusReason": "string",
+            "LastUpdatedTime": 1481289211.615,
+            "SuspendedActions": [
+              "string"
+            ],
+            "BalancingStrategy": "string",
+            "GameServerGroupArn": "string",
+            "AutoScalingGroupArn": "string",
+            "GameServerGroupName": "string",
+            "InstanceDefinitions": [
+              {
+                "InstanceType": "string",
+                "WeightedCapacity": "string"
+              }
+            ],
+            "GameServerProtectionPolicy": "string"
+          }
+        }
+      ]
+  DescribeGameServer:
+    description: |-
+      This operation is used with the GameLift FleetIQ solution and game server groups.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeGameServer.html
+    example:
+      inputs: [
+        {
+          "GameServerId": "string",
+          "GameServerGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GameServer": {
+            "InstanceId": "string",
+            "ClaimStatus": "string",
+            "GameServerId": "string",
+            "LastClaimTime": 1481289211.615,
+            "ConnectionInfo": "string",
+            "GameServerData": "string",
+            "RegistrationTime": 1481289211.615,
+            "UtilizationStatus": "string",
+            "GameServerGroupArn": "string",
+            "GameServerGroupName": "string",
+            "LastHealthCheckTime": 1481289211.615
+          }
+        }
+      ]
+  DescribeGameServerInstances:
+    description: |-
+      This operation is used with the GameLift FleetIQ solution and game server groups.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeGameServerInstances.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "InstanceIds": [
+            "string"
+          ],
+          "GameServerGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "GameServerInstances": [
+            {
+              "InstanceId": "string",
+              "InstanceStatus": "string",
+              "GameServerGroupArn": "string",
+              "GameServerGroupName": "string"
+            }
+          ]
+        }
+      ]
+  DescribeGameSessionDetails:
+    description: |-
+      Retrieves additional game session properties, including the game session protection policy in force, a set of one or more game sessions in a specific fleet location. You can optionally filter the results by current game session status. Alternatively, use SearchGameSessions to request a set of active game sessions that are filtered by certain criteria. To retrieve all game session properties, use DescribeGameSessions.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeGameSessionDetails.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "AliasId": "string",
+          "FleetId": "string",
+          "Location": "string",
+          "NextToken": "string",
+          "StatusFilter": "string",
+          "GameSessionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "GameSessionDetails": [
+            {
+              "GameSession": {
+                "Name": "string",
+                "Port": 1,
+                "Status": "string",
+                "DnsName": "string",
+                "FleetId": "string",
+                "FleetArn": "string",
+                "Location": "string",
+                "CreatorId": "string",
+                "IpAddress": "string",
+                "CreationTime": 1481289211.615,
+                "StatusReason": "string",
+                "GameSessionId": "string",
+                "GameProperties": [
+                  {
+                    "Key": "string",
+                    "Value": "string"
+                  }
+                ],
+                "MatchmakerData": "string",
+                "GameSessionData": "string",
+                "TerminationTime": 1481289211.615,
+                "CurrentPlayerSessionCount": 1,
+                "MaximumPlayerSessionCount": 1,
+                "PlayerSessionCreationPolicy": "string"
+              },
+              "ProtectionPolicy": "string"
+            }
+          ]
+        }
+      ]
+  DescribeGameSessionPlacement:
+    description: |-
+      Retrieves information, including current status, about a game session placement request.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeGameSessionPlacement.html
+    example:
+      inputs: [
+        {
+          "PlacementId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GameSessionPlacement": {
+            "Port": 1,
+            "Status": "string",
+            "DnsName": "string",
+            "EndTime": 1481289211.615,
+            "IpAddress": "string",
+            "StartTime": 1481289211.615,
+            "PlacementId": "string",
+            "GameSessionId": "string",
+            "GameProperties": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "GameSessionArn": "string",
+            "MatchmakerData": "string",
+            "GameSessionData": "string",
+            "GameSessionName": "string",
+            "PlayerLatencies": [
+              {
+                "PlayerId": "string",
+                "RegionIdentifier": "string",
+                "LatencyInMilliseconds": 0.1
+              }
+            ],
+            "GameSessionRegion": "string",
+            "GameSessionQueueName": "string",
+            "PlacedPlayerSessions": [
+              {
+                "PlayerId": "string",
+                "PlayerSessionId": "string"
+              }
+            ],
+            "MaximumPlayerSessionCount": 1
+          }
+        }
+      ]
+  DescribeGameSessionQueues:
+    description: |-
+      Retrieves the properties for one or more game session queues. When requesting multiple queues, use the pagination parameters to retrieve results as a set of sequential pages. If successful, a GameSessionQueue object is returned for each requested queue. When specifying a list of queues, objects are returned only for queues that currently exist in the Region.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeGameSessionQueues.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Names": [
+            "string"
+          ],
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "GameSessionQueues": [
+            {
+              "Name": "string",
+              "Destinations": [
+                {
+                  "DestinationArn": "string"
+                }
+              ],
+              "CustomEventData": "string",
+              "TimeoutInSeconds": 1,
+              "NotificationTarget": "string",
+              "FilterConfiguration": {
+                "AllowedLocations": [
+                  "string"
+                ]
+              },
+              "GameSessionQueueArn": "string",
+              "PlayerLatencyPolicies": [
+                {
+                  "PolicyDurationSeconds": 1,
+                  "MaximumIndividualPlayerLatencyMilliseconds": 1
+                }
+              ],
+              "PriorityConfiguration": {
+                "LocationOrder": [
+                  "string"
+                ],
+                "PriorityOrder": [
+                  "string"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+  DescribeGameSessions:
+    description: |-
+      Retrieves a set of one or more game sessions in a specific fleet location. You can optionally filter the results by current game session status. Alternatively, use SearchGameSessions to request a set of active game sessions that are filtered by certain criteria. To retrieve the protection policy for game sessions, use DescribeGameSessionDetails.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeGameSessions.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "AliasId": "string",
+          "FleetId": "string",
+          "Location": "string",
+          "NextToken": "string",
+          "StatusFilter": "string",
+          "GameSessionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "GameSessions": [
+            {
+              "Name": "string",
+              "Port": 1,
+              "Status": "string",
+              "DnsName": "string",
+              "FleetId": "string",
+              "FleetArn": "string",
+              "Location": "string",
+              "CreatorId": "string",
+              "IpAddress": "string",
+              "CreationTime": 1481289211.615,
+              "StatusReason": "string",
+              "GameSessionId": "string",
+              "GameProperties": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ],
+              "MatchmakerData": "string",
+              "GameSessionData": "string",
+              "TerminationTime": 1481289211.615,
+              "CurrentPlayerSessionCount": 1,
+              "MaximumPlayerSessionCount": 1,
+              "PlayerSessionCreationPolicy": "string"
+            }
+          ]
+        }
+      ]
+  DescribeInstances:
+    description: |-
+      Retrieves information about a fleet's instances, including instance IDs, connection data, and status.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeInstances.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "FleetId": "string",
+          "Location": "string",
+          "NextToken": "string",
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Instances": [
+            {
+              "Type": "string",
+              "Status": "string",
+              "DnsName": "string",
+              "FleetId": "string",
+              "FleetArn": "string",
+              "Location": "string",
+              "IpAddress": "string",
+              "InstanceId": "string",
+              "CreationTime": 1481289211.615,
+              "OperatingSystem": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeMatchmakingConfigurations:
+    description: |-
+      Retrieves the details of FlexMatch matchmaking configurations.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeMatchmakingConfigurations.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Names": [
+            "string"
+          ],
+          "NextToken": "string",
+          "RuleSetName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Configurations": [
+            {
+              "Name": "string",
+              "RuleSetArn": "string",
+              "Description": "string",
+              "RuleSetName": "string",
+              "BackfillMode": "string",
+              "CreationTime": 1481289211.615,
+              "FlexMatchMode": "string",
+              "GameProperties": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ],
+              "CustomEventData": "string",
+              "GameSessionData": "string",
+              "ConfigurationArn": "string",
+              "AcceptanceRequired": false,
+              "NotificationTarget": "string",
+              "GameSessionQueueArns": [
+                "string"
+              ],
+              "AdditionalPlayerCount": 1,
+              "RequestTimeoutSeconds": 1,
+              "AcceptanceTimeoutSeconds": 1
+            }
+          ]
+        }
+      ]
+  DescribeMatchmaking:
+    description: |-
+      Retrieves one or more matchmaking tickets. Use this operation to retrieve ticket information, including--after a successful match is made--connection information for the resulting new game session.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeMatchmaking.html
+    example:
+      inputs: [
+        {
+          "TicketIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "TicketList": [
+            {
+              "Status": "string",
+              "EndTime": 1481289211.615,
+              "Players": [
+                {
+                  "Team": "string",
+                  "PlayerId": "string",
+                  "LatencyInMs": {
+                    "string": 1
+                  },
+                  "PlayerAttributes": {
+                    "string": {
+                      "N": 0.1,
+                      "S": "string",
+                      "SL": [
+                        "string"
+                      ],
+                      "SDM": {
+                        "string": 0.1
+                      }
+                    }
+                  }
+                }
+              ],
+              "TicketId": "string",
+              "StartTime": 1481289211.615,
+              "StatusReason": "string",
+              "StatusMessage": "string",
+              "ConfigurationArn": "string",
+              "ConfigurationName": "string",
+              "EstimatedWaitTime": 1,
+              "GameSessionConnectionInfo": {
+                "Port": 1,
+                "DnsName": "string",
+                "IpAddress": "string",
+                "GameSessionArn": "string",
+                "MatchedPlayerSessions": [
+                  {
+                    "PlayerId": "string",
+                    "PlayerSessionId": "string"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+  DescribeMatchmakingRuleSets:
+    description: |-
+      Retrieves the details for FlexMatch matchmaking rule sets. You can request all existing rule sets for the Region, or provide a list of one or more rule set names. When requesting multiple items, use the pagination parameters to retrieve results as a set of sequential pages. If successful, a rule set is returned for each requested name.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeMatchmakingRuleSets.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Names": [
+            "string"
+          ],
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RuleSets": [
+            {
+              "RuleSetArn": "string",
+              "RuleSetBody": "string",
+              "RuleSetName": "string",
+              "CreationTime": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribePlayerSessions:
+    description: |-
+      Retrieves properties for one or more player sessions.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribePlayerSessions.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "PlayerId": "string",
+          "NextToken": "string",
+          "GameSessionId": "string",
+          "PlayerSessionId": "string",
+          "PlayerSessionStatusFilter": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "PlayerSessions": [
+            {
+              "Port": 1,
+              "Status": "string",
+              "DnsName": "string",
+              "FleetId": "string",
+              "FleetArn": "string",
+              "PlayerId": "string",
+              "IpAddress": "string",
+              "PlayerData": "string",
+              "CreationTime": 1481289211.615,
+              "GameSessionId": "string",
+              "PlayerSessionId": "string",
+              "TerminationTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  DescribeRuntimeConfiguration:
+    description: |-
+      Retrieves a fleet's runtime configuration settings. The runtime configuration tells GameLift which server processes to run (and how) on each instance in the fleet.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeRuntimeConfiguration.html
+    example:
+      inputs: [
+        {
+          "FleetId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RuntimeConfiguration": {
+            "ServerProcesses": [
+              {
+                "LaunchPath": "string",
+                "Parameters": "string",
+                "ConcurrentExecutions": 1
+              }
+            ],
+            "GameSessionActivationTimeoutSeconds": 1,
+            "MaxConcurrentGameSessionActivations": 1
+          }
+        }
+      ]
+  DescribeScalingPolicies:
+    description: |-
+      Retrieves all scaling policies applied to a fleet.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeScalingPolicies.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "FleetId": "string",
+          "Location": "string",
+          "NextToken": "string",
+          "StatusFilter": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ScalingPolicies": [
+            {
+              "Name": "string",
+              "Status": "string",
+              "FleetId": "string",
+              "FleetArn": "string",
+              "Location": "string",
+              "Threshold": 0.1,
+              "MetricName": "string",
+              "PolicyType": "string",
+              "UpdateStatus": "string",
+              "EvaluationPeriods": 1,
+              "ScalingAdjustment": 1,
+              "ComparisonOperator": "string",
+              "TargetConfiguration": {
+                "TargetValue": 0.1
+              },
+              "ScalingAdjustmentType": "string"
+            }
+          ]
+        }
+      ]
+  DescribeScript:
+    description: |-
+      Retrieves properties for a Realtime script.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeScript.html
+    example:
+      inputs: [
+        {
+          "ScriptId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Script": {
+            "Name": "string",
+            "Version": "string",
+            "ScriptId": "string",
+            "ScriptArn": "string",
+            "SizeOnDisk": 1,
+            "CreationTime": 1481289211.615,
+            "StorageLocation": {
+              "Key": "string",
+              "Bucket": "string",
+              "RoleArn": "string",
+              "ObjectVersion": "string"
+            }
+          }
+        }
+      ]
+  DescribeVpcPeeringAuthorizations:
+    description: |-
+      Retrieves valid VPC peering authorizations that are pending for the AWS account. This operation returns all VPC peering authorizations and requests for peering. This includes those initiated and received by this account.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeVpcPeeringAuthorizations.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "VpcPeeringAuthorizations": [
+            {
+              "PeerVpcId": "string",
+              "CreationTime": 1481289211.615,
+              "ExpirationTime": 1481289211.615,
+              "PeerVpcAwsAccountId": "string",
+              "GameLiftAwsAccountId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeVpcPeeringConnections:
+    description: |-
+      Retrieves information on VPC peering connections. Use this operation to get peering information for all fleets or for one specific fleet ID.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeVpcPeeringConnections.html
+    example:
+      inputs: [
+        {
+          "FleetId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "VpcPeeringConnections": [
+            {
+              "Status": {
+                "Code": "string",
+                "Message": "string"
+              },
+              "FleetId": "string",
+              "FleetArn": "string",
+              "PeerVpcId": "string",
+              "GameLiftVpcId": "string",
+              "IpV4CidrBlock": "string",
+              "VpcPeeringConnectionId": "string"
+            }
+          ]
+        }
+      ]
+  GetGameSessionLogUrl:
+    description: |-
+      Retrieves the location of stored game session logs for a specified game session. When a game session is terminated, GameLift automatically stores the logs in Amazon S3 and retains them for 14 days. Use this URL to download the logs.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_GetGameSessionLogUrl.html
+    example:
+      inputs: [
+        {
+          "GameSessionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PreSignedUrl": "string"
+        }
+      ]
+  GetInstanceAccess:
+    description: |-
+      Requests remote access to a fleet instance. Remote access is useful for debugging, gathering benchmarking data, or observing activity in real time.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_GetInstanceAccess.html
+    example:
+      inputs: [
+        {
+          "FleetId": "string",
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "InstanceAccess": {
+            "FleetId": "string",
+            "IpAddress": "string",
+            "InstanceId": "string",
+            "Credentials": {
+              "Secret": "string",
+              "UserName": "string"
+            },
+            "OperatingSystem": "string"
+          }
+        }
+      ]
+  ListAliases:
+    description: |-
+      Retrieves all aliases for this AWS account. You can filter the result set by alias name and/or routing strategy type. Use the pagination parameters to retrieve results in sequential pages.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_ListAliases.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Limit": 1,
+          "NextToken": "string",
+          "RoutingStrategyType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Aliases": [
+            {
+              "Name": "string",
+              "AliasId": "string",
+              "AliasArn": "string",
+              "Description": "string",
+              "CreationTime": 1481289211.615,
+              "LastUpdatedTime": 1481289211.615,
+              "RoutingStrategy": {
+                "Type": "string",
+                "FleetId": "string",
+                "Message": "string"
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListBuilds:
+    description: |-
+      Retrieves build resources for all builds associated with the AWS account in use. You can limit results to builds that are in a specific status by using the Status parameter. Use the pagination parameters to retrieve results in a set of sequential pages.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_ListBuilds.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Status": "string",
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Builds": [
+            {
+              "Name": "string",
+              "Status": "string",
+              "BuildId": "string",
+              "Version": "string",
+              "BuildArn": "string",
+              "SizeOnDisk": 1,
+              "CreationTime": 1481289211.615,
+              "OperatingSystem": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListFleets:
+    description: |-
+      Retrieves a collection of fleet resources in an AWS Region. You can call this operation to get fleets in a previously selected default Region (see https://docs.aws.amazon.com/credref/latest/refdocs/setting-global-region.htmlor specify a Region in your request. You can filter the result set to find only those fleets that are deployed with a specific build or script. For fleets that have multiple locations, this operation retrieves fleets based on their home Region only.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_ListFleets.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "BuildId": "string",
+          "ScriptId": "string",
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FleetIds": [
+            "string"
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListGameServerGroups:
+    description: |-
+      This operation is used with the GameLift FleetIQ solution and game server groups.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_ListGameServerGroups.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "GameServerGroups": [
+            {
+              "Status": "string",
+              "RoleArn": "string",
+              "CreationTime": 1481289211.615,
+              "StatusReason": "string",
+              "LastUpdatedTime": 1481289211.615,
+              "SuspendedActions": [
+                "string"
+              ],
+              "BalancingStrategy": "string",
+              "GameServerGroupArn": "string",
+              "AutoScalingGroupArn": "string",
+              "GameServerGroupName": "string",
+              "InstanceDefinitions": [
+                {
+                  "InstanceType": "string",
+                  "WeightedCapacity": "string"
+                }
+              ],
+              "GameServerProtectionPolicy": "string"
+            }
+          ]
+        }
+      ]
+  ListGameServers:
+    description: |-
+      This operation is used with the GameLift FleetIQ solution and game server groups.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_ListGameServers.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "SortOrder": "string",
+          "GameServerGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "GameServers": [
+            {
+              "InstanceId": "string",
+              "ClaimStatus": "string",
+              "GameServerId": "string",
+              "LastClaimTime": 1481289211.615,
+              "ConnectionInfo": "string",
+              "GameServerData": "string",
+              "RegistrationTime": 1481289211.615,
+              "UtilizationStatus": "string",
+              "GameServerGroupArn": "string",
+              "GameServerGroupName": "string",
+              "LastHealthCheckTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListScripts:
+    description: |-
+      Retrieves script records for all Realtime scripts that are associated with the AWS account in use.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_ListScripts.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Scripts": [
+            {
+              "Name": "string",
+              "Version": "string",
+              "ScriptId": "string",
+              "ScriptArn": "string",
+              "SizeOnDisk": 1,
+              "CreationTime": 1481289211.615,
+              "StorageLocation": {
+                "Key": "string",
+                "Bucket": "string",
+                "RoleArn": "string",
+                "ObjectVersion": "string"
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Retrieves all tags that are assigned to a GameLift resource. Resource tags are used to organize AWS resources for a range of purposes.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  PutScalingPolicy:
+    description: |-
+      Creates or updates a scaling policy for a fleet. Scaling policies are used to automatically scale a fleet's hosting capacity to meet player demand. An active scaling policy instructs Amazon GameLift to track a fleet metric and automatically change the fleet's capacity when a certain threshold is reached. There are two types of scaling policies:target-based and rule-based. Use a target-based policy to quickly and efficiently manage fleet scaling; this option is the most commonly used. Use rule-based policies when you need to exert fine-grained control over auto-scaling.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_PutScalingPolicy.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "FleetId": "string",
+          "Threshold": 0.1,
+          "MetricName": "string",
+          "PolicyType": "string",
+          "EvaluationPeriods": 1,
+          "ScalingAdjustment": 1,
+          "ComparisonOperator": "string",
+          "TargetConfiguration": {
+            "TargetValue": 0.1
+          },
+          "ScalingAdjustmentType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RegisterGameServer:
+    description: |-
+      This operation is used with the GameLift FleetIQ solution and game server groups.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_RegisterGameServer.html
+    example:
+      inputs: [
+        {
+          "InstanceId": "string",
+          "GameServerId": "string",
+          "ConnectionInfo": "string",
+          "GameServerData": "string",
+          "GameServerGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GameServer": {
+            "InstanceId": "string",
+            "ClaimStatus": "string",
+            "GameServerId": "string",
+            "LastClaimTime": 1481289211.615,
+            "ConnectionInfo": "string",
+            "GameServerData": "string",
+            "RegistrationTime": 1481289211.615,
+            "UtilizationStatus": "string",
+            "GameServerGroupArn": "string",
+            "GameServerGroupName": "string",
+            "LastHealthCheckTime": 1481289211.615
+          }
+        }
+      ]
+  RequestUploadCredentials:
+    description: |-
+      Retrieves a fresh set of credentials for use when uploading a new set of game build files to Amazon GameLift's Amazon S3. This is done as part of the build creation process; see CreateBuild.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_RequestUploadCredentials.html
+    example:
+      inputs: [
+        {
+          "BuildId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "StorageLocation": {
+            "Key": "string",
+            "Bucket": "string",
+            "RoleArn": "string",
+            "ObjectVersion": "string"
+          },
+          "UploadCredentials": {
+            "AccessKeyId": "string",
+            "SessionToken": "string",
+            "SecretAccessKey": "string"
+          }
+        }
+      ]
+  ResolveAlias:
+    description: |-
+      Retrieves the fleet ID that an alias is currently pointing to.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_ResolveAlias.html
+    example:
+      inputs: [
+        {
+          "AliasId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FleetId": "string",
+          "FleetArn": "string"
+        }
+      ]
+  ResumeGameServerGroup:
+    description: |-
+      This operation is used with the GameLift FleetIQ solution and game server groups.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_ResumeGameServerGroup.html
+    example:
+      inputs: [
+        {
+          "ResumeActions": [
+            "string"
+          ],
+          "GameServerGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GameServerGroup": {
+            "Status": "string",
+            "RoleArn": "string",
+            "CreationTime": 1481289211.615,
+            "StatusReason": "string",
+            "LastUpdatedTime": 1481289211.615,
+            "SuspendedActions": [
+              "string"
+            ],
+            "BalancingStrategy": "string",
+            "GameServerGroupArn": "string",
+            "AutoScalingGroupArn": "string",
+            "GameServerGroupName": "string",
+            "InstanceDefinitions": [
+              {
+                "InstanceType": "string",
+                "WeightedCapacity": "string"
+              }
+            ],
+            "GameServerProtectionPolicy": "string"
+          }
+        }
+      ]
+  SearchGameSessions:
+    description: |-
+      Retrieves all active game sessions that match a set of search criteria and sorts them into a specified order.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_SearchGameSessions.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "AliasId": "string",
+          "FleetId": "string",
+          "Location": "string",
+          "NextToken": "string",
+          "SortExpression": "string",
+          "FilterExpression": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "GameSessions": [
+            {
+              "Name": "string",
+              "Port": 1,
+              "Status": "string",
+              "DnsName": "string",
+              "FleetId": "string",
+              "FleetArn": "string",
+              "Location": "string",
+              "CreatorId": "string",
+              "IpAddress": "string",
+              "CreationTime": 1481289211.615,
+              "StatusReason": "string",
+              "GameSessionId": "string",
+              "GameProperties": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ],
+              "MatchmakerData": "string",
+              "GameSessionData": "string",
+              "TerminationTime": 1481289211.615,
+              "CurrentPlayerSessionCount": 1,
+              "MaximumPlayerSessionCount": 1,
+              "PlayerSessionCreationPolicy": "string"
+            }
+          ]
+        }
+      ]
+  StartFleetActions:
+    description: |-
+      Resumes certain types of activity on fleet instances that were suspended with StopFleetActions. For multi-location fleets, fleet actions are managed separately for each location. Currently, this operation is used to restart a fleet's auto-scaling activity.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_StartFleetActions.html
+    example:
+      inputs: [
+        {
+          "Actions": [
+            "string"
+          ],
+          "FleetId": "string",
+          "Location": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FleetId": "string",
+          "FleetArn": "string"
+        }
+      ]
+  StartGameSessionPlacement:
+    description: |-
+      Places a request for a new game session in a queue (see CreateGameSessionQueue). When processing a placement request, Amazon GameLift searches for available resources on the queue's destinations, scanning each until it finds resources or the placement request times out.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_StartGameSessionPlacement.html
+    example:
+      inputs: [
+        {
+          "PlacementId": "string",
+          "GameProperties": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "GameSessionData": "string",
+          "GameSessionName": "string",
+          "PlayerLatencies": [
+            {
+              "PlayerId": "string",
+              "RegionIdentifier": "string",
+              "LatencyInMilliseconds": 0.1
+            }
+          ],
+          "GameSessionQueueName": "string",
+          "DesiredPlayerSessions": [
+            {
+              "PlayerId": "string",
+              "PlayerData": "string"
+            }
+          ],
+          "MaximumPlayerSessionCount": 1
+        }
+      ]
+      outputs: [
+        {
+          "GameSessionPlacement": {
+            "Port": 1,
+            "Status": "string",
+            "DnsName": "string",
+            "EndTime": 1481289211.615,
+            "IpAddress": "string",
+            "StartTime": 1481289211.615,
+            "PlacementId": "string",
+            "GameSessionId": "string",
+            "GameProperties": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "GameSessionArn": "string",
+            "MatchmakerData": "string",
+            "GameSessionData": "string",
+            "GameSessionName": "string",
+            "PlayerLatencies": [
+              {
+                "PlayerId": "string",
+                "RegionIdentifier": "string",
+                "LatencyInMilliseconds": 0.1
+              }
+            ],
+            "GameSessionRegion": "string",
+            "GameSessionQueueName": "string",
+            "PlacedPlayerSessions": [
+              {
+                "PlayerId": "string",
+                "PlayerSessionId": "string"
+              }
+            ],
+            "MaximumPlayerSessionCount": 1
+          }
+        }
+      ]
+  StartMatchBackfill:
+    description: |-
+      Finds new players to fill open slots in currently running game sessions. The backfill match process is essentially identical to the process of forming new matches. Backfill requests use the same matchmaker that was used to make the original match, and they provide matchmaking data for all players currently in the game session. FlexMatch uses this information to select new players so that backfilled match continues to meet the original match requirements.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_StartMatchBackfill.html
+    example:
+      inputs: [
+        {
+          "Players": [
+            {
+              "Team": "string",
+              "PlayerId": "string",
+              "LatencyInMs": {
+                "string": 1
+              },
+              "PlayerAttributes": {
+                "string": {
+                  "N": 0.1,
+                  "S": "string",
+                  "SL": [
+                    "string"
+                  ],
+                  "SDM": {
+                    "string": 0.1
+                  }
+                }
+              }
+            }
+          ],
+          "TicketId": "string",
+          "GameSessionArn": "string",
+          "ConfigurationName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "MatchmakingTicket": {
+            "Status": "string",
+            "EndTime": 1481289211.615,
+            "Players": [
+              {
+                "Team": "string",
+                "PlayerId": "string",
+                "LatencyInMs": {
+                  "string": 1
+                },
+                "PlayerAttributes": {
+                  "string": {
+                    "N": 0.1,
+                    "S": "string",
+                    "SL": [
+                      "string"
+                    ],
+                    "SDM": {
+                      "string": 0.1
+                    }
+                  }
+                }
+              }
+            ],
+            "TicketId": "string",
+            "StartTime": 1481289211.615,
+            "StatusReason": "string",
+            "StatusMessage": "string",
+            "ConfigurationArn": "string",
+            "ConfigurationName": "string",
+            "EstimatedWaitTime": 1,
+            "GameSessionConnectionInfo": {
+              "Port": 1,
+              "DnsName": "string",
+              "IpAddress": "string",
+              "GameSessionArn": "string",
+              "MatchedPlayerSessions": [
+                {
+                  "PlayerId": "string",
+                  "PlayerSessionId": "string"
+                }
+              ]
+            }
+          }
+        }
+      ]
+  StartMatchmaking:
+    description: |-
+      Uses FlexMatch to create a game match for a group of players based on custom matchmaking rules. With games that use GameLift managed hosting, this operation also triggers GameLift to find hosting resources and start a new game session for the new match. Each matchmaking request includes information on one or more players and specifies the FlexMatch matchmaker to use. When a request is for multiple players, FlexMatch attempts to build a match that includes all players in the request, placing them in the same team and finding additional players as needed to fill the match.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_StartMatchmaking.html
+    example:
+      inputs: [
+        {
+          "Players": [
+            {
+              "Team": "string",
+              "PlayerId": "string",
+              "LatencyInMs": {
+                "string": 1
+              },
+              "PlayerAttributes": {
+                "string": {
+                  "N": 0.1,
+                  "S": "string",
+                  "SL": [
+                    "string"
+                  ],
+                  "SDM": {
+                    "string": 0.1
+                  }
+                }
+              }
+            }
+          ],
+          "TicketId": "string",
+          "ConfigurationName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "MatchmakingTicket": {
+            "Status": "string",
+            "EndTime": 1481289211.615,
+            "Players": [
+              {
+                "Team": "string",
+                "PlayerId": "string",
+                "LatencyInMs": {
+                  "string": 1
+                },
+                "PlayerAttributes": {
+                  "string": {
+                    "N": 0.1,
+                    "S": "string",
+                    "SL": [
+                      "string"
+                    ],
+                    "SDM": {
+                      "string": 0.1
+                    }
+                  }
+                }
+              }
+            ],
+            "TicketId": "string",
+            "StartTime": 1481289211.615,
+            "StatusReason": "string",
+            "StatusMessage": "string",
+            "ConfigurationArn": "string",
+            "ConfigurationName": "string",
+            "EstimatedWaitTime": 1,
+            "GameSessionConnectionInfo": {
+              "Port": 1,
+              "DnsName": "string",
+              "IpAddress": "string",
+              "GameSessionArn": "string",
+              "MatchedPlayerSessions": [
+                {
+                  "PlayerId": "string",
+                  "PlayerSessionId": "string"
+                }
+              ]
+            }
+          }
+        }
+      ]
+  StopFleetActions:
+    description: |-
+      Suspends certain types of activity in a fleet location. Currently, this operation is used to stop auto-scaling activity. For multi-location fleets, fleet actions are managed separately for each location.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_StopFleetActions.html
+    example:
+      inputs: [
+        {
+          "Actions": [
+            "string"
+          ],
+          "FleetId": "string",
+          "Location": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FleetId": "string",
+          "FleetArn": "string"
+        }
+      ]
+  StopGameSessionPlacement:
+    description: |-
+      Cancels a game session placement that is in PENDING status. To stop a placement, provide the placement ID values. If successful, the placement is moved to CANCELLED status.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_StopGameSessionPlacement.html
+    example:
+      inputs: [
+        {
+          "PlacementId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GameSessionPlacement": {
+            "Port": 1,
+            "Status": "string",
+            "DnsName": "string",
+            "EndTime": 1481289211.615,
+            "IpAddress": "string",
+            "StartTime": 1481289211.615,
+            "PlacementId": "string",
+            "GameSessionId": "string",
+            "GameProperties": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "GameSessionArn": "string",
+            "MatchmakerData": "string",
+            "GameSessionData": "string",
+            "GameSessionName": "string",
+            "PlayerLatencies": [
+              {
+                "PlayerId": "string",
+                "RegionIdentifier": "string",
+                "LatencyInMilliseconds": 0.1
+              }
+            ],
+            "GameSessionRegion": "string",
+            "GameSessionQueueName": "string",
+            "PlacedPlayerSessions": [
+              {
+                "PlayerId": "string",
+                "PlayerSessionId": "string"
+              }
+            ],
+            "MaximumPlayerSessionCount": 1
+          }
+        }
+      ]
+  StopMatchmaking:
+    description: |-
+      Cancels a matchmaking ticket or match backfill ticket that is currently being processed. To stop the matchmaking operation, specify the ticket ID. If successful, work on the ticket is stopped, and the ticket status is changed to CANCELLED.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_StopMatchmaking.html
+    example:
+      inputs: [
+        {
+          "TicketId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SuspendGameServerGroup:
+    description: |-
+      This operation is used with the GameLift FleetIQ solution and game server groups.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_SuspendGameServerGroup.html
+    example:
+      inputs: [
+        {
+          "SuspendActions": [
+            "string"
+          ],
+          "GameServerGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GameServerGroup": {
+            "Status": "string",
+            "RoleArn": "string",
+            "CreationTime": 1481289211.615,
+            "StatusReason": "string",
+            "LastUpdatedTime": 1481289211.615,
+            "SuspendedActions": [
+              "string"
+            ],
+            "BalancingStrategy": "string",
+            "GameServerGroupArn": "string",
+            "AutoScalingGroupArn": "string",
+            "GameServerGroupName": "string",
+            "InstanceDefinitions": [
+              {
+                "InstanceType": "string",
+                "WeightedCapacity": "string"
+              }
+            ],
+            "GameServerProtectionPolicy": "string"
+          }
+        }
+      ]
+  TagResource:
+    description: |-
+      Assigns a tag to a GameLift resource. AWS resource tags provide an additional management tool set. You can use tags to organize resources, create IAM permissions policies to manage access to groups of resources, customize AWS cost breakdowns, etc.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes a tag that is assigned to a GameLift resource. Resource tags are used to organize AWS resources for a range of purposes.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateAlias:
+    description: |-
+      Updates properties for an alias. To update properties, specify the alias ID to be updated and provide the information to be changed. To reassign an alias to another fleet, provide an updated routing strategy. If successful, the updated alias record is returned.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateAlias.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AliasId": "string",
+          "Description": "string",
+          "RoutingStrategy": {
+            "Type": "string",
+            "FleetId": "string",
+            "Message": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Alias": {
+            "Name": "string",
+            "AliasId": "string",
+            "AliasArn": "string",
+            "Description": "string",
+            "CreationTime": 1481289211.615,
+            "LastUpdatedTime": 1481289211.615,
+            "RoutingStrategy": {
+              "Type": "string",
+              "FleetId": "string",
+              "Message": "string"
+            }
+          }
+        }
+      ]
+  UpdateBuild:
+    description: |-
+      Updates metadata in a build resource, including the build name and version. To update the metadata, specify the build ID to update and provide the new values. If successful, a build object containing the updated metadata is returned.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateBuild.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "BuildId": "string",
+          "Version": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Build": {
+            "Name": "string",
+            "Status": "string",
+            "BuildId": "string",
+            "Version": "string",
+            "BuildArn": "string",
+            "SizeOnDisk": 1,
+            "CreationTime": 1481289211.615,
+            "OperatingSystem": "string"
+          }
+        }
+      ]
+  UpdateFleetAttributes:
+    description: |-
+      Updates a fleet's mutable attributes, including game session protection and resource creation limits.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateFleetAttributes.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "FleetId": "string",
+          "Description": "string",
+          "MetricGroups": [
+            "string"
+          ],
+          "ResourceCreationLimitPolicy": {
+            "PolicyPeriodInMinutes": 1,
+            "NewGameSessionsPerCreator": 1
+          },
+          "NewGameSessionProtectionPolicy": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateFleetCapacity:
+    description: |-
+      Updates capacity settings for a fleet. For fleets with multiple locations, use this operation to manage capacity settings in each location individually. Fleet capacity determines the number of game sessions and players that can be hosted based on the fleet configuration.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateFleetCapacity.html
+    example:
+      inputs: [
+        {
+          "FleetId": "string",
+          "MaxSize": 1,
+          "MinSize": 1,
+          "Location": "string",
+          "DesiredInstances": 1
+        }
+      ]
+      outputs: [
+        {
+          "FleetId": "string",
+          "FleetArn": "string",
+          "Location": "string"
+        }
+      ]
+  UpdateFleetPortSettings:
+    description: |-
+      Updates permissions that allow inbound traffic to connect to game sessions that are being hosted on instances in the fleet.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateFleetPortSettings.html
+    example:
+      inputs: [
+        {
+          "FleetId": "string",
+          "InboundPermissionRevocations": [
+            {
+              "ToPort": 1,
+              "IpRange": "string",
+              "FromPort": 1,
+              "Protocol": "string"
+            }
+          ],
+          "InboundPermissionAuthorizations": [
+            {
+              "ToPort": 1,
+              "IpRange": "string",
+              "FromPort": 1,
+              "Protocol": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateGameServerGroup:
+    description: |-
+      This operation is used with the GameLift FleetIQ solution and game server groups.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateGameServerGroup.html
+    example:
+      inputs: [
+        {
+          "RoleArn": "string",
+          "BalancingStrategy": "string",
+          "GameServerGroupName": "string",
+          "InstanceDefinitions": [
+            {
+              "InstanceType": "string",
+              "WeightedCapacity": "string"
+            }
+          ],
+          "GameServerProtectionPolicy": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GameServerGroup": {
+            "Status": "string",
+            "RoleArn": "string",
+            "CreationTime": 1481289211.615,
+            "StatusReason": "string",
+            "LastUpdatedTime": 1481289211.615,
+            "SuspendedActions": [
+              "string"
+            ],
+            "BalancingStrategy": "string",
+            "GameServerGroupArn": "string",
+            "AutoScalingGroupArn": "string",
+            "GameServerGroupName": "string",
+            "InstanceDefinitions": [
+              {
+                "InstanceType": "string",
+                "WeightedCapacity": "string"
+              }
+            ],
+            "GameServerProtectionPolicy": "string"
+          }
+        }
+      ]
+  UpdateGameServer:
+    description: |-
+      This operation is used with the GameLift FleetIQ solution and game server groups.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateGameServer.html
+    example:
+      inputs: [
+        {
+          "HealthCheck": "string",
+          "GameServerId": "string",
+          "GameServerData": "string",
+          "UtilizationStatus": "string",
+          "GameServerGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GameServer": {
+            "InstanceId": "string",
+            "ClaimStatus": "string",
+            "GameServerId": "string",
+            "LastClaimTime": 1481289211.615,
+            "ConnectionInfo": "string",
+            "GameServerData": "string",
+            "RegistrationTime": 1481289211.615,
+            "UtilizationStatus": "string",
+            "GameServerGroupArn": "string",
+            "GameServerGroupName": "string",
+            "LastHealthCheckTime": 1481289211.615
+          }
+        }
+      ]
+  UpdateGameSession:
+    description: |-
+      Updates the mutable properties of a game session.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateGameSession.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "GameSessionId": "string",
+          "ProtectionPolicy": "string",
+          "MaximumPlayerSessionCount": 1,
+          "PlayerSessionCreationPolicy": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GameSession": {
+            "Name": "string",
+            "Port": 1,
+            "Status": "string",
+            "DnsName": "string",
+            "FleetId": "string",
+            "FleetArn": "string",
+            "Location": "string",
+            "CreatorId": "string",
+            "IpAddress": "string",
+            "CreationTime": 1481289211.615,
+            "StatusReason": "string",
+            "GameSessionId": "string",
+            "GameProperties": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "MatchmakerData": "string",
+            "GameSessionData": "string",
+            "TerminationTime": 1481289211.615,
+            "CurrentPlayerSessionCount": 1,
+            "MaximumPlayerSessionCount": 1,
+            "PlayerSessionCreationPolicy": "string"
+          }
+        }
+      ]
+  UpdateGameSessionQueue:
+    description: |-
+      Updates the configuration of a game session queue, which determines how the queue processes new game session requests. To update settings, specify the queue name to be updated and provide the new settings. When updating destinations, provide a complete list of destinations.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateGameSessionQueue.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Destinations": [
+            {
+              "DestinationArn": "string"
+            }
+          ],
+          "CustomEventData": "string",
+          "TimeoutInSeconds": 1,
+          "NotificationTarget": "string",
+          "FilterConfiguration": {
+            "AllowedLocations": [
+              "string"
+            ]
+          },
+          "PlayerLatencyPolicies": [
+            {
+              "PolicyDurationSeconds": 1,
+              "MaximumIndividualPlayerLatencyMilliseconds": 1
+            }
+          ],
+          "PriorityConfiguration": {
+            "LocationOrder": [
+              "string"
+            ],
+            "PriorityOrder": [
+              "string"
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "GameSessionQueue": {
+            "Name": "string",
+            "Destinations": [
+              {
+                "DestinationArn": "string"
+              }
+            ],
+            "CustomEventData": "string",
+            "TimeoutInSeconds": 1,
+            "NotificationTarget": "string",
+            "FilterConfiguration": {
+              "AllowedLocations": [
+                "string"
+              ]
+            },
+            "GameSessionQueueArn": "string",
+            "PlayerLatencyPolicies": [
+              {
+                "PolicyDurationSeconds": 1,
+                "MaximumIndividualPlayerLatencyMilliseconds": 1
+              }
+            ],
+            "PriorityConfiguration": {
+              "LocationOrder": [
+                "string"
+              ],
+              "PriorityOrder": [
+                "string"
+              ]
+            }
+          }
+        }
+      ]
+  UpdateMatchmakingConfiguration:
+    description: |-
+      Updates settings for a FlexMatch matchmaking configuration. These changes affect all matches and game sessions that are created after the update. To update settings, specify the configuration name to be updated and provide the new settings.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateMatchmakingConfiguration.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Description": "string",
+          "RuleSetName": "string",
+          "BackfillMode": "string",
+          "FlexMatchMode": "string",
+          "GameProperties": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "CustomEventData": "string",
+          "GameSessionData": "string",
+          "AcceptanceRequired": false,
+          "NotificationTarget": "string",
+          "GameSessionQueueArns": [
+            "string"
+          ],
+          "AdditionalPlayerCount": 1,
+          "RequestTimeoutSeconds": 1,
+          "AcceptanceTimeoutSeconds": 1
+        }
+      ]
+      outputs: [
+        {
+          "Configuration": {
+            "Name": "string",
+            "RuleSetArn": "string",
+            "Description": "string",
+            "RuleSetName": "string",
+            "BackfillMode": "string",
+            "CreationTime": 1481289211.615,
+            "FlexMatchMode": "string",
+            "GameProperties": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "CustomEventData": "string",
+            "GameSessionData": "string",
+            "ConfigurationArn": "string",
+            "AcceptanceRequired": false,
+            "NotificationTarget": "string",
+            "GameSessionQueueArns": [
+              "string"
+            ],
+            "AdditionalPlayerCount": 1,
+            "RequestTimeoutSeconds": 1,
+            "AcceptanceTimeoutSeconds": 1
+          }
+        }
+      ]
+  UpdateRuntimeConfiguration:
+    description: |-
+      Updates the current runtime configuration for the specified fleet, which tells GameLift how to launch server processes on all instances in the fleet. You can update a fleet's runtime configuration at any time after the fleet is created; it does not need to be in ACTIVE status.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateRuntimeConfiguration.html
+    example:
+      inputs: [
+        {
+          "FleetId": "string",
+          "RuntimeConfiguration": {
+            "ServerProcesses": [
+              {
+                "LaunchPath": "string",
+                "Parameters": "string",
+                "ConcurrentExecutions": 1
+              }
+            ],
+            "GameSessionActivationTimeoutSeconds": 1,
+            "MaxConcurrentGameSessionActivations": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "RuntimeConfiguration": {
+            "ServerProcesses": [
+              {
+                "LaunchPath": "string",
+                "Parameters": "string",
+                "ConcurrentExecutions": 1
+              }
+            ],
+            "GameSessionActivationTimeoutSeconds": 1,
+            "MaxConcurrentGameSessionActivations": 1
+          }
+        }
+      ]
+  UpdateScript:
+    description: |-
+      Updates Realtime script metadata and content.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_UpdateScript.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Version": "string",
+          "ZipFile": "blob",
+          "ScriptId": "string",
+          "StorageLocation": {
+            "Key": "string",
+            "Bucket": "string",
+            "RoleArn": "string",
+            "ObjectVersion": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Script": {
+            "Name": "string",
+            "Version": "string",
+            "ScriptId": "string",
+            "ScriptArn": "string",
+            "SizeOnDisk": 1,
+            "CreationTime": 1481289211.615,
+            "StorageLocation": {
+              "Key": "string",
+              "Bucket": "string",
+              "RoleArn": "string",
+              "ObjectVersion": "string"
+            }
+          }
+        }
+      ]
+  ValidateMatchmakingRuleSet:
+    description: |-
+      Validates the syntax of a matchmaking rule or rule set. This operation checks that the rule set is using syntactically correct JSON and that it conforms to allowed property expressions. To validate syntax, provide a rule set JSON string.
+    versions:
+      from: 2015.10.1
+    link: https://docs.aws.amazon.com/gamelift/latest/apireference/API_ValidateMatchmakingRuleSet.html
+    example:
+      inputs: [
+        {
+          "RuleSetBody": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Valid": false
+        }
+      ]

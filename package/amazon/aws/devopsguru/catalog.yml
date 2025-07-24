@@ -1,0 +1,770 @@
+Product:
+  name: Amazon DevOps Guru
+  versions: [2020.12.1]
+  package: amazon.aws.devopsguru
+  description: |-
+    Amazon DevOps Guru
+  link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AddNotificationChannel:
+    description: |-
+      Adds a notification channel to DevOps Guru. A notification channel is used to notify you about important DevOps Guru events, such as when an insight is generated.
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_AddNotificationChannel.html
+    example:
+      inputs: [
+        {
+          "Config": {
+            "Sns": {
+              "TopicArn": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeAccountHealth:
+    description: |-
+      Returns the number of open reactive insights, the number of open proactive insights, and the number of metrics analyzed in your AWS account. Use these numbers to gauge the health of operations in your AWS account.
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_DescribeAccountHealth.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "ResourceHours": 1,
+          "MetricsAnalyzed": 1,
+          "OpenReactiveInsights": 1,
+          "OpenProactiveInsights": 1
+        }
+      ]
+  DescribeAccountOverview:
+    description: |-
+      For the time range passed in, returns the number of open reactive insight that were created, the number of open proactive insights that were created, and the Mean Time to Recover (MTTR) for all closed reactive insights.
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_DescribeAccountOverview.html
+    example:
+      inputs: [
+        {
+          "ToTime": 1481289211.615,
+          "FromTime": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "ReactiveInsights": 1,
+          "ProactiveInsights": 1,
+          "MeanTimeToRecoverInMilliseconds": 1
+        }
+      ]
+  DescribeAnomaly:
+    description: |-
+      Returns details about an anomaly that you specify using its ID.
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_DescribeAnomaly.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ReactiveAnomaly": {
+            "Id": "string",
+            "Status": "string",
+            "Severity": "string",
+            "SourceDetails": {
+              "CloudWatchMetrics": [
+                {
+                  "Stat": "string",
+                  "Unit": "string",
+                  "Period": 1,
+                  "Namespace": "string",
+                  "Dimensions": [
+                    {
+                      "Name": "string",
+                      "Value": "string"
+                    }
+                  ],
+                  "MetricName": "string"
+                }
+              ]
+            },
+            "AnomalyTimeRange": {
+              "EndTime": 1481289211.615,
+              "StartTime": 1481289211.615
+            },
+            "ResourceCollection": {
+              "CloudFormation": {
+                "StackNames": [
+                  "string"
+                ]
+              }
+            },
+            "AssociatedInsightId": "string"
+          },
+          "ProactiveAnomaly": {
+            "Id": "string",
+            "Limit": 0.1,
+            "Status": "string",
+            "Severity": "string",
+            "UpdateTime": 1481289211.615,
+            "SourceDetails": {
+              "CloudWatchMetrics": [
+                {
+                  "Stat": "string",
+                  "Unit": "string",
+                  "Period": 1,
+                  "Namespace": "string",
+                  "Dimensions": [
+                    {
+                      "Name": "string",
+                      "Value": "string"
+                    }
+                  ],
+                  "MetricName": "string"
+                }
+              ]
+            },
+            "AnomalyTimeRange": {
+              "EndTime": 1481289211.615,
+              "StartTime": 1481289211.615
+            },
+            "ResourceCollection": {
+              "CloudFormation": {
+                "StackNames": [
+                  "string"
+                ]
+              }
+            },
+            "AssociatedInsightId": "string",
+            "PredictionTimeRange": {
+              "EndTime": 1481289211.615,
+              "StartTime": 1481289211.615
+            }
+          }
+        }
+      ]
+  DescribeFeedback:
+    description: |-
+      Returns the most recent feedback submitted in the current AWS account and Region.
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_DescribeFeedback.html
+    example:
+      inputs: [
+        {
+          "InsightId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "InsightFeedback": {
+            "Id": "string",
+            "Feedback": "string"
+          }
+        }
+      ]
+  DescribeInsight:
+    description: |-
+      Returns details about an insight that you specify using its ID.
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_DescribeInsight.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ReactiveInsight": {
+            "Id": "string",
+            "Name": "string",
+            "Status": "string",
+            "Severity": "string",
+            "SsmOpsItemId": "string",
+            "InsightTimeRange": {
+              "EndTime": 1481289211.615,
+              "StartTime": 1481289211.615
+            },
+            "ResourceCollection": {
+              "CloudFormation": {
+                "StackNames": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "ProactiveInsight": {
+            "Id": "string",
+            "Name": "string",
+            "Status": "string",
+            "Severity": "string",
+            "SsmOpsItemId": "string",
+            "InsightTimeRange": {
+              "EndTime": 1481289211.615,
+              "StartTime": 1481289211.615
+            },
+            "ResourceCollection": {
+              "CloudFormation": {
+                "StackNames": [
+                  "string"
+                ]
+              }
+            },
+            "PredictionTimeRange": {
+              "EndTime": 1481289211.615,
+              "StartTime": 1481289211.615
+            }
+          }
+        }
+      ]
+  DescribeResourceCollectionHealth:
+    description: |-
+      Returns the number of open proactive insights, open reactive insights, and the Mean Time to Recover (MTTR) for all closed insights in resource collections in your account. You specify the type of AWS resources collection. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. You can specify up to 500 AWS CloudFormation stacks.
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_DescribeResourceCollectionHealth.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "ResourceCollectionType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CloudFormation": [
+            {
+              "Insight": {
+                "OpenReactiveInsights": 1,
+                "OpenProactiveInsights": 1,
+                "MeanTimeToRecoverInMilliseconds": 1
+              },
+              "StackName": "string"
+            }
+          ]
+        }
+      ]
+  DescribeServiceIntegration:
+    description: |-
+      Returns the integration status of services that are integrated with DevOps Guru. The one service that can be integrated with DevOps Guru is AWS Systems Manager, which can be used to create an OpsItem for each generated insight.
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_DescribeServiceIntegration.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "ServiceIntegration": {
+            "OpsCenter": {
+              "OptInStatus": "string"
+            }
+          }
+        }
+      ]
+  GetResourceCollection:
+    description: |-
+      Returns lists AWS resources that are of the specified resource collection type. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. You can specify up to 500 AWS CloudFormation stacks.
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_GetResourceCollection.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "ResourceCollectionType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ResourceCollection": {
+            "CloudFormation": {
+              "StackNames": [
+                "string"
+              ]
+            }
+          }
+        }
+      ]
+  ListAnomaliesForInsight:
+    description: |-
+      Returns a list of the anomalies that belong to an insight that you specify using its ID.
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_ListAnomaliesForInsight.html
+    example:
+      inputs: [
+        {
+          "InsightId": "string",
+          "NextToken": "string",
+          "MaxResults": 1,
+          "StartTimeRange": {
+            "ToTime": 1481289211.615,
+            "FromTime": 1481289211.615
+          }
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ReactiveAnomalies": [
+            {
+              "Id": "string",
+              "Status": "string",
+              "Severity": "string",
+              "SourceDetails": {
+                "CloudWatchMetrics": [
+                  {
+                    "Stat": "string",
+                    "Unit": "string",
+                    "Period": 1,
+                    "Namespace": "string",
+                    "Dimensions": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ],
+                    "MetricName": "string"
+                  }
+                ]
+              },
+              "AnomalyTimeRange": {
+                "EndTime": 1481289211.615,
+                "StartTime": 1481289211.615
+              },
+              "ResourceCollection": {
+                "CloudFormation": {
+                  "StackNames": [
+                    "string"
+                  ]
+                }
+              },
+              "AssociatedInsightId": "string"
+            }
+          ],
+          "ProactiveAnomalies": [
+            {
+              "Id": "string",
+              "Limit": 0.1,
+              "Status": "string",
+              "Severity": "string",
+              "UpdateTime": 1481289211.615,
+              "SourceDetails": {
+                "CloudWatchMetrics": [
+                  {
+                    "Stat": "string",
+                    "Unit": "string",
+                    "Period": 1,
+                    "Namespace": "string",
+                    "Dimensions": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ],
+                    "MetricName": "string"
+                  }
+                ]
+              },
+              "AnomalyTimeRange": {
+                "EndTime": 1481289211.615,
+                "StartTime": 1481289211.615
+              },
+              "ResourceCollection": {
+                "CloudFormation": {
+                  "StackNames": [
+                    "string"
+                  ]
+                }
+              },
+              "AssociatedInsightId": "string",
+              "PredictionTimeRange": {
+                "EndTime": 1481289211.615,
+                "StartTime": 1481289211.615
+              }
+            }
+          ]
+        }
+      ]
+  ListEvents:
+    description: |-
+      Returns a list of the events emitted by the resources that are evaluated by DevOps Guru. You can use filters to specify which events are returned.
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_ListEvents.html
+    example:
+      inputs: [
+        {
+          "Filters": {
+            "InsightId": "string",
+            "DataSource": "string",
+            "EventClass": "string",
+            "EventSource": "string",
+            "EventTimeRange": {
+              "ToTime": 1481289211.615,
+              "FromTime": 1481289211.615
+            },
+            "ResourceCollection": {
+              "CloudFormation": {
+                "StackNames": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Events": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Time": 1481289211.615,
+              "Resources": [
+                {
+                  "Arn": "string",
+                  "Name": "string",
+                  "Type": "string"
+                }
+              ],
+              "DataSource": "string",
+              "EventClass": "string",
+              "EventSource": "string",
+              "ResourceCollection": {
+                "CloudFormation": {
+                  "StackNames": [
+                    "string"
+                  ]
+                }
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListInsights:
+    description: |-
+      Returns a list of insights in your AWS account. You can specify which insights are returned by their start time and status (ONGOING, CLOSED, or ANY).
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_ListInsights.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "StatusFilter": {
+            "Any": {
+              "Type": "string",
+              "StartTimeRange": {
+                "ToTime": 1481289211.615,
+                "FromTime": 1481289211.615
+              }
+            },
+            "Closed": {
+              "Type": "string",
+              "EndTimeRange": {
+                "ToTime": 1481289211.615,
+                "FromTime": 1481289211.615
+              }
+            },
+            "Ongoing": {
+              "Type": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ReactiveInsights": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Status": "string",
+              "Severity": "string",
+              "InsightTimeRange": {
+                "EndTime": 1481289211.615,
+                "StartTime": 1481289211.615
+              },
+              "ResourceCollection": {
+                "CloudFormation": {
+                  "StackNames": [
+                    "string"
+                  ]
+                }
+              }
+            }
+          ],
+          "ProactiveInsights": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Status": "string",
+              "Severity": "string",
+              "InsightTimeRange": {
+                "EndTime": 1481289211.615,
+                "StartTime": 1481289211.615
+              },
+              "ResourceCollection": {
+                "CloudFormation": {
+                  "StackNames": [
+                    "string"
+                  ]
+                }
+              },
+              "PredictionTimeRange": {
+                "EndTime": 1481289211.615,
+                "StartTime": 1481289211.615
+              }
+            }
+          ]
+        }
+      ]
+  ListNotificationChannels:
+    description: |-
+      Returns a list of notification channels configured for DevOps Guru. Each notification channel is used to notify you when DevOps Guru generates an insight that contains information about how to improve your operations. The one supported notification channel is Amazon Simple Notification Service (Amazon SNS).
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_ListNotificationChannels.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Channels": [
+            {
+              "Id": "string",
+              "Config": {
+                "Sns": {
+                  "TopicArn": "string"
+                }
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListRecommendations:
+    description: |-
+      Returns a list of a specified insight's recommendations. Each recommendation includes a list of related metrics and a list of related events.
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_ListRecommendations.html
+    example:
+      inputs: [
+        {
+          "InsightId": "string",
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Recommendations": [
+            {
+              "Link": "string",
+              "Name": "string",
+              "Reason": "string",
+              "Description": "string",
+              "RelatedEvents": [
+                {
+                  "Name": "string",
+                  "Resources": [
+                    {
+                      "Name": "string",
+                      "Type": "string"
+                    }
+                  ]
+                }
+              ],
+              "RelatedAnomalies": [
+                {
+                  "Resources": [
+                    {
+                      "Name": "string",
+                      "Type": "string"
+                    }
+                  ],
+                  "SourceDetails": [
+                    {
+                      "CloudWatchMetrics": [
+                        {
+                          "Namespace": "string",
+                          "MetricName": "string"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  PutFeedback:
+    description: |-
+      Collects customer feedback about the specified insight.
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PutFeedback.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  RemoveNotificationChannel:
+    description: |-
+      Removes a notification channel from DevOps Guru. A notification channel is used to notify you when DevOps Guru generates an insight that contains information about how to improve your operations.
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_RemoveNotificationChannel.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SearchInsights:
+    description: |-
+      Returns a list of insights in your AWS account. You can specify which insights are returned by their start time, one or more statuses (ONGOING, CLOSED, and CLOSED), one or more severities (LOW, MEDIUM, and HIGH), and type (REACTIVE or PROACTIVE).
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_SearchInsights.html
+    example:
+      inputs: [
+        {
+          "Type": "string",
+          "Filters": {
+            "Statuses": [
+              "string"
+            ],
+            "Severities": [
+              "string"
+            ],
+            "ResourceCollection": {
+              "CloudFormation": {
+                "StackNames": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "NextToken": "string",
+          "MaxResults": 1,
+          "StartTimeRange": {
+            "ToTime": 1481289211.615,
+            "FromTime": 1481289211.615
+          }
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ReactiveInsights": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Status": "string",
+              "Severity": "string",
+              "InsightTimeRange": {
+                "EndTime": 1481289211.615,
+                "StartTime": 1481289211.615
+              },
+              "ResourceCollection": {
+                "CloudFormation": {
+                  "StackNames": [
+                    "string"
+                  ]
+                }
+              }
+            }
+          ],
+          "ProactiveInsights": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Status": "string",
+              "Severity": "string",
+              "InsightTimeRange": {
+                "EndTime": 1481289211.615,
+                "StartTime": 1481289211.615
+              },
+              "ResourceCollection": {
+                "CloudFormation": {
+                  "StackNames": [
+                    "string"
+                  ]
+                }
+              },
+              "PredictionTimeRange": {
+                "EndTime": 1481289211.615,
+                "StartTime": 1481289211.615
+              }
+            }
+          ]
+        }
+      ]
+  UpdateResourceCollection:
+    description: |-
+      Updates the collection of resources that DevOps Guru analyzes. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. You can specify up to 500 AWS CloudFormation stacks. This method also creates the IAM role required for you to use DevOps Guru.
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_UpdateResourceCollection.html
+    example:
+      inputs: [
+        {
+          "Action": "string",
+          "ResourceCollection": {
+            "CloudFormation": {
+              "StackNames": [
+                "string"
+              ]
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateServiceIntegration:
+    description: |-
+      Enables or disables integration with a service that can be integrated with DevOps Guru. The one service that can be integrated with DevOps Guru is AWS Systems Manager, which can be used to create an OpsItem for each generated insight.
+    versions:
+      from: 2020.12.1
+    link: https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_UpdateServiceIntegration.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
