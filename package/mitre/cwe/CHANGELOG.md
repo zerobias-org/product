@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.3.4 (2025-07-24)
+
+
+### Bug Fixes
+
+* data copied still need work ([94a6b94](https://github.com/zerobias-org/product/commit/94a6b942fb0516367548599d739529536132755a))
+
+
+
+
+
 ## [0.3.3](https://github.com/auditlogic/product/compare/@auditlogic/product-mitre-cwe@0.3.2...@auditlogic/product-mitre-cwe@0.3.3) (2024-08-26)
 
 

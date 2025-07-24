@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.6.1 (2025-07-24)
+
+
+### Bug Fixes
+
+* data copied still need work ([94a6b94](https://github.com/zerobias-org/product/commit/94a6b942fb0516367548599d739529536132755a))
+
+
+
+
+
 # [0.6.0](https://github.com/auditlogic/product/compare/@auditlogic/product-auditmation-generic-tls@0.5.4...@auditlogic/product-auditmation-generic-tls@0.6.0) (2025-02-05)
 
 **Note:** Version bump only for package @auditlogic/product-auditmation-generic-tls

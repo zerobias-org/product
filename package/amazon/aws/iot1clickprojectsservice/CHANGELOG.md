@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.4 (2025-07-24)
+
+
+### Bug Fixes
+
+* data copied still need work ([94a6b94](https://github.com/zerobias-org/product/commit/94a6b942fb0516367548599d739529536132755a))
+
+
+
+
+
 ## [1.1.3](https://github.com/auditlogic/product/compare/@auditlogic/product-amazon-aws-iot1clickprojectsservice@1.1.2...@auditlogic/product-amazon-aws-iot1clickprojectsservice@1.1.3) (2024-08-26)
 
 
