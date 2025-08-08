@@ -1,0 +1,2683 @@
+Product:
+  name: Azure Log Analytics
+  versions: [1.0.0,2020.3.1-preview,2020.8.1,2020.10.1]
+  package: microsoft.azure.loganalytics
+  description: |-
+    LogAnalytics
+  link: https://docs.microsoft.com/en-us/azure/azure-monitor/agents/log-analytics-agent
+  contentType: json
+Operations:
+  AvailableServiceTiers.ListByWorkspace:
+    description: |-
+      Gets the available service tiers for the workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/availableservicetiers/listbyworkspace
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        [
+          {
+            "enabled": true,
+            "serviceTier": "PerNode",
+            "defaultRetention": 7,
+            "maximumRetention": 30,
+            "minimumRetention": 7
+          },
+          {
+            "enabled": true,
+            "serviceTier": "CapacityReservation",
+            "lastSkuUpdate": "2020-02-04T08:55:03.871Z",
+            "defaultRetention": 30,
+            "maximumRetention": 300,
+            "minimumRetention": 30,
+            "capacityReservationLevel": 200
+          }
+        ]
+      ]
+  Clusters.CreateOrUpdate:
+    description: |-
+      Create or update a Log Analytics cluster.
+    versions:
+      from: 2020.10.1
+      to: 2020.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/clusters/createorupdate
+    example:
+      inputs: [
+        {
+          "sku": {
+            "name": "CapacityReservation",
+            "capacity": 1000
+          },
+          "tags": {
+            "tag1": "val1"
+          },
+          "location": "australiasoutheast"
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/594038b5-1093-476e-a366-482775671c11/resourcegroups/oiautorest6685/providers/microsoft.operationalinsights/clusters/oiautorest6685",
+          "sku": {
+            "name": "CapacityReservation",
+            "capacity": 1000
+          },
+          "name": "oiautorest6685",
+          "type": "Microsoft.OperationalInsights/clusters",
+          "identity": {
+            "type": "SystemAssigned",
+            "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+            "principalId": "356d057d-cba5-44dd-8a30-b2e547bc416b"
+          },
+          "location": "australiasoutheast",
+          "properties": {
+            "clusterId": "1c3f2afc-9ec1-4e74-bfe8-022b83bcd7b1",
+            "billingType": "Cluster",
+            "createdDate": "Mon, 13 Jan 2020 14:40:33 GMT",
+            "lastModifiedDate": "Sun, 04 Jan 2020 17:10:56 GMT",
+            "provisioningState": "ProvisioningAccount",
+            "keyVaultProperties": {
+              "keyName": "aztest2170cert",
+              "keyVersion": "654ft6c4e63845cbb50fd6fg51540429",
+              "keyVaultUri": "https://aztest2170.vault.azure.net"
+            },
+            "associatedWorkspaces": [],
+            "capacityReservationProperties": {
+              "maxCapacity": 3000,
+              "minCapacity": 1000,
+              "lastSkuUpdate": "Thu, 01 Jan 1970 00:00:00 GMT"
+            }
+          }
+        }
+      ]
+  Clusters.Delete:
+    description: |-
+      Deletes a cluster instance.
+    versions:
+      from: 2020.10.1
+      to: 2020.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/clusters/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Clusters.Get:
+    description: |-
+      Gets a Log Analytics cluster instance.
+    versions:
+      from: 2020.10.1
+      to: 2020.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/clusters/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        [
+          {
+            "id": "/subscriptions/594038b5-1093-476e-a366-482775671c11/resourcegroups/calbot-rg/providers/microsoft.operationalinsights/clusters/testresourcelock",
+            "sku": {
+              "name": "CapacityReservation",
+              "capacity": 1000
+            },
+            "name": "TestResourceLock",
+            "type": "Microsoft.OperationalInsights/clusters",
+            "identity": {
+              "type": "SystemAssigned",
+              "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+              "principalId": "356d057d-cba5-44dd-8a30-b2e547bc416b"
+            },
+            "location": "eastus",
+            "properties": {
+              "clusterId": "1c3f2afc-9ec1-4e74-bfe8-022b83bcd7b1",
+              "billingType": "Cluster",
+              "createdDate": "Mon, 13 Jan 2020 14:40:33 GMT",
+              "lastModifiedDate": "Sun, 04 Jan 2020 17:10:56 GMT",
+              "provisioningState": "Succeeded",
+              "keyVaultProperties": {
+                "keyName": "aztest2170cert",
+                "keyVersion": "654ft6c4e63845cbb50fd6fg51540429",
+                "keyVaultUri": "https://aztest2170.vault.azure.net"
+              },
+              "associatedWorkspaces": [
+                {
+                  "resourceId": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/testRG/providers/microsoft.operationalinsights/workspaces/testWs1",
+                  "workspaceId": "942bdefd-e6c9-411c-ac69-70ffad564363",
+                  "associateDate": "Tue, 07 Jul 2020 07:35:51 GMT",
+                  "workspaceName": "testWs1"
+                },
+                {
+                  "resourceId": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/testRG/providers/microsoft.operationalinsights/workspaces/testWs2",
+                  "workspaceId": "c7edb8f8-67f7-41f2-bddb-aecf22507e3f",
+                  "associateDate": "Mon, 13 Jan 2020 16:03:39 GMT",
+                  "workspaceName": "testWs2"
+                }
+              ],
+              "isDoubleEncryptionEnabled": false,
+              "isAvailabilityZonesEnabled": false,
+              "capacityReservationProperties": {
+                "maxCapacity": 3000,
+                "minCapacity": 1000,
+                "lastSkuUpdate": "Thu, 01 Jan 1970 00:00:00 GMT"
+              }
+            }
+          }
+        ]
+      ]
+  Clusters.List:
+    description: |-
+      Gets the Log Analytics clusters in a subscription.
+    versions:
+      from: 2020.10.1
+      to: 2020.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/clusters/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/594038b5-1093-476e-a366-482775671c11/resourcegroups/calbot-rg/providers/microsoft.operationalinsights/clusters/testresourcelock",
+              "sku": {
+                "name": "CapacityReservation",
+                "capacity": 1000
+              },
+              "name": "TestResourceLock",
+              "type": "Microsoft.OperationalInsights/clusters",
+              "identity": {
+                "type": "SystemAssigned",
+                "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+                "principalId": "356d057d-cba5-44dd-8a30-b2e547bc416b"
+              },
+              "location": "eastus",
+              "properties": {
+                "clusterId": "5b02755b-5bf4-430c-9487-45502a2a7e62",
+                "provisioningState": "Succeeded",
+                "keyVaultProperties": {
+                  "keyName": "aztest2170cert",
+                  "keyVersion": "654ft6c4e63845cbb50fd6fg51540429",
+                  "keyVaultUri": "https://aztest2170.vault.azure.net"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  Clusters.ListByResourceGroup:
+    description: |-
+      Gets Log Analytics clusters in a resource group.
+    versions:
+      from: 2020.10.1
+      to: 2020.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/clusters/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/594038b5-1093-476e-a366-482775671c11/resourcegroups/calbot-rg/providers/microsoft.operationalinsights/clusters/testresourcelock",
+              "sku": {
+                "name": "CapacityReservation",
+                "capacity": 1000
+              },
+              "name": "TestResourceLock",
+              "type": "Microsoft.OperationalInsights/clusters",
+              "identity": {
+                "type": "SystemAssigned",
+                "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+                "principalId": "356d057d-cba5-44dd-8a30-b2e547bc416b"
+              },
+              "location": "eastus",
+              "properties": {
+                "clusterId": "5b02755b-5bf4-430c-9487-45502a2a7e62",
+                "provisioningState": "Succeeded",
+                "keyVaultProperties": {
+                  "keyName": "aztest2170cert",
+                  "keyVersion": "654ft6c4e63845cbb50fd6fg51540429",
+                  "keyVaultUri": "https://aztest2170.vault.azure.net"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  Clusters.Update:
+    description: |-
+      Updates a Log Analytics cluster.
+    versions:
+      from: 2020.10.1
+      to: 2020.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/clusters/update
+    example:
+      inputs: [
+        {
+          "sku": {
+            "name": "CapacityReservation",
+            "capacity": 1000
+          },
+          "tags": {
+            "tag1": "val1"
+          },
+          "identity": {
+            "type": "UserAssigned",
+            "userAssignedIdentities": {
+              "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/oiautorest6685/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myidentity": {}
+            }
+          },
+          "properties": {
+            "keyVaultProperties": {
+              "keyName": "aztest2170cert",
+              "keyRsaSize": 1024,
+              "keyVersion": "654ft6c4e63845cbb50fd6fg51540429",
+              "keyVaultUri": "https://aztest2170.vault.azure.net"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "sku": {
+            "name": "CapacityReservation",
+            "capacity": 1000
+          },
+          "tags": {
+            "tag1": "val1"
+          },
+          "identity": {
+            "type": "UserAssigned",
+            "tenantId": "72f999bf-acf1-41af-91ab-2d7cd011db47",
+            "userAssignedIdentities": {
+              "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/oiautorest6685/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myidentity": {
+                "clientId": "eb3a943d-6b12-48a6-b585-ac2316e15ab2",
+                "principalId": "b31776d4-ee80-4860-9433-ec0101be1891"
+              }
+            }
+          },
+          "location": "australiasoutheast",
+          "properties": {
+            "clusterId": "1c3f2afc-9ec1-4e74-bfe8-022b83bcd7b1",
+            "billingType": "Cluster",
+            "createdDate": "Mon, 13 Jan 2020 14:40:33 GMT",
+            "lastModifiedDate": "Sun, 04 Jan 2020 17:10:56 GMT",
+            "provisioningState": "Succeeded",
+            "keyVaultProperties": {
+              "keyName": "aztest2170cert",
+              "keyVersion": "654ft6c4e63845cbb50fd6fg51540429",
+              "keyVaultUri": "https://aztest2170.vault.azure.net"
+            },
+            "associatedWorkspaces": [
+              {
+                "resourceId": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/testRG/providers/microsoft.operationalinsights/workspaces/testWs1",
+                "workspaceId": "942bdefd-e6c9-411c-ac69-70ffad564363",
+                "associateDate": "Tue, 07 Jul 2020 07:35:51 GMT",
+                "workspaceName": "testWs1"
+              },
+              {
+                "resourceId": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/testRG/providers/microsoft.operationalinsights/workspaces/testWs2",
+                "workspaceId": "c7edb8f8-67f7-41f2-bddb-aecf22507e3f",
+                "associateDate": "Mon, 13 Jan 2020 16:03:39 GMT",
+                "workspaceName": "testWs2"
+              }
+            ],
+            "capacityReservationProperties": {
+              "maxCapacity": 3000,
+              "minCapacity": 1000,
+              "lastSkuUpdate": "Thu, 01 Jan 1970 00:00:00 GMT"
+            }
+          }
+        }
+      ]
+  DataCollectorLogsPreview.Delete:
+    description: |-
+      Deletes a specify data collector log table.
+    versions:
+      from: 2020.3.1-preview
+      to: 2020.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/data%20collector%20logs%20(preview)/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DataCollectorLogsPreview.Get:
+    description: |-
+      Retrieves a specify data collector log table.
+    versions:
+      from: 2020.3.1-preview
+      to: 2020.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/data%20collector%20logs%20(preview)/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testDataCollectorLogsWS/dataCollectorLogs/Test_CL",
+          "name": "Test_CL",
+          "type": "Microsoft.OperationalInsights/workspaces/dataCollectorLogs",
+          "properties": {
+            "name": "Table0_CL"
+          }
+        }
+      ]
+  DataCollectorLogsPreview.ListByWorkspace:
+    description: |-
+      Listing all data collector log tables, being created via data collector endpoint and scoped to the specified workspace
+    versions:
+      from: 2020.3.1-preview
+      to: 2020.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/data%20collector%20logs%20(preview)/listbyworkspace
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testDataCollectorLogsWS/dataCollectorLogs/Table0_CL",
+              "name": "Table0_CL",
+              "type": "Microsoft.OperationalInsights/workspaces/dataCollectorLogs",
+              "properties": {
+                "name": "Table0_CL"
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testDataCollectorLogsWS/dataCollectorLogs/Table1_CL",
+              "name": "Table1_CL",
+              "type": "Microsoft.OperationalInsights/workspaces/dataCollectorLogs",
+              "properties": {
+                "name": "Table1_CL"
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testDataCollectorLogsWS/dataCollectorLogs/Table2_CL",
+              "name": "Table2_CL",
+              "type": "Microsoft.OperationalInsights/workspaces/dataCollectorLogs",
+              "properties": {
+                "name": "Table2_CL"
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testDataCollectorLogsWS/dataCollectorLogs/Table3_CL",
+              "name": "Table3_CL",
+              "type": "Microsoft.OperationalInsights/workspaces/dataCollectorLogs",
+              "properties": {
+                "name": "Table3_CL"
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testDataCollectorLogsWS/dataCollectorLogs/Table4_CL",
+              "name": "Table4_CL",
+              "type": "Microsoft.OperationalInsights/workspaces/dataCollectorLogs",
+              "properties": {
+                "name": "Table4_CL"
+              }
+            }
+          ]
+        }
+      ]
+  DataAccess.Metadata.Get:
+    description: |-
+      Gets metadata information
+    versions:
+      from: 1.0.0
+      to: 1.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/dataaccess/metadata/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "tables": [
+            {
+              "id": "ADAssessmentRecommendation",
+              "name": "ADAssessmentRecommendation",
+              "columns": [
+                {
+                  "name": "SourceSystem",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "AssessmentId",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "RecommendationId",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "Recommendation",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "Description",
+                  "type": "string"
+                },
+                {
+                  "name": "RecommendationResult",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "TimeGenerated",
+                  "type": "datetime"
+                },
+                {
+                  "name": "FocusAreaId",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "FocusArea",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "ActionAreaId",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "ActionArea",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "RecommendationWeight",
+                  "type": "real"
+                },
+                {
+                  "name": "Computer",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "AffectedObjectType",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "AffectedObjectName",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "Forest",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "Domain",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "DomainController",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "Technology",
+                  "type": "string"
+                },
+                {
+                  "name": "CustomData",
+                  "type": "string"
+                },
+                {
+                  "name": "TargetCount",
+                  "type": "int"
+                },
+                {
+                  "name": "IsRollup",
+                  "type": "bool",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "IsCopied",
+                  "type": "bool",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "RecommendationPeriod",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "Type",
+                  "type": "string"
+                },
+                {
+                  "name": "_ResourceId",
+                  "type": "string"
+                }
+              ],
+              "related": {
+                "solutions": [
+                  "ADAssessment"
+                ],
+                "categories": [
+                  "workloads"
+                ],
+                "resourceTypes": [
+                  "microsoft.compute/virtualmachines"
+                ]
+              },
+              "description": "Recommendations generated by AD assessments that are started through a scheduled task. When you schedule the assessment it runs by default every 7 days and upload the data into Azure Log Analytics",
+              "timespanColumn": "TimeGenerated"
+            },
+            {
+              "id": "custom_CL",
+              "name": "custom_CL",
+              "columns": [
+                {
+                  "name": "SourceSystem",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "ManagementGroupName",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "TimeGenerated",
+                  "type": "datetime",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "Computer",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "RawData",
+                  "type": "string"
+                },
+                {
+                  "name": "Type",
+                  "type": "string"
+                },
+                {
+                  "name": "_ResourceId",
+                  "type": "string"
+                }
+              ],
+              "related": {
+                "workspaces": [
+                  "b438b4f6-912a-46d5-9cb1-b44069212abc"
+                ]
+              },
+              "timespanColumn": "TimeGenerated"
+            }
+          ],
+          "functions": [
+            {
+              "id": "dwad",
+              "body": "Heartbeat\r\n| where ResourceGroup != \"rg-SAP-DEVQA-005\" and ResourceGroup != \"rg-SAP-DEVQA-006\" and Computer contains \"\"\r\n| limit 500000\r\n| sort by Computer asc\r\n| distinct Computer\r\n",
+              "name": "dwad",
+              "related": {
+                "solutions": [
+                  "ADAssessment"
+                ],
+                "workspaces": [
+                  "b438b4f6-912a-46d5-9cb1-b44069212abc"
+                ]
+              },
+              "displayName": "dasd"
+            }
+          ],
+          "solutions": [
+            {
+              "id": "ADAssessment",
+              "name": "ADAssessment",
+              "related": {
+                "tables": [
+                  "ADAssessmentRecommendation"
+                ],
+                "functions": [
+                  "dwad"
+                ],
+                "workspaces": [
+                  "b438b4f6-912a-46d5-9cb1-b44069212abc"
+                ]
+              },
+              "description": "Assess the risk and health of Active Directory environments.",
+              "displayName": "Active Directory Health Check"
+            }
+          ],
+          "categories": [
+            {
+              "id": "workloads",
+              "related": {
+                "tables": [
+                  "ADAssessmentRecommendation",
+                  "ADReplicationResult",
+                  "SQLAssessmentRecommendation",
+                  "WorkloadMonitoringPerf"
+                ]
+              },
+              "displayName": "Workloads"
+            }
+          ],
+          "workspaces": [
+            {
+              "id": "b438b4f6-912a-46d5-9cb1-b44069212abc",
+              "name": "contosoretail-IT",
+              "region": "eastus",
+              "related": {
+                "tables": [
+                  "custom_CL"
+                ],
+                "functions": [
+                  "dwad"
+                ],
+                "solutions": [
+                  "ADAssessment"
+                ],
+                "resourceTypes": [
+                  "microsoft.compute/virtualmachines"
+                ]
+              },
+              "resourceId": "/subscriptions/e4272367-5645-4c4e-9c67-3b74b59a6982/resourceGroups/contosoazurehq/providers/microsoft.operationalinsights/workspaces/contosoretail-IT"
+            }
+          ],
+          "resourceTypes": [
+            {
+              "id": "microsoft.compute/virtualmachines",
+              "type": "Microsoft.Compute/VirtualMachines",
+              "related": {
+                "tables": [
+                  "ADAssessmentRecommendation"
+                ]
+              },
+              "displayName": "Virtual machines"
+            }
+          ]
+        }
+      ]
+  DataAccess.Metadata.Post:
+    description: |-
+      Gets metadata information
+    versions:
+      from: 1.0.0
+      to: 1.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/dataaccess/metadata/post
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "tables": [
+            {
+              "id": "ADAssessmentRecommendation",
+              "name": "ADAssessmentRecommendation",
+              "columns": [
+                {
+                  "name": "SourceSystem",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "AssessmentId",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "RecommendationId",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "Recommendation",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "Description",
+                  "type": "string"
+                },
+                {
+                  "name": "RecommendationResult",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "TimeGenerated",
+                  "type": "datetime"
+                },
+                {
+                  "name": "FocusAreaId",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "FocusArea",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "ActionAreaId",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "ActionArea",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "RecommendationWeight",
+                  "type": "real"
+                },
+                {
+                  "name": "Computer",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "AffectedObjectType",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "AffectedObjectName",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "Forest",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "Domain",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "DomainController",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "Technology",
+                  "type": "string"
+                },
+                {
+                  "name": "CustomData",
+                  "type": "string"
+                },
+                {
+                  "name": "TargetCount",
+                  "type": "int"
+                },
+                {
+                  "name": "IsRollup",
+                  "type": "bool",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "IsCopied",
+                  "type": "bool",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "RecommendationPeriod",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "Type",
+                  "type": "string"
+                },
+                {
+                  "name": "_ResourceId",
+                  "type": "string"
+                }
+              ],
+              "related": {
+                "solutions": [
+                  "ADAssessment"
+                ],
+                "categories": [
+                  "workloads"
+                ],
+                "resourceTypes": [
+                  "microsoft.compute/virtualmachines"
+                ]
+              },
+              "description": "Recommendations generated by AD assessments that are started through a scheduled task. When you schedule the assessment it runs by default every 7 days and upload the data into Azure Log Analytics",
+              "timespanColumn": "TimeGenerated"
+            },
+            {
+              "id": "custom_CL",
+              "name": "custom_CL",
+              "columns": [
+                {
+                  "name": "SourceSystem",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "ManagementGroupName",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "TimeGenerated",
+                  "type": "datetime",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "Computer",
+                  "type": "string",
+                  "isPreferredFacet": true
+                },
+                {
+                  "name": "RawData",
+                  "type": "string"
+                },
+                {
+                  "name": "Type",
+                  "type": "string"
+                },
+                {
+                  "name": "_ResourceId",
+                  "type": "string"
+                }
+              ],
+              "related": {
+                "workspaces": [
+                  "b438b4f6-912a-46d5-9cb1-b44069212abc"
+                ]
+              },
+              "timespanColumn": "TimeGenerated"
+            }
+          ],
+          "functions": [
+            {
+              "id": "dwad",
+              "body": "Heartbeat\r\n| where ResourceGroup != \"rg-SAP-DEVQA-005\" and ResourceGroup != \"rg-SAP-DEVQA-006\" and Computer contains \"\"\r\n| limit 500000\r\n| sort by Computer asc\r\n| distinct Computer\r\n",
+              "name": "dwad",
+              "related": {
+                "solutions": [
+                  "ADAssessment"
+                ],
+                "workspaces": [
+                  "b438b4f6-912a-46d5-9cb1-b44069212abc"
+                ]
+              },
+              "displayName": "dasd"
+            }
+          ],
+          "solutions": [
+            {
+              "id": "ADAssessment",
+              "name": "ADAssessment",
+              "related": {
+                "tables": [
+                  "ADAssessmentRecommendation"
+                ],
+                "functions": [
+                  "dwad"
+                ],
+                "workspaces": [
+                  "b438b4f6-912a-46d5-9cb1-b44069212abc"
+                ]
+              },
+              "description": "Assess the risk and health of Active Directory environments.",
+              "displayName": "Active Directory Health Check"
+            }
+          ],
+          "categories": [
+            {
+              "id": "workloads",
+              "related": {
+                "tables": [
+                  "ADAssessmentRecommendation",
+                  "ADReplicationResult",
+                  "SQLAssessmentRecommendation",
+                  "WorkloadMonitoringPerf"
+                ]
+              },
+              "displayName": "Workloads"
+            }
+          ],
+          "workspaces": [
+            {
+              "id": "b438b4f6-912a-46d5-9cb1-b44069212abc",
+              "name": "contosoretail-IT",
+              "region": "eastus",
+              "related": {
+                "tables": [
+                  "custom_CL"
+                ],
+                "functions": [
+                  "dwad"
+                ],
+                "solutions": [
+                  "ADAssessment"
+                ],
+                "resourceTypes": [
+                  "microsoft.compute/virtualmachines"
+                ]
+              },
+              "resourceId": "/subscriptions/e4272367-5645-4c4e-9c67-3b74b59a6982/resourceGroups/contosoazurehq/providers/microsoft.operationalinsights/workspaces/contosoretail-IT"
+            }
+          ],
+          "resourceTypes": [
+            {
+              "id": "microsoft.compute/virtualmachines",
+              "type": "Microsoft.Compute/VirtualMachines",
+              "related": {
+                "tables": [
+                  "ADAssessmentRecommendation"
+                ]
+              },
+              "displayName": "Virtual machines"
+            }
+          ]
+        }
+      ]
+  DataAccess.Query.Execute:
+    description: |-
+      Execute an Analytics query
+    versions:
+      from: 1.0.0
+      to: 1.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/dataaccess/query/execute
+    example:
+      inputs: [
+        {
+          "query": "union * | where TimeGenerated > ago(1h) | summarize count() by Type, TenantId",
+          "workspaces": [
+            "draft-test",
+            "draft-test-2"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "tables": [
+            {
+              "name": "PrimaryResult",
+              "rows": [
+                [
+                  "Usage",
+                  "63613592-b6f7-4c3d-a390-22ba13102111",
+                  "1"
+                ],
+                [
+                  "Usage",
+                  "d436f322-a9f4-4aad-9a7d-271fbf66001c",
+                  "1"
+                ],
+                [
+                  "BillingFact",
+                  "63613592-b6f7-4c3d-a390-22ba13102111",
+                  "1"
+                ],
+                [
+                  "BillingFact",
+                  "d436f322-a9f4-4aad-9a7d-271fbf66001c",
+                  "1"
+                ],
+                [
+                  "Operation",
+                  "63613592-b6f7-4c3d-a390-22ba13102111",
+                  "7"
+                ],
+                [
+                  "Operation",
+                  "d436f322-a9f4-4aad-9a7d-271fbf66001c",
+                  "5"
+                ]
+              ],
+              "columns": [
+                {
+                  "name": "Type",
+                  "type": "string"
+                },
+                {
+                  "name": "TenantId",
+                  "type": "string"
+                },
+                {
+                  "name": "count_",
+                  "type": "long"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  DataAccess.Query.Get:
+    description: |-
+      Execute an Analytics query
+    versions:
+      from: 1.0.0
+      to: 1.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/dataaccess/query/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "tables": [
+            {
+              "name": "PrimaryResult",
+              "rows": [
+                [
+                  "Usage",
+                  "63613592-b6f7-4c3d-a390-22ba13102111",
+                  "1"
+                ],
+                [
+                  "Usage",
+                  "d436f322-a9f4-4aad-9a7d-271fbf66001c",
+                  "1"
+                ],
+                [
+                  "BillingFact",
+                  "63613592-b6f7-4c3d-a390-22ba13102111",
+                  "1"
+                ],
+                [
+                  "BillingFact",
+                  "d436f322-a9f4-4aad-9a7d-271fbf66001c",
+                  "1"
+                ],
+                [
+                  "Operation",
+                  "63613592-b6f7-4c3d-a390-22ba13102111",
+                  "7"
+                ],
+                [
+                  "Operation",
+                  "d436f322-a9f4-4aad-9a7d-271fbf66001c",
+                  "5"
+                ]
+              ],
+              "columns": [
+                {
+                  "name": "Type",
+                  "type": "string"
+                },
+                {
+                  "name": "TenantId",
+                  "type": "string"
+                },
+                {
+                  "name": "count_",
+                  "type": "long"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  DataExports.CreateOrUpdate:
+    description: |-
+      Create or update a data export.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/dataexports/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "tableNames": [
+              "Heartbeat"
+            ],
+            "destination": {
+              "resourceId": "/subscriptions/192b9f85-a39a-4276-b96d-d5cd351703f9/resourceGroups/OIAutoRest1234/providers/Microsoft.EventHub/namespaces/test"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/RgTest1/providers/microsoft.operationalinsights/workspaces/DeWnTest1234/export/export1",
+          "name": "export1",
+          "type": "Microsoft.OperationalInsights/workspaces/export",
+          "properties": {
+            "enable": true,
+            "tableNames": [
+              "Heartbeat"
+            ],
+            "createdDate": "Sun, 12 Jan 2020 12:51:10 GMT",
+            "destination": {
+              "type": "EventHub",
+              "resourceId": "/subscriptions/192b9f85-a39a-4276-b96d-d5cd351703f9/resourceGroups/OIAutoRest1234/providers/Microsoft.EventHub/namespaces/test"
+            },
+            "dataExportId": "d5233afc-7829-4b89-c594-08d7975e19a5",
+            "lastModifiedDate": "Sun, 12 Jan 2020 12:51:10 GMT"
+          }
+        }
+      ]
+  DataExports.Delete:
+    description: |-
+      Deletes the specified data export in a given workspace..
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/dataexports/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DataExports.Get:
+    description: |-
+      Gets a data export instance.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/dataexports/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/RgTest1/providers/microsoft.operationalinsights/workspaces/DeWnTest1234/export/export1",
+          "name": "export1",
+          "type": "Microsoft.OperationalInsights/workspaces/export",
+          "properties": {
+            "enable": true,
+            "tableNames": [
+              "Heartbeat"
+            ],
+            "createdDate": "Sun, 12 Jan 2020 12:51:10 GMT",
+            "destination": {
+              "type": "EventHub",
+              "resourceId": "/subscriptions/192b9f85-a39a-4276-b96d-d5cd351703f9/resourceGroups/OIAutoRest1234/providers/Microsoft.EventHub/namespaces/test"
+            },
+            "dataExportId": "d5233afc-7829-4b89-c594-08d7975e19a5",
+            "lastModifiedDate": "Sun, 12 Jan 2020 12:51:10 GMT"
+          }
+        }
+      ]
+  DataExports.ListByWorkspace:
+    description: |-
+      Lists the data export instances within a workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/dataexports/listbyworkspace
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/RgTest1/providers/microsoft.operationalinsights/workspaces/DeWnTest1234/export/export1",
+              "name": "export1",
+              "type": "Microsoft.OperationalInsights/workspaces/export",
+              "properties": {
+                "enable": true,
+                "tableNames": [
+                  "Heartbeat"
+                ],
+                "createdDate": "Sun, 12 Jan 2020 12:51:10 GMT",
+                "destination": {
+                  "type": "EventHub",
+                  "resourceId": "/subscriptions/192b9f85-a39a-4276-b96d-d5cd351703f9/resourceGroups/OIAutoRest1234/providers/Microsoft.EventHub/namespaces/test"
+                },
+                "dataExportId": "d5233afc-7829-4b89-c594-08d7975e19a5",
+                "lastModifiedDate": "Sun, 12 Jan 2020 12:51:10 GMT"
+              }
+            }
+          ]
+        }
+      ]
+  DataSources.CreateOrUpdate:
+    description: |-
+      Create or update a data source.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/datasources/createorupdate
+    example:
+      inputs: [
+        {
+          "kind": "AzureActivityLog",
+          "properties": {
+            "LinkedResourceId": "/subscriptions/00000000-0000-0000-0000-00000000000/providers/microsoft.insights/eventtypes/management"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourceGroups/OIAutoRest5123/providers/Microsoft.OperationalInsights/workspaces/AzTest9724/datasources/AzTestDS774",
+          "etag": "W/\"datetime'2017-10-01T08%3A01%3A21.2351243Z'\"",
+          "kind": "AzureActivityLog",
+          "name": "AzTestDS774",
+          "type": "Microsoft.OperationalInsights/workspaces/datasources",
+          "properties": {
+            "linkedResourceId": "/subscriptions/00000000-0000-0000-0000-00000000000/providers/microsoft.insights/eventtypes/management"
+          }
+        }
+      ]
+  DataSources.Delete:
+    description: |-
+      Deletes a data source instance.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/datasources/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DataSources.Get:
+    description: |-
+      Gets a datasource instance.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/datasources/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourceGroups/OIAutoRest5123/providers/Microsoft.OperationalInsights/workspaces/AzTest9724/datasources/AzTestDS774",
+          "etag": "W/\"datetime'2017-10-01T08%3A01%3A21.2351243Z'\"",
+          "kind": "AzureActivityLog",
+          "name": "AzTestDS774",
+          "type": "Microsoft.OperationalInsights/workspaces/datasources",
+          "properties": {
+            "linkedResourceId": "/subscriptions/00000000-0000-0000-0000-00000000000/providers/microsoft.insights/eventtypes/management"
+          }
+        }
+      ]
+  DataSources.ListByWorkspace:
+    description: |-
+      Gets the first page of data source instances in a workspace with the link to the next page.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/datasources/listbyworkspace
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeletedWorkspaces.List:
+    description: |-
+      Gets recently deleted workspaces in a subscription, available for recovery.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/deletedworkspaces/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/oiautorest6685/providers/microsoft.operationalinsights/workspaces/aztest2170",
+              "name": "AzTest2170",
+              "tags": {
+                "tag1": "val1"
+              },
+              "type": "Microsoft.OperationalInsights/workspaces",
+              "location": "australiasoutheast",
+              "properties": {
+                "sku": {
+                  "name": "PerGB2018"
+                },
+                "customerId": "bc089d7b-485c-4aff-a71e-c00f362d8d2f",
+                "retentionInDays": 30,
+                "provisioningState": "Succeeded",
+                "publicNetworkAccessForQuery": "Enabled",
+                "publicNetworkAccessForIngestion": "Enabled"
+              }
+            }
+          ]
+        }
+      ]
+  DeletedWorkspaces.ListByResourceGroup:
+    description: |-
+      Gets recently deleted workspaces in a resource group, available for recovery.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/deletedworkspaces/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/oiautorest6685/providers/microsoft.operationalinsights/workspaces/aztest2170",
+              "name": "AzTest2170",
+              "tags": {
+                "tag1": "val1"
+              },
+              "type": "Microsoft.OperationalInsights/workspaces",
+              "location": "australiasoutheast",
+              "properties": {
+                "sku": {
+                  "name": "PerGB2018"
+                },
+                "customerId": "bc089d7b-485c-4aff-a71e-c00f362d8d2f",
+                "retentionInDays": 30,
+                "provisioningState": "Succeeded",
+                "publicNetworkAccessForQuery": "Enabled",
+                "publicNetworkAccessForIngestion": "Enabled"
+              }
+            }
+          ]
+        }
+      ]
+  Gateways.Delete:
+    description: |-
+      Delete a Log Analytics gateway.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/gateways/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  IntelligencePacks.Disable:
+    description: |-
+      Disables an intelligence pack for a given workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/intelligencepacks/disable
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  IntelligencePacks.Enable:
+    description: |-
+      Enables an intelligence pack for a given workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/intelligencepacks/enable
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  IntelligencePacks.List:
+    description: |-
+      Lists all the intelligence packs possible and whether they are enabled or disabled for a given workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/intelligencepacks/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        [
+          {
+            "name": "CapacityPerformance",
+            "enabled": false,
+            "displayName": "Capacity and Performance"
+          },
+          {
+            "name": "AzureWebAppsAnalytics",
+            "enabled": false,
+            "displayName": "Azure Web Apps Analytics (Preview)"
+          },
+          {
+            "name": "Security",
+            "enabled": false,
+            "displayName": "Security and Audit"
+          },
+          {
+            "name": "Updates",
+            "enabled": false,
+            "displayName": "Update Management"
+          },
+          {
+            "name": "AntiMalware",
+            "enabled": false,
+            "displayName": "Antimalware Assessment"
+          },
+          {
+            "name": "LogManagement",
+            "enabled": true,
+            "displayName": "Log Management"
+          },
+          {
+            "name": "ChangeTracking",
+            "enabled": true,
+            "displayName": "Change Tracking"
+          },
+          {
+            "name": "SQLAssessment",
+            "enabled": false,
+            "displayName": "SQL Assessment"
+          },
+          {
+            "name": "SCOMAssessment",
+            "enabled": false,
+            "displayName": "System Center Operations Manager Assessment (Preview)"
+          },
+          {
+            "name": "ServiceDesk",
+            "enabled": false,
+            "displayName": "IT Service Management Connector(Preview)"
+          },
+          {
+            "name": "ADAssessment",
+            "enabled": false,
+            "displayName": "AD Assessment"
+          },
+          {
+            "name": "AlertManagement",
+            "enabled": false,
+            "displayName": "Alert Management"
+          },
+          {
+            "name": "AzureAutomation",
+            "enabled": false,
+            "displayName": "Azure Automation"
+          },
+          {
+            "name": "WireData",
+            "enabled": false,
+            "displayName": "Wire Data"
+          },
+          {
+            "name": "SiteRecovery",
+            "enabled": true,
+            "displayName": "Azure Site Recovery"
+          },
+          {
+            "name": "Backup",
+            "enabled": false,
+            "displayName": "Backup"
+          },
+          {
+            "name": "SurfaceHub",
+            "enabled": false,
+            "displayName": "Surface Hub"
+          },
+          {
+            "name": "NetworkMonitoring",
+            "enabled": false,
+            "displayName": "Network Performance Monitor"
+          },
+          {
+            "name": "Containers",
+            "enabled": false,
+            "displayName": "Container Monitoring Solution"
+          },
+          {
+            "name": "ServiceMap",
+            "enabled": false,
+            "displayName": "Service Map"
+          },
+          {
+            "name": "AzureNetworking",
+            "enabled": false,
+            "displayName": "Azure Networking Analytics (Deprecated)"
+          },
+          {
+            "name": "ADReplication",
+            "enabled": false,
+            "displayName": "AD Replication Status"
+          },
+          {
+            "name": "Office365",
+            "enabled": false,
+            "displayName": "Office 365 (Preview)"
+          },
+          {
+            "name": "CompatibilityAssessment",
+            "enabled": false,
+            "displayName": "Upgrade Readiness"
+          },
+          {
+            "name": "KeyVault",
+            "enabled": false,
+            "displayName": "Key Vault (Deprecated)"
+          },
+          {
+            "name": "ServiceFabric",
+            "enabled": false,
+            "displayName": "Service Fabric"
+          },
+          {
+            "name": "DnsAnalytics",
+            "enabled": false,
+            "displayName": "DNS Analytics (Preview)"
+          },
+          {
+            "name": "ApplicationInsights",
+            "enabled": false,
+            "displayName": "Application Insights (Preview)"
+          },
+          {
+            "name": "WireData2",
+            "enabled": false,
+            "displayName": "Wire Data 2.0"
+          },
+          {
+            "name": "WaaSUpdateInsights",
+            "enabled": false,
+            "displayName": "Update Compliance (Preview)"
+          },
+          {
+            "name": "AgentHealthAssessment",
+            "enabled": false,
+            "displayName": "Agent Health "
+          },
+          {
+            "name": "AzureActivity",
+            "enabled": false,
+            "displayName": "Activity Log Analytics"
+          },
+          {
+            "name": "HDInsight",
+            "enabled": false,
+            "displayName": "HDInsight HBase Monitoring (Preview)"
+          },
+          {
+            "name": "HDInsightKafka",
+            "enabled": false,
+            "displayName": "HDInsight Kafka Monitoring"
+          },
+          {
+            "name": "HDInsightSpark",
+            "enabled": false,
+            "displayName": "HDInsight Spark Monitoring"
+          },
+          {
+            "name": "VMware",
+            "enabled": false,
+            "displayName": "VMware (Preview)"
+          },
+          {
+            "name": "SecurityCenterFree",
+            "enabled": false,
+            "displayName": "Security Center Free � for Azure Resources only"
+          },
+          {
+            "name": "LogicAppsManagement",
+            "enabled": false,
+            "displayName": "Logic Apps Management"
+          },
+          {
+            "name": "LogicAppB2B",
+            "enabled": false,
+            "displayName": "Logic Apps B2B"
+          },
+          {
+            "name": "AzureSQLAnalytics",
+            "enabled": false,
+            "displayName": "Azure SQL Analytics (Preview)"
+          },
+          {
+            "name": "KeyVaultAnalytics",
+            "enabled": false,
+            "displayName": "Key Vault Analytics"
+          },
+          {
+            "name": "AzureNSGAnalytics",
+            "enabled": false,
+            "displayName": "Azure Network Security Group Analytics"
+          },
+          {
+            "name": "AzureAppGatewayAnalytics",
+            "enabled": false,
+            "displayName": "Azure Application Gateway Analytics"
+          },
+          {
+            "name": "DeviceHealthProd",
+            "enabled": false,
+            "displayName": "Device Health (Preview)"
+          },
+          {
+            "name": "WindowsDefenderATP",
+            "enabled": false,
+            "displayName": "Windows Defender ATP"
+          },
+          {
+            "name": "ProcessInvestigator",
+            "enabled": false,
+            "displayName": "ProcessInvestigator"
+          }
+        ]
+      ]
+  LinkedServices.CreateOrUpdate:
+    description: |-
+      Create or update a linked service.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/linkedservices/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "writeAccessResourceId": "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.OperationalInsights/clusters/testcluster"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testlinkws/linkedservices/cluster",
+          "name": "TestLinkWS/Cluster",
+          "type": "Microsoft.OperationalInsights/workspaces/linkedServices",
+          "properties": {
+            "provisioningState": "ProvisioningAccount",
+            "writeAccessResourceId": "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.OperationalInsights/clusters/testcluster"
+          }
+        }
+      ]
+  LinkedServices.Delete:
+    description: |-
+      Deletes a linked service instance.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/linkedservices/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testlinkws/linkedservices/cluster",
+          "name": "TestLinkWS/Cluster",
+          "type": "Microsoft.OperationalInsights/workspaces/linkedServices",
+          "properties": {
+            "provisioningState": "Deleting",
+            "writeAccessResourceId": "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.OperationalInsights/clusters/testcluster"
+          }
+        }
+      ]
+  LinkedServices.Get:
+    description: |-
+      Gets a linked service instance.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/linkedservices/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testlinkws/linkedservices/cluster",
+          "name": "TestLinkWS/Cluster",
+          "type": "Microsoft.OperationalInsights/workspaces/linkedServices",
+          "properties": {
+            "provisioningState": "Succeeded",
+            "writeAccessResourceId": "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.OperationalInsights/clusters/testcluster"
+          }
+        }
+      ]
+  LinkedServices.ListByWorkspace:
+    description: |-
+      Gets the linked services instances in a workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/linkedservices/listbyworkspace
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testlinkws/linkedservices/automation",
+              "name": "TestLinkWS/Automation",
+              "type": "Microsoft.OperationalInsights/workspaces/linkedServices",
+              "properties": {
+                "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000005/resourceGroups/mms-eus/providers/Microsoft.Automation/automationAccounts/TestAccount",
+                "provisioningState": "Succeeded"
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testlinkws/linkedservices/cluster",
+              "name": "TestLinkWS/Cluster",
+              "type": "Microsoft.OperationalInsights/workspaces/linkedServices",
+              "properties": {
+                "provisioningState": "Succeeded",
+                "writeAccessResourceId": "/subscriptions/00000000-0000-0000-0000-000000000005/resourceGroups/mms-eus/providers/Microsoft.OperationalInsights/clusters/TestCluster"
+              }
+            }
+          ]
+        }
+      ]
+  LinkedStorageAccounts.CreateOrUpdate:
+    description: |-
+      Create or Update a link relation between current workspace and a group of storage accounts of a specific data source type.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/linkedstorageaccounts/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "storageAccountIds": [
+              "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.Storage/storageAccounts/testStorageA",
+              "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.Storage/storageAccounts/testStorageB"
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testLinkStorageAccountsWS/linkedStorageAccounts/CustomLogs",
+          "name": "CustomLogs",
+          "type": "Microsoft.OperationalInsights/workspaces/linkedStorageAccounts",
+          "properties": {
+            "dataSourceType": "CustomLogs",
+            "storageAccountIds": [
+              "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.Storage/storageAccounts/testStorageA",
+              "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.Storage/storageAccounts/testStorageB"
+            ]
+          }
+        }
+      ]
+  LinkedStorageAccounts.Delete:
+    description: |-
+      Deletes all linked storage accounts of a specific data source type associated with the specified workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/linkedstorageaccounts/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  LinkedStorageAccounts.Get:
+    description: |-
+      Gets all linked storage account of a specific data source type associated with the specified workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/linkedstorageaccounts/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testLinkStorageAccountsWS/linkedStorageAccounts/CustomLogs",
+          "name": "CustomLogs",
+          "type": "Microsoft.OperationalInsights/workspaces/linkedStorageAccounts",
+          "properties": {
+            "dataSourceType": "CustomLogs",
+            "storageAccountIds": [
+              "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.Storage/storageAccounts/testStorageA",
+              "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.Storage/storageAccounts/testStorageB"
+            ]
+          }
+        }
+      ]
+  LinkedStorageAccounts.ListByWorkspace:
+    description: |-
+      Gets all linked storage accounts associated with the specified workspace, storage accounts will be sorted by their data source type.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/linkedstorageaccounts/listbyworkspace
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testLinkStorageAccountsWS/linkedStorageAccounts/CustomLogs",
+              "name": "CustomLogs",
+              "type": "Microsoft.OperationalInsights/workspaces/linkedStorageAccounts",
+              "properties": {
+                "dataSourceType": "CustomLogs",
+                "storageAccountIds": [
+                  "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.Storage/storageAccounts/testStorageA",
+                  "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.Storage/storageAccounts/testStorageB"
+                ]
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testLinkStorageAccountsWS/linkedStorageAccounts/AzureWatson",
+              "name": "AzureWatson",
+              "type": "Microsoft.OperationalInsights/workspaces/linkedStorageAccounts",
+              "properties": {
+                "dataSourceType": "AzureWatson",
+                "storageAccountIds": [
+                  "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.Storage/storageAccounts/testStorageA",
+                  "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.Storage/storageAccounts/testStorageC"
+                ]
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testLinkStorageAccountsWS/linkedStorageAccounts/Query",
+              "name": "Query",
+              "type": "Microsoft.OperationalInsights/workspaces/linkedStorageAccounts",
+              "properties": {
+                "dataSourceType": "Query",
+                "storageAccountIds": [
+                  "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.Storage/storageAccounts/testStorageA",
+                  "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.Storage/storageAccounts/testStorageC"
+                ]
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/testLinkStorageAccountsWS/linkedStorageAccounts/Alerts",
+              "name": "Alerts",
+              "type": "Microsoft.OperationalInsights/workspaces/linkedStorageAccounts",
+              "properties": {
+                "dataSourceType": "Alerts",
+                "storageAccountIds": [
+                  "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.Storage/storageAccounts/testStorageA",
+                  "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.Storage/storageAccounts/testStorageC"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+  ManagementGroups.List:
+    description: |-
+      Gets a list of management groups connected to a workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/managementgroups/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": []
+        }
+      ]
+  OperationStatuses.Get:
+    description: |-
+      Get the status of a long running azure asynchronous operation.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/operationstatuses/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/613192d7-503f-477a-9cfe-4efc3ee2bd60/locations/westus/operationStatuses/713192d7-503f-477a-9cfe-4efc3ee2bd11",
+          "name": "713192d7-503f-477a-9cfe-4efc3ee2bd11",
+          "status": "Succeeded",
+          "endTime": "2017-01-01T16:13:13.933Z",
+          "startTime": "2017-01-01T13:13:13.933Z"
+        }
+      ]
+  SavedSearches.CreateOrUpdate:
+    description: |-
+      Creates or updates a saved search for a given workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/savedsearches/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "tags": [
+              {
+                "name": "Group",
+                "value": "Computer"
+              }
+            ],
+            "query": "Heartbeat | summarize Count() by Computer | take a",
+            "version": 2,
+            "category": "Saved Search Test Category",
+            "displayName": "Create or Update Saved Search Test",
+            "functionAlias": "heartbeat_func",
+            "functionParameters": "a:int=1"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "subscriptions/00000000-0000-0000-0000-000000000005/resourceGroups/mms-eus/providers/Microsoft.OperationalInsights/workspaces/AtlantisDemo/savedSearches/test-new-saved-search-id-2015",
+          "etag": "W/\"datetime'2017-10-02T23%3A15%3A41.0709875Z'\"",
+          "properties": {
+            "query": "Heartbeat | summarize Count() by Computer | take a",
+            "version": 2,
+            "category": "Saved Search Test Category",
+            "displayName": "Create or Update Saved Search Test",
+            "functionAlias": "heartbeat_func",
+            "functionParameters": "a:int=1"
+          }
+        }
+      ]
+  SavedSearches.Delete:
+    description: |-
+      Deletes the specified saved search in a given workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/savedsearches/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  SavedSearches.Get:
+    description: |-
+      Gets the specified saved search for a given workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/savedsearches/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "subscriptions/00000000-0000-0000-0000-000000000005/resourceGroups/mms-eus/providers/Microsoft.OperationalInsights/workspaces/AtlantisDemo/savedSearches/test-new-saved-search-id-2015",
+          "etag": "W/\"datetime'2017-10-02T23%3A15%3A41.0709875Z'\"",
+          "properties": {
+            "query": "* | measure Count() by Computer | take a",
+            "version": 1,
+            "category": " Saved Search Test Category",
+            "displayName": "Create or Update Saved Search Test",
+            "functionAlias": "heartbeat_func",
+            "functionParameters": "a:int=1"
+          }
+        }
+      ]
+  SavedSearches.ListByWorkspace:
+    description: |-
+      Gets the saved searches for a given Log Analytics Workspace
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/savedsearches/listbyworkspace
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        [
+          {
+            "id": "subscriptions/00000000-0000-0000-0000-000000000005/resourceGroups/mms-eus/providers/Microsoft.OperationalInsights/workspaces/AtlantisDemo/savedSearches/test-new-saved-search-id-2015",
+            "etag": "W/\"datetime'2017-10-02T23%3A15%3A41.0709875Z'\"",
+            "properties": {
+              "Tags": [
+                {
+                  "Name": "Group",
+                  "Value": "Computer"
+                }
+              ],
+              "Query": "* | measure Count() by Computer",
+              "Version": 1,
+              "Category": " Saved Search Test Category",
+              "DisplayName": "Create or Update Saved Search Test"
+            }
+          }
+        ]
+      ]
+  StorageInsights.CreateOrUpdate:
+    description: |-
+      Create or update a storage insight.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/storage%20insights/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "tables": [
+              "WADWindowsEventLogsTable",
+              "LinuxSyslogVer2v0"
+            ],
+            "containers": [
+              "wad-iis-logfiles"
+            ],
+            "storageAccount": {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/OIAutoRest6987/providers/microsoft.storage/storageaccounts/AzTestFakeSA9945",
+              "key": "1234"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/oiautorest6987/providers/microsoft.operationalinsights/workspaces/aztest5048/storageinsightconfigs/AzTestSI1110",
+          "name": "AzTestSI1110",
+          "type": "Microsoft.OperationalInsights/workspaces/storageinsightconfigs",
+          "properties": {
+            "status": {
+              "state": "OK"
+            },
+            "tables": [
+              "WADWindowsEventLogsTable",
+              "LinuxSyslogVer2v0"
+            ],
+            "containers": [
+              "wad-iis-logfiles"
+            ],
+            "storageAccount": {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/OIAutoRest6987/providers/microsoft.storage/storageaccounts/AzTestFakeSA9945",
+              "key": "Storage Key"
+            }
+          }
+        }
+      ]
+  StorageInsights.Delete:
+    description: |-
+      Deletes a storageInsightsConfigs resource
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/storage%20insights/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  StorageInsights.Get:
+    description: |-
+      Gets a storage insight instance.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/storage%20insights/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/oiautorest6987/providers/microsoft.operationalinsights/workspaces/aztest5048/storageinsightconfigs/AzTestSI1110",
+          "name": "AzTestSI1110",
+          "type": "Microsoft.OperationalInsights/workspaces/storageinsightconfigs",
+          "properties": {
+            "status": {
+              "state": "OK"
+            },
+            "tables": [
+              "WADWindowsEventLogsTable",
+              "LinuxSyslogVer2v0"
+            ],
+            "containers": [
+              "wad-iis-logfiles"
+            ],
+            "storageAccount": {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/OIAutoRest6987/providers/microsoft.storage/storageaccounts/AzTestFakeSA9945",
+              "key": "Storage Account Key"
+            }
+          }
+        }
+      ]
+  StorageInsights.ListByWorkspace:
+    description: |-
+      Lists the storage insight instances within a workspace
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/storage%20insights/listbyworkspace
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        [
+          {
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/oiautorest6987/providers/microsoft.operationalinsights/workspaces/aztest5048/storageinsightconfigs/AzTestSI1110",
+            "name": "AzTestSI1110",
+            "type": "Microsoft.OperationalInsights/workspaces/storageinsightconfigs",
+            "properties": {
+              "status": {
+                "state": "OK"
+              },
+              "tables": [
+                "WADWindowsEventLogsTable",
+                "LinuxSyslogVer2v0"
+              ],
+              "containers": [
+                "wad-iis-logfiles"
+              ],
+              "storageAccount": {
+                "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/OIAutoRest6987/providers/microsoft.storage/storageaccounts/AzTestFakeSA9945"
+              }
+            }
+          }
+        ]
+      ]
+  Tables.Get:
+    description: |-
+      Gets a Log Analytics workspace table.
+    versions:
+      from: 2020.10.1
+      to: 2020.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/tables/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/oiautorest6685/providers/microsoft.operationalinsights/workspaces/oiautorest6685/tables/table1",
+          "name": "table1",
+          "properties": {
+            "retentionInDays": 30,
+            "lastTroubleshootDate": "Thu, 19 Nov 2020 07:40:51 GMT",
+            "isTroubleshootEnabled": true,
+            "isTroubleshootingAllowed": true
+          }
+        }
+      ]
+  Tables.ListByWorkspace:
+    description: |-
+      Gets all the tables for the specified Log Analytics workspace.
+    versions:
+      from: 2020.10.1
+      to: 2020.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/tables/listbyworkspace
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/oiautorest6685/providers/microsoft.operationalinsights/workspaces/oiautorest6685/tables/table1",
+              "name": "table1",
+              "properties": {
+                "retentionInDays": 30,
+                "lastTroubleshootDate": "Thu, 19 Nov 2020 07:40:51 GMT",
+                "isTroubleshootEnabled": true,
+                "isTroubleshootingAllowed": true
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/oiautorest6685/providers/microsoft.operationalinsights/workspaces/oiautorest6685/tables/table2",
+              "name": "table2",
+              "properties": {
+                "retentionInDays": 7,
+                "isTroubleshootingAllowed": true
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/oiautorest6685/providers/microsoft.operationalinsights/workspaces/oiautorest6685/tables/table3",
+              "name": "table3",
+              "properties": {
+                "retentionInDays": 7,
+                "isTroubleshootingAllowed": false
+              }
+            }
+          ]
+        }
+      ]
+  Tables.Update:
+    description: |-
+      Updates a Log Analytics workspace table properties.
+    versions:
+      from: 2020.10.1
+      to: 2020.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/tables/update
+    example:
+      inputs: [
+        {
+          "properties": {
+            "retentionInDays": 40,
+            "isTroubleshootEnabled": true
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/oiautorest6685/providers/Microsoft.OperationalInsights/workspaces/oiautorest6685/tables/table1",
+          "name": "table1",
+          "properties": {
+            "retentionInDays": 40,
+            "isTroubleshootEnabled": true,
+            "isTroubleshootingAllowed": true
+          }
+        }
+      ]
+  WorkspaceSchema.Get:
+    description: |-
+      Gets the schema for a given workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/workspace%20schema/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "name": "TenantId",
+              "type": "Guid",
+              "facet": false,
+              "stored": false,
+              "indexed": true,
+              "ownerType": [
+                "Alert",
+                "AzureActivity",
+                "AzureAudit",
+                "AzureMetrics",
+                "ComputerGroup",
+                "ETWEvent",
+                "Event",
+                "ExtraHopDBLogin",
+                "ExtraHopDBTransaction",
+                "ExtraHopDNSResponse",
+                "ExtraHopFTPResponse",
+                "ExtraHopHTTPTransaction",
+                "ExtraHopSMTPMessage",
+                "ExtraHopSYNScanDetect",
+                "ExtraHopTCPOpen",
+                "Heartbeat",
+                "Operation",
+                "Perf",
+                "ReservedAzureCommonFields",
+                "ReservedCommonFields",
+                "ServiceFabricOperationalEvent",
+                "ServiceFabricReliableActorEvent",
+                "ServiceFabricReliableServiceEvent",
+                "Syslog",
+                "Usage",
+                "W3CIISLog"
+              ],
+              "displayName": "TenantId"
+            }
+          ],
+          "metadata": {
+            "schema": {
+              "name": "CloudOps",
+              "version": 2
+            },
+            "resultType": "schema",
+            "requestTime": 28
+          }
+        }
+      ]
+  WorkspaceSharedKeys.GetSharedKeys:
+    description: |-
+      Gets the shared keys for a workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/workspace%20shared%20keys/getsharedkeys
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "primarySharedKey": "<primarySharedKey>",
+          "secondarySharedKey": "<secondarySharedKey>"
+        }
+      ]
+  WorkspaceSharedKeys.Regenerate:
+    description: |-
+      Regenerates the shared keys for a Log Analytics Workspace. These keys are used to connect Microsoft Operational Insights agents to the workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/workspace%20shared%20keys/regenerate
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "primarySharedKey": "<primarySharedKey>",
+          "secondarySharedKey": "<secondarySharedKey>"
+        }
+      ]
+  WorkspaceUsages.List:
+    description: |-
+      Gets a list of usage metrics for a workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/workspace%20usages/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "name": {
+                "value": "DataAnalyzed",
+                "localizedValue": "Data Analyzed"
+              },
+              "unit": "Bytes",
+              "limit": 524288000,
+              "quotaPeriod": "P1D",
+              "currentValue": 0,
+              "nextResetTime": "2017-10-03T00:00:00Z"
+            }
+          ]
+        }
+      ]
+  WorkspacePurge.GetPurgeStatus:
+    description: |-
+      Gets status of an ongoing purge operation.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/workspacepurge/getpurgestatus
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "status": "completed"
+        }
+      ]
+  WorkspacePurge.Purge:
+    description: |-
+      Purges data in an Log Analytics workspace by a set of user-defined filters.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/workspacepurge/purge
+    example:
+      inputs: [
+        {
+          "table": "Heartbeat",
+          "filters": [
+            {
+              "value": "2017-09-01T00:00:00",
+              "column": "TimeGenerated",
+              "operator": ">"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "operationId": "7d7cf277-9113-4ab3-8359-d0364b74d01d"
+        }
+      ]
+  Workspaces.CreateOrUpdate:
+    description: |-
+      Create or update a workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/workspaces/createorupdate
+    example:
+      inputs: [
+        {
+          "tags": {
+            "tag1": "val1"
+          },
+          "location": "australiasoutheast",
+          "properties": {
+            "sku": {
+              "name": "PerGB2018"
+            },
+            "retentionInDays": 30
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/oiautorest6685/providers/microsoft.operationalinsights/workspaces/aztest2170",
+          "name": "AzTest2170",
+          "tags": {
+            "tag1": "val1"
+          },
+          "type": "Microsoft.OperationalInsights/workspaces",
+          "location": "australiasoutheast",
+          "properties": {
+            "sku": {
+              "name": "PerGB2018"
+            },
+            "customerId": "bc089d7b-485c-4aff-a71e-c00f362d8d2f",
+            "retentionInDays": 30,
+            "provisioningState": "Creating",
+            "publicNetworkAccessForQuery": "Enabled",
+            "publicNetworkAccessForIngestion": "Enabled"
+          }
+        }
+      ]
+  Workspaces.Delete:
+    description: |-
+      Deletes a workspace resource. To recover the workspace, create it again with the same name, in the same subscription, resource group and location. The name is kept for 14 days and cannot be used for another workspace. To remove the workspace completely and release the name, use the force flag.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/workspaces/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Workspaces.Get:
+    description: |-
+      Gets a workspace instance.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/workspaces/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        [
+          {
+            "id": "/subscriptions/594038b5-1093-476e-a366-482775671c11/resourcegroups/calbot-rg/providers/microsoft.operationalinsights/workspaces/testresourcelock",
+            "name": "TestResourceLock",
+            "type": "Microsoft.OperationalInsights/workspaces",
+            "location": "eastus",
+            "properties": {
+              "sku": {
+                "name": "free"
+              },
+              "customerId": "5b02755b-5bf4-430c-9487-45502a2a7e62",
+              "retentionInDays": 30,
+              "provisioningState": "Succeeded",
+              "publicNetworkAccessForQuery": "Enabled",
+              "publicNetworkAccessForIngestion": "Enabled"
+            }
+          },
+          {
+            "id": "/subscriptions/594038b5-1093-476e-a366-482775671c11/resourcegroups/mms-eus/providers/microsoft.operationalinsights/workspaces/southukws",
+            "name": "SouthUKWS",
+            "type": "Microsoft.OperationalInsights/workspaces",
+            "location": "East US",
+            "properties": {
+              "sku": {
+                "name": "free"
+              },
+              "customerId": "4884a2fd-b08f-4aa6-bf16-5757df1093fe",
+              "retentionInDays": 30,
+              "provisioningState": "Succeeded",
+              "publicNetworkAccessForQuery": "Enabled",
+              "publicNetworkAccessForIngestion": "Enabled"
+            }
+          }
+        ]
+      ]
+  Workspaces.List:
+    description: |-
+      Gets the workspaces in a subscription.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/workspaces/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/oiautorest6685/providers/microsoft.operationalinsights/workspaces/aztest2170",
+              "name": "AzTest2170",
+              "tags": {
+                "tag1": "val1"
+              },
+              "type": "Microsoft.OperationalInsights/workspaces",
+              "location": "australiasoutheast",
+              "properties": {
+                "sku": {
+                  "name": "PerGB2018"
+                },
+                "customerId": "bc089d7b-485c-4aff-a71e-c00f362d8d2f",
+                "retentionInDays": 30,
+                "provisioningState": "Succeeded",
+                "publicNetworkAccessForQuery": "Enabled",
+                "publicNetworkAccessForIngestion": "Enabled"
+              }
+            }
+          ]
+        }
+      ]
+  Workspaces.ListByResourceGroup:
+    description: |-
+      Gets workspaces in a resource group.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/workspaces/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000005/resourcegroups/oiautorest6685/providers/microsoft.operationalinsights/workspaces/aztest2170",
+              "name": "AzTest2170",
+              "tags": {
+                "tag1": "val1"
+              },
+              "type": "Microsoft.OperationalInsights/workspaces",
+              "location": "australiasoutheast",
+              "properties": {
+                "sku": {
+                  "name": "PerGB2018"
+                },
+                "customerId": "bc089d7b-485c-4aff-a71e-c00f362d8d2f",
+                "retentionInDays": 30,
+                "provisioningState": "Succeeded",
+                "publicNetworkAccessForQuery": "Enabled",
+                "publicNetworkAccessForIngestion": "Enabled"
+              }
+            }
+          ]
+        }
+      ]
+  Workspaces.Update:
+    description: |-
+      Updates a workspace.
+    versions:
+      from: 2020.8.1
+      to: 2020.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/loganalytics/workspaces/update
+    example:
+      inputs: [
+        {
+          "properties": {
+            "sku": {
+              "name": "PerGB2018"
+            },
+            "retentionInDays": 30
+          }
+        }
+      ]
+      outputs: [
+        {
+          "tags": {
+            "tag1": "val1"
+          },
+          "location": "australiasoutheast",
+          "properties": {
+            "sku": {
+              "name": "PerGB2018"
+            },
+            "retentionInDays": 30,
+            "publicNetworkAccessForQuery": "Enabled",
+            "publicNetworkAccessForIngestion": "Enabled"
+          }
+        }
+      ]

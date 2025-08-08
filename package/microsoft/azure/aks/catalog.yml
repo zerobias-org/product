@@ -1,0 +1,1233 @@
+Product:
+  name: Azure Kubernetes Service (AKS)
+  versions: [2021.3.1]
+  package: microsoft.azure.aks
+  description: |-
+    Aks
+  link: https://docs.microsoft.com/en-us/azure/aks/
+  contentType: json
+Operations:
+  AgentPools.CreateOrUpdate:
+    description: |-
+      Creates or updates an agent pool.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/agentpools/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "count": 3,
+            "osType": "Linux",
+            "vmSize": "Standard_DS2_v2",
+            "orchestratorVersion": "",
+            "enableEncryptionAtHost": true
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/subid1/resourcegroups/rg1/providers/Microsoft.ContainerService/managedClusters/clustername1/agentPools/agentpool1",
+          "name": "agentpool1",
+          "type": "Microsoft.ContainerService/managedClusters/agentPools",
+          "properties": {
+            "count": 3,
+            "osType": "Linux",
+            "vmSize": "Standard_DS2_v2",
+            "maxPods": 110,
+            "provisioningState": "Succeeded",
+            "orchestratorVersion": "1.17.13",
+            "enableEncryptionAtHost": true
+          }
+        }
+      ]
+  AgentPools.Delete:
+    description: |-
+      Deletes an agent pool.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/agentpools/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  AgentPools.Get:
+    description: |-
+      Gets the agent pool.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/agentpools/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/subid1/resourcegroups/rg1/providers/Microsoft.ContainerService/managedClusters/clustername1/agentPools/agentpool1",
+          "name": "agentpool1",
+          "properties": {
+            "count": 3,
+            "osType": "Linux",
+            "vmSize": "Standard_DS1_v2",
+            "maxPods": 110,
+            "upgradeSettings": {
+              "maxSurge": "33%"
+            },
+            "nodeImageVersion": "AKSUbuntu:1604:2020.03.11",
+            "provisioningState": "Succeeded",
+            "orchestratorVersion": "1.9.6"
+          }
+        }
+      ]
+  AgentPools.GetAvailableAgentPoolVersions:
+    description: |-
+      Gets a list of supported versions for the specified agent pool.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/agentpools/getavailableagentpoolversions
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/subid1/resourcegroups/rg1/providers/Microsoft.ContainerService/managedClusters/clustername1/availableagentpoolversions",
+          "name": "default",
+          "type": "Microsoft.ContainerService/managedClusters/availableAgentpoolVersions",
+          "properties": {
+            "agentPoolVersions": [
+              {
+                "kubernetesVersion": "1.12.7"
+              },
+              {
+                "kubernetesVersion": "1.12.8"
+              },
+              {
+                "default": true,
+                "isPreview": true,
+                "kubernetesVersion": "1.13.5"
+              }
+            ]
+          }
+        }
+      ]
+  AgentPools.GetUpgradeProfile:
+    description: |-
+      Gets upgrade profile for an agent pool.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/agentpools/getupgradeprofile
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/subid1/resourcegroups/rg1/providers/Microsoft.ContainerService/managedClusters/clustername1/agentPools/agentpool1/upgradeprofiles/default",
+          "name": "default",
+          "type": "Microsoft.ContainerService/managedClusters/agentPools/upgradeProfiles",
+          "properties": {
+            "osType": "Linux",
+            "upgrades": [
+              {
+                "kubernetesVersion": "1.13.5"
+              }
+            ],
+            "kubernetesVersion": "1.12.8",
+            "latestNodeImageVersion": "AKSUbuntu:1604:2020.03.11"
+          }
+        }
+      ]
+  AgentPools.List:
+    description: |-
+      Gets a list of agent pools in the specified managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/agentpools/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/subid1/resourcegroups/rg1/providers/Microsoft.ContainerService/managedClusters/clustername1/agentPools/agentpool1",
+              "name": "agentpool1",
+              "properties": {
+                "count": 3,
+                "osType": "Linux",
+                "vmSize": "Standard_DS1_v2",
+                "maxPods": 110,
+                "nodeImageVersion": "AKSUbuntu:1604:2020.03.11",
+                "provisioningState": "Succeeded",
+                "orchestratorVersion": "1.9.6"
+              }
+            }
+          ]
+        }
+      ]
+  AgentPools.UpgradeNodeImageVersion:
+    description: |-
+      Upgrade node image version of an agent pool to the latest.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/agentpools/upgradenodeimageversion
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/subid1/resourcegroups/rg1/providers/Microsoft.ContainerService/managedClusters/clustername1/agentPools/agentpool1",
+          "name": "agentpool1",
+          "properties": {
+            "count": 3,
+            "osType": "Linux",
+            "vmSize": "Standard_DS1_v2",
+            "maxPods": 110,
+            "upgradeSettings": {
+              "maxSurge": "33%"
+            },
+            "nodeImageVersion": "AKSUbuntu-1604-2020.03.11",
+            "provisioningState": "UpgradingNodeImageVersion",
+            "orchestratorVersion": "1.9.6"
+          }
+        }
+      ]
+  MaintenanceConfigurations.CreateOrUpdate:
+    description: |-
+      Creates or updates a maintenance configurations.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/maintenanceconfigurations/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "timeInWeek": [
+              {
+                "day": "Monday",
+                "hourSlots": [
+                  1,
+                  2
+                ]
+              }
+            ],
+            "notAllowedTime": [
+              {
+                "end": "2020-11-30T12:00:00Z",
+                "start": "2020-11-26T03:00:00Z"
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/subid1/resourcegroups/rg1/providers/Microsoft.ContainerService/managedClusters/clustername1/maintenanceConfigurations/default",
+          "name": "default",
+          "type": "Microsoft.ContainerService/managedClusters/maintenanceConfigurations",
+          "properties": {
+            "timeInWeek": [
+              {
+                "day": "Monday",
+                "hourSlots": [
+                  1,
+                  2
+                ]
+              }
+            ],
+            "notAllowedTime": [
+              {
+                "end": "2020-11-30T12:00:00Z",
+                "start": "2020-11-26T03:00:00Z"
+              }
+            ]
+          },
+          "systemData": {
+            "createdAt": "2020-01-01T17:18:19.1234567Z",
+            "createdBy": "user1",
+            "createdByType": "User",
+            "lastModifiedAt": "2020-01-02T17:18:19.1234567Z",
+            "lastModifiedBy": "user2",
+            "lastModifiedByType": "User"
+          }
+        }
+      ]
+  MaintenanceConfigurations.Delete:
+    description: |-
+      Deletes a maintenance configuration.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/maintenanceconfigurations/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  MaintenanceConfigurations.Get:
+    description: |-
+      Gets the maintenance configuration.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/maintenanceconfigurations/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/subid1/resourcegroups/rg1/providers/Microsoft.ContainerService/managedClusters/clustername1/maintenanceConfigurations/default",
+          "name": "default",
+          "properties": {
+            "timeInWeek": [
+              {
+                "day": "Monday",
+                "hourSlots": [
+                  1,
+                  2
+                ]
+              }
+            ],
+            "notAllowedTime": [
+              {
+                "end": "2020-11-30T12:00:00Z",
+                "start": "2020-11-26T03:00:00Z"
+              }
+            ]
+          },
+          "systemData": {
+            "createdAt": "2020-01-01T17:18:19.1234567Z",
+            "createdBy": "user1",
+            "createdByType": "User",
+            "lastModifiedAt": "2020-01-02T17:18:19.1234567Z",
+            "lastModifiedBy": "user2",
+            "lastModifiedByType": "User"
+          }
+        }
+      ]
+  MaintenanceConfigurations.ListByManagedCluster:
+    description: |-
+      Gets a list of maintenance configurations in the specified managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/maintenanceconfigurations/listbymanagedcluster
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/subid1/resourcegroups/rg1/providers/Microsoft.ContainerService/managedClusters/clustername1/maintenanceConfigurations/default",
+              "name": "default",
+              "properties": {
+                "timeInWeek": [
+                  {
+                    "day": "Monday",
+                    "hourSlots": [
+                      1,
+                      2
+                    ]
+                  }
+                ],
+                "notAllowedTime": [
+                  {
+                    "end": "2020-11-30T12:00:00Z",
+                    "start": "2020-11-26T03:00:00Z"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+  ManagedClusters.CreateOrUpdate:
+    description: |-
+      Creates or updates a managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/createorupdate
+    example:
+      inputs: [
+        {
+          "sku": {
+            "name": "Basic",
+            "tier": "Free"
+          },
+          "tags": {
+            "tier": "production",
+            "archv2": ""
+          },
+          "location": "location1",
+          "properties": {
+            "dnsPrefix": "dnsprefix1",
+            "enableRBAC": true,
+            "linuxProfile": {
+              "ssh": {
+                "publicKeys": [
+                  {
+                    "keyData": "keydata"
+                  }
+                ]
+              },
+              "adminUsername": "azureuser"
+            },
+            "addonProfiles": {},
+            "networkProfile": {
+              "outboundType": "loadBalancer",
+              "loadBalancerSku": "standard",
+              "loadBalancerProfile": {
+                "managedOutboundIPs": {
+                  "count": 2
+                }
+              }
+            },
+            "windowsProfile": {
+              "adminPassword": "replacePassword1234$",
+              "adminUsername": "azureuser"
+            },
+            "agentPoolProfiles": [
+              {
+                "mode": "System",
+                "name": "nodepool1",
+                "type": "VirtualMachineScaleSets",
+                "count": 3,
+                "osType": "Linux",
+                "vmSize": "Standard_DS2_v2",
+                "enableNodePublicIP": true,
+                "enableEncryptionAtHost": true
+              }
+            ],
+            "autoScalerProfile": {
+              "scan-interval": "20s",
+              "scale-down-delay-after-add": "15m"
+            },
+            "kubernetesVersion": "",
+            "diskEncryptionSetID": "/subscriptions/subid1/resourceGroups/rg1/providers/Microsoft.Compute/diskEncryptionSets/des",
+            "enablePodSecurityPolicy": true,
+            "servicePrincipalProfile": {
+              "secret": "secret",
+              "clientId": "clientid"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/subid1/resourcegroups/rg1/providers/Microsoft.ContainerService/managedClusters/clustername1",
+          "name": "clustername1",
+          "tags": {
+            "tier": "production",
+            "archv2": ""
+          },
+          "type": "Microsoft.ContainerService/ManagedClusters",
+          "location": "location1",
+          "properties": {
+            "fqdn": "dnsprefix1-abcd1234.hcp.eastus.azmk8s.io",
+            "dnsPrefix": "dnsprefix1",
+            "enableRBAC": true,
+            "linuxProfile": {
+              "ssh": {
+                "publicKeys": [
+                  {
+                    "keyData": "keydata"
+                  }
+                ]
+              },
+              "adminUsername": "azureuser"
+            },
+            "maxAgentPools": 1,
+            "networkProfile": {
+              "podCidr": "10.244.0.0/16",
+              "serviceCidr": "10.0.0.0/16",
+              "dnsServiceIP": "10.0.0.10",
+              "outboundType": "loadBalancer",
+              "networkPlugin": "kubenet",
+              "loadBalancerSku": "basic",
+              "dockerBridgeCidr": "172.17.0.1/16",
+              "loadBalancerProfile": {
+                "managedOutboundIPs": {
+                  "count": 2
+                },
+                "effectiveOutboundIPs": [
+                  {
+                    "id": "/subscriptions/subid1/resourceGroups/MC_rg1/providers/Microsoft.Network/publicIPAddresses/mgdoutboundip1"
+                  },
+                  {
+                    "id": "/subscriptions/subid1/resourceGroups/MC_rg1/providers/Microsoft.Network/publicIPAddresses/mgdoutboundip2"
+                  }
+                ],
+                "idleTimeoutInMinutes": 10,
+                "allocatedOutboundPorts": 2000
+              }
+            },
+            "windowsProfile": {
+              "adminUsername": "azureuser"
+            },
+            "agentPoolProfiles": [
+              {
+                "mode": "System",
+                "name": "nodepool1",
+                "type": "VirtualMachineScaleSets",
+                "count": 3,
+                "osType": "Linux",
+                "vmSize": "Standard_DS2_v2",
+                "maxPods": 110,
+                "nodeImageVersion": "AKSUbuntu:1604:2020.03.11",
+                "provisioningState": "Succeeded",
+                "enableNodePublicIP": true,
+                "orchestratorVersion": "1.9.6",
+                "enableEncryptionAtHost": true
+              }
+            ],
+            "autoScalerProfile": {
+              "scan-interval": "20s",
+              "scale-down-delay-after-add": "15m"
+            },
+            "kubernetesVersion": "1.9.6",
+            "nodeResourceGroup": "MC_rg1_clustername1_location1",
+            "provisioningState": "Succeeded",
+            "diskEncryptionSetID": "/subscriptions/subid1/resourceGroups/rg1/providers/Microsoft.Compute/diskEncryptionSets/des",
+            "enablePodSecurityPolicy": true,
+            "servicePrincipalProfile": {
+              "clientId": "clientid"
+            }
+          }
+        }
+      ]
+  ManagedClusters.Delete:
+    description: |-
+      Deletes a managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  ManagedClusters.Get:
+    description: |-
+      Gets a managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/subid1/resourcegroups/rg1/providers/Microsoft.ContainerService/managedClusters/clustername1",
+          "name": "clustername1",
+          "tags": {
+            "tier": "production",
+            "archv2": ""
+          },
+          "type": "Microsoft.ContainerService/ManagedClusters",
+          "location": "location1",
+          "properties": {
+            "fqdn": "dnsprefix1-abcd1234.hcp.eastus.azmk8s.io",
+            "dnsPrefix": "dnsprefix1",
+            "enableRBAC": false,
+            "linuxProfile": {
+              "ssh": {
+                "publicKeys": [
+                  {
+                    "keyData": "keydata"
+                  }
+                ]
+              },
+              "adminUsername": "azureuser"
+            },
+            "maxAgentPools": 1,
+            "networkProfile": {
+              "podCidr": "10.244.0.0/16",
+              "serviceCidr": "10.0.0.0/16",
+              "dnsServiceIP": "10.0.0.10",
+              "outboundType": "loadBalancer",
+              "networkPlugin": "kubenet",
+              "loadBalancerSku": "standard",
+              "dockerBridgeCidr": "172.17.0.1/16",
+              "loadBalancerProfile": {
+                "outboundIPs": {
+                  "publicIPs": [
+                    {
+                      "id": "/subscriptions/subid1/resourceGroups/rg1/providers/Microsoft.Network/publicIPAddresses/customeroutboundip1"
+                    },
+                    {
+                      "id": "/subscriptions/subid1/resourceGroups/rg1/providers/Microsoft.Network/publicIPAddresses/customeroutboundip2"
+                    }
+                  ]
+                },
+                "effectiveOutboundIPs": [
+                  {
+                    "id": "/subscriptions/subid1/resourceGroups/MC_rg1/providers/Microsoft.Network/publicIPAddresses/mgdoutboundip1"
+                  },
+                  {
+                    "id": "/subscriptions/subid1/resourceGroups/MC_rg1/providers/Microsoft.Network/publicIPAddresses/mgdoutboundip2"
+                  }
+                ],
+                "idleTimeoutInMinutes": 10,
+                "allocatedOutboundPorts": 2000
+              }
+            },
+            "azurePortalFQDN": "dnsprefix1-abcd1234.portal.hcp.eastus.azmk8s.io",
+            "agentPoolProfiles": [
+              {
+                "name": "nodepool1",
+                "count": 3,
+                "osType": "Linux",
+                "vmSize": "Standard_DS1_v2",
+                "maxPods": 110,
+                "upgradeSettings": {
+                  "maxSurge": "33%"
+                },
+                "nodeImageVersion": "AKSUbuntu:1604:2020.03.11",
+                "availabilityZones": [
+                  "1",
+                  "2",
+                  "3"
+                ],
+                "provisioningState": "Succeeded",
+                "orchestratorVersion": "1.9.6"
+              }
+            ],
+            "kubernetesVersion": "1.9.6",
+            "nodeResourceGroup": "MC_rg1_clustername1_location1",
+            "provisioningState": "Succeeded",
+            "diskEncryptionSetID": "/subscriptions/subid1/resourceGroups/rg1/providers/Microsoft.Compute/diskEncryptionSets/des",
+            "servicePrincipalProfile": {
+              "clientId": "clientid"
+            }
+          }
+        }
+      ]
+  ManagedClusters.GetAccessProfile:
+    description: |-
+      Gets an access profile of a managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/getaccessprofile
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/subid1/resourcegroups/rg1/providers/Microsoft.ContainerService/managedClusters/clustername1/accessProfiles/clusterUser",
+          "name": "clusterUser",
+          "type": "Microsoft.ContainerService/ManagedClusters/AccessProfiles",
+          "location": "location1",
+          "properties": {
+            "kubeConfig": "kubeConfig1"
+          }
+        }
+      ]
+  ManagedClusters.GetCommandResult:
+    description: |-
+      Get command result.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/getcommandresult
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "def7b3ea71bd4f7e9d226ddbc0f00ad9",
+          "properties": {
+            "reason": "ImagePullBackoff",
+            "provisioningState": "failed"
+          }
+        }
+      ]
+  ManagedClusters.GetOsOptions:
+    description: |-
+      Gets supported OS options in the specified subscription.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/getosoptions
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/subid1/providers/Microsoft.ContainerService/locations/location1/osOptions/default",
+          "name": "default",
+          "type": "Microsoft.ContainerService/locations/osOptions",
+          "properties": {
+            "osOptionPropertyList": [
+              {
+                "os-type": "Linux",
+                "enable-fips-image": false
+              },
+              {
+                "os-type": "Windows",
+                "enable-fips-image": false
+              }
+            ]
+          }
+        }
+      ]
+  ManagedClusters.GetUpgradeProfile:
+    description: |-
+      Gets upgrade profile for a managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/getupgradeprofile
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/subid1/resourcegroups/rg1/providers/Microsoft.ContainerService/managedClusters/clustername1/upgradeprofiles/default",
+          "name": "default",
+          "type": "Microsoft.ContainerService/managedClusters/upgradeprofiles",
+          "properties": {
+            "agentPoolProfiles": [
+              {
+                "name": "agent",
+                "osType": "Linux",
+                "upgrades": [
+                  {
+                    "kubernetesVersion": "1.7.9"
+                  },
+                  {
+                    "isPreview": true,
+                    "kubernetesVersion": "1.7.11"
+                  }
+                ],
+                "kubernetesVersion": "1.7.7"
+              }
+            ],
+            "controlPlaneProfile": {
+              "name": "master",
+              "osType": "Linux",
+              "upgrades": [
+                {
+                  "isPreview": true,
+                  "kubernetesVersion": "1.7.9"
+                },
+                {
+                  "kubernetesVersion": "1.7.11"
+                }
+              ],
+              "kubernetesVersion": "1.7.7"
+            }
+          }
+        }
+      ]
+  ManagedClusters.List:
+    description: |-
+      Gets a list of managed clusters in the specified subscription.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/subid1/providers/Microsoft.ContainerService/managedClusters",
+              "name": "clustername1",
+              "tags": {
+                "tier": "production",
+                "archv2": ""
+              },
+              "type": "Microsoft.ContainerService/ManagedClusters",
+              "location": "location1",
+              "properties": {
+                "fqdn": "dnsprefix1-abcd1234.hcp.eastus.azmk8s.io",
+                "dnsPrefix": "dnsprefix1",
+                "enableRBAC": false,
+                "linuxProfile": {
+                  "ssh": {
+                    "publicKeys": [
+                      {
+                        "keyData": "keydata"
+                      }
+                    ]
+                  },
+                  "adminUsername": "azureuser"
+                },
+                "maxAgentPools": 1,
+                "networkProfile": {
+                  "podCidr": "10.244.0.0/16",
+                  "serviceCidr": "10.0.0.0/16",
+                  "dnsServiceIP": "10.0.0.10",
+                  "networkPlugin": "kubenet",
+                  "dockerBridgeCidr": "172.17.0.1/16"
+                },
+                "agentPoolProfiles": [
+                  {
+                    "name": "nodepool1",
+                    "count": 3,
+                    "osType": "Linux",
+                    "vmSize": "Standard_DS1_v2",
+                    "maxPods": 110,
+                    "provisioningState": "Succeeded",
+                    "orchestratorVersion": "1.9.6"
+                  }
+                ],
+                "kubernetesVersion": "1.9.6",
+                "nodeResourceGroup": "MC_rg1_clustername1_location1",
+                "provisioningState": "Succeeded",
+                "diskEncryptionSetID": "/subscriptions/subid1/resourceGroups/rg1/providers/Microsoft.Compute/diskEncryptionSets/des",
+                "servicePrincipalProfile": {
+                  "clientId": "clientid"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  ManagedClusters.ListByResourceGroup:
+    description: |-
+      Lists managed clusters in the specified subscription and resource group.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/subid1/resourcegroups/rg1/providers/Microsoft.ContainerService/managedClusters",
+              "name": "clustername1",
+              "tags": {
+                "tier": "production",
+                "archv2": ""
+              },
+              "type": "Microsoft.ContainerService/ManagedClusters",
+              "location": "location1",
+              "properties": {
+                "fqdn": "dnsprefix1-abcd1234.hcp.eastus.azmk8s.io",
+                "dnsPrefix": "dnsprefix1",
+                "enableRBAC": false,
+                "linuxProfile": {
+                  "ssh": {
+                    "publicKeys": [
+                      {
+                        "keyData": "keydata"
+                      }
+                    ]
+                  },
+                  "adminUsername": "azureuser"
+                },
+                "maxAgentPools": 1,
+                "networkProfile": {
+                  "podCidr": "10.244.0.0/16",
+                  "serviceCidr": "10.0.0.0/16",
+                  "dnsServiceIP": "10.0.0.10",
+                  "networkPlugin": "kubenet",
+                  "dockerBridgeCidr": "172.17.0.1/16"
+                },
+                "agentPoolProfiles": [
+                  {
+                    "name": "nodepool1",
+                    "count": 3,
+                    "osType": "Linux",
+                    "vmSize": "Standard_DS1_v2",
+                    "maxPods": 110,
+                    "provisioningState": "Succeeded",
+                    "orchestratorVersion": "1.9.6"
+                  }
+                ],
+                "kubernetesVersion": "1.9.6",
+                "nodeResourceGroup": "MC_rg1_clustername1_location1",
+                "provisioningState": "Succeeded",
+                "diskEncryptionSetID": "/subscriptions/subid1/resourceGroups/rg1/providers/Microsoft.Compute/diskEncryptionSets/des",
+                "servicePrincipalProfile": {
+                  "clientId": "clientid"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  ManagedClusters.ListClusterAdminCredentials:
+    description: |-
+      Gets cluster admin credential of a managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/listclusteradmincredentials
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "kubeconfigs": [
+            {
+              "name": "credentialName1",
+              "value": "credentialValue1"
+            }
+          ]
+        }
+      ]
+  ManagedClusters.ListClusterMonitoringUserCredentials:
+    description: |-
+      Gets cluster monitoring user credential of a managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/listclustermonitoringusercredentials
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "kubeconfigs": [
+            {
+              "name": "credentialName1",
+              "value": "credentialValue1"
+            }
+          ]
+        }
+      ]
+  ManagedClusters.ListClusterUserCredentials:
+    description: |-
+      Gets cluster user credential of a managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/listclusterusercredentials
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "kubeconfigs": [
+            {
+              "name": "credentialName1",
+              "value": "credentialValue1"
+            }
+          ]
+        }
+      ]
+  ManagedClusters.ResetAadProfile:
+    description: |-
+      Reset AAD Profile of a managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/resetaadprofile
+    example:
+      inputs: [
+        {
+          "tenantID": "tenantid",
+          "clientAppID": "clientappid",
+          "serverAppID": "serverappid",
+          "serverAppSecret": "serverappsecret"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ManagedClusters.ResetServicePrincipalProfile:
+    description: |-
+      Reset Service Principal Profile of a managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/resetserviceprincipalprofile
+    example:
+      inputs: [
+        {
+          "secret": "secret",
+          "clientId": "clientid"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ManagedClusters.RotateClusterCertificates:
+    description: |-
+      Rotate certificates of a managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/rotateclustercertificates
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  ManagedClusters.RunCommand:
+    description: |-
+      Run Command against Managed Kubernetes Service
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/runcommand
+    example:
+      inputs: [
+        {
+          "command": "kubectl apply -f ns.yaml",
+          "context": "",
+          "clusterToken": ""
+        }
+      ]
+      outputs: [
+        {
+          "id": "def7b3ea71bd4f7e9d226ddbc0f00ad9",
+          "properties": {
+            "logs": "namespace dummy created",
+            "exitCode": 0,
+            "startedAt": "2021-02-17T00:28:20Z",
+            "finishedAt": "2021-02-17T00:28:33Z",
+            "provisioningState": "succeeded"
+          }
+        }
+      ]
+  ManagedClusters.Start:
+    description: |-
+      Start Managed Cluster
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/start
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  ManagedClusters.Stop:
+    description: |-
+      Stop Managed Cluster
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/stop
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  ManagedClusters.UpdateTags:
+    description: |-
+      Updates tags on a managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/managedclusters/updatetags
+    example:
+      inputs: [
+        {
+          "tags": {
+            "tier": "testing",
+            "archv3": ""
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/subid1/resourcegroups/rg1/providers/Microsoft.ContainerService/managedClusters/clustername1",
+          "name": "clustername1",
+          "tags": {
+            "tier": "testing",
+            "archv3": ""
+          },
+          "type": "Microsoft.ContainerService/ManagedClusters",
+          "location": "location1",
+          "properties": {
+            "fqdn": "dnsprefix1-abcd1234.hcp.eastus.azmk8s.io",
+            "dnsPrefix": "dnsprefix1",
+            "enableRBAC": false,
+            "linuxProfile": {
+              "ssh": {
+                "publicKeys": [
+                  {
+                    "keyData": "keydata"
+                  }
+                ]
+              },
+              "adminUsername": "azureuser"
+            },
+            "networkProfile": {
+              "podCidr": "10.244.0.0/16",
+              "serviceCidr": "10.0.0.0/16",
+              "dnsServiceIP": "10.0.0.10",
+              "networkPlugin": "kubenet",
+              "dockerBridgeCidr": "172.17.0.1/16"
+            },
+            "agentPoolProfiles": [
+              {
+                "name": "nodepool1",
+                "count": 3,
+                "osType": "Linux",
+                "vmSize": "Standard_DS1_v2",
+                "maxPods": 110,
+                "provisioningState": "Succeeded",
+                "orchestratorVersion": "1.9.6"
+              }
+            ],
+            "kubernetesVersion": "1.9.6",
+            "nodeResourceGroup": "MC_rg1_clustername1_location1",
+            "provisioningState": "Succeeded",
+            "diskEncryptionSetID": "/subscriptions/subid1/resourceGroups/rg1/providers/Microsoft.Compute/diskEncryptionSets/des",
+            "servicePrincipalProfile": {
+              "clientId": "clientid"
+            }
+          }
+        }
+      ]
+  PrivateEndpointConnections.Delete:
+    description: |-
+      Deletes a private endpoint connection.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/privateendpointconnections/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  PrivateEndpointConnections.Get:
+    description: |-
+      Gets the private endpoint connection.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/privateendpointconnections/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "name": "privateendpointconnection1",
+          "type": "Microsoft.Network/privateLinkServices/privateEndpointConnections",
+          "properties": {
+            "privateEndpoint": {
+              "id": "/subscriptions/subid2/resourceGroups/rg2/providers/Microsoft.Network/privateEndpoints/pe2"
+            },
+            "provisioningState": "Succeeded",
+            "privateLinkServiceConnectionState": {
+              "status": "Approved"
+            }
+          }
+        }
+      ]
+  PrivateEndpointConnections.List:
+    description: |-
+      Gets a list of private endpoint connections in the specified managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/privateendpointconnections/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "name": "privateendpointconnection1",
+              "type": "Microsoft.Network/privateLinkServices/privateEndpointConnections",
+              "properties": {
+                "privateEndpoint": {
+                  "id": "/subscriptions/subid2/resourceGroups/rg2/providers/Microsoft.Network/privateEndpoints/pe2"
+                },
+                "provisioningState": "Succeeded",
+                "privateLinkServiceConnectionState": {
+                  "status": "Approved"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  PrivateEndpointConnections.Update:
+    description: |-
+      Updates a private endpoint connection.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/privateendpointconnections/update
+    example:
+      inputs: [
+        {
+          "properties": {
+            "privateLinkServiceConnectionState": {
+              "status": "Approved"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "name": "privateendpointconnection1",
+          "type": "Microsoft.Network/privateLinkServices/privateEndpointConnections",
+          "properties": {
+            "privateEndpoint": {
+              "id": "/subscriptions/subid2/resourceGroups/rg2/providers/Microsoft.Network/privateEndpoints/pe2"
+            },
+            "provisioningState": "Succeeded",
+            "privateLinkServiceConnectionState": {
+              "status": "Approved"
+            }
+          }
+        }
+      ]
+  PrivateLinkResources.List:
+    description: |-
+      Gets a list of private link resources in the specified managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/privatelinkresources/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "name": "management",
+              "type": "Microsoft.ContainerService/managedClusters/privateLinkResources",
+              "groupId": "management",
+              "requiredMembers": [
+                "management"
+              ],
+              "privateLinkServiceID": "/subscriptions/subid2/resourceGroups/rg2/providers/Microsoft.Network/privateLinkServices/plsName"
+            }
+          ]
+        }
+      ]
+  ResolvePrivateLinkServiceId.POsT:
+    description: |-
+      Gets the private link service ID for the specified managed cluster.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/aks/resolveprivatelinkserviceid/post
+    example:
+      inputs: [
+        {
+          "name": "management"
+        }
+      ]
+      outputs: [
+        {
+          "privateLinkServiceID": "/subscriptions/subid2/resourceGroups/rg2/providers/Microsoft.Network/privateLinkServices/plsName"
+        }
+      ]

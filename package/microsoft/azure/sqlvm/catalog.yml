@@ -1,0 +1,674 @@
+Product:
+  name: Azure SQLVM (Structured Query Language Virtual Machine)
+  versions: [2017.3.1-preview]
+  package: microsoft.azure.sqlvm
+  description: |-
+    SqlVm
+  link: https://docs.microsoft.com/en-us/azure/azure-sql/virtual-machines/
+  contentType: json
+Operations:
+  AvailabilityGroupListeners.CreateOrUpdate:
+    description: |-
+      Creates or updates an availability group listener.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/availabilitygrouplisteners/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "port": 1433,
+            "availabilityGroupName": "ag-test",
+            "loadBalancerConfigurations": [
+              {
+                "probePort": 59983,
+                "privateIpAddress": {
+                  "ipAddress": "10.1.0.112",
+                  "subnetResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/default"
+                },
+                "loadBalancerResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Network/loadBalancers/lb-test",
+                "sqlVirtualMachineInstances": [
+                  "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm2",
+                  "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm3"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/testvmgroup/availabilityGroupListeners/agl-test",
+          "name": "agl-test",
+          "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/availabilityGroupListeners",
+          "properties": {
+            "port": 1433,
+            "provisioningState": "Updating",
+            "loadBalancerConfigurations": [
+              {
+                "privateIpAddress": {
+                  "ipAddress": "10.1.0.113",
+                  "subnetResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/default"
+                },
+                "sqlVirtualMachineInstances": [
+                  "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm2",
+                  "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm3"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+  AvailabilityGroupListeners.Delete:
+    description: |-
+      Deletes an availability group listener.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/availabilitygrouplisteners/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  AvailabilityGroupListeners.Get:
+    description: |-
+      Gets an availability group listener.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/availabilitygrouplisteners/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/testvmgroup/availabilityGroupListeners/agl-test",
+          "name": "agl-test",
+          "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/availabilityGroupListeners",
+          "properties": {
+            "port": 1433,
+            "provisioningState": "Succeeded",
+            "availabilityGroupName": "ag-test",
+            "loadBalancerConfigurations": [
+              {
+                "probePort": 59983,
+                "privateIpAddress": {
+                  "ipAddress": "10.1.0.112",
+                  "subnetResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/default"
+                },
+                "loadBalancerResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Network/loadBalancers/lb-test",
+                "sqlVirtualMachineInstances": [
+                  "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm3",
+                  "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm2"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+  AvailabilityGroupListeners.ListByGroup:
+    description: |-
+      Lists all availability group listeners in a SQL virtual machine group.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/availabilitygrouplisteners/listbygroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/testvmgroup/availabilityGroupListeners/agl-test",
+              "name": "agl-test",
+              "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/availabilityGroupListeners",
+              "properties": {
+                "port": 1433,
+                "provisioningState": "Succeeded",
+                "availabilityGroupName": "ag-test",
+                "loadBalancerConfigurations": [
+                  {
+                    "probePort": 59983,
+                    "privateIpAddress": {
+                      "ipAddress": "10.1.0.112",
+                      "subnetResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/default"
+                    },
+                    "loadBalancerResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Network/loadBalancers/lb-test",
+                    "sqlVirtualMachineInstances": [
+                      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm3",
+                      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm2"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+  SqlVirtualMachineGroups.CreateOrUpdate:
+    description: |-
+      Creates or updates a SQL virtual machine group.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/sqlvirtualmachinegroups/createorupdate
+    example:
+      inputs: [
+        {
+          "tags": {
+            "mytag": "myval"
+          },
+          "location": "northeurope",
+          "properties": {
+            "sqlImageSku": "Enterprise",
+            "sqlImageOffer": "SQL2016-WS2016",
+            "wsfcDomainProfile": {
+              "ouPath": "OU=WSCluster,DC=testdomain,DC=com",
+              "domainFqdn": "testdomain.com",
+              "sqlServiceAccount": "sqlservice@testdomain.com",
+              "storageAccountUrl": "https://storgact.blob.core.windows.net/",
+              "clusterOperatorAccount": "testrp@testdomain.com",
+              "clusterBootstrapAccount": "testrpadmin",
+              "storageAccountPrimaryKey": "<primary storage access key>"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/testvmgroup",
+          "name": "testvmgroup",
+          "tags": {
+            "mytag": "myval"
+          },
+          "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups",
+          "location": "northeurope",
+          "properties": {
+            "sqlImageSku": "Enterprise",
+            "sqlImageOffer": "SQL2016-WS2016",
+            "provisioningState": "UpdatingDomainful",
+            "wsfcDomainProfile": {
+              "storageAccountUrl": "https://storgact.blob.core.windows.net/"
+            }
+          }
+        }
+      ]
+  SqlVirtualMachineGroups.Delete:
+    description: |-
+      Deletes a SQL virtual machine group.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/sqlvirtualmachinegroups/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  SqlVirtualMachineGroups.Get:
+    description: |-
+      Gets a SQL virtual machine group.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/sqlvirtualmachinegroups/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/testvmgroup",
+          "name": "testvmgroup",
+          "tags": {
+            "mytag": "myval"
+          },
+          "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups",
+          "location": "northeurope",
+          "properties": {
+            "sqlImageSku": "Enterprise",
+            "sqlImageOffer": "SQL2016-WS2016",
+            "provisioningState": "Succeeded",
+            "wsfcDomainProfile": {
+              "ouPath": "OU=WSCluster,DC=testdomain,DC=com",
+              "domainFqdn": "testdomain.com",
+              "sqlServiceAccount": "sqlservice@testdomain.com",
+              "storageAccountUrl": "https://storgact.blob.core.windows.net/",
+              "clusterOperatorAccount": "testrp@testdomain.com",
+              "clusterBootstrapAccount": "testrpadmin"
+            }
+          }
+        }
+      ]
+  SqlVirtualMachineGroups.List:
+    description: |-
+      Gets all SQL virtual machine groups in a subscription.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/sqlvirtualmachinegroups/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/",
+              "name": "testvmgroup",
+              "tags": {
+                "mytag": "myval"
+              },
+              "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups",
+              "location": "northeurope",
+              "properties": {
+                "sqlImageSku": "Enterprise",
+                "sqlImageOffer": "SQL2017-WS2016",
+                "provisioningState": "Succeeded",
+                "wsfcDomainProfile": {
+                  "ouPath": "OU=WSCluster,DC=testdomain,DC=com",
+                  "domainFqdn": "testdomain.com",
+                  "sqlServiceAccount": "sqlservice@testdomain.com",
+                  "storageAccountUrl": "https://storgact.blob.core.windows.net/",
+                  "clusterOperatorAccount": "testrp@testdomain.com",
+                  "clusterBootstrapAccount": "testrpadmin"
+                }
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg1/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/",
+              "name": "testvmgroup1",
+              "tags": {
+                "mytag": "myval"
+              },
+              "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups",
+              "location": "northeurope",
+              "properties": {
+                "sqlImageSku": "Enterprise",
+                "sqlImageOffer": "SQL2016-WS2016",
+                "provisioningState": "Succeeded",
+                "wsfcDomainProfile": {
+                  "ouPath": "OU=WSCluster,DC=testdomain,DC=com",
+                  "domainFqdn": "testdomain.com",
+                  "sqlServiceAccount": "sqlservice@testdomain.com",
+                  "storageAccountUrl": "https://storgact.blob.core.windows.net/",
+                  "clusterOperatorAccount": "testrp@testdomain.com",
+                  "clusterBootstrapAccount": "testrpadmin"
+                }
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg2/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/",
+              "name": "testvmgroup2",
+              "tags": {
+                "mytag": "myval"
+              },
+              "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups",
+              "location": "northeurope",
+              "properties": {
+                "sqlImageSku": "Enterprise",
+                "sqlImageOffer": "SQL2016-WS2016",
+                "provisioningState": "Succeeded",
+                "wsfcDomainProfile": {
+                  "ouPath": "OU=WSCluster,DC=testdomain,DC=com",
+                  "domainFqdn": "testdomain.com",
+                  "sqlServiceAccount": "sqlservice@testdomain.com",
+                  "storageAccountUrl": "https://storgact.blob.core.windows.net/",
+                  "clusterOperatorAccount": "testrp@testdomain.com",
+                  "clusterBootstrapAccount": "testrpadmin"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  SqlVirtualMachineGroups.ListByResourceGroup:
+    description: |-
+      Gets all SQL virtual machine groups in a resource group.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/sqlvirtualmachinegroups/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/testvmgroup",
+              "name": "testvmgroup",
+              "tags": {
+                "mytag": "myval"
+              },
+              "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups",
+              "location": "northeurope",
+              "properties": {
+                "sqlImageSku": "Enterprise",
+                "sqlImageOffer": "SQL2017-WS2016",
+                "provisioningState": "Succeeded",
+                "wsfcDomainProfile": {
+                  "ouPath": "OU=WSCluster,DC=testdomain,DC=com",
+                  "domainFqdn": "testdomain.com",
+                  "sqlServiceAccount": "sqlservice@testdomain.com",
+                  "storageAccountUrl": "https://storgact.blob.core.windows.net/",
+                  "clusterOperatorAccount": "testrp@testdomain.com",
+                  "clusterBootstrapAccount": "testrpadmin"
+                }
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/testvmgroup1",
+              "name": "testvmgroup1",
+              "tags": {
+                "mytag": "myval"
+              },
+              "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups",
+              "location": "northeurope",
+              "properties": {
+                "sqlImageSku": "Enterprise",
+                "sqlImageOffer": "SQL2016-WS2016",
+                "provisioningState": "Succeeded",
+                "wsfcDomainProfile": {
+                  "ouPath": "OU=WSCluster,DC=testdomain,DC=com",
+                  "domainFqdn": "testdomain.com",
+                  "sqlServiceAccount": "sqlservice@testdomain.com",
+                  "storageAccountUrl": "https://storgact.blob.core.windows.net/",
+                  "clusterOperatorAccount": "testrp@testdomain.com",
+                  "clusterBootstrapAccount": "testrpadmin"
+                }
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/testvmgroup2",
+              "name": "testvmgroup2",
+              "tags": {
+                "mytag": "myval"
+              },
+              "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups",
+              "location": "northeurope",
+              "properties": {
+                "sqlImageSku": "Enterprise",
+                "sqlImageOffer": "SQL2016-WS2016",
+                "provisioningState": "Succeeded",
+                "wsfcDomainProfile": {
+                  "ouPath": "OU=WSCluster,DC=testdomain,DC=com",
+                  "domainFqdn": "testdomain.com",
+                  "sqlServiceAccount": "sqlservice@testdomain.com",
+                  "storageAccountUrl": "https://storgact.blob.core.windows.net/",
+                  "clusterOperatorAccount": "testrp@testdomain.com",
+                  "clusterBootstrapAccount": "testrpadmin"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  SqlVirtualMachineGroups.Update:
+    description: |-
+      Updates SQL virtual machine group tags.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/sqlvirtualmachinegroups/update
+    example:
+      inputs: [
+        {
+          "tags": {
+            "mytag": "myval"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm",
+          "name": "testvmgroup",
+          "tags": {
+            "mytag": "myval"
+          },
+          "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups",
+          "location": "northeurope",
+          "properties": {
+            "sqlImageSku": "Enterprise",
+            "sqlImageOffer": "SQL2017-WS2016",
+            "provisioningState": "UpdatingDomainful",
+            "wsfcDomainProfile": {
+              "storageAccountUrl": "https://storgact.blob.core.windows.net/"
+            }
+          }
+        }
+      ]
+  SqlVirtualMachines.CreateOrUpdate:
+    description: |-
+      Creates or updates a SQL virtual machine.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/sqlvirtualmachines/createorupdate
+    example:
+      inputs: [
+        {
+          "location": "northeurope",
+          "properties": {
+            "wsfcDomainCredentials": {
+              "sqlServiceAccountPassword": "<Password>",
+              "clusterOperatorAccountPassword": "<Password>",
+              "clusterBootstrapAccountPassword": "<Password>"
+            },
+            "virtualMachineResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Compute/virtualMachines/testvm2",
+            "sqlVirtualMachineGroupResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/testvmgroup"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm2",
+          "name": "testvm2",
+          "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachines",
+          "location": "northeurope",
+          "properties": {
+            "sqlImageSku": "Enterprise",
+            "provisioningState": "Updating",
+            "sqlServerLicenseType": "PAYG",
+            "virtualMachineResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Compute/virtualMachines/testvm2",
+            "sqlVirtualMachineGroupResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/testvmgroup"
+          }
+        }
+      ]
+  SqlVirtualMachines.Delete:
+    description: |-
+      Deletes a SQL virtual machine.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/sqlvirtualmachines/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  SqlVirtualMachines.Get:
+    description: |-
+      Gets a SQL virtual machine.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/sqlvirtualmachines/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm",
+          "name": "testvm",
+          "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachines",
+          "location": "northeurope",
+          "properties": {
+            "sqlImageSku": "Enterprise",
+            "sqlImageOffer": "SQL2016-WS2016",
+            "provisioningState": "Succeeded",
+            "sqlServerLicenseType": "PAYG",
+            "virtualMachineResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Compute/virtualMachines/testvm"
+          }
+        }
+      ]
+  SqlVirtualMachines.List:
+    description: |-
+      Gets all SQL virtual machines in a subscription.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/sqlvirtualmachines/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm",
+              "name": "testvm",
+              "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachines",
+              "location": "northeurope",
+              "properties": {
+                "sqlImageSku": "Enterprise",
+                "sqlImageOffer": "SQL2016-WS2016",
+                "provisioningState": "Succeeded",
+                "sqlServerLicenseType": "PAYG",
+                "virtualMachineResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Compute/virtualMachines/testvm"
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm1",
+              "name": "testvm1",
+              "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachines",
+              "location": "northeurope",
+              "properties": {
+                "sqlImageSku": "Enterprise",
+                "sqlImageOffer": "SQL2017-WS2016",
+                "provisioningState": "Succeeded",
+                "sqlServerLicenseType": "PAYG",
+                "virtualMachineResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Compute/virtualMachines/testvm1"
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg1/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm2",
+              "name": "testvm2",
+              "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachines",
+              "location": "northeurope",
+              "properties": {
+                "sqlImageSku": "Enterprise",
+                "sqlImageOffer": "SQL2016-WS2016",
+                "provisioningState": "Succeeded",
+                "sqlServerLicenseType": "PAYG",
+                "virtualMachineResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg1/providers/Microsoft.Compute/virtualMachines/testvm2"
+              }
+            }
+          ]
+        }
+      ]
+  SqlVirtualMachines.ListByResourceGroup:
+    description: |-
+      Gets all SQL virtual machines in a resource group.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/sqlvirtualmachines/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm",
+              "name": "testvm",
+              "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachines",
+              "location": "northeurope",
+              "properties": {
+                "sqlImageSku": "Enterprise",
+                "sqlImageOffer": "SQL2016-WS2016",
+                "provisioningState": "Succeeded",
+                "sqlServerLicenseType": "PAYG",
+                "virtualMachineResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Compute/virtualMachines/testvm"
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm1",
+              "name": "testvm1",
+              "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachines",
+              "location": "northeurope",
+              "properties": {
+                "sqlImageSku": "Enterprise",
+                "sqlImageOffer": "SQL2017-WS2016",
+                "provisioningState": "Succeeded",
+                "sqlServerLicenseType": "PAYG",
+                "virtualMachineResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Compute/virtualMachines/testvm1"
+              }
+            }
+          ]
+        }
+      ]
+  SqlVirtualMachines.ListBySqlVmGroup:
+    description: |-
+      Gets the list of sql virtual machines in a SQL virtual machine group.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/sqlvirtualmachines/listbysqlvmgroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm2",
+              "name": "testvm2",
+              "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachines",
+              "location": "northeurope",
+              "properties": {
+                "sqlImageSku": "Enterprise",
+                "sqlImageOffer": "SQL2014-WS2012R2",
+                "sqlManagement": "LightWeight",
+                "provisioningState": "Succeeded",
+                "sqlServerLicenseType": "PAYG",
+                "virtualMachineResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Compute/virtualMachines/testvm2",
+                "sqlVirtualMachineGroupResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/testvmgroup"
+              }
+            }
+          ]
+        }
+      ]
+  SqlVirtualMachines.Update:
+    description: |-
+      Updates a SQL virtual machine.
+    versions:
+      from: 2017.3.1-preview
+    link: https://docs.microsoft.com/en-us/rest/api/sqlvm/sqlvirtualmachines/update
+    example:
+      inputs: [
+        {
+          "tags": {
+            "mytag": "myval"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/testvm",
+          "name": "testvm",
+          "tags": {
+            "mytag": "myval"
+          },
+          "type": "Microsoft.SqlVirtualMachine/sqlVirtualMachines",
+          "location": "northeurope",
+          "properties": {
+            "sqlImageSku": "Enterprise",
+            "provisioningState": "Updating",
+            "sqlServerLicenseType": "PAYG",
+            "virtualMachineResourceId": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Compute/virtualMachines/testvm"
+          }
+        }
+      ]

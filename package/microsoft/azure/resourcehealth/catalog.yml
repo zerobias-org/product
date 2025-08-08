@@ -1,0 +1,647 @@
+Product:
+  name: Azure Resource Health
+  versions: [2018.7.1]
+  package: microsoft.azure.resourcehealth
+  description: |-
+    ResourceHealth
+  link: https://docs.microsoft.com/en-us/azure/service-health/resource-health-overview
+  contentType: json
+Operations:
+  AvailabilityStatuses.GetByResource:
+    description: |-
+      Gets current availability status for a single resource
+    versions:
+      from: 2018.7.1
+    link: https://docs.microsoft.com/en-us/rest/api/resourcehealth/availabilitystatuses/getbyresource
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/4abcdefgh-ijkl-mnop-qrstuvwxyz/resourceGroups/rhctestenv/providers/Microsoft.ClassicCompute/virtualMachines /rhctestenvV1PI/providers/Microsoft.ResourceHealth/availabilityStatuses/current",
+          "name": "current",
+          "type": "Microsoft.ResourceHealth/AvailabilityStatuses",
+          "location": "eastus",
+          "properties": {
+            "summary": "We're sorry, we couldn't automatically recover your virtual machine",
+            "reasonType": "Unplanned",
+            "occurredTime": "2016-03-29T09:12:00Z",
+            "reportedTime": "2016-05-04T14:11:29.7598931Z",
+            "resolutionETA": "2016-03-29T09:37:00Z",
+            "detailedStatus": "Disk problems are preventing us from automatically recovering your virtual machine",
+            "reasonChronicity": "Persistent",
+            "availabilityState": "Unavailable",
+            "recommendedActions": [
+              {
+                "action": "To start this virtual machine, open the resource blade and click Start",
+                "actionUrl": "<#ResourceBlade>",
+                "actionUrlText": "resource blade"
+              },
+              {
+                "action": "If you are experiencing problems you believe are caused by Azure, contact support",
+                "actionUrl": "<#SupportCase>",
+                "actionUrlText": "contact support"
+              }
+            ],
+            "rootCauseAttributionTime": "2016-03-29T09:13:00Z"
+          }
+        }
+      ]
+  AvailabilityStatuses.List:
+    description: |-
+      Lists all historical availability transitions and impacting events for a single resource.
+    versions:
+      from: 2018.7.1
+    link: https://docs.microsoft.com/en-us/rest/api/resourcehealth/availabilitystatuses/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/4abcdefgh-ijkl-mnop-qrstuvwxyz/resourceGroups/rhctestenv/providers/Microsoft.ClassicCompute/virtualMachines/rhctes tenvV1PI/providers/Microsoft.ResourceHealth/availabilityStatuses/current",
+              "name": "current",
+              "type": "Microsoft.ResourceHealth/AvailabilityStatuses",
+              "location": "eastus",
+              "properties": {
+                "summary": "We're sorry, we couldn't automatically recover your virtual machine",
+                "reasonType": "Unplanned",
+                "occurredTime": "2016-03-29T09:12:00Z",
+                "reportedTime": "2016-05-04T14:11:29.7598931Z",
+                "resolutionETA": "2016-03-29T09:37:00Z",
+                "detailedStatus": "Disk problems are preventing us from automatically recovering your virtual machine",
+                "reasonChronicity": "Persistent",
+                "availabilityState": "Unavailable",
+                "serviceImpactingEvents": [
+                  {
+                    "status": {
+                      "value": "Resolved"
+                    },
+                    "correlationId": "b56d0180-2d6c-4f7b-b750-c1eca681874c",
+                    "eventStartTime": "2016-05-02T19:23:13.7115125Z",
+                    "incidentProperties": {
+                      "title": "Virtual Machines - West Europe [West Europe]",
+                      "region": "East US",
+                      "service": "Virtual Machines",
+                      "incidentType": "outage"
+                    },
+                    "eventStatusLastModifiedTime": "2016-05-02T19:27:04.9543491Z"
+                  }
+                ],
+                "rootCauseAttributionTime": "2016-03-29T09:13:00Z"
+              }
+            },
+            {
+              "id": "/subscriptions/4abcdefgh-ijkl-mnop-qrstuvwxyz/resourceGroups/rhctestenv/providers/Microsoft.ClassicCompute/virtualMachines/rhctes tenvV1PI/providers/Microsoft.ResourceHealth/availabilityStatuses/2016-03-28+16%3a23%3a00Z",
+              "name": "2016-03-28+16%3a23%3a00Z",
+              "type": "Microsoft.ResourceHealth/AvailabilityStatuses",
+              "location": "eastus",
+              "properties": {
+                "summary": "This virtual machine is running normally",
+                "occurredTime": "2016-03-28T16:23:00Z",
+                "detailedStatus": "There aren’t any known Azure platform problems affecting this virtual machine",
+                "reasonChronicity": "Persistent",
+                "availabilityState": "Available"
+              }
+            }
+          ]
+        }
+      ]
+  AvailabilityStatuses.ListByResourceGroup:
+    description: |-
+      Lists the current availability status for all the resources in the resource group.
+    versions:
+      from: 2018.7.1
+    link: https://docs.microsoft.com/en-us/rest/api/resourcehealth/availabilitystatuses/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "<resourceId>/providers/Microsoft.ResourceHealth/AvailabilityStatueses/current",
+              "name": "current",
+              "type": "Microsoft.ResourceHealth/AvailabilityStatuses",
+              "location": "eastus",
+              "properties": {
+                "summary": "Vm is available",
+                "reasonType": "Unplanned",
+                "occurredTime": "2016-03-29T09:12:00Z",
+                "reportedTime": "2016-05-04T14:11:29.7598931Z",
+                "detailedStatus": "We have not seen any issues with your virtual machine",
+                "reasonChronicity": "Persistent",
+                "recentlyResolved": {
+                  "resolvedTime": "2017-02-28T00:49:00Z",
+                  "unavailabilitySummary": "We are sorry your SQL database is unavailable",
+                  "unavailableOccurredTime": "2017-02-28T00:48:00Z"
+                },
+                "availabilityState": "Available",
+                "recommendedActions": [
+                  {
+                    "action": "To start this virtualmachine, open the resource blade and click Start",
+                    "actionUrl": "<#ResourceBlade>",
+                    "actionUrlText": "resourceblade"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "<resourceId>/providers/Microsoft.ResourceHealth/AvailabilityStatueses/current",
+              "name": "current",
+              "type": "Microsoft.ResourceHealth/AvailabilityStatuses",
+              "location": "eastus",
+              "properties": {
+                "summary": "We are sorry, we couldn't automatically recovery our virtualmachine",
+                "reasonType": "Unplanned",
+                "occurredTime": "2016-03-29T09:12:00Z",
+                "reportedTime": "2016-05-04T14:11:29.7598931Z",
+                "resolutionETA": "2016-03-29T09:37:00Z",
+                "detailedStatus": "Diskproblemsarepreventingusfromautomaticallyrecoveringyourvirtualmachine",
+                "reasonChronicity": "Persistent",
+                "availabilityState": "Unavailable",
+                "recommendedActions": [
+                  {
+                    "action": "To start this virtualmachine, open the resource blade",
+                    "actionUrl": "<#ResourceBlade>",
+                    "actionUrlText": "resourceblade"
+                  },
+                  {
+                    "action": "If you are experiencing problems you believe are caused by Azure, contact support",
+                    "actionUrl": "<#SupportCase>",
+                    "actionUrlText": "contactsupport"
+                  }
+                ],
+                "rootCauseAttributionTime": "2016-03-29T09:13:00Z"
+              }
+            }
+          ],
+          "nextLink": "{originalRequestUrl}?$skipToken={OpaquePageNumber}"
+        }
+      ]
+  AvailabilityStatuses.ListBySubscriptionId:
+    description: |-
+      Lists the current availability status for all the resources in the subscription.
+    versions:
+      from: 2018.7.1
+    link: https://docs.microsoft.com/en-us/rest/api/resourcehealth/availabilitystatuses/listbysubscriptionid
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "<resourceId>/providers/Microsoft.ResourceHealth/AvailabilityStatueses/current",
+              "name": "current",
+              "type": "Microsoft.ResourceHealth/AvailabilityStatuses",
+              "location": "eastus",
+              "properties": {
+                "summary": "Vm is available",
+                "reasonType": "Unplanned",
+                "occurredTime": "2016-03-29T09:12:00Z",
+                "reportedTime": "2016-05-04T14:11:29.7598931Z",
+                "detailedStatus": "We have not seen any issues with your virtual machine",
+                "reasonChronicity": "Persistent",
+                "recentlyResolved": {
+                  "resolvedTime": "2017-02-28T00:49:00Z",
+                  "unavailabilitySummary": "We are sorry your SQL database is unavailable",
+                  "unavailableOccurredTime": "2017-02-28T00:48:00Z"
+                },
+                "availabilityState": "Available",
+                "recommendedActions": [
+                  {
+                    "action": "To start this virtualmachine, open the resource blade and click Start",
+                    "actionUrl": "<#ResourceBlade>",
+                    "actionUrlText": "resourceblade"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "<resourceId>/providers/Microsoft.ResourceHealth/AvailabilityStatueses/current",
+              "name": "current",
+              "type": "Microsoft.ResourceHealth/AvailabilityStatuses",
+              "location": "eastus",
+              "properties": {
+                "summary": "We are sorry, we couldn't automatically recovery our virtualmachine",
+                "reasonType": "Unplanned",
+                "occurredTime": "2016-03-29T09:12:00Z",
+                "reportedTime": "2016-05-04T14:11:29.7598931Z",
+                "resolutionETA": "2016-03-29T09:37:00Z",
+                "detailedStatus": "Diskproblemsarepreventingusfromautomaticallyrecoveringyourvirtualmachine",
+                "reasonChronicity": "Persistent",
+                "availabilityState": "Unavailable",
+                "recommendedActions": [
+                  {
+                    "action": "To start this virtualmachine, open the resource blade",
+                    "actionUrl": "<#ResourceBlade>",
+                    "actionUrlText": "resourceblade"
+                  },
+                  {
+                    "action": "If you are experiencing problems you believe are caused by Azure, contact support",
+                    "actionUrl": "<#SupportCase>",
+                    "actionUrlText": "contactsupport"
+                  }
+                ],
+                "rootCauseAttributionTime": "2016-03-29T09:13:00Z"
+              }
+            }
+          ],
+          "nextLink": "{originalRequestUrl}?$skipToken={OpaquePageNumber}"
+        }
+      ]
+  EmergingIssues.Get:
+    description: |-
+      Gets Azure services' emerging issues.
+    versions:
+      from: 2018.7.1
+    link: https://docs.microsoft.com/en-us/rest/api/resourcehealth/emergingissues/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/providers/Microsoft.ResourceHealth/emergingissues/default",
+          "name": "default",
+          "type": "/providers/Microsoft.ResourceHealth/emergingissues",
+          "properties": {
+            "statusBanners": [
+              {
+                "cloud": "Public",
+                "title": "Automatic updates to the dial tone page from ACM - banner",
+                "message": "Testing backup site",
+                "lastModifiedTime": "2019-12-15T08:04:00Z"
+              },
+              {
+                "cloud": "Public",
+                "title": "Storage - West Europe",
+                "message": "<span style=\"color: #323237; font-family: &quot;Segoe UI&quot;, SegoeUI, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif; font-size: 16px; background-color: #ffffff\">A subset of customers using Storage in West Europe experienced service availability issues. In addition, resources with dependencies on the impacted storage scale units may have experienced downstream impact in the form of availability issues, connection failures, or high latency. Engineers are investigating the root cause.</span>",
+                "lastModifiedTime": "2019-12-15T10:15:00Z"
+              }
+            ],
+            "refreshTimestamp": "2019-12-17T09:12:00Z",
+            "statusActiveEvents": [
+              {
+                "cloud": "Public",
+                "stage": "Active",
+                "title": "Automatic updates to the dial tone page from ACM - SHD event",
+                "impacts": [
+                  {
+                    "id": "virtual-machines",
+                    "name": "Virtual Machines",
+                    "regions": [
+                      {
+                        "id": "us-central",
+                        "name": "Central US"
+                      },
+                      {
+                        "id": "us-east",
+                        "name": "East US"
+                      }
+                    ]
+                  }
+                ],
+                "severity": "Information",
+                "published": true,
+                "startTime": "2019-12-15T08:06:00Z",
+                "trackingId": "KTTK-TZ8",
+                "description": "Virtual Machines case",
+                "lastModifiedTime": "2019-12-15T08:10:00Z"
+              },
+              {
+                "cloud": "Public",
+                "stage": "Active",
+                "title": "Azure SQL Database - West Europe",
+                "impacts": [
+                  {
+                    "id": "sql-database",
+                    "name": "SQL Database",
+                    "regions": [
+                      {
+                        "id": "europe-west",
+                        "name": "West Europe"
+                      }
+                    ]
+                  }
+                ],
+                "severity": "Error",
+                "published": true,
+                "startTime": "2019-12-16T05:11:00Z",
+                "trackingId": "4KHK-LS8",
+                "description": "All Azure SQL service management requests (create, update, delete, etc.) are serviced through the SQL Control Plane infrastructure. Engineers determined that during this issue, the control plane service became unhealthy after receiving a significant increase in internally generated operations and reaching an operational threshold. This led to service management requests becoming unable to complete, which in-turn resulted in timeouts and throttling. Subsequent investigation by engineers determined this issue was due service requests from an internal Azure group that triggered a bug which caused an excessive number of internally generated operations.",
+                "lastModifiedTime": "2019-12-16T05:11:00Z"
+              }
+            ]
+          }
+        }
+      ]
+  EmergingIssues.List:
+    description: |-
+      Lists Azure services' emerging issues.
+    versions:
+      from: 2018.7.1
+    link: https://docs.microsoft.com/en-us/rest/api/resourcehealth/emergingissues/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/providers/Microsoft.ResourceHealth/emergingissues/default",
+              "name": "default",
+              "type": "/providers/Microsoft.ResourceHealth/emergingissues",
+              "properties": {
+                "statusBanners": [
+                  {
+                    "cloud": "Public",
+                    "title": "Automatic updates to the dial tone page from ACM - banner",
+                    "message": "Testing backup site",
+                    "lastModifiedTime": "2019-12-15T08:04:00Z"
+                  },
+                  {
+                    "cloud": "Public",
+                    "title": "Storage - West Europe",
+                    "message": "<span style=\"color: #323237; font-family: &quot;Segoe UI&quot;, SegoeUI, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif; font-size: 16px; background-color: #ffffff\">A subset of customers using Storage in West Europe experienced service availability issues. In addition, resources with dependencies on the impacted storage scale units may have experienced downstream impact in the form of availability issues, connection failures, or high latency. Engineers are investigating the root cause.</span>",
+                    "lastModifiedTime": "2019-12-15T10:15:00Z"
+                  }
+                ],
+                "refreshTimestamp": "2019-12-17T09:12:00Z",
+                "statusActiveEvents": [
+                  {
+                    "cloud": "Public",
+                    "stage": "Active",
+                    "title": "Automatic updates to the dial tone page from ACM - SHD event",
+                    "impacts": [
+                      {
+                        "id": "virtual-machines",
+                        "name": "Virtual Machines",
+                        "regions": [
+                          {
+                            "id": "us-central",
+                            "name": "Central US"
+                          },
+                          {
+                            "id": "us-east",
+                            "name": "East US"
+                          }
+                        ]
+                      }
+                    ],
+                    "severity": "Information",
+                    "published": true,
+                    "startTime": "2019-12-15T08:06:00Z",
+                    "trackingId": "KTTK-TZ8",
+                    "description": "Virtual Machines case",
+                    "lastModifiedTime": "2019-12-15T08:10:00Z"
+                  },
+                  {
+                    "cloud": "Public",
+                    "stage": "Active",
+                    "title": "Azure SQL Database - West Europe",
+                    "impacts": [
+                      {
+                        "id": "sql-database",
+                        "name": "SQL Database",
+                        "regions": [
+                          {
+                            "id": "europe-west",
+                            "name": "West Europe"
+                          }
+                        ]
+                      }
+                    ],
+                    "severity": "Error",
+                    "published": true,
+                    "startTime": "2019-12-16T05:11:00Z",
+                    "trackingId": "4KHK-LS8",
+                    "description": "All Azure SQL service management requests (create, update, delete, etc.) are serviced through the SQL Control Plane infrastructure. Engineers determined that during this issue, the control plane service became unhealthy after receiving a significant increase in internally generated operations and reaching an operational threshold. This led to service management requests becoming unable to complete, which in-turn resulted in timeouts and throttling. Subsequent investigation by engineers determined this issue was due service requests from an internal Azure group that triggered a bug which caused an excessive number of internally generated operations.",
+                    "lastModifiedTime": "2019-12-16T05:11:00Z"
+                  }
+                ]
+              }
+            }
+          ],
+          "nextLink": "string"
+        }
+      ]
+  Events.ListBySingleResource:
+    description: |-
+      Lists current service health events for given resource.
+    versions:
+      from: 2018.7.1
+    link: https://docs.microsoft.com/en-us/rest/api/resourcehealth/events/listbysingleresource
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/providers/Microsoft.ResourceHealth/events/BC_1-FXZ",
+              "name": "BC_1-FXZ",
+              "type": "/providers/Microsoft.ResourceHealth/events",
+              "properties": {
+                "faqs": [
+                  {
+                    "answer": "This is an answer",
+                    "question": "This is a question",
+                    "localeCode": "en"
+                  }
+                ],
+                "isHIR": false,
+                "level": "Warning",
+                "links": [
+                  {
+                    "type": "Hyperlink",
+                    "bladeName": "RequestRCABlade",
+                    "parameters": {
+                      "trackingId": "BC_1-FXZ",
+                      "rcaRequested": "False"
+                    },
+                    "displayText": {
+                      "value": "Request RCA",
+                      "localizedValue": "Request RCA"
+                    },
+                    "extensionName": "Microsoft_Azure_Health"
+                  },
+                  {
+                    "type": "Button",
+                    "bladeName": "AzureHealthBrowseBlade",
+                    "parameters": {
+                      "trackingId": "BC_1-FXZ"
+                    },
+                    "displayText": {
+                      "value": "Sign up for updates",
+                      "localizedValue": "Sign up for updates"
+                    },
+                    "extensionName": "Microsoft_Azure_Health"
+                  }
+                ],
+                "title": "ACTIVE: Virtual machines in West US",
+                "header": "Your service might have been impacted by an Azure service issue",
+                "impact": [
+                  {
+                    "impactedRegions": [
+                      {
+                        "status": "Active",
+                        "impactedRegion": "West US",
+                        "lastUpdateTime": "2017-12-05T21:05:00Z",
+                        "impactedSubscriptions": [
+                          "{subscriptionId}"
+                        ]
+                      }
+                    ],
+                    "impactedService": "Virtual Machines"
+                  }
+                ],
+                "status": "Active",
+                "article": {
+                  "articleContent": "<html>An outage alert is being investigated. More information will be provided as it is known</html>"
+                },
+                "summary": "An outage alert is being investigated. More information will be provided as it is known.",
+                "hirStage": "active",
+                "priority": 2,
+                "eventType": "ServiceIssue",
+                "eventLevel": "Informational",
+                "eventSource": "ResourceHealth",
+                "lastUpdateTime": "2018-11-08T00:00:00Z",
+                "impactStartTime": "2018-11-07T00:00:00Z",
+                "enableChatWithUs": false,
+                "recommendedActions": {
+                  "actions": [
+                    {
+                      "groupId": 23243,
+                      "actionText": "action 1"
+                    },
+                    {
+                      "groupId": 23432,
+                      "actionText": "action 2"
+                    }
+                  ],
+                  "message": "Recommended actions title",
+                  "localeCode": "en"
+                },
+                "impactMitigationTime": "2018-11-08T00:00:00Z",
+                "enableMicrosoftSupport": true
+              }
+            }
+          ],
+          "nextLink": "{originalRequestUrl}?$skipToken={OpaquePageNumber}"
+        }
+      ]
+  Events.ListBySubscriptionId:
+    description: |-
+      Lists current service health events in the subscription.
+    versions:
+      from: 2018.7.1
+    link: https://docs.microsoft.com/en-us/rest/api/resourcehealth/events/listbysubscriptionid
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/providers/Microsoft.ResourceHealth/events/BC_1-FXZ",
+              "name": "BC_1-FXZ",
+              "type": "/providers/Microsoft.ResourceHealth/events",
+              "properties": {
+                "faqs": [
+                  {
+                    "answer": "This is an answer",
+                    "question": "This is a question",
+                    "localeCode": "en"
+                  }
+                ],
+                "isHIR": false,
+                "level": "Warning",
+                "links": [
+                  {
+                    "type": "Hyperlink",
+                    "bladeName": "RequestRCABlade",
+                    "parameters": {
+                      "trackingId": "BC_1-FXZ",
+                      "rcaRequested": "False"
+                    },
+                    "displayText": {
+                      "value": "Request RCA",
+                      "localizedValue": "Request RCA"
+                    },
+                    "extensionName": "Microsoft_Azure_Health"
+                  },
+                  {
+                    "type": "Button",
+                    "bladeName": "AzureHealthBrowseBlade",
+                    "parameters": {
+                      "trackingId": "BC_1-FXZ"
+                    },
+                    "displayText": {
+                      "value": "Sign up for updates",
+                      "localizedValue": "Sign up for updates"
+                    },
+                    "extensionName": "Microsoft_Azure_Health"
+                  }
+                ],
+                "title": "ACTIVE: Virtual machines in West US",
+                "header": "Your service might have been impacted by an Azure service issue",
+                "impact": [
+                  {
+                    "impactedRegions": [
+                      {
+                        "status": "Active",
+                        "impactedRegion": "West US",
+                        "lastUpdateTime": "2017-12-05T21:05:00Z",
+                        "impactedSubscriptions": [
+                          "{subscriptionId}"
+                        ]
+                      }
+                    ],
+                    "impactedService": "Virtual Machines"
+                  }
+                ],
+                "status": "Active",
+                "article": {
+                  "articleContent": "<html>An outage alert is being investigated. More information will be provided as it is known</html>"
+                },
+                "summary": "An outage alert is being investigated. More information will be provided as it is known.",
+                "hirStage": "resolved",
+                "priority": 2,
+                "eventType": "ServiceIssue",
+                "eventLevel": "Informational",
+                "eventSource": "ResourceHealth",
+                "lastUpdateTime": "2018-11-08T00:00:00Z",
+                "impactStartTime": "2018-11-07T00:00:00Z",
+                "enableChatWithUs": false,
+                "recommendedActions": {
+                  "actions": [
+                    {
+                      "groupId": 23243,
+                      "actionText": "action 1"
+                    },
+                    {
+                      "groupId": 23432,
+                      "actionText": "action 2"
+                    }
+                  ],
+                  "message": "Recommended actions title",
+                  "localeCode": "en"
+                },
+                "impactMitigationTime": "2018-11-08T00:00:00Z",
+                "enableMicrosoftSupport": true
+              }
+            }
+          ],
+          "nextLink": "{originalRequestUrl}?$skipToken={OpaquePageNumber}"
+        }
+      ]

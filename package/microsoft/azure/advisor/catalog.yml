@@ -1,0 +1,409 @@
+Product:
+  name: Azure Advisor
+  versions: [2017.4.19]
+  package: microsoft.azure.advisor
+  description: |-
+    Advisor
+  link: https://docs.microsoft.com/en-us/azure/advisor/
+  contentType: json
+Operations:
+  Configurations.CreateInResourceGroup:
+    description: |-
+      Create/Overwrite Azure Advisor configuration.
+    versions:
+      from: 2017.4.19
+    link: https://docs.microsoft.com/en-us/rest/api/advisor/configurations/createinresourcegroup
+    example:
+      inputs: [
+        {
+          "properties": {
+            "exclude": false
+          }
+        }
+      ]
+      outputs: [
+        {
+          "code": "ImproperScope",
+          "message": "localizedMessage"
+        }
+      ]
+  Configurations.CreateInSubscription:
+    description: |-
+      Create/Overwrite Azure Advisor configuration.
+    versions:
+      from: 2017.4.19
+    link: https://docs.microsoft.com/en-us/rest/api/advisor/configurations/createinsubscription
+    example:
+      inputs: [
+        {
+          "properties": {
+            "exclude": false
+          }
+        }
+      ]
+      outputs: [
+        {
+          "code": "ImproperScope",
+          "message": "localizedMessage"
+        }
+      ]
+  Configurations.ListByResourceGroup:
+    description: |-
+      Retrieve Azure Advisor configurations.
+    versions:
+      from: 2017.4.19
+    link: https://docs.microsoft.com/en-us/rest/api/advisor/configurations/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/subscriptionId/resourceGroups/resourceGroup/providers/Microsoft.Advisor/configuration/configurationName",
+              "name": "configurationName",
+              "type": "Microsoft.Advisor/configurations",
+              "properties": {
+                "exclude": false,
+                "low_cpu_threshold": "5"
+              }
+            }
+          ],
+          "nextLink": "string"
+        }
+      ]
+  Configurations.ListBySubscription:
+    description: |-
+      Retrieve Azure Advisor configurations.
+    versions:
+      from: 2017.4.19
+    link: https://docs.microsoft.com/en-us/rest/api/advisor/configurations/listbysubscription
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/subscriptionId/resourceGroups/resourceGroup/providers/Microsoft.Advisor/configuration/configurationName",
+              "name": "configurationName",
+              "type": "Microsoft.Advisor/configurations",
+              "properties": {
+                "exclude": false,
+                "low_cpu_threshold": "5"
+              }
+            }
+          ],
+          "nextLink": "string"
+        }
+      ]
+  RecommendationMetadata.Get:
+    description: |-
+      Gets the metadata entity.
+    versions:
+      from: 2017.4.19
+    link: https://docs.microsoft.com/en-us/rest/api/advisor/recommendationmetadata/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "providers/Microsoft.Advisor/metadata/recommendationType",
+          "name": "recommendationType",
+          "type": "Microsoft.Advisor/metadata",
+          "properties": {
+            "dependsOn": [
+              "category",
+              "impact"
+            ],
+            "displayName": "Recommendation Type",
+            "supportedValues": [
+              {
+                "id": "6a2b1e70-bd4c-4163-86de-5243d7ac05ee",
+                "displayName": "Upgrade your SKU or add more instances to ensure fault tolerance"
+              },
+              {
+                "id": "da6630fb-4286-4996-92a3-a43f5f26dd34",
+                "displayName": "Delete ExpressRoute circuits in the provider status of Not Provisioned"
+              }
+            ],
+            "applicableScenarios": [
+              "Alerts"
+            ]
+          }
+        }
+      ]
+  RecommendationMetadata.List:
+    description: |-
+      Gets the list of metadata entities.
+    versions:
+      from: 2017.4.19
+    link: https://docs.microsoft.com/en-us/rest/api/advisor/recommendationmetadata/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "providers/Microsoft.Advisor/metadata/recommendationType",
+              "name": "recommendationType",
+              "type": "Microsoft.Advisor/metadata",
+              "properties": {
+                "dependsOn": [
+                  "category",
+                  "impact"
+                ],
+                "displayName": "Recommendation Type",
+                "supportedValues": [
+                  {
+                    "id": "6a2b1e70-bd4c-4163-86de-5243d7ac05ee",
+                    "displayName": "Upgrade your SKU or add more instances to ensure fault tolerance"
+                  },
+                  {
+                    "id": "da6630fb-4286-4996-92a3-a43f5f26dd34",
+                    "displayName": "Delete ExpressRoute circuits in the provider status of Not Provisioned"
+                  }
+                ],
+                "applicableScenarios": [
+                  "Alerts"
+                ]
+              }
+            },
+            {
+              "id": "providers/Microsoft.Advisor/metadata/recommendationCategory",
+              "name": "recommendationCategory",
+              "type": "Microsoft.Advisor/metadata",
+              "properties": {
+                "dependsOn": null,
+                "displayName": "Category",
+                "supportedValues": [
+                  {
+                    "id": "Cost",
+                    "displayName": "Cost"
+                  },
+                  {
+                    "id": "Performance",
+                    "displayName": "Performance"
+                  }
+                ],
+                "applicableScenarios": [
+                  "Alerts"
+                ]
+              }
+            },
+            {
+              "id": "providers/Microsoft.Advisor/metadata/recommendationImpact",
+              "name": "recommendationImpact",
+              "type": "Microsoft.Advisor/metadata",
+              "properties": {
+                "dependsOn": null,
+                "displayName": "Impact",
+                "supportedValues": [
+                  {
+                    "id": "High",
+                    "displayName": "High"
+                  },
+                  {
+                    "id": "Medium",
+                    "displayName": "Medium"
+                  },
+                  {
+                    "id": "Low",
+                    "displayName": "Low"
+                  }
+                ],
+                "applicableScenarios": null
+              }
+            }
+          ],
+          "nextLink": "string"
+        }
+      ]
+  Recommendations.Generate:
+    description: |-
+      Initiates the recommendation generation or computation process for a subscription. This operation is asynchronous. The generated recommendations are stored in a cache in the Advisor service.
+    versions:
+      from: 2017.4.19
+    link: https://docs.microsoft.com/en-us/rest/api/advisor/recommendations/generate
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Recommendations.Get:
+    description: |-
+      Obtains details of a cached recommendation.
+    versions:
+      from: 2017.4.19
+    link: https://docs.microsoft.com/en-us/rest/api/advisor/recommendations/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/resourceUri/providers/Microsoft.Advisor/recommendations/recommendationId",
+          "name": "recommendationId",
+          "type": "Microsoft.Advisor/recommendations",
+          "properties": {
+            "risk": "Warning",
+            "impact": "Medium",
+            "category": "HighAvailability",
+            "lastUpdated": "2017-02-24T22:24:43.3216408Z",
+            "impactedField": "Microsoft.Compute/availabilitySets",
+            "impactedValue": "armavset",
+            "shortDescription": {
+              "problem": "This availability set is not configured for fault tolerance",
+              "solution": "To ensure high availability add one or more virtual machines to this availability set"
+            }
+          }
+        }
+      ]
+  Recommendations.GetGenerateStatus:
+    description: |-
+      Retrieves the status of the recommendation computation or generation process. Invoke this API after calling the generation recommendation. The URI of this API is returned in the Location field of the response header.
+    versions:
+      from: 2017.4.19
+    link: https://docs.microsoft.com/en-us/rest/api/advisor/recommendations/getgeneratestatus
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Recommendations.List:
+    description: |-
+      Obtains cached recommendations for a subscription. The recommendations are generated or computed by invoking generateRecommendations.
+    versions:
+      from: 2017.4.19
+    link: https://docs.microsoft.com/en-us/rest/api/advisor/recommendations/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/resourceUri/providers/Microsoft.Advisor/recommendations/recGUID",
+              "name": "recGUID",
+              "type": "Microsoft.Advisor/recommendations",
+              "properties": {
+                "risk": "Warning",
+                "impact": "Medium",
+                "category": "HighAvailability",
+                "lastUpdated": "2017-02-24T22:24:43.3216408Z",
+                "impactedField": "Microsoft.Compute/availabilitySets",
+                "impactedValue": "armavset",
+                "shortDescription": {
+                  "problem": "This availability set is not configured for fault tolerance",
+                  "solution": "To ensure high availability add one or more virtual machines to this availability set"
+                }
+              }
+            }
+          ],
+          "nextLink": "https://management.azure.com/subscriptions/subscriptionId/providers/Microsoft.Advisor/recommendations?api-version=2017-04-19&$top=10&$skiptoken=skiptoken"
+        }
+      ]
+  Suppressions.Create:
+    description: |-
+      Enables the snoozed or dismissed attribute of a recommendation. The snoozed or dismissed attribute is referred to as a suppression. Use this API to create or update the snoozed or dismissed status of a recommendation.
+    versions:
+      from: 2017.4.19
+    link: https://docs.microsoft.com/en-us/rest/api/advisor/suppressions/create
+    example:
+      inputs: [
+        {
+          "properties": {
+            "ttl": "07:00:00:00"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/resourceUri/providers/Microsoft.Advisor/recommendations/recommendationId/suppressions/suppressionName1",
+          "name": "suppressionName1",
+          "type": "Microsoft.Advisor/suppressions",
+          "properties": {
+            "ttl": "07:00:00:00",
+            "suppressionId": "suppressionId"
+          }
+        }
+      ]
+  Suppressions.Delete:
+    description: |-
+      Enables the activation of a snoozed or dismissed recommendation. The snoozed or dismissed attribute of a recommendation is referred to as a suppression.
+    versions:
+      from: 2017.4.19
+    link: https://docs.microsoft.com/en-us/rest/api/advisor/suppressions/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Suppressions.Get:
+    description: |-
+      Obtains the details of a suppression.
+    versions:
+      from: 2017.4.19
+    link: https://docs.microsoft.com/en-us/rest/api/advisor/suppressions/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/resourceUri/providers/Microsoft.Advisor/recommendations/recommendationId/suppressions/suppressionName1",
+          "name": "suppressionName1",
+          "type": "Microsoft.Advisor/suppressions",
+          "properties": {
+            "ttl": "7.00:00:00",
+            "suppressionId": "suppressionId1"
+          }
+        }
+      ]
+  Suppressions.List:
+    description: |-
+      Retrieves the list of snoozed or dismissed suppressions for a subscription. The snoozed or dismissed attribute of a recommendation is referred to as a suppression.
+    versions:
+      from: 2017.4.19
+    link: https://docs.microsoft.com/en-us/rest/api/advisor/suppressions/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/resourceUri/providers/Microsoft.Advisor/recommendations/recommendationId/suppressions/suppressionName1",
+              "name": "suppressionName1",
+              "type": "Microsoft.Advisor/suppressions",
+              "properties": {
+                "ttl": "7.00:00:00",
+                "suppressionId": "suppressionId1"
+              }
+            },
+            {
+              "id": "/resourceUri/providers/Microsoft.Advisor/recommendations/recommendationId/suppressions/suppressionName2",
+              "name": "suppressionName2",
+              "type": "Microsoft.Advisor/suppressions",
+              "properties": {
+                "ttl": "7.00:00:00",
+                "suppressionId": "suppressionId2"
+              }
+            }
+          ],
+          "nextLink": "https://management.azure.com/subscriptions/3f75fdf7-977e-44ad-990d-99f14f0f299f/providers/microsoft.Advisor/suppressions?api-version=2017-04-19&$top=3&$skiptoken=skiptoken"
+        }
+      ]
