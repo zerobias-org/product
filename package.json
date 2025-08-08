@@ -10,14 +10,14 @@
     "lerna:version": "lerna version --no-git-tag-version --no-push --conventional-commits --yes",
     "nx:publish": "npm run correct:deps && lerna run nx:publish --since && ./scripts/commit.sh",
     "prepublishtest": "npx lerna run prepublishtest --since --concurrency 10",
-    "validate": "npx lerna run validate --since --concurrency 10",
+    "validate": "npx lerna run validate --since --concurrency 40",
     "postinstall": "husky install",
     "build": "npx lerna exec \"npm shrinkwrap\"",
     "correct:deps": "npx lerna run correct:deps --concurrency=10",
     "bootstrap": "npx lerna bootstrap --concurrency=10 --include-dependencies",
     "clean": "npx nx reset && npx lerna run clean --since",
     "clean:full": "npx lerna run clean --since && npx lerna clean --yes --since && nx reset",
-	  "reset": "npm run clean:full && npm run bootstrap && npm run build"
+	  "reset": "npm run clean:full && npm run correct:deps && npm run bootstrap && npm run build"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
