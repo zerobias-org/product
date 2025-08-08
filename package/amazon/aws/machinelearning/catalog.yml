@@ -1,0 +1,820 @@
+Product:
+  name: AWS Machine Learning
+  versions: [2014.12.12]
+  package: amazon.aws.machinelearning
+  description: |-
+    Amazon Machine Learning
+  link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AddTags:
+    description: |-
+      Adds one or more tags to an object, up to a limit of 10. Each tag consists of a key and an optional value. If you add a tag using a key that is already associated with the ML object, AddTags updates the tag's value.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_AddTags.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceId": "string",
+          "ResourceType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateBatchPrediction:
+    description: |-
+      Generates predictions for a group of observations. The observations to process exist in one or more data files referenced by a DataSource. This operation creates a new BatchPrediction, and uses an MLModel and the data files referenced by the DataSource as information sources.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_CreateBatchPrediction.html
+    example:
+      inputs: [
+        {
+          "MLModelId": "string",
+          "OutputUri": "string",
+          "BatchPredictionId": "string",
+          "BatchPredictionName": "string",
+          "BatchPredictionDataSourceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "BatchPredictionId": "string"
+        }
+      ]
+  CreateDataSourceFromRDS:
+    description: |-
+      Creates a DataSource object from an Amazon Relational Database Service (Amazon RDS). A DataSource references data that can be used to perform CreateMLModel, CreateEvaluation, or CreateBatchPrediction operations.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_CreateDataSourceFromRDS.html
+    example:
+      inputs: [
+        {
+          "RDSData": {
+            "SubnetId": "string",
+            "DataSchema": "string",
+            "ServiceRole": "string",
+            "ResourceRole": "string",
+            "DataSchemaUri": "string",
+            "SelectSqlQuery": "string",
+            "SecurityGroupIds": [
+              "string"
+            ],
+            "DataRearrangement": "string",
+            "S3StagingLocation": "string",
+            "DatabaseCredentials": {
+              "Password": "string",
+              "Username": "string"
+            },
+            "DatabaseInformation": {
+              "DatabaseName": "string",
+              "InstanceIdentifier": "string"
+            }
+          },
+          "RoleARN": "string",
+          "DataSourceId": "string",
+          "DataSourceName": "string",
+          "ComputeStatistics": false
+        }
+      ]
+      outputs: [
+        {
+          "DataSourceId": "string"
+        }
+      ]
+  CreateDataSourceFromRedshift:
+    description: |-
+      Creates a DataSource from a database hosted on an Amazon Redshift cluster. A DataSource references data that can be used to perform either CreateMLModel, CreateEvaluation, or CreateBatchPrediction operations.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_CreateDataSourceFromRedshift.html
+    example:
+      inputs: [
+        {
+          "RoleARN": "string",
+          "DataSpec": {
+            "DataSchema": "string",
+            "DataSchemaUri": "string",
+            "SelectSqlQuery": "string",
+            "DataRearrangement": "string",
+            "S3StagingLocation": "string",
+            "DatabaseCredentials": {
+              "Password": "string",
+              "Username": "string"
+            },
+            "DatabaseInformation": {
+              "DatabaseName": "string",
+              "ClusterIdentifier": "string"
+            }
+          },
+          "DataSourceId": "string",
+          "DataSourceName": "string",
+          "ComputeStatistics": false
+        }
+      ]
+      outputs: [
+        {
+          "DataSourceId": "string"
+        }
+      ]
+  CreateDataSourceFromS3:
+    description: |-
+      Creates a DataSource object. A DataSource references data that can be used to perform CreateMLModel, CreateEvaluation, or CreateBatchPrediction operations.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_CreateDataSourceFromS3.html
+    example:
+      inputs: [
+        {
+          "DataSpec": {
+            "DataSchema": "string",
+            "DataLocationS3": "string",
+            "DataRearrangement": "string",
+            "DataSchemaLocationS3": "string"
+          },
+          "DataSourceId": "string",
+          "DataSourceName": "string",
+          "ComputeStatistics": false
+        }
+      ]
+      outputs: [
+        {
+          "DataSourceId": "string"
+        }
+      ]
+  CreateEvaluation:
+    description: |-
+      Creates a new Evaluation of an MLModel. An MLModel is evaluated on a set of observations associated to a DataSource. Like a DataSource for an MLModel, the DataSource for an Evaluation contains values for the Target Variable. The Evaluation compares the predicted result for each observation to the actual outcome and provides a summary so that you know how effective the MLModel functions on the test data. Evaluation generates a relevant performance metric, such as BinaryAUC, RegressionRMSE or MulticlassAvgFScore based on the corresponding MLModelType:BINARY, REGRESSION or MULTICLASS.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_CreateEvaluation.html
+    example:
+      inputs: [
+        {
+          "MLModelId": "string",
+          "EvaluationId": "string",
+          "EvaluationName": "string",
+          "EvaluationDataSourceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EvaluationId": "string"
+        }
+      ]
+  CreateMLModel:
+    description: |-
+      Creates a new MLModel using the DataSource and the recipe as information sources.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_CreateMLModel.html
+    example:
+      inputs: [
+        {
+          "Recipe": "string",
+          "MLModelId": "string",
+          "RecipeUri": "string",
+          "Parameters": {
+            "string": "string"
+          },
+          "MLModelName": "string",
+          "MLModelType": "string",
+          "TrainingDataSourceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "MLModelId": "string"
+        }
+      ]
+  CreateRealtimeEndpoint:
+    description: |-
+      Creates a real-time endpoint for the MLModel. The endpoint contains the URI of the MLModel; that is, the location to send real-time prediction requests for the specified MLModel.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_CreateRealtimeEndpoint.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "MLModelId": "string",
+          "RealtimeEndpointInfo": {
+            "CreatedAt": 1481289211.615,
+            "EndpointUrl": "string",
+            "EndpointStatus": "string",
+            "PeakRequestsPerSecond": 1
+          }
+        }
+      ]
+  DeleteBatchPrediction:
+    description: |-
+      Assigns the DELETED status to a BatchPrediction, rendering it unusable.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_DeleteBatchPrediction.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "BatchPredictionId": "string"
+        }
+      ]
+  DeleteDataSource:
+    description: |-
+      Assigns the DELETED status to a DataSource, rendering it unusable.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_DeleteDataSource.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "DataSourceId": "string"
+        }
+      ]
+  DeleteEvaluation:
+    description: |-
+      Assigns the DELETED status to an Evaluation, rendering it unusable.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_DeleteEvaluation.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "EvaluationId": "string"
+        }
+      ]
+  DeleteMLModel:
+    description: |-
+      Assigns the DELETED status to an MLModel, rendering it unusable.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_DeleteMLModel.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "MLModelId": "string"
+        }
+      ]
+  DeleteRealtimeEndpoint:
+    description: |-
+      Deletes a real time endpoint of an MLModel.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_DeleteRealtimeEndpoint.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "MLModelId": "string",
+          "RealtimeEndpointInfo": {
+            "CreatedAt": 1481289211.615,
+            "EndpointUrl": "string",
+            "EndpointStatus": "string",
+            "PeakRequestsPerSecond": 1
+          }
+        }
+      ]
+  DeleteTags:
+    description: |-
+      Deletes the specified tags associated with an ML object. After this operation is complete, you can't recover deleted tags.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_DeleteTags.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceId": "string",
+          "ResourceType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeBatchPredictions:
+    description: |-
+      Returns a list of BatchPrediction operations that match the search criteria in the request.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_DescribeBatchPredictions.html
+    example:
+      inputs: [
+        {
+          "EQ": "string",
+          "GE": "string",
+          "GT": "string",
+          "LE": "string",
+          "LT": "string",
+          "NE": "string",
+          "Limit": 1,
+          "Prefix": "string",
+          "NextToken": "string",
+          "SortOrder": "string",
+          "FilterVariable": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Results": [
+            {
+              "Name": "string",
+              "Status": "string",
+              "Message": "string",
+              "CreatedAt": 1481289211.615,
+              "MLModelId": "string",
+              "OutputUri": "string",
+              "StartedAt": 1481289211.615,
+              "FinishedAt": 1481289211.615,
+              "ComputeTime": 1,
+              "LastUpdatedAt": 1481289211.615,
+              "CreatedByIamUser": "string",
+              "TotalRecordCount": 1,
+              "BatchPredictionId": "string",
+              "InvalidRecordCount": 1,
+              "InputDataLocationS3": "string",
+              "BatchPredictionDataSourceId": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeDataSources:
+    description: |-
+      Returns a list of DataSource that match the search criteria in the request.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_DescribeDataSources.html
+    example:
+      inputs: [
+        {
+          "EQ": "string",
+          "GE": "string",
+          "GT": "string",
+          "LE": "string",
+          "LT": "string",
+          "NE": "string",
+          "Limit": 1,
+          "Prefix": "string",
+          "NextToken": "string",
+          "SortOrder": "string",
+          "FilterVariable": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Results": [
+            {
+              "Name": "string",
+              "Status": "string",
+              "Message": "string",
+              "RoleARN": "string",
+              "CreatedAt": 1481289211.615,
+              "StartedAt": 1481289211.615,
+              "FinishedAt": 1481289211.615,
+              "ComputeTime": 1,
+              "RDSMetadata": {
+                "Database": {
+                  "DatabaseName": "string",
+                  "InstanceIdentifier": "string"
+                },
+                "ServiceRole": "string",
+                "ResourceRole": "string",
+                "DataPipelineId": "string",
+                "SelectSqlQuery": "string",
+                "DatabaseUserName": "string"
+              },
+              "DataSourceId": "string",
+              "LastUpdatedAt": 1481289211.615,
+              "NumberOfFiles": 1,
+              "DataLocationS3": "string",
+              "DataSizeInBytes": 1,
+              "CreatedByIamUser": "string",
+              "RedshiftMetadata": {
+                "SelectSqlQuery": "string",
+                "DatabaseUserName": "string",
+                "RedshiftDatabase": {
+                  "DatabaseName": "string",
+                  "ClusterIdentifier": "string"
+                }
+              },
+              "ComputeStatistics": false,
+              "DataRearrangement": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeEvaluations:
+    description: |-
+      Returns a list of DescribeEvaluations that match the search criteria in the request.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_DescribeEvaluations.html
+    example:
+      inputs: [
+        {
+          "EQ": "string",
+          "GE": "string",
+          "GT": "string",
+          "LE": "string",
+          "LT": "string",
+          "NE": "string",
+          "Limit": 1,
+          "Prefix": "string",
+          "NextToken": "string",
+          "SortOrder": "string",
+          "FilterVariable": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Results": [
+            {
+              "Name": "string",
+              "Status": "string",
+              "Message": "string",
+              "CreatedAt": 1481289211.615,
+              "MLModelId": "string",
+              "StartedAt": 1481289211.615,
+              "FinishedAt": 1481289211.615,
+              "ComputeTime": 1,
+              "EvaluationId": "string",
+              "LastUpdatedAt": 1481289211.615,
+              "CreatedByIamUser": "string",
+              "PerformanceMetrics": {
+                "Properties": {
+                  "string": "string"
+                }
+              },
+              "InputDataLocationS3": "string",
+              "EvaluationDataSourceId": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeMLModels:
+    description: |-
+      Returns a list of MLModel that match the search criteria in the request.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_DescribeMLModels.html
+    example:
+      inputs: [
+        {
+          "EQ": "string",
+          "GE": "string",
+          "GT": "string",
+          "LE": "string",
+          "LT": "string",
+          "NE": "string",
+          "Limit": 1,
+          "Prefix": "string",
+          "NextToken": "string",
+          "SortOrder": "string",
+          "FilterVariable": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Results": [
+            {
+              "Name": "string",
+              "Status": "string",
+              "Message": "string",
+              "Algorithm": "string",
+              "CreatedAt": 1481289211.615,
+              "MLModelId": "string",
+              "StartedAt": 1481289211.615,
+              "FinishedAt": 1481289211.615,
+              "ComputeTime": 1,
+              "MLModelType": "string",
+              "SizeInBytes": 1,
+              "EndpointInfo": {
+                "CreatedAt": 1481289211.615,
+                "EndpointUrl": "string",
+                "EndpointStatus": "string",
+                "PeakRequestsPerSecond": 1
+              },
+              "LastUpdatedAt": 1481289211.615,
+              "ScoreThreshold": 0.1,
+              "CreatedByIamUser": "string",
+              "TrainingParameters": {
+                "string": "string"
+              },
+              "InputDataLocationS3": "string",
+              "TrainingDataSourceId": "string",
+              "ScoreThresholdLastUpdatedAt": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeTags:
+    description: |-
+      Describes one or more of the tags for your Amazon ML object.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_DescribeTags.html
+    example:
+      inputs: [
+        {
+          "ResourceId": "string",
+          "ResourceType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetBatchPrediction:
+    description: |-
+      Returns a BatchPrediction that includes detailed metadata, status, and data file information for a Batch Prediction request.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_GetBatchPrediction.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "LogUri": "string",
+          "Status": "string",
+          "Message": "string",
+          "CreatedAt": 1481289211.615,
+          "MLModelId": "string",
+          "OutputUri": "string",
+          "StartedAt": 1481289211.615,
+          "FinishedAt": 1481289211.615,
+          "ComputeTime": 1,
+          "LastUpdatedAt": 1481289211.615,
+          "CreatedByIamUser": "string",
+          "TotalRecordCount": 1,
+          "BatchPredictionId": "string",
+          "InvalidRecordCount": 1,
+          "InputDataLocationS3": "string",
+          "BatchPredictionDataSourceId": "string"
+        }
+      ]
+  GetDataSource:
+    description: |-
+      Returns a DataSource that includes metadata and data file information, as well as the current status of the DataSource.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_GetDataSource.html
+    example:
+      inputs: [
+        {
+          "Verbose": false,
+          "DataSourceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "LogUri": "string",
+          "Status": "string",
+          "Message": "string",
+          "RoleARN": "string",
+          "CreatedAt": 1481289211.615,
+          "StartedAt": 1481289211.615,
+          "FinishedAt": 1481289211.615,
+          "ComputeTime": 1,
+          "RDSMetadata": {
+            "Database": {
+              "DatabaseName": "string",
+              "InstanceIdentifier": "string"
+            },
+            "ServiceRole": "string",
+            "ResourceRole": "string",
+            "DataPipelineId": "string",
+            "SelectSqlQuery": "string",
+            "DatabaseUserName": "string"
+          },
+          "DataSourceId": "string",
+          "LastUpdatedAt": 1481289211.615,
+          "NumberOfFiles": 1,
+          "DataLocationS3": "string",
+          "DataSizeInBytes": 1,
+          "CreatedByIamUser": "string",
+          "DataSourceSchema": "string",
+          "RedshiftMetadata": {
+            "SelectSqlQuery": "string",
+            "DatabaseUserName": "string",
+            "RedshiftDatabase": {
+              "DatabaseName": "string",
+              "ClusterIdentifier": "string"
+            }
+          },
+          "ComputeStatistics": false,
+          "DataRearrangement": "string"
+        }
+      ]
+  GetEvaluation:
+    description: |-
+      Returns an Evaluation that includes metadata as well as the current status of the Evaluation.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_GetEvaluation.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "LogUri": "string",
+          "Status": "string",
+          "Message": "string",
+          "CreatedAt": 1481289211.615,
+          "MLModelId": "string",
+          "StartedAt": 1481289211.615,
+          "FinishedAt": 1481289211.615,
+          "ComputeTime": 1,
+          "EvaluationId": "string",
+          "LastUpdatedAt": 1481289211.615,
+          "CreatedByIamUser": "string",
+          "PerformanceMetrics": {
+            "Properties": {
+              "string": "string"
+            }
+          },
+          "InputDataLocationS3": "string",
+          "EvaluationDataSourceId": "string"
+        }
+      ]
+  GetMLModel:
+    description: |-
+      Returns an MLModel that includes detailed metadata, data source information, and the current status of the MLModel.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_GetMLModel.html
+    example:
+      inputs: [
+        {
+          "Verbose": false,
+          "MLModelId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "LogUri": "string",
+          "Recipe": "string",
+          "Schema": "string",
+          "Status": "string",
+          "Message": "string",
+          "CreatedAt": 1481289211.615,
+          "MLModelId": "string",
+          "StartedAt": 1481289211.615,
+          "FinishedAt": 1481289211.615,
+          "ComputeTime": 1,
+          "MLModelType": "string",
+          "SizeInBytes": 1,
+          "EndpointInfo": {
+            "CreatedAt": 1481289211.615,
+            "EndpointUrl": "string",
+            "EndpointStatus": "string",
+            "PeakRequestsPerSecond": 1
+          },
+          "LastUpdatedAt": 1481289211.615,
+          "ScoreThreshold": 0.1,
+          "CreatedByIamUser": "string",
+          "TrainingParameters": {
+            "string": "string"
+          },
+          "InputDataLocationS3": "string",
+          "TrainingDataSourceId": "string",
+          "ScoreThresholdLastUpdatedAt": 1481289211.615
+        }
+      ]
+  Predict:
+    description: |-
+      Generates a prediction for the observation using the specified ML Model.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_Predict.html
+    example:
+      inputs: [
+        {
+          "Record": {
+            "string": "string"
+          },
+          "MLModelId": "string",
+          "PredictEndpoint": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Prediction": {
+            "details": {
+              "string": "string"
+            },
+            "predictedLabel": "string",
+            "predictedValue": 0.1,
+            "predictedScores": {
+              "string": 0.1
+            }
+          }
+        }
+      ]
+  UpdateBatchPrediction:
+    description: |-
+      Updates the BatchPredictionName of a BatchPrediction.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_UpdateBatchPrediction.html
+    example:
+      inputs: [
+        {
+          "BatchPredictionId": "string",
+          "BatchPredictionName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "BatchPredictionId": "string"
+        }
+      ]
+  UpdateDataSource:
+    description: |-
+      Updates the DataSourceName of a DataSource.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_UpdateDataSource.html
+    example:
+      inputs: [
+        {
+          "DataSourceId": "string",
+          "DataSourceName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DataSourceId": "string"
+        }
+      ]
+  UpdateEvaluation:
+    description: |-
+      Updates the EvaluationName of an Evaluation.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_UpdateEvaluation.html
+    example:
+      inputs: [
+        {
+          "EvaluationId": "string",
+          "EvaluationName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EvaluationId": "string"
+        }
+      ]
+  UpdateMLModel:
+    description: |-
+      Updates the MLModelName and the ScoreThreshold of an MLModel.
+    versions:
+      from: 2014.12.12
+    link: https://docs.aws.amazon.com/machine-learning/latest/APIReference/API_UpdateMLModel.html
+    example:
+      inputs: [
+        {
+          "MLModelId": "string",
+          "MLModelName": "string",
+          "ScoreThreshold": 0.1
+        }
+      ]
+      outputs: [
+        {
+          "MLModelId": "string"
+        }
+      ]

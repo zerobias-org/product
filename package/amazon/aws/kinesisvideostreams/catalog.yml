@@ -1,0 +1,662 @@
+Product:
+  name: Amazon Kinesis Video Streams
+  versions: [2017.9.30,2019.12.4]
+  package: amazon.aws.kinesisvideostreams
+  description: |-
+    Amazon Kinesis Video Streams
+  link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/what-is-kinesis-video.html
+  contentType: json
+Operations:
+  GetIceServerConfig:
+    description: |-
+      Gets the Interactive Connectivity Establishment (ICE) server configuration information, including URIs, user name, and password which can be used to configure the WebRTC connection. The ICE component uses this configuration information to set up the WebRTC connection, including authenticating with the Traversal Using Relays around NAT (TURN) relay server.
+    versions:
+      from: 2019.12.4
+      to: 2019.12.4
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_AWSAcuitySignalingService_GetIceServerConfig.html
+    example:
+      inputs: [
+        {
+          "Service": "string",
+          "ClientId": "string",
+          "Username": "string",
+          "ChannelARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IceServerList": [
+            {
+              "Ttl": 1,
+              "Uris": [
+                "string"
+              ],
+              "Password": "string",
+              "Username": "string"
+            }
+          ]
+        }
+      ]
+  SendAlexaOfferToMaster:
+    description: |-
+      This API allows you to connect WebRTC-enabled devices with Alexa display devices. When invoked, it sends the Alexa Session Description Protocol (SDP) offer to the master peer. The offer is delivered as soon as the master is connected to the specified signaling channel. This API returns the SDP answer from the connected master. If the master is not connected to the signaling channel, redelivery requests are made until the message expires.
+    versions:
+      from: 2019.12.4
+      to: 2019.12.4
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_AWSAcuitySignalingService_SendAlexaOfferToMaster.html
+    example:
+      inputs: [
+        {
+          "ChannelARN": "string",
+          "MessagePayload": "string",
+          "SenderClientId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Answer": "string"
+        }
+      ]
+  CreateSignalingChannel:
+    description: |-
+      Creates a signaling channel.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_CreateSignalingChannel.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ChannelName": "string",
+          "ChannelType": "string",
+          "SingleMasterConfiguration": {
+            "MessageTtlSeconds": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ChannelARN": "string"
+        }
+      ]
+  CreateStream:
+    description: |-
+      Creates a new Kinesis video stream.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_CreateStream.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "KmsKeyId": "string",
+          "MediaType": "string",
+          "DeviceName": "string",
+          "StreamName": "string",
+          "DataRetentionInHours": 1
+        }
+      ]
+      outputs: [
+        {
+          "StreamARN": "string"
+        }
+      ]
+  GetMedia:
+    description: |-
+      Use this API to retrieve media content from a Kinesis video stream. In the request, you identify the stream name or stream Amazon Resource Name (ARN), and the starting chunk. Kinesis Video Streams then returns a stream of chunks in order by fragment number.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_GetMedia.html
+    example:
+      inputs: [
+        {
+          "StreamARN": "string",
+          "StreamName": "string",
+          "StartSelector": {
+            "StartTimestamp": 1481289211.615,
+            "ContinuationToken": "string",
+            "StartSelectorType": "string",
+            "AfterFragmentNumber": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Payload": "blob",
+          "ContentType": "string"
+        }
+      ]
+  DeleteSignalingChannel:
+    description: |-
+      Deletes a specified signaling channel. DeleteSignalingChannel is an asynchronous operation. If you don't specify the channel's current version, the most recent version is deleted.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DeleteSignalingChannel.html
+    example:
+      inputs: [
+        {
+          "ChannelARN": "string",
+          "CurrentVersion": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteStream:
+    description: |-
+      Deletes a Kinesis video stream and the data contained in the stream.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DeleteStream.html
+    example:
+      inputs: [
+        {
+          "StreamARN": "string",
+          "CurrentVersion": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeSignalingChannel:
+    description: |-
+      Returns the most current information about the signaling channel. You must specify either the name or the Amazon Resource Name (ARN) of the channel that you want to describe.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeSignalingChannel.html
+    example:
+      inputs: [
+        {
+          "ChannelARN": "string",
+          "ChannelName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ChannelInfo": {
+            "Version": "string",
+            "ChannelARN": "string",
+            "ChannelName": "string",
+            "ChannelType": "string",
+            "CreationTime": 1481289211.615,
+            "ChannelStatus": "string",
+            "SingleMasterConfiguration": {
+              "MessageTtlSeconds": 1
+            }
+          }
+        }
+      ]
+  DescribeStream:
+    description: |-
+      Returns the most current information about the specified stream. You must specify either the StreamName or the StreamARN.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeStream.html
+    example:
+      inputs: [
+        {
+          "StreamARN": "string",
+          "StreamName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "StreamInfo": {
+            "Status": "string",
+            "Version": "string",
+            "KmsKeyId": "string",
+            "MediaType": "string",
+            "StreamARN": "string",
+            "DeviceName": "string",
+            "StreamName": "string",
+            "CreationTime": 1481289211.615,
+            "DataRetentionInHours": 1
+          }
+        }
+      ]
+  GetDataEndpoint:
+    description: |-
+      Gets an endpoint for a specified stream for either reading or writing. Use this endpoint in your application to read from the specified stream (using the GetMedia or GetMediaForFragmentList operations) or write to it (using the PutMedia operation).
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_GetDataEndpoint.html
+    example:
+      inputs: [
+        {
+          "APIName": "string",
+          "StreamARN": "string",
+          "StreamName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DataEndpoint": "string"
+        }
+      ]
+  GetSignalingChannelEndpoint:
+    description: |-
+      Provides an endpoint for the specified signaling channel to send and receive messages. This API uses the SingleMasterChannelEndpointConfiguration input parameter, which consists of the Protocols and Role properties.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_GetSignalingChannelEndpoint.html
+    example:
+      inputs: [
+        {
+          "ChannelARN": "string",
+          "SingleMasterChannelEndpointConfiguration": {
+            "Role": "string",
+            "Protocols": [
+              "string"
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ResourceEndpointList": [
+            {
+              "Protocol": "string",
+              "ResourceEndpoint": "string"
+            }
+          ]
+        }
+      ]
+  ListSignalingChannels:
+    description: |-
+      Returns an array of ChannelInfo objects. Each object describes a signaling channel. To retrieve only those channels that satisfy a specific condition, you can specify a ChannelNameCondition.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_ListSignalingChannels.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ChannelNameCondition": {
+            "ComparisonValue": "string",
+            "ComparisonOperator": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ChannelInfoList": [
+            {
+              "Version": "string",
+              "ChannelARN": "string",
+              "ChannelName": "string",
+              "ChannelType": "string",
+              "CreationTime": 1481289211.615,
+              "ChannelStatus": "string",
+              "SingleMasterConfiguration": {
+                "MessageTtlSeconds": 1
+              }
+            }
+          ]
+        }
+      ]
+  ListStreams:
+    description: |-
+      Returns an array of StreamInfo objects. Each object describes a stream. To retrieve only streams that satisfy a specific condition, you can specify a StreamNameCondition.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_ListStreams.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "StreamNameCondition": {
+            "ComparisonValue": "string",
+            "ComparisonOperator": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "StreamInfoList": [
+            {
+              "Status": "string",
+              "Version": "string",
+              "KmsKeyId": "string",
+              "MediaType": "string",
+              "StreamARN": "string",
+              "DeviceName": "string",
+              "StreamName": "string",
+              "CreationTime": 1481289211.615,
+              "DataRetentionInHours": 1
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns a list of tags associated with the specified signaling channel.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "NextToken": "string"
+        }
+      ]
+  ListTagsForStream:
+    description: |-
+      Returns a list of tags associated with the specified stream.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_ListTagsForStream.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "StreamARN": "string",
+          "StreamName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "NextToken": "string"
+        }
+      ]
+  GetClip:
+    description: |-
+      Downloads an MP4 file (clip) containing the archived, on-demand media from the specified video stream over the specified time range.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_GetClip.html
+    example:
+      inputs: [
+        {
+          "StreamARN": "string",
+          "StreamName": "string",
+          "ClipFragmentSelector": {
+            "TimestampRange": {
+              "EndTimestamp": 1481289211.615,
+              "StartTimestamp": 1481289211.615
+            },
+            "FragmentSelectorType": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Payload": "blob",
+          "ContentType": "string"
+        }
+      ]
+  GetDASHStreamingSessionURL:
+    description: |-
+      Retrieves an MPEG Dynamic Adaptive Streaming over HTTP (DASH) URL for the stream. You can then open the URL in a media player to view the stream contents.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_GetDASHStreamingSessionURL.html
+    example:
+      inputs: [
+        {
+          "Expires": 1,
+          "StreamARN": "string",
+          "StreamName": "string",
+          "PlaybackMode": "string",
+          "DASHFragmentSelector": {
+            "TimestampRange": {
+              "EndTimestamp": 1481289211.615,
+              "StartTimestamp": 1481289211.615
+            },
+            "FragmentSelectorType": "string"
+          },
+          "DisplayFragmentNumber": "string",
+          "DisplayFragmentTimestamp": "string",
+          "MaxManifestFragmentResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "DASHStreamingSessionURL": "string"
+        }
+      ]
+  GetHLSStreamingSessionURL:
+    description: |-
+      Retrieves an HTTP Live Streaming (HLS) URL for the stream. You can then open the URL in a browser or media player to view the stream contents.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_GetHLSStreamingSessionURL.html
+    example:
+      inputs: [
+        {
+          "Expires": 1,
+          "StreamARN": "string",
+          "StreamName": "string",
+          "PlaybackMode": "string",
+          "ContainerFormat": "string",
+          "DiscontinuityMode": "string",
+          "HLSFragmentSelector": {
+            "TimestampRange": {
+              "EndTimestamp": 1481289211.615,
+              "StartTimestamp": 1481289211.615
+            },
+            "FragmentSelectorType": "string"
+          },
+          "DisplayFragmentTimestamp": "string",
+          "MaxMediaPlaylistFragmentResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "HLSStreamingSessionURL": "string"
+        }
+      ]
+  GetMediaForFragmentList:
+    description: |-
+      Gets media for a list of fragments (specified by fragment number) from the archived data in an Amazon Kinesis video stream.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_GetMediaForFragmentList.html
+    example:
+      inputs: [
+        {
+          "Fragments": [
+            "string"
+          ],
+          "StreamARN": "string",
+          "StreamName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Payload": "blob",
+          "ContentType": "string"
+        }
+      ]
+  ListFragments:
+    description: |-
+      Returns a list of Fragment objects from the specified stream and timestamp range within the archived data.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_ListFragments.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "StreamARN": "string",
+          "MaxResults": 1,
+          "StreamName": "string",
+          "FragmentSelector": {
+            "TimestampRange": {
+              "EndTimestamp": 1481289211.615,
+              "StartTimestamp": 1481289211.615
+            },
+            "FragmentSelectorType": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Fragments": [
+            {
+              "FragmentNumber": "string",
+              "ServerTimestamp": 1481289211.615,
+              "ProducerTimestamp": 1481289211.615,
+              "FragmentSizeInBytes": 1,
+              "FragmentLengthInMilliseconds": 1
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds one or more tags to a signaling channel. A tag is a key-value pair (the value is optional) that you can define and assign to AWS resources. If you specify a tag that already exists, the tag value is replaced with the value that you specify in the request. For more information, see Using Cost Allocation Tags in the AWS Billing and Cost Management User Guide.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagStream:
+    description: |-
+      Adds one or more tags to a stream. A tag is a key-value pair (the value is optional) that you can define and assign to AWS resources. If you specify a tag that already exists, the tag value is replaced with the value that you specify in the request. For more information, see Using Cost Allocation Tags in the AWS Billing and Cost Management User Guide.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_TagStream.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "StreamARN": "string",
+          "StreamName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes one or more tags from a signaling channel. In the request, specify only a tag key or keys; don't specify the value. If you specify a tag key that does not exist, it's ignored.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeyList": [
+            "string"
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagStream:
+    description: |-
+      Removes one or more tags from a stream. In the request, specify only a tag key or keys; don't specify the value. If you specify a tag key that does not exist, it's ignored.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_UntagStream.html
+    example:
+      inputs: [
+        {
+          "StreamARN": "string",
+          "StreamName": "string",
+          "TagKeyList": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateDataRetention:
+    description: |-
+      Increases or decreases the stream's data retention period by the value that you specify. To indicate whether you want to increase or decrease the data retention period, specify the Operation parameter in the request body. In the request, you must specify either the StreamName or the StreamARN.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_UpdateDataRetention.html
+    example:
+      inputs: [
+        {
+          "Operation": "string",
+          "StreamARN": "string",
+          "StreamName": "string",
+          "CurrentVersion": "string",
+          "DataRetentionChangeInHours": 1
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateSignalingChannel:
+    description: |-
+      Updates the existing signaling channel. This is an asynchronous operation and takes time to complete.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_UpdateSignalingChannel.html
+    example:
+      inputs: [
+        {
+          "ChannelARN": "string",
+          "CurrentVersion": "string",
+          "SingleMasterConfiguration": {
+            "MessageTtlSeconds": 1
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateStream:
+    description: |-
+      Updates stream metadata, such as the device name and media type.
+    versions:
+      from: 2017.9.30
+    link: https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_UpdateStream.html
+    example:
+      inputs: [
+        {
+          "MediaType": "string",
+          "StreamARN": "string",
+          "DeviceName": "string",
+          "StreamName": "string",
+          "CurrentVersion": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

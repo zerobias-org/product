@@ -1,0 +1,2056 @@
+Product:
+  name: Amazon Kendra
+  versions: [2019.2.3]
+  package: amazon.aws.kendra
+  description: |-
+    Amazon Kendra
+  link: https://docs.aws.amazon.com/kendra/latest/dg/what-is-kendra.html
+  contentType: json
+Operations:
+  BatchDeleteDocument:
+    description: |-
+      Removes one or more documents from an index. The documents must have been added with the BatchPutDocument operation.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_BatchDeleteDocument.html
+    example:
+      inputs: [
+        {
+          "IndexId": "string",
+          "DocumentIdList": [
+            "string"
+          ],
+          "DataSourceSyncJobMetricTarget": {
+            "DataSourceId": "string",
+            "DataSourceSyncJobId": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "FailedDocuments": [
+            {
+              "Id": "string",
+              "ErrorCode": "string",
+              "ErrorMessage": "string"
+            }
+          ]
+        }
+      ]
+  BatchPutDocument:
+    description: |-
+      Adds one or more documents to an index.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html
+    example:
+      inputs: [
+        {
+          "IndexId": "string",
+          "RoleArn": "string",
+          "Documents": [
+            {
+              "Id": "string",
+              "Blob": "blob",
+              "Title": "string",
+              "S3Path": {
+                "Key": "string",
+                "Bucket": "string"
+              },
+              "Attributes": [
+                {
+                  "Key": "string",
+                  "Value": {
+                    "DateValue": "number",
+                    "LongValue": "number",
+                    "StringValue": "string",
+                    "StringListValue": [
+                      "string"
+                    ]
+                  }
+                }
+              ],
+              "ContentType": "string",
+              "AccessControlList": [
+                {
+                  "Name": "string",
+                  "Type": "string",
+                  "Access": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "FailedDocuments": [
+            {
+              "Id": "string",
+              "ErrorCode": "string",
+              "ErrorMessage": "string"
+            }
+          ]
+        }
+      ]
+  CreateDataSource:
+    description: |-
+      Creates a data source that you use to with an Amazon Kendra index.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_CreateDataSource.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Type": "string",
+          "IndexId": "string",
+          "RoleArn": "string",
+          "Schedule": "string",
+          "ClientToken": "string",
+          "Description": "string",
+          "Configuration": {
+            "S3Configuration": {
+              "BucketName": "string",
+              "ExclusionPatterns": [
+                "string"
+              ],
+              "InclusionPatterns": [
+                "string"
+              ],
+              "InclusionPrefixes": [
+                "string"
+              ],
+              "AccessControlListConfiguration": {
+                "KeyPath": "string"
+              },
+              "DocumentsMetadataConfiguration": {
+                "S3Prefix": "string"
+              }
+            },
+            "DatabaseConfiguration": {
+              "AclConfiguration": {
+                "AllowedGroupsColumnName": "string"
+              },
+              "SqlConfiguration": {
+                "QueryIdentifiersEnclosingOption": "string"
+              },
+              "VpcConfiguration": {
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ]
+              },
+              "DatabaseEngineType": "string",
+              "ColumnConfiguration": {
+                "FieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "DocumentIdColumnName": "string",
+                "ChangeDetectingColumns": [
+                  "string"
+                ],
+                "DocumentDataColumnName": "string",
+                "DocumentTitleColumnName": "string"
+              },
+              "ConnectionConfiguration": {
+                "SecretArn": "string",
+                "TableName": "string",
+                "DatabaseHost": "string",
+                "DatabaseName": "string",
+                "DatabasePort": "number"
+              }
+            },
+            "OneDriveConfiguration": {
+              "SecretArn": "string",
+              "TenantDomain": "string",
+              "FieldMappings": [
+                {
+                  "IndexFieldName": "string",
+                  "DateFieldFormat": "string",
+                  "DataSourceFieldName": "string"
+                }
+              ],
+              "OneDriveUsers": {
+                "OneDriveUserList": [
+                  "string"
+                ],
+                "OneDriveUserS3Path": {
+                  "Key": "string",
+                  "Bucket": "string"
+                }
+              },
+              "ExclusionPatterns": [
+                "string"
+              ],
+              "InclusionPatterns": [
+                "string"
+              ],
+              "DisableLocalGroups": "boolean"
+            },
+            "ConfluenceConfiguration": {
+              "Version": "string",
+              "SecretArn": "string",
+              "ServerUrl": "string",
+              "VpcConfiguration": {
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ]
+              },
+              "BlogConfiguration": {
+                "BlogFieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ]
+              },
+              "ExclusionPatterns": [
+                "string"
+              ],
+              "InclusionPatterns": [
+                "string"
+              ],
+              "PageConfiguration": {
+                "PageFieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ]
+              },
+              "SpaceConfiguration": {
+                "ExcludeSpaces": [
+                  "string"
+                ],
+                "IncludeSpaces": [
+                  "string"
+                ],
+                "SpaceFieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "CrawlArchivedSpaces": "boolean",
+                "CrawlPersonalSpaces": "boolean"
+              },
+              "AttachmentConfiguration": {
+                "CrawlAttachments": "boolean",
+                "AttachmentFieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ]
+              }
+            },
+            "SalesforceConfiguration": {
+              "SecretArn": "string",
+              "ServerUrl": "string",
+              "CrawlAttachments": "boolean",
+              "ChatterFeedConfiguration": {
+                "FieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "IncludeFilterTypes": [
+                  "string"
+                ],
+                "DocumentDataFieldName": "string",
+                "DocumentTitleFieldName": "string"
+              },
+              "StandardObjectConfigurations": [
+                {
+                  "Name": "string",
+                  "FieldMappings": [
+                    {
+                      "IndexFieldName": "string",
+                      "DateFieldFormat": "string",
+                      "DataSourceFieldName": "string"
+                    }
+                  ],
+                  "DocumentDataFieldName": "string",
+                  "DocumentTitleFieldName": "string"
+                }
+              ],
+              "ExcludeAttachmentFilePatterns": [
+                "string"
+              ],
+              "IncludeAttachmentFilePatterns": [
+                "string"
+              ],
+              "KnowledgeArticleConfiguration": {
+                "IncludedStates": [
+                  "string"
+                ],
+                "CustomKnowledgeArticleTypeConfigurations": [
+                  {
+                    "Name": "string",
+                    "FieldMappings": [
+                      {
+                        "IndexFieldName": "string",
+                        "DateFieldFormat": "string",
+                        "DataSourceFieldName": "string"
+                      }
+                    ],
+                    "DocumentDataFieldName": "string",
+                    "DocumentTitleFieldName": "string"
+                  }
+                ],
+                "StandardKnowledgeArticleTypeConfiguration": {
+                  "FieldMappings": [
+                    {
+                      "IndexFieldName": "string",
+                      "DateFieldFormat": "string",
+                      "DataSourceFieldName": "string"
+                    }
+                  ],
+                  "DocumentDataFieldName": "string",
+                  "DocumentTitleFieldName": "string"
+                }
+              },
+              "StandardObjectAttachmentConfiguration": {
+                "FieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "DocumentTitleFieldName": "string"
+              }
+            },
+            "ServiceNowConfiguration": {
+              "HostUrl": "string",
+              "SecretArn": "string",
+              "AuthenticationType": "string",
+              "ServiceNowBuildVersion": "string",
+              "ServiceCatalogConfiguration": {
+                "FieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "CrawlAttachments": "boolean",
+                "DocumentDataFieldName": "string",
+                "DocumentTitleFieldName": "string",
+                "ExcludeAttachmentFilePatterns": [
+                  "string"
+                ],
+                "IncludeAttachmentFilePatterns": [
+                  "string"
+                ]
+              },
+              "KnowledgeArticleConfiguration": {
+                "FilterQuery": "string",
+                "FieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "CrawlAttachments": "boolean",
+                "DocumentDataFieldName": "string",
+                "DocumentTitleFieldName": "string",
+                "ExcludeAttachmentFilePatterns": [
+                  "string"
+                ],
+                "IncludeAttachmentFilePatterns": [
+                  "string"
+                ]
+              }
+            },
+            "SharePointConfiguration": {
+              "Urls": [
+                "string"
+              ],
+              "SecretArn": "string",
+              "UseChangeLog": "boolean",
+              "FieldMappings": [
+                {
+                  "IndexFieldName": "string",
+                  "DateFieldFormat": "string",
+                  "DataSourceFieldName": "string"
+                }
+              ],
+              "CrawlAttachments": "boolean",
+              "VpcConfiguration": {
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ]
+              },
+              "ExclusionPatterns": [
+                "string"
+              ],
+              "InclusionPatterns": [
+                "string"
+              ],
+              "SharePointVersion": "string",
+              "DisableLocalGroups": "boolean",
+              "DocumentTitleFieldName": "string"
+            },
+            "GoogleDriveConfiguration": {
+              "SecretArn": "string",
+              "FieldMappings": [
+                {
+                  "IndexFieldName": "string",
+                  "DateFieldFormat": "string",
+                  "DataSourceFieldName": "string"
+                }
+              ],
+              "ExcludeMimeTypes": [
+                "string"
+              ],
+              "ExclusionPatterns": [
+                "string"
+              ],
+              "InclusionPatterns": [
+                "string"
+              ],
+              "ExcludeSharedDrives": [
+                "string"
+              ],
+              "ExcludeUserAccounts": [
+                "string"
+              ]
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateFaq:
+    description: |-
+      Creates an new set of frequently asked question (FAQ) questions and answers.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_CreateFaq.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "S3Path": {
+            "Key": "string",
+            "Bucket": "string"
+          },
+          "IndexId": "string",
+          "RoleArn": "string",
+          "FileFormat": "string",
+          "ClientToken": "string",
+          "Description": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateIndex:
+    description: |-
+      Creates a new Amazon Kendra index. Index creation is an asynchronous operation. To determine if index creation has completed, check the Status field returned from a call to DescribeIndex. The Status field is set to ACTIVE when the index is ready to use.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_CreateIndex.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Edition": "string",
+          "RoleArn": "string",
+          "ClientToken": "string",
+          "Description": "string",
+          "UserContextPolicy": "string",
+          "UserTokenConfigurations": [
+            {
+              "JwtTokenTypeConfiguration": {
+                "URL": "string",
+                "Issuer": "string",
+                "ClaimRegex": "string",
+                "KeyLocation": "string",
+                "SecretManagerArn": "string",
+                "GroupAttributeField": "string",
+                "UserNameAttributeField": "string"
+              },
+              "JsonTokenTypeConfiguration": {
+                "GroupAttributeField": "string",
+                "UserNameAttributeField": "string"
+              }
+            }
+          ],
+          "ServerSideEncryptionConfiguration": {
+            "KmsKeyId": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateThesaurus:
+    description: |-
+      Creates a thesaurus for an index. The thesaurus contains a list of synonyms in Solr format.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_CreateThesaurus.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "IndexId": "string",
+          "RoleArn": "string",
+          "ClientToken": "string",
+          "Description": "string",
+          "SourceS3Path": {
+            "Key": "string",
+            "Bucket": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDataSource:
+    description: |-
+      Deletes an Amazon Kendra data source. An exception is not thrown if the data source is already being deleted. While the data source is being deleted, the Status field returned by a call to the DescribeDataSource operation is set to DELETING. For more information, see Deleting Data Sources.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_DeleteDataSource.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IndexId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteFaq:
+    description: |-
+      Removes an FAQ from an index.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_DeleteFaq.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IndexId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteIndex:
+    description: |-
+      Deletes an existing Amazon Kendra index. An exception is not thrown if the index is already being deleted. While the index is being deleted, the Status field returned by a call to the DescribeIndex operation is set to DELETING.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_DeleteIndex.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteThesaurus:
+    description: |-
+      Deletes an existing Amazon Kendra thesaurus.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_DeleteThesaurus.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IndexId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeDataSource:
+    description: |-
+      Gets information about a Amazon Kendra data source.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_DescribeDataSource.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IndexId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Type": "string",
+          "Status": "string",
+          "IndexId": "string",
+          "RoleArn": "string",
+          "Schedule": "string",
+          "CreatedAt": "number",
+          "UpdatedAt": "number",
+          "Description": "string",
+          "ErrorMessage": "string",
+          "Configuration": {
+            "S3Configuration": {
+              "BucketName": "string",
+              "ExclusionPatterns": [
+                "string"
+              ],
+              "InclusionPatterns": [
+                "string"
+              ],
+              "InclusionPrefixes": [
+                "string"
+              ],
+              "AccessControlListConfiguration": {
+                "KeyPath": "string"
+              },
+              "DocumentsMetadataConfiguration": {
+                "S3Prefix": "string"
+              }
+            },
+            "DatabaseConfiguration": {
+              "AclConfiguration": {
+                "AllowedGroupsColumnName": "string"
+              },
+              "SqlConfiguration": {
+                "QueryIdentifiersEnclosingOption": "string"
+              },
+              "VpcConfiguration": {
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ]
+              },
+              "DatabaseEngineType": "string",
+              "ColumnConfiguration": {
+                "FieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "DocumentIdColumnName": "string",
+                "ChangeDetectingColumns": [
+                  "string"
+                ],
+                "DocumentDataColumnName": "string",
+                "DocumentTitleColumnName": "string"
+              },
+              "ConnectionConfiguration": {
+                "SecretArn": "string",
+                "TableName": "string",
+                "DatabaseHost": "string",
+                "DatabaseName": "string",
+                "DatabasePort": "number"
+              }
+            },
+            "OneDriveConfiguration": {
+              "SecretArn": "string",
+              "TenantDomain": "string",
+              "FieldMappings": [
+                {
+                  "IndexFieldName": "string",
+                  "DateFieldFormat": "string",
+                  "DataSourceFieldName": "string"
+                }
+              ],
+              "OneDriveUsers": {
+                "OneDriveUserList": [
+                  "string"
+                ],
+                "OneDriveUserS3Path": {
+                  "Key": "string",
+                  "Bucket": "string"
+                }
+              },
+              "ExclusionPatterns": [
+                "string"
+              ],
+              "InclusionPatterns": [
+                "string"
+              ],
+              "DisableLocalGroups": "boolean"
+            },
+            "ConfluenceConfiguration": {
+              "Version": "string",
+              "SecretArn": "string",
+              "ServerUrl": "string",
+              "VpcConfiguration": {
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ]
+              },
+              "BlogConfiguration": {
+                "BlogFieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ]
+              },
+              "ExclusionPatterns": [
+                "string"
+              ],
+              "InclusionPatterns": [
+                "string"
+              ],
+              "PageConfiguration": {
+                "PageFieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ]
+              },
+              "SpaceConfiguration": {
+                "ExcludeSpaces": [
+                  "string"
+                ],
+                "IncludeSpaces": [
+                  "string"
+                ],
+                "SpaceFieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "CrawlArchivedSpaces": "boolean",
+                "CrawlPersonalSpaces": "boolean"
+              },
+              "AttachmentConfiguration": {
+                "CrawlAttachments": "boolean",
+                "AttachmentFieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ]
+              }
+            },
+            "SalesforceConfiguration": {
+              "SecretArn": "string",
+              "ServerUrl": "string",
+              "CrawlAttachments": "boolean",
+              "ChatterFeedConfiguration": {
+                "FieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "IncludeFilterTypes": [
+                  "string"
+                ],
+                "DocumentDataFieldName": "string",
+                "DocumentTitleFieldName": "string"
+              },
+              "StandardObjectConfigurations": [
+                {
+                  "Name": "string",
+                  "FieldMappings": [
+                    {
+                      "IndexFieldName": "string",
+                      "DateFieldFormat": "string",
+                      "DataSourceFieldName": "string"
+                    }
+                  ],
+                  "DocumentDataFieldName": "string",
+                  "DocumentTitleFieldName": "string"
+                }
+              ],
+              "ExcludeAttachmentFilePatterns": [
+                "string"
+              ],
+              "IncludeAttachmentFilePatterns": [
+                "string"
+              ],
+              "KnowledgeArticleConfiguration": {
+                "IncludedStates": [
+                  "string"
+                ],
+                "CustomKnowledgeArticleTypeConfigurations": [
+                  {
+                    "Name": "string",
+                    "FieldMappings": [
+                      {
+                        "IndexFieldName": "string",
+                        "DateFieldFormat": "string",
+                        "DataSourceFieldName": "string"
+                      }
+                    ],
+                    "DocumentDataFieldName": "string",
+                    "DocumentTitleFieldName": "string"
+                  }
+                ],
+                "StandardKnowledgeArticleTypeConfiguration": {
+                  "FieldMappings": [
+                    {
+                      "IndexFieldName": "string",
+                      "DateFieldFormat": "string",
+                      "DataSourceFieldName": "string"
+                    }
+                  ],
+                  "DocumentDataFieldName": "string",
+                  "DocumentTitleFieldName": "string"
+                }
+              },
+              "StandardObjectAttachmentConfiguration": {
+                "FieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "DocumentTitleFieldName": "string"
+              }
+            },
+            "ServiceNowConfiguration": {
+              "HostUrl": "string",
+              "SecretArn": "string",
+              "AuthenticationType": "string",
+              "ServiceNowBuildVersion": "string",
+              "ServiceCatalogConfiguration": {
+                "FieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "CrawlAttachments": "boolean",
+                "DocumentDataFieldName": "string",
+                "DocumentTitleFieldName": "string",
+                "ExcludeAttachmentFilePatterns": [
+                  "string"
+                ],
+                "IncludeAttachmentFilePatterns": [
+                  "string"
+                ]
+              },
+              "KnowledgeArticleConfiguration": {
+                "FilterQuery": "string",
+                "FieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "CrawlAttachments": "boolean",
+                "DocumentDataFieldName": "string",
+                "DocumentTitleFieldName": "string",
+                "ExcludeAttachmentFilePatterns": [
+                  "string"
+                ],
+                "IncludeAttachmentFilePatterns": [
+                  "string"
+                ]
+              }
+            },
+            "SharePointConfiguration": {
+              "Urls": [
+                "string"
+              ],
+              "SecretArn": "string",
+              "UseChangeLog": "boolean",
+              "FieldMappings": [
+                {
+                  "IndexFieldName": "string",
+                  "DateFieldFormat": "string",
+                  "DataSourceFieldName": "string"
+                }
+              ],
+              "CrawlAttachments": "boolean",
+              "VpcConfiguration": {
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ]
+              },
+              "ExclusionPatterns": [
+                "string"
+              ],
+              "InclusionPatterns": [
+                "string"
+              ],
+              "SharePointVersion": "string",
+              "DisableLocalGroups": "boolean",
+              "DocumentTitleFieldName": "string"
+            },
+            "GoogleDriveConfiguration": {
+              "SecretArn": "string",
+              "FieldMappings": [
+                {
+                  "IndexFieldName": "string",
+                  "DateFieldFormat": "string",
+                  "DataSourceFieldName": "string"
+                }
+              ],
+              "ExcludeMimeTypes": [
+                "string"
+              ],
+              "ExclusionPatterns": [
+                "string"
+              ],
+              "InclusionPatterns": [
+                "string"
+              ],
+              "ExcludeSharedDrives": [
+                "string"
+              ],
+              "ExcludeUserAccounts": [
+                "string"
+              ]
+            }
+          }
+        }
+      ]
+  DescribeFaq:
+    description: |-
+      Gets information about an FAQ list.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_DescribeFaq.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IndexId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "S3Path": {
+            "Key": "string",
+            "Bucket": "string"
+          },
+          "Status": "string",
+          "IndexId": "string",
+          "RoleArn": "string",
+          "CreatedAt": "number",
+          "UpdatedAt": "number",
+          "FileFormat": "string",
+          "Description": "string",
+          "ErrorMessage": "string"
+        }
+      ]
+  DescribeIndex:
+    description: |-
+      Describes an existing Amazon Kendra index
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_DescribeIndex.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Status": "string",
+          "Edition": "string",
+          "RoleArn": "string",
+          "CreatedAt": "number",
+          "UpdatedAt": "number",
+          "Description": "string",
+          "ErrorMessage": "string",
+          "CapacityUnits": {
+            "QueryCapacityUnits": "number",
+            "StorageCapacityUnits": "number"
+          },
+          "IndexStatistics": {
+            "FaqStatistics": {
+              "IndexedQuestionAnswersCount": "number"
+            },
+            "TextDocumentStatistics": {
+              "IndexedTextBytes": "number",
+              "IndexedTextDocumentsCount": "number"
+            }
+          },
+          "UserContextPolicy": "string",
+          "UserTokenConfigurations": [
+            {
+              "JwtTokenTypeConfiguration": {
+                "URL": "string",
+                "Issuer": "string",
+                "ClaimRegex": "string",
+                "KeyLocation": "string",
+                "SecretManagerArn": "string",
+                "GroupAttributeField": "string",
+                "UserNameAttributeField": "string"
+              },
+              "JsonTokenTypeConfiguration": {
+                "GroupAttributeField": "string",
+                "UserNameAttributeField": "string"
+              }
+            }
+          ],
+          "DocumentMetadataConfigurations": [
+            {
+              "Name": "string",
+              "Type": "string",
+              "Search": {
+                "Sortable": "boolean",
+                "Facetable": "boolean",
+                "Searchable": "boolean",
+                "Displayable": "boolean"
+              },
+              "Relevance": {
+                "Duration": "string",
+                "Freshness": "boolean",
+                "RankOrder": "string",
+                "Importance": "number",
+                "ValueImportanceMap": {
+                  "string": "number"
+                }
+              }
+            }
+          ],
+          "ServerSideEncryptionConfiguration": {
+            "KmsKeyId": "string"
+          }
+        }
+      ]
+  DescribeThesaurus:
+    description: |-
+      Describes an existing Amazon Kendra thesaurus.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_DescribeThesaurus.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IndexId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Status": "string",
+          "IndexId": "string",
+          "RoleArn": "string",
+          "CreatedAt": "number",
+          "TermCount": "number",
+          "UpdatedAt": "number",
+          "Description": "string",
+          "ErrorMessage": "string",
+          "SourceS3Path": {
+            "Key": "string",
+            "Bucket": "string"
+          },
+          "FileSizeBytes": "number",
+          "SynonymRuleCount": "number"
+        }
+      ]
+  ListDataSources:
+    description: |-
+      Lists the data sources that you have created.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_ListDataSources.html
+    example:
+      inputs: [
+        {
+          "IndexId": "string",
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "SummaryItems": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Type": "string",
+              "Status": "string",
+              "CreatedAt": "number",
+              "UpdatedAt": "number"
+            }
+          ]
+        }
+      ]
+  ListDataSourceSyncJobs:
+    description: |-
+      Gets statistics about synchronizing Amazon Kendra with a data source.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_ListDataSourceSyncJobs.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IndexId": "string",
+          "NextToken": "string",
+          "MaxResults": "number",
+          "StatusFilter": "string",
+          "StartTimeFilter": {
+            "EndTime": "number",
+            "StartTime": "number"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "History": [
+            {
+              "Status": "string",
+              "EndTime": "number",
+              "Metrics": {
+                "DocumentsAdded": "string",
+                "DocumentsFailed": "string",
+                "DocumentsDeleted": "string",
+                "DocumentsScanned": "string",
+                "DocumentsModified": "string"
+              },
+              "ErrorCode": "string",
+              "StartTime": "number",
+              "ExecutionId": "string",
+              "ErrorMessage": "string",
+              "DataSourceErrorCode": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListFaqs:
+    description: |-
+      Gets a list of FAQ lists associated with an index.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_ListFaqs.html
+    example:
+      inputs: [
+        {
+          "IndexId": "string",
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "FaqSummaryItems": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Status": "string",
+              "CreatedAt": "number",
+              "UpdatedAt": "number",
+              "FileFormat": "string"
+            }
+          ]
+        }
+      ]
+  ListIndices:
+    description: |-
+      Lists the Amazon Kendra indexes that you have created.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_ListIndices.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "IndexConfigurationSummaryItems": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Status": "string",
+              "Edition": "string",
+              "CreatedAt": "number",
+              "UpdatedAt": "number"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Gets a list of tags associated with a specified resource. Indexes, FAQs, and data sources can have tags associated with them.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  ListThesauri:
+    description: |-
+      Lists the Amazon Kendra thesauri associated with an index.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_ListThesauri.html
+    example:
+      inputs: [
+        {
+          "IndexId": "string",
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ThesaurusSummaryItems": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Status": "string",
+              "CreatedAt": "number",
+              "UpdatedAt": "number"
+            }
+          ]
+        }
+      ]
+  Query:
+    description: |-
+      Searches an active index. Use this API to search your documents using query. The Query operation enables to do faceted search and to filter results based on document attributes.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_Query.html
+    example:
+      inputs: [
+        {
+          "Facets": [
+            {
+              "DocumentAttributeKey": "string"
+            }
+          ],
+          "IndexId": "string",
+          "PageSize": "number",
+          "QueryText": "string",
+          "VisitorId": "string",
+          "PageNumber": "number",
+          "UserContext": {
+            "Token": "string"
+          },
+          "AttributeFilter": {
+            "EqualsTo": {
+              "Key": "string",
+              "Value": {
+                "DateValue": "number",
+                "LongValue": "number",
+                "StringValue": "string",
+                "StringListValue": [
+                  "string"
+                ]
+              }
+            },
+            "LessThan": {
+              "Key": "string",
+              "Value": {
+                "DateValue": "number",
+                "LongValue": "number",
+                "StringValue": "string",
+                "StringListValue": [
+                  "string"
+                ]
+              }
+            },
+            "NotFilter": "AttributeFilter",
+            "ContainsAll": {
+              "Key": "string",
+              "Value": {
+                "DateValue": "number",
+                "LongValue": "number",
+                "StringValue": "string",
+                "StringListValue": [
+                  "string"
+                ]
+              }
+            },
+            "ContainsAny": {
+              "Key": "string",
+              "Value": {
+                "DateValue": "number",
+                "LongValue": "number",
+                "StringValue": "string",
+                "StringListValue": [
+                  "string"
+                ]
+              }
+            },
+            "GreaterThan": {
+              "Key": "string",
+              "Value": {
+                "DateValue": "number",
+                "LongValue": "number",
+                "StringValue": "string",
+                "StringListValue": [
+                  "string"
+                ]
+              }
+            },
+            "OrAllFilters": [
+              "AttributeFilter"
+            ],
+            "AndAllFilters": [
+              "AttributeFilter"
+            ],
+            "LessThanOrEquals": {
+              "Key": "string",
+              "Value": {
+                "DateValue": "number",
+                "LongValue": "number",
+                "StringValue": "string",
+                "StringListValue": [
+                  "string"
+                ]
+              }
+            },
+            "GreaterThanOrEquals": {
+              "Key": "string",
+              "Value": {
+                "DateValue": "number",
+                "LongValue": "number",
+                "StringValue": "string",
+                "StringListValue": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "SortingConfiguration": {
+            "SortOrder": "string",
+            "DocumentAttributeKey": "string"
+          },
+          "QueryResultTypeFilter": "string",
+          "RequestedDocumentAttributes": [
+            "string"
+          ],
+          "DocumentRelevanceOverrideConfigurations": [
+            {
+              "Name": "string",
+              "Relevance": {
+                "Duration": "string",
+                "Freshness": "boolean",
+                "RankOrder": "string",
+                "Importance": "number",
+                "ValueImportanceMap": {
+                  "string": "number"
+                }
+              }
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "QueryId": "string",
+          "ResultItems": [
+            {
+              "Id": "string",
+              "Type": "string",
+              "DocumentId": "string",
+              "DocumentURI": "string",
+              "DocumentTitle": {
+                "Text": "string",
+                "Highlights": [
+                  {
+                    "Type": "string",
+                    "EndOffset": "number",
+                    "TopAnswer": "boolean",
+                    "BeginOffset": "number"
+                  }
+                ]
+              },
+              "FeedbackToken": "string",
+              "DocumentExcerpt": {
+                "Text": "string",
+                "Highlights": [
+                  {
+                    "Type": "string",
+                    "EndOffset": "number",
+                    "TopAnswer": "boolean",
+                    "BeginOffset": "number"
+                  }
+                ]
+              },
+              "ScoreAttributes": {
+                "ScoreConfidence": "string"
+              },
+              "DocumentAttributes": [
+                {
+                  "Key": "string",
+                  "Value": {
+                    "DateValue": "number",
+                    "LongValue": "number",
+                    "StringValue": "string",
+                    "StringListValue": [
+                      "string"
+                    ]
+                  }
+                }
+              ],
+              "AdditionalAttributes": [
+                {
+                  "Key": "string",
+                  "Value": {
+                    "TextWithHighlightsValue": {
+                      "Text": "string",
+                      "Highlights": [
+                        {
+                          "Type": "string",
+                          "EndOffset": "number",
+                          "TopAnswer": "boolean",
+                          "BeginOffset": "number"
+                        }
+                      ]
+                    }
+                  },
+                  "ValueType": "string"
+                }
+              ]
+            }
+          ],
+          "FacetResults": [
+            {
+              "DocumentAttributeKey": "string",
+              "DocumentAttributeValueType": "string",
+              "DocumentAttributeValueCountPairs": [
+                {
+                  "Count": "number",
+                  "DocumentAttributeValue": {
+                    "DateValue": "number",
+                    "LongValue": "number",
+                    "StringValue": "string",
+                    "StringListValue": [
+                      "string"
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "TotalNumberOfResults": "number"
+        }
+      ]
+  StartDataSourceSyncJob:
+    description: |-
+      Starts a synchronization job for a data source. If a synchronization job is already in progress, Amazon Kendra returns a ResourceInUseException exception.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_StartDataSourceSyncJob.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IndexId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ExecutionId": "string"
+        }
+      ]
+  StopDataSourceSyncJob:
+    description: |-
+      Stops a running synchronization job. You can't stop a scheduled synchronization job.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_StopDataSourceSyncJob.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IndexId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SubmitFeedback:
+    description: |-
+      Enables you to provide feedback to Amazon Kendra to improve the performance of the service.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_SubmitFeedback.html
+    example:
+      inputs: [
+        {
+          "IndexId": "string",
+          "QueryId": "string",
+          "ClickFeedbackItems": [
+            {
+              "ResultId": "string",
+              "ClickTime": "number"
+            }
+          ],
+          "RelevanceFeedbackItems": [
+            {
+              "ResultId": "string",
+              "RelevanceValue": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Adds the specified tag to the specified index, FAQ, or data source resource. If the tag already exists, the existing value is replaced with the new value.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes a tag from an index, FAQ, or a data source.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateDataSource:
+    description: |-
+      Updates an existing Amazon Kendra data source.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateDataSource.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "IndexId": "string",
+          "RoleArn": "string",
+          "Schedule": "string",
+          "Description": "string",
+          "Configuration": {
+            "S3Configuration": {
+              "BucketName": "string",
+              "ExclusionPatterns": [
+                "string"
+              ],
+              "InclusionPatterns": [
+                "string"
+              ],
+              "InclusionPrefixes": [
+                "string"
+              ],
+              "AccessControlListConfiguration": {
+                "KeyPath": "string"
+              },
+              "DocumentsMetadataConfiguration": {
+                "S3Prefix": "string"
+              }
+            },
+            "DatabaseConfiguration": {
+              "AclConfiguration": {
+                "AllowedGroupsColumnName": "string"
+              },
+              "SqlConfiguration": {
+                "QueryIdentifiersEnclosingOption": "string"
+              },
+              "VpcConfiguration": {
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ]
+              },
+              "DatabaseEngineType": "string",
+              "ColumnConfiguration": {
+                "FieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "DocumentIdColumnName": "string",
+                "ChangeDetectingColumns": [
+                  "string"
+                ],
+                "DocumentDataColumnName": "string",
+                "DocumentTitleColumnName": "string"
+              },
+              "ConnectionConfiguration": {
+                "SecretArn": "string",
+                "TableName": "string",
+                "DatabaseHost": "string",
+                "DatabaseName": "string",
+                "DatabasePort": "number"
+              }
+            },
+            "OneDriveConfiguration": {
+              "SecretArn": "string",
+              "TenantDomain": "string",
+              "FieldMappings": [
+                {
+                  "IndexFieldName": "string",
+                  "DateFieldFormat": "string",
+                  "DataSourceFieldName": "string"
+                }
+              ],
+              "OneDriveUsers": {
+                "OneDriveUserList": [
+                  "string"
+                ],
+                "OneDriveUserS3Path": {
+                  "Key": "string",
+                  "Bucket": "string"
+                }
+              },
+              "ExclusionPatterns": [
+                "string"
+              ],
+              "InclusionPatterns": [
+                "string"
+              ],
+              "DisableLocalGroups": "boolean"
+            },
+            "ConfluenceConfiguration": {
+              "Version": "string",
+              "SecretArn": "string",
+              "ServerUrl": "string",
+              "VpcConfiguration": {
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ]
+              },
+              "BlogConfiguration": {
+                "BlogFieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ]
+              },
+              "ExclusionPatterns": [
+                "string"
+              ],
+              "InclusionPatterns": [
+                "string"
+              ],
+              "PageConfiguration": {
+                "PageFieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ]
+              },
+              "SpaceConfiguration": {
+                "ExcludeSpaces": [
+                  "string"
+                ],
+                "IncludeSpaces": [
+                  "string"
+                ],
+                "SpaceFieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "CrawlArchivedSpaces": "boolean",
+                "CrawlPersonalSpaces": "boolean"
+              },
+              "AttachmentConfiguration": {
+                "CrawlAttachments": "boolean",
+                "AttachmentFieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ]
+              }
+            },
+            "SalesforceConfiguration": {
+              "SecretArn": "string",
+              "ServerUrl": "string",
+              "CrawlAttachments": "boolean",
+              "ChatterFeedConfiguration": {
+                "FieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "IncludeFilterTypes": [
+                  "string"
+                ],
+                "DocumentDataFieldName": "string",
+                "DocumentTitleFieldName": "string"
+              },
+              "StandardObjectConfigurations": [
+                {
+                  "Name": "string",
+                  "FieldMappings": [
+                    {
+                      "IndexFieldName": "string",
+                      "DateFieldFormat": "string",
+                      "DataSourceFieldName": "string"
+                    }
+                  ],
+                  "DocumentDataFieldName": "string",
+                  "DocumentTitleFieldName": "string"
+                }
+              ],
+              "ExcludeAttachmentFilePatterns": [
+                "string"
+              ],
+              "IncludeAttachmentFilePatterns": [
+                "string"
+              ],
+              "KnowledgeArticleConfiguration": {
+                "IncludedStates": [
+                  "string"
+                ],
+                "CustomKnowledgeArticleTypeConfigurations": [
+                  {
+                    "Name": "string",
+                    "FieldMappings": [
+                      {
+                        "IndexFieldName": "string",
+                        "DateFieldFormat": "string",
+                        "DataSourceFieldName": "string"
+                      }
+                    ],
+                    "DocumentDataFieldName": "string",
+                    "DocumentTitleFieldName": "string"
+                  }
+                ],
+                "StandardKnowledgeArticleTypeConfiguration": {
+                  "FieldMappings": [
+                    {
+                      "IndexFieldName": "string",
+                      "DateFieldFormat": "string",
+                      "DataSourceFieldName": "string"
+                    }
+                  ],
+                  "DocumentDataFieldName": "string",
+                  "DocumentTitleFieldName": "string"
+                }
+              },
+              "StandardObjectAttachmentConfiguration": {
+                "FieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "DocumentTitleFieldName": "string"
+              }
+            },
+            "ServiceNowConfiguration": {
+              "HostUrl": "string",
+              "SecretArn": "string",
+              "AuthenticationType": "string",
+              "ServiceNowBuildVersion": "string",
+              "ServiceCatalogConfiguration": {
+                "FieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "CrawlAttachments": "boolean",
+                "DocumentDataFieldName": "string",
+                "DocumentTitleFieldName": "string",
+                "ExcludeAttachmentFilePatterns": [
+                  "string"
+                ],
+                "IncludeAttachmentFilePatterns": [
+                  "string"
+                ]
+              },
+              "KnowledgeArticleConfiguration": {
+                "FilterQuery": "string",
+                "FieldMappings": [
+                  {
+                    "IndexFieldName": "string",
+                    "DateFieldFormat": "string",
+                    "DataSourceFieldName": "string"
+                  }
+                ],
+                "CrawlAttachments": "boolean",
+                "DocumentDataFieldName": "string",
+                "DocumentTitleFieldName": "string",
+                "ExcludeAttachmentFilePatterns": [
+                  "string"
+                ],
+                "IncludeAttachmentFilePatterns": [
+                  "string"
+                ]
+              }
+            },
+            "SharePointConfiguration": {
+              "Urls": [
+                "string"
+              ],
+              "SecretArn": "string",
+              "UseChangeLog": "boolean",
+              "FieldMappings": [
+                {
+                  "IndexFieldName": "string",
+                  "DateFieldFormat": "string",
+                  "DataSourceFieldName": "string"
+                }
+              ],
+              "CrawlAttachments": "boolean",
+              "VpcConfiguration": {
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ]
+              },
+              "ExclusionPatterns": [
+                "string"
+              ],
+              "InclusionPatterns": [
+                "string"
+              ],
+              "SharePointVersion": "string",
+              "DisableLocalGroups": "boolean",
+              "DocumentTitleFieldName": "string"
+            },
+            "GoogleDriveConfiguration": {
+              "SecretArn": "string",
+              "FieldMappings": [
+                {
+                  "IndexFieldName": "string",
+                  "DateFieldFormat": "string",
+                  "DataSourceFieldName": "string"
+                }
+              ],
+              "ExcludeMimeTypes": [
+                "string"
+              ],
+              "ExclusionPatterns": [
+                "string"
+              ],
+              "InclusionPatterns": [
+                "string"
+              ],
+              "ExcludeSharedDrives": [
+                "string"
+              ],
+              "ExcludeUserAccounts": [
+                "string"
+              ]
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateIndex:
+    description: |-
+      Updates an existing Amazon Kendra index.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateIndex.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "RoleArn": "string",
+          "Description": "string",
+          "CapacityUnits": {
+            "QueryCapacityUnits": "number",
+            "StorageCapacityUnits": "number"
+          },
+          "UserContextPolicy": "string",
+          "UserTokenConfigurations": [
+            {
+              "JwtTokenTypeConfiguration": {
+                "URL": "string",
+                "Issuer": "string",
+                "ClaimRegex": "string",
+                "KeyLocation": "string",
+                "SecretManagerArn": "string",
+                "GroupAttributeField": "string",
+                "UserNameAttributeField": "string"
+              },
+              "JsonTokenTypeConfiguration": {
+                "GroupAttributeField": "string",
+                "UserNameAttributeField": "string"
+              }
+            }
+          ],
+          "DocumentMetadataConfigurationUpdates": [
+            {
+              "Name": "string",
+              "Type": "string",
+              "Search": {
+                "Sortable": "boolean",
+                "Facetable": "boolean",
+                "Searchable": "boolean",
+                "Displayable": "boolean"
+              },
+              "Relevance": {
+                "Duration": "string",
+                "Freshness": "boolean",
+                "RankOrder": "string",
+                "Importance": "number",
+                "ValueImportanceMap": {
+                  "string": "number"
+                }
+              }
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateThesaurus:
+    description: |-
+      Updates a thesaurus file associated with an index.
+    versions:
+      from: 2019.2.3
+    link: https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateThesaurus.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "IndexId": "string",
+          "RoleArn": "string",
+          "Description": "string",
+          "SourceS3Path": {
+            "Key": "string",
+            "Bucket": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]

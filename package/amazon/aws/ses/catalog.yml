@@ -1,0 +1,2096 @@
+Product:
+  name: Amazon Simple Email Service
+  versions: [2019.9.27]
+  package: amazon.aws.ses
+  description: |-
+    Amazon Simple Email Service
+  link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/Welcome.html
+  contentType: json
+Operations:
+  CreateConfigurationSetEventDestination:
+    description: |-
+      Create an event destination. Events include message sends, deliveries, opens, clicks, bounces, and complaints. Event destinations are places that you can send information about these events to. For example, you can send event data to Amazon SNS to receive notifications when you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_CreateConfigurationSetEventDestination.html
+    example:
+      inputs: [
+        {
+          "EventDestination": {
+            "Enabled": false,
+            "SnsDestination": {
+              "TopicArn": "string"
+            },
+            "MatchingEventTypes": [
+              "string"
+            ],
+            "PinpointDestination": {
+              "ApplicationArn": "string"
+            },
+            "CloudWatchDestination": {
+              "DimensionConfigurations": [
+                {
+                  "DimensionName": "string",
+                  "DimensionValueSource": "string",
+                  "DefaultDimensionValue": "string"
+                }
+              ]
+            },
+            "KinesisFirehoseDestination": {
+              "IamRoleArn": "string",
+              "DeliveryStreamArn": "string"
+            }
+          },
+          "ConfigurationSetName": "string",
+          "EventDestinationName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateConfigurationSet:
+    description: |-
+      Create a configuration set. Configuration sets are groups of rules that you can apply to the emails that you send. You apply a configuration set to an email by specifying the name of the configuration set when you call the Amazon SES API v2. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_CreateConfigurationSet.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "SendingOptions": {
+            "SendingEnabled": false
+          },
+          "DeliveryOptions": {
+            "TlsPolicy": "string",
+            "SendingPoolName": "string"
+          },
+          "TrackingOptions": {
+            "CustomRedirectDomain": "string"
+          },
+          "ReputationOptions": {
+            "LastFreshStart": 1481289211.615,
+            "ReputationMetricsEnabled": false
+          },
+          "SuppressionOptions": {
+            "SuppressedReasons": [
+              "string"
+            ]
+          },
+          "ConfigurationSetName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateContact:
+    description: |-
+      Creates a contact, which is an end-user who is receiving the email, and adds them to a contact list.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_CreateContact.html
+    example:
+      inputs: [
+        {
+          "EmailAddress": "string",
+          "AttributesData": "string",
+          "UnsubscribeAll": false,
+          "ContactListName": "string",
+          "TopicPreferences": [
+            {
+              "TopicName": "string",
+              "SubscriptionStatus": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateContactList:
+    description: |-
+      Creates a contact list.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_CreateContactList.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Topics": [
+            {
+              "TopicName": "string",
+              "Description": "string",
+              "DisplayName": "string",
+              "DefaultSubscriptionStatus": "string"
+            }
+          ],
+          "Description": "string",
+          "ContactListName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateCustomVerificationEmailTemplate:
+    description: |-
+      Creates a new custom verification email template.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_CreateCustomVerificationEmailTemplate.html
+    example:
+      inputs: [
+        {
+          "TemplateName": "string",
+          "TemplateContent": "string",
+          "TemplateSubject": "string",
+          "FromEmailAddress": "string",
+          "FailureRedirectionURL": "string",
+          "SuccessRedirectionURL": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateDedicatedIpPool:
+    description: |-
+      Create a new pool of dedicated IP addresses. A pool can include one or more dedicated IP addresses that are associated with your AWS account. You can associate a pool with a configuration set. When you send an email that uses that configuration set, the message is sent from one of the addresses in the associated pool.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_CreateDedicatedIpPool.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "PoolName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateDeliverabilityTestReport:
+    description: |-
+      Create a new predictive inbox placement test. Predictive inbox placement tests can help you predict how your messages will be handled by various email providers around the world. When you perform a predictive inbox placement test, you provide a sample message that contains the content that you plan to send to your customers. Amazon SES then sends that message to special email addresses spread across several major email providers. After about 24 hours, the test is complete, and you can use the GetDeliverabilityTestReport operation to view the results of the test.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_CreateDeliverabilityTestReport.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Content": {
+            "Raw": {
+              "Data": "blob"
+            },
+            "Simple": {
+              "Body": {
+                "Html": {
+                  "Data": "string",
+                  "Charset": "string"
+                },
+                "Text": {
+                  "Data": "string",
+                  "Charset": "string"
+                }
+              },
+              "Subject": {
+                "Data": "string",
+                "Charset": "string"
+              }
+            },
+            "Template": {
+              "TemplateArn": "string",
+              "TemplateData": "string",
+              "TemplateName": "string"
+            }
+          },
+          "ReportName": "string",
+          "FromEmailAddress": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ReportId": "string",
+          "DeliverabilityTestStatus": "string"
+        }
+      ]
+  CreateEmailIdentity:
+    description: |-
+      Starts the process of verifying an email identity. An identity is an email address or domain that you use when you send email. Before you can use an identity to send email, you first have to verify it. By verifying an identity, you demonstrate that you're the owner of the identity, and that you've given Amazon SES API v2 permission to send email from the identity.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_CreateEmailIdentity.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "EmailIdentity": "string",
+          "ConfigurationSetName": "string",
+          "DkimSigningAttributes": {
+            "DomainSigningSelector": "string",
+            "DomainSigningPrivateKey": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "IdentityType": "string",
+          "DkimAttributes": {
+            "Status": "string",
+            "Tokens": [
+              "string"
+            ],
+            "SigningEnabled": false,
+            "SigningAttributesOrigin": "string"
+          },
+          "VerifiedForSendingStatus": false
+        }
+      ]
+  CreateEmailIdentityPolicy:
+    description: |-
+      Creates the specified sending authorization policy for the given identity (an email address or a domain).
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_CreateEmailIdentityPolicy.html
+    example:
+      inputs: [
+        {
+          "Policy": "string",
+          "PolicyName": "string",
+          "EmailIdentity": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateEmailTemplate:
+    description: |-
+      Creates an email template. Email templates enable you to send personalized email to one or more destinations in a single API operation. For more information, see the Amazon SES Developer Guide.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_CreateEmailTemplate.html
+    example:
+      inputs: [
+        {
+          "TemplateName": "string",
+          "TemplateContent": {
+            "Html": "string",
+            "Text": "string",
+            "Subject": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateImportJob:
+    description: |-
+      Creates an import job for a data destination.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_CreateImportJob.html
+    example:
+      inputs: [
+        {
+          "ImportDataSource": {
+            "S3Url": "string",
+            "DataFormat": "string"
+          },
+          "ImportDestination": {
+            "ContactListDestination": {
+              "ContactListName": "string",
+              "ContactListImportAction": "string"
+            },
+            "SuppressionListDestination": {
+              "SuppressionListImportAction": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteConfigurationSetEventDestination:
+    description: |-
+      Delete an event destination.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_DeleteConfigurationSetEventDestination.html
+    example:
+      inputs: [
+        {
+          "ConfigurationSetName": "string",
+          "EventDestinationName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteConfigurationSet:
+    description: |-
+      Delete an existing configuration set.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_DeleteConfigurationSet.html
+    example:
+      inputs: [
+        {
+          "ConfigurationSetName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteContact:
+    description: |-
+      Removes a contact from a contact list.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_DeleteContact.html
+    example:
+      inputs: [
+        {
+          "EmailAddress": "string",
+          "ContactListName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteContactList:
+    description: |-
+      Deletes a contact list and all of the contacts on that list.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_DeleteContactList.html
+    example:
+      inputs: [
+        {
+          "ContactListName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteCustomVerificationEmailTemplate:
+    description: |-
+      Deletes an existing custom verification email template.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_DeleteCustomVerificationEmailTemplate.html
+    example:
+      inputs: [
+        {
+          "TemplateName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDedicatedIpPool:
+    description: |-
+      Delete a dedicated IP pool.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_DeleteDedicatedIpPool.html
+    example:
+      inputs: [
+        {
+          "PoolName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteEmailIdentity:
+    description: |-
+      Deletes an email identity. An identity can be either an email address or a domain name.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_DeleteEmailIdentity.html
+    example:
+      inputs: [
+        {
+          "EmailIdentity": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteEmailIdentityPolicy:
+    description: |-
+      Deletes the specified sending authorization policy for the given identity (an email address or a domain). This API returns successfully even if a policy with the specified name does not exist.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_DeleteEmailIdentityPolicy.html
+    example:
+      inputs: [
+        {
+          "PolicyName": "string",
+          "EmailIdentity": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteEmailTemplate:
+    description: |-
+      Deletes an email template.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_DeleteEmailTemplate.html
+    example:
+      inputs: [
+        {
+          "TemplateName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteSuppressedDestination:
+    description: |-
+      Removes an email address from the suppression list for your account.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_DeleteSuppressedDestination.html
+    example:
+      inputs: [
+        {
+          "EmailAddress": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetAccount:
+    description: |-
+      Obtain information about the email-sending status and capabilities of your Amazon SES account in the current AWS Region.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetAccount.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Details": {
+            "MailType": "string",
+            "WebsiteURL": "string",
+            "ReviewDetails": {
+              "CaseId": "string",
+              "Status": "string"
+            },
+            "ContactLanguage": "string",
+            "UseCaseDescription": "string",
+            "AdditionalContactEmailAddresses": [
+              "string"
+            ]
+          },
+          "SendQuota": {
+            "MaxSendRate": 0.1,
+            "Max24HourSend": 0.1,
+            "SentLast24Hours": 0.1
+          },
+          "SendingEnabled": false,
+          "EnforcementStatus": "string",
+          "SuppressionAttributes": {
+            "SuppressedReasons": [
+              "string"
+            ]
+          },
+          "ProductionAccessEnabled": false,
+          "DedicatedIpAutoWarmupEnabled": false
+        }
+      ]
+  GetBlacklistReports:
+    description: |-
+      Retrieve a list of the blacklists that your dedicated IP addresses appear on.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetBlacklistReports.html
+    example:
+      inputs: [
+        {
+          "BlacklistItemNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "BlacklistReport": {
+            "string": [
+              {
+                "RblName": "string",
+                "Description": "string",
+                "ListingTime": 1481289211.615
+              }
+            ]
+          }
+        }
+      ]
+  GetConfigurationSetEventDestinations:
+    description: |-
+      Retrieve a list of event destinations that are associated with a configuration set.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetConfigurationSetEventDestinations.html
+    example:
+      inputs: [
+        {
+          "ConfigurationSetName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EventDestinations": [
+            {
+              "Name": "string",
+              "Enabled": false,
+              "SnsDestination": {
+                "TopicArn": "string"
+              },
+              "MatchingEventTypes": [
+                "string"
+              ],
+              "PinpointDestination": {
+                "ApplicationArn": "string"
+              },
+              "CloudWatchDestination": {
+                "DimensionConfigurations": [
+                  {
+                    "DimensionName": "string",
+                    "DimensionValueSource": "string",
+                    "DefaultDimensionValue": "string"
+                  }
+                ]
+              },
+              "KinesisFirehoseDestination": {
+                "IamRoleArn": "string",
+                "DeliveryStreamArn": "string"
+              }
+            }
+          ]
+        }
+      ]
+  GetConfigurationSet:
+    description: |-
+      Get information about an existing configuration set, including the dedicated IP pool that it's associated with, whether or not it's enabled for sending email, and more.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetConfigurationSet.html
+    example:
+      inputs: [
+        {
+          "ConfigurationSetName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetContact:
+    description: |-
+      Returns a contact from a contact list.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetContact.html
+    example:
+      inputs: [
+        {
+          "EmailAddress": "string",
+          "ContactListName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EmailAddress": "string",
+          "AttributesData": "string",
+          "UnsubscribeAll": false,
+          "ContactListName": "string",
+          "CreatedTimestamp": 1481289211.615,
+          "TopicPreferences": [
+            {
+              "TopicName": "string",
+              "SubscriptionStatus": "string"
+            }
+          ],
+          "LastUpdatedTimestamp": 1481289211.615,
+          "TopicDefaultPreferences": [
+            {
+              "TopicName": "string",
+              "SubscriptionStatus": "string"
+            }
+          ]
+        }
+      ]
+  GetContactList:
+    description: |-
+      Returns contact list metadata. It does not return any information about the contacts present in the list.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetContactList.html
+    example:
+      inputs: [
+        {
+          "ContactListName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Topics": [
+            {
+              "TopicName": "string",
+              "Description": "string",
+              "DisplayName": "string",
+              "DefaultSubscriptionStatus": "string"
+            }
+          ],
+          "Description": "string",
+          "ContactListName": "string",
+          "CreatedTimestamp": 1481289211.615,
+          "LastUpdatedTimestamp": 1481289211.615
+        }
+      ]
+  GetCustomVerificationEmailTemplate:
+    description: |-
+      Returns the custom email verification template for the template name you specify.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetCustomVerificationEmailTemplate.html
+    example:
+      inputs: [
+        {
+          "TemplateName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetDedicatedIp:
+    description: |-
+      Get information about a dedicated IP address, including the name of the dedicated IP pool that it's associated with, as well information about the automatic warm-up process for the address.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetDedicatedIp.html
+    example:
+      inputs: [
+        {
+          "Ip": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DedicatedIp": {
+            "Ip": "string",
+            "PoolName": "string",
+            "WarmupStatus": "string",
+            "WarmupPercentage": 1
+          }
+        }
+      ]
+  GetDedicatedIps:
+    description: |-
+      List the dedicated IP addresses that are associated with your AWS account.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetDedicatedIps.html
+    example:
+      inputs: [
+        {
+          "PageSize": 1,
+          "PoolName": "string",
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DedicatedIps": [
+            {
+              "Ip": "string",
+              "PoolName": "string",
+              "WarmupStatus": "string",
+              "WarmupPercentage": 1
+            }
+          ]
+        }
+      ]
+  GetDeliverabilityDashboardOptions:
+    description: |-
+      Retrieve information about the status of the Deliverability dashboard for your account. When the Deliverability dashboard is enabled, you gain access to reputation, deliverability, and other metrics for the domains that you use to send email. You also gain the ability to perform predictive inbox placement tests.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetDeliverabilityDashboardOptions.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "AccountStatus": "string",
+          "DashboardEnabled": false,
+          "SubscriptionExpiryDate": 1481289211.615,
+          "ActiveSubscribedDomains": [
+            {
+              "Domain": "string",
+              "SubscriptionStartDate": 1481289211.615,
+              "InboxPlacementTrackingOption": {
+                "Global": false,
+                "TrackedIsps": [
+                  "string"
+                ]
+              }
+            }
+          ],
+          "PendingExpirationSubscribedDomains": [
+            {
+              "Domain": "string",
+              "SubscriptionStartDate": 1481289211.615,
+              "InboxPlacementTrackingOption": {
+                "Global": false,
+                "TrackedIsps": [
+                  "string"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+  GetDeliverabilityTestReport:
+    description: |-
+      Retrieve the results of a predictive inbox placement test.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetDeliverabilityTestReport.html
+    example:
+      inputs: [
+        {
+          "ReportId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Message": "string",
+          "IspPlacements": [
+            {
+              "IspName": "string",
+              "PlacementStatistics": {
+                "SpfPercentage": 0.1,
+                "DkimPercentage": 0.1,
+                "SpamPercentage": 0.1,
+                "InboxPercentage": 0.1,
+                "MissingPercentage": 0.1
+              }
+            }
+          ],
+          "OverallPlacement": {
+            "SpfPercentage": 0.1,
+            "DkimPercentage": 0.1,
+            "SpamPercentage": 0.1,
+            "InboxPercentage": 0.1,
+            "MissingPercentage": 0.1
+          },
+          "DeliverabilityTestReport": {
+            "Subject": "string",
+            "ReportId": "string",
+            "CreateDate": 1481289211.615,
+            "ReportName": "string",
+            "FromEmailAddress": "string",
+            "DeliverabilityTestStatus": "string"
+          }
+        }
+      ]
+  GetDomainDeliverabilityCampaign:
+    description: |-
+      Retrieve all the deliverability data for a specific campaign. This data is available for a campaign only if the campaign sent email by using a domain that the Deliverability dashboard is enabled for.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetDomainDeliverabilityCampaign.html
+    example:
+      inputs: [
+        {
+          "CampaignId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DomainDeliverabilityCampaign": {
+            "Esps": [
+              "string"
+            ],
+            "Subject": "string",
+            "ImageUrl": "string",
+            "ReadRate": 0.1,
+            "SpamCount": 1,
+            "CampaignId": "string",
+            "DeleteRate": 0.1,
+            "InboxCount": 1,
+            "SendingIps": [
+              "string"
+            ],
+            "FromAddress": "string",
+            "ReadDeleteRate": 0.1,
+            "ProjectedVolume": 1,
+            "LastSeenDateTime": 1481289211.615,
+            "FirstSeenDateTime": 1481289211.615
+          }
+        }
+      ]
+  GetDomainStatisticsReport:
+    description: |-
+      Retrieve inbox placement and engagement rates for the domains that you use to send email.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetDomainStatisticsReport.html
+    example:
+      inputs: [
+        {
+          "Domain": "string",
+          "EndDate": 1481289211.615,
+          "StartDate": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "DailyVolumes": [
+            {
+              "StartDate": 1481289211.615,
+              "VolumeStatistics": {
+                "SpamRawCount": 1,
+                "InboxRawCount": 1,
+                "ProjectedSpam": 1,
+                "ProjectedInbox": 1
+              },
+              "DomainIspPlacements": [
+                {
+                  "IspName": "string",
+                  "SpamRawCount": 1,
+                  "InboxRawCount": 1,
+                  "SpamPercentage": 0.1,
+                  "InboxPercentage": 0.1
+                }
+              ]
+            }
+          ],
+          "OverallVolume": {
+            "ReadRatePercent": 0.1,
+            "VolumeStatistics": {
+              "SpamRawCount": 1,
+              "InboxRawCount": 1,
+              "ProjectedSpam": 1,
+              "ProjectedInbox": 1
+            },
+            "DomainIspPlacements": [
+              {
+                "IspName": "string",
+                "SpamRawCount": 1,
+                "InboxRawCount": 1,
+                "SpamPercentage": 0.1,
+                "InboxPercentage": 0.1
+              }
+            ]
+          }
+        }
+      ]
+  GetEmailIdentity:
+    description: |-
+      Provides information about a specific identity, including the identity's verification status, sending authorization policies, its DKIM authentication status, and its custom Mail-From settings.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetEmailIdentity.html
+    example:
+      inputs: [
+        {
+          "EmailIdentity": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Policies": {
+            "string": "string"
+          },
+          "IdentityType": "string",
+          "DkimAttributes": {
+            "Status": "string",
+            "Tokens": [
+              "string"
+            ],
+            "SigningEnabled": false,
+            "SigningAttributesOrigin": "string"
+          },
+          "MailFromAttributes": {
+            "MailFromDomain": "string",
+            "BehaviorOnMxFailure": "string",
+            "MailFromDomainStatus": "string"
+          },
+          "ConfigurationSetName": "string",
+          "FeedbackForwardingStatus": false,
+          "VerifiedForSendingStatus": false
+        }
+      ]
+  GetEmailIdentityPolicies:
+    description: |-
+      Returns the requested sending authorization policies for the given identity (an email address or a domain). The policies are returned as a map of policy names to policy contents. You can retrieve a maximum of 20 policies at a time.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetEmailIdentityPolicies.html
+    example:
+      inputs: [
+        {
+          "EmailIdentity": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Policies": {
+            "string": "string"
+          }
+        }
+      ]
+  GetEmailTemplate:
+    description: |-
+      Displays the template object (which includes the subject line, HTML part and text part) for the template you specify.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetEmailTemplate.html
+    example:
+      inputs: [
+        {
+          "TemplateName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetImportJob:
+    description: |-
+      Provides information about an import job.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetImportJob.html
+    example:
+      inputs: [
+        {
+          "JobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "JobId": "string",
+          "JobStatus": "string",
+          "FailureInfo": {
+            "ErrorMessage": "string",
+            "FailedRecordsS3Url": "string"
+          },
+          "CreatedTimestamp": 1481289211.615,
+          "ImportDataSource": {
+            "S3Url": "string",
+            "DataFormat": "string"
+          },
+          "ImportDestination": {
+            "ContactListDestination": {
+              "ContactListName": "string",
+              "ContactListImportAction": "string"
+            },
+            "SuppressionListDestination": {
+              "SuppressionListImportAction": "string"
+            }
+          },
+          "CompletedTimestamp": 1481289211.615,
+          "FailedRecordsCount": 1,
+          "ProcessedRecordsCount": 1
+        }
+      ]
+  GetSuppressedDestination:
+    description: |-
+      Retrieves information about a specific email address that's on the suppression list for your account.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetSuppressedDestination.html
+    example:
+      inputs: [
+        {
+          "EmailAddress": "string"
+        }
+      ]
+      outputs: [
+        {
+          "SuppressedDestination": {
+            "Reason": "string",
+            "Attributes": {
+              "MessageId": "string",
+              "FeedbackId": "string"
+            },
+            "EmailAddress": "string",
+            "LastUpdateTime": 1481289211.615
+          }
+        }
+      ]
+  ListConfigurationSets:
+    description: |-
+      List all of the configuration sets associated with your account in the current region.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_ListConfigurationSets.html
+    example:
+      inputs: [
+        {
+          "PageSize": 1,
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ConfigurationSets": [
+            "string"
+          ]
+        }
+      ]
+  ListContactLists:
+    description: |-
+      Lists all of the contact lists available.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_ListContactLists.html
+    example:
+      inputs: [
+        {
+          "PageSize": 1,
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ContactLists": [
+            {
+              "ContactListName": "string",
+              "LastUpdatedTimestamp": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListContacts:
+    description: |-
+      Lists the contacts present in a specific contact list.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_ListContacts.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "TopicFilter": {
+              "TopicName": "string",
+              "UseDefaultIfPreferenceUnavailable": false
+            },
+            "FilteredStatus": "string"
+          },
+          "PageSize": 1,
+          "NextToken": "string",
+          "ContactListName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Contacts": [
+            {
+              "EmailAddress": "string",
+              "UnsubscribeAll": false,
+              "TopicPreferences": [
+                {
+                  "TopicName": "string",
+                  "SubscriptionStatus": "string"
+                }
+              ],
+              "LastUpdatedTimestamp": 1481289211.615,
+              "TopicDefaultPreferences": [
+                {
+                  "TopicName": "string",
+                  "SubscriptionStatus": "string"
+                }
+              ]
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListCustomVerificationEmailTemplates:
+    description: |-
+      Lists the existing custom verification email templates for your account in the current AWS Region.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_ListCustomVerificationEmailTemplates.html
+    example:
+      inputs: [
+        {
+          "PageSize": 1,
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CustomVerificationEmailTemplates": [
+            {
+              "TemplateName": "string",
+              "TemplateSubject": "string",
+              "FromEmailAddress": "string",
+              "FailureRedirectionURL": "string",
+              "SuccessRedirectionURL": "string"
+            }
+          ]
+        }
+      ]
+  ListDedicatedIpPools:
+    description: |-
+      List all of the dedicated IP pools that exist in your AWS account in the current Region.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_ListDedicatedIpPools.html
+    example:
+      inputs: [
+        {
+          "PageSize": 1,
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DedicatedIpPools": [
+            "string"
+          ]
+        }
+      ]
+  ListDeliverabilityTestReports:
+    description: |-
+      Show a list of the predictive inbox placement tests that you've performed, regardless of their statuses. For predictive inbox placement tests that are complete, you can use the GetDeliverabilityTestReport operation to view the results.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_ListDeliverabilityTestReports.html
+    example:
+      inputs: [
+        {
+          "PageSize": 1,
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DeliverabilityTestReports": [
+            {
+              "Subject": "string",
+              "ReportId": "string",
+              "CreateDate": 1481289211.615,
+              "ReportName": "string",
+              "FromEmailAddress": "string",
+              "DeliverabilityTestStatus": "string"
+            }
+          ]
+        }
+      ]
+  ListDomainDeliverabilityCampaigns:
+    description: |-
+      Retrieve deliverability data for all the campaigns that used a specific domain to send email during a specified time range. This data is available for a domain only if you enabled the Deliverability dashboard for the domain.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_ListDomainDeliverabilityCampaigns.html
+    example:
+      inputs: [
+        {
+          "EndDate": 1481289211.615,
+          "PageSize": 1,
+          "NextToken": "string",
+          "StartDate": 1481289211.615,
+          "SubscribedDomain": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DomainDeliverabilityCampaigns": [
+            {
+              "Esps": [
+                "string"
+              ],
+              "Subject": "string",
+              "ImageUrl": "string",
+              "ReadRate": 0.1,
+              "SpamCount": 1,
+              "CampaignId": "string",
+              "DeleteRate": 0.1,
+              "InboxCount": 1,
+              "SendingIps": [
+                "string"
+              ],
+              "FromAddress": "string",
+              "ReadDeleteRate": 0.1,
+              "ProjectedVolume": 1,
+              "LastSeenDateTime": 1481289211.615,
+              "FirstSeenDateTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListEmailIdentities:
+    description: |-
+      Returns a list of all of the email identities that are associated with your AWS account. An identity can be either an email address or a domain. This operation returns identities that are verified as well as those that aren't. This operation returns identities that are associated with Amazon SES and Amazon Pinpoint.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_ListEmailIdentities.html
+    example:
+      inputs: [
+        {
+          "PageSize": 1,
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "EmailIdentities": [
+            {
+              "IdentityName": "string",
+              "IdentityType": "string",
+              "SendingEnabled": false
+            }
+          ]
+        }
+      ]
+  ListEmailTemplates:
+    description: |-
+      Lists the email templates present in your Amazon SES account in the current AWS Region.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_ListEmailTemplates.html
+    example:
+      inputs: [
+        {
+          "PageSize": 1,
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "TemplatesMetadata": [
+            {
+              "TemplateName": "string",
+              "CreatedTimestamp": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListImportJobs:
+    description: |-
+      Lists all of the import jobs.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_ListImportJobs.html
+    example:
+      inputs: [
+        {
+          "PageSize": 1,
+          "NextToken": "string",
+          "ImportDestinationType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ImportJobs": [
+            {
+              "JobId": "string",
+              "JobStatus": "string",
+              "CreatedTimestamp": 1481289211.615,
+              "ImportDestination": {
+                "ContactListDestination": {
+                  "ContactListName": "string",
+                  "ContactListImportAction": "string"
+                },
+                "SuppressionListDestination": {
+                  "SuppressionListImportAction": "string"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  ListSuppressedDestinations:
+    description: |-
+      Retrieves a list of email addresses that are on the suppression list for your account.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_ListSuppressedDestinations.html
+    example:
+      inputs: [
+        {
+          "EndDate": 1481289211.615,
+          "Reasons": [
+            "string"
+          ],
+          "PageSize": 1,
+          "NextToken": "string",
+          "StartDate": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "SuppressedDestinationSummaries": [
+            {
+              "Reason": "string",
+              "EmailAddress": "string",
+              "LastUpdateTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Retrieve a list of the tags (keys and values) that are associated with a specified resource. A tag is a label that you optionally define and associate with a resource. Each tag consists of a required tag key and an optional associated tag value. A tag key is a general label that acts as a category for more specific tag values. A tag value acts as a descriptor within a tag key.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  PutAccountDedicatedIpWarmupAttributes:
+    description: |-
+      Enable or disable the automatic warm-up feature for dedicated IP addresses.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutAccountDedicatedIpWarmupAttributes.html
+    example:
+      inputs: [
+        {
+          "AutoWarmupEnabled": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutAccountDetails:
+    description: |-
+      Update your Amazon SES account details.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutAccountDetails.html
+    example:
+      inputs: [
+        {
+          "MailType": "string",
+          "WebsiteURL": "string",
+          "ContactLanguage": "string",
+          "UseCaseDescription": "string",
+          "ProductionAccessEnabled": false,
+          "AdditionalContactEmailAddresses": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutAccountSendingAttributes:
+    description: |-
+      Enable or disable the ability of your account to send email.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutAccountSendingAttributes.html
+    example:
+      inputs: [
+        {
+          "SendingEnabled": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutAccountSuppressionAttributes:
+    description: |-
+      Change the settings for the account-level suppression list.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutAccountSuppressionAttributes.html
+    example:
+      inputs: [
+        {
+          "SuppressedReasons": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutConfigurationSetDeliveryOptions:
+    description: |-
+      Associate a configuration set with a dedicated IP pool. You can use dedicated IP pools to create groups of dedicated IP addresses for sending specific types of email.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutConfigurationSetDeliveryOptions.html
+    example:
+      inputs: [
+        {
+          "TlsPolicy": "string",
+          "SendingPoolName": "string",
+          "ConfigurationSetName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutConfigurationSetReputationOptions:
+    description: |-
+      Enable or disable collection of reputation metrics for emails that you send using a particular configuration set in a specific AWS Region.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutConfigurationSetReputationOptions.html
+    example:
+      inputs: [
+        {
+          "ConfigurationSetName": "string",
+          "ReputationMetricsEnabled": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutConfigurationSetSendingOptions:
+    description: |-
+      Enable or disable email sending for messages that use a particular configuration set in a specific AWS Region.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutConfigurationSetSendingOptions.html
+    example:
+      inputs: [
+        {
+          "SendingEnabled": false,
+          "ConfigurationSetName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutConfigurationSetSuppressionOptions:
+    description: |-
+      Specify the account suppression list preferences for a configuration set.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutConfigurationSetSuppressionOptions.html
+    example:
+      inputs: [
+        {
+          "SuppressedReasons": [
+            "string"
+          ],
+          "ConfigurationSetName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutConfigurationSetTrackingOptions:
+    description: |-
+      Specify a custom domain to use for open and click tracking elements in email that you send.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutConfigurationSetTrackingOptions.html
+    example:
+      inputs: [
+        {
+          "ConfigurationSetName": "string",
+          "CustomRedirectDomain": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutDedicatedIpInPool:
+    description: |-
+      Move a dedicated IP address to an existing dedicated IP pool.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutDedicatedIpInPool.html
+    example:
+      inputs: [
+        {
+          "Ip": "string",
+          "DestinationPoolName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutDedicatedIpWarmupAttributes:
+    description: ''
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutDedicatedIpWarmupAttributes.html
+    example:
+      inputs: [
+        {
+          "Ip": "string",
+          "WarmupPercentage": 1
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutDeliverabilityDashboardOption:
+    description: |-
+      Enable or disable the Deliverability dashboard. When you enable the Deliverability dashboard, you gain access to reputation, deliverability, and other metrics for the domains that you use to send email. You also gain the ability to perform predictive inbox placement tests.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutDeliverabilityDashboardOption.html
+    example:
+      inputs: [
+        {
+          "DashboardEnabled": false,
+          "SubscribedDomains": [
+            {
+              "Domain": "string",
+              "SubscriptionStartDate": 1481289211.615,
+              "InboxPlacementTrackingOption": {
+                "Global": false,
+                "TrackedIsps": [
+                  "string"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutEmailIdentityConfigurationSetAttributes:
+    description: |-
+      Used to associate a configuration set with an email identity.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutEmailIdentityConfigurationSetAttributes.html
+    example:
+      inputs: [
+        {
+          "EmailIdentity": "string",
+          "ConfigurationSetName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutEmailIdentityDkimAttributes:
+    description: |-
+      Used to enable or disable DKIM authentication for an email identity.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutEmailIdentityDkimAttributes.html
+    example:
+      inputs: [
+        {
+          "EmailIdentity": "string",
+          "SigningEnabled": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutEmailIdentityDkimSigningAttributes:
+    description: |-
+      Used to configure or change the DKIM authentication settings for an email domain identity.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutEmailIdentityDkimSigningAttributes.html
+    example:
+      inputs: [
+        {
+          "EmailIdentity": "string",
+          "SigningAttributes": {
+            "DomainSigningSelector": "string",
+            "DomainSigningPrivateKey": "string"
+          },
+          "SigningAttributesOrigin": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DkimStatus": "string",
+          "DkimTokens": [
+            "string"
+          ]
+        }
+      ]
+  PutEmailIdentityFeedbackAttributes:
+    description: |-
+      Used to enable or disable feedback forwarding for an identity. This setting determines what happens when an identity is used to send an email that results in a bounce or complaint event.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutEmailIdentityFeedbackAttributes.html
+    example:
+      inputs: [
+        {
+          "EmailIdentity": "string",
+          "EmailForwardingEnabled": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutEmailIdentityMailFromAttributes:
+    description: |-
+      Used to enable or disable the custom Mail-From domain configuration for an email identity.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutEmailIdentityMailFromAttributes.html
+    example:
+      inputs: [
+        {
+          "EmailIdentity": "string",
+          "MailFromDomain": "string",
+          "BehaviorOnMxFailure": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutSuppressedDestination:
+    description: |-
+      Adds an email address to the suppression list for your account.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutSuppressedDestination.html
+    example:
+      inputs: [
+        {
+          "Reason": "string",
+          "EmailAddress": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SendBulkEmail:
+    description: |-
+      Composes an email message to multiple destinations.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendBulkEmail.html
+    example:
+      inputs: [
+        {
+          "DefaultContent": {
+            "Template": {
+              "TemplateArn": "string",
+              "TemplateData": "string",
+              "TemplateName": "string"
+            }
+          },
+          "BulkEmailEntries": [
+            {
+              "Destination": {
+                "CcAddresses": [
+                  "string"
+                ],
+                "ToAddresses": [
+                  "string"
+                ],
+                "BccAddresses": [
+                  "string"
+                ]
+              },
+              "ReplacementTags": [
+                {
+                  "Name": "string",
+                  "Value": "string"
+                }
+              ],
+              "ReplacementEmailContent": {
+                "ReplacementTemplate": {
+                  "ReplacementTemplateData": "string"
+                }
+              }
+            }
+          ],
+          "DefaultEmailTags": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ],
+          "FromEmailAddress": "string",
+          "ReplyToAddresses": [
+            "string"
+          ],
+          "ConfigurationSetName": "string",
+          "FromEmailAddressIdentityArn": "string",
+          "FeedbackForwardingEmailAddress": "string",
+          "FeedbackForwardingEmailAddressIdentityArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "BulkEmailEntryResults": [
+            {
+              "Error": "string",
+              "Status": "string",
+              "MessageId": "string"
+            }
+          ]
+        }
+      ]
+  SendCustomVerificationEmail:
+    description: |-
+      Adds an email address to the list of identities for your Amazon SES account in the current AWS Region and attempts to verify it. As a result of executing this operation, a customized verification email is sent to the specified address.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendCustomVerificationEmail.html
+    example:
+      inputs: [
+        {
+          "EmailAddress": "string",
+          "TemplateName": "string",
+          "ConfigurationSetName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "MessageId": "string"
+        }
+      ]
+  SendEmail:
+    description: |-
+      Sends an email message.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendEmail.html
+    example:
+      inputs: [
+        {
+          "Content": {
+            "Raw": {
+              "Data": "blob"
+            },
+            "Simple": {
+              "Body": {
+                "Html": {
+                  "Data": "string",
+                  "Charset": "string"
+                },
+                "Text": {
+                  "Data": "string",
+                  "Charset": "string"
+                }
+              },
+              "Subject": {
+                "Data": "string",
+                "Charset": "string"
+              }
+            },
+            "Template": {
+              "TemplateArn": "string",
+              "TemplateData": "string",
+              "TemplateName": "string"
+            }
+          },
+          "EmailTags": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ],
+          "Destination": {
+            "CcAddresses": [
+              "string"
+            ],
+            "ToAddresses": [
+              "string"
+            ],
+            "BccAddresses": [
+              "string"
+            ]
+          },
+          "FromEmailAddress": "string",
+          "ReplyToAddresses": [
+            "string"
+          ],
+          "ConfigurationSetName": "string",
+          "ListManagementOptions": {
+            "TopicName": "string",
+            "ContactListName": "string"
+          },
+          "FromEmailAddressIdentityArn": "string",
+          "FeedbackForwardingEmailAddress": "string",
+          "FeedbackForwardingEmailAddressIdentityArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "MessageId": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Add one or more tags (keys and values) to a specified resource. A tag is a label that you optionally define and associate with a resource. Tags can help you categorize and manage resources in different ways, such as by purpose, owner, environment, or other criteria. A resource can have as many as 50 tags.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TestRenderEmailTemplate:
+    description: |-
+      Creates a preview of the MIME content of an email when provided with a template and a set of replacement data.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_TestRenderEmailTemplate.html
+    example:
+      inputs: [
+        {
+          "TemplateData": "string",
+          "TemplateName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RenderedTemplate": "string"
+        }
+      ]
+  UntagResource:
+    description: |-
+      Remove one or more tags (keys and values) from a specified resource.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateConfigurationSetEventDestination:
+    description: |-
+      Update the configuration of an event destination for a configuration set.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_UpdateConfigurationSetEventDestination.html
+    example:
+      inputs: [
+        {
+          "EventDestination": {
+            "Enabled": false,
+            "SnsDestination": {
+              "TopicArn": "string"
+            },
+            "MatchingEventTypes": [
+              "string"
+            ],
+            "PinpointDestination": {
+              "ApplicationArn": "string"
+            },
+            "CloudWatchDestination": {
+              "DimensionConfigurations": [
+                {
+                  "DimensionName": "string",
+                  "DimensionValueSource": "string",
+                  "DefaultDimensionValue": "string"
+                }
+              ]
+            },
+            "KinesisFirehoseDestination": {
+              "IamRoleArn": "string",
+              "DeliveryStreamArn": "string"
+            }
+          },
+          "ConfigurationSetName": "string",
+          "EventDestinationName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateContact:
+    description: |-
+      Updates a contact's preferences for a list. It is not necessary to specify all existing topic preferences in the TopicPreferences object, just the ones that need updating.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_UpdateContact.html
+    example:
+      inputs: [
+        {
+          "EmailAddress": "string",
+          "AttributesData": "string",
+          "UnsubscribeAll": false,
+          "ContactListName": "string",
+          "TopicPreferences": [
+            {
+              "TopicName": "string",
+              "SubscriptionStatus": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateContactList:
+    description: |-
+      Updates contact list metadata. This operation does a complete replacement.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_UpdateContactList.html
+    example:
+      inputs: [
+        {
+          "Topics": [
+            {
+              "TopicName": "string",
+              "Description": "string",
+              "DisplayName": "string",
+              "DefaultSubscriptionStatus": "string"
+            }
+          ],
+          "Description": "string",
+          "ContactListName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateCustomVerificationEmailTemplate:
+    description: |-
+      Updates an existing custom verification email template.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_UpdateCustomVerificationEmailTemplate.html
+    example:
+      inputs: [
+        {
+          "TemplateName": "string",
+          "TemplateContent": "string",
+          "TemplateSubject": "string",
+          "FromEmailAddress": "string",
+          "FailureRedirectionURL": "string",
+          "SuccessRedirectionURL": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateEmailIdentityPolicy:
+    description: |-
+      Updates the specified sending authorization policy for the given identity (an email address or a domain). This API returns successfully even if a policy with the specified name does not exist.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_UpdateEmailIdentityPolicy.html
+    example:
+      inputs: [
+        {
+          "Policy": "string",
+          "PolicyName": "string",
+          "EmailIdentity": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateEmailTemplate:
+    description: |-
+      Updates an email template. Email templates enable you to send personalized email to one or more destinations in a single API operation. For more information, see the Amazon SES Developer Guide.
+    versions:
+      from: 2019.9.27
+    link: https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_UpdateEmailTemplate.html
+    example:
+      inputs: [
+        {
+          "TemplateName": "string",
+          "TemplateContent": {
+            "Html": "string",
+            "Text": "string",
+            "Subject": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]

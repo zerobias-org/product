@@ -1,0 +1,771 @@
+Product:
+  name: Amazon MQ
+  versions: [2017.11.27]
+  package: amazon.aws.mq
+  description: |-
+    AmazonMQ
+  link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/welcome.html
+  contentType: json
+Operations:
+  DescribeBrokerEngineTypes:
+    description: |-
+      Describe available engine types and versions.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/broker-engine-types.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "EngineType": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "BrokerEngineTypes": [
+            {
+              "EngineType": "string",
+              "EngineVersions": [
+                {
+                  "Name": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  DescribeBrokerInstanceOptions:
+    description: |-
+      Describe available broker instance options.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/broker-instance-options.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "EngineType": "string",
+          "MaxResults": 1,
+          "StorageType": "string",
+          "HostInstanceType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "BrokerInstanceOptions": [
+            {
+              "EngineType": "string",
+              "StorageType": "string",
+              "HostInstanceType": "string",
+              "AvailabilityZones": [
+                {
+                  "Name": "string"
+                }
+              ],
+              "SupportedEngineVersions": [
+                "string"
+              ],
+              "SupportedDeploymentModes": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  DeleteBroker:
+    description: |-
+      Deletes a broker. Note:This API is asynchronous.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers-broker-id.html
+    example:
+      inputs: [
+        {
+          "BrokerId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeBroker:
+    description: |-
+      Returns information about the specified broker.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers-broker-id.html
+    example:
+      inputs: [
+        {
+          "BrokerId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Logs": {
+            "Audit": false,
+            "General": false,
+            "Pending": {
+              "Audit": false,
+              "General": false
+            },
+            "AuditLogGroup": "string",
+            "GeneralLogGroup": "string"
+          },
+          "Tags": {
+            "string": "string"
+          },
+          "Users": [
+            {
+              "Username": "string",
+              "PendingChange": "string"
+            }
+          ],
+          "Created": 1481289211.615,
+          "BrokerId": "string",
+          "BrokerArn": "string",
+          "SubnetIds": [
+            "string"
+          ],
+          "BrokerName": "string",
+          "EngineType": "string",
+          "BrokerState": "string",
+          "StorageType": "string",
+          "EngineVersion": "string",
+          "Configurations": {
+            "Current": {
+              "Id": "string",
+              "Revision": 1
+            },
+            "History": [
+              {
+                "Id": "string",
+                "Revision": 1
+              }
+            ],
+            "Pending": {
+              "Id": "string",
+              "Revision": 1
+            }
+          },
+          "DeploymentMode": "string",
+          "SecurityGroups": [
+            "string"
+          ],
+          "BrokerInstances": [
+            {
+              "Endpoints": [
+                "string"
+              ],
+              "IpAddress": "string",
+              "ConsoleURL": "string"
+            }
+          ],
+          "HostInstanceType": "string",
+          "EncryptionOptions": {
+            "KmsKeyId": "string",
+            "UseAwsOwnedKey": false
+          },
+          "LdapServerMetadata": {
+            "Hosts": [
+              "string"
+            ],
+            "RoleBase": "string",
+            "RoleName": "string",
+            "UserBase": "string",
+            "UserRoleName": "string",
+            "RoleSearchSubtree": false,
+            "UserSearchSubtree": false,
+            "RoleSearchMatching": "string",
+            "UserSearchMatching": "string",
+            "ServiceAccountUsername": "string"
+          },
+          "PubliclyAccessible": false,
+          "PendingEngineVersion": "string",
+          "PendingSecurityGroups": [
+            "string"
+          ],
+          "AuthenticationStrategy": "string",
+          "AutoMinorVersionUpgrade": false,
+          "PendingHostInstanceType": "string",
+          "PendingLdapServerMetadata": {
+            "Hosts": [
+              "string"
+            ],
+            "RoleBase": "string",
+            "RoleName": "string",
+            "UserBase": "string",
+            "UserRoleName": "string",
+            "RoleSearchSubtree": false,
+            "UserSearchSubtree": false,
+            "RoleSearchMatching": "string",
+            "UserSearchMatching": "string",
+            "ServiceAccountUsername": "string"
+          },
+          "MaintenanceWindowStartTime": {
+            "TimeZone": "string",
+            "DayOfWeek": "string",
+            "TimeOfDay": "string"
+          },
+          "PendingAuthenticationStrategy": "string"
+        }
+      ]
+  UpdateBroker:
+    description: |-
+      Adds a pending configuration change to a broker.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers-broker-id.html
+    example:
+      inputs: [
+        {
+          "Logs": {
+            "Audit": false,
+            "General": false
+          },
+          "BrokerId": "string",
+          "Configuration": {
+            "Id": "string",
+            "Revision": 1
+          },
+          "EngineVersion": "string",
+          "SecurityGroups": [
+            "string"
+          ],
+          "HostInstanceType": "string",
+          "LdapServerMetadata": {
+            "Hosts": [
+              "string"
+            ],
+            "RoleBase": "string",
+            "RoleName": "string",
+            "UserBase": "string",
+            "UserRoleName": "string",
+            "RoleSearchSubtree": false,
+            "UserSearchSubtree": false,
+            "RoleSearchMatching": "string",
+            "UserSearchMatching": "string",
+            "ServiceAccountPassword": "string",
+            "ServiceAccountUsername": "string"
+          },
+          "AuthenticationStrategy": "string",
+          "AutoMinorVersionUpgrade": false
+        }
+      ]
+      outputs: [
+        {
+          "Logs": {
+            "Audit": false,
+            "General": false
+          },
+          "BrokerId": "string",
+          "Configuration": {
+            "Id": "string",
+            "Revision": 1
+          },
+          "EngineVersion": "string",
+          "SecurityGroups": [
+            "string"
+          ],
+          "HostInstanceType": "string",
+          "LdapServerMetadata": {
+            "Hosts": [
+              "string"
+            ],
+            "RoleBase": "string",
+            "RoleName": "string",
+            "UserBase": "string",
+            "UserRoleName": "string",
+            "RoleSearchSubtree": false,
+            "UserSearchSubtree": false,
+            "RoleSearchMatching": "string",
+            "UserSearchMatching": "string",
+            "ServiceAccountUsername": "string"
+          },
+          "AuthenticationStrategy": "string",
+          "AutoMinorVersionUpgrade": false
+        }
+      ]
+  RebootBroker:
+    description: |-
+      Reboots a broker. Note:This API is asynchronous.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers-broker-id-reboot.html
+    example:
+      inputs: [
+        {
+          "BrokerId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListUsers:
+    description: |-
+      Returns a list of all ActiveMQ users.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers-broker-id-users.html
+    example:
+      inputs: [
+        {
+          "BrokerId": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Users": [
+            {
+              "Username": "string",
+              "PendingChange": "string"
+            }
+          ],
+          "BrokerId": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+  CreateUser:
+    description: |-
+      Creates an ActiveMQ user.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers-broker-id-users-username.html
+    example:
+      inputs: [
+        {
+          "Groups": [
+            "string"
+          ],
+          "BrokerId": "string",
+          "Password": "string",
+          "Username": "string",
+          "ConsoleAccess": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteUser:
+    description: |-
+      Deletes an ActiveMQ user.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers-broker-id-users-username.html
+    example:
+      inputs: [
+        {
+          "BrokerId": "string",
+          "Username": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeUser:
+    description: |-
+      Returns information about an ActiveMQ user.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers-broker-id-users-username.html
+    example:
+      inputs: [
+        {
+          "BrokerId": "string",
+          "Username": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Groups": [
+            "string"
+          ],
+          "Pending": {
+            "Groups": [
+              "string"
+            ],
+            "ConsoleAccess": false,
+            "PendingChange": "string"
+          },
+          "BrokerId": "string",
+          "Username": "string",
+          "ConsoleAccess": false
+        }
+      ]
+  UpdateUser:
+    description: |-
+      Updates the information for an ActiveMQ user.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers-broker-id-users-username.html
+    example:
+      inputs: [
+        {
+          "Groups": [
+            "string"
+          ],
+          "BrokerId": "string",
+          "Password": "string",
+          "Username": "string",
+          "ConsoleAccess": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateBroker:
+    description: |-
+      Creates a broker. Note:This API is asynchronous.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers.html
+    example:
+      inputs: [
+        {
+          "Logs": {
+            "Audit": false,
+            "General": false
+          },
+          "Tags": {
+            "string": "string"
+          },
+          "Users": [
+            {
+              "Groups": [
+                "string"
+              ],
+              "Password": "string",
+              "Username": "string",
+              "ConsoleAccess": false
+            }
+          ],
+          "SubnetIds": [
+            "string"
+          ],
+          "BrokerName": "string",
+          "EngineType": "string",
+          "StorageType": "string",
+          "Configuration": {
+            "Id": "string",
+            "Revision": 1
+          },
+          "EngineVersion": "string",
+          "DeploymentMode": "string",
+          "SecurityGroups": [
+            "string"
+          ],
+          "CreatorRequestId": "string",
+          "HostInstanceType": "string",
+          "EncryptionOptions": {
+            "KmsKeyId": "string",
+            "UseAwsOwnedKey": false
+          },
+          "LdapServerMetadata": {
+            "Hosts": [
+              "string"
+            ],
+            "RoleBase": "string",
+            "RoleName": "string",
+            "UserBase": "string",
+            "UserRoleName": "string",
+            "RoleSearchSubtree": false,
+            "UserSearchSubtree": false,
+            "RoleSearchMatching": "string",
+            "UserSearchMatching": "string",
+            "ServiceAccountPassword": "string",
+            "ServiceAccountUsername": "string"
+          },
+          "PubliclyAccessible": false,
+          "AuthenticationStrategy": "string",
+          "AutoMinorVersionUpgrade": false,
+          "MaintenanceWindowStartTime": {
+            "TimeZone": "string",
+            "DayOfWeek": "string",
+            "TimeOfDay": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "BrokerId": "string",
+          "BrokerArn": "string"
+        }
+      ]
+  ListBrokers:
+    description: |-
+      Returns a list of all brokers.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "BrokerSummaries": [
+            {
+              "Created": 1481289211.615,
+              "BrokerId": "string",
+              "BrokerArn": "string",
+              "BrokerName": "string",
+              "EngineType": "string",
+              "BrokerState": "string",
+              "DeploymentMode": "string",
+              "HostInstanceType": "string"
+            }
+          ]
+        }
+      ]
+  DescribeConfiguration:
+    description: |-
+      Returns information about the specified configuration.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/configurations-configuration-id.html
+    example:
+      inputs: [
+        {
+          "ConfigurationId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Arn": "string",
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Created": 1481289211.615,
+          "EngineType": "string",
+          "Description": "string",
+          "EngineVersion": "string",
+          "LatestRevision": {
+            "Created": 1481289211.615,
+            "Revision": 1,
+            "Description": "string"
+          },
+          "AuthenticationStrategy": "string"
+        }
+      ]
+  UpdateConfiguration:
+    description: |-
+      Updates the specified configuration.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/configurations-configuration-id.html
+    example:
+      inputs: [
+        {
+          "Data": "string",
+          "Description": "string",
+          "ConfigurationId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Arn": "string",
+          "Name": "string",
+          "Created": 1481289211.615,
+          "Warnings": [
+            {
+              "Reason": "string",
+              "ElementName": "string",
+              "AttributeName": "string"
+            }
+          ],
+          "LatestRevision": {
+            "Created": 1481289211.615,
+            "Revision": 1,
+            "Description": "string"
+          }
+        }
+      ]
+  DescribeConfigurationRevision:
+    description: |-
+      Returns the specified configuration revision for the specified configuration.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/configurations-configuration-id-revisions-configuration-revision.html
+    example:
+      inputs: [
+        {
+          "ConfigurationId": "string",
+          "ConfigurationRevision": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Data": "string",
+          "Created": 1481289211.615,
+          "Description": "string",
+          "ConfigurationId": "string"
+        }
+      ]
+  ListConfigurationRevisions:
+    description: |-
+      Returns a list of all revisions for the specified configuration.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/configurations-configuration-id-revisions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ConfigurationId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Revisions": [
+            {
+              "Created": 1481289211.615,
+              "Revision": 1,
+              "Description": "string"
+            }
+          ],
+          "MaxResults": 1,
+          "ConfigurationId": "string"
+        }
+      ]
+  CreateConfiguration:
+    description: |-
+      Creates a new configuration for the specified configuration name. Amazon MQ uses the default configuration (the engine type and version).
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/configurations.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "EngineType": "string",
+          "EngineVersion": "string",
+          "AuthenticationStrategy": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Arn": "string",
+          "Name": "string",
+          "Created": 1481289211.615,
+          "LatestRevision": {
+            "Created": 1481289211.615,
+            "Revision": 1,
+            "Description": "string"
+          },
+          "AuthenticationStrategy": "string"
+        }
+      ]
+  ListConfigurations:
+    description: |-
+      Returns a list of all configurations.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/configurations.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "Configurations": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Name": "string",
+              "Tags": {
+                "string": "string"
+              },
+              "Created": 1481289211.615,
+              "EngineType": "string",
+              "Description": "string",
+              "EngineVersion": "string",
+              "LatestRevision": {
+                "Created": 1481289211.615,
+                "Revision": 1,
+                "Description": "string"
+              },
+              "AuthenticationStrategy": "string"
+            }
+          ]
+        }
+      ]
+  CreateTags:
+    description: |-
+      Add a tag to a resource.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/tags-resource-arn.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteTags:
+    description: |-
+      Removes a tag from a resource.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/tags-resource-arn.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListTags:
+    description: |-
+      Lists tags for a resource.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/amazon-mq/latest/api-reference/tags-resource-arn.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]

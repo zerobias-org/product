@@ -1,0 +1,699 @@
+Product:
+  name: Amazon Elastic File System
+  versions: [2015.2.1]
+  package: amazon.aws.elasticfilesystem
+  description: |-
+    AWS Elastic File System
+  link: https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html
+  contentType: json
+Operations:
+  CreateAccessPoint:
+    description: |-
+      Creates an EFS access point. An access point is an application-specific view into an EFS file system that applies an operating system user and group, and a file system path, to any file system request made through the access point. The operating system user and group override any identity information provided by the NFS client. The file system path is exposed as the access point's root directory. Applications using the access point can only access data in its own directory and below. To learn more, see Mounting a file system using EFS access points.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_CreateAccessPoint.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "PosixUser": {
+            "Gid": 1,
+            "Uid": 1,
+            "SecondaryGids": [
+              1
+            ]
+          },
+          "ClientToken": "string",
+          "FileSystemId": "string",
+          "RootDirectory": {
+            "Path": "string",
+            "CreationInfo": {
+              "OwnerGid": 1,
+              "OwnerUid": 1,
+              "Permissions": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "OwnerId": "string",
+          "PosixUser": {
+            "Gid": 1,
+            "Uid": 1,
+            "SecondaryGids": [
+              1
+            ]
+          },
+          "ClientToken": "string",
+          "FileSystemId": "string",
+          "AccessPointId": "string",
+          "RootDirectory": {
+            "Path": "string",
+            "CreationInfo": {
+              "OwnerGid": 1,
+              "OwnerUid": 1,
+              "Permissions": "string"
+            }
+          },
+          "AccessPointArn": "string",
+          "LifeCycleState": "string"
+        }
+      ]
+  CreateFileSystem:
+    description: |-
+      Creates a new, empty file system. The operation requires a creation token in the request that Amazon EFS uses to ensure idempotent creation (calling the operation with same creation token has no effect).
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_CreateFileSystem.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Backup": false,
+          "KmsKeyId": "string",
+          "Encrypted": false,
+          "CreationToken": "string",
+          "ThroughputMode": "string",
+          "PerformanceMode": "string",
+          "AvailabilityZoneName": "string",
+          "ProvisionedThroughputInMibps": 0.1
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "OwnerId": "string",
+          "KmsKeyId": "string",
+          "Encrypted": false,
+          "SizeInBytes": {
+            "Value": 1,
+            "Timestamp": 1481289211.615,
+            "ValueInIA": 1,
+            "ValueInStandard": 1
+          },
+          "CreationTime": 1481289211.615,
+          "FileSystemId": "string",
+          "CreationToken": "string",
+          "FileSystemArn": "string",
+          "LifeCycleState": "string",
+          "ThroughputMode": "string",
+          "PerformanceMode": "string",
+          "AvailabilityZoneId": "string",
+          "AvailabilityZoneName": "string",
+          "NumberOfMountTargets": 1,
+          "ProvisionedThroughputInMibps": 0.1
+        }
+      ]
+  CreateMountTarget:
+    description: |-
+      Creates a mount target for a file system. You can then mount the file system on EC2 instances by using the mount target.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_CreateMountTarget.html
+    example:
+      inputs: [
+        {
+          "SubnetId": "string",
+          "IpAddress": "string",
+          "FileSystemId": "string",
+          "SecurityGroups": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "VpcId": "string",
+          "OwnerId": "string",
+          "SubnetId": "string",
+          "IpAddress": "string",
+          "FileSystemId": "string",
+          "MountTargetId": "string",
+          "LifeCycleState": "string",
+          "AvailabilityZoneId": "string",
+          "NetworkInterfaceId": "string",
+          "AvailabilityZoneName": "string"
+        }
+      ]
+  CreateTags:
+    description: |-
+      Creates or overwrites tags associated with a file system. Each tag is a key-value pair. If a tag key specified in the request already exists on the file system, this operation overwrites its value with the value provided in the request. If you add the Name tag to your file system, Amazon EFS returns it in the response to the DescribeFileSystems operation.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_CreateTags.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "FileSystemId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteAccessPoint:
+    description: |-
+      Deletes the specified access point. After deletion is complete, new clients can no longer connect to the access points. Clients connected to the access point at the time of deletion will continue to function until they terminate their connection.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_DeleteAccessPoint.html
+    example:
+      inputs: [
+        {
+          "AccessPointId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteFileSystem:
+    description: |-
+      Deletes a file system, permanently severing access to its contents. Upon return, the file system no longer exists and you can't access any contents of the deleted file system.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_DeleteFileSystem.html
+    example:
+      inputs: [
+        {
+          "FileSystemId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteFileSystemPolicy:
+    description: |-
+      Deletes the FileSystemPolicy for the specified file system. The default FileSystemPolicy goes into effect once the existing policy is deleted. For more information about the default file system policy, see Using Resource-based Policies with EFS.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_DeleteFileSystemPolicy.html
+    example:
+      inputs: [
+        {
+          "FileSystemId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteMountTarget:
+    description: |-
+      Deletes the specified mount target.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_DeleteMountTarget.html
+    example:
+      inputs: [
+        {
+          "MountTargetId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteTags:
+    description: |-
+      Deletes the specified tags from a file system. If the DeleteTags request includes a tag key that doesn't exist, Amazon EFS ignores it and doesn't cause an error. For more information about tags and related restrictions, see Tag Restrictions in the AWS Billing and Cost Management User Guide.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_DeleteTags.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "FileSystemId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeAccessPoints:
+    description: |-
+      Returns the description of a specific Amazon EFS access point if the AccessPointId is provided. If you provide an EFS FileSystemId, it returns descriptions of all access points for that file system. You can provide either an AccessPointId or a FileSystemId in the request, but not both.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_DescribeAccessPoints.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "FileSystemId": "string",
+          "AccessPointId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "AccessPoints": [
+            {
+              "Name": "string",
+              "Tags": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ],
+              "OwnerId": "string",
+              "PosixUser": {
+                "Gid": 1,
+                "Uid": 1,
+                "SecondaryGids": [
+                  1
+                ]
+              },
+              "ClientToken": "string",
+              "FileSystemId": "string",
+              "AccessPointId": "string",
+              "RootDirectory": {
+                "Path": "string",
+                "CreationInfo": {
+                  "OwnerGid": 1,
+                  "OwnerUid": 1,
+                  "Permissions": "string"
+                }
+              },
+              "AccessPointArn": "string",
+              "LifeCycleState": "string"
+            }
+          ]
+        }
+      ]
+  DescribeBackupPolicy:
+    description: |-
+      Returns the backup policy for the specified EFS file system.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_DescribeBackupPolicy.html
+    example:
+      inputs: [
+        {
+          "FileSystemId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "BackupPolicy": {
+            "Status": "string"
+          }
+        }
+      ]
+  DescribeFileSystemPolicy:
+    description: |-
+      Returns the FileSystemPolicy for the specified EFS file system.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_DescribeFileSystemPolicy.html
+    example:
+      inputs: [
+        {
+          "FileSystemId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Policy": "string",
+          "FileSystemId": "string"
+        }
+      ]
+  DescribeFileSystems:
+    description: |-
+      Returns the description of a specific Amazon EFS file system if either the file system CreationToken or the FileSystemId is provided. Otherwise, it returns descriptions of all file systems owned by the caller's AWS account in the AWS Region of the endpoint that you're calling.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_DescribeFileSystems.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": 1,
+          "FileSystemId": "string",
+          "CreationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "NextMarker": "string",
+          "FileSystems": [
+            {
+              "Name": "string",
+              "Tags": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ],
+              "OwnerId": "string",
+              "KmsKeyId": "string",
+              "Encrypted": false,
+              "SizeInBytes": {
+                "Value": 1,
+                "Timestamp": 1481289211.615,
+                "ValueInIA": 1,
+                "ValueInStandard": 1
+              },
+              "CreationTime": 1481289211.615,
+              "FileSystemId": "string",
+              "CreationToken": "string",
+              "FileSystemArn": "string",
+              "LifeCycleState": "string",
+              "ThroughputMode": "string",
+              "PerformanceMode": "string",
+              "AvailabilityZoneId": "string",
+              "AvailabilityZoneName": "string",
+              "NumberOfMountTargets": 1,
+              "ProvisionedThroughputInMibps": 0.1
+            }
+          ]
+        }
+      ]
+  DescribeLifecycleConfiguration:
+    description: |-
+      Returns the current LifecycleConfiguration object for the specified Amazon EFS file system. EFS lifecycle management uses the LifecycleConfiguration object to identify which files to move to the EFS Infrequent Access (IA) storage class. For a file system without a LifecycleConfiguration object, the call returns an empty array in the response.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_DescribeLifecycleConfiguration.html
+    example:
+      inputs: [
+        {
+          "FileSystemId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LifecyclePolicies": [
+            {
+              "TransitionToIA": "string"
+            }
+          ]
+        }
+      ]
+  DescribeMountTargetSecurityGroups:
+    description: |-
+      Returns the security groups currently in effect for a mount target. This operation requires that the network interface of the mount target has been created and the lifecycle state of the mount target is not deleted.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_DescribeMountTargetSecurityGroups.html
+    example:
+      inputs: [
+        {
+          "MountTargetId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "SecurityGroups": [
+            "string"
+          ]
+        }
+      ]
+  DescribeMountTargets:
+    description: |-
+      Returns the descriptions of all the current mount targets, or a specific mount target, for a file system. When requesting all of the current mount targets, the order of mount targets returned in the response is unspecified.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_DescribeMountTargets.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": 1,
+          "FileSystemId": "string",
+          "AccessPointId": "string",
+          "MountTargetId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "NextMarker": "string",
+          "MountTargets": [
+            {
+              "VpcId": "string",
+              "OwnerId": "string",
+              "SubnetId": "string",
+              "IpAddress": "string",
+              "FileSystemId": "string",
+              "MountTargetId": "string",
+              "LifeCycleState": "string",
+              "AvailabilityZoneId": "string",
+              "NetworkInterfaceId": "string",
+              "AvailabilityZoneName": "string"
+            }
+          ]
+        }
+      ]
+  DescribeTags:
+    description: |-
+      Returns the tags associated with a file system. The order of tags returned in the response of one DescribeTags call and the order of tags returned across the responses of a multiple-call iteration (when using pagination) is unspecified.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_DescribeTags.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": 1,
+          "FileSystemId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Marker": "string",
+          "NextMarker": "string"
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists all tags for a top-level EFS resource. You must provide the ID of the resource that you want to retrieve the tags for.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ModifyMountTargetSecurityGroups:
+    description: |-
+      Modifies the set of security groups in effect for a mount target.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_ModifyMountTargetSecurityGroups.html
+    example:
+      inputs: [
+        {
+          "MountTargetId": "string",
+          "SecurityGroups": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBackupPolicy:
+    description: |-
+      Updates the file system's backup policy. Use this action to start or stop automatic backups of the file system.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_PutBackupPolicy.html
+    example:
+      inputs: [
+        {
+          "BackupPolicy": {
+            "Status": "string"
+          },
+          "FileSystemId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "BackupPolicy": {
+            "Status": "string"
+          }
+        }
+      ]
+  PutFileSystemPolicy:
+    description: |-
+      Applies an Amazon EFS FileSystemPolicy to an Amazon EFS file system. A file system policy is an IAM resource-based policy and can contain multiple policy statements. A file system always has exactly one file system policy, which can be the default policy or an explicit policy set or updated using this API operation. EFS file system policies have a 20,000 character limit. When an explicit policy is set, it overrides the default policy. For more information about the default file system policy, see Default EFS File System Policy.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_PutFileSystemPolicy.html
+    example:
+      inputs: [
+        {
+          "Policy": "string",
+          "FileSystemId": "string",
+          "BypassPolicyLockoutSafetyCheck": false
+        }
+      ]
+      outputs: [
+        {
+          "Policy": "string",
+          "FileSystemId": "string"
+        }
+      ]
+  PutLifecycleConfiguration:
+    description: |-
+      Enables lifecycle management by creating a new LifecycleConfiguration object. A LifecycleConfiguration object defines when files in an Amazon EFS file system are automatically transitioned to the lower-cost EFS Infrequent Access (IA) storage class. A LifecycleConfiguration applies to all files in a file system.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_PutLifecycleConfiguration.html
+    example:
+      inputs: [
+        {
+          "FileSystemId": "string",
+          "LifecyclePolicies": [
+            {
+              "TransitionToIA": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "LifecyclePolicies": [
+            {
+              "TransitionToIA": "string"
+            }
+          ]
+        }
+      ]
+  TagResource:
+    description: |-
+      Creates a tag for an EFS resource. You can create tags for EFS file systems and access points using this API operation.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes tags from an EFS resource. You can remove tags from EFS file systems and access points using this API operation.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateFileSystem:
+    description: |-
+      Updates the throughput mode or the amount of provisioned throughput of an existing file system.
+    versions:
+      from: 2015.2.1
+    link: https://docs.aws.amazon.com/efs/latest/ug/API_UpdateFileSystem.html
+    example:
+      inputs: [
+        {
+          "FileSystemId": "string",
+          "ThroughputMode": "string",
+          "ProvisionedThroughputInMibps": 0.1
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "OwnerId": "string",
+          "KmsKeyId": "string",
+          "Encrypted": false,
+          "SizeInBytes": {
+            "Value": 1,
+            "Timestamp": 1481289211.615,
+            "ValueInIA": 1,
+            "ValueInStandard": 1
+          },
+          "CreationTime": 1481289211.615,
+          "FileSystemId": "string",
+          "CreationToken": "string",
+          "FileSystemArn": "string",
+          "LifeCycleState": "string",
+          "ThroughputMode": "string",
+          "PerformanceMode": "string",
+          "AvailabilityZoneId": "string",
+          "AvailabilityZoneName": "string",
+          "NumberOfMountTargets": 1,
+          "ProvisionedThroughputInMibps": 0.1
+        }
+      ]

@@ -1,0 +1,805 @@
+Product:
+  name: AWS Certificate Manager Private Certificate Authority
+  versions: [2017.8.22]
+  package: amazon.aws.acmpca
+  description: |-
+    AWS Certificate Manager Private Certificate Authority
+  link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CreateCertificateAuthorityAuditReport:
+    description: |-
+      Creates an audit report that lists every time that your CA private key is used. The report is saved in the Amazon S3 bucket that you specify on input. The IssueCertificate and RevokeCertificate actions use the private key.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_CreateCertificateAuthorityAuditReport.html
+    example:
+      inputs: [
+        {
+          "S3BucketName": "string",
+          "CertificateAuthorityArn": "string",
+          "AuditReportResponseFormat": "string"
+        }
+      ]
+      outputs: [
+        {
+          "S3Key": "string",
+          "AuditReportId": "string"
+        }
+      ]
+  CreateCertificateAuthority:
+    description: |-
+      Creates a root or subordinate private certificate authority (CA). You must specify the CA configuration, the certificate revocation list (CRL) configuration, the CA type, and an optional idempotency token to avoid accidental creation of multiple CAs. The CA configuration specifies the name of the algorithm and key size to be used to create the CA private key, the type of signing algorithm that the CA uses, and X.500 subject information. The CRL configuration specifies the CRL expiration period in days (the validity period of the CRL), the Amazon S3 bucket that will contain the CRL, and a CNAME alias for the S3 bucket that is included in certificates issued by the CA. If successful, this action returns the Amazon Resource Name (ARN) of the CA.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_CreateCertificateAuthority.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "IdempotencyToken": "string",
+          "RevocationConfiguration": {
+            "CrlConfiguration": {
+              "Enabled": false,
+              "CustomCname": "string",
+              "S3BucketName": "string",
+              "ExpirationInDays": 1
+            }
+          },
+          "CertificateAuthorityType": "string",
+          "CertificateAuthorityConfiguration": {
+            "Subject": {
+              "State": "string",
+              "Title": "string",
+              "Country": "string",
+              "Surname": "string",
+              "Initials": "string",
+              "Locality": "string",
+              "GivenName": "string",
+              "Pseudonym": "string",
+              "CommonName": "string",
+              "Organization": "string",
+              "SerialNumber": "string",
+              "OrganizationalUnit": "string",
+              "GenerationQualifier": "string",
+              "DistinguishedNameQualifier": "string"
+            },
+            "KeyAlgorithm": "string",
+            "CsrExtensions": {
+              "KeyUsage": {
+                "CRLSign": false,
+                "KeyCertSign": false,
+                "DecipherOnly": false,
+                "EncipherOnly": false,
+                "KeyAgreement": false,
+                "NonRepudiation": false,
+                "KeyEncipherment": false,
+                "DataEncipherment": false,
+                "DigitalSignature": false
+              },
+              "SubjectInformationAccess": [
+                {
+                  "AccessMethod": {
+                    "AccessMethodType": "string",
+                    "CustomObjectIdentifier": "string"
+                  },
+                  "AccessLocation": {
+                    "DnsName": "string",
+                    "IpAddress": "string",
+                    "OtherName": {
+                      "Value": "string",
+                      "TypeId": "string"
+                    },
+                    "Rfc822Name": "string",
+                    "EdiPartyName": {
+                      "PartyName": "string",
+                      "NameAssigner": "string"
+                    },
+                    "RegisteredId": "string",
+                    "DirectoryName": {
+                      "State": "string",
+                      "Title": "string",
+                      "Country": "string",
+                      "Surname": "string",
+                      "Initials": "string",
+                      "Locality": "string",
+                      "GivenName": "string",
+                      "Pseudonym": "string",
+                      "CommonName": "string",
+                      "Organization": "string",
+                      "SerialNumber": "string",
+                      "OrganizationalUnit": "string",
+                      "GenerationQualifier": "string",
+                      "DistinguishedNameQualifier": "string"
+                    },
+                    "UniformResourceIdentifier": "string"
+                  }
+                }
+              ]
+            },
+            "SigningAlgorithm": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "CertificateAuthorityArn": "string"
+        }
+      ]
+  CreatePermission:
+    description: |-
+      Grants one or more permissions on a private CA to the AWS Certificate Manager (ACM) service principal (acm.amazonaws.com). These permissions allow ACM to issue and renew ACM certificates that reside in the same AWS account as the CA.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_CreatePermission.html
+    example:
+      inputs: [
+        {
+          "Actions": [
+            "string"
+          ],
+          "Principal": "string",
+          "SourceAccount": "string",
+          "CertificateAuthorityArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteCertificateAuthority:
+    description: |-
+      Deletes a private certificate authority (CA). You must provide the Amazon Resource Name (ARN) of the private CA that you want to delete. You can find the ARN by calling the ListCertificateAuthorities action.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_DeleteCertificateAuthority.html
+    example:
+      inputs: [
+        {
+          "CertificateAuthorityArn": "string",
+          "PermanentDeletionTimeInDays": 1
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeletePermission:
+    description: |-
+      Revokes permissions on a private CA granted to the AWS Certificate Manager (ACM) service principal (acm.amazonaws.com).
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_DeletePermission.html
+    example:
+      inputs: [
+        {
+          "Principal": "string",
+          "SourceAccount": "string",
+          "CertificateAuthorityArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeletePolicy:
+    description: |-
+      Deletes the resource-based policy attached to a private CA. Deletion will remove any access that the policy has granted. If there is no policy attached to the private CA, this action will return successful.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_DeletePolicy.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeCertificateAuthorityAuditReport:
+    description: |-
+      Lists information about a specific audit report created by calling the CreateCertificateAuthorityAuditReport action. Audit information is created every time the certificate authority (CA) private key is used. The private key is used when you call the IssueCertificate action or the RevokeCertificate action.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_DescribeCertificateAuthorityAuditReport.html
+    example:
+      inputs: [
+        {
+          "AuditReportId": "string",
+          "CertificateAuthorityArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "S3Key": "string",
+          "CreatedAt": 1481289211.615,
+          "S3BucketName": "string",
+          "AuditReportStatus": "string"
+        }
+      ]
+  DescribeCertificateAuthority:
+    description: |-
+      Lists information about your private certificate authority (CA) or one that has been shared with you. You specify the private CA on input by its ARN (Amazon Resource Name). The output contains the status of your CA.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_DescribeCertificateAuthority.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "CertificateAuthority": {
+            "Arn": "string",
+            "Type": "string",
+            "Serial": "string",
+            "Status": "string",
+            "NotAfter": 1481289211.615,
+            "CreatedAt": 1481289211.615,
+            "NotBefore": 1481289211.615,
+            "OwnerAccount": "string",
+            "FailureReason": "string",
+            "RestorableUntil": 1481289211.615,
+            "LastStateChangeAt": 1481289211.615,
+            "RevocationConfiguration": {
+              "CrlConfiguration": {
+                "Enabled": false,
+                "CustomCname": "string",
+                "S3BucketName": "string",
+                "ExpirationInDays": 1
+              }
+            },
+            "CertificateAuthorityConfiguration": {
+              "Subject": {
+                "State": "string",
+                "Title": "string",
+                "Country": "string",
+                "Surname": "string",
+                "Initials": "string",
+                "Locality": "string",
+                "GivenName": "string",
+                "Pseudonym": "string",
+                "CommonName": "string",
+                "Organization": "string",
+                "SerialNumber": "string",
+                "OrganizationalUnit": "string",
+                "GenerationQualifier": "string",
+                "DistinguishedNameQualifier": "string"
+              },
+              "KeyAlgorithm": "string",
+              "CsrExtensions": {
+                "KeyUsage": {
+                  "CRLSign": false,
+                  "KeyCertSign": false,
+                  "DecipherOnly": false,
+                  "EncipherOnly": false,
+                  "KeyAgreement": false,
+                  "NonRepudiation": false,
+                  "KeyEncipherment": false,
+                  "DataEncipherment": false,
+                  "DigitalSignature": false
+                },
+                "SubjectInformationAccess": [
+                  {
+                    "AccessMethod": {
+                      "AccessMethodType": "string",
+                      "CustomObjectIdentifier": "string"
+                    },
+                    "AccessLocation": {
+                      "DnsName": "string",
+                      "IpAddress": "string",
+                      "OtherName": {
+                        "Value": "string",
+                        "TypeId": "string"
+                      },
+                      "Rfc822Name": "string",
+                      "EdiPartyName": {
+                        "PartyName": "string",
+                        "NameAssigner": "string"
+                      },
+                      "RegisteredId": "string",
+                      "DirectoryName": {
+                        "State": "string",
+                        "Title": "string",
+                        "Country": "string",
+                        "Surname": "string",
+                        "Initials": "string",
+                        "Locality": "string",
+                        "GivenName": "string",
+                        "Pseudonym": "string",
+                        "CommonName": "string",
+                        "Organization": "string",
+                        "SerialNumber": "string",
+                        "OrganizationalUnit": "string",
+                        "GenerationQualifier": "string",
+                        "DistinguishedNameQualifier": "string"
+                      },
+                      "UniformResourceIdentifier": "string"
+                    }
+                  }
+                ]
+              },
+              "SigningAlgorithm": "string"
+            }
+          }
+        }
+      ]
+  GetCertificateAuthorityCertificate:
+    description: |-
+      Retrieves the certificate and certificate chain for your private certificate authority (CA) or one that has been shared with you. Both the certificate and the chain are base64 PEM-encoded. The chain does not include the CA certificate. Each certificate in the chain signs the one before it.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_GetCertificateAuthorityCertificate.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Certificate": "string",
+          "CertificateChain": "string"
+        }
+      ]
+  GetCertificateAuthorityCsr:
+    description: |-
+      Retrieves the certificate signing request (CSR) for your private certificate authority (CA). The CSR is created when you call the CreateCertificateAuthority action. Sign the CSR with your ACM Private CA-hosted or on-premises root or subordinate CA. Then import the signed certificate back into ACM Private CA by calling the ImportCertificateAuthorityCertificate action. The CSR is returned as a base64 PEM-encoded string.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_GetCertificateAuthorityCsr.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Csr": "string"
+        }
+      ]
+  GetCertificate:
+    description: |-
+      Retrieves a certificate from your private CA or one that has been shared with you. The ARN of the certificate is returned when you call the IssueCertificate action. You must specify both the ARN of your private CA and the ARN of the issued certificate when calling the GetCertificate action. You can retrieve the certificate if it is in the ISSUED state. You can call the CreateCertificateAuthorityAuditReport action to create a report that contains information about all of the certificates issued and revoked by your private CA.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_GetCertificate.html
+    example:
+      inputs: [
+        {
+          "CertificateArn": "string",
+          "CertificateAuthorityArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Certificate": "string",
+          "CertificateChain": "string"
+        }
+      ]
+  GetPolicy:
+    description: |-
+      Retrieves the resource-based policy attached to a private CA. If either the private CA resource or the policy cannot be found, this action returns a ResourceNotFoundException.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_GetPolicy.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Policy": "string"
+        }
+      ]
+  ImportCertificateAuthorityCertificate:
+    description: |-
+      Imports a signed private CA certificate into ACM Private CA. This action is used when you are using a chain of trust whose root is located outside ACM Private CA.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_ImportCertificateAuthorityCertificate.html
+    example:
+      inputs: [
+        {
+          "Certificate": "blob",
+          "CertificateChain": "blob",
+          "CertificateAuthorityArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  IssueCertificate:
+    description: |-
+      Uses your private certificate authority (CA), or one that has been shared with you, to issue a client certificate. This action returns the Amazon Resource Name (ARN) of the certificate. You can retrieve the certificate by calling the GetCertificate action and specifying the ARN.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_IssueCertificate.html
+    example:
+      inputs: [
+        {
+          "Csr": "blob",
+          "Validity": {
+            "Type": "string",
+            "Value": 1
+          },
+          "TemplateArn": "string",
+          "ApiPassthrough": {
+            "Subject": {
+              "State": "string",
+              "Title": "string",
+              "Country": "string",
+              "Surname": "string",
+              "Initials": "string",
+              "Locality": "string",
+              "GivenName": "string",
+              "Pseudonym": "string",
+              "CommonName": "string",
+              "Organization": "string",
+              "SerialNumber": "string",
+              "OrganizationalUnit": "string",
+              "GenerationQualifier": "string",
+              "DistinguishedNameQualifier": "string"
+            },
+            "Extensions": {
+              "KeyUsage": {
+                "CRLSign": false,
+                "KeyCertSign": false,
+                "DecipherOnly": false,
+                "EncipherOnly": false,
+                "KeyAgreement": false,
+                "NonRepudiation": false,
+                "KeyEncipherment": false,
+                "DataEncipherment": false,
+                "DigitalSignature": false
+              },
+              "ExtendedKeyUsage": [
+                {
+                  "ExtendedKeyUsageType": "string",
+                  "ExtendedKeyUsageObjectIdentifier": "string"
+                }
+              ],
+              "CertificatePolicies": [
+                {
+                  "CertPolicyId": "string",
+                  "PolicyQualifiers": [
+                    {
+                      "Qualifier": {
+                        "CpsUri": "string"
+                      },
+                      "PolicyQualifierId": "string"
+                    }
+                  ]
+                }
+              ],
+              "SubjectAlternativeNames": [
+                {
+                  "DnsName": "string",
+                  "IpAddress": "string",
+                  "OtherName": {
+                    "Value": "string",
+                    "TypeId": "string"
+                  },
+                  "Rfc822Name": "string",
+                  "EdiPartyName": {
+                    "PartyName": "string",
+                    "NameAssigner": "string"
+                  },
+                  "RegisteredId": "string",
+                  "DirectoryName": {
+                    "State": "string",
+                    "Title": "string",
+                    "Country": "string",
+                    "Surname": "string",
+                    "Initials": "string",
+                    "Locality": "string",
+                    "GivenName": "string",
+                    "Pseudonym": "string",
+                    "CommonName": "string",
+                    "Organization": "string",
+                    "SerialNumber": "string",
+                    "OrganizationalUnit": "string",
+                    "GenerationQualifier": "string",
+                    "DistinguishedNameQualifier": "string"
+                  },
+                  "UniformResourceIdentifier": "string"
+                }
+              ]
+            }
+          },
+          "IdempotencyToken": "string",
+          "SigningAlgorithm": "string",
+          "ValidityNotBefore": {
+            "Type": "string",
+            "Value": 1
+          },
+          "CertificateAuthorityArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListCertificateAuthorities:
+    description: |-
+      Lists the private certificate authorities that you created by using the CreateCertificateAuthority action.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_ListCertificateAuthorities.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CertificateAuthorities": [
+            {
+              "Arn": "string",
+              "Type": "string",
+              "Serial": "string",
+              "Status": "string",
+              "NotAfter": 1481289211.615,
+              "CreatedAt": 1481289211.615,
+              "NotBefore": 1481289211.615,
+              "OwnerAccount": "string",
+              "FailureReason": "string",
+              "RestorableUntil": 1481289211.615,
+              "LastStateChangeAt": 1481289211.615,
+              "RevocationConfiguration": {
+                "CrlConfiguration": {
+                  "Enabled": false,
+                  "CustomCname": "string",
+                  "S3BucketName": "string",
+                  "ExpirationInDays": 1
+                }
+              },
+              "CertificateAuthorityConfiguration": {
+                "Subject": {
+                  "State": "string",
+                  "Title": "string",
+                  "Country": "string",
+                  "Surname": "string",
+                  "Initials": "string",
+                  "Locality": "string",
+                  "GivenName": "string",
+                  "Pseudonym": "string",
+                  "CommonName": "string",
+                  "Organization": "string",
+                  "SerialNumber": "string",
+                  "OrganizationalUnit": "string",
+                  "GenerationQualifier": "string",
+                  "DistinguishedNameQualifier": "string"
+                },
+                "KeyAlgorithm": "string",
+                "CsrExtensions": {
+                  "KeyUsage": {
+                    "CRLSign": false,
+                    "KeyCertSign": false,
+                    "DecipherOnly": false,
+                    "EncipherOnly": false,
+                    "KeyAgreement": false,
+                    "NonRepudiation": false,
+                    "KeyEncipherment": false,
+                    "DataEncipherment": false,
+                    "DigitalSignature": false
+                  },
+                  "SubjectInformationAccess": [
+                    {
+                      "AccessMethod": {
+                        "AccessMethodType": "string",
+                        "CustomObjectIdentifier": "string"
+                      },
+                      "AccessLocation": {
+                        "DnsName": "string",
+                        "IpAddress": "string",
+                        "OtherName": {
+                          "Value": "string",
+                          "TypeId": "string"
+                        },
+                        "Rfc822Name": "string",
+                        "EdiPartyName": {
+                          "PartyName": "string",
+                          "NameAssigner": "string"
+                        },
+                        "RegisteredId": "string",
+                        "DirectoryName": {
+                          "State": "string",
+                          "Title": "string",
+                          "Country": "string",
+                          "Surname": "string",
+                          "Initials": "string",
+                          "Locality": "string",
+                          "GivenName": "string",
+                          "Pseudonym": "string",
+                          "CommonName": "string",
+                          "Organization": "string",
+                          "SerialNumber": "string",
+                          "OrganizationalUnit": "string",
+                          "GenerationQualifier": "string",
+                          "DistinguishedNameQualifier": "string"
+                        },
+                        "UniformResourceIdentifier": "string"
+                      }
+                    }
+                  ]
+                },
+                "SigningAlgorithm": "string"
+              }
+            }
+          ]
+        }
+      ]
+  ListPermissions:
+    description: |-
+      List all permissions on a private CA, if any, granted to the AWS Certificate Manager (ACM) service principal (acm.amazonaws.com).
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_ListPermissions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "CertificateAuthorityArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Permissions": [
+            {
+              "Policy": "string",
+              "Actions": [
+                "string"
+              ],
+              "CreatedAt": 1481289211.615,
+              "Principal": "string",
+              "SourceAccount": "string",
+              "CertificateAuthorityArn": "string"
+            }
+          ]
+        }
+      ]
+  ListTags:
+    description: |-
+      Lists the tags, if any, that are associated with your private CA or one that has been shared with you. Tags are labels that you can use to identify and organize your CAs. Each tag consists of a key and an optional value. Call the TagCertificateAuthority action to add one or more tags to your CA. Call the UntagCertificateAuthority action to remove tags.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_ListTags.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "CertificateAuthorityArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  PutPolicy:
+    description: |-
+      Attaches a resource-based policy to a private CA.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_PutPolicy.html
+    example:
+      inputs: [
+        {
+          "Policy": "string",
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RestoreCertificateAuthority:
+    description: |-
+      Restores a certificate authority (CA) that is in the DELETED state. You can restore a CA during the period that you defined in the PermanentDeletionTimeInDays parameter of the DeleteCertificateAuthority action. Currently, you can specify 7 to 30 days. If you did not specify a PermanentDeletionTimeInDays value, by default you can restore the CA at any time in a 30 day period. You can check the time remaining in the restoration period of a private CA in the DELETED state by calling the DescribeCertificateAuthority or ListCertificateAuthorities actions. The status of a restored CA is set to its pre-deletion status when the RestoreCertificateAuthority action returns. To change its status to ACTIVE, call the UpdateCertificateAuthority action. If the private CA was in the PENDING_CERTIFICATE state at deletion, you must use the ImportCertificateAuthorityCertificate action to import a certificate authority into the private CA before it can be activated. You cannot restore a CA after the restoration period has ended.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_RestoreCertificateAuthority.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  RevokeCertificate:
+    description: |-
+      Revokes a certificate that was issued inside ACM Private CA. If you enable a certificate revocation list (CRL) when you create or update your private CA, information about the revoked certificates will be included in the CRL. ACM Private CA writes the CRL to an S3 bucket that you specify. A CRL is typically updated approximately 30 minutes after a certificate is revoked. If for any reason the CRL update fails, ACM Private CA attempts makes further attempts every 15 minutes. With Amazon CloudWatch, you can create alarms for the metrics CRLGenerated and MisconfiguredCRLBucket. For more information, see Supported CloudWatch Metrics.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_RevokeCertificate.html
+    example:
+      inputs: [
+        {
+          "RevocationReason": "string",
+          "CertificateSerial": "string",
+          "CertificateAuthorityArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagCertificateAuthority:
+    description: |-
+      Adds one or more tags to your private CA. Tags are labels that you can use to identify and organize your AWS resources. Each tag consists of a key and an optional value. You specify the private CA on input by its Amazon Resource Name (ARN). You specify the tag by using a key-value pair. You can apply a tag to just one private CA if you want to identify a specific characteristic of that CA, or you can apply the same tag to multiple private CAs if you want to filter for a common relationship among those CAs. To remove one or more tags, use the UntagCertificateAuthority action. Call the ListTags action to see what tags are associated with your CA.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_TagCertificateAuthority.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "CertificateAuthorityArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagCertificateAuthority:
+    description: |-
+      Remove one or more tags from your private CA. A tag consists of a key-value pair. If you do not specify the value portion of the tag when calling this action, the tag will be removed regardless of value. If you specify a value, the tag is removed only if it is associated with the specified value. To add tags to a private CA, use the TagCertificateAuthority. Call the ListTags action to see what tags are associated with your CA.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_UntagCertificateAuthority.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "CertificateAuthorityArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateCertificateAuthority:
+    description: |-
+      Updates the status or configuration of a private certificate authority (CA). Your private CA must be in the ACTIVE or DISABLED state before you can update it. You can disable a private CA that is in the ACTIVE state or make a CA that is in the DISABLED state active again.
+    versions:
+      from: 2017.8.22
+    link: https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_UpdateCertificateAuthority.html
+    example:
+      inputs: [
+        {
+          "Status": "string",
+          "CertificateAuthorityArn": "string",
+          "RevocationConfiguration": {
+            "CrlConfiguration": {
+              "Enabled": false,
+              "CustomCname": "string",
+              "S3BucketName": "string",
+              "ExpirationInDays": 1
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]

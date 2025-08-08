@@ -1,0 +1,1414 @@
+Product:
+  name: AWS Batch
+  versions: [2016.8.10]
+  package: amazon.aws.batch
+  description: |-
+    AWS Batch
+  link: https://docs.aws.amazon.com/batch/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CancelJob:
+    description: |-
+      Cancels a job in an AWS Batch job queue. Jobs that are in the SUBMITTED, PENDING, or RUNNABLE state are canceled. Jobs that have progressed to STARTING or RUNNING aren't canceled, but the API operation still succeeds, even if no job is canceled. These jobs must be terminated with the TerminateJob operation.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_CancelJob.html
+    example:
+      inputs: [
+        {
+          "jobId": "string",
+          "reason": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateComputeEnvironment:
+    description: |-
+      Creates an AWS Batch compute environment. You can create MANAGED or UNMANAGED compute environments. MANAGED compute environments can use Amazon EC2 or AWS Fargate resources. UNMANAGED compute environments can only use EC2 resources.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_CreateComputeEnvironment.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "type": "string",
+          "state": "string",
+          "serviceRole": "string",
+          "computeResources": {
+            "tags": {
+              "string": "string"
+            },
+            "type": "string",
+            "imageId": "string",
+            "subnets": [
+              "string"
+            ],
+            "maxvCpus": 1,
+            "minvCpus": 1,
+            "ec2KeyPair": "string",
+            "desiredvCpus": 1,
+            "instanceRole": "string",
+            "bidPercentage": 1,
+            "instanceTypes": [
+              "string"
+            ],
+            "launchTemplate": {
+              "version": "string",
+              "launchTemplateId": "string",
+              "launchTemplateName": "string"
+            },
+            "placementGroup": "string",
+            "ec2Configuration": [
+              {
+                "imageType": "string",
+                "imageIdOverride": "string"
+              }
+            ],
+            "securityGroupIds": [
+              "string"
+            ],
+            "spotIamFleetRole": "string",
+            "allocationStrategy": "string"
+          },
+          "computeEnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "computeEnvironmentArn": "string",
+          "computeEnvironmentName": "string"
+        }
+      ]
+  CreateJobQueue:
+    description: |-
+      Creates an AWS Batch job queue. When you create a job queue, you associate one or more compute environments to the queue and assign an order of preference for the compute environments.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_CreateJobQueue.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "state": "string",
+          "priority": 1,
+          "jobQueueName": "string",
+          "computeEnvironmentOrder": [
+            {
+              "order": 1,
+              "computeEnvironment": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "jobQueueArn": "string",
+          "jobQueueName": "string"
+        }
+      ]
+  DeleteComputeEnvironment:
+    description: |-
+      Deletes an AWS Batch compute environment.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_DeleteComputeEnvironment.html
+    example:
+      inputs: [
+        {
+          "computeEnvironment": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteJobQueue:
+    description: |-
+      Deletes the specified job queue. You must first disable submissions for a queue with the UpdateJobQueue operation. All jobs in the queue are eventually terminated when you delete a job queue. The jobs are terminated at a rate of about 16 jobs each second.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_DeleteJobQueue.html
+    example:
+      inputs: [
+        {
+          "jobQueue": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeregisterJobDefinition:
+    description: |-
+      Deregisters an AWS Batch job definition. Job definitions are permanently deleted after 180 days.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_DeregisterJobDefinition.html
+    example:
+      inputs: [
+        {
+          "jobDefinition": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeComputeEnvironments:
+    description: |-
+      Describes one or more of your compute environments.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_DescribeComputeEnvironments.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "computeEnvironments": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "computeEnvironments": [
+            {
+              "tags": {
+                "string": "string"
+              },
+              "type": "string",
+              "state": "string",
+              "status": "string",
+              "serviceRole": "string",
+              "statusReason": "string",
+              "ecsClusterArn": "string",
+              "computeResources": {
+                "tags": {
+                  "string": "string"
+                },
+                "type": "string",
+                "imageId": "string",
+                "subnets": [
+                  "string"
+                ],
+                "maxvCpus": 1,
+                "minvCpus": 1,
+                "ec2KeyPair": "string",
+                "desiredvCpus": 1,
+                "instanceRole": "string",
+                "bidPercentage": 1,
+                "instanceTypes": [
+                  "string"
+                ],
+                "launchTemplate": {
+                  "version": "string",
+                  "launchTemplateId": "string",
+                  "launchTemplateName": "string"
+                },
+                "placementGroup": "string",
+                "ec2Configuration": [
+                  {
+                    "imageType": "string",
+                    "imageIdOverride": "string"
+                  }
+                ],
+                "securityGroupIds": [
+                  "string"
+                ],
+                "spotIamFleetRole": "string",
+                "allocationStrategy": "string"
+              },
+              "computeEnvironmentArn": "string",
+              "computeEnvironmentName": "string"
+            }
+          ]
+        }
+      ]
+  DescribeJobDefinitions:
+    description: |-
+      Describes a list of job definitions. You can specify a status (such as ACTIVE) to only return job definitions that match that status.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_DescribeJobDefinitions.html
+    example:
+      inputs: [
+        {
+          "status": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "jobDefinitions": [
+            "string"
+          ],
+          "jobDefinitionName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "jobDefinitions": [
+            {
+              "tags": {
+                "string": "string"
+              },
+              "type": "string",
+              "status": "string",
+              "timeout": {
+                "attemptDurationSeconds": 1
+              },
+              "revision": 1,
+              "parameters": {
+                "string": "string"
+              },
+              "propagateTags": false,
+              "retryStrategy": {
+                "attempts": 1,
+                "evaluateOnExit": [
+                  {
+                    "action": "string",
+                    "onReason": "string",
+                    "onExitCode": "string",
+                    "onStatusReason": "string"
+                  }
+                ]
+              },
+              "nodeProperties": {
+                "mainNode": 1,
+                "numNodes": 1,
+                "nodeRangeProperties": [
+                  {
+                    "container": {
+                      "user": "string",
+                      "image": "string",
+                      "vcpus": 1,
+                      "memory": 1,
+                      "command": [
+                        "string"
+                      ],
+                      "secrets": [
+                        {
+                          "name": "string",
+                          "valueFrom": "string"
+                        }
+                      ],
+                      "ulimits": [
+                        {
+                          "name": "string",
+                          "hardLimit": 1,
+                          "softLimit": 1
+                        }
+                      ],
+                      "volumes": [
+                        {
+                          "host": {
+                            "sourcePath": "string"
+                          },
+                          "name": "string",
+                          "efsVolumeConfiguration": {
+                            "fileSystemId": "string",
+                            "rootDirectory": "string",
+                            "transitEncryption": "string",
+                            "authorizationConfig": {
+                              "iam": "string",
+                              "accessPointId": "string"
+                            },
+                            "transitEncryptionPort": 1
+                          }
+                        }
+                      ],
+                      "jobRoleArn": "string",
+                      "privileged": false,
+                      "environment": [
+                        {
+                          "name": "string",
+                          "value": "string"
+                        }
+                      ],
+                      "mountPoints": [
+                        {
+                          "readOnly": false,
+                          "sourceVolume": "string",
+                          "containerPath": "string"
+                        }
+                      ],
+                      "instanceType": "string",
+                      "linuxParameters": {
+                        "tmpfs": [
+                          {
+                            "size": 1,
+                            "mountOptions": [
+                              "string"
+                            ],
+                            "containerPath": "string"
+                          }
+                        ],
+                        "devices": [
+                          {
+                            "hostPath": "string",
+                            "permissions": [
+                              "string"
+                            ],
+                            "containerPath": "string"
+                          }
+                        ],
+                        "maxSwap": 1,
+                        "swappiness": 1,
+                        "sharedMemorySize": 1,
+                        "initProcessEnabled": false
+                      },
+                      "executionRoleArn": "string",
+                      "logConfiguration": {
+                        "options": {
+                          "string": "string"
+                        },
+                        "logDriver": "string",
+                        "secretOptions": [
+                          {
+                            "name": "string",
+                            "valueFrom": "string"
+                          }
+                        ]
+                      },
+                      "networkConfiguration": {
+                        "assignPublicIp": "string"
+                      },
+                      "resourceRequirements": [
+                        {
+                          "type": "string",
+                          "value": "string"
+                        }
+                      ],
+                      "readonlyRootFilesystem": false,
+                      "fargatePlatformConfiguration": {
+                        "platformVersion": "string"
+                      }
+                    },
+                    "targetNodes": "string"
+                  }
+                ]
+              },
+              "jobDefinitionArn": "string",
+              "jobDefinitionName": "string",
+              "containerProperties": {
+                "user": "string",
+                "image": "string",
+                "vcpus": 1,
+                "memory": 1,
+                "command": [
+                  "string"
+                ],
+                "secrets": [
+                  {
+                    "name": "string",
+                    "valueFrom": "string"
+                  }
+                ],
+                "ulimits": [
+                  {
+                    "name": "string",
+                    "hardLimit": 1,
+                    "softLimit": 1
+                  }
+                ],
+                "volumes": [
+                  {
+                    "host": {
+                      "sourcePath": "string"
+                    },
+                    "name": "string",
+                    "efsVolumeConfiguration": {
+                      "fileSystemId": "string",
+                      "rootDirectory": "string",
+                      "transitEncryption": "string",
+                      "authorizationConfig": {
+                        "iam": "string",
+                        "accessPointId": "string"
+                      },
+                      "transitEncryptionPort": 1
+                    }
+                  }
+                ],
+                "jobRoleArn": "string",
+                "privileged": false,
+                "environment": [
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ],
+                "mountPoints": [
+                  {
+                    "readOnly": false,
+                    "sourceVolume": "string",
+                    "containerPath": "string"
+                  }
+                ],
+                "instanceType": "string",
+                "linuxParameters": {
+                  "tmpfs": [
+                    {
+                      "size": 1,
+                      "mountOptions": [
+                        "string"
+                      ],
+                      "containerPath": "string"
+                    }
+                  ],
+                  "devices": [
+                    {
+                      "hostPath": "string",
+                      "permissions": [
+                        "string"
+                      ],
+                      "containerPath": "string"
+                    }
+                  ],
+                  "maxSwap": 1,
+                  "swappiness": 1,
+                  "sharedMemorySize": 1,
+                  "initProcessEnabled": false
+                },
+                "executionRoleArn": "string",
+                "logConfiguration": {
+                  "options": {
+                    "string": "string"
+                  },
+                  "logDriver": "string",
+                  "secretOptions": [
+                    {
+                      "name": "string",
+                      "valueFrom": "string"
+                    }
+                  ]
+                },
+                "networkConfiguration": {
+                  "assignPublicIp": "string"
+                },
+                "resourceRequirements": [
+                  {
+                    "type": "string",
+                    "value": "string"
+                  }
+                ],
+                "readonlyRootFilesystem": false,
+                "fargatePlatformConfiguration": {
+                  "platformVersion": "string"
+                }
+              },
+              "platformCapabilities": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  DescribeJobQueues:
+    description: |-
+      Describes one or more of your job queues.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_DescribeJobQueues.html
+    example:
+      inputs: [
+        {
+          "jobQueues": [
+            "string"
+          ],
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "jobQueues": [
+            {
+              "tags": {
+                "string": "string"
+              },
+              "state": "string",
+              "status": "string",
+              "priority": 1,
+              "jobQueueArn": "string",
+              "jobQueueName": "string",
+              "statusReason": "string",
+              "computeEnvironmentOrder": [
+                {
+                  "order": 1,
+                  "computeEnvironment": "string"
+                }
+              ]
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  DescribeJobs:
+    description: |-
+      Describes a list of AWS Batch jobs.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_DescribeJobs.html
+    example:
+      inputs: [
+        {
+          "jobs": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "jobs": [
+            {
+              "tags": {
+                "string": "string"
+              },
+              "jobId": "string",
+              "jobArn": "string",
+              "status": "string",
+              "jobName": "string",
+              "timeout": {
+                "attemptDurationSeconds": 1
+              },
+              "attempts": [
+                {
+                  "container": {
+                    "reason": "string",
+                    "taskArn": "string",
+                    "exitCode": 1,
+                    "logStreamName": "string",
+                    "networkInterfaces": [
+                      {
+                        "ipv6Address": "string",
+                        "attachmentId": "string",
+                        "privateIpv4Address": "string"
+                      }
+                    ],
+                    "containerInstanceArn": "string"
+                  },
+                  "startedAt": 1,
+                  "stoppedAt": 1,
+                  "statusReason": "string"
+                }
+              ],
+              "jobQueue": "string",
+              "container": {
+                "user": "string",
+                "image": "string",
+                "vcpus": 1,
+                "memory": 1,
+                "reason": "string",
+                "command": [
+                  "string"
+                ],
+                "secrets": [
+                  {
+                    "name": "string",
+                    "valueFrom": "string"
+                  }
+                ],
+                "taskArn": "string",
+                "ulimits": [
+                  {
+                    "name": "string",
+                    "hardLimit": 1,
+                    "softLimit": 1
+                  }
+                ],
+                "volumes": [
+                  {
+                    "host": {
+                      "sourcePath": "string"
+                    },
+                    "name": "string",
+                    "efsVolumeConfiguration": {
+                      "fileSystemId": "string",
+                      "rootDirectory": "string",
+                      "transitEncryption": "string",
+                      "authorizationConfig": {
+                        "iam": "string",
+                        "accessPointId": "string"
+                      },
+                      "transitEncryptionPort": 1
+                    }
+                  }
+                ],
+                "exitCode": 1,
+                "jobRoleArn": "string",
+                "privileged": false,
+                "environment": [
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ],
+                "mountPoints": [
+                  {
+                    "readOnly": false,
+                    "sourceVolume": "string",
+                    "containerPath": "string"
+                  }
+                ],
+                "instanceType": "string",
+                "logStreamName": "string",
+                "linuxParameters": {
+                  "tmpfs": [
+                    {
+                      "size": 1,
+                      "mountOptions": [
+                        "string"
+                      ],
+                      "containerPath": "string"
+                    }
+                  ],
+                  "devices": [
+                    {
+                      "hostPath": "string",
+                      "permissions": [
+                        "string"
+                      ],
+                      "containerPath": "string"
+                    }
+                  ],
+                  "maxSwap": 1,
+                  "swappiness": 1,
+                  "sharedMemorySize": 1,
+                  "initProcessEnabled": false
+                },
+                "executionRoleArn": "string",
+                "logConfiguration": {
+                  "options": {
+                    "string": "string"
+                  },
+                  "logDriver": "string",
+                  "secretOptions": [
+                    {
+                      "name": "string",
+                      "valueFrom": "string"
+                    }
+                  ]
+                },
+                "networkInterfaces": [
+                  {
+                    "ipv6Address": "string",
+                    "attachmentId": "string",
+                    "privateIpv4Address": "string"
+                  }
+                ],
+                "containerInstanceArn": "string",
+                "networkConfiguration": {
+                  "assignPublicIp": "string"
+                },
+                "resourceRequirements": [
+                  {
+                    "type": "string",
+                    "value": "string"
+                  }
+                ],
+                "readonlyRootFilesystem": false,
+                "fargatePlatformConfiguration": {
+                  "platformVersion": "string"
+                }
+              },
+              "createdAt": 1,
+              "dependsOn": [
+                {
+                  "type": "string",
+                  "jobId": "string"
+                }
+              ],
+              "startedAt": 1,
+              "stoppedAt": 1,
+              "parameters": {
+                "string": "string"
+              },
+              "nodeDetails": {
+                "nodeIndex": 1,
+                "isMainNode": false
+              },
+              "statusReason": "string",
+              "jobDefinition": "string",
+              "propagateTags": false,
+              "retryStrategy": {
+                "attempts": 1,
+                "evaluateOnExit": [
+                  {
+                    "action": "string",
+                    "onReason": "string",
+                    "onExitCode": "string",
+                    "onStatusReason": "string"
+                  }
+                ]
+              },
+              "nodeProperties": {
+                "mainNode": 1,
+                "numNodes": 1,
+                "nodeRangeProperties": [
+                  {
+                    "container": {
+                      "user": "string",
+                      "image": "string",
+                      "vcpus": 1,
+                      "memory": 1,
+                      "command": [
+                        "string"
+                      ],
+                      "secrets": [
+                        {
+                          "name": "string",
+                          "valueFrom": "string"
+                        }
+                      ],
+                      "ulimits": [
+                        {
+                          "name": "string",
+                          "hardLimit": 1,
+                          "softLimit": 1
+                        }
+                      ],
+                      "volumes": [
+                        {
+                          "host": {
+                            "sourcePath": "string"
+                          },
+                          "name": "string",
+                          "efsVolumeConfiguration": {
+                            "fileSystemId": "string",
+                            "rootDirectory": "string",
+                            "transitEncryption": "string",
+                            "authorizationConfig": {
+                              "iam": "string",
+                              "accessPointId": "string"
+                            },
+                            "transitEncryptionPort": 1
+                          }
+                        }
+                      ],
+                      "jobRoleArn": "string",
+                      "privileged": false,
+                      "environment": [
+                        {
+                          "name": "string",
+                          "value": "string"
+                        }
+                      ],
+                      "mountPoints": [
+                        {
+                          "readOnly": false,
+                          "sourceVolume": "string",
+                          "containerPath": "string"
+                        }
+                      ],
+                      "instanceType": "string",
+                      "linuxParameters": {
+                        "tmpfs": [
+                          {
+                            "size": 1,
+                            "mountOptions": [
+                              "string"
+                            ],
+                            "containerPath": "string"
+                          }
+                        ],
+                        "devices": [
+                          {
+                            "hostPath": "string",
+                            "permissions": [
+                              "string"
+                            ],
+                            "containerPath": "string"
+                          }
+                        ],
+                        "maxSwap": 1,
+                        "swappiness": 1,
+                        "sharedMemorySize": 1,
+                        "initProcessEnabled": false
+                      },
+                      "executionRoleArn": "string",
+                      "logConfiguration": {
+                        "options": {
+                          "string": "string"
+                        },
+                        "logDriver": "string",
+                        "secretOptions": [
+                          {
+                            "name": "string",
+                            "valueFrom": "string"
+                          }
+                        ]
+                      },
+                      "networkConfiguration": {
+                        "assignPublicIp": "string"
+                      },
+                      "resourceRequirements": [
+                        {
+                          "type": "string",
+                          "value": "string"
+                        }
+                      ],
+                      "readonlyRootFilesystem": false,
+                      "fargatePlatformConfiguration": {
+                        "platformVersion": "string"
+                      }
+                    },
+                    "targetNodes": "string"
+                  }
+                ]
+              },
+              "arrayProperties": {
+                "size": 1,
+                "index": 1,
+                "statusSummary": {
+                  "string": 1
+                }
+              },
+              "platformCapabilities": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  ListJobs:
+    description: |-
+      Returns a list of AWS Batch jobs.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_ListJobs.html
+    example:
+      inputs: [
+        {
+          "jobQueue": "string",
+          "jobStatus": "string",
+          "nextToken": "string",
+          "arrayJobId": "string",
+          "maxResults": 1,
+          "multiNodeJobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "jobSummaryList": [
+            {
+              "jobId": "string",
+              "jobArn": "string",
+              "status": "string",
+              "jobName": "string",
+              "container": {
+                "reason": "string",
+                "exitCode": 1
+              },
+              "createdAt": 1,
+              "startedAt": 1,
+              "stoppedAt": 1,
+              "statusReason": "string",
+              "nodeProperties": {
+                "numNodes": 1,
+                "nodeIndex": 1,
+                "isMainNode": false
+              },
+              "arrayProperties": {
+                "size": 1,
+                "index": 1
+              }
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists the tags for an AWS Batch resource. AWS Batch resources that support tags are compute environments, jobs, job definitions, and job queues. ARNs for child jobs of array and multi-node parallel (MNP) jobs are not supported.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": {
+            "string": "string"
+          }
+        }
+      ]
+  RegisterJobDefinition:
+    description: |-
+      Registers an AWS Batch job definition.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_RegisterJobDefinition.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "type": "string",
+          "timeout": {
+            "attemptDurationSeconds": 1
+          },
+          "parameters": {
+            "string": "string"
+          },
+          "propagateTags": false,
+          "retryStrategy": {
+            "attempts": 1,
+            "evaluateOnExit": [
+              {
+                "action": "string",
+                "onReason": "string",
+                "onExitCode": "string",
+                "onStatusReason": "string"
+              }
+            ]
+          },
+          "nodeProperties": {
+            "mainNode": 1,
+            "numNodes": 1,
+            "nodeRangeProperties": [
+              {
+                "container": {
+                  "user": "string",
+                  "image": "string",
+                  "vcpus": 1,
+                  "memory": 1,
+                  "command": [
+                    "string"
+                  ],
+                  "secrets": [
+                    {
+                      "name": "string",
+                      "valueFrom": "string"
+                    }
+                  ],
+                  "ulimits": [
+                    {
+                      "name": "string",
+                      "hardLimit": 1,
+                      "softLimit": 1
+                    }
+                  ],
+                  "volumes": [
+                    {
+                      "host": {
+                        "sourcePath": "string"
+                      },
+                      "name": "string",
+                      "efsVolumeConfiguration": {
+                        "fileSystemId": "string",
+                        "rootDirectory": "string",
+                        "transitEncryption": "string",
+                        "authorizationConfig": {
+                          "iam": "string",
+                          "accessPointId": "string"
+                        },
+                        "transitEncryptionPort": 1
+                      }
+                    }
+                  ],
+                  "jobRoleArn": "string",
+                  "privileged": false,
+                  "environment": [
+                    {
+                      "name": "string",
+                      "value": "string"
+                    }
+                  ],
+                  "mountPoints": [
+                    {
+                      "readOnly": false,
+                      "sourceVolume": "string",
+                      "containerPath": "string"
+                    }
+                  ],
+                  "instanceType": "string",
+                  "linuxParameters": {
+                    "tmpfs": [
+                      {
+                        "size": 1,
+                        "mountOptions": [
+                          "string"
+                        ],
+                        "containerPath": "string"
+                      }
+                    ],
+                    "devices": [
+                      {
+                        "hostPath": "string",
+                        "permissions": [
+                          "string"
+                        ],
+                        "containerPath": "string"
+                      }
+                    ],
+                    "maxSwap": 1,
+                    "swappiness": 1,
+                    "sharedMemorySize": 1,
+                    "initProcessEnabled": false
+                  },
+                  "executionRoleArn": "string",
+                  "logConfiguration": {
+                    "options": {
+                      "string": "string"
+                    },
+                    "logDriver": "string",
+                    "secretOptions": [
+                      {
+                        "name": "string",
+                        "valueFrom": "string"
+                      }
+                    ]
+                  },
+                  "networkConfiguration": {
+                    "assignPublicIp": "string"
+                  },
+                  "resourceRequirements": [
+                    {
+                      "type": "string",
+                      "value": "string"
+                    }
+                  ],
+                  "readonlyRootFilesystem": false,
+                  "fargatePlatformConfiguration": {
+                    "platformVersion": "string"
+                  }
+                },
+                "targetNodes": "string"
+              }
+            ]
+          },
+          "jobDefinitionName": "string",
+          "containerProperties": {
+            "user": "string",
+            "image": "string",
+            "vcpus": 1,
+            "memory": 1,
+            "command": [
+              "string"
+            ],
+            "secrets": [
+              {
+                "name": "string",
+                "valueFrom": "string"
+              }
+            ],
+            "ulimits": [
+              {
+                "name": "string",
+                "hardLimit": 1,
+                "softLimit": 1
+              }
+            ],
+            "volumes": [
+              {
+                "host": {
+                  "sourcePath": "string"
+                },
+                "name": "string",
+                "efsVolumeConfiguration": {
+                  "fileSystemId": "string",
+                  "rootDirectory": "string",
+                  "transitEncryption": "string",
+                  "authorizationConfig": {
+                    "iam": "string",
+                    "accessPointId": "string"
+                  },
+                  "transitEncryptionPort": 1
+                }
+              }
+            ],
+            "jobRoleArn": "string",
+            "privileged": false,
+            "environment": [
+              {
+                "name": "string",
+                "value": "string"
+              }
+            ],
+            "mountPoints": [
+              {
+                "readOnly": false,
+                "sourceVolume": "string",
+                "containerPath": "string"
+              }
+            ],
+            "instanceType": "string",
+            "linuxParameters": {
+              "tmpfs": [
+                {
+                  "size": 1,
+                  "mountOptions": [
+                    "string"
+                  ],
+                  "containerPath": "string"
+                }
+              ],
+              "devices": [
+                {
+                  "hostPath": "string",
+                  "permissions": [
+                    "string"
+                  ],
+                  "containerPath": "string"
+                }
+              ],
+              "maxSwap": 1,
+              "swappiness": 1,
+              "sharedMemorySize": 1,
+              "initProcessEnabled": false
+            },
+            "executionRoleArn": "string",
+            "logConfiguration": {
+              "options": {
+                "string": "string"
+              },
+              "logDriver": "string",
+              "secretOptions": [
+                {
+                  "name": "string",
+                  "valueFrom": "string"
+                }
+              ]
+            },
+            "networkConfiguration": {
+              "assignPublicIp": "string"
+            },
+            "resourceRequirements": [
+              {
+                "type": "string",
+                "value": "string"
+              }
+            ],
+            "readonlyRootFilesystem": false,
+            "fargatePlatformConfiguration": {
+              "platformVersion": "string"
+            }
+          },
+          "platformCapabilities": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "revision": 1,
+          "jobDefinitionArn": "string",
+          "jobDefinitionName": "string"
+        }
+      ]
+  SubmitJob:
+    description: |-
+      Submits an AWS Batch job from a job definition. Parameters that are specified during SubmitJob override parameters defined in the job definition. vCPU and memory requirements that are specified in the ResourceRequirements objects in the job definition are the exception. They can't be overridden this way using the memory and vcpus parameters. Rather, you must specify updates to job definition parameters in a ResourceRequirements object that's included in the containerOverrides parameter.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_SubmitJob.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "jobName": "string",
+          "timeout": {
+            "attemptDurationSeconds": 1
+          },
+          "jobQueue": "string",
+          "dependsOn": [
+            {
+              "type": "string",
+              "jobId": "string"
+            }
+          ],
+          "parameters": {
+            "string": "string"
+          },
+          "jobDefinition": "string",
+          "nodeOverrides": {
+            "numNodes": 1,
+            "nodePropertyOverrides": [
+              {
+                "targetNodes": "string",
+                "containerOverrides": {
+                  "vcpus": 1,
+                  "memory": 1,
+                  "command": [
+                    "string"
+                  ],
+                  "environment": [
+                    {
+                      "name": "string",
+                      "value": "string"
+                    }
+                  ],
+                  "instanceType": "string",
+                  "resourceRequirements": [
+                    {
+                      "type": "string",
+                      "value": "string"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "propagateTags": false,
+          "retryStrategy": {
+            "attempts": 1,
+            "evaluateOnExit": [
+              {
+                "action": "string",
+                "onReason": "string",
+                "onExitCode": "string",
+                "onStatusReason": "string"
+              }
+            ]
+          },
+          "arrayProperties": {
+            "size": 1
+          },
+          "containerOverrides": {
+            "vcpus": 1,
+            "memory": 1,
+            "command": [
+              "string"
+            ],
+            "environment": [
+              {
+                "name": "string",
+                "value": "string"
+              }
+            ],
+            "instanceType": "string",
+            "resourceRequirements": [
+              {
+                "type": "string",
+                "value": "string"
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "jobId": "string",
+          "jobArn": "string",
+          "jobName": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Associates the specified tags to a resource with the specified resourceArn. If existing tags on a resource aren't specified in the request parameters, they aren't changed. When a resource is deleted, the tags that are associated with that resource are deleted as well. AWS Batch resources that support tags are compute environments, jobs, job definitions, and job queues. ARNs for child jobs of array and multi-node parallel (MNP) jobs are not supported.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TerminateJob:
+    description: |-
+      Terminates a job in a job queue. Jobs that are in the STARTING or RUNNING state are terminated, which causes them to transition to FAILED. Jobs that have not progressed to the STARTING state are cancelled.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_TerminateJob.html
+    example:
+      inputs: [
+        {
+          "jobId": "string",
+          "reason": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Deletes specified tags from an AWS Batch resource.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateComputeEnvironment:
+    description: |-
+      Updates an AWS Batch compute environment.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_UpdateComputeEnvironment.html
+    example:
+      inputs: [
+        {
+          "state": "string",
+          "serviceRole": "string",
+          "computeResources": {
+            "subnets": [
+              "string"
+            ],
+            "maxvCpus": 1,
+            "minvCpus": 1,
+            "desiredvCpus": 1,
+            "securityGroupIds": [
+              "string"
+            ]
+          },
+          "computeEnvironment": "string"
+        }
+      ]
+      outputs: [
+        {
+          "computeEnvironmentArn": "string",
+          "computeEnvironmentName": "string"
+        }
+      ]
+  UpdateJobQueue:
+    description: |-
+      Updates a job queue.
+    versions:
+      from: 2016.8.10
+    link: https://docs.aws.amazon.com/batch/latest/APIReference/API_UpdateJobQueue.html
+    example:
+      inputs: [
+        {
+          "state": "string",
+          "jobQueue": "string",
+          "priority": 1,
+          "computeEnvironmentOrder": [
+            {
+              "order": 1,
+              "computeEnvironment": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "jobQueueArn": "string",
+          "jobQueueName": "string"
+        }
+      ]

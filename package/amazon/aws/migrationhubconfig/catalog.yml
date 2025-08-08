@@ -1,0 +1,89 @@
+Product:
+  name: AWS Migration Hub Config
+  versions: [2019.6.30]
+  package: amazon.aws.migrationhubconfig
+  description: |-
+    AWS Migration Hub Config
+  link: https://docs.aws.amazon.com/migrationhub-home-region/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CreateHomeRegionControl:
+    description: |-
+      This API sets up the home region for the calling account only.
+    versions:
+      from: 2019.6.30
+    link: https://docs.aws.amazon.com/migrationhub-home-region/latest/APIReference/API_CreateHomeRegionControl.html
+    example:
+      inputs: [
+        {
+          "DryRun": false,
+          "Target": {
+            "Id": "string",
+            "Type": "string"
+          },
+          "HomeRegion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "HomeRegionControl": {
+            "Target": {
+              "Id": "string",
+              "Type": "string"
+            },
+            "ControlId": "string",
+            "HomeRegion": "string",
+            "RequestedTime": 1481289211.615
+          }
+        }
+      ]
+  DescribeHomeRegionControls:
+    description: |-
+      This API permits filtering on the ControlId and HomeRegion fields.
+    versions:
+      from: 2019.6.30
+    link: https://docs.aws.amazon.com/migrationhub-home-region/latest/APIReference/API_DescribeHomeRegionControls.html
+    example:
+      inputs: [
+        {
+          "Target": {
+            "Id": "string",
+            "Type": "string"
+          },
+          "ControlId": "string",
+          "NextToken": "string",
+          "HomeRegion": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "HomeRegionControls": [
+            {
+              "Target": {
+                "Id": "string",
+                "Type": "string"
+              },
+              "ControlId": "string",
+              "HomeRegion": "string",
+              "RequestedTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  GetHomeRegion:
+    description: |-
+      Returns the calling account’s home region, if configured. This API is used by other AWS services to determine the regional endpoint for calling AWS Application Discovery Service and Migration Hub. You must call GetHomeRegion at least once before you call any other AWS Application Discovery Service and AWS Migration Hub APIs, to obtain the account's Migration Hub home region.
+    versions:
+      from: 2019.6.30
+    link: https://docs.aws.amazon.com/migrationhub-home-region/latest/APIReference/API_GetHomeRegion.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "HomeRegion": "string"
+        }
+      ]

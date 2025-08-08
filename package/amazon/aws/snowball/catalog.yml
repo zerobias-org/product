@@ -1,0 +1,838 @@
+Product:
+  name: AWS Snowball
+  versions: [2016.6.30]
+  package: amazon.aws.snowball
+  description: |-
+    AWS Snowball
+  link: https://docs.aws.amazon.com/snowball/latest/api-reference/api-reference.html
+  contentType: json
+Operations:
+  CancelCluster:
+    description: |-
+      Cancels a cluster job. You can only cancel a cluster job while it's in the AwaitingQuorum status. You'll have at least an hour after creating a cluster job to cancel it.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_CancelCluster.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CancelJob:
+    description: |-
+      Cancels the specified job. You can only cancel a job before its JobState value changes to PreparingAppliance. Requesting the ListJobs or DescribeJob action returns a job's JobState as part of the response element data returned.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_CancelJob.html
+    example:
+      inputs: [
+        {
+          "JobId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateAddress:
+    description: |-
+      Creates an address for a Snow device to be shipped to. Addresses are validated at the time of creation. The address you provide must be located within the serviceable area of your region. If the address is invalid or unsupported, then an exception is thrown.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_CreateAddress.html
+    example:
+      inputs: [
+        {
+          "Address": {
+            "City": "string",
+            "Name": "string",
+            "Company": "string",
+            "Country": "string",
+            "Street1": "string",
+            "Street2": "string",
+            "Street3": "string",
+            "Landmark": "string",
+            "AddressId": "string",
+            "PostalCode": "string",
+            "PhoneNumber": "string",
+            "IsRestricted": false,
+            "StateOrProvince": "string",
+            "PrefectureOrDistrict": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "AddressId": "string"
+        }
+      ]
+  CreateCluster:
+    description: |-
+      Creates an empty cluster. Each cluster supports five nodes. You use the CreateJob action separately to create the jobs for each of these nodes. The cluster does not ship until these five node jobs have been created.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_CreateCluster.html
+    example:
+      inputs: [
+        {
+          "JobType": "string",
+          "RoleARN": "string",
+          "AddressId": "string",
+          "KmsKeyARN": "string",
+          "Resources": {
+            "S3Resources": [
+              {
+                "KeyRange": {
+                  "EndMarker": "string",
+                  "BeginMarker": "string"
+                },
+                "BucketArn": "string"
+              }
+            ],
+            "Ec2AmiResources": [
+              {
+                "AmiId": "string",
+                "SnowballAmiId": "string"
+              }
+            ],
+            "LambdaResources": [
+              {
+                "LambdaArn": "string",
+                "EventTriggers": [
+                  {
+                    "EventResourceARN": "string"
+                  }
+                ]
+              }
+            ]
+          },
+          "Description": "string",
+          "Notification": {
+            "NotifyAll": false,
+            "SnsTopicARN": "string",
+            "JobStatesToNotify": [
+              "string"
+            ]
+          },
+          "SnowballType": "string",
+          "TaxDocuments": {
+            "IND": {
+              "GSTIN": "string"
+            }
+          },
+          "ShippingOption": "string",
+          "ForwardingAddressId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateJob:
+    description: |-
+      Creates a job to import or export data between Amazon S3 and your on-premises data center. Your AWS account must have the right trust policies and permissions in place to create a job for a Snow device. If you're creating a job for a node in a cluster, you only need to provide the clusterId value; the other job attributes are inherited from the cluster.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_CreateJob.html
+    example:
+      inputs: [
+        {
+          "JobType": "string",
+          "RoleARN": "string",
+          "AddressId": "string",
+          "ClusterId": "string",
+          "KmsKeyARN": "string",
+          "Resources": {
+            "S3Resources": [
+              {
+                "KeyRange": {
+                  "EndMarker": "string",
+                  "BeginMarker": "string"
+                },
+                "BucketArn": "string"
+              }
+            ],
+            "Ec2AmiResources": [
+              {
+                "AmiId": "string",
+                "SnowballAmiId": "string"
+              }
+            ],
+            "LambdaResources": [
+              {
+                "LambdaArn": "string",
+                "EventTriggers": [
+                  {
+                    "EventResourceARN": "string"
+                  }
+                ]
+              }
+            ]
+          },
+          "Description": "string",
+          "Notification": {
+            "NotifyAll": false,
+            "SnsTopicARN": "string",
+            "JobStatesToNotify": [
+              "string"
+            ]
+          },
+          "SnowballType": "string",
+          "TaxDocuments": {
+            "IND": {
+              "GSTIN": "string"
+            }
+          },
+          "ShippingOption": "string",
+          "DeviceConfiguration": {
+            "SnowconeDeviceConfiguration": {
+              "WirelessConnection": {
+                "IsWifiEnabled": false
+              }
+            }
+          },
+          "ForwardingAddressId": "string",
+          "SnowballCapacityPreference": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateReturnShippingLabel:
+    description: |-
+      Creates a shipping label that will be used to return the Snow device to AWS.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_CreateReturnShippingLabel.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "ShippingOption": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string"
+        }
+      ]
+  DescribeAddresses:
+    description: |-
+      Returns a specified number of ADDRESS objects. Calling this API in one of the US regions will return addresses from the list of all addresses associated with this account in all US regions.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_DescribeAddresses.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Addresses": [
+            {
+              "City": "string",
+              "Name": "string",
+              "Company": "string",
+              "Country": "string",
+              "Street1": "string",
+              "Street2": "string",
+              "Street3": "string",
+              "Landmark": "string",
+              "AddressId": "string",
+              "PostalCode": "string",
+              "PhoneNumber": "string",
+              "IsRestricted": false,
+              "StateOrProvince": "string",
+              "PrefectureOrDistrict": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeAddress:
+    description: |-
+      Takes an AddressId and returns specific details about that address in the form of an Address object.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_DescribeAddress.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeCluster:
+    description: |-
+      Returns information about a specific cluster including shipping information, cluster status, and other important metadata.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_DescribeCluster.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ClusterMetadata": {
+            "JobType": "string",
+            "RoleARN": "string",
+            "AddressId": "string",
+            "ClusterId": "string",
+            "KmsKeyARN": "string",
+            "Resources": {
+              "S3Resources": [
+                {
+                  "KeyRange": {
+                    "EndMarker": "string",
+                    "BeginMarker": "string"
+                  },
+                  "BucketArn": "string"
+                }
+              ],
+              "Ec2AmiResources": [
+                {
+                  "AmiId": "string",
+                  "SnowballAmiId": "string"
+                }
+              ],
+              "LambdaResources": [
+                {
+                  "LambdaArn": "string",
+                  "EventTriggers": [
+                    {
+                      "EventResourceARN": "string"
+                    }
+                  ]
+                }
+              ]
+            },
+            "Description": "string",
+            "ClusterState": "string",
+            "CreationDate": 1481289211.615,
+            "Notification": {
+              "NotifyAll": false,
+              "SnsTopicARN": "string",
+              "JobStatesToNotify": [
+                "string"
+              ]
+            },
+            "SnowballType": "string",
+            "TaxDocuments": {
+              "IND": {
+                "GSTIN": "string"
+              }
+            },
+            "ShippingOption": "string",
+            "ForwardingAddressId": "string"
+          }
+        }
+      ]
+  DescribeJob:
+    description: |-
+      Returns information about a specific job including shipping information, job status, and other important metadata.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_DescribeJob.html
+    example:
+      inputs: [
+        {
+          "JobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "JobMetadata": {
+            "JobId": "string",
+            "JobType": "string",
+            "RoleARN": "string",
+            "JobState": "string",
+            "AddressId": "string",
+            "ClusterId": "string",
+            "KmsKeyARN": "string",
+            "Resources": {
+              "S3Resources": [
+                {
+                  "KeyRange": {
+                    "EndMarker": "string",
+                    "BeginMarker": "string"
+                  },
+                  "BucketArn": "string"
+                }
+              ],
+              "Ec2AmiResources": [
+                {
+                  "AmiId": "string",
+                  "SnowballAmiId": "string"
+                }
+              ],
+              "LambdaResources": [
+                {
+                  "LambdaArn": "string",
+                  "EventTriggers": [
+                    {
+                      "EventResourceARN": "string"
+                    }
+                  ]
+                }
+              ]
+            },
+            "JobLogInfo": {
+              "JobFailureLogURI": "string",
+              "JobSuccessLogURI": "string",
+              "JobCompletionReportURI": "string"
+            },
+            "Description": "string",
+            "CreationDate": 1481289211.615,
+            "Notification": {
+              "NotifyAll": false,
+              "SnsTopicARN": "string",
+              "JobStatesToNotify": [
+                "string"
+              ]
+            },
+            "SnowballType": "string",
+            "TaxDocuments": {
+              "IND": {
+                "GSTIN": "string"
+              }
+            },
+            "ShippingDetails": {
+              "ShippingOption": "string",
+              "InboundShipment": {
+                "Status": "string",
+                "TrackingNumber": "string"
+              },
+              "OutboundShipment": {
+                "Status": "string",
+                "TrackingNumber": "string"
+              }
+            },
+            "DeviceConfiguration": {
+              "SnowconeDeviceConfiguration": {
+                "WirelessConnection": {
+                  "IsWifiEnabled": false
+                }
+              }
+            },
+            "ForwardingAddressId": "string",
+            "DataTransferProgress": {
+              "TotalBytes": 1,
+              "TotalObjects": 1,
+              "BytesTransferred": 1,
+              "ObjectsTransferred": 1
+            },
+            "SnowballCapacityPreference": "string"
+          },
+          "SubJobMetadata": [
+            {
+              "JobId": "string",
+              "JobType": "string",
+              "RoleARN": "string",
+              "JobState": "string",
+              "AddressId": "string",
+              "ClusterId": "string",
+              "KmsKeyARN": "string",
+              "Resources": {
+                "S3Resources": [
+                  {
+                    "KeyRange": {
+                      "EndMarker": "string",
+                      "BeginMarker": "string"
+                    },
+                    "BucketArn": "string"
+                  }
+                ],
+                "Ec2AmiResources": [
+                  {
+                    "AmiId": "string",
+                    "SnowballAmiId": "string"
+                  }
+                ],
+                "LambdaResources": [
+                  {
+                    "LambdaArn": "string",
+                    "EventTriggers": [
+                      {
+                        "EventResourceARN": "string"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "JobLogInfo": {
+                "JobFailureLogURI": "string",
+                "JobSuccessLogURI": "string",
+                "JobCompletionReportURI": "string"
+              },
+              "Description": "string",
+              "CreationDate": 1481289211.615,
+              "Notification": {
+                "NotifyAll": false,
+                "SnsTopicARN": "string",
+                "JobStatesToNotify": [
+                  "string"
+                ]
+              },
+              "SnowballType": "string",
+              "TaxDocuments": {
+                "IND": {
+                  "GSTIN": "string"
+                }
+              },
+              "ShippingDetails": {
+                "ShippingOption": "string",
+                "InboundShipment": {
+                  "Status": "string",
+                  "TrackingNumber": "string"
+                },
+                "OutboundShipment": {
+                  "Status": "string",
+                  "TrackingNumber": "string"
+                }
+              },
+              "DeviceConfiguration": {
+                "SnowconeDeviceConfiguration": {
+                  "WirelessConnection": {
+                    "IsWifiEnabled": false
+                  }
+                }
+              },
+              "ForwardingAddressId": "string",
+              "DataTransferProgress": {
+                "TotalBytes": 1,
+                "TotalObjects": 1,
+                "BytesTransferred": 1,
+                "ObjectsTransferred": 1
+              },
+              "SnowballCapacityPreference": "string"
+            }
+          ]
+        }
+      ]
+  DescribeReturnShippingLabel:
+    description: |-
+      Information on the shipping label of a Snow device that is being returned to AWS.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_DescribeReturnShippingLabel.html
+    example:
+      inputs: [
+        {
+          "JobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "ExpirationDate": 1481289211.615
+        }
+      ]
+  GetJobManifest:
+    description: |-
+      Returns a link to an Amazon S3 presigned URL for the manifest file associated with the specified JobId value. You can access the manifest file for up to 60 minutes after this request has been made. To access the manifest file after 60 minutes have passed, you'll have to make another call to the GetJobManifest action.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_GetJobManifest.html
+    example:
+      inputs: [
+        {
+          "JobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ManifestURI": "string"
+        }
+      ]
+  GetJobUnlockCode:
+    description: |-
+      Returns the UnlockCode code value for the specified job. A particular UnlockCode value can be accessed for up to 360 days after the associated job has been created.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_GetJobUnlockCode.html
+    example:
+      inputs: [
+        {
+          "JobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UnlockCode": "string"
+        }
+      ]
+  GetSnowballUsage:
+    description: |-
+      Returns information about the Snow Family service limit for your account, and also the number of Snow devices your account has in use.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_GetSnowballUsage.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "SnowballLimit": 1,
+          "SnowballsInUse": 1
+        }
+      ]
+  GetSoftwareUpdates:
+    description: |-
+      Returns an Amazon S3 presigned URL for an update file associated with a specified JobId.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_GetSoftwareUpdates.html
+    example:
+      inputs: [
+        {
+          "JobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UpdatesURI": "string"
+        }
+      ]
+  ListClusterJobs:
+    description: |-
+      Returns an array of JobListEntry objects of the specified length. Each JobListEntry object is for a job in the specified cluster and contains a job's state, a job's ID, and other information.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_ListClusterJobs.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "JobListEntries": [
+            {
+              "JobId": "string",
+              "JobType": "string",
+              "IsMaster": false,
+              "JobState": "string",
+              "Description": "string",
+              "CreationDate": 1481289211.615,
+              "SnowballType": "string"
+            }
+          ]
+        }
+      ]
+  ListClusters:
+    description: |-
+      Returns an array of ClusterListEntry objects of the specified length. Each ClusterListEntry object contains a cluster's state, a cluster's ID, and other important status information.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_ListClusters.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ClusterListEntries": [
+            {
+              "ClusterId": "string",
+              "Description": "string",
+              "ClusterState": "string",
+              "CreationDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListCompatibleImages:
+    description: |-
+      This action returns a list of the different Amazon EC2 Amazon Machine Images (AMIs) that are owned by your AWS account that would be supported for use on a Snow device. Currently, supported AMIs are based on the CentOS 7 (x86_64) - with Updates HVM, Ubuntu Server 14.04 LTS (HVM), and Ubuntu 16.04 LTS - Xenial (HVM) images, available on the AWS Marketplace.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_ListCompatibleImages.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CompatibleImages": [
+            {
+              "Name": "string",
+              "AmiId": "string"
+            }
+          ]
+        }
+      ]
+  ListJobs:
+    description: |-
+      Returns an array of JobListEntry objects of the specified length. Each JobListEntry object contains a job's state, a job's ID, and a value that indicates whether the job is a job part, in the case of export jobs. Calling this API action in one of the US regions will return jobs from the list of all jobs associated with this account in all US regions.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_ListJobs.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "JobListEntries": [
+            {
+              "JobId": "string",
+              "JobType": "string",
+              "IsMaster": false,
+              "JobState": "string",
+              "Description": "string",
+              "CreationDate": 1481289211.615,
+              "SnowballType": "string"
+            }
+          ]
+        }
+      ]
+  UpdateCluster:
+    description: |-
+      While a cluster's ClusterState value is in the AwaitingQuorum state, you can update some of the information associated with a cluster. Once the cluster changes to a different job state, usually 60 minutes after the cluster being created, this action is no longer available.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_UpdateCluster.html
+    example:
+      inputs: [
+        {
+          "RoleARN": "string",
+          "AddressId": "string",
+          "ClusterId": "string",
+          "Resources": {
+            "S3Resources": [
+              {
+                "KeyRange": {
+                  "EndMarker": "string",
+                  "BeginMarker": "string"
+                },
+                "BucketArn": "string"
+              }
+            ],
+            "Ec2AmiResources": [
+              {
+                "AmiId": "string",
+                "SnowballAmiId": "string"
+              }
+            ],
+            "LambdaResources": [
+              {
+                "LambdaArn": "string",
+                "EventTriggers": [
+                  {
+                    "EventResourceARN": "string"
+                  }
+                ]
+              }
+            ]
+          },
+          "Description": "string",
+          "Notification": {
+            "NotifyAll": false,
+            "SnsTopicARN": "string",
+            "JobStatesToNotify": [
+              "string"
+            ]
+          },
+          "ShippingOption": "string",
+          "ForwardingAddressId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateJob:
+    description: |-
+      While a job's JobState value is New, you can update some of the information associated with a job. Once the job changes to a different job state, usually within 60 minutes of the job being created, this action is no longer available.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_UpdateJob.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "RoleARN": "string",
+          "AddressId": "string",
+          "Resources": {
+            "S3Resources": [
+              {
+                "KeyRange": {
+                  "EndMarker": "string",
+                  "BeginMarker": "string"
+                },
+                "BucketArn": "string"
+              }
+            ],
+            "Ec2AmiResources": [
+              {
+                "AmiId": "string",
+                "SnowballAmiId": "string"
+              }
+            ],
+            "LambdaResources": [
+              {
+                "LambdaArn": "string",
+                "EventTriggers": [
+                  {
+                    "EventResourceARN": "string"
+                  }
+                ]
+              }
+            ]
+          },
+          "Description": "string",
+          "Notification": {
+            "NotifyAll": false,
+            "SnsTopicARN": "string",
+            "JobStatesToNotify": [
+              "string"
+            ]
+          },
+          "ShippingOption": "string",
+          "ForwardingAddressId": "string",
+          "SnowballCapacityPreference": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateJobShipmentState:
+    description: |-
+      Updates the state when a shipment state changes to a different state.
+    versions:
+      from: 2016.6.30
+    link: https://docs.aws.amazon.com/snowball/latest/api-reference/API_UpdateJobShipmentState.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "ShipmentState": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

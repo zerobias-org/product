@@ -1,0 +1,674 @@
+Product:
+  name: IoT Greengrass
+  versions: [2020.11.30]
+  package: amazon.aws.iotgreengrass
+  description: |-
+    IoT Greengrass
+  link: https://docs.aws.amazon.com/greengrass/v2/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CancelDeployment:
+    description: |-
+      Cancels a deployment. This operation cancels the deployment for devices that haven't yet received it. If a device already received the deployment, this operation doesn't change anything for that device.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_CancelDeployment.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "message": "string"
+        }
+      ]
+  CreateComponentVersion:
+    description: |-
+      Creates a component. Components are software that run on AWS IoT Greengrass core devices. After you develop and test a component on your core device, you can use this operation to upload your component to AWS IoT Greengrass. Then, you can deploy the component to other core devices.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_CreateComponentVersion.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "inlineRecipe": "blob",
+          "lambdaFunction": {
+            "lambdaArn": "string",
+            "componentName": "string",
+            "componentVersion": "string",
+            "componentPlatforms": [
+              {
+                "name": "string",
+                "attributes": {
+                  "string": "string"
+                }
+              }
+            ],
+            "componentDependencies": {
+              "string": {
+                "dependencyType": "string",
+                "versionRequirement": "string"
+              }
+            },
+            "componentLambdaParameters": {
+              "pinned": false,
+              "execArgs": [
+                "string"
+              ],
+              "eventSources": [
+                {
+                  "type": "string",
+                  "topic": "string"
+                }
+              ],
+              "maxQueueSize": 1,
+              "timeoutInSeconds": 1,
+              "maxInstancesCount": 1,
+              "linuxProcessParams": {
+                "isolationMode": "string",
+                "containerParams": {
+                  "devices": [
+                    {
+                      "path": "string",
+                      "permission": "string",
+                      "addGroupOwner": false
+                    }
+                  ],
+                  "volumes": [
+                    {
+                      "permission": "string",
+                      "sourcePath": "string",
+                      "addGroupOwner": false,
+                      "destinationPath": "string"
+                    }
+                  ],
+                  "mountROSysfs": false,
+                  "memorySizeInKB": 1
+                }
+              },
+              "environmentVariables": {
+                "string": "string"
+              },
+              "maxIdleTimeInSeconds": 1,
+              "statusTimeoutInSeconds": 1,
+              "inputPayloadEncodingType": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "arn": "string",
+          "status": {
+            "errors": {
+              "string": "string"
+            },
+            "message": "string",
+            "componentState": "string"
+          },
+          "componentName": "string",
+          "componentVersion": "string",
+          "creationTimestamp": 1481289211.615
+        }
+      ]
+  CreateDeployment:
+    description: |-
+      Creates a continuous deployment for a target, which is a AWS IoT Greengrass core device or group of core devices. When you add a new core device to a group of core devices that has a deployment, AWS IoT Greengrass deploys that group's deployment to the new device.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_CreateDeployment.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "targetArn": "string",
+          "components": {
+            "string": {
+              "runWith": {
+                "posixUser": "string"
+              },
+              "componentVersion": "string",
+              "configurationUpdate": {
+                "merge": "string",
+                "reset": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "deploymentName": "string",
+          "deploymentPolicies": {
+            "componentUpdatePolicy": {
+              "action": "string",
+              "timeoutInSeconds": 1
+            },
+            "failureHandlingPolicy": "string",
+            "configurationValidationPolicy": {
+              "timeoutInSeconds": 1
+            }
+          },
+          "iotJobConfiguration": {
+            "abortConfig": {
+              "criteriaList": [
+                {
+                  "action": "string",
+                  "failureType": "string",
+                  "thresholdPercentage": 0.1,
+                  "minNumberOfExecutedThings": 1
+                }
+              ]
+            },
+            "timeoutConfig": {
+              "inProgressTimeoutInMinutes": 1
+            },
+            "jobExecutionsRolloutConfig": {
+              "exponentialRate": {
+                "incrementFactor": 0.1,
+                "baseRatePerMinute": 1,
+                "rateIncreaseCriteria": {
+                  "numberOfNotifiedThings": 1,
+                  "numberOfSucceededThings": 1
+                }
+              },
+              "maximumPerMinute": 1
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "iotJobId": "string",
+          "iotJobArn": "string",
+          "deploymentId": "string"
+        }
+      ]
+  DeleteComponent:
+    description: |-
+      Deletes a version of a component from AWS IoT Greengrass.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_DeleteComponent.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteCoreDevice:
+    description: |-
+      Deletes a AWS IoT Greengrass core device, which is an AWS IoT thing. This operation removes the core device from the list of core devices. This operation doesn't delete the AWS IoT thing. For more information about how to delete the AWS IoT thing, see DeleteThing in the AWS IoT API Reference.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_DeleteCoreDevice.html
+    example:
+      inputs: [
+        {
+          "coreDeviceThingName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeComponent:
+    description: |-
+      Retrieves metadata for a version of a component.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_DescribeComponent.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "arn": "string",
+          "tags": {
+            "string": "string"
+          },
+          "status": {
+            "errors": {
+              "string": "string"
+            },
+            "message": "string",
+            "componentState": "string"
+          },
+          "platforms": [
+            {
+              "name": "string",
+              "attributes": {
+                "string": "string"
+              }
+            }
+          ],
+          "publisher": "string",
+          "description": "string",
+          "componentName": "string",
+          "componentVersion": "string",
+          "creationTimestamp": 1481289211.615
+        }
+      ]
+  GetComponent:
+    description: |-
+      Gets the recipe for a version of a component. Core devices can call this operation to identify the artifacts and requirements to install a component.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_GetComponent.html
+    example:
+      inputs: [
+        {
+          "arn": "string",
+          "recipeOutputFormat": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "recipe": "blob",
+          "recipeOutputFormat": "string"
+        }
+      ]
+  GetComponentVersionArtifact:
+    description: |-
+      Gets the pre-signed URL to download a public component artifact. Core devices call this operation to identify the URL that they can use to download an artifact to install.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_GetComponentVersionArtifact.html
+    example:
+      inputs: [
+        {
+          "arn": "string",
+          "artifactName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "preSignedUrl": "string"
+        }
+      ]
+  GetCoreDevice:
+    description: |-
+      Retrieves metadata for a AWS IoT Greengrass core device.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_GetCoreDevice.html
+    example:
+      inputs: [
+        {
+          "coreDeviceThingName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "status": "string",
+          "platform": "string",
+          "coreVersion": "string",
+          "architecture": "string",
+          "coreDeviceThingName": "string",
+          "lastStatusUpdateTimestamp": 1481289211.615
+        }
+      ]
+  GetDeployment:
+    description: |-
+      Gets a deployment. Deployments define the components that run on AWS IoT Greengrass core devices.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_GetDeployment.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "iotJobId": "string",
+          "iotJobArn": "string",
+          "targetArn": "string",
+          "components": {
+            "string": {
+              "runWith": {
+                "posixUser": "string"
+              },
+              "componentVersion": "string",
+              "configurationUpdate": {
+                "merge": "string",
+                "reset": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "revisionId": "string",
+          "deploymentId": "string",
+          "deploymentName": "string",
+          "deploymentStatus": "string",
+          "creationTimestamp": 1481289211.615,
+          "isLatestForTarget": false,
+          "deploymentPolicies": {
+            "componentUpdatePolicy": {
+              "action": "string",
+              "timeoutInSeconds": 1
+            },
+            "failureHandlingPolicy": "string",
+            "configurationValidationPolicy": {
+              "timeoutInSeconds": 1
+            }
+          },
+          "iotJobConfiguration": {
+            "abortConfig": {
+              "criteriaList": [
+                {
+                  "action": "string",
+                  "failureType": "string",
+                  "thresholdPercentage": 0.1,
+                  "minNumberOfExecutedThings": 1
+                }
+              ]
+            },
+            "timeoutConfig": {
+              "inProgressTimeoutInMinutes": 1
+            },
+            "jobExecutionsRolloutConfig": {
+              "exponentialRate": {
+                "incrementFactor": 0.1,
+                "baseRatePerMinute": 1,
+                "rateIncreaseCriteria": {
+                  "numberOfNotifiedThings": 1,
+                  "numberOfSucceededThings": 1
+                }
+              },
+              "maximumPerMinute": 1
+            }
+          }
+        }
+      ]
+  ListComponents:
+    description: |-
+      Retrieves a paginated list of component summaries. This list includes components that you have permission to view.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_ListComponents.html
+    example:
+      inputs: [
+        {
+          "scope": "string",
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "components": [
+            {
+              "arn": "string",
+              "componentName": "string",
+              "latestVersion": {
+                "arn": "string",
+                "platforms": [
+                  {
+                    "name": "string",
+                    "attributes": {
+                      "string": "string"
+                    }
+                  }
+                ],
+                "publisher": "string",
+                "description": "string",
+                "componentVersion": "string",
+                "creationTimestamp": 1481289211.615
+              }
+            }
+          ]
+        }
+      ]
+  ListComponentVersions:
+    description: |-
+      Retrieves a paginated list of all versions for a component.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_ListComponentVersions.html
+    example:
+      inputs: [
+        {
+          "arn": "string",
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "componentVersions": [
+            {
+              "arn": "string",
+              "componentName": "string",
+              "componentVersion": "string"
+            }
+          ]
+        }
+      ]
+  ListCoreDevices:
+    description: |-
+      Retrieves a paginated list of AWS IoT Greengrass core devices.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_ListCoreDevices.html
+    example:
+      inputs: [
+        {
+          "status": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "thingGroupArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "coreDevices": [
+            {
+              "status": "string",
+              "coreDeviceThingName": "string",
+              "lastStatusUpdateTimestamp": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListDeployments:
+    description: |-
+      Retrieves a paginated list of deployments.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_ListDeployments.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "targetArn": "string",
+          "maxResults": 1,
+          "historyFilter": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "deployments": [
+            {
+              "targetArn": "string",
+              "revisionId": "string",
+              "deploymentId": "string",
+              "deploymentName": "string",
+              "deploymentStatus": "string",
+              "creationTimestamp": 1481289211.615,
+              "isLatestForTarget": false
+            }
+          ]
+        }
+      ]
+  ListEffectiveDeployments:
+    description: |-
+      Retrieves a paginated list of deployment jobs that AWS IoT Greengrass sends to AWS IoT Greengrass core devices.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_ListEffectiveDeployments.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "coreDeviceThingName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "effectiveDeployments": [
+            {
+              "reason": "string",
+              "iotJobId": "string",
+              "iotJobArn": "string",
+              "targetArn": "string",
+              "description": "string",
+              "deploymentId": "string",
+              "deploymentName": "string",
+              "creationTimestamp": 1481289211.615,
+              "modifiedTimestamp": 1481289211.615,
+              "coreDeviceExecutionStatus": "string"
+            }
+          ]
+        }
+      ]
+  ListInstalledComponents:
+    description: |-
+      Retrieves a paginated list of the components that a AWS IoT Greengrass core device runs.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_ListInstalledComponents.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "coreDeviceThingName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "installedComponents": [
+            {
+              "isRoot": false,
+              "componentName": "string",
+              "lifecycleState": "string",
+              "componentVersion": "string",
+              "lifecycleStateDetails": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Retrieves the list of tags for an AWS IoT Greengrass resource.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": {
+            "string": "string"
+          }
+        }
+      ]
+  ResolveComponentCandidates:
+    description: |-
+      Retrieves a list of components that meet the component, version, and platform requirements of a deployment. AWS IoT Greengrass core devices call this operation when they receive a deployment to identify the components to install.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_ResolveComponentCandidates.html
+    example:
+      inputs: [
+        {
+          "platform": {
+            "name": "string",
+            "attributes": {
+              "string": "string"
+            }
+          },
+          "componentCandidates": [
+            {
+              "componentName": "string",
+              "componentVersion": "string",
+              "versionRequirements": {
+                "string": "string"
+              }
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "resolvedComponentVersions": [
+            {
+              "arn": "string",
+              "recipe": "blob",
+              "componentName": "string",
+              "componentVersion": "string"
+            }
+          ]
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds tags to an AWS IoT Greengrass resource. If a tag already exists for the resource, this operation updates the tag's value.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes a tag from an AWS IoT Greengrass resource.
+    versions:
+      from: 2020.11.30
+    link: https://docs.aws.amazon.com/greengrass/v2/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

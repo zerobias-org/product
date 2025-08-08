@@ -1,0 +1,929 @@
+Product:
+  name: Amazon S3 Glacier
+  versions: [2012.6.1]
+  package: amazon.aws.s3glacier
+  description: |-
+    Amazon S3 Glacier
+  link: https://docs.aws.amazon.com/amazonglacier/latest/dev/introduction.html
+  contentType: json
+Operations:
+  AbortVaultLock:
+    description: |-
+      This operation stops the vault locking process if the vault lock is not in the Locked state. If the vault lock is in the Locked state when this operation is requested, the operation returns an AccessDeniedException error. Stopping the vault locking process removes the vault lock policy from the specified vault.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-AbortVaultLock.html
+    example:
+      inputs: [
+        {
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  AddTagsToVault:
+    description: |-
+      This operation adds the specified tags to a vault. Each tag is composed of a key and a value. Each vault can have up to 50 tags. If your request would cause the tag limit for the vault to be exceeded, the operation throws the LimitExceededException error.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-AddTagsToVault.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteArchive:
+    description: |-
+      This operation deletes an archive from a vault. You can delete one archive at a time from a vault. To delete the archive you must provide its archive ID in the delete request. You can get the archive ID by downloading the vault inventory for the vault that contains the archive. For more information about downloading the vault inventory, see Downloading a Vault Inventory in Amazon S3 Glacier.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-archive-delete.html
+    example:
+      inputs: [
+        {
+          "accountId": "string",
+          "archiveId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UploadArchive:
+    description: |-
+      This operation adds an archive to a vault. For a successful upload, your data is durably persisted. In response, Amazon S3 Glacier (S3 Glacier) returns the archive ID in the x-amz-archive-id header of the response. You should save the archive ID returned so that you can access the archive later.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-archive-post.html
+    example:
+      inputs: [
+        {
+          "body": "blob",
+          "checksum": "string",
+          "accountId": "string",
+          "vaultName": "string",
+          "archiveDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "checksum": "string",
+          "location": "string",
+          "archiveId": "string"
+        }
+      ]
+  CompleteVaultLock:
+    description: |-
+      This operation completes the vault locking process by transitioning the vault lock from the InProgress state to the Locked state, which causes the vault lock policy to become unchangeable. A vault lock is put into the InProgress state by calling Initiate Vault Lock (POST lock-policy). You can obtain the state of the vault lock by calling Get Vault Lock (GET lock-policy). For more information about the vault locking process, see Amazon S3 Glacier Vault Lock.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-CompleteVaultLock.html
+    example:
+      inputs: [
+        {
+          "lockId": "string",
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteVaultAccessPolicy:
+    description: |-
+      This operation deletes the access policy associated with the specified vault. The operation is eventually consistent—that is, it might take some time for Amazon S3 Glacier (S3 Glacier) to completely remove the access policy, and you might still see the effect of the policy for a short time after you send the delete request.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-DeleteVaultAccessPolicy.html
+    example:
+      inputs: [
+        {
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeJob:
+    description: |-
+      This operation returns information about a job you previously initiated, including the job initiation date, the user who initiated the job, the job status code/message, and the Amazon Simple Notification Service (Amazon SNS) topic to notify after Amazon S3 Glacier (S3 Glacier) completes the job. For more information about initiating a job, see Initiate Job (POST jobs).
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-describe-job-get.html
+    example:
+      inputs: [
+        {
+          "jobId": "string",
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tier": "string",
+          "JobId": "string",
+          "Action": "string",
+          "SNSTopic": "string",
+          "VaultARN": "string",
+          "ArchiveId": "string",
+          "Completed": false,
+          "StatusCode": "string",
+          "CreationDate": "string",
+          "JobOutputPath": "string",
+          "StatusMessage": "string",
+          "CompletionDate": "string",
+          "JobDescription": "string",
+          "OutputLocation": {
+            "S3": {
+              "Prefix": "string",
+              "Tagging": {
+                "string": "string"
+              },
+              "CannedACL": "string",
+              "BucketName": "string",
+              "Encryption": {
+                "KMSKeyId": "string",
+                "KMSContext": "string",
+                "EncryptionType": "string"
+              },
+              "StorageClass": "string",
+              "UserMetadata": {
+                "string": "string"
+              },
+              "AccessControlList": [
+                {
+                  "Grantee": {
+                    "ID": "string",
+                    "URI": "string",
+                    "Type": "string",
+                    "DisplayName": "string",
+                    "EmailAddress": "string"
+                  },
+                  "Permission": "string"
+                }
+              ]
+            }
+          },
+          "SHA256TreeHash": "string",
+          "SelectParameters": {
+            "Expression": "string",
+            "ExpressionType": "string",
+            "InputSerialization": {
+              "csv": {
+                "Comments": "string",
+                "FieldDelimiter": "string",
+                "FileHeaderInfo": "string",
+                "QuoteCharacter": "string",
+                "RecordDelimiter": "string",
+                "QuoteEscapeCharacter": "string"
+              }
+            },
+            "OutputSerialization": {
+              "csv": {
+                "QuoteFields": "string",
+                "FieldDelimiter": "string",
+                "QuoteCharacter": "string",
+                "RecordDelimiter": "string",
+                "QuoteEscapeCharacter": "string"
+              }
+            }
+          },
+          "ArchiveSizeInBytes": 1,
+          "RetrievalByteRange": "string",
+          "InventorySizeInBytes": 1,
+          "ArchiveSHA256TreeHash": "string",
+          "InventoryRetrievalParameters": {
+            "Limit": "string",
+            "Format": "string",
+            "Marker": "string",
+            "EndDate": "string",
+            "StartDate": "string"
+          }
+        }
+      ]
+  GetDataRetrievalPolicy:
+    description: |-
+      This operation returns the current data retrieval policy for the AWS account and AWS Region specified in the GET request. For more information about data retrieval policies, see Amazon S3 Glacier Data Retrieval Policies.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-GetDataRetrievalPolicy.html
+    example:
+      inputs: [
+        {
+          "accountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Policy": {
+            "Rules": [
+              {
+                "Strategy": "string",
+                "BytesPerHour": 1
+              }
+            ]
+          }
+        }
+      ]
+  GetVaultAccessPolicy:
+    description: |-
+      This operation retrieves the access-policy subresource set on the vault—for more information on setting this subresource, see Set Vault Access Policy (PUT access-policy). If there is no access policy set on the vault, the operation returns a 404 Not found error. For more information about vault access policies, see Amazon S3 Glacier Access Control with Vault Access Policies.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-GetVaultAccessPolicy.html
+    example:
+      inputs: [
+        {
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "policy": {
+            "Policy": "string"
+          }
+        }
+      ]
+  GetVaultLock:
+    description: ''
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-GetVaultLock.html
+    example:
+      inputs: [
+        {
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "State": "string",
+          "Policy": "string",
+          "CreationDate": "string",
+          "ExpirationDate": "string"
+        }
+      ]
+  InitiateJob:
+    description: ''
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-initiate-job-post.html
+    example:
+      inputs: [
+        {
+          "accountId": "string",
+          "vaultName": "string",
+          "jobParameters": {
+            "Tier": "string",
+            "Type": "string",
+            "Format": "string",
+            "SNSTopic": "string",
+            "ArchiveId": "string",
+            "Description": "string",
+            "OutputLocation": {
+              "S3": {
+                "Prefix": "string",
+                "Tagging": {
+                  "string": "string"
+                },
+                "CannedACL": "string",
+                "BucketName": "string",
+                "Encryption": {
+                  "KMSKeyId": "string",
+                  "KMSContext": "string",
+                  "EncryptionType": "string"
+                },
+                "StorageClass": "string",
+                "UserMetadata": {
+                  "string": "string"
+                },
+                "AccessControlList": [
+                  {
+                    "Grantee": {
+                      "ID": "string",
+                      "URI": "string",
+                      "Type": "string",
+                      "DisplayName": "string",
+                      "EmailAddress": "string"
+                    },
+                    "Permission": "string"
+                  }
+                ]
+              }
+            },
+            "SelectParameters": {
+              "Expression": "string",
+              "ExpressionType": "string",
+              "InputSerialization": {
+                "csv": {
+                  "Comments": "string",
+                  "FieldDelimiter": "string",
+                  "FileHeaderInfo": "string",
+                  "QuoteCharacter": "string",
+                  "RecordDelimiter": "string",
+                  "QuoteEscapeCharacter": "string"
+                }
+              },
+              "OutputSerialization": {
+                "csv": {
+                  "QuoteFields": "string",
+                  "FieldDelimiter": "string",
+                  "QuoteCharacter": "string",
+                  "RecordDelimiter": "string",
+                  "QuoteEscapeCharacter": "string"
+                }
+              }
+            },
+            "RetrievalByteRange": "string",
+            "InventoryRetrievalParameters": {
+              "Limit": "string",
+              "Marker": "string",
+              "EndDate": "string",
+              "StartDate": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "jobId": "string",
+          "location": "string",
+          "jobOutputPath": "string"
+        }
+      ]
+  InitiateVaultLock:
+    description: ''
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-InitiateVaultLock.html
+    example:
+      inputs: [
+        {
+          "policy": {
+            "Policy": "string"
+          },
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "lockId": "string"
+        }
+      ]
+  GetJobOutput:
+    description: |-
+      This operation downloads the output of the job you initiated using Initiate Job (POST jobs). Depending on the job type you specified when you initiated the job, the output will be either the content of an archive or a vault inventory.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-job-output-get.html
+    example:
+      inputs: [
+        {
+          "jobId": "string",
+          "range": "string",
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "body": "blob",
+          "status": 1,
+          "checksum": "string",
+          "contentType": "string",
+          "acceptRanges": "string",
+          "contentRange": "string",
+          "archiveDescription": "string"
+        }
+      ]
+  ListJobs:
+    description: |-
+      This operation lists jobs for a vault, including jobs that are in-progress and jobs that have recently finished.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-jobs-get.html
+    example:
+      inputs: [
+        {
+          "limit": "string",
+          "marker": "string",
+          "accountId": "string",
+          "completed": "string",
+          "vaultName": "string",
+          "statuscode": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "JobList": [
+            {
+              "Tier": "string",
+              "JobId": "string",
+              "Action": "string",
+              "SNSTopic": "string",
+              "VaultARN": "string",
+              "ArchiveId": "string",
+              "Completed": false,
+              "StatusCode": "string",
+              "CreationDate": "string",
+              "JobOutputPath": "string",
+              "StatusMessage": "string",
+              "CompletionDate": "string",
+              "JobDescription": "string",
+              "OutputLocation": {
+                "S3": {
+                  "Prefix": "string",
+                  "Tagging": {
+                    "string": "string"
+                  },
+                  "CannedACL": "string",
+                  "BucketName": "string",
+                  "Encryption": {
+                    "KMSKeyId": "string",
+                    "KMSContext": "string",
+                    "EncryptionType": "string"
+                  },
+                  "StorageClass": "string",
+                  "UserMetadata": {
+                    "string": "string"
+                  },
+                  "AccessControlList": [
+                    {
+                      "Grantee": {
+                        "ID": "string",
+                        "URI": "string",
+                        "Type": "string",
+                        "DisplayName": "string",
+                        "EmailAddress": "string"
+                      },
+                      "Permission": "string"
+                    }
+                  ]
+                }
+              },
+              "SHA256TreeHash": "string",
+              "SelectParameters": {
+                "Expression": "string",
+                "ExpressionType": "string",
+                "InputSerialization": {
+                  "csv": {
+                    "Comments": "string",
+                    "FieldDelimiter": "string",
+                    "FileHeaderInfo": "string",
+                    "QuoteCharacter": "string",
+                    "RecordDelimiter": "string",
+                    "QuoteEscapeCharacter": "string"
+                  }
+                },
+                "OutputSerialization": {
+                  "csv": {
+                    "QuoteFields": "string",
+                    "FieldDelimiter": "string",
+                    "QuoteCharacter": "string",
+                    "RecordDelimiter": "string",
+                    "QuoteEscapeCharacter": "string"
+                  }
+                }
+              },
+              "ArchiveSizeInBytes": 1,
+              "RetrievalByteRange": "string",
+              "InventorySizeInBytes": 1,
+              "ArchiveSHA256TreeHash": "string",
+              "InventoryRetrievalParameters": {
+                "Limit": "string",
+                "Format": "string",
+                "Marker": "string",
+                "EndDate": "string",
+                "StartDate": "string"
+              }
+            }
+          ]
+        }
+      ]
+  ListProvisionedCapacity:
+    description: |-
+      This operation lists the provisioned capacity units for the specified AWS account. For more information about provisioned capacity, see Archive Retrieval Options.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-ListProvisionedCapacity.html
+    example:
+      inputs: [
+        {
+          "accountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ProvisionedCapacityList": [
+            {
+              "StartDate": "string",
+              "CapacityId": "string",
+              "ExpirationDate": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForVault:
+    description: |-
+      This operation lists all the tags attached to a vault. The operation returns an empty map if there are no tags. For more information about tags, see Tagging Amazon S3 Glacier Resources.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-ListTagsForVault.html
+    example:
+      inputs: [
+        {
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  AbortMultipartUpload:
+    description: |-
+      This multipart upload operation stops a multipart upload identified by the upload ID.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-abort-upload.html
+    example:
+      inputs: [
+        {
+          "uploadId": "string",
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CompleteMultipartUpload:
+    description: |-
+      You call this multipart upload operation to inform Amazon S3 Glacier (S3 Glacier) that all the archive parts have been uploaded and S3 Glacier can now assemble the archive from the uploaded parts.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-complete-upload.html
+    example:
+      inputs: [
+        {
+          "checksum": "string",
+          "uploadId": "string",
+          "accountId": "string",
+          "vaultName": "string",
+          "archiveSize": "string"
+        }
+      ]
+      outputs: [
+        {
+          "checksum": "string",
+          "location": "string",
+          "archiveId": "string"
+        }
+      ]
+  InitiateMultipartUpload:
+    description: |-
+      This operation initiates a multipart upload (see Uploading Large Archives in Parts (Multipart Upload)). Amazon S3 Glacier (S3 Glacier) creates a multipart upload resource and returns its ID in the response. You use this Upload ID in subsequent multipart upload operations.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-initiate-upload.html
+    example:
+      inputs: [
+        {
+          "partSize": "string",
+          "accountId": "string",
+          "vaultName": "string",
+          "archiveDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "location": "string",
+          "uploadId": "string"
+        }
+      ]
+  ListParts:
+    description: |-
+      This multipart upload operation lists the parts of an archive that have been uploaded in a specific multipart upload identified by an upload ID. For information about multipart upload, see Uploading Large Archives in Parts (Multipart Upload).
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-list-parts.html
+    example:
+      inputs: [
+        {
+          "limit": "string",
+          "marker": "string",
+          "uploadId": "string",
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Parts": [
+            {
+              "RangeInBytes": "string",
+              "SHA256TreeHash": "string"
+            }
+          ],
+          "Marker": "string",
+          "VaultARN": "string",
+          "CreationDate": "string",
+          "PartSizeInBytes": 1,
+          "MultipartUploadId": "string",
+          "ArchiveDescription": "string"
+        }
+      ]
+  ListMultipartUploads:
+    description: |-
+      This multipart upload operation lists in-progress multipart uploads for the specified vault. An in-progress multipart upload is a multipart upload that has been initiated by an Initiate Multipart Upload (POST multipart-uploads) request, but has not yet been completed or stopped. The list returned in the List Multipart Upload response has no guaranteed order.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-list-uploads.html
+    example:
+      inputs: [
+        {
+          "limit": "string",
+          "marker": "string",
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "UploadsList": [
+            {
+              "VaultARN": "string",
+              "CreationDate": "string",
+              "PartSizeInBytes": 1,
+              "MultipartUploadId": "string",
+              "ArchiveDescription": "string"
+            }
+          ]
+        }
+      ]
+  PurchaseProvisionedCapacity:
+    description: |-
+      This operation purchases a provisioned capacity unit for an AWS account.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-PurchaseProvisionedCapacity.html
+    example:
+      inputs: [
+        {
+          "accountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "capacityId": "string"
+        }
+      ]
+  RemoveTagsFromVault:
+    description: |-
+      This operation removes one or more tags from the set of tags attached to a vault. For more information about tags, see Tagging Amazon S3 Glacier Resources.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-RemoveTagsFromVault.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SetDataRetrievalPolicy:
+    description: |-
+      This operation sets and then enacts a data retrieval policy in the AWS Region specified in the PUT request. You can set one policy per AWS Region for an AWS account. The policy is enacted within a few minutes of a successful PUT operation.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-SetDataRetrievalPolicy.html
+    example:
+      inputs: [
+        {
+          "Policy": {
+            "Rules": [
+              {
+                "Strategy": "string",
+                "BytesPerHour": 1
+              }
+            ]
+          },
+          "accountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SetVaultAccessPolicy:
+    description: |-
+      This operation configures an access policy for a vault and will overwrite an existing policy. To configure a vault access policy, send a PUT request to the access-policy subresource of the vault. You can set one access policy per vault and the policy can be up to 20 KB in size. For more information about vault access policies, see Amazon S3 Glacier Access Control with Vault Access Policies.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-SetVaultAccessPolicy.html
+    example:
+      inputs: [
+        {
+          "policy": {
+            "Policy": "string"
+          },
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UploadMultipartPart:
+    description: |-
+      This multipart upload operation uploads a part of an archive. You can upload archive parts in any order because in your Upload Part request you specify the range of bytes in the assembled archive that will be uploaded in this part. You can also upload these parts in parallel. You can upload up to 10,000 parts for a multipart upload.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-upload-part.html
+    example:
+      inputs: [
+        {
+          "body": "blob",
+          "range": "string",
+          "checksum": "string",
+          "uploadId": "string",
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "checksum": "string"
+        }
+      ]
+  DeleteVault:
+    description: |-
+      This operation deletes a vault. Amazon S3 Glacier (S3 Glacier) will delete a vault only if there are no archives in the vault as per the last inventory and there have been no writes to the vault since the last inventory. If either of these conditions is not satisfied, the vault deletion fails (that is, the vault is not removed) and S3 Glacier returns an error.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-delete.html
+    example:
+      inputs: [
+        {
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeVault:
+    description: |-
+      This operation returns information about a vault, including the vault Amazon Resource Name (ARN), the date the vault was created, the number of archives contained within the vault, and the total size of all the archives in the vault. The number of archives and their total size are as of the last vault inventory Amazon S3 Glacier (S3 Glacier) generated (see Working with Vaults in Amazon S3 Glacier). S3 Glacier generates vault inventories approximately daily. This means that if you add or remove an archive from a vault, and then immediately send a Describe Vault request, the response might not reflect the changes.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-get.html
+    example:
+      inputs: [
+        {
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "VaultARN": "string",
+          "VaultName": "string",
+          "SizeInBytes": 1,
+          "CreationDate": "string",
+          "NumberOfArchives": 1,
+          "LastInventoryDate": "string"
+        }
+      ]
+  DeleteVaultNotifications:
+    description: |-
+      This operation deletes the notification configuration set for a vault Set Vault Notification Configuration (PUT notification-configuration). The operation is eventually consistent—that is, it might take some time for Amazon S3 Glacier (S3 Glacier) to completely disable the notifications, and you might still receive some notifications for a short time after you send the delete request.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-notifications-delete.html
+    example:
+      inputs: [
+        {
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetVaultNotifications:
+    description: |-
+      This operation retrieves the notification-configuration subresource set on the vault (see Set Vault Notification Configuration (PUT notification-configuration). If notification configuration for a vault is not set, the operation returns a 404 Not Found error. For more information about vault notifications, see Configuring Vault Notifications in Amazon S3 Glacier.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-notifications-get.html
+    example:
+      inputs: [
+        {
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "vaultNotificationConfig": {
+            "Events": [
+              "string"
+            ],
+            "SNSTopic": "string"
+          }
+        }
+      ]
+  SetVaultNotifications:
+    description: |-
+      Retrieving an archive and a vault inventory are asynchronous operations in Amazon S3 Glacier (S3 Glacier) for which you must first initiate a job and wait for the job to complete before you can download the job output. You can configure a vault to post a message to an Amazon Simple Notification Service (Amazon SNS) topic when these jobs complete. You can use this operation to set notification configuration on the vault. For more information, see Configuring Vault Notifications in Amazon S3 Glacier.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-notifications-put.html
+    example:
+      inputs: [
+        {
+          "accountId": "string",
+          "vaultName": "string",
+          "vaultNotificationConfig": {
+            "Events": [
+              "string"
+            ],
+            "SNSTopic": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateVault:
+    description: |-
+      This operation creates a new vault with the specified name.  The name of the vault must be unique within an AWS Region for an AWS account. You can create up to 1,000 vaults per account. For information on creating more vaults, go to the Amazon S3 Glacier product detail page.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-put.html
+    example:
+      inputs: [
+        {
+          "accountId": "string",
+          "vaultName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "location": "string"
+        }
+      ]
+  ListVaults:
+    description: |-
+      This operation lists all vaults owned by the calling user’s account. The list returned in the response is ASCII-sorted by vault name.
+    versions:
+      from: 2012.6.1
+    link: https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vaults-get.html
+    example:
+      inputs: [
+        {
+          "limit": "string",
+          "marker": "string",
+          "accountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "VaultList": [
+            {
+              "VaultARN": "string",
+              "VaultName": "string",
+              "SizeInBytes": 1,
+              "CreationDate": "string",
+              "NumberOfArchives": 1,
+              "LastInventoryDate": "string"
+            }
+          ]
+        }
+      ]

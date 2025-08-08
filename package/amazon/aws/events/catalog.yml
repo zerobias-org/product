@@ -1,0 +1,1583 @@
+Product:
+  name: Amazon CloudWatch Events
+  versions: [2015.10.7]
+  package: amazon.aws.events
+  description: |-
+    Amazon CloudWatch Events
+  link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  ActivateEventSource:
+    description: |-
+      Activates a partner event source that has been deactivated. Once activated, your matching event bus will start receiving events from the event source.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_ActivateEventSource.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CancelReplay:
+    description: |-
+      Cancels the specified replay.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_CancelReplay.html
+    example:
+      inputs: [
+        {
+          "ReplayName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "State": "string",
+          "ReplayArn": "string",
+          "StateReason": "string"
+        }
+      ]
+  CreateApiDestination:
+    description: |-
+      Creates an API destination, which is an HTTP invocation endpoint configured as a target for events.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_CreateApiDestination.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "HttpMethod": "string",
+          "Description": "string",
+          "ConnectionArn": "string",
+          "InvocationEndpoint": "string",
+          "InvocationRateLimitPerSecond": 1
+        }
+      ]
+      outputs: [
+        {
+          "CreationTime": 1481289211.615,
+          "LastModifiedTime": 1481289211.615,
+          "ApiDestinationArn": "string",
+          "ApiDestinationState": "string"
+        }
+      ]
+  CreateArchive:
+    description: |-
+      Creates an archive of events with the specified settings. When you create an archive, incoming events might not immediately start being sent to the archive. Allow a short period of time for changes to take effect. If you do not specify a pattern to filter events sent to the archive, all events are sent to the archive except replayed events. Replayed events are not sent to an archive.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_CreateArchive.html
+    example:
+      inputs: [
+        {
+          "ArchiveName": "string",
+          "Description": "string",
+          "EventPattern": "string",
+          "RetentionDays": 1,
+          "EventSourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "State": "string",
+          "ArchiveArn": "string",
+          "StateReason": "string",
+          "CreationTime": 1481289211.615
+        }
+      ]
+  CreateConnection:
+    description: |-
+      Creates a connection. A connection defines the authorization type and credentials to use for authorization with an API destination HTTP endpoint.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_CreateConnection.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Description": "string",
+          "AuthParameters": {
+            "OAuthParameters": {
+              "HttpMethod": "string",
+              "ClientParameters": {
+                "ClientID": "string",
+                "ClientSecret": "string"
+              },
+              "OAuthHttpParameters": {
+                "BodyParameters": [
+                  {
+                    "Key": "string",
+                    "Value": "string",
+                    "IsValueSecret": false
+                  }
+                ],
+                "HeaderParameters": [
+                  {
+                    "Key": "string",
+                    "Value": "string",
+                    "IsValueSecret": false
+                  }
+                ],
+                "QueryStringParameters": [
+                  {
+                    "Key": "string",
+                    "Value": "string",
+                    "IsValueSecret": false
+                  }
+                ]
+              },
+              "AuthorizationEndpoint": "string"
+            },
+            "BasicAuthParameters": {
+              "Password": "string",
+              "Username": "string"
+            },
+            "ApiKeyAuthParameters": {
+              "ApiKeyName": "string",
+              "ApiKeyValue": "string"
+            },
+            "InvocationHttpParameters": {
+              "BodyParameters": [
+                {
+                  "Key": "string",
+                  "Value": "string",
+                  "IsValueSecret": false
+                }
+              ],
+              "HeaderParameters": [
+                {
+                  "Key": "string",
+                  "Value": "string",
+                  "IsValueSecret": false
+                }
+              ],
+              "QueryStringParameters": [
+                {
+                  "Key": "string",
+                  "Value": "string",
+                  "IsValueSecret": false
+                }
+              ]
+            }
+          },
+          "AuthorizationType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CreationTime": 1481289211.615,
+          "ConnectionArn": "string",
+          "ConnectionState": "string",
+          "LastModifiedTime": 1481289211.615
+        }
+      ]
+  CreateEventBus:
+    description: |-
+      Creates a new event bus within your account. This can be a custom event bus which you can use to receive events from your custom applications and services, or it can be a partner event bus which can be matched to a partner event source.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_CreateEventBus.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "EventSourceName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EventBusArn": "string"
+        }
+      ]
+  CreatePartnerEventSource:
+    description: |-
+      Called by an SaaS partner to create a partner event source. This operation is not used by AWS customers.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_CreatePartnerEventSource.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Account": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EventSourceArn": "string"
+        }
+      ]
+  DeactivateEventSource:
+    description: |-
+      You can use this operation to temporarily stop receiving events from the specified partner event source. The matching event bus is not deleted.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DeactivateEventSource.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeauthorizeConnection:
+    description: |-
+      Removes all authorization parameters from the connection. This lets you remove the secret from the connection so you can reuse it without having to create a new connection.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DeauthorizeConnection.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CreationTime": 1481289211.615,
+          "ConnectionArn": "string",
+          "ConnectionState": "string",
+          "LastModifiedTime": 1481289211.615,
+          "LastAuthorizedTime": 1481289211.615
+        }
+      ]
+  DeleteApiDestination:
+    description: |-
+      Deletes the specified API destination.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DeleteApiDestination.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteArchive:
+    description: |-
+      Deletes the specified archive.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DeleteArchive.html
+    example:
+      inputs: [
+        {
+          "ArchiveName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteConnection:
+    description: |-
+      Deletes a connection.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DeleteConnection.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CreationTime": 1481289211.615,
+          "ConnectionArn": "string",
+          "ConnectionState": "string",
+          "LastModifiedTime": 1481289211.615,
+          "LastAuthorizedTime": 1481289211.615
+        }
+      ]
+  DeleteEventBus:
+    description: |-
+      Deletes the specified custom event bus or partner event bus. All rules associated with this event bus need to be deleted. You can't delete your account's default event bus.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DeleteEventBus.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeletePartnerEventSource:
+    description: |-
+      This operation is used by SaaS partners to delete a partner event source. This operation is not used by AWS customers.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DeletePartnerEventSource.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Account": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteRule:
+    description: |-
+      Deletes the specified rule.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DeleteRule.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Force": false,
+          "EventBusName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeApiDestination:
+    description: |-
+      Retrieves details about an API destination.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribeApiDestination.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "HttpMethod": "string",
+          "Description": "string",
+          "CreationTime": 1481289211.615,
+          "ConnectionArn": "string",
+          "LastModifiedTime": 1481289211.615,
+          "ApiDestinationArn": "string",
+          "InvocationEndpoint": "string",
+          "ApiDestinationState": "string",
+          "InvocationRateLimitPerSecond": 1
+        }
+      ]
+  DescribeArchive:
+    description: |-
+      Retrieves details about an archive.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribeArchive.html
+    example:
+      inputs: [
+        {
+          "ArchiveName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "State": "string",
+          "SizeBytes": 1,
+          "ArchiveArn": "string",
+          "EventCount": 1,
+          "ArchiveName": "string",
+          "Description": "string",
+          "StateReason": "string",
+          "CreationTime": 1481289211.615,
+          "EventPattern": "string",
+          "RetentionDays": 1,
+          "EventSourceArn": "string"
+        }
+      ]
+  DescribeConnection:
+    description: |-
+      Retrieves details about a connection.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribeConnection.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "SecretArn": "string",
+          "Description": "string",
+          "StateReason": "string",
+          "CreationTime": 1481289211.615,
+          "ConnectionArn": "string",
+          "AuthParameters": {
+            "OAuthParameters": {
+              "HttpMethod": "string",
+              "ClientParameters": {
+                "ClientID": "string"
+              },
+              "OAuthHttpParameters": {
+                "BodyParameters": [
+                  {
+                    "Key": "string",
+                    "Value": "string",
+                    "IsValueSecret": false
+                  }
+                ],
+                "HeaderParameters": [
+                  {
+                    "Key": "string",
+                    "Value": "string",
+                    "IsValueSecret": false
+                  }
+                ],
+                "QueryStringParameters": [
+                  {
+                    "Key": "string",
+                    "Value": "string",
+                    "IsValueSecret": false
+                  }
+                ]
+              },
+              "AuthorizationEndpoint": "string"
+            },
+            "BasicAuthParameters": {
+              "Username": "string"
+            },
+            "ApiKeyAuthParameters": {
+              "ApiKeyName": "string"
+            },
+            "InvocationHttpParameters": {
+              "BodyParameters": [
+                {
+                  "Key": "string",
+                  "Value": "string",
+                  "IsValueSecret": false
+                }
+              ],
+              "HeaderParameters": [
+                {
+                  "Key": "string",
+                  "Value": "string",
+                  "IsValueSecret": false
+                }
+              ],
+              "QueryStringParameters": [
+                {
+                  "Key": "string",
+                  "Value": "string",
+                  "IsValueSecret": false
+                }
+              ]
+            }
+          },
+          "ConnectionState": "string",
+          "LastModifiedTime": 1481289211.615,
+          "AuthorizationType": "string",
+          "LastAuthorizedTime": 1481289211.615
+        }
+      ]
+  DescribeEventBus:
+    description: |-
+      Displays details about an event bus in your account. This can include the external AWS accounts that are permitted to write events to your default event bus, and the associated policy. For custom event buses and partner event buses, it displays the name, ARN, policy, state, and creation time.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribeEventBus.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Arn": "string",
+          "Name": "string",
+          "Policy": "string"
+        }
+      ]
+  DescribeEventSource:
+    description: |-
+      This operation lists details about a partner event source that is shared with your account.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribeEventSource.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Arn": "string",
+          "Name": "string",
+          "State": "string",
+          "CreatedBy": "string",
+          "CreationTime": 1481289211.615,
+          "ExpirationTime": 1481289211.615
+        }
+      ]
+  DescribePartnerEventSource:
+    description: |-
+      An SaaS partner can use this operation to list details about a partner event source that they have created. AWS customers do not use this operation. Instead, AWS customers can use DescribeEventSource to see details about a partner event source that is shared with them.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribePartnerEventSource.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Arn": "string",
+          "Name": "string"
+        }
+      ]
+  DescribeReplay:
+    description: |-
+      Retrieves details about a replay. Use DescribeReplay to determine the progress of a running replay. A replay processes events to replay based on the time in the event, and replays them using 1 minute intervals. If you use StartReplay and specify an EventStartTime and an EventEndTime that covers a 20 minute time range, the events are replayed from the first minute of that 20 minute range first. Then the events from the second minute are replayed. You can use DescribeReplay to determine the progress of a replay. The value returned for EventLastReplayedTime indicates the time within the specified time range associated with the last event replayed.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribeReplay.html
+    example:
+      inputs: [
+        {
+          "ReplayName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "State": "string",
+          "ReplayArn": "string",
+          "ReplayName": "string",
+          "Description": "string",
+          "Destination": {
+            "Arn": "string",
+            "FilterArns": [
+              "string"
+            ]
+          },
+          "StateReason": "string",
+          "EventEndTime": 1481289211.615,
+          "ReplayEndTime": 1481289211.615,
+          "EventSourceArn": "string",
+          "EventStartTime": 1481289211.615,
+          "ReplayStartTime": 1481289211.615,
+          "EventLastReplayedTime": 1481289211.615
+        }
+      ]
+  DescribeRule:
+    description: |-
+      Describes the specified rule.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribeRule.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "EventBusName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Arn": "string",
+          "Name": "string",
+          "State": "string",
+          "RoleArn": "string",
+          "CreatedBy": "string",
+          "ManagedBy": "string",
+          "Description": "string",
+          "EventBusName": "string",
+          "EventPattern": "string",
+          "ScheduleExpression": "string"
+        }
+      ]
+  DisableRule:
+    description: |-
+      Disables the specified rule. A disabled rule won't match any events, and won't self-trigger if it has a schedule expression.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DisableRule.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "EventBusName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  EnableRule:
+    description: |-
+      Enables the specified rule. If the rule does not exist, the operation fails.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_EnableRule.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "EventBusName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListApiDestinations:
+    description: |-
+      Retrieves a list of API destination in the account in the current Region.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_ListApiDestinations.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "NamePrefix": "string",
+          "ConnectionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ApiDestinations": [
+            {
+              "Name": "string",
+              "HttpMethod": "string",
+              "CreationTime": 1481289211.615,
+              "ConnectionArn": "string",
+              "LastModifiedTime": 1481289211.615,
+              "ApiDestinationArn": "string",
+              "InvocationEndpoint": "string",
+              "ApiDestinationState": "string",
+              "InvocationRateLimitPerSecond": 1
+            }
+          ]
+        }
+      ]
+  ListArchives:
+    description: |-
+      Lists your archives. You can either list all the archives or you can provide a prefix to match to the archive names. Filter parameters are exclusive.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_ListArchives.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "State": "string",
+          "NextToken": "string",
+          "NamePrefix": "string",
+          "EventSourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Archives": [
+            {
+              "State": "string",
+              "SizeBytes": 1,
+              "EventCount": 1,
+              "ArchiveName": "string",
+              "StateReason": "string",
+              "CreationTime": 1481289211.615,
+              "RetentionDays": 1,
+              "EventSourceArn": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListConnections:
+    description: |-
+      Retrieves a list of connections from the account.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_ListConnections.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "NamePrefix": "string",
+          "ConnectionState": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Connections": [
+            {
+              "Name": "string",
+              "StateReason": "string",
+              "CreationTime": 1481289211.615,
+              "ConnectionArn": "string",
+              "ConnectionState": "string",
+              "LastModifiedTime": 1481289211.615,
+              "AuthorizationType": "string",
+              "LastAuthorizedTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListEventBuses:
+    description: |-
+      Lists all the event buses in your account, including the default event bus, custom event buses, and partner event buses.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_ListEventBuses.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "NamePrefix": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "EventBuses": [
+            {
+              "Arn": "string",
+              "Name": "string",
+              "Policy": "string"
+            }
+          ]
+        }
+      ]
+  ListEventSources:
+    description: |-
+      You can use this to see all the partner event sources that have been shared with your AWS account. For more information about partner event sources, see CreateEventBus.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_ListEventSources.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "NamePrefix": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "EventSources": [
+            {
+              "Arn": "string",
+              "Name": "string",
+              "State": "string",
+              "CreatedBy": "string",
+              "CreationTime": 1481289211.615,
+              "ExpirationTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListPartnerEventSourceAccounts:
+    description: |-
+      An SaaS partner can use this operation to display the AWS account ID that a particular partner event source name is associated with. This operation is not used by AWS customers.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_ListPartnerEventSourceAccounts.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "EventSourceName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "PartnerEventSourceAccounts": [
+            {
+              "State": "string",
+              "Account": "string",
+              "CreationTime": 1481289211.615,
+              "ExpirationTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListPartnerEventSources:
+    description: |-
+      An SaaS partner can use this operation to list all the partner event source names that they have created. This operation is not used by AWS customers.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_ListPartnerEventSources.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "NamePrefix": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "PartnerEventSources": [
+            {
+              "Arn": "string",
+              "Name": "string"
+            }
+          ]
+        }
+      ]
+  ListReplays:
+    description: |-
+      Lists your replays. You can either list all the replays or you can provide a prefix to match to the replay names. Filter parameters are exclusive.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_ListReplays.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "State": "string",
+          "NextToken": "string",
+          "NamePrefix": "string",
+          "EventSourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Replays": [
+            {
+              "State": "string",
+              "ReplayName": "string",
+              "StateReason": "string",
+              "EventEndTime": 1481289211.615,
+              "ReplayEndTime": 1481289211.615,
+              "EventSourceArn": "string",
+              "EventStartTime": 1481289211.615,
+              "ReplayStartTime": 1481289211.615,
+              "EventLastReplayedTime": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListRuleNamesByTarget:
+    description: |-
+      Lists the rules for the specified target. You can see which of the rules in Amazon EventBridge can invoke a specific target in your account.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_ListRuleNamesByTarget.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "TargetArn": "string",
+          "EventBusName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "RuleNames": [
+            "string"
+          ]
+        }
+      ]
+  ListRules:
+    description: |-
+      Lists your Amazon EventBridge rules. You can either list all the rules or you can provide a prefix to match to the rule names.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_ListRules.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "NamePrefix": "string",
+          "EventBusName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Rules": [
+            {
+              "Arn": "string",
+              "Name": "string",
+              "State": "string",
+              "RoleArn": "string",
+              "ManagedBy": "string",
+              "Description": "string",
+              "EventBusName": "string",
+              "EventPattern": "string",
+              "ScheduleExpression": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Displays the tags associated with an EventBridge resource. In EventBridge, rules and event buses can be tagged.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  ListTargetsByRule:
+    description: |-
+      Lists the targets assigned to the specified rule.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_ListTargetsByRule.html
+    example:
+      inputs: [
+        {
+          "Rule": "string",
+          "Limit": 1,
+          "NextToken": "string",
+          "EventBusName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Targets": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Input": "string",
+              "RoleArn": "string",
+              "InputPath": "string",
+              "RetryPolicy": {
+                "MaximumRetryAttempts": 1,
+                "MaximumEventAgeInSeconds": 1
+              },
+              "EcsParameters": {
+                "Group": "string",
+                "TaskCount": 1,
+                "LaunchType": "string",
+                "PlatformVersion": "string",
+                "TaskDefinitionArn": "string",
+                "NetworkConfiguration": {
+                  "awsvpcConfiguration": {
+                    "Subnets": [
+                      "string"
+                    ],
+                    "AssignPublicIp": "string",
+                    "SecurityGroups": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "SqsParameters": {
+                "MessageGroupId": "string"
+              },
+              "HttpParameters": {
+                "HeaderParameters": {
+                  "string": "string"
+                },
+                "PathParameterValues": [
+                  "string"
+                ],
+                "QueryStringParameters": {
+                  "string": "string"
+                }
+              },
+              "BatchParameters": {
+                "JobName": "string",
+                "JobDefinition": "string",
+                "RetryStrategy": {
+                  "Attempts": 1
+                },
+                "ArrayProperties": {
+                  "Size": 1
+                }
+              },
+              "DeadLetterConfig": {
+                "Arn": "string"
+              },
+              "InputTransformer": {
+                "InputPathsMap": {
+                  "string": "string"
+                },
+                "InputTemplate": "string"
+              },
+              "KinesisParameters": {
+                "PartitionKeyPath": "string"
+              },
+              "RunCommandParameters": {
+                "RunCommandTargets": [
+                  {
+                    "Key": "string",
+                    "Values": [
+                      "string"
+                    ]
+                  }
+                ]
+              },
+              "RedshiftDataParameters": {
+                "Sql": "string",
+                "DbUser": "string",
+                "Database": "string",
+                "WithEvent": false,
+                "StatementName": "string",
+                "SecretManagerArn": "string"
+              },
+              "SageMakerPipelineParameters": {
+                "PipelineParameterList": [
+                  {
+                    "Name": "string",
+                    "Value": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  PutEvents:
+    description: |-
+      Sends custom events to Amazon EventBridge so that they can be matched to rules.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutEvents.html
+    example:
+      inputs: [
+        {
+          "Entries": [
+            {
+              "Time": 1481289211.615,
+              "Detail": "string",
+              "Source": "string",
+              "Resources": [
+                "string"
+              ],
+              "DetailType": "string",
+              "TraceHeader": "string",
+              "EventBusName": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Entries": [
+            {
+              "EventId": "string",
+              "ErrorCode": "string",
+              "ErrorMessage": "string"
+            }
+          ],
+          "FailedEntryCount": 1
+        }
+      ]
+  PutPartnerEvents:
+    description: |-
+      This is used by SaaS partners to write events to a customer's partner event bus. AWS customers do not use this operation.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutPartnerEvents.html
+    example:
+      inputs: [
+        {
+          "Entries": [
+            {
+              "Time": 1481289211.615,
+              "Detail": "string",
+              "Source": "string",
+              "Resources": [
+                "string"
+              ],
+              "DetailType": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Entries": [
+            {
+              "EventId": "string",
+              "ErrorCode": "string",
+              "ErrorMessage": "string"
+            }
+          ],
+          "FailedEntryCount": 1
+        }
+      ]
+  PutPermission:
+    description: |-
+      Running PutPermission permits the specified AWS account or AWS organization to put events to the specified event bus. Amazon EventBridge (CloudWatch Events) rules in your account are triggered by these events arriving to an event bus in your account.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutPermission.html
+    example:
+      inputs: [
+        {
+          "Action": "string",
+          "Policy": "string",
+          "Condition": {
+            "Key": "string",
+            "Type": "string",
+            "Value": "string"
+          },
+          "Principal": "string",
+          "StatementId": "string",
+          "EventBusName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutRule:
+    description: |-
+      Creates or updates the specified rule. Rules are enabled by default, or based on value of the state. You can disable a rule using DisableRule.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutRule.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "State": "string",
+          "RoleArn": "string",
+          "Description": "string",
+          "EventBusName": "string",
+          "EventPattern": "string",
+          "ScheduleExpression": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutTargets:
+    description: |-
+      Adds the specified targets to the specified rule, or updates the targets if they are already associated with the rule.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutTargets.html
+    example:
+      inputs: [
+        {
+          "Rule": "string",
+          "Targets": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Input": "string",
+              "RoleArn": "string",
+              "InputPath": "string",
+              "RetryPolicy": {
+                "MaximumRetryAttempts": 1,
+                "MaximumEventAgeInSeconds": 1
+              },
+              "EcsParameters": {
+                "Group": "string",
+                "TaskCount": 1,
+                "LaunchType": "string",
+                "PlatformVersion": "string",
+                "TaskDefinitionArn": "string",
+                "NetworkConfiguration": {
+                  "awsvpcConfiguration": {
+                    "Subnets": [
+                      "string"
+                    ],
+                    "AssignPublicIp": "string",
+                    "SecurityGroups": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "SqsParameters": {
+                "MessageGroupId": "string"
+              },
+              "HttpParameters": {
+                "HeaderParameters": {
+                  "string": "string"
+                },
+                "PathParameterValues": [
+                  "string"
+                ],
+                "QueryStringParameters": {
+                  "string": "string"
+                }
+              },
+              "BatchParameters": {
+                "JobName": "string",
+                "JobDefinition": "string",
+                "RetryStrategy": {
+                  "Attempts": 1
+                },
+                "ArrayProperties": {
+                  "Size": 1
+                }
+              },
+              "DeadLetterConfig": {
+                "Arn": "string"
+              },
+              "InputTransformer": {
+                "InputPathsMap": {
+                  "string": "string"
+                },
+                "InputTemplate": "string"
+              },
+              "KinesisParameters": {
+                "PartitionKeyPath": "string"
+              },
+              "RunCommandParameters": {
+                "RunCommandTargets": [
+                  {
+                    "Key": "string",
+                    "Values": [
+                      "string"
+                    ]
+                  }
+                ]
+              },
+              "RedshiftDataParameters": {
+                "Sql": "string",
+                "DbUser": "string",
+                "Database": "string",
+                "WithEvent": false,
+                "StatementName": "string",
+                "SecretManagerArn": "string"
+              },
+              "SageMakerPipelineParameters": {
+                "PipelineParameterList": [
+                  {
+                    "Name": "string",
+                    "Value": "string"
+                  }
+                ]
+              }
+            }
+          ],
+          "EventBusName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FailedEntries": [
+            {
+              "TargetId": "string",
+              "ErrorCode": "string",
+              "ErrorMessage": "string"
+            }
+          ],
+          "FailedEntryCount": 1
+        }
+      ]
+  RemovePermission:
+    description: |-
+      Revokes the permission of another AWS account to be able to put events to the specified event bus. Specify the account to revoke by the StatementId value that you associated with the account when you granted it permission with PutPermission. You can find the StatementId by using DescribeEventBus.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_RemovePermission.html
+    example:
+      inputs: [
+        {
+          "StatementId": "string",
+          "EventBusName": "string",
+          "RemoveAllPermissions": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RemoveTargets:
+    description: |-
+      Removes the specified targets from the specified rule. When the rule is triggered, those targets are no longer be invoked.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_RemoveTargets.html
+    example:
+      inputs: [
+        {
+          "Ids": [
+            "string"
+          ],
+          "Rule": "string",
+          "Force": false,
+          "EventBusName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FailedEntries": [
+            {
+              "TargetId": "string",
+              "ErrorCode": "string",
+              "ErrorMessage": "string"
+            }
+          ],
+          "FailedEntryCount": 1
+        }
+      ]
+  StartReplay:
+    description: |-
+      Starts the specified replay. Events are not necessarily replayed in the exact same order that they were added to the archive. A replay processes events to replay based on the time in the event, and replays them using 1 minute intervals. If you specify an EventStartTime and an EventEndTime that covers a 20 minute time range, the events are replayed from the first minute of that 20 minute range first. Then the events from the second minute are replayed. You can use DescribeReplay to determine the progress of a replay. The value returned for EventLastReplayedTime indicates the time within the specified time range associated with the last event replayed.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_StartReplay.html
+    example:
+      inputs: [
+        {
+          "ReplayName": "string",
+          "Description": "string",
+          "Destination": {
+            "Arn": "string",
+            "FilterArns": [
+              "string"
+            ]
+          },
+          "EventEndTime": 1481289211.615,
+          "EventSourceArn": "string",
+          "EventStartTime": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "State": "string",
+          "ReplayArn": "string",
+          "StateReason": "string",
+          "ReplayStartTime": 1481289211.615
+        }
+      ]
+  TagResource:
+    description: |-
+      Assigns one or more tags (key-value pairs) to the specified EventBridge resource. Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values. In EventBridge, rules and event buses can be tagged.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TestEventPattern:
+    description: |-
+      Tests whether the specified event pattern matches the provided event.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_TestEventPattern.html
+    example:
+      inputs: [
+        {
+          "Event": "string",
+          "EventPattern": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Result": false
+        }
+      ]
+  UntagResource:
+    description: |-
+      Removes one or more tags from the specified EventBridge resource. In Amazon EventBridge (CloudWatch Events), rules and event buses can be tagged.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateApiDestination:
+    description: |-
+      Updates an API destination.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_UpdateApiDestination.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "HttpMethod": "string",
+          "Description": "string",
+          "ConnectionArn": "string",
+          "InvocationEndpoint": "string",
+          "InvocationRateLimitPerSecond": 1
+        }
+      ]
+      outputs: [
+        {
+          "CreationTime": 1481289211.615,
+          "LastModifiedTime": 1481289211.615,
+          "ApiDestinationArn": "string",
+          "ApiDestinationState": "string"
+        }
+      ]
+  UpdateArchive:
+    description: |-
+      Updates the specified archive.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_UpdateArchive.html
+    example:
+      inputs: [
+        {
+          "ArchiveName": "string",
+          "Description": "string",
+          "EventPattern": "string",
+          "RetentionDays": 1
+        }
+      ]
+      outputs: [
+        {
+          "State": "string",
+          "ArchiveArn": "string",
+          "StateReason": "string",
+          "CreationTime": 1481289211.615
+        }
+      ]
+  UpdateConnection:
+    description: |-
+      Updates settings for a connection.
+    versions:
+      from: 2015.10.7
+    link: https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_UpdateConnection.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Description": "string",
+          "AuthParameters": {
+            "OAuthParameters": {
+              "HttpMethod": "string",
+              "ClientParameters": {
+                "ClientID": "string",
+                "ClientSecret": "string"
+              },
+              "OAuthHttpParameters": {
+                "BodyParameters": [
+                  {
+                    "Key": "string",
+                    "Value": "string",
+                    "IsValueSecret": false
+                  }
+                ],
+                "HeaderParameters": [
+                  {
+                    "Key": "string",
+                    "Value": "string",
+                    "IsValueSecret": false
+                  }
+                ],
+                "QueryStringParameters": [
+                  {
+                    "Key": "string",
+                    "Value": "string",
+                    "IsValueSecret": false
+                  }
+                ]
+              },
+              "AuthorizationEndpoint": "string"
+            },
+            "BasicAuthParameters": {
+              "Password": "string",
+              "Username": "string"
+            },
+            "ApiKeyAuthParameters": {
+              "ApiKeyName": "string",
+              "ApiKeyValue": "string"
+            },
+            "InvocationHttpParameters": {
+              "BodyParameters": [
+                {
+                  "Key": "string",
+                  "Value": "string",
+                  "IsValueSecret": false
+                }
+              ],
+              "HeaderParameters": [
+                {
+                  "Key": "string",
+                  "Value": "string",
+                  "IsValueSecret": false
+                }
+              ],
+              "QueryStringParameters": [
+                {
+                  "Key": "string",
+                  "Value": "string",
+                  "IsValueSecret": false
+                }
+              ]
+            }
+          },
+          "AuthorizationType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CreationTime": 1481289211.615,
+          "ConnectionArn": "string",
+          "ConnectionState": "string",
+          "LastModifiedTime": 1481289211.615,
+          "LastAuthorizedTime": 1481289211.615
+        }
+      ]

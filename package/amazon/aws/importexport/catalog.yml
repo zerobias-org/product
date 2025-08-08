@@ -1,0 +1,182 @@
+Product:
+  name: AWS Import/Export
+  versions: [2010.6.1]
+  package: amazon.aws.importexport
+  description: |-
+    AWS Import/Export
+  link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/importexport/index.html#cli-aws-importexport
+  contentType: json
+Operations:
+  CancelJob:
+    description: |-
+      This operation cancels a specified job. Only the job owner can cancel it. The operation fails if the job has already started or is complete.
+    versions:
+      from: 2010.6.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/importexport/cancel-job.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "APIVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Success": false
+        }
+      ]
+  CreateJob:
+    description: |-
+      This operation initiates the process of scheduling an upload or download of your data. You include in the request a manifest that describes the data transfer specifics. The response to the request includes a job ID, which you can use in other operations, a signature that you use to identify your storage device, and the address where you should ship your storage device.
+    versions:
+      from: 2010.6.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/importexport/create-job.html
+    example:
+      inputs: [
+        {
+          "JobType": "string",
+          "Manifest": "string",
+          "APIVersion": "string",
+          "ValidateOnly": false,
+          "ManifestAddendum": "string"
+        }
+      ]
+      outputs: [
+        {
+          "JobId": "string",
+          "JobType": "string",
+          "Signature": "string",
+          "ArtifactList": [
+            {
+              "URL": "string",
+              "Description": "string"
+            }
+          ],
+          "WarningMessage": "string",
+          "SignatureFileContents": "string"
+        }
+      ]
+  GetShippingLabel:
+    description: |-
+      This operation generates a pre-paid UPS shipping label that you will use to ship your device to AWS for processing.
+    versions:
+      from: 2010.6.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/importexport/get-shipping-label.html
+    example:
+      inputs: [
+        {
+          "city": "string",
+          "name": "string",
+          "jobIds": [
+            "string"
+          ],
+          "company": "string",
+          "country": "string",
+          "street1": "string",
+          "street2": "string",
+          "street3": "string",
+          "APIVersion": "string",
+          "postalCode": "string",
+          "phoneNumber": "string",
+          "stateOrProvince": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Warning": "string",
+          "ShippingLabelURL": "string"
+        }
+      ]
+  GetStatus:
+    description: |-
+      This operation returns information about a job, including where the job is in the processing pipeline, the status of the results, and the signature value associated with the job. You can only return information about jobs you own.
+    versions:
+      from: 2010.6.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/importexport/get-status.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "APIVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "JobId": "string",
+          "LogKey": "string",
+          "Carrier": "string",
+          "JobType": "string",
+          "LogBucket": "string",
+          "Signature": "string",
+          "ErrorCount": 1,
+          "ArtifactList": [
+            {
+              "URL": "string",
+              "Description": "string"
+            }
+          ],
+          "CreationDate": 1481289211.615,
+          "LocationCode": "string",
+          "ProgressCode": "string",
+          "TrackingNumber": "string",
+          "CurrentManifest": "string",
+          "LocationMessage": "string",
+          "ProgressMessage": "string",
+          "SignatureFileContents": "string"
+        }
+      ]
+  ListJobs:
+    description: |-
+      This operation returns the jobs associated with the requester. AWS Import/Export lists the jobs in reverse chronological order based on the date of creation. For example if Job Test1 was created 2009Dec30 and Test2 was created 2010Feb05, the ListJobs operation would return Test2 followed by Test1.
+    versions:
+      from: 2010.6.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/importexport/list-jobs.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxJobs": 1,
+          "APIVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Jobs": [
+            {
+              "JobId": "string",
+              "JobType": "string",
+              "IsCanceled": false,
+              "CreationDate": 1481289211.615
+            }
+          ],
+          "IsTruncated": false
+        }
+      ]
+  UpdateJob:
+    description: |-
+      You use this operation to change the parameters specified in the original manifest file by supplying a new manifest file. The manifest file attached to this request replaces the original manifest file. You can only use the operation after a CreateJob request but before the data transfer starts and you can only use it on jobs you own.
+    versions:
+      from: 2010.6.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/importexport/update-job.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "JobType": "string",
+          "Manifest": "string",
+          "APIVersion": "string",
+          "ValidateOnly": false
+        }
+      ]
+      outputs: [
+        {
+          "Success": false,
+          "ArtifactList": [
+            {
+              "URL": "string",
+              "Description": "string"
+            }
+          ],
+          "WarningMessage": "string"
+        }
+      ]

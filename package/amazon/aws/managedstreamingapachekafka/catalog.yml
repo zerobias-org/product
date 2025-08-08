@@ -1,0 +1,1190 @@
+Product:
+  name: Amazon Managed Streaming for Apache Kafka
+  versions: [2018.11.14]
+  package: amazon.aws.managedstreamingapachekafka
+  description: |-
+    Amazon Managed Streaming for Apache Kafka
+  link: https://docs.aws.amazon.com/msk/1.0/apireference/what-is-msk.html
+  contentType: json
+Operations:
+  GetBootstrapBrokers:
+    description: |-
+      A list of brokers that a client can use to bootstrap. This list doesn't necessarily include all of the brokers in the cluster. The following Python 3.6 example shows how you can use the ARN of a cluster to get its bootstrap brokers. If you don't know the ARN of your cluster, you can use the ListClusters operation to get the ARNs of all the clusters in this account and Region.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn-bootstrap-brokers.html
+    example:
+      inputs: [
+        {
+          "ClusterArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "BootstrapBrokerString": "string",
+          "BootstrapBrokerStringTls": "string",
+          "BootstrapBrokerStringSaslScram": "string"
+        }
+      ]
+  UpdateClusterConfiguration:
+    description: |-
+      Updates the cluster with the configuration that is specified in the request body. Before you invoke this operation, ensure that the number of partitions per broker on your MSK cluster is under the limits described in Number of partitions per broker. You can't update the configuration of an MSK cluster that exceeds these limits.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn-configuration.html
+    example:
+      inputs: [
+        {
+          "ClusterArn": "string",
+          "CurrentVersion": "string",
+          "ConfigurationInfo": {
+            "Arn": "string",
+            "Revision": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ClusterArn": "string",
+          "ClusterOperationArn": "string"
+        }
+      ]
+  DeleteCluster:
+    description: |-
+      Deletes the MSK cluster specified by the Amazon Resource Name (ARN) in the request, and all its revisions.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn.html
+    example:
+      inputs: [
+        {
+          "ClusterArn": "string",
+          "CurrentVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "State": "string",
+          "ClusterArn": "string"
+        }
+      ]
+  DescribeCluster:
+    description: |-
+      Returns a description of the MSK cluster whose Amazon Resource Name (ARN) is specified in the request. The following is a Python 3.6 example of how to use this operation. Before you run this Python script, replace the example cluster ARN with the ARN of the cluster you want to describe. If you don't know the ARN of the cluster, you can use the ListClusters operation to list all the clusters and see their ARNs and full descriptions.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn.html
+    example:
+      inputs: [
+        {
+          "ClusterArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ClusterInfo": {
+            "Tags": {
+              "string": "string"
+            },
+            "State": "string",
+            "StateInfo": {
+              "Code": "string",
+              "Message": "string"
+            },
+            "ClusterArn": "string",
+            "ClusterName": "string",
+            "LoggingInfo": {
+              "BrokerLogs": {
+                "S3": {
+                  "Bucket": "string",
+                  "Prefix": "string",
+                  "Enabled": false
+                },
+                "Firehose": {
+                  "Enabled": false,
+                  "DeliveryStream": "string"
+                },
+                "CloudWatchLogs": {
+                  "Enabled": false,
+                  "LogGroup": "string"
+                }
+              }
+            },
+            "CreationTime": 1481289211.615,
+            "CurrentVersion": "string",
+            "EncryptionInfo": {
+              "EncryptionAtRest": {
+                "DataVolumeKMSKeyId": "string"
+              },
+              "EncryptionInTransit": {
+                "InCluster": false,
+                "ClientBroker": "string"
+              }
+            },
+            "OpenMonitoring": {
+              "Prometheus": {
+                "JmxExporter": {
+                  "EnabledInBroker": false
+                },
+                "NodeExporter": {
+                  "EnabledInBroker": false
+                }
+              }
+            },
+            "ActiveOperationArn": "string",
+            "EnhancedMonitoring": "string",
+            "BrokerNodeGroupInfo": {
+              "StorageInfo": {
+                "EbsStorageInfo": {
+                  "VolumeSize": 1
+                }
+              },
+              "InstanceType": "string",
+              "ClientSubnets": [
+                "string"
+              ],
+              "SecurityGroups": [
+                "string"
+              ],
+              "BrokerAZDistribution": "string"
+            },
+            "NumberOfBrokerNodes": 1,
+            "ClientAuthentication": {
+              "Tls": {
+                "CertificateAuthorityArnList": [
+                  "string"
+                ]
+              },
+              "Sasl": {
+                "Scram": {
+                  "Enabled": false
+                }
+              }
+            },
+            "ZookeeperConnectString": "string",
+            "CurrentBrokerSoftwareInfo": {
+              "KafkaVersion": "string",
+              "ConfigurationArn": "string",
+              "ConfigurationRevision": 1
+            },
+            "ZookeeperConnectStringTls": "string"
+          }
+        }
+      ]
+  UpdateMonitoring:
+    description: |-
+      Updates the monitoring settings for the cluster. You can use this operation to specify which Apache Kafka metrics you want Amazon MSK to send to Amazon CloudWatch. You can also specify settings for open monitoring with Prometheus. The following Python 3.6 example enables open monitoring with the Node Exporter. It also sets enhanced monitoring to PER_BROKER. For more information about monitoring, see Monitoring.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn-monitoring.html
+    example:
+      inputs: [
+        {
+          "ClusterArn": "string",
+          "LoggingInfo": {
+            "BrokerLogs": {
+              "S3": {
+                "Bucket": "string",
+                "Prefix": "string",
+                "Enabled": false
+              },
+              "Firehose": {
+                "Enabled": false,
+                "DeliveryStream": "string"
+              },
+              "CloudWatchLogs": {
+                "Enabled": false,
+                "LogGroup": "string"
+              }
+            }
+          },
+          "CurrentVersion": "string",
+          "OpenMonitoring": {
+            "Prometheus": {
+              "JmxExporter": {
+                "EnabledInBroker": false
+              },
+              "NodeExporter": {
+                "EnabledInBroker": false
+              }
+            }
+          },
+          "EnhancedMonitoring": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ClusterArn": "string",
+          "ClusterOperationArn": "string"
+        }
+      ]
+  UpdateBrokerCount:
+    description: |-
+      Updates the number of broker nodes in the cluster. You can use this operation to increase the number of brokers in an existing cluster. You can't decrease the number of brokers.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn-nodes-count.html
+    example:
+      inputs: [
+        {
+          "ClusterArn": "string",
+          "CurrentVersion": "string",
+          "TargetNumberOfBrokerNodes": 1
+        }
+      ]
+      outputs: [
+        {
+          "ClusterArn": "string",
+          "ClusterOperationArn": "string"
+        }
+      ]
+  ListNodes:
+    description: |-
+      Returns a list of the broker nodes in the cluster. The following Python 3.6 example first lists one node of a cluster. Because the cluster has more nodes, the response contains a token that the script then uses to list the remaining nodes.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn-nodes.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "ClusterArn": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "NodeInfoList": [
+            {
+              "NodeARN": "string",
+              "NodeType": "string",
+              "InstanceType": "string",
+              "BrokerNodeInfo": {
+                "BrokerId": 0.1,
+                "Endpoints": [
+                  "string"
+                ],
+                "ClientSubnet": "string",
+                "AttachedENIId": "string",
+                "ClientVpcIpAddress": "string",
+                "CurrentBrokerSoftwareInfo": {
+                  "KafkaVersion": "string",
+                  "ConfigurationArn": "string",
+                  "ConfigurationRevision": 1
+                }
+              },
+              "ZookeeperNodeInfo": {
+                "Endpoints": [
+                  "string"
+                ],
+                "ZookeeperId": 0.1,
+                "AttachedENIId": "string",
+                "ZookeeperVersion": "string",
+                "ClientVpcIpAddress": "string"
+              },
+              "AddedToClusterTime": "string"
+            }
+          ]
+        }
+      ]
+  UpdateBrokerStorage:
+    description: |-
+      Updates the EBS storage associated with MSK brokers. You can increase the amount of EBS storage per broker. You can't decrease the storage. To increase storage, wait for the cluster to be in the ACTIVE state. Storage volumes remain available during this scaling-up operation.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn-nodes-storage.html
+    example:
+      inputs: [
+        {
+          "ClusterArn": "string",
+          "CurrentVersion": "string",
+          "TargetBrokerEBSVolumeInfo": [
+            {
+              "VolumeSizeGB": 1,
+              "KafkaBrokerNodeId": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ClusterArn": "string",
+          "ClusterOperationArn": "string"
+        }
+      ]
+  UpdateBrokerType:
+    description: |-
+      For information about this operation, see Updating the broker type in the developer guide.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn-nodes-type.html
+    example:
+      inputs: [
+        {
+          "ClusterArn": "string",
+          "CurrentVersion": "string",
+          "TargetInstanceType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ClusterArn": "string",
+          "ClusterOperationArn": "string"
+        }
+      ]
+  ListClusterOperations:
+    description: |-
+      Returns a list of all the operations that have been performed on the specified MSK cluster.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn-operations.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "ClusterArn": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ClusterOperationInfoList": [
+            {
+              "EndTime": 1481289211.615,
+              "ErrorInfo": {
+                "ErrorCode": "string",
+                "ErrorString": "string"
+              },
+              "ClusterArn": "string",
+              "CreationTime": 1481289211.615,
+              "OperationArn": "string",
+              "OperationType": "string",
+              "OperationState": "string",
+              "OperationSteps": [
+                {
+                  "StepInfo": {
+                    "StepStatus": "string"
+                  },
+                  "StepName": "string"
+                }
+              ],
+              "ClientRequestId": "string",
+              "SourceClusterInfo": {
+                "LoggingInfo": {
+                  "BrokerLogs": {
+                    "S3": {
+                      "Bucket": "string",
+                      "Prefix": "string",
+                      "Enabled": false
+                    },
+                    "Firehose": {
+                      "Enabled": false,
+                      "DeliveryStream": "string"
+                    },
+                    "CloudWatchLogs": {
+                      "Enabled": false,
+                      "LogGroup": "string"
+                    }
+                  }
+                },
+                "InstanceType": "string",
+                "KafkaVersion": "string",
+                "OpenMonitoring": {
+                  "Prometheus": {
+                    "JmxExporter": {
+                      "EnabledInBroker": false
+                    },
+                    "NodeExporter": {
+                      "EnabledInBroker": false
+                    }
+                  }
+                },
+                "ConfigurationInfo": {
+                  "Arn": "string",
+                  "Revision": 1
+                },
+                "EnhancedMonitoring": "string",
+                "BrokerEBSVolumeInfo": [
+                  {
+                    "VolumeSizeGB": 1,
+                    "KafkaBrokerNodeId": "string"
+                  }
+                ],
+                "NumberOfBrokerNodes": 1
+              },
+              "TargetClusterInfo": {
+                "LoggingInfo": {
+                  "BrokerLogs": {
+                    "S3": {
+                      "Bucket": "string",
+                      "Prefix": "string",
+                      "Enabled": false
+                    },
+                    "Firehose": {
+                      "Enabled": false,
+                      "DeliveryStream": "string"
+                    },
+                    "CloudWatchLogs": {
+                      "Enabled": false,
+                      "LogGroup": "string"
+                    }
+                  }
+                },
+                "InstanceType": "string",
+                "KafkaVersion": "string",
+                "OpenMonitoring": {
+                  "Prometheus": {
+                    "JmxExporter": {
+                      "EnabledInBroker": false
+                    },
+                    "NodeExporter": {
+                      "EnabledInBroker": false
+                    }
+                  }
+                },
+                "ConfigurationInfo": {
+                  "Arn": "string",
+                  "Revision": 1
+                },
+                "EnhancedMonitoring": "string",
+                "BrokerEBSVolumeInfo": [
+                  {
+                    "VolumeSizeGB": 1,
+                    "KafkaBrokerNodeId": "string"
+                  }
+                ],
+                "NumberOfBrokerNodes": 1
+              }
+            }
+          ]
+        }
+      ]
+  RebootBroker:
+    description: |-
+      Reboots a broker node for a cluster. You can reboot one broker at a time, in a given cluster whose Amazon Resource Name (ARN) is specified in the request. The ID of the broker to be rebooted should be specified in the request body. To reboot a broker, wait for the cluster to be in the ACTIVE state.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn-reboot-broker.html
+    example:
+      inputs: [
+        {
+          "BrokerIds": [
+            "string"
+          ],
+          "ClusterArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ClusterArn": "string",
+          "ClusterOperationArn": "string"
+        }
+      ]
+  BatchAssociateScramSecret:
+    description: |-
+      Associates a list of SCRAM secrets with a cluster. SCRAM secrets are stored in the AWS Secrets Manager service, and are used to authenticate clients using usernames and passwords.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn-scram-secrets.html
+    example:
+      inputs: [
+        {
+          "ClusterArn": "string",
+          "SecretArnList": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ClusterArn": "string",
+          "UnprocessedScramSecrets": [
+            {
+              "ErrorCode": "string",
+              "SecretArn": "string",
+              "ErrorMessage": "string"
+            }
+          ]
+        }
+      ]
+  BatchDisassociateScramSecret:
+    description: |-
+      Disassociates a list of SCRAM secrets from a cluster. SCRAM secrets are stored in the AWS Secrets Manager service, and are used to authenticate clients using usernames and passwords.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn-scram-secrets.html
+    example:
+      inputs: [
+        {
+          "ClusterArn": "string",
+          "SecretArnList": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ClusterArn": "string",
+          "UnprocessedScramSecrets": [
+            {
+              "ErrorCode": "string",
+              "SecretArn": "string",
+              "ErrorMessage": "string"
+            }
+          ]
+        }
+      ]
+  ListScramSecrets:
+    description: |-
+      Returns a list of SCRAM secrets associated with the cluster. SCRAM secrets are stored in the AWS Secrets Manager service, and are used to authenticate clients using usernames and passwords.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn-scram-secrets.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "ClusterArn": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "SecretArnList": [
+            "string"
+          ]
+        }
+      ]
+  UpdateClusterKafkaVersion:
+    description: |-
+      Updates the cluster to the specified Apache Kafka version. Before you invoke this operation, ensure that the number of partitions per broker on your MSK cluster is under the limits described in Number of partitions per broker. You can't update the Apache Kafka version for an MSK cluster that exceeds these limits.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters-clusterarn-version.html
+    example:
+      inputs: [
+        {
+          "ClusterArn": "string",
+          "CurrentVersion": "string",
+          "ConfigurationInfo": {
+            "Arn": "string",
+            "Revision": 1
+          },
+          "TargetKafkaVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ClusterArn": "string",
+          "ClusterOperationArn": "string"
+        }
+      ]
+  CreateCluster:
+    description: |-
+      Creates a new MSK cluster. The following Python 3.6 examples shows how you can create a cluster that's distributed over two Availability Zones. Before you run this Python script, replace the example subnet and security-group IDs with the IDs of your subnets and security group. When you create an MSK cluster, its brokers get evenly distributed over a number of Availability Zones that's equal to the number of subnets that you specify in the BrokerNodeGroupInfo parameter. In this example, you can add a third subnet to get a cluster that's distributed over three Availability Zones.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ClusterName": "string",
+          "LoggingInfo": {
+            "BrokerLogs": {
+              "S3": {
+                "Bucket": "string",
+                "Prefix": "string",
+                "Enabled": false
+              },
+              "Firehose": {
+                "Enabled": false,
+                "DeliveryStream": "string"
+              },
+              "CloudWatchLogs": {
+                "Enabled": false,
+                "LogGroup": "string"
+              }
+            }
+          },
+          "KafkaVersion": "string",
+          "EncryptionInfo": {
+            "EncryptionAtRest": {
+              "DataVolumeKMSKeyId": "string"
+            },
+            "EncryptionInTransit": {
+              "InCluster": false,
+              "ClientBroker": "string"
+            }
+          },
+          "OpenMonitoring": {
+            "Prometheus": {
+              "JmxExporter": {
+                "EnabledInBroker": false
+              },
+              "NodeExporter": {
+                "EnabledInBroker": false
+              }
+            }
+          },
+          "ConfigurationInfo": {
+            "Arn": "string",
+            "Revision": 1
+          },
+          "EnhancedMonitoring": "string",
+          "BrokerNodeGroupInfo": {
+            "StorageInfo": {
+              "EbsStorageInfo": {
+                "VolumeSize": 1
+              }
+            },
+            "InstanceType": "string",
+            "ClientSubnets": [
+              "string"
+            ],
+            "SecurityGroups": [
+              "string"
+            ],
+            "BrokerAZDistribution": "string"
+          },
+          "NumberOfBrokerNodes": 1,
+          "ClientAuthentication": {
+            "Tls": {
+              "CertificateAuthorityArnList": [
+                "string"
+              ]
+            },
+            "Sasl": {
+              "Scram": {
+                "Enabled": false
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "State": "string",
+          "ClusterArn": "string",
+          "ClusterName": "string"
+        }
+      ]
+  ListClusters:
+    description: |-
+      Returns a list of all the MSK clusters.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ClusterNameFilter": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ClusterInfoList": [
+            {
+              "Tags": {
+                "string": "string"
+              },
+              "State": "string",
+              "StateInfo": {
+                "Code": "string",
+                "Message": "string"
+              },
+              "ClusterArn": "string",
+              "ClusterName": "string",
+              "LoggingInfo": {
+                "BrokerLogs": {
+                  "S3": {
+                    "Bucket": "string",
+                    "Prefix": "string",
+                    "Enabled": false
+                  },
+                  "Firehose": {
+                    "Enabled": false,
+                    "DeliveryStream": "string"
+                  },
+                  "CloudWatchLogs": {
+                    "Enabled": false,
+                    "LogGroup": "string"
+                  }
+                }
+              },
+              "CreationTime": 1481289211.615,
+              "CurrentVersion": "string",
+              "EncryptionInfo": {
+                "EncryptionAtRest": {
+                  "DataVolumeKMSKeyId": "string"
+                },
+                "EncryptionInTransit": {
+                  "InCluster": false,
+                  "ClientBroker": "string"
+                }
+              },
+              "OpenMonitoring": {
+                "Prometheus": {
+                  "JmxExporter": {
+                    "EnabledInBroker": false
+                  },
+                  "NodeExporter": {
+                    "EnabledInBroker": false
+                  }
+                }
+              },
+              "ActiveOperationArn": "string",
+              "EnhancedMonitoring": "string",
+              "BrokerNodeGroupInfo": {
+                "StorageInfo": {
+                  "EbsStorageInfo": {
+                    "VolumeSize": 1
+                  }
+                },
+                "InstanceType": "string",
+                "ClientSubnets": [
+                  "string"
+                ],
+                "SecurityGroups": [
+                  "string"
+                ],
+                "BrokerAZDistribution": "string"
+              },
+              "NumberOfBrokerNodes": 1,
+              "ClientAuthentication": {
+                "Tls": {
+                  "CertificateAuthorityArnList": [
+                    "string"
+                  ]
+                },
+                "Sasl": {
+                  "Scram": {
+                    "Enabled": false
+                  }
+                }
+              },
+              "ZookeeperConnectString": "string",
+              "CurrentBrokerSoftwareInfo": {
+                "KafkaVersion": "string",
+                "ConfigurationArn": "string",
+                "ConfigurationRevision": 1
+              },
+              "ZookeeperConnectStringTls": "string"
+            }
+          ]
+        }
+      ]
+  GetCompatibleKafkaVersions:
+    description: |-
+      Returns a list of the Apache Kafka versions to which you can update this cluster.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/compatible-kafka-versions.html
+    example:
+      inputs: [
+        {
+          "ClusterArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CompatibleKafkaVersions": [
+            {
+              "SourceVersion": "string",
+              "TargetVersions": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  DeleteConfiguration:
+    description: |-
+      Deletes a cluster configuration and all its revisions.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/configurations-arn.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Arn": "string",
+          "State": "string"
+        }
+      ]
+  DescribeConfiguration:
+    description: |-
+      Returns a description of this MSK configuration.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/configurations-arn.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Arn": "string",
+          "Name": "string",
+          "State": "string",
+          "Description": "string",
+          "CreationTime": 1481289211.615,
+          "KafkaVersions": [
+            "string"
+          ],
+          "LatestRevision": {
+            "Revision": 1,
+            "Description": "string",
+            "CreationTime": 1481289211.615
+          }
+        }
+      ]
+  UpdateConfiguration:
+    description: |-
+      Creates a new revision of the cluster configuration. The configuration must be in the ACTIVE state.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/configurations-arn.html
+    example:
+      inputs: [
+        {
+          "Arn": "string",
+          "Description": "string",
+          "ServerProperties": "blob"
+        }
+      ]
+      outputs: [
+        {
+          "Arn": "string",
+          "LatestRevision": {
+            "Revision": 1,
+            "Description": "string",
+            "CreationTime": 1481289211.615
+          }
+        }
+      ]
+  ListConfigurationRevisions:
+    description: |-
+      Returns a list of all the revisions of an MSK configuration.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/configurations-arn-revisions.html
+    example:
+      inputs: [
+        {
+          "Arn": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Revisions": [
+            {
+              "Revision": 1,
+              "Description": "string",
+              "CreationTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  DescribeConfigurationRevision:
+    description: |-
+      Returns a description of this revision of the configuration.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/configurations-arn-revisions-revision.html
+    example:
+      inputs: [
+        {
+          "Arn": "string",
+          "Revision": 1
+        }
+      ]
+      outputs: [
+        {
+          "Arn": "string",
+          "Revision": 1,
+          "Description": "string",
+          "CreationTime": 1481289211.615,
+          "ServerProperties": "blob"
+        }
+      ]
+  CreateConfiguration:
+    description: |-
+      Creates a new MSK configuration. To see an example of how to use this operation, first save the following text to a file and name the file config-file.txt.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/configurations.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Description": "string",
+          "KafkaVersions": [
+            "string"
+          ],
+          "ServerProperties": "blob"
+        }
+      ]
+      outputs: [
+        {
+          "Arn": "string",
+          "Name": "string",
+          "State": "string",
+          "CreationTime": 1481289211.615,
+          "LatestRevision": {
+            "Revision": 1,
+            "Description": "string",
+            "CreationTime": 1481289211.615
+          }
+        }
+      ]
+  ListConfigurations:
+    description: |-
+      Returns a list of all the MSK configurations.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/configurations.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Configurations": [
+            {
+              "Arn": "string",
+              "Name": "string",
+              "State": "string",
+              "Description": "string",
+              "CreationTime": 1481289211.615,
+              "KafkaVersions": [
+                "string"
+              ],
+              "LatestRevision": {
+                "Revision": 1,
+                "Description": "string",
+                "CreationTime": 1481289211.615
+              }
+            }
+          ]
+        }
+      ]
+  ListKafkaVersions:
+    description: |-
+      Returns the Apache Kafka version objects.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/kafka-versions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "KafkaVersions": [
+            {
+              "Status": "string",
+              "Version": "string"
+            }
+          ]
+        }
+      ]
+  DescribeClusterOperation:
+    description: |-
+      Returns a description of the cluster operation specified by the ARN.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/operations-clusteroperationarn.html
+    example:
+      inputs: [
+        {
+          "ClusterOperationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ClusterOperationInfo": {
+            "EndTime": 1481289211.615,
+            "ErrorInfo": {
+              "ErrorCode": "string",
+              "ErrorString": "string"
+            },
+            "ClusterArn": "string",
+            "CreationTime": 1481289211.615,
+            "OperationArn": "string",
+            "OperationType": "string",
+            "OperationState": "string",
+            "OperationSteps": [
+              {
+                "StepInfo": {
+                  "StepStatus": "string"
+                },
+                "StepName": "string"
+              }
+            ],
+            "ClientRequestId": "string",
+            "SourceClusterInfo": {
+              "LoggingInfo": {
+                "BrokerLogs": {
+                  "S3": {
+                    "Bucket": "string",
+                    "Prefix": "string",
+                    "Enabled": false
+                  },
+                  "Firehose": {
+                    "Enabled": false,
+                    "DeliveryStream": "string"
+                  },
+                  "CloudWatchLogs": {
+                    "Enabled": false,
+                    "LogGroup": "string"
+                  }
+                }
+              },
+              "InstanceType": "string",
+              "KafkaVersion": "string",
+              "OpenMonitoring": {
+                "Prometheus": {
+                  "JmxExporter": {
+                    "EnabledInBroker": false
+                  },
+                  "NodeExporter": {
+                    "EnabledInBroker": false
+                  }
+                }
+              },
+              "ConfigurationInfo": {
+                "Arn": "string",
+                "Revision": 1
+              },
+              "EnhancedMonitoring": "string",
+              "BrokerEBSVolumeInfo": [
+                {
+                  "VolumeSizeGB": 1,
+                  "KafkaBrokerNodeId": "string"
+                }
+              ],
+              "NumberOfBrokerNodes": 1
+            },
+            "TargetClusterInfo": {
+              "LoggingInfo": {
+                "BrokerLogs": {
+                  "S3": {
+                    "Bucket": "string",
+                    "Prefix": "string",
+                    "Enabled": false
+                  },
+                  "Firehose": {
+                    "Enabled": false,
+                    "DeliveryStream": "string"
+                  },
+                  "CloudWatchLogs": {
+                    "Enabled": false,
+                    "LogGroup": "string"
+                  }
+                }
+              },
+              "InstanceType": "string",
+              "KafkaVersion": "string",
+              "OpenMonitoring": {
+                "Prometheus": {
+                  "JmxExporter": {
+                    "EnabledInBroker": false
+                  },
+                  "NodeExporter": {
+                    "EnabledInBroker": false
+                  }
+                }
+              },
+              "ConfigurationInfo": {
+                "Arn": "string",
+                "Revision": 1
+              },
+              "EnhancedMonitoring": "string",
+              "BrokerEBSVolumeInfo": [
+                {
+                  "VolumeSizeGB": 1,
+                  "KafkaBrokerNodeId": "string"
+                }
+              ],
+              "NumberOfBrokerNodes": 1
+            }
+          }
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns a list of the tags associated with the specified resource.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/tags-resourcearn.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds tags to the specified MSK resource.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/tags-resourcearn.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes the tags associated with the keys that are provided in the query.
+    versions:
+      from: 2018.11.14
+    link: https://docs.aws.amazon.com/msk/1.0/apireference/tags-resourcearn.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

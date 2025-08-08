@@ -1,0 +1,2079 @@
+Product:
+  name: AWS Storage Gateway Service
+  versions: [2013.6.30]
+  package: amazon.aws.storagegatewayservice
+  description: |-
+    AWS Storage Gateway Service
+  link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  ActivateGateway:
+    description: |-
+      Activates the gateway you previously deployed on your host. In the activation process, you specify information such as the AWS Region that you want to use for storing snapshots or tapes, the time zone for scheduled snapshots the gateway snapshot schedule window, an activation key, and a name for your gateway. The activation process also associates your gateway with your account. For more information, see UpdateGatewayInformation.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_ActivateGateway.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "GatewayName": "string",
+          "GatewayType": "string",
+          "ActivationKey": "string",
+          "GatewayRegion": "string",
+          "TapeDriveType": "string",
+          "GatewayTimezone": "string",
+          "MediumChangerType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  AddCache:
+    description: |-
+      Configures one or more gateway local disks as cache for a gateway. This operation is only supported in the cached volume, tape, and file gateway type (see How AWS Storage Gateway works (architecture).
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_AddCache.html
+    example:
+      inputs: [
+        {
+          "DiskIds": [
+            "string"
+          ],
+          "GatewayARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  AddTagsToResource:
+    description: |-
+      Adds one or more tags to the specified resource. You use tags to add metadata to resources, which you can use to categorize these resources. For example, you can categorize resources by purpose, owner, environment, or team. Each tag consists of a key and a value, which you define.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_AddTagsToResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  AddUploadBuffer:
+    description: |-
+      Configures one or more gateway local disks as upload buffer for a specified gateway. This operation is supported for the stored volume, cached volume, and tape gateway types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_AddUploadBuffer.html
+    example:
+      inputs: [
+        {
+          "DiskIds": [
+            "string"
+          ],
+          "GatewayARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  AddWorkingStorage:
+    description: |-
+      Configures one or more gateway local disks as working storage for a gateway. This operation is only supported in the stored volume gateway type. This operation is deprecated in cached volume API version 20120630. Use AddUploadBuffer instead.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_AddWorkingStorage.html
+    example:
+      inputs: [
+        {
+          "DiskIds": [
+            "string"
+          ],
+          "GatewayARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  AssignTapePool:
+    description: |-
+      Assigns a tape to a tape pool for archiving. The tape assigned to a pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the S3 storage class (S3 Glacier or S3 Glacier Deep Archive) that corresponds to the pool.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_AssignTapePool.html
+    example:
+      inputs: [
+        {
+          "PoolId": "string",
+          "TapeARN": "string",
+          "BypassGovernanceRetention": false
+        }
+      ]
+      outputs: [
+        {
+          "TapeARN": "string"
+        }
+      ]
+  AttachVolume:
+    description: |-
+      Connects a volume to an iSCSI connection and then attaches the volume to the specified gateway. Detaching and attaching a volume enables you to recover your data from one gateway to a different gateway without creating a snapshot. It also makes it easier to move your volumes from an on-premises gateway to a gateway hosted on an Amazon EC2 instance.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_AttachVolume.html
+    example:
+      inputs: [
+        {
+          "DiskId": "string",
+          "VolumeARN": "string",
+          "GatewayARN": "string",
+          "TargetName": "string",
+          "NetworkInterfaceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TargetARN": "string",
+          "VolumeARN": "string"
+        }
+      ]
+  CancelArchival:
+    description: |-
+      Cancels archiving of a virtual tape to the virtual tape shelf (VTS) after the archiving process is initiated. This operation is only supported in the tape gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_CancelArchival.html
+    example:
+      inputs: [
+        {
+          "TapeARN": "string",
+          "GatewayARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TapeARN": "string"
+        }
+      ]
+  CancelRetrieval:
+    description: |-
+      Cancels retrieval of a virtual tape from the virtual tape shelf (VTS) to a gateway after the retrieval process is initiated. The virtual tape is returned to the VTS. This operation is only supported in the tape gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_CancelRetrieval.html
+    example:
+      inputs: [
+        {
+          "TapeARN": "string",
+          "GatewayARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TapeARN": "string"
+        }
+      ]
+  CreateCachediSCSIVolume:
+    description: |-
+      Creates a cached volume on a specified cached volume gateway. This operation is only supported in the cached volume gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_CreateCachediSCSIVolume.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "KMSKey": "string",
+          "GatewayARN": "string",
+          "SnapshotId": "string",
+          "TargetName": "string",
+          "ClientToken": "string",
+          "KMSEncrypted": false,
+          "SourceVolumeARN": "string",
+          "VolumeSizeInBytes": 1,
+          "NetworkInterfaceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TargetARN": "string",
+          "VolumeARN": "string"
+        }
+      ]
+  CreateNFSFileShare:
+    description: |-
+      Creates a Network File System (NFS) file share on an existing S3 File Gateway. In Storage Gateway, a file share is a file system mount point backed by Amazon S3 cloud storage. Storage Gateway exposes file shares using an NFS interface. This operation is only supported for S3 File Gateways.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_CreateNFSFileShare.html
+    example:
+      inputs: [
+        {
+          "Role": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "KMSKey": "string",
+          "Squash": "string",
+          "ReadOnly": false,
+          "ObjectACL": "string",
+          "ClientList": [
+            "string"
+          ],
+          "GatewayARN": "string",
+          "ClientToken": "string",
+          "LocationARN": "string",
+          "KMSEncrypted": false,
+          "FileShareName": "string",
+          "RequesterPays": false,
+          "CacheAttributes": {
+            "CacheStaleTimeoutInSeconds": 1
+          },
+          "NotificationPolicy": "string",
+          "DefaultStorageClass": "string",
+          "GuessMIMETypeEnabled": false,
+          "NFSFileShareDefaults": {
+            "GroupId": 1,
+            "OwnerId": 1,
+            "FileMode": "string",
+            "DirectoryMode": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "FileShareARN": "string"
+        }
+      ]
+  CreateSMBFileShare:
+    description: |-
+      Creates a Server Message Block (SMB) file share on an existing S3 File Gateway. In Storage Gateway, a file share is a file system mount point backed by Amazon S3 cloud storage. Storage Gateway exposes file shares using an SMB interface. This operation is only supported for S3 File Gateways.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_CreateSMBFileShare.html
+    example:
+      inputs: [
+        {
+          "Role": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "KMSKey": "string",
+          "ReadOnly": false,
+          "ObjectACL": "string",
+          "GatewayARN": "string",
+          "ClientToken": "string",
+          "LocationARN": "string",
+          "KMSEncrypted": false,
+          "AdminUserList": [
+            "string"
+          ],
+          "FileShareName": "string",
+          "RequesterPays": false,
+          "SMBACLEnabled": false,
+          "ValidUserList": [
+            "string"
+          ],
+          "Authentication": "string",
+          "CacheAttributes": {
+            "CacheStaleTimeoutInSeconds": 1
+          },
+          "CaseSensitivity": "string",
+          "InvalidUserList": [
+            "string"
+          ],
+          "NotificationPolicy": "string",
+          "AuditDestinationARN": "string",
+          "DefaultStorageClass": "string",
+          "GuessMIMETypeEnabled": false,
+          "AccessBasedEnumeration": false
+        }
+      ]
+      outputs: [
+        {
+          "FileShareARN": "string"
+        }
+      ]
+  CreateSnapshotFromVolumeRecoveryPoint:
+    description: |-
+      Initiates a snapshot of a gateway from a volume recovery point. This operation is only supported in the cached volume gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_CreateSnapshotFromVolumeRecoveryPoint.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "VolumeARN": "string",
+          "SnapshotDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "VolumeARN": "string",
+          "SnapshotId": "string",
+          "VolumeRecoveryPointTime": "string"
+        }
+      ]
+  CreateSnapshot:
+    description: |-
+      Initiates a snapshot of a volume.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_CreateSnapshot.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "VolumeARN": "string",
+          "SnapshotDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "VolumeARN": "string",
+          "SnapshotId": "string"
+        }
+      ]
+  CreateStorediSCSIVolume:
+    description: |-
+      Creates a volume on a specified gateway. This operation is only supported in the stored volume gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_CreateStorediSCSIVolume.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "DiskId": "string",
+          "KMSKey": "string",
+          "GatewayARN": "string",
+          "SnapshotId": "string",
+          "TargetName": "string",
+          "KMSEncrypted": false,
+          "NetworkInterfaceId": "string",
+          "PreserveExistingData": false
+        }
+      ]
+      outputs: [
+        {
+          "TargetARN": "string",
+          "VolumeARN": "string",
+          "VolumeSizeInBytes": 1
+        }
+      ]
+  CreateTapePool:
+    description: |-
+      Creates a new custom tape pool. You can use custom tape pool to enable tape retention lock on tapes that are archived in the custom pool.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_CreateTapePool.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "PoolName": "string",
+          "StorageClass": "string",
+          "RetentionLockType": "string",
+          "RetentionLockTimeInDays": 1
+        }
+      ]
+      outputs: [
+        {
+          "PoolARN": "string"
+        }
+      ]
+  CreateTapes:
+    description: |-
+      Creates one or more virtual tapes. You write data to the virtual tapes and then archive the tapes. This operation is only supported in the tape gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_CreateTapes.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Worm": false,
+          "KMSKey": "string",
+          "PoolId": "string",
+          "GatewayARN": "string",
+          "ClientToken": "string",
+          "KMSEncrypted": false,
+          "TapeSizeInBytes": 1,
+          "NumTapesToCreate": 1,
+          "TapeBarcodePrefix": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TapeARNs": [
+            "string"
+          ]
+        }
+      ]
+  CreateTapeWithBarcode:
+    description: |-
+      Creates a virtual tape by using your own barcode. You write data to the virtual tape and then archive the tape. A barcode is unique and cannot be reused if it has already been used on a tape. This applies to barcodes used on deleted tapes. This operation is only supported in the tape gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_CreateTapeWithBarcode.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Worm": false,
+          "KMSKey": "string",
+          "PoolId": "string",
+          "GatewayARN": "string",
+          "TapeBarcode": "string",
+          "KMSEncrypted": false,
+          "TapeSizeInBytes": 1
+        }
+      ]
+      outputs: [
+        {
+          "TapeARN": "string"
+        }
+      ]
+  DeleteAutomaticTapeCreationPolicy:
+    description: |-
+      Deletes the automatic tape creation policy of a gateway. If you delete this policy, new virtual tapes must be created manually. Use the Amazon Resource Name (ARN) of the gateway in your request to remove the policy.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DeleteAutomaticTapeCreationPolicy.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  DeleteBandwidthRateLimit:
+    description: |-
+      Deletes the bandwidth rate limits of a gateway. You can delete either the upload and download bandwidth rate limit, or you can delete both. If you delete only one of the limits, the other limit remains unchanged. To specify which gateway to work with, use the Amazon Resource Name (ARN) of the gateway in your request. This operation is supported for the stored volume, cached volume and tape gateway types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DeleteBandwidthRateLimit.html
+    example:
+      inputs: [
+        {
+          "GatewayARN": "string",
+          "BandwidthType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  DeleteChapCredentials:
+    description: |-
+      Deletes Challenge-Handshake Authentication Protocol (CHAP) credentials for a specified iSCSI target and initiator pair. This operation is supported in volume and tape gateway types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DeleteChapCredentials.html
+    example:
+      inputs: [
+        {
+          "TargetARN": "string",
+          "InitiatorName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteFileShare:
+    description: |-
+      Deletes a file share from an S3 File Gateway. This operation is only supported for S3 File Gateways.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DeleteFileShare.html
+    example:
+      inputs: [
+        {
+          "ForceDelete": false,
+          "FileShareARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FileShareARN": "string"
+        }
+      ]
+  DeleteGateway:
+    description: |-
+      Deletes a gateway. To specify which gateway to delete, use the Amazon Resource Name (ARN) of the gateway in your request. The operation deletes the gateway; however, it does not delete the gateway virtual machine (VM) from your host computer.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DeleteGateway.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  DeleteSnapshotSchedule:
+    description: |-
+      Deletes a snapshot of a volume.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DeleteSnapshotSchedule.html
+    example:
+      inputs: [
+        {
+          "VolumeARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteTapeArchive:
+    description: |-
+      Deletes the specified virtual tape from the virtual tape shelf (VTS). This operation is only supported in the tape gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DeleteTapeArchive.html
+    example:
+      inputs: [
+        {
+          "TapeARN": "string",
+          "BypassGovernanceRetention": false
+        }
+      ]
+      outputs: [
+        {
+          "TapeARN": "string"
+        }
+      ]
+  DeleteTape:
+    description: |-
+      Deletes the specified virtual tape. This operation is only supported in the tape gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DeleteTape.html
+    example:
+      inputs: [
+        {
+          "TapeARN": "string",
+          "GatewayARN": "string",
+          "BypassGovernanceRetention": false
+        }
+      ]
+      outputs: [
+        {
+          "TapeARN": "string"
+        }
+      ]
+  DeleteTapePool:
+    description: |-
+      Delete a custom tape pool. A custom tape pool can only be deleted if there are no tapes in the pool and if there are no automatic tape creation policies that reference the custom tape pool.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DeleteTapePool.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "PoolARN": "string"
+        }
+      ]
+  DeleteVolume:
+    description: |-
+      Deletes the specified storage volume that you previously created using the CreateCachediSCSIVolume or CreateStorediSCSIVolume API. This operation is only supported in the cached volume and stored volume types. For stored volume gateways, the local disk that was configured as the storage volume is not deleted. You can reuse the local disk to create another storage volume.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DeleteVolume.html
+    example:
+      inputs: [
+        {
+          "VolumeARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeAvailabilityMonitorTest:
+    description: |-
+      Returns information about the most recent high availability monitoring test that was performed on the host in a cluster. If a test isn't performed, the status and start time in the response would be null.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeAvailabilityMonitorTest.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "StartTime": 1481289211.615,
+          "GatewayARN": "string"
+        }
+      ]
+  DescribeBandwidthRateLimit:
+    description: |-
+      Returns the bandwidth rate limits of a gateway. By default, these limits are not set, which means no bandwidth rate limiting is in effect. This operation is supported for the stored volume, cached volume, and tape gateway types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeBandwidthRateLimit.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string",
+          "AverageUploadRateLimitInBitsPerSec": 1,
+          "AverageDownloadRateLimitInBitsPerSec": 1
+        }
+      ]
+  DescribeBandwidthRateLimitSchedule:
+    description: |-
+      Returns information about the bandwidth rate limit schedule of a gateway. By default, gateways do not have bandwidth rate limit schedules, which means no bandwidth rate limiting is in effect. This operation is supported only in the volume and tape gateway types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeBandwidthRateLimitSchedule.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string",
+          "BandwidthRateLimitIntervals": [
+            {
+              "DaysOfWeek": [
+                1
+              ],
+              "EndHourOfDay": 1,
+              "StartHourOfDay": 1,
+              "EndMinuteOfHour": 1,
+              "StartMinuteOfHour": 1,
+              "AverageUploadRateLimitInBitsPerSec": 1,
+              "AverageDownloadRateLimitInBitsPerSec": 1
+            }
+          ]
+        }
+      ]
+  DescribeCachediSCSIVolumes:
+    description: |-
+      Returns a description of the gateway volumes specified in the request. This operation is only supported in the cached volume gateway types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeCachediSCSIVolumes.html
+    example:
+      inputs: [
+        {
+          "VolumeARNs": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "CachediSCSIVolumes": [
+            {
+              "KMSKey": "string",
+              "VolumeId": "string",
+              "VolumeARN": "string",
+              "TargetName": "string",
+              "VolumeType": "string",
+              "CreatedDate": 1481289211.615,
+              "VolumeStatus": "string",
+              "VolumeProgress": 0.1,
+              "SourceSnapshotId": "string",
+              "VolumeSizeInBytes": 1,
+              "VolumeUsedInBytes": 1,
+              "VolumeiSCSIAttributes": {
+                "LunNumber": 1,
+                "TargetARN": "string",
+                "ChapEnabled": false,
+                "NetworkInterfaceId": "string",
+                "NetworkInterfacePort": 1
+              },
+              "VolumeAttachmentStatus": "string"
+            }
+          ]
+        }
+      ]
+  DescribeCache:
+    description: |-
+      Returns information about the cache of a gateway. This operation is only supported in the cached volume, tape, and file gateway types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeCache.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "DiskIds": [
+            "string"
+          ],
+          "GatewayARN": "string",
+          "CacheHitPercentage": 0.1,
+          "CacheMissPercentage": 0.1,
+          "CacheUsedPercentage": 0.1,
+          "CacheDirtyPercentage": 0.1,
+          "CacheAllocatedInBytes": 1
+        }
+      ]
+  DescribeChapCredentials:
+    description: |-
+      Returns an array of Challenge-Handshake Authentication Protocol (CHAP) credentials information for a specified iSCSI target, one for each target-initiator pair. This operation is supported in the volume and tape gateway types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeChapCredentials.html
+    example:
+      inputs: [
+        {
+          "TargetARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ChapCredentials": [
+            {
+              "TargetARN": "string",
+              "InitiatorName": "string",
+              "SecretToAuthenticateTarget": "string",
+              "SecretToAuthenticateInitiator": "string"
+            }
+          ]
+        }
+      ]
+  DescribeGatewayInformation:
+    description: |-
+      Returns metadata about a gateway such as its name, network interfaces, configured time zone, and the state (whether the gateway is running or not). To specify which gateway to describe, use the Amazon Resource Name (ARN) of the gateway in your request.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeGatewayInformation.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "GatewayId": "string",
+          "GatewayARN": "string",
+          "GatewayName": "string",
+          "GatewayType": "string",
+          "VPCEndpoint": "string",
+          "EndpointType": "string",
+          "GatewayState": "string",
+          "Ec2InstanceId": "string",
+          "DeprecationDate": "string",
+          "GatewayTimezone": "string",
+          "HostEnvironment": "string",
+          "Ec2InstanceRegion": "string",
+          "LastSoftwareUpdate": "string",
+          "CloudWatchLogGroupARN": "string",
+          "SoftwareUpdatesEndDate": "string",
+          "GatewayNetworkInterfaces": [
+            {
+              "MacAddress": "string",
+              "Ipv4Address": "string",
+              "Ipv6Address": "string"
+            }
+          ],
+          "NextUpdateAvailabilityDate": "string"
+        }
+      ]
+  DescribeMaintenanceStartTime:
+    description: |-
+      Returns your gateway's weekly maintenance start time including the day and time of the week. Note that values are in terms of the gateway's time zone.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeMaintenanceStartTime.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Timezone": "string",
+          "DayOfWeek": 1,
+          "HourOfDay": 1,
+          "DayOfMonth": 1,
+          "GatewayARN": "string",
+          "MinuteOfHour": 1
+        }
+      ]
+  DescribeNFSFileShares:
+    description: |-
+      Gets a description for one or more Network File System (NFS) file shares from an S3 File Gateway. This operation is only supported for S3 File Gateways.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeNFSFileShares.html
+    example:
+      inputs: [
+        {
+          "FileShareARNList": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NFSFileShareInfoList": [
+            {
+              "Path": "string",
+              "Role": "string",
+              "Tags": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ],
+              "KMSKey": "string",
+              "Squash": "string",
+              "ReadOnly": false,
+              "ObjectACL": "string",
+              "ClientList": [
+                "string"
+              ],
+              "GatewayARN": "string",
+              "FileShareId": "string",
+              "LocationARN": "string",
+              "FileShareARN": "string",
+              "KMSEncrypted": false,
+              "FileShareName": "string",
+              "RequesterPays": false,
+              "CacheAttributes": {
+                "CacheStaleTimeoutInSeconds": 1
+              },
+              "FileShareStatus": "string",
+              "NotificationPolicy": "string",
+              "DefaultStorageClass": "string",
+              "GuessMIMETypeEnabled": false,
+              "NFSFileShareDefaults": {
+                "GroupId": 1,
+                "OwnerId": 1,
+                "FileMode": "string",
+                "DirectoryMode": "string"
+              }
+            }
+          ]
+        }
+      ]
+  DescribeSMBFileShares:
+    description: |-
+      Gets a description for one or more Server Message Block (SMB) file shares from a S3 File Gateway. This operation is only supported for S3 File Gateways.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeSMBFileShares.html
+    example:
+      inputs: [
+        {
+          "FileShareARNList": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "SMBFileShareInfoList": [
+            {
+              "Path": "string",
+              "Role": "string",
+              "Tags": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ],
+              "KMSKey": "string",
+              "ReadOnly": false,
+              "ObjectACL": "string",
+              "GatewayARN": "string",
+              "FileShareId": "string",
+              "LocationARN": "string",
+              "FileShareARN": "string",
+              "KMSEncrypted": false,
+              "AdminUserList": [
+                "string"
+              ],
+              "FileShareName": "string",
+              "RequesterPays": false,
+              "SMBACLEnabled": false,
+              "ValidUserList": [
+                "string"
+              ],
+              "Authentication": "string",
+              "CacheAttributes": {
+                "CacheStaleTimeoutInSeconds": 1
+              },
+              "CaseSensitivity": "string",
+              "FileShareStatus": "string",
+              "InvalidUserList": [
+                "string"
+              ],
+              "NotificationPolicy": "string",
+              "AuditDestinationARN": "string",
+              "DefaultStorageClass": "string",
+              "GuessMIMETypeEnabled": false,
+              "AccessBasedEnumeration": false
+            }
+          ]
+        }
+      ]
+  DescribeSMBSettings:
+    description: |-
+      Gets a description of a Server Message Block (SMB) file share settings from a file gateway. This operation is only supported for file gateways.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeSMBSettings.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "DomainName": "string",
+          "GatewayARN": "string",
+          "FileSharesVisible": false,
+          "SMBGuestPasswordSet": false,
+          "SMBSecurityStrategy": "string",
+          "ActiveDirectoryStatus": "string"
+        }
+      ]
+  DescribeSnapshotSchedule:
+    description: |-
+      Describes the snapshot schedule for the specified gateway volume. The snapshot schedule information includes intervals at which snapshots are automatically initiated on the volume. This operation is only supported in the cached volume and stored volume types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeSnapshotSchedule.html
+    example:
+      inputs: [
+        {
+          "VolumeARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "StartAt": 1,
+          "Timezone": "string",
+          "VolumeARN": "string",
+          "Description": "string",
+          "RecurrenceInHours": 1
+        }
+      ]
+  DescribeStorediSCSIVolumes:
+    description: |-
+      Returns the description of the gateway volumes specified in the request. The list of gateway volumes in the request must be from one gateway. In the response, AWS Storage Gateway returns volume information sorted by volume ARNs. This operation is only supported in stored volume gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeStorediSCSIVolumes.html
+    example:
+      inputs: [
+        {
+          "VolumeARNs": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "StorediSCSIVolumes": [
+            {
+              "KMSKey": "string",
+              "VolumeId": "string",
+              "VolumeARN": "string",
+              "TargetName": "string",
+              "VolumeType": "string",
+              "CreatedDate": 1481289211.615,
+              "VolumeDiskId": "string",
+              "VolumeStatus": "string",
+              "VolumeProgress": 0.1,
+              "SourceSnapshotId": "string",
+              "VolumeSizeInBytes": 1,
+              "VolumeUsedInBytes": 1,
+              "PreservedExistingData": false,
+              "VolumeiSCSIAttributes": {
+                "LunNumber": 1,
+                "TargetARN": "string",
+                "ChapEnabled": false,
+                "NetworkInterfaceId": "string",
+                "NetworkInterfacePort": 1
+              },
+              "VolumeAttachmentStatus": "string"
+            }
+          ]
+        }
+      ]
+  DescribeTapeArchives:
+    description: |-
+      Returns a description of specified virtual tapes in the virtual tape shelf (VTS). This operation is only supported in the tape gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeTapeArchives.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "TapeARNs": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "TapeArchives": [
+            {
+              "Worm": false,
+              "KMSKey": "string",
+              "PoolId": "string",
+              "TapeARN": "string",
+              "TapeStatus": "string",
+              "RetrievedTo": "string",
+              "TapeBarcode": "string",
+              "PoolEntryDate": 1481289211.615,
+              "CompletionTime": 1481289211.615,
+              "TapeCreatedDate": 1481289211.615,
+              "TapeSizeInBytes": 1,
+              "TapeUsedInBytes": 1,
+              "RetentionStartDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  DescribeTapeRecoveryPoints:
+    description: |-
+      Returns a list of virtual tape recovery points that are available for the specified tape gateway.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeTapeRecoveryPoints.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "GatewayARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "GatewayARN": "string",
+          "TapeRecoveryPointInfos": [
+            {
+              "TapeARN": "string",
+              "TapeStatus": "string",
+              "TapeSizeInBytes": 1,
+              "TapeRecoveryPointTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  DescribeTapes:
+    description: |-
+      Returns a description of the specified Amazon Resource Name (ARN) of virtual tapes. If a TapeARN is not specified, returns a description of all virtual tapes associated with the specified gateway. This operation is only supported in the tape gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeTapes.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "TapeARNs": [
+            "string"
+          ],
+          "GatewayARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tapes": [
+            {
+              "Worm": false,
+              "KMSKey": "string",
+              "PoolId": "string",
+              "TapeARN": "string",
+              "Progress": 0.1,
+              "VTLDevice": "string",
+              "TapeStatus": "string",
+              "TapeBarcode": "string",
+              "PoolEntryDate": 1481289211.615,
+              "TapeCreatedDate": 1481289211.615,
+              "TapeSizeInBytes": 1,
+              "TapeUsedInBytes": 1,
+              "RetentionStartDate": 1481289211.615
+            }
+          ],
+          "Marker": "string"
+        }
+      ]
+  DescribeUploadBuffer:
+    description: |-
+      Returns information about the upload buffer of a gateway. This operation is supported for the stored volume, cached volume, and tape gateway types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeUploadBuffer.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "DiskIds": [
+            "string"
+          ],
+          "GatewayARN": "string",
+          "UploadBufferUsedInBytes": 1,
+          "UploadBufferAllocatedInBytes": 1
+        }
+      ]
+  DescribeVTLDevices:
+    description: |-
+      Returns a description of virtual tape library (VTL) devices for the specified tape gateway. In the response, AWS Storage Gateway returns VTL device information.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeVTLDevices.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "GatewayARN": "string",
+          "VTLDeviceARNs": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "GatewayARN": "string",
+          "VTLDevices": [
+            {
+              "VTLDeviceARN": "string",
+              "VTLDeviceType": "string",
+              "VTLDeviceVendor": "string",
+              "DeviceiSCSIAttributes": {
+                "TargetARN": "string",
+                "ChapEnabled": false,
+                "NetworkInterfaceId": "string",
+                "NetworkInterfacePort": 1
+              },
+              "VTLDeviceProductIdentifier": "string"
+            }
+          ]
+        }
+      ]
+  DescribeWorkingStorage:
+    description: |-
+      Returns information about the working storage of a gateway. This operation is only supported in the stored volumes gateway type. This operation is deprecated in cached volumes API version (20120630). Use DescribeUploadBuffer instead.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DescribeWorkingStorage.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "DiskIds": [
+            "string"
+          ],
+          "GatewayARN": "string",
+          "WorkingStorageUsedInBytes": 1,
+          "WorkingStorageAllocatedInBytes": 1
+        }
+      ]
+  DetachVolume:
+    description: |-
+      Disconnects a volume from an iSCSI connection and then detaches the volume from the specified gateway. Detaching and attaching a volume enables you to recover your data from one gateway to a different gateway without creating a snapshot. It also makes it easier to move your volumes from an on-premises gateway to a gateway hosted on an Amazon EC2 instance. This operation is only supported in the volume gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DetachVolume.html
+    example:
+      inputs: [
+        {
+          "VolumeARN": "string",
+          "ForceDetach": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DisableGateway:
+    description: |-
+      Disables a tape gateway when the gateway is no longer functioning. For example, if your gateway VM is damaged, you can disable the gateway so you can recover virtual tapes.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_DisableGateway.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  JoinDomain:
+    description: |-
+      Adds a file gateway to an Active Directory domain. This operation is only supported for file gateways that support the SMB file protocol.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_JoinDomain.html
+    example:
+      inputs: [
+        {
+          "Password": "string",
+          "UserName": "string",
+          "DomainName": "string",
+          "GatewayARN": "string",
+          "TimeoutInSeconds": 1,
+          "DomainControllers": [
+            "string"
+          ],
+          "OrganizationalUnit": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string",
+          "ActiveDirectoryStatus": "string"
+        }
+      ]
+  ListAutomaticTapeCreationPolicies:
+    description: |-
+      Lists the automatic tape creation policies for a gateway. If there are no automatic tape creation policies for the gateway, it returns an empty list.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_ListAutomaticTapeCreationPolicies.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "AutomaticTapeCreationPolicyInfos": [
+            {
+              "GatewayARN": "string",
+              "AutomaticTapeCreationRules": [
+                {
+                  "Worm": false,
+                  "PoolId": "string",
+                  "MinimumNumTapes": 1,
+                  "TapeSizeInBytes": 1,
+                  "TapeBarcodePrefix": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  ListFileShares:
+    description: |-
+      Gets a list of the file shares for a specific S3 File Gateway, or the list of file shares that belong to the calling user account. This operation is only supported for S3 File Gateways.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_ListFileShares.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "GatewayARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "NextMarker": "string",
+          "FileShareInfoList": [
+            {
+              "GatewayARN": "string",
+              "FileShareId": "string",
+              "FileShareARN": "string",
+              "FileShareType": "string",
+              "FileShareStatus": "string"
+            }
+          ]
+        }
+      ]
+  ListGateways:
+    description: |-
+      Lists gateways owned by an AWS account in an AWS Region specified in the request. The returned list is ordered by gateway Amazon Resource Name (ARN).
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_ListGateways.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "Gateways": [
+            {
+              "GatewayId": "string",
+              "GatewayARN": "string",
+              "GatewayName": "string",
+              "GatewayType": "string",
+              "Ec2InstanceId": "string",
+              "Ec2InstanceRegion": "string",
+              "GatewayOperationalState": "string"
+            }
+          ]
+        }
+      ]
+  ListLocalDisks:
+    description: |-
+      Returns a list of the gateway's local disks. To specify which gateway to describe, you use the Amazon Resource Name (ARN) of the gateway in the body of the request.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_ListLocalDisks.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Disks": [
+            {
+              "DiskId": "string",
+              "DiskNode": "string",
+              "DiskPath": "string",
+              "DiskStatus": "string",
+              "DiskSizeInBytes": 1,
+              "DiskAttributeList": [
+                "string"
+              ],
+              "DiskAllocationType": "string",
+              "DiskAllocationResource": "string"
+            }
+          ],
+          "GatewayARN": "string"
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists the tags that have been added to the specified resource. This operation is supported in storage gateways of all types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Marker": "string",
+          "ResourceARN": "string"
+        }
+      ]
+  ListTapePools:
+    description: |-
+      Lists custom tape pools. You specify custom tape pools to list by specifying one or more custom tape pool Amazon Resource Names (ARNs). If you don't specify a custom tape pool ARN, the operation lists all custom tape pools.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_ListTapePools.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "PoolARNs": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "PoolInfos": [
+            {
+              "PoolARN": "string",
+              "PoolName": "string",
+              "PoolStatus": "string",
+              "StorageClass": "string",
+              "RetentionLockType": "string",
+              "RetentionLockTimeInDays": 1
+            }
+          ]
+        }
+      ]
+  ListTapes:
+    description: |-
+      Lists virtual tapes in your virtual tape library (VTL) and your virtual tape shelf (VTS). You specify the tapes to list by specifying one or more tape Amazon Resource Names (ARNs). If you don't specify a tape ARN, the operation lists all virtual tapes in both your VTL and VTS.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_ListTapes.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "TapeARNs": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "TapeInfos": [
+            {
+              "PoolId": "string",
+              "TapeARN": "string",
+              "GatewayARN": "string",
+              "TapeStatus": "string",
+              "TapeBarcode": "string",
+              "PoolEntryDate": 1481289211.615,
+              "TapeSizeInBytes": 1,
+              "RetentionStartDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListVolumeInitiators:
+    description: |-
+      Lists iSCSI initiators that are connected to a volume. You can use this operation to determine whether a volume is being used or not. This operation is only supported in the cached volume and stored volume gateway types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_ListVolumeInitiators.html
+    example:
+      inputs: [
+        {
+          "VolumeARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Initiators": [
+            "string"
+          ]
+        }
+      ]
+  ListVolumeRecoveryPoints:
+    description: |-
+      Lists the recovery points for a specified gateway. This operation is only supported in the cached volume gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_ListVolumeRecoveryPoints.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string",
+          "VolumeRecoveryPointInfos": [
+            {
+              "VolumeARN": "string",
+              "VolumeSizeInBytes": 1,
+              "VolumeUsageInBytes": 1,
+              "VolumeRecoveryPointTime": "string"
+            }
+          ]
+        }
+      ]
+  ListVolumes:
+    description: |-
+      Lists the iSCSI stored volumes of a gateway. Results are sorted by volume ARN. The response includes only the volume ARNs. If you want additional volume information, use the DescribeStorediSCSIVolumes or the DescribeCachediSCSIVolumes API.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_ListVolumes.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "GatewayARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "GatewayARN": "string",
+          "VolumeInfos": [
+            {
+              "VolumeId": "string",
+              "GatewayId": "string",
+              "VolumeARN": "string",
+              "GatewayARN": "string",
+              "VolumeType": "string",
+              "VolumeSizeInBytes": 1,
+              "VolumeAttachmentStatus": "string"
+            }
+          ]
+        }
+      ]
+  NotifyWhenUploaded:
+    description: |-
+      Sends you notification through CloudWatch Events when all files written to your file share have been uploaded to Amazon S3.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_NotifyWhenUploaded.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "FileShareARN": "string",
+          "NotificationId": "string"
+        }
+      ]
+  RefreshCache:
+    description: |-
+      Refreshes the cached inventory of objects for the specified file share. This operation finds objects in the Amazon S3 bucket that were added, removed, or replaced since the gateway last listed the bucket's contents and cached the results. This operation does not import files into the S3 File Gateway cache storage. It only updates the cached inventory to reflect changes in the inventory of the objects in the S3 bucket. This operation is only supported in the S3 File Gateway types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_RefreshCache.html
+    example:
+      inputs: [
+        {
+          "Recursive": false,
+          "FolderList": [
+            "string"
+          ],
+          "FileShareARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FileShareARN": "string",
+          "NotificationId": "string"
+        }
+      ]
+  RemoveTagsFromResource:
+    description: |-
+      Removes one or more tags from the specified resource. This operation is supported in storage gateways of all types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_RemoveTagsFromResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ResetCache:
+    description: |-
+      Resets all cache disks that have encountered an error and makes the disks available for reconfiguration as cache storage. If your cache disk encounters an error, the gateway prevents read and write operations on virtual tapes in the gateway. For example, an error can occur when a disk is corrupted or removed from the gateway. When a cache is reset, the gateway loses its cache storage. At this point, you can reconfigure the disks as cache disks. This operation is only supported in the cached volume and tape types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_ResetCache.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  RetrieveTapeArchive:
+    description: |-
+      Retrieves an archived virtual tape from the virtual tape shelf (VTS) to a tape gateway. Virtual tapes archived in the VTS are not associated with any gateway. However after a tape is retrieved, it is associated with a gateway, even though it is also listed in the VTS, that is, archive. This operation is only supported in the tape gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_RetrieveTapeArchive.html
+    example:
+      inputs: [
+        {
+          "TapeARN": "string",
+          "GatewayARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TapeARN": "string"
+        }
+      ]
+  RetrieveTapeRecoveryPoint:
+    description: |-
+      Retrieves the recovery point for the specified virtual tape. This operation is only supported in the tape gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_RetrieveTapeRecoveryPoint.html
+    example:
+      inputs: [
+        {
+          "TapeARN": "string",
+          "GatewayARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TapeARN": "string"
+        }
+      ]
+  SetLocalConsolePassword:
+    description: |-
+      Sets the password for your VM local console. When you log in to the local console for the first time, you log in to the VM with the default credentials. We recommend that you set a new password. You don't need to know the default password to set a new password.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_SetLocalConsolePassword.html
+    example:
+      inputs: [
+        {
+          "GatewayARN": "string",
+          "LocalConsolePassword": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  SetSMBGuestPassword:
+    description: |-
+      Sets the password for the guest user smbguest. The smbguest user is the user when the authentication method for the file share is set to GuestAccess. This operation only supported for S3 File Gateways
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_SetSMBGuestPassword.html
+    example:
+      inputs: [
+        {
+          "Password": "string",
+          "GatewayARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  ShutdownGateway:
+    description: |-
+      Shuts down a gateway. To specify which gateway to shut down, use the Amazon Resource Name (ARN) of the gateway in the body of your request.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_ShutdownGateway.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  StartAvailabilityMonitorTest:
+    description: |-
+      Start a test that verifies that the specified gateway is configured for High Availability monitoring in your host environment. This request only initiates the test and that a successful response only indicates that the test was started. It doesn't indicate that the test passed. For the status of the test, invoke the DescribeAvailabilityMonitorTest API.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_StartAvailabilityMonitorTest.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  StartGateway:
+    description: |-
+      Starts a gateway that you previously shut down (see ShutdownGateway). After the gateway starts, you can then make other API calls, your applications can read from or write to the gateway's storage volumes and you will be able to take snapshot backups.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_StartGateway.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  UpdateAutomaticTapeCreationPolicy:
+    description: |-
+      Updates the automatic tape creation policy of a gateway. Use this to update the policy with a new set of automatic tape creation rules. This is only supported for tape gateways.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_UpdateAutomaticTapeCreationPolicy.html
+    example:
+      inputs: [
+        {
+          "GatewayARN": "string",
+          "AutomaticTapeCreationRules": [
+            {
+              "Worm": false,
+              "PoolId": "string",
+              "MinimumNumTapes": 1,
+              "TapeSizeInBytes": 1,
+              "TapeBarcodePrefix": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  UpdateBandwidthRateLimit:
+    description: |-
+      Updates the bandwidth rate limits of a gateway. You can update both the upload and download bandwidth rate limit or specify only one of the two. If you don't set a bandwidth rate limit, the existing rate limit remains. This operation is supported for the stored volume, cached volume, and tape gateway types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_UpdateBandwidthRateLimit.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  UpdateBandwidthRateLimitSchedule:
+    description: |-
+      Updates the bandwidth rate limit schedule for a specified gateway. By default, gateways do not have bandwidth rate limit schedules, which means no bandwidth rate limiting is in effect. Use this to initiate or update a gateway's bandwidth rate limit schedule. This operation is supported in the volume and tape gateway types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_UpdateBandwidthRateLimitSchedule.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  UpdateChapCredentials:
+    description: |-
+      Updates the Challenge-Handshake Authentication Protocol (CHAP) credentials for a specified iSCSI target. By default, a gateway does not have CHAP enabled; however, for added security, you might use it. This operation is supported in the volume and tape gateway types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_UpdateChapCredentials.html
+    example:
+      inputs: [
+        {
+          "TargetARN": "string",
+          "InitiatorName": "string",
+          "SecretToAuthenticateTarget": "string",
+          "SecretToAuthenticateInitiator": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateGatewayInformation:
+    description: |-
+      Updates a gateway's metadata, which includes the gateway's name and time zone. To specify which gateway to update, use the Amazon Resource Name (ARN) of the gateway in your request.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_UpdateGatewayInformation.html
+    example:
+      inputs: [
+        {
+          "GatewayARN": "string",
+          "GatewayName": "string",
+          "GatewayTimezone": "string",
+          "CloudWatchLogGroupARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string",
+          "GatewayName": "string"
+        }
+      ]
+  UpdateGatewaySoftwareNow:
+    description: |-
+      Updates the gateway virtual machine (VM) software. The request immediately triggers the software update.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_UpdateGatewaySoftwareNow.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  UpdateMaintenanceStartTime:
+    description: |-
+      Updates a gateway's weekly maintenance start time information, including day and time of the week. The maintenance time is the time in your gateway's time zone.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_UpdateMaintenanceStartTime.html
+    example:
+      inputs: [
+        {
+          "DayOfWeek": 1,
+          "HourOfDay": 1,
+          "DayOfMonth": 1,
+          "GatewayARN": "string",
+          "MinuteOfHour": 1
+        }
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  UpdateNFSFileShare:
+    description: |-
+      Updates a Network File System (NFS) file share. This operation is only supported in S3 File Gateways.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_UpdateNFSFileShare.html
+    example:
+      inputs: [
+        {
+          "KMSKey": "string",
+          "Squash": "string",
+          "ReadOnly": false,
+          "ObjectACL": "string",
+          "ClientList": [
+            "string"
+          ],
+          "FileShareARN": "string",
+          "KMSEncrypted": false,
+          "FileShareName": "string",
+          "RequesterPays": false,
+          "CacheAttributes": {
+            "CacheStaleTimeoutInSeconds": 1
+          },
+          "NotificationPolicy": "string",
+          "DefaultStorageClass": "string",
+          "GuessMIMETypeEnabled": false,
+          "NFSFileShareDefaults": {
+            "GroupId": 1,
+            "OwnerId": 1,
+            "FileMode": "string",
+            "DirectoryMode": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "FileShareARN": "string"
+        }
+      ]
+  UpdateSMBFileShare:
+    description: |-
+      Updates a Server Message Block (SMB) file share. This operation is only supported for S3 File Gateways.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_UpdateSMBFileShare.html
+    example:
+      inputs: [
+        {
+          "KMSKey": "string",
+          "ReadOnly": false,
+          "ObjectACL": "string",
+          "FileShareARN": "string",
+          "KMSEncrypted": false,
+          "AdminUserList": [
+            "string"
+          ],
+          "FileShareName": "string",
+          "RequesterPays": false,
+          "SMBACLEnabled": false,
+          "ValidUserList": [
+            "string"
+          ],
+          "CacheAttributes": {
+            "CacheStaleTimeoutInSeconds": 1
+          },
+          "CaseSensitivity": "string",
+          "InvalidUserList": [
+            "string"
+          ],
+          "NotificationPolicy": "string",
+          "AuditDestinationARN": "string",
+          "DefaultStorageClass": "string",
+          "GuessMIMETypeEnabled": false,
+          "AccessBasedEnumeration": false
+        }
+      ]
+      outputs: [
+        {
+          "FileShareARN": "string"
+        }
+      ]
+  UpdateSMBFileShareVisibility:
+    description: |-
+      Controls whether the shares on an S3 File Gateway are visible in a net view or browse list. The operation is only supported for S3 File Gateways.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_UpdateSMBFileShareVisibility.html
+    example:
+      inputs: [
+        {
+          "GatewayARN": "string",
+          "FileSharesVisible": false
+        }
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  UpdateSMBSecurityStrategy:
+    description: |-
+      Updates the SMB security strategy on a file gateway. This action is only supported in file gateways.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_UpdateSMBSecurityStrategy.html
+    example:
+      inputs: [
+        {
+          "GatewayARN": "string",
+          "SMBSecurityStrategy": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GatewayARN": "string"
+        }
+      ]
+  UpdateSnapshotSchedule:
+    description: |-
+      Updates a snapshot schedule configured for a gateway volume. This operation is only supported in the cached volume and stored volume gateway types.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_UpdateSnapshotSchedule.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "StartAt": 1,
+          "VolumeARN": "string",
+          "Description": "string",
+          "RecurrenceInHours": 1
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateVTLDeviceType:
+    description: |-
+      Updates the type of medium changer in a tape gateway. When you activate a tape gateway, you select a medium changer type for the tape gateway. This operation enables you to select a different type of medium changer after a tape gateway is activated. This operation is only supported in the tape gateway type.
+    versions:
+      from: 2013.6.30
+    link: https://docs.aws.amazon.com/storagegateway/latest/APIReference/API_UpdateVTLDeviceType.html
+    example:
+      inputs: [
+        {
+          "DeviceType": "string",
+          "VTLDeviceARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "VTLDeviceARN": "string"
+        }
+      ]

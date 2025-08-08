@@ -1,0 +1,1295 @@
+Product:
+  name: AWS Network Firewall
+  versions: [2020.11.12]
+  package: amazon.aws.networkfirewall
+  description: |-
+    AWS Network Firewall
+  link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AssociateFirewallPolicy:
+    description: |-
+      Associates a FirewallPolicy to a Firewall.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_AssociateFirewallPolicy.html
+    example:
+      inputs: [
+        {
+          "FirewallArn": "string",
+          "UpdateToken": "string",
+          "FirewallName": "string",
+          "FirewallPolicyArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  AssociateSubnets:
+    description: |-
+      Associates the specified subnets in the Amazon VPC to the firewall. You can specify one subnet for each of the Availability Zones that the VPC spans.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_AssociateSubnets.html
+    example:
+      inputs: [
+        {
+          "FirewallArn": "string",
+          "UpdateToken": "string",
+          "FirewallName": "string",
+          "SubnetMappings": [
+            {
+              "SubnetId": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateFirewall:
+    description: |-
+      Creates an AWS Network Firewall Firewall and accompanying FirewallStatus for a VPC.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_CreateFirewall.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "VpcId": "string",
+          "Description": "string",
+          "FirewallName": "string",
+          "SubnetMappings": [
+            {
+              "SubnetId": "string"
+            }
+          ],
+          "DeleteProtection": false,
+          "FirewallPolicyArn": "string",
+          "SubnetChangeProtection": false,
+          "FirewallPolicyChangeProtection": false
+        }
+      ]
+      outputs: [
+        {
+          "Firewall": {
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "VpcId": "string",
+            "FirewallId": "string",
+            "Description": "string",
+            "FirewallArn": "string",
+            "FirewallName": "string",
+            "SubnetMappings": [
+              {
+                "SubnetId": "string"
+              }
+            ],
+            "DeleteProtection": false,
+            "FirewallPolicyArn": "string",
+            "SubnetChangeProtection": false,
+            "FirewallPolicyChangeProtection": false
+          },
+          "FirewallStatus": {
+            "Status": "string",
+            "SyncStates": {
+              "string": {
+                "Config": {
+                  "string": {
+                    "SyncStatus": "string",
+                    "UpdateToken": "string"
+                  }
+                },
+                "Attachment": {
+                  "Status": "string",
+                  "SubnetId": "string",
+                  "EndpointId": "string"
+                }
+              }
+            },
+            "ConfigurationSyncStateSummary": "string"
+          }
+        }
+      ]
+  CreateFirewallPolicy:
+    description: |-
+      Creates the firewall policy for the firewall according to the specifications.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_CreateFirewallPolicy.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "DryRun": false,
+          "Description": "string",
+          "FirewallPolicy": {
+            "StatelessCustomActions": [
+              {
+                "ActionName": "string",
+                "ActionDefinition": {
+                  "PublishMetricAction": {
+                    "Dimensions": [
+                      {
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "StatelessDefaultActions": [
+              "string"
+            ],
+            "StatefulRuleGroupReferences": [
+              {
+                "ResourceArn": "string"
+              }
+            ],
+            "StatelessRuleGroupReferences": [
+              {
+                "Priority": 1,
+                "ResourceArn": "string"
+              }
+            ],
+            "StatelessFragmentDefaultActions": [
+              "string"
+            ]
+          },
+          "FirewallPolicyName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UpdateToken": "string",
+          "FirewallPolicyResponse": {
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "Description": "string",
+            "FirewallPolicyId": "string",
+            "FirewallPolicyArn": "string",
+            "FirewallPolicyName": "string",
+            "FirewallPolicyStatus": "string"
+          }
+        }
+      ]
+  CreateRuleGroup:
+    description: |-
+      Creates the specified stateless or stateful rule group, which includes the rules for network traffic inspection, a capacity setting, and tags.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_CreateRuleGroup.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Type": "string",
+          "Rules": "string",
+          "DryRun": false,
+          "Capacity": 1,
+          "RuleGroup": {
+            "RulesSource": {
+              "RulesString": "string",
+              "StatefulRules": [
+                {
+                  "Action": "string",
+                  "Header": {
+                    "Source": "string",
+                    "Protocol": "string",
+                    "Direction": "string",
+                    "SourcePort": "string",
+                    "Destination": "string",
+                    "DestinationPort": "string"
+                  },
+                  "RuleOptions": [
+                    {
+                      "Keyword": "string",
+                      "Settings": [
+                        "string"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "RulesSourceList": {
+                "Targets": [
+                  "string"
+                ],
+                "TargetTypes": [
+                  "string"
+                ],
+                "GeneratedRulesType": "string"
+              },
+              "StatelessRulesAndCustomActions": {
+                "CustomActions": [
+                  {
+                    "ActionName": "string",
+                    "ActionDefinition": {
+                      "PublishMetricAction": {
+                        "Dimensions": [
+                          {
+                            "Value": "string"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "StatelessRules": [
+                  {
+                    "Priority": 1,
+                    "RuleDefinition": {
+                      "Actions": [
+                        "string"
+                      ],
+                      "MatchAttributes": {
+                        "Sources": [
+                          {
+                            "AddressDefinition": "string"
+                          }
+                        ],
+                        "TCPFlags": [
+                          {
+                            "Flags": [
+                              "string"
+                            ],
+                            "Masks": [
+                              "string"
+                            ]
+                          }
+                        ],
+                        "Protocols": [
+                          1
+                        ],
+                        "SourcePorts": [
+                          {
+                            "ToPort": 1,
+                            "FromPort": 1
+                          }
+                        ],
+                        "Destinations": [
+                          {
+                            "AddressDefinition": "string"
+                          }
+                        ],
+                        "DestinationPorts": [
+                          {
+                            "ToPort": 1,
+                            "FromPort": 1
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "RuleVariables": {
+              "IPSets": {
+                "string": {
+                  "Definition": [
+                    "string"
+                  ]
+                }
+              },
+              "PortSets": {
+                "string": {
+                  "Definition": [
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "Description": "string",
+          "RuleGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UpdateToken": "string",
+          "RuleGroupResponse": {
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "Type": "string",
+            "Capacity": 1,
+            "Description": "string",
+            "RuleGroupId": "string",
+            "RuleGroupArn": "string",
+            "RuleGroupName": "string",
+            "RuleGroupStatus": "string"
+          }
+        }
+      ]
+  DeleteFirewall:
+    description: |-
+      Deletes the specified Firewall and its FirewallStatus. This operation requires the firewall's DeleteProtection flag to be FALSE. You can't revert this operation.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_DeleteFirewall.html
+    example:
+      inputs: [
+        {
+          "FirewallArn": "string",
+          "FirewallName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Firewall": {
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "VpcId": "string",
+            "FirewallId": "string",
+            "Description": "string",
+            "FirewallArn": "string",
+            "FirewallName": "string",
+            "SubnetMappings": [
+              {
+                "SubnetId": "string"
+              }
+            ],
+            "DeleteProtection": false,
+            "FirewallPolicyArn": "string",
+            "SubnetChangeProtection": false,
+            "FirewallPolicyChangeProtection": false
+          },
+          "FirewallStatus": {
+            "Status": "string",
+            "SyncStates": {
+              "string": {
+                "Config": {
+                  "string": {
+                    "SyncStatus": "string",
+                    "UpdateToken": "string"
+                  }
+                },
+                "Attachment": {
+                  "Status": "string",
+                  "SubnetId": "string",
+                  "EndpointId": "string"
+                }
+              }
+            },
+            "ConfigurationSyncStateSummary": "string"
+          }
+        }
+      ]
+  DeleteFirewallPolicy:
+    description: |-
+      Deletes the specified FirewallPolicy.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_DeleteFirewallPolicy.html
+    example:
+      inputs: [
+        {
+          "FirewallPolicyArn": "string",
+          "FirewallPolicyName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FirewallPolicyResponse": {
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "Description": "string",
+            "FirewallPolicyId": "string",
+            "FirewallPolicyArn": "string",
+            "FirewallPolicyName": "string",
+            "FirewallPolicyStatus": "string"
+          }
+        }
+      ]
+  DeleteResourcePolicy:
+    description: |-
+      Deletes a resource policy that you created in a PutResourcePolicy request.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_DeleteResourcePolicy.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteRuleGroup:
+    description: |-
+      Deletes the specified RuleGroup.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_DeleteRuleGroup.html
+    example:
+      inputs: [
+        {
+          "Type": "string",
+          "RuleGroupArn": "string",
+          "RuleGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RuleGroupResponse": {
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "Type": "string",
+            "Capacity": 1,
+            "Description": "string",
+            "RuleGroupId": "string",
+            "RuleGroupArn": "string",
+            "RuleGroupName": "string",
+            "RuleGroupStatus": "string"
+          }
+        }
+      ]
+  DescribeFirewall:
+    description: |-
+      Returns the data objects for the specified firewall.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_DescribeFirewall.html
+    example:
+      inputs: [
+        {
+          "FirewallArn": "string",
+          "FirewallName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Firewall": {
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "VpcId": "string",
+            "FirewallId": "string",
+            "Description": "string",
+            "FirewallArn": "string",
+            "FirewallName": "string",
+            "SubnetMappings": [
+              {
+                "SubnetId": "string"
+              }
+            ],
+            "DeleteProtection": false,
+            "FirewallPolicyArn": "string",
+            "SubnetChangeProtection": false,
+            "FirewallPolicyChangeProtection": false
+          },
+          "UpdateToken": "string",
+          "FirewallStatus": {
+            "Status": "string",
+            "SyncStates": {
+              "string": {
+                "Config": {
+                  "string": {
+                    "SyncStatus": "string",
+                    "UpdateToken": "string"
+                  }
+                },
+                "Attachment": {
+                  "Status": "string",
+                  "SubnetId": "string",
+                  "EndpointId": "string"
+                }
+              }
+            },
+            "ConfigurationSyncStateSummary": "string"
+          }
+        }
+      ]
+  DescribeFirewallPolicy:
+    description: |-
+      Returns the data objects for the specified firewall policy.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_DescribeFirewallPolicy.html
+    example:
+      inputs: [
+        {
+          "FirewallPolicyArn": "string",
+          "FirewallPolicyName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UpdateToken": "string",
+          "FirewallPolicy": {
+            "StatelessCustomActions": [
+              {
+                "ActionName": "string",
+                "ActionDefinition": {
+                  "PublishMetricAction": {
+                    "Dimensions": [
+                      {
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "StatelessDefaultActions": [
+              "string"
+            ],
+            "StatefulRuleGroupReferences": [
+              {
+                "ResourceArn": "string"
+              }
+            ],
+            "StatelessRuleGroupReferences": [
+              {
+                "Priority": 1,
+                "ResourceArn": "string"
+              }
+            ],
+            "StatelessFragmentDefaultActions": [
+              "string"
+            ]
+          },
+          "FirewallPolicyResponse": {
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "Description": "string",
+            "FirewallPolicyId": "string",
+            "FirewallPolicyArn": "string",
+            "FirewallPolicyName": "string",
+            "FirewallPolicyStatus": "string"
+          }
+        }
+      ]
+  DescribeLoggingConfiguration:
+    description: |-
+      Returns the logging configuration for the specified firewall.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_DescribeLoggingConfiguration.html
+    example:
+      inputs: [
+        {
+          "FirewallArn": "string",
+          "FirewallName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FirewallArn": "string",
+          "LoggingConfiguration": {
+            "LogDestinationConfigs": [
+              {
+                "LogType": "string",
+                "LogDestination": {
+                  "string": "string"
+                },
+                "LogDestinationType": "string"
+              }
+            ]
+          }
+        }
+      ]
+  DescribeResourcePolicy:
+    description: |-
+      Retrieves a resource policy that you created in a PutResourcePolicy request.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_DescribeResourcePolicy.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Policy": "string"
+        }
+      ]
+  DescribeRuleGroup:
+    description: |-
+      Returns the data objects for the specified rule group.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_DescribeRuleGroup.html
+    example:
+      inputs: [
+        {
+          "Type": "string",
+          "RuleGroupArn": "string",
+          "RuleGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RuleGroup": {
+            "RulesSource": {
+              "RulesString": "string",
+              "StatefulRules": [
+                {
+                  "Action": "string",
+                  "Header": {
+                    "Source": "string",
+                    "Protocol": "string",
+                    "Direction": "string",
+                    "SourcePort": "string",
+                    "Destination": "string",
+                    "DestinationPort": "string"
+                  },
+                  "RuleOptions": [
+                    {
+                      "Keyword": "string",
+                      "Settings": [
+                        "string"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "RulesSourceList": {
+                "Targets": [
+                  "string"
+                ],
+                "TargetTypes": [
+                  "string"
+                ],
+                "GeneratedRulesType": "string"
+              },
+              "StatelessRulesAndCustomActions": {
+                "CustomActions": [
+                  {
+                    "ActionName": "string",
+                    "ActionDefinition": {
+                      "PublishMetricAction": {
+                        "Dimensions": [
+                          {
+                            "Value": "string"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "StatelessRules": [
+                  {
+                    "Priority": 1,
+                    "RuleDefinition": {
+                      "Actions": [
+                        "string"
+                      ],
+                      "MatchAttributes": {
+                        "Sources": [
+                          {
+                            "AddressDefinition": "string"
+                          }
+                        ],
+                        "TCPFlags": [
+                          {
+                            "Flags": [
+                              "string"
+                            ],
+                            "Masks": [
+                              "string"
+                            ]
+                          }
+                        ],
+                        "Protocols": [
+                          1
+                        ],
+                        "SourcePorts": [
+                          {
+                            "ToPort": 1,
+                            "FromPort": 1
+                          }
+                        ],
+                        "Destinations": [
+                          {
+                            "AddressDefinition": "string"
+                          }
+                        ],
+                        "DestinationPorts": [
+                          {
+                            "ToPort": 1,
+                            "FromPort": 1
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "RuleVariables": {
+              "IPSets": {
+                "string": {
+                  "Definition": [
+                    "string"
+                  ]
+                }
+              },
+              "PortSets": {
+                "string": {
+                  "Definition": [
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "UpdateToken": "string",
+          "RuleGroupResponse": {
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "Type": "string",
+            "Capacity": 1,
+            "Description": "string",
+            "RuleGroupId": "string",
+            "RuleGroupArn": "string",
+            "RuleGroupName": "string",
+            "RuleGroupStatus": "string"
+          }
+        }
+      ]
+  DisassociateSubnets:
+    description: |-
+      Removes the specified subnet associations from the firewall. This removes the firewall endpoints from the subnets and removes any network filtering protections that the endpoints were providing.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_DisassociateSubnets.html
+    example:
+      inputs: [
+        {
+          "SubnetIds": [
+            "string"
+          ],
+          "FirewallArn": "string",
+          "UpdateToken": "string",
+          "FirewallName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListFirewallPolicies:
+    description: |-
+      Retrieves the metadata for the firewall policies that you have defined. Depending on your setting for max results and the number of firewall policies, a single call might not return the full list.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_ListFirewallPolicies.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "FirewallPolicies": [
+            {
+              "Arn": "string",
+              "Name": "string"
+            }
+          ]
+        }
+      ]
+  ListFirewalls:
+    description: |-
+      Retrieves the metadata for the firewalls that you have defined. If you provide VPC identifiers in your request, this returns only the firewalls for those VPCs.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_ListFirewalls.html
+    example:
+      inputs: [
+        {
+          "VpcIds": [
+            "string"
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Firewalls": [
+            {
+              "FirewallArn": "string",
+              "FirewallName": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListRuleGroups:
+    description: |-
+      Retrieves the metadata for the rule groups that you have defined. Depending on your setting for max results and the number of rule groups, a single call might not return the full list.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_ListRuleGroups.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "RuleGroups": [
+            {
+              "Arn": "string",
+              "Name": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Retrieves the tags associated with the specified resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to "customer" and the value to the customer name or ID. You can specify one or more tags to add to each AWS resource, up to 50 tags for a resource.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  PutResourcePolicy:
+    description: |-
+      Creates or updates an AWS Identity and Access Management policy for your rule group or firewall policy. Use this to share rule groups and firewall policies between accounts. This operation works in conjunction with the AWS Resource Access Manager (RAM) service to manage resource sharing for Network Firewall.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_PutResourcePolicy.html
+    example:
+      inputs: [
+        {
+          "Policy": "string",
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Adds the specified tags to the specified resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to "customer" and the value to the customer name or ID. You can specify one or more tags to add to each AWS resource, up to 50 tags for a resource.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes the tags with the specified keys from the specified resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to "customer" and the value to the customer name or ID. You can specify one or more tags to add to each AWS resource, up to 50 tags for a resource.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateFirewallDeleteProtection:
+    description: |-
+      Modifies the flag, DeleteProtection, which indicates whether it is possible to delete the firewall. If the flag is set to TRUE, the firewall is protected against deletion. This setting helps protect against accidentally deleting a firewall that's in use.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_UpdateFirewallDeleteProtection.html
+    example:
+      inputs: [
+        {
+          "FirewallArn": "string",
+          "UpdateToken": "string",
+          "FirewallName": "string",
+          "DeleteProtection": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateFirewallDescription:
+    description: |-
+      Modifies the description for the specified firewall. Use the description to help you identify the firewall when you're working with it.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_UpdateFirewallDescription.html
+    example:
+      inputs: [
+        {
+          "Description": "string",
+          "FirewallArn": "string",
+          "UpdateToken": "string",
+          "FirewallName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateFirewallPolicyChangeProtection:
+    description: ''
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_UpdateFirewallPolicyChangeProtection.html
+    example:
+      inputs: [
+        {
+          "FirewallArn": "string",
+          "UpdateToken": "string",
+          "FirewallName": "string",
+          "FirewallPolicyChangeProtection": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateFirewallPolicy:
+    description: |-
+      Updates the properties of the specified firewall policy.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_UpdateFirewallPolicy.html
+    example:
+      inputs: [
+        {
+          "DryRun": false,
+          "Description": "string",
+          "UpdateToken": "string",
+          "FirewallPolicy": {
+            "StatelessCustomActions": [
+              {
+                "ActionName": "string",
+                "ActionDefinition": {
+                  "PublishMetricAction": {
+                    "Dimensions": [
+                      {
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "StatelessDefaultActions": [
+              "string"
+            ],
+            "StatefulRuleGroupReferences": [
+              {
+                "ResourceArn": "string"
+              }
+            ],
+            "StatelessRuleGroupReferences": [
+              {
+                "Priority": 1,
+                "ResourceArn": "string"
+              }
+            ],
+            "StatelessFragmentDefaultActions": [
+              "string"
+            ]
+          },
+          "FirewallPolicyArn": "string",
+          "FirewallPolicyName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UpdateToken": "string",
+          "FirewallPolicyResponse": {
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "Description": "string",
+            "FirewallPolicyId": "string",
+            "FirewallPolicyArn": "string",
+            "FirewallPolicyName": "string",
+            "FirewallPolicyStatus": "string"
+          }
+        }
+      ]
+  UpdateLoggingConfiguration:
+    description: |-
+      Sets the logging configuration for the specified firewall.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_UpdateLoggingConfiguration.html
+    example:
+      inputs: [
+        {
+          "FirewallArn": "string",
+          "FirewallName": "string",
+          "LoggingConfiguration": {
+            "LogDestinationConfigs": [
+              {
+                "LogType": "string",
+                "LogDestination": {
+                  "string": "string"
+                },
+                "LogDestinationType": "string"
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateRuleGroup:
+    description: |-
+      Updates the rule settings for the specified rule group. You use a rule group by reference in one or more firewall policies. When you modify a rule group, you modify all firewall policies that use the rule group.
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_UpdateRuleGroup.html
+    example:
+      inputs: [
+        {
+          "Type": "string",
+          "Rules": "string",
+          "DryRun": false,
+          "RuleGroup": {
+            "RulesSource": {
+              "RulesString": "string",
+              "StatefulRules": [
+                {
+                  "Action": "string",
+                  "Header": {
+                    "Source": "string",
+                    "Protocol": "string",
+                    "Direction": "string",
+                    "SourcePort": "string",
+                    "Destination": "string",
+                    "DestinationPort": "string"
+                  },
+                  "RuleOptions": [
+                    {
+                      "Keyword": "string",
+                      "Settings": [
+                        "string"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "RulesSourceList": {
+                "Targets": [
+                  "string"
+                ],
+                "TargetTypes": [
+                  "string"
+                ],
+                "GeneratedRulesType": "string"
+              },
+              "StatelessRulesAndCustomActions": {
+                "CustomActions": [
+                  {
+                    "ActionName": "string",
+                    "ActionDefinition": {
+                      "PublishMetricAction": {
+                        "Dimensions": [
+                          {
+                            "Value": "string"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "StatelessRules": [
+                  {
+                    "Priority": 1,
+                    "RuleDefinition": {
+                      "Actions": [
+                        "string"
+                      ],
+                      "MatchAttributes": {
+                        "Sources": [
+                          {
+                            "AddressDefinition": "string"
+                          }
+                        ],
+                        "TCPFlags": [
+                          {
+                            "Flags": [
+                              "string"
+                            ],
+                            "Masks": [
+                              "string"
+                            ]
+                          }
+                        ],
+                        "Protocols": [
+                          1
+                        ],
+                        "SourcePorts": [
+                          {
+                            "ToPort": 1,
+                            "FromPort": 1
+                          }
+                        ],
+                        "Destinations": [
+                          {
+                            "AddressDefinition": "string"
+                          }
+                        ],
+                        "DestinationPorts": [
+                          {
+                            "ToPort": 1,
+                            "FromPort": 1
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "RuleVariables": {
+              "IPSets": {
+                "string": {
+                  "Definition": [
+                    "string"
+                  ]
+                }
+              },
+              "PortSets": {
+                "string": {
+                  "Definition": [
+                    "string"
+                  ]
+                }
+              }
+            }
+          },
+          "Description": "string",
+          "UpdateToken": "string",
+          "RuleGroupArn": "string",
+          "RuleGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UpdateToken": "string",
+          "RuleGroupResponse": {
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "Type": "string",
+            "Capacity": 1,
+            "Description": "string",
+            "RuleGroupId": "string",
+            "RuleGroupArn": "string",
+            "RuleGroupName": "string",
+            "RuleGroupStatus": "string"
+          }
+        }
+      ]
+  UpdateSubnetChangeProtection:
+    description: ''
+    versions:
+      from: 2020.11.12
+    link: https://docs.aws.amazon.com/network-firewall/latest/APIReference/API_UpdateSubnetChangeProtection.html
+    example:
+      inputs: [
+        {
+          "FirewallArn": "string",
+          "UpdateToken": "string",
+          "FirewallName": "string",
+          "SubnetChangeProtection": false
+        }
+      ]
+      outputs: [
+        {}
+      ]

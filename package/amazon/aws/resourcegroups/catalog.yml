@@ -1,0 +1,522 @@
+Product:
+  name: AWS Resource Groups
+  versions: [2017.11.27]
+  package: amazon.aws.resourcegroups
+  description: |-
+    AWS Resource Groups
+  link: https://docs.aws.amazon.com/ARG/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CreateGroup:
+    description: |-
+      Creates a resource group with the specified name and description. You can optionally include a resource query, or a service configuration. For more information about constructing a resource query, see Create a tag-based group in Resource Groups. For more information about service configurations, see Service configurations for resource groups.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/ARG/latest/APIReference/API_CreateGroup.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Description": "string",
+          "Configuration": [
+            {
+              "Type": "string",
+              "Parameters": [
+                {
+                  "Name": "string",
+                  "Values": [
+                    "string"
+                  ]
+                }
+              ]
+            }
+          ],
+          "ResourceQuery": {
+            "Type": "string",
+            "Query": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "Group": {
+            "Name": "string",
+            "GroupArn": "string",
+            "Description": "string"
+          },
+          "ResourceQuery": {
+            "Type": "string",
+            "Query": "string"
+          },
+          "GroupConfiguration": {
+            "Status": "string",
+            "Configuration": [
+              {
+                "Type": "string",
+                "Parameters": [
+                  {
+                    "Name": "string",
+                    "Values": [
+                      "string"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "FailureReason": "string",
+            "ProposedConfiguration": [
+              {
+                "Type": "string",
+                "Parameters": [
+                  {
+                    "Name": "string",
+                    "Values": [
+                      "string"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+  DeleteGroup:
+    description: |-
+      Deletes the specified resource group. Deleting a resource group does not delete any resources that are members of the group; it only deletes the group structure.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/ARG/latest/APIReference/API_DeleteGroup.html
+    example:
+      inputs: [
+        {
+          "Group": "string",
+          "GroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Group": {
+            "Name": "string",
+            "GroupArn": "string",
+            "Description": "string"
+          }
+        }
+      ]
+  GetGroupConfiguration:
+    description: |-
+      Returns the service configuration associated with the specified resource group. For details about the service configuration syntax, see Service configurations for resource groups.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/ARG/latest/APIReference/API_GetGroupConfiguration.html
+    example:
+      inputs: [
+        {
+          "Group": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GroupConfiguration": {
+            "Status": "string",
+            "Configuration": [
+              {
+                "Type": "string",
+                "Parameters": [
+                  {
+                    "Name": "string",
+                    "Values": [
+                      "string"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "FailureReason": "string",
+            "ProposedConfiguration": [
+              {
+                "Type": "string",
+                "Parameters": [
+                  {
+                    "Name": "string",
+                    "Values": [
+                      "string"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+  GetGroup:
+    description: |-
+      Returns information about a specified resource group.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/ARG/latest/APIReference/API_GetGroup.html
+    example:
+      inputs: [
+        {
+          "Group": "string",
+          "GroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Group": {
+            "Name": "string",
+            "GroupArn": "string",
+            "Description": "string"
+          }
+        }
+      ]
+  GetGroupQuery:
+    description: |-
+      Retrieves the resource query associated with the specified resource group. For more information about resource queries, see Create a tag-based group in Resource Groups.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/ARG/latest/APIReference/API_GetGroupQuery.html
+    example:
+      inputs: [
+        {
+          "Group": "string",
+          "GroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GroupQuery": {
+            "GroupName": "string",
+            "ResourceQuery": {
+              "Type": "string",
+              "Query": "string"
+            }
+          }
+        }
+      ]
+  GetTags:
+    description: |-
+      Returns a list of tags that are associated with a resource group, specified by an ARN.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/ARG/latest/APIReference/API_GetTags.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  GroupResources:
+    description: |-
+      Adds the specified resources to the specified group.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/ARG/latest/APIReference/API_GroupResources.html
+    example:
+      inputs: [
+        {
+          "Group": "string",
+          "ResourceArns": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Failed": [
+            {
+              "ErrorCode": "string",
+              "ResourceArn": "string",
+              "ErrorMessage": "string"
+            }
+          ],
+          "Pending": [
+            {
+              "ResourceArn": "string"
+            }
+          ],
+          "Succeeded": [
+            "string"
+          ]
+        }
+      ]
+  ListGroupResources:
+    description: |-
+      Returns a list of ARNs of the resources that are members of a specified resource group.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/ARG/latest/APIReference/API_ListGroupResources.html
+    example:
+      inputs: [
+        {
+          "Group": "string",
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "GroupName": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Resources": [
+            {
+              "Status": {
+                "Name": "string"
+              },
+              "Identifier": {
+                "ResourceArn": "string",
+                "ResourceType": "string"
+              }
+            }
+          ],
+          "QueryErrors": [
+            {
+              "Message": "string",
+              "ErrorCode": "string"
+            }
+          ],
+          "ResourceIdentifiers": [
+            {
+              "ResourceArn": "string",
+              "ResourceType": "string"
+            }
+          ]
+        }
+      ]
+  ListGroups:
+    description: |-
+      Returns a list of existing resource groups in your account.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/ARG/latest/APIReference/API_ListGroups.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Groups": [
+            {
+              "Name": "string",
+              "GroupArn": "string",
+              "Description": "string"
+            }
+          ],
+          "NextToken": "string",
+          "GroupIdentifiers": [
+            {
+              "GroupArn": "string",
+              "GroupName": "string"
+            }
+          ]
+        }
+      ]
+  PutGroupConfiguration:
+    description: |-
+      Attaches a service configuration to the specified group. This occurs asynchronously, and can take time to complete. You can use GetGroupConfiguration to check the status of the update.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/ARG/latest/APIReference/API_PutGroupConfiguration.html
+    example:
+      inputs: [
+        {
+          "Group": "string",
+          "Configuration": [
+            {
+              "Type": "string",
+              "Parameters": [
+                {
+                  "Name": "string",
+                  "Values": [
+                    "string"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SearchResources:
+    description: |-
+      Returns a list of AWS resource identifiers that matches the specified query. The query uses the same format as a resource query in a CreateGroup or UpdateGroupQuery operation.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/ARG/latest/APIReference/API_SearchResources.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceQuery": {
+            "Type": "string",
+            "Query": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "QueryErrors": [
+            {
+              "Message": "string",
+              "ErrorCode": "string"
+            }
+          ],
+          "ResourceIdentifiers": [
+            {
+              "ResourceArn": "string",
+              "ResourceType": "string"
+            }
+          ]
+        }
+      ]
+  Tag:
+    description: |-
+      Adds tags to a resource group with the specified ARN. Existing tags on a resource group are not changed if they are not specified in the request parameters.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/ARG/latest/APIReference/API_Tag.html
+    example:
+      inputs: [
+        {
+          "Arn": "string",
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UngroupResources:
+    description: |-
+      Removes the specified resources from the specified group.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/ARG/latest/APIReference/API_UngroupResources.html
+    example:
+      inputs: [
+        {
+          "Group": "string",
+          "ResourceArns": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Failed": [
+            {
+              "ErrorCode": "string",
+              "ResourceArn": "string",
+              "ErrorMessage": "string"
+            }
+          ],
+          "Pending": [
+            {
+              "ResourceArn": "string"
+            }
+          ],
+          "Succeeded": [
+            "string"
+          ]
+        }
+      ]
+  Untag:
+    description: |-
+      Deletes tags from a specified resource group.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/ARG/latest/APIReference/API_Untag.html
+    example:
+      inputs: [
+        {
+          "Arn": "string",
+          "Keys": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateGroup:
+    description: |-
+      Updates the description for an existing group. You cannot update the name of a resource group.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/ARG/latest/APIReference/API_UpdateGroup.html
+    example:
+      inputs: [
+        {
+          "Group": "string",
+          "GroupName": "string",
+          "Description": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Group": {
+            "Name": "string",
+            "GroupArn": "string",
+            "Description": "string"
+          }
+        }
+      ]
+  UpdateGroupQuery:
+    description: |-
+      Updates the resource query of a group. For more information about resource queries, see Create a tag-based group in Resource Groups.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/ARG/latest/APIReference/API_UpdateGroupQuery.html
+    example:
+      inputs: [
+        {
+          "Group": "string",
+          "GroupName": "string",
+          "ResourceQuery": {
+            "Type": "string",
+            "Query": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "GroupQuery": {
+            "GroupName": "string",
+            "ResourceQuery": {
+              "Type": "string",
+              "Query": "string"
+            }
+          }
+        }
+      ]

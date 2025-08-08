@@ -1,0 +1,1353 @@
+Product:
+  name: AWS Application Migration Service
+  versions: [2020.2.26]
+  package: amazon.aws.applicationmigrationservice
+  description: |-
+    Application Migration Service
+  link: https://docs.aws.amazon.com/mgn/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  ChangeServerLifeCycleState:
+    description: |-
+      Allows the user to set the SourceServer.LifeCycle.state property for specific Source Server IDs to one of the following:READY_FOR_TEST or READY_FOR_CUTOVER. This command only works if the Source Server is already launchable (dataReplicationInfo.lagDuration is not null.)
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_ChangeServerLifeCycleState.html
+    example:
+      inputs: [
+        {
+          "lifeCycle": {
+            "state": "string"
+          },
+          "sourceServerID": "string"
+        }
+      ]
+      outputs: [
+        {
+          "arn": "string",
+          "tags": {
+            "string": "string"
+          },
+          "lifeCycle": {
+            "state": "string",
+            "lastTest": {
+              "reverted": {
+                "apiCallDateTime": "string"
+              },
+              "finalized": {
+                "apiCallDateTime": "string"
+              },
+              "initiated": {
+                "jobID": "string",
+                "apiCallDateTime": "string"
+              }
+            },
+            "lastCutover": {
+              "reverted": {
+                "apiCallDateTime": "string"
+              },
+              "finalized": {
+                "apiCallDateTime": "string"
+              },
+              "initiated": {
+                "jobID": "string",
+                "apiCallDateTime": "string"
+              }
+            },
+            "firstByteDateTime": "string",
+            "addedToServiceDateTime": "string",
+            "lastSeenByServiceDateTime": "string",
+            "elapsedReplicationDuration": "string"
+          },
+          "isArchived": false,
+          "sourceServerID": "string",
+          "launchedInstance": {
+            "jobID": "string",
+            "firstBoot": "string",
+            "ec2InstanceID": "string"
+          },
+          "sourceProperties": {
+            "os": {
+              "fullString": "string"
+            },
+            "cpus": [
+              {
+                "cores": 1,
+                "modelName": "string"
+              }
+            ],
+            "disks": [
+              {
+                "bytes": 1,
+                "deviceName": "string"
+              }
+            ],
+            "ramBytes": 1,
+            "networkInterfaces": [
+              {
+                "ips": [
+                  "string"
+                ],
+                "isPrimary": false,
+                "macAddress": "string"
+              }
+            ],
+            "identificationHints": {
+              "fqdn": "string",
+              "hostname": "string",
+              "vmWareUuid": "string",
+              "awsInstanceID": "string"
+            },
+            "lastUpdatedDateTime": "string",
+            "recommendedInstanceType": "string"
+          },
+          "dataReplicationInfo": {
+            "etaDateTime": "string",
+            "lagDuration": "string",
+            "replicatedDisks": [
+              {
+                "deviceName": "string",
+                "totalStorageBytes": 1,
+                "rescannedStorageBytes": 1,
+                "backloggedStorageBytes": 1,
+                "replicatedStorageBytes": 1
+              }
+            ],
+            "dataReplicationError": {
+              "error": "string",
+              "rawError": "string"
+            },
+            "dataReplicationState": "string",
+            "dataReplicationInitiation": {
+              "steps": [
+                {
+                  "name": "string",
+                  "status": "string"
+                }
+              ],
+              "startDateTime": "string",
+              "nextAttemptDateTime": "string"
+            }
+          }
+        }
+      ]
+  CreateReplicationConfigurationTemplate:
+    description: |-
+      Creates a new ReplicationConfigurationTemplate.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_CreateReplicationConfigurationTemplate.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "ebsEncryption": "string",
+          "createPublicIP": false,
+          "stagingAreaTags": {
+            "string": "string"
+          },
+          "dataPlaneRouting": "string",
+          "bandwidthThrottling": 1,
+          "ebsEncryptionKeyArn": "string",
+          "stagingAreaSubnetId": "string",
+          "defaultLargeStagingDiskType": "string",
+          "associateDefaultSecurityGroup": false,
+          "replicationServerInstanceType": "string",
+          "useDedicatedReplicationServer": false,
+          "replicationServersSecurityGroupsIDs": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "arn": "string",
+          "tags": {
+            "string": "string"
+          },
+          "ebsEncryption": "string",
+          "createPublicIP": false,
+          "stagingAreaTags": {
+            "string": "string"
+          },
+          "dataPlaneRouting": "string",
+          "bandwidthThrottling": 1,
+          "ebsEncryptionKeyArn": "string",
+          "stagingAreaSubnetId": "string",
+          "defaultLargeStagingDiskType": "string",
+          "associateDefaultSecurityGroup": false,
+          "replicationServerInstanceType": "string",
+          "useDedicatedReplicationServer": false,
+          "replicationConfigurationTemplateID": "string",
+          "replicationServersSecurityGroupsIDs": [
+            "string"
+          ]
+        }
+      ]
+  DeleteJob:
+    description: |-
+      Deletes a single Job by ID.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_DeleteJob.html
+    example:
+      inputs: [
+        {
+          "jobID": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteReplicationConfigurationTemplate:
+    description: |-
+      Deletes a single Replication Configuration Template by ID
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_DeleteReplicationConfigurationTemplate.html
+    example:
+      inputs: [
+        {
+          "replicationConfigurationTemplateID": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteSourceServer:
+    description: |-
+      Deletes a single source server by ID.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_DeleteSourceServer.html
+    example:
+      inputs: [
+        {
+          "sourceServerID": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeJobLogItems:
+    description: |-
+      Retrieves detailed Job log with paging.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_DescribeJobLogItems.html
+    example:
+      inputs: [
+        {
+          "jobID": "string",
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "items": [
+            {
+              "event": "string",
+              "eventData": {
+                "rawError": "string",
+                "sourceServerID": "string",
+                "targetInstanceID": "string",
+                "conversionServerID": "string"
+              },
+              "logDateTime": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  DescribeJobs:
+    description: |-
+      Returns a list of Jobs. Use the JobsID and fromDate and toData filters to limit which jobs are returned. The response is sorted by creationDataTime - latest date first. Jobs are normaly created by the StartTest, StartCutover, and TerminateTargetInstances APIs. Jobs are also created by DiagnosticLaunch and TerminateDiagnosticInstances, which are APIs available only to *Support* and only used in response to relevant support tickets.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_DescribeJobs.html
+    example:
+      inputs: [
+        {
+          "filters": {
+            "jobIDs": [
+              "string"
+            ],
+            "toDate": "string",
+            "fromDate": "string"
+          },
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "items": [
+            {
+              "arn": "string",
+              "tags": {
+                "string": "string"
+              },
+              "type": "string",
+              "jobID": "string",
+              "status": "string",
+              "endDateTime": "string",
+              "initiatedBy": "string",
+              "creationDateTime": "string",
+              "participatingServers": [
+                {
+                  "launchStatus": "string",
+                  "sourceServerID": "string"
+                }
+              ]
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  DescribeReplicationConfigurationTemplates:
+    description: |-
+      Lists all ReplicationConfigurationTemplates, filtered by Source Server IDs.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_DescribeReplicationConfigurationTemplates.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "replicationConfigurationTemplateIDs": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "items": [
+            {
+              "arn": "string",
+              "tags": {
+                "string": "string"
+              },
+              "ebsEncryption": "string",
+              "createPublicIP": false,
+              "stagingAreaTags": {
+                "string": "string"
+              },
+              "dataPlaneRouting": "string",
+              "bandwidthThrottling": 1,
+              "ebsEncryptionKeyArn": "string",
+              "stagingAreaSubnetId": "string",
+              "defaultLargeStagingDiskType": "string",
+              "associateDefaultSecurityGroup": false,
+              "replicationServerInstanceType": "string",
+              "useDedicatedReplicationServer": false,
+              "replicationConfigurationTemplateID": "string",
+              "replicationServersSecurityGroupsIDs": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  DescribeSourceServers:
+    description: |-
+      Retrieves all SourceServers or multiple SourceServers by ID.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_DescribeSourceServers.html
+    example:
+      inputs: [
+        {
+          "filters": {
+            "isArchived": false,
+            "sourceServerIDs": [
+              "string"
+            ]
+          },
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "items": [
+            {
+              "arn": "string",
+              "tags": {
+                "string": "string"
+              },
+              "lifeCycle": {
+                "state": "string",
+                "lastTest": {
+                  "reverted": {
+                    "apiCallDateTime": "string"
+                  },
+                  "finalized": {
+                    "apiCallDateTime": "string"
+                  },
+                  "initiated": {
+                    "jobID": "string",
+                    "apiCallDateTime": "string"
+                  }
+                },
+                "lastCutover": {
+                  "reverted": {
+                    "apiCallDateTime": "string"
+                  },
+                  "finalized": {
+                    "apiCallDateTime": "string"
+                  },
+                  "initiated": {
+                    "jobID": "string",
+                    "apiCallDateTime": "string"
+                  }
+                },
+                "firstByteDateTime": "string",
+                "addedToServiceDateTime": "string",
+                "lastSeenByServiceDateTime": "string",
+                "elapsedReplicationDuration": "string"
+              },
+              "isArchived": false,
+              "sourceServerID": "string",
+              "launchedInstance": {
+                "jobID": "string",
+                "firstBoot": "string",
+                "ec2InstanceID": "string"
+              },
+              "sourceProperties": {
+                "os": {
+                  "fullString": "string"
+                },
+                "cpus": [
+                  {
+                    "cores": 1,
+                    "modelName": "string"
+                  }
+                ],
+                "disks": [
+                  {
+                    "bytes": 1,
+                    "deviceName": "string"
+                  }
+                ],
+                "ramBytes": 1,
+                "networkInterfaces": [
+                  {
+                    "ips": [
+                      "string"
+                    ],
+                    "isPrimary": false,
+                    "macAddress": "string"
+                  }
+                ],
+                "identificationHints": {
+                  "fqdn": "string",
+                  "hostname": "string",
+                  "vmWareUuid": "string",
+                  "awsInstanceID": "string"
+                },
+                "lastUpdatedDateTime": "string",
+                "recommendedInstanceType": "string"
+              },
+              "dataReplicationInfo": {
+                "etaDateTime": "string",
+                "lagDuration": "string",
+                "replicatedDisks": [
+                  {
+                    "deviceName": "string",
+                    "totalStorageBytes": 1,
+                    "rescannedStorageBytes": 1,
+                    "backloggedStorageBytes": 1,
+                    "replicatedStorageBytes": 1
+                  }
+                ],
+                "dataReplicationError": {
+                  "error": "string",
+                  "rawError": "string"
+                },
+                "dataReplicationState": "string",
+                "dataReplicationInitiation": {
+                  "steps": [
+                    {
+                      "name": "string",
+                      "status": "string"
+                    }
+                  ],
+                  "startDateTime": "string",
+                  "nextAttemptDateTime": "string"
+                }
+              }
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  DisconnectFromService:
+    description: |-
+      Disconnects specific Source Servers from Application Migration Service. Data replication is stopped immediately. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. If the agent on the source server has not been prevented from communciating with the Application Migration Service service, then it will receive a command to uninstall itself (within approximately 10 minutes). The following properties of the SourceServer will be changed immediately:dataReplicationInfo.dataReplicationState will be set to DISCONNECTED; The totalStorageBytes property for each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDurationwill be nullified.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_DisconnectFromService.html
+    example:
+      inputs: [
+        {
+          "sourceServerID": "string"
+        }
+      ]
+      outputs: [
+        {
+          "arn": "string",
+          "tags": {
+            "string": "string"
+          },
+          "lifeCycle": {
+            "state": "string",
+            "lastTest": {
+              "reverted": {
+                "apiCallDateTime": "string"
+              },
+              "finalized": {
+                "apiCallDateTime": "string"
+              },
+              "initiated": {
+                "jobID": "string",
+                "apiCallDateTime": "string"
+              }
+            },
+            "lastCutover": {
+              "reverted": {
+                "apiCallDateTime": "string"
+              },
+              "finalized": {
+                "apiCallDateTime": "string"
+              },
+              "initiated": {
+                "jobID": "string",
+                "apiCallDateTime": "string"
+              }
+            },
+            "firstByteDateTime": "string",
+            "addedToServiceDateTime": "string",
+            "lastSeenByServiceDateTime": "string",
+            "elapsedReplicationDuration": "string"
+          },
+          "isArchived": false,
+          "sourceServerID": "string",
+          "launchedInstance": {
+            "jobID": "string",
+            "firstBoot": "string",
+            "ec2InstanceID": "string"
+          },
+          "sourceProperties": {
+            "os": {
+              "fullString": "string"
+            },
+            "cpus": [
+              {
+                "cores": 1,
+                "modelName": "string"
+              }
+            ],
+            "disks": [
+              {
+                "bytes": 1,
+                "deviceName": "string"
+              }
+            ],
+            "ramBytes": 1,
+            "networkInterfaces": [
+              {
+                "ips": [
+                  "string"
+                ],
+                "isPrimary": false,
+                "macAddress": "string"
+              }
+            ],
+            "identificationHints": {
+              "fqdn": "string",
+              "hostname": "string",
+              "vmWareUuid": "string",
+              "awsInstanceID": "string"
+            },
+            "lastUpdatedDateTime": "string",
+            "recommendedInstanceType": "string"
+          },
+          "dataReplicationInfo": {
+            "etaDateTime": "string",
+            "lagDuration": "string",
+            "replicatedDisks": [
+              {
+                "deviceName": "string",
+                "totalStorageBytes": 1,
+                "rescannedStorageBytes": 1,
+                "backloggedStorageBytes": 1,
+                "replicatedStorageBytes": 1
+              }
+            ],
+            "dataReplicationError": {
+              "error": "string",
+              "rawError": "string"
+            },
+            "dataReplicationState": "string",
+            "dataReplicationInitiation": {
+              "steps": [
+                {
+                  "name": "string",
+                  "status": "string"
+                }
+              ],
+              "startDateTime": "string",
+              "nextAttemptDateTime": "string"
+            }
+          }
+        }
+      ]
+  FinalizeCutover:
+    description: |-
+      Finalizes the cutover immediately for specific Source Servers. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. The AWS Replication Agent will receive a command to uninstall itself (within 10 minutes). The following properties of the SourceServer will be changed immediately:dataReplicationInfo.dataReplicationState will be to DISCONNECTED; The SourceServer.lifeCycle.state will be changed to CUTOVER; The totalStorageBytes property fo each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDurationwill be nullified.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_FinalizeCutover.html
+    example:
+      inputs: [
+        {
+          "sourceServerID": "string"
+        }
+      ]
+      outputs: [
+        {
+          "arn": "string",
+          "tags": {
+            "string": "string"
+          },
+          "lifeCycle": {
+            "state": "string",
+            "lastTest": {
+              "reverted": {
+                "apiCallDateTime": "string"
+              },
+              "finalized": {
+                "apiCallDateTime": "string"
+              },
+              "initiated": {
+                "jobID": "string",
+                "apiCallDateTime": "string"
+              }
+            },
+            "lastCutover": {
+              "reverted": {
+                "apiCallDateTime": "string"
+              },
+              "finalized": {
+                "apiCallDateTime": "string"
+              },
+              "initiated": {
+                "jobID": "string",
+                "apiCallDateTime": "string"
+              }
+            },
+            "firstByteDateTime": "string",
+            "addedToServiceDateTime": "string",
+            "lastSeenByServiceDateTime": "string",
+            "elapsedReplicationDuration": "string"
+          },
+          "isArchived": false,
+          "sourceServerID": "string",
+          "launchedInstance": {
+            "jobID": "string",
+            "firstBoot": "string",
+            "ec2InstanceID": "string"
+          },
+          "sourceProperties": {
+            "os": {
+              "fullString": "string"
+            },
+            "cpus": [
+              {
+                "cores": 1,
+                "modelName": "string"
+              }
+            ],
+            "disks": [
+              {
+                "bytes": 1,
+                "deviceName": "string"
+              }
+            ],
+            "ramBytes": 1,
+            "networkInterfaces": [
+              {
+                "ips": [
+                  "string"
+                ],
+                "isPrimary": false,
+                "macAddress": "string"
+              }
+            ],
+            "identificationHints": {
+              "fqdn": "string",
+              "hostname": "string",
+              "vmWareUuid": "string",
+              "awsInstanceID": "string"
+            },
+            "lastUpdatedDateTime": "string",
+            "recommendedInstanceType": "string"
+          },
+          "dataReplicationInfo": {
+            "etaDateTime": "string",
+            "lagDuration": "string",
+            "replicatedDisks": [
+              {
+                "deviceName": "string",
+                "totalStorageBytes": 1,
+                "rescannedStorageBytes": 1,
+                "backloggedStorageBytes": 1,
+                "replicatedStorageBytes": 1
+              }
+            ],
+            "dataReplicationError": {
+              "error": "string",
+              "rawError": "string"
+            },
+            "dataReplicationState": "string",
+            "dataReplicationInitiation": {
+              "steps": [
+                {
+                  "name": "string",
+                  "status": "string"
+                }
+              ],
+              "startDateTime": "string",
+              "nextAttemptDateTime": "string"
+            }
+          }
+        }
+      ]
+  GetLaunchConfiguration:
+    description: |-
+      Lists all LaunchConfigurations available, filtered by Source Server IDs.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_GetLaunchConfiguration.html
+    example:
+      inputs: [
+        {
+          "sourceServerID": "string"
+        }
+      ]
+      outputs: [
+        {
+          "name": "string",
+          "copyTags": false,
+          "licensing": {
+            "osByol": false
+          },
+          "copyPrivateIp": false,
+          "sourceServerID": "string",
+          "launchDisposition": "string",
+          "ec2LaunchTemplateID": "string",
+          "targetInstanceTypeRightSizingMethod": "string"
+        }
+      ]
+  GetReplicationConfiguration:
+    description: |-
+      Lists all ReplicationConfigurations, filtered by Source Server ID.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_GetReplicationConfiguration.html
+    example:
+      inputs: [
+        {
+          "sourceServerID": "string"
+        }
+      ]
+      outputs: [
+        {
+          "name": "string",
+          "ebsEncryption": "string",
+          "createPublicIP": false,
+          "sourceServerID": "string",
+          "replicatedDisks": [
+            {
+              "iops": 1,
+              "deviceName": "string",
+              "isBootDisk": false,
+              "stagingDiskType": "string"
+            }
+          ],
+          "stagingAreaTags": {
+            "string": "string"
+          },
+          "dataPlaneRouting": "string",
+          "bandwidthThrottling": 1,
+          "ebsEncryptionKeyArn": "string",
+          "stagingAreaSubnetId": "string",
+          "defaultLargeStagingDiskType": "string",
+          "associateDefaultSecurityGroup": false,
+          "replicationServerInstanceType": "string",
+          "useDedicatedReplicationServer": false,
+          "replicationServersSecurityGroupsIDs": [
+            "string"
+          ]
+        }
+      ]
+  InitializeService:
+    description: |-
+      Initialize Application Migration Service.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_InitializeService.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  ListTagsForResource:
+    description: |-
+      List all tags for your Application Migration Service resources.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": {
+            "string": "string"
+          }
+        }
+      ]
+  MarkAsArchived:
+    description: |-
+      Archives specific Source Servers by setting the SourceServer.isArchived property to true for specified SourceServers by ID. This command only works for SourceServers with a lifecycle.state which equals DISCONNECTED or CUTOVER.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_MarkAsArchived.html
+    example:
+      inputs: [
+        {
+          "sourceServerID": "string"
+        }
+      ]
+      outputs: [
+        {
+          "arn": "string",
+          "tags": {
+            "string": "string"
+          },
+          "lifeCycle": {
+            "state": "string",
+            "lastTest": {
+              "reverted": {
+                "apiCallDateTime": "string"
+              },
+              "finalized": {
+                "apiCallDateTime": "string"
+              },
+              "initiated": {
+                "jobID": "string",
+                "apiCallDateTime": "string"
+              }
+            },
+            "lastCutover": {
+              "reverted": {
+                "apiCallDateTime": "string"
+              },
+              "finalized": {
+                "apiCallDateTime": "string"
+              },
+              "initiated": {
+                "jobID": "string",
+                "apiCallDateTime": "string"
+              }
+            },
+            "firstByteDateTime": "string",
+            "addedToServiceDateTime": "string",
+            "lastSeenByServiceDateTime": "string",
+            "elapsedReplicationDuration": "string"
+          },
+          "isArchived": false,
+          "sourceServerID": "string",
+          "launchedInstance": {
+            "jobID": "string",
+            "firstBoot": "string",
+            "ec2InstanceID": "string"
+          },
+          "sourceProperties": {
+            "os": {
+              "fullString": "string"
+            },
+            "cpus": [
+              {
+                "cores": 1,
+                "modelName": "string"
+              }
+            ],
+            "disks": [
+              {
+                "bytes": 1,
+                "deviceName": "string"
+              }
+            ],
+            "ramBytes": 1,
+            "networkInterfaces": [
+              {
+                "ips": [
+                  "string"
+                ],
+                "isPrimary": false,
+                "macAddress": "string"
+              }
+            ],
+            "identificationHints": {
+              "fqdn": "string",
+              "hostname": "string",
+              "vmWareUuid": "string",
+              "awsInstanceID": "string"
+            },
+            "lastUpdatedDateTime": "string",
+            "recommendedInstanceType": "string"
+          },
+          "dataReplicationInfo": {
+            "etaDateTime": "string",
+            "lagDuration": "string",
+            "replicatedDisks": [
+              {
+                "deviceName": "string",
+                "totalStorageBytes": 1,
+                "rescannedStorageBytes": 1,
+                "backloggedStorageBytes": 1,
+                "replicatedStorageBytes": 1
+              }
+            ],
+            "dataReplicationError": {
+              "error": "string",
+              "rawError": "string"
+            },
+            "dataReplicationState": "string",
+            "dataReplicationInitiation": {
+              "steps": [
+                {
+                  "name": "string",
+                  "status": "string"
+                }
+              ],
+              "startDateTime": "string",
+              "nextAttemptDateTime": "string"
+            }
+          }
+        }
+      ]
+  RetryDataReplication:
+    description: |-
+      Causes the data replication initiation sequence to begin immediately upon next Handshake for specified SourceServer IDs, regardless of when the previous initiation started. This command will not work if the SourceServer is not stalled or is in a DISCONNECTED or STOPPED state.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_RetryDataReplication.html
+    example:
+      inputs: [
+        {
+          "sourceServerID": "string"
+        }
+      ]
+      outputs: [
+        {
+          "arn": "string",
+          "tags": {
+            "string": "string"
+          },
+          "lifeCycle": {
+            "state": "string",
+            "lastTest": {
+              "reverted": {
+                "apiCallDateTime": "string"
+              },
+              "finalized": {
+                "apiCallDateTime": "string"
+              },
+              "initiated": {
+                "jobID": "string",
+                "apiCallDateTime": "string"
+              }
+            },
+            "lastCutover": {
+              "reverted": {
+                "apiCallDateTime": "string"
+              },
+              "finalized": {
+                "apiCallDateTime": "string"
+              },
+              "initiated": {
+                "jobID": "string",
+                "apiCallDateTime": "string"
+              }
+            },
+            "firstByteDateTime": "string",
+            "addedToServiceDateTime": "string",
+            "lastSeenByServiceDateTime": "string",
+            "elapsedReplicationDuration": "string"
+          },
+          "isArchived": false,
+          "sourceServerID": "string",
+          "launchedInstance": {
+            "jobID": "string",
+            "firstBoot": "string",
+            "ec2InstanceID": "string"
+          },
+          "sourceProperties": {
+            "os": {
+              "fullString": "string"
+            },
+            "cpus": [
+              {
+                "cores": 1,
+                "modelName": "string"
+              }
+            ],
+            "disks": [
+              {
+                "bytes": 1,
+                "deviceName": "string"
+              }
+            ],
+            "ramBytes": 1,
+            "networkInterfaces": [
+              {
+                "ips": [
+                  "string"
+                ],
+                "isPrimary": false,
+                "macAddress": "string"
+              }
+            ],
+            "identificationHints": {
+              "fqdn": "string",
+              "hostname": "string",
+              "vmWareUuid": "string",
+              "awsInstanceID": "string"
+            },
+            "lastUpdatedDateTime": "string",
+            "recommendedInstanceType": "string"
+          },
+          "dataReplicationInfo": {
+            "etaDateTime": "string",
+            "lagDuration": "string",
+            "replicatedDisks": [
+              {
+                "deviceName": "string",
+                "totalStorageBytes": 1,
+                "rescannedStorageBytes": 1,
+                "backloggedStorageBytes": 1,
+                "replicatedStorageBytes": 1
+              }
+            ],
+            "dataReplicationError": {
+              "error": "string",
+              "rawError": "string"
+            },
+            "dataReplicationState": "string",
+            "dataReplicationInitiation": {
+              "steps": [
+                {
+                  "name": "string",
+                  "status": "string"
+                }
+              ],
+              "startDateTime": "string",
+              "nextAttemptDateTime": "string"
+            }
+          }
+        }
+      ]
+  StartCutover:
+    description: |-
+      Launches a Cutover Instance for specific Source Servers. This command starts a LAUNCH job whose initiatedBy property is StartCutover and changes the SourceServer.lifeCycle.state property to CUTTING_OVER.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_StartCutover.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "sourceServerIDs": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "job": {
+            "arn": "string",
+            "tags": {
+              "string": "string"
+            },
+            "type": "string",
+            "jobID": "string",
+            "status": "string",
+            "endDateTime": "string",
+            "initiatedBy": "string",
+            "creationDateTime": "string",
+            "participatingServers": [
+              {
+                "launchStatus": "string",
+                "sourceServerID": "string"
+              }
+            ]
+          }
+        }
+      ]
+  StartTest:
+    description: |-
+      Lauches a Test Instance for specific Source Servers. This command starts a LAUNCH job whose initiatedBy property is StartTest and changes the SourceServer.lifeCycle.state property to TESTING.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_StartTest.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "sourceServerIDs": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "job": {
+            "arn": "string",
+            "tags": {
+              "string": "string"
+            },
+            "type": "string",
+            "jobID": "string",
+            "status": "string",
+            "endDateTime": "string",
+            "initiatedBy": "string",
+            "creationDateTime": "string",
+            "participatingServers": [
+              {
+                "launchStatus": "string",
+                "sourceServerID": "string"
+              }
+            ]
+          }
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds or overwrites only the specified tags for the specified Application Migration Service resource or resources. When you specify an existing tag key, the value is overwritten with the new value. Each resource can have a maximum of 50 tags. Each tag consists of a key and optional value.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TerminateTargetInstances:
+    description: |-
+      Starts a job that terminates specific launched EC2 Test and Cutover instances. This command will not work for any Source Server with a lifecycle.state of TESTING, CUTTING_OVER, or CUTOVER.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_TerminateTargetInstances.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "sourceServerIDs": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "job": {
+            "arn": "string",
+            "tags": {
+              "string": "string"
+            },
+            "type": "string",
+            "jobID": "string",
+            "status": "string",
+            "endDateTime": "string",
+            "initiatedBy": "string",
+            "creationDateTime": "string",
+            "participatingServers": [
+              {
+                "launchStatus": "string",
+                "sourceServerID": "string"
+              }
+            ]
+          }
+        }
+      ]
+  UntagResource:
+    description: |-
+      Deletes the specified set of tags from the specified set of Application Migration Service resources.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateLaunchConfiguration:
+    description: |-
+      Updates multiple LaunchConfigurations by Source Server ID.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_UpdateLaunchConfiguration.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "copyTags": false,
+          "licensing": {
+            "osByol": false
+          },
+          "copyPrivateIp": false,
+          "sourceServerID": "string",
+          "launchDisposition": "string",
+          "targetInstanceTypeRightSizingMethod": "string"
+        }
+      ]
+      outputs: [
+        {
+          "name": "string",
+          "copyTags": false,
+          "licensing": {
+            "osByol": false
+          },
+          "copyPrivateIp": false,
+          "sourceServerID": "string",
+          "launchDisposition": "string",
+          "ec2LaunchTemplateID": "string",
+          "targetInstanceTypeRightSizingMethod": "string"
+        }
+      ]
+  UpdateReplicationConfiguration:
+    description: |-
+      Allows you to update multiple ReplicationConfigurations by Source Server ID.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_UpdateReplicationConfiguration.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "name": "string",
+          "ebsEncryption": "string",
+          "createPublicIP": false,
+          "sourceServerID": "string",
+          "replicatedDisks": [
+            {
+              "iops": 1,
+              "deviceName": "string",
+              "isBootDisk": false,
+              "stagingDiskType": "string"
+            }
+          ],
+          "stagingAreaTags": {
+            "string": "string"
+          },
+          "dataPlaneRouting": "string",
+          "bandwidthThrottling": 1,
+          "ebsEncryptionKeyArn": "string",
+          "stagingAreaSubnetId": "string",
+          "defaultLargeStagingDiskType": "string",
+          "associateDefaultSecurityGroup": false,
+          "replicationServerInstanceType": "string",
+          "useDedicatedReplicationServer": false,
+          "replicationServersSecurityGroupsIDs": [
+            "string"
+          ]
+        }
+      ]
+  UpdateReplicationConfigurationTemplate:
+    description: |-
+      Updates multiple ReplicationConfigurationTemplates by ID.
+    versions:
+      from: 2020.2.26
+    link: https://docs.aws.amazon.com/mgn/latest/APIReference/API_UpdateReplicationConfigurationTemplate.html
+    example:
+      inputs: [
+        {
+          "arn": "string",
+          "ebsEncryption": "string",
+          "createPublicIP": false,
+          "stagingAreaTags": {
+            "string": "string"
+          },
+          "dataPlaneRouting": "string",
+          "bandwidthThrottling": 1,
+          "ebsEncryptionKeyArn": "string",
+          "stagingAreaSubnetId": "string",
+          "defaultLargeStagingDiskType": "string",
+          "associateDefaultSecurityGroup": false,
+          "replicationServerInstanceType": "string",
+          "useDedicatedReplicationServer": false,
+          "replicationConfigurationTemplateID": "string",
+          "replicationServersSecurityGroupsIDs": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "arn": "string",
+          "tags": {
+            "string": "string"
+          },
+          "ebsEncryption": "string",
+          "createPublicIP": false,
+          "stagingAreaTags": {
+            "string": "string"
+          },
+          "dataPlaneRouting": "string",
+          "bandwidthThrottling": 1,
+          "ebsEncryptionKeyArn": "string",
+          "stagingAreaSubnetId": "string",
+          "defaultLargeStagingDiskType": "string",
+          "associateDefaultSecurityGroup": false,
+          "replicationServerInstanceType": "string",
+          "useDedicatedReplicationServer": false,
+          "replicationConfigurationTemplateID": "string",
+          "replicationServersSecurityGroupsIDs": [
+            "string"
+          ]
+        }
+      ]

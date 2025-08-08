@@ -1,0 +1,1791 @@
+Product:
+  name: Amazon AppStream
+  versions: [2016.12.1]
+  package: amazon.aws.appstream
+  description: |-
+    Amazon AppStream
+  link: https://docs.aws.amazon.com/appstream2/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AssociateFleet:
+    description: |-
+      Associates the specified fleet with the specified stack.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_AssociateFleet.html
+    example:
+      inputs: [
+        {
+          "FleetName": "string",
+          "StackName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  BatchAssociateUserStack:
+    description: |-
+      Associates the specified users with the specified stacks. Users in a user pool cannot be assigned to stacks with fleets that are joined to an Active Directory domain.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_BatchAssociateUserStack.html
+    example:
+      inputs: [
+        {
+          "UserStackAssociations": [
+            {
+              "UserName": "string",
+              "StackName": "string",
+              "AuthenticationType": "string",
+              "SendEmailNotification": false
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "errors": [
+            {
+              "ErrorCode": "string",
+              "ErrorMessage": "string",
+              "UserStackAssociation": {
+                "UserName": "string",
+                "StackName": "string",
+                "AuthenticationType": "string",
+                "SendEmailNotification": false
+              }
+            }
+          ]
+        }
+      ]
+  BatchDisassociateUserStack:
+    description: |-
+      Disassociates the specified users from the specified stacks.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_BatchDisassociateUserStack.html
+    example:
+      inputs: [
+        {
+          "UserStackAssociations": [
+            {
+              "UserName": "string",
+              "StackName": "string",
+              "AuthenticationType": "string",
+              "SendEmailNotification": false
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "errors": [
+            {
+              "ErrorCode": "string",
+              "ErrorMessage": "string",
+              "UserStackAssociation": {
+                "UserName": "string",
+                "StackName": "string",
+                "AuthenticationType": "string",
+                "SendEmailNotification": false
+              }
+            }
+          ]
+        }
+      ]
+  CopyImage:
+    description: |-
+      Copies the image within the same region or to a new region within the same AWS account. Note that any tags you added to the image will not be copied.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_CopyImage.html
+    example:
+      inputs: [
+        {
+          "SourceImageName": "string",
+          "DestinationRegion": "string",
+          "DestinationImageName": "string",
+          "DestinationImageDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DestinationImageName": "string"
+        }
+      ]
+  CreateDirectoryConfig:
+    description: |-
+      Creates a Directory Config object in AppStream 2.0. This object includes the configuration information required to join fleets and image builders to Microsoft Active Directory domains.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_CreateDirectoryConfig.html
+    example:
+      inputs: [
+        {
+          "DirectoryName": "string",
+          "ServiceAccountCredentials": {
+            "AccountName": "string",
+            "AccountPassword": "string"
+          },
+          "OrganizationalUnitDistinguishedNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "DirectoryConfig": {
+            "CreatedTime": 1481289211.615,
+            "DirectoryName": "string",
+            "ServiceAccountCredentials": {
+              "AccountName": "string",
+              "AccountPassword": "string"
+            },
+            "OrganizationalUnitDistinguishedNames": [
+              "string"
+            ]
+          }
+        }
+      ]
+  CreateFleet:
+    description: |-
+      Creates a fleet. A fleet consists of streaming instances that run a specified image.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_CreateFleet.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "ImageArn": "string",
+          "FleetType": "string",
+          "ImageName": "string",
+          "VpcConfig": {
+            "SubnetIds": [
+              "string"
+            ],
+            "SecurityGroupIds": [
+              "string"
+            ]
+          },
+          "IamRoleArn": "string",
+          "StreamView": "string",
+          "Description": "string",
+          "DisplayName": "string",
+          "InstanceType": "string",
+          "DomainJoinInfo": {
+            "DirectoryName": "string",
+            "OrganizationalUnitDistinguishedName": "string"
+          },
+          "ComputeCapacity": {
+            "DesiredInstances": 1
+          },
+          "MaxUserDurationInSeconds": 1,
+          "DisconnectTimeoutInSeconds": 1,
+          "EnableDefaultInternetAccess": false,
+          "IdleDisconnectTimeoutInSeconds": 1
+        }
+      ]
+      outputs: [
+        {
+          "Fleet": {
+            "Arn": "string",
+            "Name": "string",
+            "State": "string",
+            "ImageArn": "string",
+            "FleetType": "string",
+            "ImageName": "string",
+            "VpcConfig": {
+              "SubnetIds": [
+                "string"
+              ],
+              "SecurityGroupIds": [
+                "string"
+              ]
+            },
+            "IamRoleArn": "string",
+            "StreamView": "string",
+            "CreatedTime": 1481289211.615,
+            "Description": "string",
+            "DisplayName": "string",
+            "FleetErrors": [
+              {
+                "ErrorCode": "string",
+                "ErrorMessage": "string"
+              }
+            ],
+            "InstanceType": "string",
+            "DomainJoinInfo": {
+              "DirectoryName": "string",
+              "OrganizationalUnitDistinguishedName": "string"
+            },
+            "ComputeCapacityStatus": {
+              "InUse": 1,
+              "Desired": 1,
+              "Running": 1,
+              "Available": 1
+            },
+            "MaxUserDurationInSeconds": 1,
+            "DisconnectTimeoutInSeconds": 1,
+            "EnableDefaultInternetAccess": false,
+            "IdleDisconnectTimeoutInSeconds": 1
+          }
+        }
+      ]
+  CreateImageBuilder:
+    description: |-
+      Creates an image builder. An image builder is a virtual machine that is used to create an image.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_CreateImageBuilder.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "ImageArn": "string",
+          "ImageName": "string",
+          "VpcConfig": {
+            "SubnetIds": [
+              "string"
+            ],
+            "SecurityGroupIds": [
+              "string"
+            ]
+          },
+          "IamRoleArn": "string",
+          "Description": "string",
+          "DisplayName": "string",
+          "InstanceType": "string",
+          "DomainJoinInfo": {
+            "DirectoryName": "string",
+            "OrganizationalUnitDistinguishedName": "string"
+          },
+          "AccessEndpoints": [
+            {
+              "VpceId": "string",
+              "EndpointType": "string"
+            }
+          ],
+          "AppstreamAgentVersion": "string",
+          "EnableDefaultInternetAccess": false
+        }
+      ]
+      outputs: [
+        {
+          "ImageBuilder": {
+            "Arn": "string",
+            "Name": "string",
+            "State": "string",
+            "ImageArn": "string",
+            "Platform": "string",
+            "VpcConfig": {
+              "SubnetIds": [
+                "string"
+              ],
+              "SecurityGroupIds": [
+                "string"
+              ]
+            },
+            "IamRoleArn": "string",
+            "CreatedTime": 1481289211.615,
+            "Description": "string",
+            "DisplayName": "string",
+            "InstanceType": "string",
+            "DomainJoinInfo": {
+              "DirectoryName": "string",
+              "OrganizationalUnitDistinguishedName": "string"
+            },
+            "AccessEndpoints": [
+              {
+                "VpceId": "string",
+                "EndpointType": "string"
+              }
+            ],
+            "StateChangeReason": {
+              "Code": "string",
+              "Message": "string"
+            },
+            "ImageBuilderErrors": [
+              {
+                "ErrorCode": "string",
+                "ErrorMessage": "string",
+                "ErrorTimestamp": 1481289211.615
+              }
+            ],
+            "AppstreamAgentVersion": "string",
+            "NetworkAccessConfiguration": {
+              "EniId": "string",
+              "EniPrivateIpAddress": "string"
+            },
+            "EnableDefaultInternetAccess": false
+          }
+        }
+      ]
+  CreateImageBuilderStreamingURL:
+    description: |-
+      Creates a URL to start an image builder streaming session.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_CreateImageBuilderStreamingURL.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Validity": 1
+        }
+      ]
+      outputs: [
+        {
+          "Expires": 1481289211.615,
+          "StreamingURL": "string"
+        }
+      ]
+  CreateStack:
+    description: |-
+      Creates a stack to start streaming applications to users. A stack consists of an associated fleet, user access policies, and storage configurations.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_CreateStack.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Description": "string",
+          "DisplayName": "string",
+          "FeedbackURL": "string",
+          "RedirectURL": "string",
+          "UserSettings": [
+            {
+              "Action": "string",
+              "Permission": "string"
+            }
+          ],
+          "AccessEndpoints": [
+            {
+              "VpceId": "string",
+              "EndpointType": "string"
+            }
+          ],
+          "EmbedHostDomains": [
+            "string"
+          ],
+          "StorageConnectors": [
+            {
+              "Domains": [
+                "string"
+              ],
+              "ConnectorType": "string",
+              "ResourceIdentifier": "string"
+            }
+          ],
+          "ApplicationSettings": {
+            "Enabled": false,
+            "SettingsGroup": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Stack": {
+            "Arn": "string",
+            "Name": "string",
+            "CreatedTime": 1481289211.615,
+            "Description": "string",
+            "DisplayName": "string",
+            "FeedbackURL": "string",
+            "RedirectURL": "string",
+            "StackErrors": [
+              {
+                "ErrorCode": "string",
+                "ErrorMessage": "string"
+              }
+            ],
+            "UserSettings": [
+              {
+                "Action": "string",
+                "Permission": "string"
+              }
+            ],
+            "AccessEndpoints": [
+              {
+                "VpceId": "string",
+                "EndpointType": "string"
+              }
+            ],
+            "EmbedHostDomains": [
+              "string"
+            ],
+            "StorageConnectors": [
+              {
+                "Domains": [
+                  "string"
+                ],
+                "ConnectorType": "string",
+                "ResourceIdentifier": "string"
+              }
+            ],
+            "ApplicationSettings": {
+              "Enabled": false,
+              "S3BucketName": "string",
+              "SettingsGroup": "string"
+            }
+          }
+        }
+      ]
+  CreateStreamingURL:
+    description: |-
+      Creates a temporary URL to start an AppStream 2.0 streaming session for the specified user. A streaming URL enables application streaming to be tested without user setup.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_CreateStreamingURL.html
+    example:
+      inputs: [
+        {
+          "UserId": "string",
+          "Validity": 1,
+          "FleetName": "string",
+          "StackName": "string",
+          "ApplicationId": "string",
+          "SessionContext": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Expires": 1481289211.615,
+          "StreamingURL": "string"
+        }
+      ]
+  CreateUpdatedImage:
+    description: |-
+      Creates a new image with the latest Windows operating system updates, driver updates, and AppStream 2.0 agent software.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_CreateUpdatedImage.html
+    example:
+      inputs: [
+        {
+          "dryRun": false,
+          "newImageName": "string",
+          "newImageTags": {
+            "string": "string"
+          },
+          "existingImageName": "string",
+          "newImageDescription": "string",
+          "newImageDisplayName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "image": {
+            "Arn": "string",
+            "Name": "string",
+            "State": "string",
+            "Platform": "string",
+            "Visibility": "string",
+            "CreatedTime": 1481289211.615,
+            "Description": "string",
+            "DisplayName": "string",
+            "ImageErrors": [
+              {
+                "ErrorCode": "string",
+                "ErrorMessage": "string",
+                "ErrorTimestamp": 1481289211.615
+              }
+            ],
+            "Applications": [
+              {
+                "Name": "string",
+                "Enabled": false,
+                "IconURL": "string",
+                "Metadata": {
+                  "string": "string"
+                },
+                "LaunchPath": "string",
+                "DisplayName": "string",
+                "LaunchParameters": "string"
+              }
+            ],
+            "BaseImageArn": "string",
+            "ImageBuilderName": "string",
+            "ImagePermissions": {
+              "allowFleet": false,
+              "allowImageBuilder": false
+            },
+            "StateChangeReason": {
+              "Code": "string",
+              "Message": "string"
+            },
+            "AppstreamAgentVersion": "string",
+            "ImageBuilderSupported": false,
+            "PublicBaseImageReleasedDate": 1481289211.615
+          },
+          "canUpdateImage": false
+        }
+      ]
+  CreateUsageReportSubscription:
+    description: |-
+      Creates a usage report subscription. Usage reports are generated daily.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_CreateUsageReportSubscription.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Schedule": "string",
+          "S3BucketName": "string"
+        }
+      ]
+  CreateUser:
+    description: |-
+      Creates a new user in the user pool.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_CreateUser.html
+    example:
+      inputs: [
+        {
+          "LastName": "string",
+          "UserName": "string",
+          "FirstName": "string",
+          "MessageAction": "string",
+          "AuthenticationType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDirectoryConfig:
+    description: |-
+      Deletes the specified Directory Config object from AppStream 2.0. This object includes the information required to join streaming instances to an Active Directory domain.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DeleteDirectoryConfig.html
+    example:
+      inputs: [
+        {
+          "DirectoryName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteFleet:
+    description: |-
+      Deletes the specified fleet.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DeleteFleet.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteImageBuilder:
+    description: |-
+      Deletes the specified image builder and releases the capacity.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DeleteImageBuilder.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ImageBuilder": {
+            "Arn": "string",
+            "Name": "string",
+            "State": "string",
+            "ImageArn": "string",
+            "Platform": "string",
+            "VpcConfig": {
+              "SubnetIds": [
+                "string"
+              ],
+              "SecurityGroupIds": [
+                "string"
+              ]
+            },
+            "IamRoleArn": "string",
+            "CreatedTime": 1481289211.615,
+            "Description": "string",
+            "DisplayName": "string",
+            "InstanceType": "string",
+            "DomainJoinInfo": {
+              "DirectoryName": "string",
+              "OrganizationalUnitDistinguishedName": "string"
+            },
+            "AccessEndpoints": [
+              {
+                "VpceId": "string",
+                "EndpointType": "string"
+              }
+            ],
+            "StateChangeReason": {
+              "Code": "string",
+              "Message": "string"
+            },
+            "ImageBuilderErrors": [
+              {
+                "ErrorCode": "string",
+                "ErrorMessage": "string",
+                "ErrorTimestamp": 1481289211.615
+              }
+            ],
+            "AppstreamAgentVersion": "string",
+            "NetworkAccessConfiguration": {
+              "EniId": "string",
+              "EniPrivateIpAddress": "string"
+            },
+            "EnableDefaultInternetAccess": false
+          }
+        }
+      ]
+  DeleteImage:
+    description: |-
+      Deletes the specified image. You cannot delete an image when it is in use. After you delete an image, you cannot provision new capacity using the image.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DeleteImage.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Image": {
+            "Arn": "string",
+            "Name": "string",
+            "State": "string",
+            "Platform": "string",
+            "Visibility": "string",
+            "CreatedTime": 1481289211.615,
+            "Description": "string",
+            "DisplayName": "string",
+            "ImageErrors": [
+              {
+                "ErrorCode": "string",
+                "ErrorMessage": "string",
+                "ErrorTimestamp": 1481289211.615
+              }
+            ],
+            "Applications": [
+              {
+                "Name": "string",
+                "Enabled": false,
+                "IconURL": "string",
+                "Metadata": {
+                  "string": "string"
+                },
+                "LaunchPath": "string",
+                "DisplayName": "string",
+                "LaunchParameters": "string"
+              }
+            ],
+            "BaseImageArn": "string",
+            "ImageBuilderName": "string",
+            "ImagePermissions": {
+              "allowFleet": false,
+              "allowImageBuilder": false
+            },
+            "StateChangeReason": {
+              "Code": "string",
+              "Message": "string"
+            },
+            "AppstreamAgentVersion": "string",
+            "ImageBuilderSupported": false,
+            "PublicBaseImageReleasedDate": 1481289211.615
+          }
+        }
+      ]
+  DeleteImagePermissions:
+    description: |-
+      Deletes permissions for the specified private image. After you delete permissions for an image, AWS accounts to which you previously granted these permissions can no longer use the image.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DeleteImagePermissions.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "SharedAccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteStack:
+    description: |-
+      Deletes the specified stack. After the stack is deleted, the application streaming environment provided by the stack is no longer available to users. Also, any reservations made for application streaming sessions for the stack are released.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DeleteStack.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteUsageReportSubscription:
+    description: |-
+      Disables usage report generation.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DeleteUsageReportSubscription.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteUser:
+    description: |-
+      Deletes a user from the user pool.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DeleteUser.html
+    example:
+      inputs: [
+        {
+          "UserName": "string",
+          "AuthenticationType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeDirectoryConfigs:
+    description: |-
+      Retrieves a list that describes one or more specified Directory Config objects for AppStream 2.0, if the names for these objects are provided. Otherwise, all Directory Config objects in the account are described. These objects include the configuration information required to join fleets and image builders to Microsoft Active Directory domains.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DescribeDirectoryConfigs.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "DirectoryNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DirectoryConfigs": [
+            {
+              "CreatedTime": 1481289211.615,
+              "DirectoryName": "string",
+              "ServiceAccountCredentials": {
+                "AccountName": "string",
+                "AccountPassword": "string"
+              },
+              "OrganizationalUnitDistinguishedNames": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  DescribeFleets:
+    description: |-
+      Retrieves a list that describes one or more specified fleets, if the fleet names are provided. Otherwise, all fleets in the account are described.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DescribeFleets.html
+    example:
+      inputs: [
+        {
+          "Names": [
+            "string"
+          ],
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Fleets": [
+            {
+              "Arn": "string",
+              "Name": "string",
+              "State": "string",
+              "ImageArn": "string",
+              "FleetType": "string",
+              "ImageName": "string",
+              "VpcConfig": {
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ]
+              },
+              "IamRoleArn": "string",
+              "StreamView": "string",
+              "CreatedTime": 1481289211.615,
+              "Description": "string",
+              "DisplayName": "string",
+              "FleetErrors": [
+                {
+                  "ErrorCode": "string",
+                  "ErrorMessage": "string"
+                }
+              ],
+              "InstanceType": "string",
+              "DomainJoinInfo": {
+                "DirectoryName": "string",
+                "OrganizationalUnitDistinguishedName": "string"
+              },
+              "ComputeCapacityStatus": {
+                "InUse": 1,
+                "Desired": 1,
+                "Running": 1,
+                "Available": 1
+              },
+              "MaxUserDurationInSeconds": 1,
+              "DisconnectTimeoutInSeconds": 1,
+              "EnableDefaultInternetAccess": false,
+              "IdleDisconnectTimeoutInSeconds": 1
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeImageBuilders:
+    description: |-
+      Retrieves a list that describes one or more specified image builders, if the image builder names are provided. Otherwise, all image builders in the account are described.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DescribeImageBuilders.html
+    example:
+      inputs: [
+        {
+          "Names": [
+            "string"
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ImageBuilders": [
+            {
+              "Arn": "string",
+              "Name": "string",
+              "State": "string",
+              "ImageArn": "string",
+              "Platform": "string",
+              "VpcConfig": {
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ]
+              },
+              "IamRoleArn": "string",
+              "CreatedTime": 1481289211.615,
+              "Description": "string",
+              "DisplayName": "string",
+              "InstanceType": "string",
+              "DomainJoinInfo": {
+                "DirectoryName": "string",
+                "OrganizationalUnitDistinguishedName": "string"
+              },
+              "AccessEndpoints": [
+                {
+                  "VpceId": "string",
+                  "EndpointType": "string"
+                }
+              ],
+              "StateChangeReason": {
+                "Code": "string",
+                "Message": "string"
+              },
+              "ImageBuilderErrors": [
+                {
+                  "ErrorCode": "string",
+                  "ErrorMessage": "string",
+                  "ErrorTimestamp": 1481289211.615
+                }
+              ],
+              "AppstreamAgentVersion": "string",
+              "NetworkAccessConfiguration": {
+                "EniId": "string",
+                "EniPrivateIpAddress": "string"
+              },
+              "EnableDefaultInternetAccess": false
+            }
+          ]
+        }
+      ]
+  DescribeImagePermissions:
+    description: |-
+      Retrieves a list that describes the permissions for shared AWS account IDs on a private image that you own.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DescribeImagePermissions.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "NextToken": "string",
+          "MaxResults": 1,
+          "SharedAwsAccountIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "NextToken": "string",
+          "SharedImagePermissionsList": [
+            {
+              "sharedAccountId": "string",
+              "imagePermissions": {
+                "allowFleet": false,
+                "allowImageBuilder": false
+              }
+            }
+          ]
+        }
+      ]
+  DescribeImages:
+    description: |-
+      Retrieves a list that describes one or more specified images, if the image names or image ARNs are provided. Otherwise, all images in the account are described.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DescribeImages.html
+    example:
+      inputs: [
+        {
+          "Arns": [
+            "string"
+          ],
+          "Type": "string",
+          "Names": [
+            "string"
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Images": [
+            {
+              "Arn": "string",
+              "Name": "string",
+              "State": "string",
+              "Platform": "string",
+              "Visibility": "string",
+              "CreatedTime": 1481289211.615,
+              "Description": "string",
+              "DisplayName": "string",
+              "ImageErrors": [
+                {
+                  "ErrorCode": "string",
+                  "ErrorMessage": "string",
+                  "ErrorTimestamp": 1481289211.615
+                }
+              ],
+              "Applications": [
+                {
+                  "Name": "string",
+                  "Enabled": false,
+                  "IconURL": "string",
+                  "Metadata": {
+                    "string": "string"
+                  },
+                  "LaunchPath": "string",
+                  "DisplayName": "string",
+                  "LaunchParameters": "string"
+                }
+              ],
+              "BaseImageArn": "string",
+              "ImageBuilderName": "string",
+              "ImagePermissions": {
+                "allowFleet": false,
+                "allowImageBuilder": false
+              },
+              "StateChangeReason": {
+                "Code": "string",
+                "Message": "string"
+              },
+              "AppstreamAgentVersion": "string",
+              "ImageBuilderSupported": false,
+              "PublicBaseImageReleasedDate": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeSessions:
+    description: |-
+      Retrieves a list that describes the streaming sessions for a specified stack and fleet. If a UserId is provided for the stack and fleet, only streaming sessions for that user are described. If an authentication type is not provided, the default is to authenticate users using a streaming URL.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DescribeSessions.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "UserId": "string",
+          "FleetName": "string",
+          "NextToken": "string",
+          "StackName": "string",
+          "AuthenticationType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Sessions": [
+            {
+              "Id": "string",
+              "State": "string",
+              "UserId": "string",
+              "FleetName": "string",
+              "StackName": "string",
+              "StartTime": 1481289211.615,
+              "ConnectionState": "string",
+              "MaxExpirationTime": 1481289211.615,
+              "AuthenticationType": "string",
+              "NetworkAccessConfiguration": {
+                "EniId": "string",
+                "EniPrivateIpAddress": "string"
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeStacks:
+    description: |-
+      Retrieves a list that describes one or more specified stacks, if the stack names are provided. Otherwise, all stacks in the account are described.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DescribeStacks.html
+    example:
+      inputs: [
+        {
+          "Names": [
+            "string"
+          ],
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Stacks": [
+            {
+              "Arn": "string",
+              "Name": "string",
+              "CreatedTime": 1481289211.615,
+              "Description": "string",
+              "DisplayName": "string",
+              "FeedbackURL": "string",
+              "RedirectURL": "string",
+              "StackErrors": [
+                {
+                  "ErrorCode": "string",
+                  "ErrorMessage": "string"
+                }
+              ],
+              "UserSettings": [
+                {
+                  "Action": "string",
+                  "Permission": "string"
+                }
+              ],
+              "AccessEndpoints": [
+                {
+                  "VpceId": "string",
+                  "EndpointType": "string"
+                }
+              ],
+              "EmbedHostDomains": [
+                "string"
+              ],
+              "StorageConnectors": [
+                {
+                  "Domains": [
+                    "string"
+                  ],
+                  "ConnectorType": "string",
+                  "ResourceIdentifier": "string"
+                }
+              ],
+              "ApplicationSettings": {
+                "Enabled": false,
+                "S3BucketName": "string",
+                "SettingsGroup": "string"
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeUsageReportSubscriptions:
+    description: |-
+      Retrieves a list that describes one or more usage report subscriptions.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DescribeUsageReportSubscriptions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "UsageReportSubscriptions": [
+            {
+              "Schedule": "string",
+              "S3BucketName": "string",
+              "SubscriptionErrors": [
+                {
+                  "ErrorCode": "string",
+                  "ErrorMessage": "string"
+                }
+              ],
+              "LastGeneratedReportDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  DescribeUsers:
+    description: |-
+      Retrieves a list that describes one or more specified users in the user pool.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DescribeUsers.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "AuthenticationType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Users": [
+            {
+              "Arn": "string",
+              "Status": "string",
+              "Enabled": false,
+              "LastName": "string",
+              "UserName": "string",
+              "FirstName": "string",
+              "CreatedTime": 1481289211.615,
+              "AuthenticationType": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeUserStackAssociations:
+    description: |-
+      Retrieves a list that describes the UserStackAssociation objects.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DescribeUserStackAssociations.html
+    example:
+      inputs: [
+        {
+          "UserName": "string",
+          "NextToken": "string",
+          "StackName": "string",
+          "MaxResults": 1,
+          "AuthenticationType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "UserStackAssociations": [
+            {
+              "UserName": "string",
+              "StackName": "string",
+              "AuthenticationType": "string",
+              "SendEmailNotification": false
+            }
+          ]
+        }
+      ]
+  DisableUser:
+    description: |-
+      Disables the specified user in the user pool. Users can't sign in to AppStream 2.0 until they are re-enabled. This action does not delete the user.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DisableUser.html
+    example:
+      inputs: [
+        {
+          "UserName": "string",
+          "AuthenticationType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DisassociateFleet:
+    description: |-
+      Disassociates the specified fleet from the specified stack.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_DisassociateFleet.html
+    example:
+      inputs: [
+        {
+          "FleetName": "string",
+          "StackName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  EnableUser:
+    description: |-
+      Enables a user in the user pool. After being enabled, users can sign in to AppStream 2.0 and open applications from the stacks to which they are assigned.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_EnableUser.html
+    example:
+      inputs: [
+        {
+          "UserName": "string",
+          "AuthenticationType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ExpireSession:
+    description: |-
+      Immediately stops the specified streaming session.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_ExpireSession.html
+    example:
+      inputs: [
+        {
+          "SessionId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListAssociatedFleets:
+    description: |-
+      Retrieves the name of the fleet that is associated with the specified stack.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_ListAssociatedFleets.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "StackName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListAssociatedStacks:
+    description: |-
+      Retrieves the name of the stack with which the specified fleet is associated.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_ListAssociatedStacks.html
+    example:
+      inputs: [
+        {
+          "FleetName": "string",
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListTagsForResource:
+    description: |-
+      Retrieves a list of all tags for the specified AppStream 2.0 resource. You can tag AppStream 2.0 image builders, images, fleets, and stacks.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  StartFleet:
+    description: |-
+      Starts the specified fleet.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_StartFleet.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartImageBuilder:
+    description: |-
+      Starts the specified image builder.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_StartImageBuilder.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AppstreamAgentVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ImageBuilder": {
+            "Arn": "string",
+            "Name": "string",
+            "State": "string",
+            "ImageArn": "string",
+            "Platform": "string",
+            "VpcConfig": {
+              "SubnetIds": [
+                "string"
+              ],
+              "SecurityGroupIds": [
+                "string"
+              ]
+            },
+            "IamRoleArn": "string",
+            "CreatedTime": 1481289211.615,
+            "Description": "string",
+            "DisplayName": "string",
+            "InstanceType": "string",
+            "DomainJoinInfo": {
+              "DirectoryName": "string",
+              "OrganizationalUnitDistinguishedName": "string"
+            },
+            "AccessEndpoints": [
+              {
+                "VpceId": "string",
+                "EndpointType": "string"
+              }
+            ],
+            "StateChangeReason": {
+              "Code": "string",
+              "Message": "string"
+            },
+            "ImageBuilderErrors": [
+              {
+                "ErrorCode": "string",
+                "ErrorMessage": "string",
+                "ErrorTimestamp": 1481289211.615
+              }
+            ],
+            "AppstreamAgentVersion": "string",
+            "NetworkAccessConfiguration": {
+              "EniId": "string",
+              "EniPrivateIpAddress": "string"
+            },
+            "EnableDefaultInternetAccess": false
+          }
+        }
+      ]
+  StopFleet:
+    description: |-
+      Stops the specified fleet.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_StopFleet.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StopImageBuilder:
+    description: |-
+      Stops the specified image builder.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_StopImageBuilder.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ImageBuilder": {
+            "Arn": "string",
+            "Name": "string",
+            "State": "string",
+            "ImageArn": "string",
+            "Platform": "string",
+            "VpcConfig": {
+              "SubnetIds": [
+                "string"
+              ],
+              "SecurityGroupIds": [
+                "string"
+              ]
+            },
+            "IamRoleArn": "string",
+            "CreatedTime": 1481289211.615,
+            "Description": "string",
+            "DisplayName": "string",
+            "InstanceType": "string",
+            "DomainJoinInfo": {
+              "DirectoryName": "string",
+              "OrganizationalUnitDistinguishedName": "string"
+            },
+            "AccessEndpoints": [
+              {
+                "VpceId": "string",
+                "EndpointType": "string"
+              }
+            ],
+            "StateChangeReason": {
+              "Code": "string",
+              "Message": "string"
+            },
+            "ImageBuilderErrors": [
+              {
+                "ErrorCode": "string",
+                "ErrorMessage": "string",
+                "ErrorTimestamp": 1481289211.615
+              }
+            ],
+            "AppstreamAgentVersion": "string",
+            "NetworkAccessConfiguration": {
+              "EniId": "string",
+              "EniPrivateIpAddress": "string"
+            },
+            "EnableDefaultInternetAccess": false
+          }
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds or overwrites one or more tags for the specified AppStream 2.0 resource. You can tag AppStream 2.0 image builders, images, fleets, and stacks.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Disassociates one or more specified tags from the specified AppStream 2.0 resource.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateDirectoryConfig:
+    description: |-
+      Updates the specified Directory Config object in AppStream 2.0. This object includes the configuration information required to join fleets and image builders to Microsoft Active Directory domains.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_UpdateDirectoryConfig.html
+    example:
+      inputs: [
+        {
+          "DirectoryName": "string",
+          "ServiceAccountCredentials": {
+            "AccountName": "string",
+            "AccountPassword": "string"
+          },
+          "OrganizationalUnitDistinguishedNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "DirectoryConfig": {
+            "CreatedTime": 1481289211.615,
+            "DirectoryName": "string",
+            "ServiceAccountCredentials": {
+              "AccountName": "string",
+              "AccountPassword": "string"
+            },
+            "OrganizationalUnitDistinguishedNames": [
+              "string"
+            ]
+          }
+        }
+      ]
+  UpdateFleet:
+    description: |-
+      Updates the specified fleet.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_UpdateFleet.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "ImageArn": "string",
+          "ImageName": "string",
+          "VpcConfig": {
+            "SubnetIds": [
+              "string"
+            ],
+            "SecurityGroupIds": [
+              "string"
+            ]
+          },
+          "IamRoleArn": "string",
+          "StreamView": "string",
+          "Description": "string",
+          "DisplayName": "string",
+          "InstanceType": "string",
+          "DomainJoinInfo": {
+            "DirectoryName": "string",
+            "OrganizationalUnitDistinguishedName": "string"
+          },
+          "ComputeCapacity": {
+            "DesiredInstances": 1
+          },
+          "DeleteVpcConfig": false,
+          "AttributesToDelete": [
+            "string"
+          ],
+          "MaxUserDurationInSeconds": 1,
+          "DisconnectTimeoutInSeconds": 1,
+          "EnableDefaultInternetAccess": false,
+          "IdleDisconnectTimeoutInSeconds": 1
+        }
+      ]
+      outputs: [
+        {
+          "Fleet": {
+            "Arn": "string",
+            "Name": "string",
+            "State": "string",
+            "ImageArn": "string",
+            "FleetType": "string",
+            "ImageName": "string",
+            "VpcConfig": {
+              "SubnetIds": [
+                "string"
+              ],
+              "SecurityGroupIds": [
+                "string"
+              ]
+            },
+            "IamRoleArn": "string",
+            "StreamView": "string",
+            "CreatedTime": 1481289211.615,
+            "Description": "string",
+            "DisplayName": "string",
+            "FleetErrors": [
+              {
+                "ErrorCode": "string",
+                "ErrorMessage": "string"
+              }
+            ],
+            "InstanceType": "string",
+            "DomainJoinInfo": {
+              "DirectoryName": "string",
+              "OrganizationalUnitDistinguishedName": "string"
+            },
+            "ComputeCapacityStatus": {
+              "InUse": 1,
+              "Desired": 1,
+              "Running": 1,
+              "Available": 1
+            },
+            "MaxUserDurationInSeconds": 1,
+            "DisconnectTimeoutInSeconds": 1,
+            "EnableDefaultInternetAccess": false,
+            "IdleDisconnectTimeoutInSeconds": 1
+          }
+        }
+      ]
+  UpdateImagePermissions:
+    description: |-
+      Adds or updates permissions for the specified private image.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_UpdateImagePermissions.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "SharedAccountId": "string",
+          "ImagePermissions": {
+            "allowFleet": false,
+            "allowImageBuilder": false
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateStack:
+    description: |-
+      Updates the specified fields for the specified stack.
+    versions:
+      from: 2016.12.1
+    link: https://docs.aws.amazon.com/appstream2/latest/APIReference/API_UpdateStack.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Description": "string",
+          "DisplayName": "string",
+          "FeedbackURL": "string",
+          "RedirectURL": "string",
+          "UserSettings": [
+            {
+              "Action": "string",
+              "Permission": "string"
+            }
+          ],
+          "AccessEndpoints": [
+            {
+              "VpceId": "string",
+              "EndpointType": "string"
+            }
+          ],
+          "EmbedHostDomains": [
+            "string"
+          ],
+          "StorageConnectors": [
+            {
+              "Domains": [
+                "string"
+              ],
+              "ConnectorType": "string",
+              "ResourceIdentifier": "string"
+            }
+          ],
+          "AttributesToDelete": [
+            "string"
+          ],
+          "ApplicationSettings": {
+            "Enabled": false,
+            "SettingsGroup": "string"
+          },
+          "DeleteStorageConnectors": false
+        }
+      ]
+      outputs: [
+        {
+          "Stack": {
+            "Arn": "string",
+            "Name": "string",
+            "CreatedTime": 1481289211.615,
+            "Description": "string",
+            "DisplayName": "string",
+            "FeedbackURL": "string",
+            "RedirectURL": "string",
+            "StackErrors": [
+              {
+                "ErrorCode": "string",
+                "ErrorMessage": "string"
+              }
+            ],
+            "UserSettings": [
+              {
+                "Action": "string",
+                "Permission": "string"
+              }
+            ],
+            "AccessEndpoints": [
+              {
+                "VpceId": "string",
+                "EndpointType": "string"
+              }
+            ],
+            "EmbedHostDomains": [
+              "string"
+            ],
+            "StorageConnectors": [
+              {
+                "Domains": [
+                  "string"
+                ],
+                "ConnectorType": "string",
+                "ResourceIdentifier": "string"
+              }
+            ],
+            "ApplicationSettings": {
+              "Enabled": false,
+              "S3BucketName": "string",
+              "SettingsGroup": "string"
+            }
+          }
+        }
+      ]

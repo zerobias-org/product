@@ -1,0 +1,2204 @@
+Product:
+  name: AWS OpsWorks
+  versions: [2013.2.18]
+  package: amazon.aws.opsworks
+  description: |-
+    AWS OpsWorks
+  link: https://docs.aws.amazon.com/opsworks/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AssignInstance:
+    description: |-
+      Assign a registered instance to a layer.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_AssignInstance.html
+    example:
+      inputs: [
+        {
+          "LayerIds": [
+            "string"
+          ],
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  AssignVolume:
+    description: |-
+      Assigns one of the stack's registered Amazon EBS volumes to a specified instance. The volume must first be registered with the stack by calling RegisterVolume. After you register the volume, you must call UpdateVolume to specify a mount point before calling AssignVolume. For more information, see Resource Management.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_AssignVolume.html
+    example:
+      inputs: [
+        {
+          "VolumeId": "string",
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  AssociateElasticIp:
+    description: |-
+      Associates one of the stack's registered Elastic IP addresses with a specified instance. The address must first be registered with the stack by calling RegisterElasticIp. For more information, see Resource Management.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_AssociateElasticIp.html
+    example:
+      inputs: [
+        {
+          "ElasticIp": "string",
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  AttachElasticLoadBalancer:
+    description: |-
+      Attaches an Elastic Load Balancing load balancer to a specified layer. AWS OpsWorks Stacks does not support Application Load Balancer. You can only use Classic Load Balancer with AWS OpsWorks Stacks. For more information, see Elastic Load Balancing.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_AttachElasticLoadBalancer.html
+    example:
+      inputs: [
+        {
+          "LayerId": "string",
+          "ElasticLoadBalancerName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CloneStack:
+    description: |-
+      Creates a clone of a specified stack. For more information, see Clone a Stack. By default, all parameters are set to the values used by the parent stack.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_CloneStack.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "VpcId": "string",
+          "Region": "string",
+          "DefaultOs": "string",
+          "Attributes": {
+            "string": "string"
+          },
+          "CustomJson": "string",
+          "CloneAppIds": [
+            "string"
+          ],
+          "AgentVersion": "string",
+          "HostnameTheme": "string",
+          "SourceStackId": "string",
+          "ServiceRoleArn": "string",
+          "DefaultSubnetId": "string",
+          "ClonePermissions": false,
+          "ChefConfiguration": {
+            "ManageBerkshelf": false,
+            "BerkshelfVersion": "string"
+          },
+          "DefaultSshKeyName": "string",
+          "UseCustomCookbooks": false,
+          "ConfigurationManager": {
+            "Name": "string",
+            "Version": "string"
+          },
+          "CustomCookbooksSource": {
+            "Url": "string",
+            "Type": "string",
+            "SshKey": "string",
+            "Password": "string",
+            "Revision": "string",
+            "Username": "string"
+          },
+          "DefaultRootDeviceType": "string",
+          "DefaultAvailabilityZone": "string",
+          "DefaultInstanceProfileArn": "string",
+          "UseOpsworksSecurityGroups": false
+        }
+      ]
+      outputs: [
+        {
+          "StackId": "string"
+        }
+      ]
+  CreateApp:
+    description: |-
+      Creates an app for a specified stack. For more information, see Creating Apps.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_CreateApp.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Type": "string",
+          "Domains": [
+            "string"
+          ],
+          "StackId": "string",
+          "AppSource": {
+            "Url": "string",
+            "Type": "string",
+            "SshKey": "string",
+            "Password": "string",
+            "Revision": "string",
+            "Username": "string"
+          },
+          "EnableSsl": false,
+          "Shortname": "string",
+          "Attributes": {
+            "string": "string"
+          },
+          "DataSources": [
+            {
+              "Arn": "string",
+              "Type": "string",
+              "DatabaseName": "string"
+            }
+          ],
+          "Description": "string",
+          "Environment": [
+            {
+              "Key": "string",
+              "Value": "string",
+              "Secure": false
+            }
+          ],
+          "SslConfiguration": {
+            "Chain": "string",
+            "PrivateKey": "string",
+            "Certificate": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateDeployment:
+    description: |-
+      Runs deployment or stack commands. For more information, see Deploying Apps and Run Stack Commands.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_CreateDeployment.html
+    example:
+      inputs: [
+        {
+          "AppId": "string",
+          "Command": {
+            "Args": {
+              "string": [
+                "string"
+              ]
+            },
+            "Name": "string"
+          },
+          "Comment": "string",
+          "StackId": "string",
+          "LayerIds": [
+            "string"
+          ],
+          "CustomJson": "string",
+          "InstanceIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "DeploymentId": "string"
+        }
+      ]
+  CreateInstance:
+    description: |-
+      Creates an instance in a specified stack. For more information, see Adding an Instance to a Layer.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_CreateInstance.html
+    example:
+      inputs: [
+        {
+          "Os": "string",
+          "AmiId": "string",
+          "StackId": "string",
+          "Tenancy": "string",
+          "Hostname": "string",
+          "LayerIds": [
+            "string"
+          ],
+          "SubnetId": "string",
+          "SshKeyName": "string",
+          "AgentVersion": "string",
+          "Architecture": "string",
+          "EbsOptimized": false,
+          "InstanceType": "string",
+          "RootDeviceType": "string",
+          "AutoScalingType": "string",
+          "AvailabilityZone": "string",
+          "VirtualizationType": "string",
+          "BlockDeviceMappings": [
+            {
+              "Ebs": {
+                "Iops": 1,
+                "SnapshotId": "string",
+                "VolumeSize": 1,
+                "VolumeType": "string",
+                "DeleteOnTermination": false
+              },
+              "NoDevice": "string",
+              "DeviceName": "string",
+              "VirtualName": "string"
+            }
+          ],
+          "InstallUpdatesOnBoot": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateLayer:
+    description: |-
+      Creates a layer. For more information, see How to Create a Layer.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_CreateLayer.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Type": "string",
+          "StackId": "string",
+          "Packages": [
+            "string"
+          ],
+          "Shortname": "string",
+          "Attributes": {
+            "string": "string"
+          },
+          "CustomJson": "string",
+          "CustomRecipes": {
+            "Setup": [
+              "string"
+            ],
+            "Deploy": [
+              "string"
+            ],
+            "Shutdown": [
+              "string"
+            ],
+            "Undeploy": [
+              "string"
+            ],
+            "Configure": [
+              "string"
+            ]
+          },
+          "EnableAutoHealing": false,
+          "AutoAssignPublicIps": false,
+          "AutoAssignElasticIps": false,
+          "InstallUpdatesOnBoot": false,
+          "VolumeConfigurations": [
+            {
+              "Iops": 1,
+              "Size": 1,
+              "Encrypted": false,
+              "RaidLevel": 1,
+              "MountPoint": "string",
+              "VolumeType": "string",
+              "NumberOfDisks": 1
+            }
+          ],
+          "CustomSecurityGroupIds": [
+            "string"
+          ],
+          "CustomInstanceProfileArn": "string",
+          "UseEbsOptimizedInstances": false,
+          "CloudWatchLogsConfiguration": {
+            "Enabled": false,
+            "LogStreams": [
+              {
+                "File": "string",
+                "Encoding": "string",
+                "TimeZone": "string",
+                "BatchSize": 1,
+                "BatchCount": 1,
+                "LogGroupName": "string",
+                "BufferDuration": 1,
+                "DatetimeFormat": "string",
+                "InitialPosition": "string",
+                "FileFingerprintLines": "string",
+                "MultiLineStartPattern": "string"
+              }
+            ]
+          },
+          "LifecycleEventConfiguration": {
+            "Shutdown": {
+              "ExecutionTimeout": 1,
+              "DelayUntilElbConnectionsDrained": false
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "LayerId": "string"
+        }
+      ]
+  CreateStack:
+    description: |-
+      Creates a new stack. For more information, see Create a New Stack.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_CreateStack.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "VpcId": "string",
+          "Region": "string",
+          "DefaultOs": "string",
+          "Attributes": {
+            "string": "string"
+          },
+          "CustomJson": "string",
+          "AgentVersion": "string",
+          "HostnameTheme": "string",
+          "ServiceRoleArn": "string",
+          "DefaultSubnetId": "string",
+          "ChefConfiguration": {
+            "ManageBerkshelf": false,
+            "BerkshelfVersion": "string"
+          },
+          "DefaultSshKeyName": "string",
+          "UseCustomCookbooks": false,
+          "ConfigurationManager": {
+            "Name": "string",
+            "Version": "string"
+          },
+          "CustomCookbooksSource": {
+            "Url": "string",
+            "Type": "string",
+            "SshKey": "string",
+            "Password": "string",
+            "Revision": "string",
+            "Username": "string"
+          },
+          "DefaultRootDeviceType": "string",
+          "DefaultAvailabilityZone": "string",
+          "DefaultInstanceProfileArn": "string",
+          "UseOpsworksSecurityGroups": false
+        }
+      ]
+      outputs: [
+        {
+          "StackId": "string"
+        }
+      ]
+  CreateUserProfile:
+    description: |-
+      Creates a new user profile.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_CreateUserProfile.html
+    example:
+      inputs: [
+        {
+          "IamUserArn": "string",
+          "SshUsername": "string",
+          "SshPublicKey": "string",
+          "AllowSelfManagement": false
+        }
+      ]
+      outputs: [
+        {
+          "IamUserArn": "string"
+        }
+      ]
+  DeleteApp:
+    description: |-
+      Deletes a specified app.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DeleteApp.html
+    example:
+      inputs: [
+        {
+          "AppId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteInstance:
+    description: |-
+      Deletes a specified instance, which terminates the associated Amazon EC2 instance. You must stop an instance before you can delete it.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DeleteInstance.html
+    example:
+      inputs: [
+        {
+          "InstanceId": "string",
+          "DeleteVolumes": false,
+          "DeleteElasticIp": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteLayer:
+    description: |-
+      Deletes a specified layer. You must first stop and then delete all associated instances or unassign registered instances. For more information, see How to Delete a Layer.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DeleteLayer.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteStack:
+    description: |-
+      Deletes a specified stack. You must first delete all instances, layers, and apps or deregister registered instances. For more information, see Shut Down a Stack.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DeleteStack.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteUserProfile:
+    description: |-
+      Deletes a user profile.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DeleteUserProfile.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeregisterEcsCluster:
+    description: |-
+      Deregisters a specified Amazon ECS cluster from a stack. For more information, see Resource Management.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DeregisterEcsCluster.html
+    example:
+      inputs: [
+        {
+          "EcsClusterArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeregisterElasticIp:
+    description: |-
+      Deregisters a specified Elastic IP address. The address can then be registered by another stack. For more information, see Resource Management.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DeregisterElasticIp.html
+    example:
+      inputs: [
+        {
+          "ElasticIp": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeregisterInstance:
+    description: |-
+      Deregister a registered Amazon EC2 or on-premises instance. This action removes the instance from the stack and returns it to your control. This action cannot be used with instances that were created with AWS OpsWorks Stacks.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DeregisterInstance.html
+    example:
+      inputs: [
+        {
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeregisterRdsDbInstance:
+    description: |-
+      Deregisters an Amazon RDS instance.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DeregisterRdsDbInstance.html
+    example:
+      inputs: [
+        {
+          "RdsDbInstanceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeregisterVolume:
+    description: |-
+      Deregisters an Amazon EBS volume. The volume can then be registered by another stack. For more information, see Resource Management.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DeregisterVolume.html
+    example:
+      inputs: [
+        {
+          "VolumeId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeAgentVersions:
+    description: |-
+      Describes the available AWS OpsWorks Stacks agent versions. You must specify a stack ID or a configuration manager. DescribeAgentVersions returns a list of available agent versions for the specified stack or configuration manager.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeAgentVersions.html
+    example:
+      inputs: [
+        {
+          "StackId": "string",
+          "ConfigurationManager": {
+            "Name": "string",
+            "Version": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "AgentVersions": [
+            {
+              "Version": "string",
+              "ConfigurationManager": {
+                "Name": "string",
+                "Version": "string"
+              }
+            }
+          ]
+        }
+      ]
+  DescribeApps:
+    description: |-
+      Requests a description of a specified set of apps.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeApps.html
+    example:
+      inputs: [
+        {
+          "AppIds": [
+            "string"
+          ],
+          "StackId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Apps": [
+            {
+              "Name": "string",
+              "Type": "string",
+              "AppId": "string",
+              "Domains": [
+                "string"
+              ],
+              "StackId": "string",
+              "AppSource": {
+                "Url": "string",
+                "Type": "string",
+                "SshKey": "string",
+                "Password": "string",
+                "Revision": "string",
+                "Username": "string"
+              },
+              "CreatedAt": "string",
+              "EnableSsl": false,
+              "Shortname": "string",
+              "Attributes": {
+                "string": "string"
+              },
+              "DataSources": [
+                {
+                  "Arn": "string",
+                  "Type": "string",
+                  "DatabaseName": "string"
+                }
+              ],
+              "Description": "string",
+              "Environment": [
+                {
+                  "Key": "string",
+                  "Value": "string",
+                  "Secure": false
+                }
+              ],
+              "SslConfiguration": {
+                "Chain": "string",
+                "PrivateKey": "string",
+                "Certificate": "string"
+              }
+            }
+          ]
+        }
+      ]
+  DescribeCommands:
+    description: |-
+      Describes the results of specified commands.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeCommands.html
+    example:
+      inputs: [
+        {
+          "CommandIds": [
+            "string"
+          ],
+          "InstanceId": "string",
+          "DeploymentId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Commands": [
+            {
+              "Type": "string",
+              "LogUrl": "string",
+              "Status": "string",
+              "ExitCode": 1,
+              "CommandId": "string",
+              "CreatedAt": "string",
+              "InstanceId": "string",
+              "CompletedAt": "string",
+              "DeploymentId": "string",
+              "AcknowledgedAt": "string"
+            }
+          ]
+        }
+      ]
+  DescribeDeployments:
+    description: |-
+      Requests a description of a specified set of deployments.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeDeployments.html
+    example:
+      inputs: [
+        {
+          "AppId": "string",
+          "StackId": "string",
+          "DeploymentIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Deployments": [
+            {
+              "AppId": "string",
+              "Status": "string",
+              "Command": {
+                "Args": {
+                  "string": [
+                    "string"
+                  ]
+                },
+                "Name": "string"
+              },
+              "Comment": "string",
+              "StackId": "string",
+              "Duration": 1,
+              "CreatedAt": "string",
+              "CustomJson": "string",
+              "IamUserArn": "string",
+              "CompletedAt": "string",
+              "InstanceIds": [
+                "string"
+              ],
+              "DeploymentId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeEcsClusters:
+    description: |-
+      Describes Amazon ECS clusters that are registered with a stack. If you specify only a stack ID, you can use the MaxResults and NextToken parameters to paginate the response. However, AWS OpsWorks Stacks currently supports only one cluster per layer, so the result set has a maximum of one element.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeEcsClusters.html
+    example:
+      inputs: [
+        {
+          "StackId": "string",
+          "NextToken": "string",
+          "MaxResults": 1,
+          "EcsClusterArns": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "EcsClusters": [
+            {
+              "StackId": "string",
+              "RegisteredAt": "string",
+              "EcsClusterArn": "string",
+              "EcsClusterName": "string"
+            }
+          ]
+        }
+      ]
+  DescribeElasticIps:
+    description: |-
+      Describes Elastic IP addresses.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeElasticIps.html
+    example:
+      inputs: [
+        {
+          "Ips": [
+            "string"
+          ],
+          "StackId": "string",
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ElasticIps": [
+            {
+              "Ip": "string",
+              "Name": "string",
+              "Domain": "string",
+              "Region": "string",
+              "InstanceId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeElasticLoadBalancers:
+    description: |-
+      Describes a stack's Elastic Load Balancing instances.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeElasticLoadBalancers.html
+    example:
+      inputs: [
+        {
+          "StackId": "string",
+          "LayerIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ElasticLoadBalancers": [
+            {
+              "VpcId": "string",
+              "Region": "string",
+              "DnsName": "string",
+              "LayerId": "string",
+              "StackId": "string",
+              "SubnetIds": [
+                "string"
+              ],
+              "Ec2InstanceIds": [
+                "string"
+              ],
+              "AvailabilityZones": [
+                "string"
+              ],
+              "ElasticLoadBalancerName": "string"
+            }
+          ]
+        }
+      ]
+  DescribeInstances:
+    description: |-
+      Requests a description of a set of instances.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeInstances.html
+    example:
+      inputs: [
+        {
+          "LayerId": "string",
+          "StackId": "string",
+          "InstanceIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Instances": [
+            {
+              "Os": "string",
+              "Arn": "string",
+              "AmiId": "string",
+              "Status": "string",
+              "StackId": "string",
+              "Tenancy": "string",
+              "Hostname": "string",
+              "LayerIds": [
+                "string"
+              ],
+              "Platform": "string",
+              "PublicIp": "string",
+              "SubnetId": "string",
+              "CreatedAt": "string",
+              "ElasticIp": "string",
+              "PrivateIp": "string",
+              "PublicDns": "string",
+              "InstanceId": "string",
+              "PrivateDns": "string",
+              "ReportedOs": {
+                "Name": "string",
+                "Family": "string",
+                "Version": "string"
+              },
+              "SshKeyName": "string",
+              "AgentVersion": "string",
+              "Architecture": "string",
+              "EbsOptimized": false,
+              "InstanceType": "string",
+              "RegisteredBy": "string",
+              "Ec2InstanceId": "string",
+              "EcsClusterArn": "string",
+              "RootDeviceType": "string",
+              "AutoScalingType": "string",
+              "AvailabilityZone": "string",
+              "SecurityGroupIds": [
+                "string"
+              ],
+              "InstanceProfileArn": "string",
+              "LastServiceErrorId": "string",
+              "RootDeviceVolumeId": "string",
+              "VirtualizationType": "string",
+              "BlockDeviceMappings": [
+                {
+                  "Ebs": {
+                    "Iops": 1,
+                    "SnapshotId": "string",
+                    "VolumeSize": 1,
+                    "VolumeType": "string",
+                    "DeleteOnTermination": false
+                  },
+                  "NoDevice": "string",
+                  "DeviceName": "string",
+                  "VirtualName": "string"
+                }
+              ],
+              "InfrastructureClass": "string",
+              "InstallUpdatesOnBoot": false,
+              "ReportedAgentVersion": "string",
+              "EcsContainerInstanceArn": "string",
+              "SshHostDsaKeyFingerprint": "string",
+              "SshHostRsaKeyFingerprint": "string"
+            }
+          ]
+        }
+      ]
+  DescribeLayers:
+    description: |-
+      Requests a description of one or more layers in a specified stack.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeLayers.html
+    example:
+      inputs: [
+        {
+          "StackId": "string",
+          "LayerIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Layers": [
+            {
+              "Arn": "string",
+              "Name": "string",
+              "Type": "string",
+              "LayerId": "string",
+              "StackId": "string",
+              "Packages": [
+                "string"
+              ],
+              "CreatedAt": "string",
+              "Shortname": "string",
+              "Attributes": {
+                "string": "string"
+              },
+              "CustomJson": "string",
+              "CustomRecipes": {
+                "Setup": [
+                  "string"
+                ],
+                "Deploy": [
+                  "string"
+                ],
+                "Shutdown": [
+                  "string"
+                ],
+                "Undeploy": [
+                  "string"
+                ],
+                "Configure": [
+                  "string"
+                ]
+              },
+              "DefaultRecipes": {
+                "Setup": [
+                  "string"
+                ],
+                "Deploy": [
+                  "string"
+                ],
+                "Shutdown": [
+                  "string"
+                ],
+                "Undeploy": [
+                  "string"
+                ],
+                "Configure": [
+                  "string"
+                ]
+              },
+              "EnableAutoHealing": false,
+              "AutoAssignPublicIps": false,
+              "AutoAssignElasticIps": false,
+              "InstallUpdatesOnBoot": false,
+              "VolumeConfigurations": [
+                {
+                  "Iops": 1,
+                  "Size": 1,
+                  "Encrypted": false,
+                  "RaidLevel": 1,
+                  "MountPoint": "string",
+                  "VolumeType": "string",
+                  "NumberOfDisks": 1
+                }
+              ],
+              "CustomSecurityGroupIds": [
+                "string"
+              ],
+              "CustomInstanceProfileArn": "string",
+              "UseEbsOptimizedInstances": false,
+              "DefaultSecurityGroupNames": [
+                "string"
+              ],
+              "CloudWatchLogsConfiguration": {
+                "Enabled": false,
+                "LogStreams": [
+                  {
+                    "File": "string",
+                    "Encoding": "string",
+                    "TimeZone": "string",
+                    "BatchSize": 1,
+                    "BatchCount": 1,
+                    "LogGroupName": "string",
+                    "BufferDuration": 1,
+                    "DatetimeFormat": "string",
+                    "InitialPosition": "string",
+                    "FileFingerprintLines": "string",
+                    "MultiLineStartPattern": "string"
+                  }
+                ]
+              },
+              "LifecycleEventConfiguration": {
+                "Shutdown": {
+                  "ExecutionTimeout": 1,
+                  "DelayUntilElbConnectionsDrained": false
+                }
+              }
+            }
+          ]
+        }
+      ]
+  DescribeLoadBasedAutoScaling:
+    description: |-
+      Describes load-based auto scaling configurations for specified layers.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeLoadBasedAutoScaling.html
+    example:
+      inputs: [
+        {
+          "LayerIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "LoadBasedAutoScalingConfigurations": [
+            {
+              "Enable": false,
+              "LayerId": "string",
+              "UpScaling": {
+                "Alarms": [
+                  "string"
+                ],
+                "CpuThreshold": 0.1,
+                "InstanceCount": 1,
+                "LoadThreshold": 0.1,
+                "MemoryThreshold": 0.1,
+                "IgnoreMetricsTime": 1,
+                "ThresholdsWaitTime": 1
+              },
+              "DownScaling": {
+                "Alarms": [
+                  "string"
+                ],
+                "CpuThreshold": 0.1,
+                "InstanceCount": 1,
+                "LoadThreshold": 0.1,
+                "MemoryThreshold": 0.1,
+                "IgnoreMetricsTime": 1,
+                "ThresholdsWaitTime": 1
+              }
+            }
+          ]
+        }
+      ]
+  DescribeMyUserProfile:
+    description: |-
+      Describes a user's SSH information.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeMyUserProfile.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "UserProfile": {
+            "Name": "string",
+            "IamUserArn": "string",
+            "SshUsername": "string",
+            "SshPublicKey": "string"
+          }
+        }
+      ]
+  DescribeOperatingSystems:
+    description: |-
+      Describes the operating systems that are supported by AWS OpsWorks Stacks.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeOperatingSystems.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "OperatingSystems": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Type": "string",
+              "Supported": false,
+              "ReportedName": "string",
+              "ReportedVersion": "string",
+              "ConfigurationManagers": [
+                {
+                  "Name": "string",
+                  "Version": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  DescribePermissions:
+    description: |-
+      Describes the permissions for a specified stack.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribePermissions.html
+    example:
+      inputs: [
+        {
+          "StackId": "string",
+          "IamUserArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Permissions": [
+            {
+              "Level": "string",
+              "StackId": "string",
+              "AllowSsh": false,
+              "AllowSudo": false,
+              "IamUserArn": "string"
+            }
+          ]
+        }
+      ]
+  DescribeRaidArrays:
+    description: |-
+      Describe an instance's RAID arrays.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeRaidArrays.html
+    example:
+      inputs: [
+        {
+          "StackId": "string",
+          "InstanceId": "string",
+          "RaidArrayIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "RaidArrays": [
+            {
+              "Iops": 1,
+              "Name": "string",
+              "Size": 1,
+              "Device": "string",
+              "StackId": "string",
+              "CreatedAt": "string",
+              "RaidLevel": 1,
+              "InstanceId": "string",
+              "MountPoint": "string",
+              "VolumeType": "string",
+              "RaidArrayId": "string",
+              "NumberOfDisks": 1,
+              "AvailabilityZone": "string"
+            }
+          ]
+        }
+      ]
+  DescribeRdsDbInstances:
+    description: |-
+      Describes Amazon RDS instances.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeRdsDbInstances.html
+    example:
+      inputs: [
+        {
+          "StackId": "string",
+          "RdsDbInstanceArns": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "RdsDbInstances": [
+            {
+              "DbUser": "string",
+              "Engine": "string",
+              "Region": "string",
+              "Address": "string",
+              "StackId": "string",
+              "DbPassword": "string",
+              "MissingOnRds": false,
+              "RdsDbInstanceArn": "string",
+              "DbInstanceIdentifier": "string"
+            }
+          ]
+        }
+      ]
+  DescribeServiceErrors:
+    description: |-
+      Describes AWS OpsWorks Stacks service errors.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeServiceErrors.html
+    example:
+      inputs: [
+        {
+          "StackId": "string",
+          "InstanceId": "string",
+          "ServiceErrorIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ServiceErrors": [
+            {
+              "Type": "string",
+              "Message": "string",
+              "StackId": "string",
+              "CreatedAt": "string",
+              "InstanceId": "string",
+              "ServiceErrorId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeStackProvisioningParameters:
+    description: |-
+      Requests a description of a stack's provisioning parameters.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeStackProvisioningParameters.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Parameters": {
+            "string": "string"
+          },
+          "AgentInstallerUrl": "string"
+        }
+      ]
+  DescribeStacks:
+    description: |-
+      Requests a description of one or more stacks.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeStacks.html
+    example:
+      inputs: [
+        {
+          "StackIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Stacks": [
+            {
+              "Arn": "string",
+              "Name": "string",
+              "VpcId": "string",
+              "Region": "string",
+              "StackId": "string",
+              "CreatedAt": "string",
+              "DefaultOs": "string",
+              "Attributes": {
+                "string": "string"
+              },
+              "CustomJson": "string",
+              "AgentVersion": "string",
+              "HostnameTheme": "string",
+              "ServiceRoleArn": "string",
+              "DefaultSubnetId": "string",
+              "ChefConfiguration": {
+                "ManageBerkshelf": false,
+                "BerkshelfVersion": "string"
+              },
+              "DefaultSshKeyName": "string",
+              "UseCustomCookbooks": false,
+              "ConfigurationManager": {
+                "Name": "string",
+                "Version": "string"
+              },
+              "CustomCookbooksSource": {
+                "Url": "string",
+                "Type": "string",
+                "SshKey": "string",
+                "Password": "string",
+                "Revision": "string",
+                "Username": "string"
+              },
+              "DefaultRootDeviceType": "string",
+              "DefaultAvailabilityZone": "string",
+              "DefaultInstanceProfileArn": "string",
+              "UseOpsworksSecurityGroups": false
+            }
+          ]
+        }
+      ]
+  DescribeStackSummary:
+    description: |-
+      Describes the number of layers and apps in a specified stack, and the number of instances in each state, such as running_setup or online.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeStackSummary.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "StackSummary": {
+            "Arn": "string",
+            "Name": "string",
+            "StackId": "string",
+            "AppsCount": 1,
+            "LayersCount": 1,
+            "InstancesCount": {
+              "Online": 1,
+              "Booting": 1,
+              "Pending": 1,
+              "Stopped": 1,
+              "Stopping": 1,
+              "Assigning": 1,
+              "Rebooting": 1,
+              "Requested": 1,
+              "Registered": 1,
+              "StopFailed": 1,
+              "Terminated": 1,
+              "Registering": 1,
+              "SetupFailed": 1,
+              "StartFailed": 1,
+              "Terminating": 1,
+              "Unassigning": 1,
+              "RunningSetup": 1,
+              "ShuttingDown": 1,
+              "Deregistering": 1,
+              "ConnectionLost": 1
+            }
+          }
+        }
+      ]
+  DescribeTimeBasedAutoScaling:
+    description: |-
+      Describes time-based auto scaling configurations for specified instances.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeTimeBasedAutoScaling.html
+    example:
+      inputs: [
+        {
+          "InstanceIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "TimeBasedAutoScalingConfigurations": [
+            {
+              "InstanceId": "string",
+              "AutoScalingSchedule": {
+                "Friday": {
+                  "string": "string"
+                },
+                "Monday": {
+                  "string": "string"
+                },
+                "Sunday": {
+                  "string": "string"
+                },
+                "Tuesday": {
+                  "string": "string"
+                },
+                "Saturday": {
+                  "string": "string"
+                },
+                "Thursday": {
+                  "string": "string"
+                },
+                "Wednesday": {
+                  "string": "string"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  DescribeUserProfiles:
+    description: |-
+      Describe specified users.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeUserProfiles.html
+    example:
+      inputs: [
+        {
+          "IamUserArns": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "UserProfiles": [
+            {
+              "Name": "string",
+              "IamUserArn": "string",
+              "SshUsername": "string",
+              "SshPublicKey": "string",
+              "AllowSelfManagement": false
+            }
+          ]
+        }
+      ]
+  DescribeVolumes:
+    description: |-
+      Describes an instance's Amazon EBS volumes.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DescribeVolumes.html
+    example:
+      inputs: [
+        {
+          "StackId": "string",
+          "VolumeIds": [
+            "string"
+          ],
+          "InstanceId": "string",
+          "RaidArrayId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Volumes": [
+            {
+              "Iops": 1,
+              "Name": "string",
+              "Size": 1,
+              "Device": "string",
+              "Region": "string",
+              "Status": "string",
+              "VolumeId": "string",
+              "Encrypted": false,
+              "InstanceId": "string",
+              "MountPoint": "string",
+              "VolumeType": "string",
+              "Ec2VolumeId": "string",
+              "RaidArrayId": "string",
+              "AvailabilityZone": "string"
+            }
+          ]
+        }
+      ]
+  DetachElasticLoadBalancer:
+    description: |-
+      Detaches a specified Elastic Load Balancing instance from its layer.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DetachElasticLoadBalancer.html
+    example:
+      inputs: [
+        {
+          "LayerId": "string",
+          "ElasticLoadBalancerName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DisassociateElasticIp:
+    description: |-
+      Disassociates an Elastic IP address from its instance. The address remains registered with the stack. For more information, see Resource Management.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_DisassociateElasticIp.html
+    example:
+      inputs: [
+        {
+          "ElasticIp": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetHostnameSuggestion:
+    description: |-
+      Gets a generated host name for the specified layer, based on the current host name theme.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_GetHostnameSuggestion.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "LayerId": "string",
+          "Hostname": "string"
+        }
+      ]
+  GrantAccess:
+    description: |-
+      Grants RDP access to a Windows instance for a specified time period.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_GrantAccess.html
+    example:
+      inputs: [
+        {
+          "InstanceId": "string",
+          "ValidForInMinutes": 1
+        }
+      ]
+      outputs: [
+        {
+          "TemporaryCredential": {
+            "Password": "string",
+            "Username": "string",
+            "InstanceId": "string",
+            "ValidForInMinutes": 1
+          }
+        }
+      ]
+  ListTags:
+    description: |-
+      Returns a list of tags that are applied to the specified stack or layer.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_ListTags.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "NextToken": "string"
+        }
+      ]
+  RebootInstance:
+    description: |-
+      Reboots a specified instance. For more information, see Starting, Stopping, and Rebooting Instances.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_RebootInstance.html
+    example:
+      inputs: [
+        {
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RegisterEcsCluster:
+    description: |-
+      Registers a specified Amazon ECS cluster with a stack. You can register only one cluster with a stack. A cluster can be registered with only one stack. For more information, see Resource Management.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_RegisterEcsCluster.html
+    example:
+      inputs: [
+        {
+          "StackId": "string",
+          "EcsClusterArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RegisterElasticIp:
+    description: |-
+      Registers an Elastic IP address with a specified stack. An address can be registered with only one stack at a time. If the address is already registered, you must first deregister it by calling DeregisterElasticIp. For more information, see Resource Management.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_RegisterElasticIp.html
+    example:
+      inputs: [
+        {
+          "StackId": "string",
+          "ElasticIp": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RegisterInstance:
+    description: |-
+      Registers instances that were created outside of AWS OpsWorks Stacks with a specified stack.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_RegisterInstance.html
+    example:
+      inputs: [
+        {
+          "StackId": "string",
+          "Hostname": "string",
+          "PublicIp": "string",
+          "PrivateIp": "string",
+          "RsaPublicKey": "string",
+          "InstanceIdentity": {
+            "Document": "string",
+            "Signature": "string"
+          },
+          "RsaPublicKeyFingerprint": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RegisterRdsDbInstance:
+    description: |-
+      Registers an Amazon RDS instance with a stack.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_RegisterRdsDbInstance.html
+    example:
+      inputs: [
+        {
+          "DbUser": "string",
+          "StackId": "string",
+          "DbPassword": "string",
+          "RdsDbInstanceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RegisterVolume:
+    description: |-
+      Registers an Amazon EBS volume with a specified stack. A volume can be registered with only one stack at a time. If the volume is already registered, you must first deregister it by calling DeregisterVolume. For more information, see Resource Management.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_RegisterVolume.html
+    example:
+      inputs: [
+        {
+          "StackId": "string",
+          "Ec2VolumeId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SetLoadBasedAutoScaling:
+    description: |-
+      Specify the load-based auto scaling configuration for a specified layer. For more information, see Managing Load with Time-based and Load-based Instances.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_SetLoadBasedAutoScaling.html
+    example:
+      inputs: [
+        {
+          "Enable": false,
+          "LayerId": "string",
+          "UpScaling": {
+            "Alarms": [
+              "string"
+            ],
+            "CpuThreshold": 0.1,
+            "InstanceCount": 1,
+            "LoadThreshold": 0.1,
+            "MemoryThreshold": 0.1,
+            "IgnoreMetricsTime": 1,
+            "ThresholdsWaitTime": 1
+          },
+          "DownScaling": {
+            "Alarms": [
+              "string"
+            ],
+            "CpuThreshold": 0.1,
+            "InstanceCount": 1,
+            "LoadThreshold": 0.1,
+            "MemoryThreshold": 0.1,
+            "IgnoreMetricsTime": 1,
+            "ThresholdsWaitTime": 1
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SetPermission:
+    description: |-
+      Specifies a user's permissions. For more information, see Security and Permissions.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_SetPermission.html
+    example:
+      inputs: [
+        {
+          "Level": "string",
+          "StackId": "string",
+          "AllowSsh": false,
+          "AllowSudo": false,
+          "IamUserArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SetTimeBasedAutoScaling:
+    description: |-
+      Specify the time-based auto scaling configuration for a specified instance. For more information, see Managing Load with Time-based and Load-based Instances.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_SetTimeBasedAutoScaling.html
+    example:
+      inputs: [
+        {
+          "InstanceId": "string",
+          "AutoScalingSchedule": {
+            "Friday": {
+              "string": "string"
+            },
+            "Monday": {
+              "string": "string"
+            },
+            "Sunday": {
+              "string": "string"
+            },
+            "Tuesday": {
+              "string": "string"
+            },
+            "Saturday": {
+              "string": "string"
+            },
+            "Thursday": {
+              "string": "string"
+            },
+            "Wednesday": {
+              "string": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartInstance:
+    description: |-
+      Starts a specified instance. For more information, see Starting, Stopping, and Rebooting Instances.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_StartInstance.html
+    example:
+      inputs: [
+        {
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartStack:
+    description: |-
+      Starts a stack's instances.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_StartStack.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  StopInstance:
+    description: |-
+      Stops a specified instance. When you stop a standard instance, the data disappears and must be reinstalled when you restart the instance. You can stop an Amazon EBS-backed instance without losing data. For more information, see Starting, Stopping, and Rebooting Instances.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_StopInstance.html
+    example:
+      inputs: [
+        {
+          "Force": false,
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StopStack:
+    description: |-
+      Stops a specified stack.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_StopStack.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Apply cost-allocation tags to a specified stack or layer in AWS OpsWorks Stacks. For more information about how tagging works, see Tags in the AWS OpsWorks User Guide.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UnassignInstance:
+    description: |-
+      Unassigns a registered instance from all layers that are using the instance. The instance remains in the stack as an unassigned instance, and can be assigned to another layer as needed. You cannot use this action with instances that were created with AWS OpsWorks Stacks.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_UnassignInstance.html
+    example:
+      inputs: [
+        {
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UnassignVolume:
+    description: |-
+      Unassigns an assigned Amazon EBS volume. The volume remains registered with the stack. For more information, see Resource Management.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_UnassignVolume.html
+    example:
+      inputs: [
+        {
+          "VolumeId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes tags from a specified stack or layer.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateApp:
+    description: |-
+      Updates a specified app.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_UpdateApp.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Type": "string",
+          "AppId": "string",
+          "Domains": [
+            "string"
+          ],
+          "AppSource": {
+            "Url": "string",
+            "Type": "string",
+            "SshKey": "string",
+            "Password": "string",
+            "Revision": "string",
+            "Username": "string"
+          },
+          "EnableSsl": false,
+          "Attributes": {
+            "string": "string"
+          },
+          "DataSources": [
+            {
+              "Arn": "string",
+              "Type": "string",
+              "DatabaseName": "string"
+            }
+          ],
+          "Description": "string",
+          "Environment": [
+            {
+              "Key": "string",
+              "Value": "string",
+              "Secure": false
+            }
+          ],
+          "SslConfiguration": {
+            "Chain": "string",
+            "PrivateKey": "string",
+            "Certificate": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateElasticIp:
+    description: |-
+      Updates a registered Elastic IP address's name. For more information, see Resource Management.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_UpdateElasticIp.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "ElasticIp": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateInstance:
+    description: |-
+      Updates a specified instance.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_UpdateInstance.html
+    example:
+      inputs: [
+        {
+          "Os": "string",
+          "AmiId": "string",
+          "Hostname": "string",
+          "LayerIds": [
+            "string"
+          ],
+          "InstanceId": "string",
+          "SshKeyName": "string",
+          "AgentVersion": "string",
+          "Architecture": "string",
+          "EbsOptimized": false,
+          "InstanceType": "string",
+          "AutoScalingType": "string",
+          "InstallUpdatesOnBoot": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateLayer:
+    description: |-
+      Updates a specified layer.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_UpdateLayer.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "LayerId": "string",
+          "Packages": [
+            "string"
+          ],
+          "Shortname": "string",
+          "Attributes": {
+            "string": "string"
+          },
+          "CustomJson": "string",
+          "CustomRecipes": {
+            "Setup": [
+              "string"
+            ],
+            "Deploy": [
+              "string"
+            ],
+            "Shutdown": [
+              "string"
+            ],
+            "Undeploy": [
+              "string"
+            ],
+            "Configure": [
+              "string"
+            ]
+          },
+          "EnableAutoHealing": false,
+          "AutoAssignPublicIps": false,
+          "AutoAssignElasticIps": false,
+          "InstallUpdatesOnBoot": false,
+          "VolumeConfigurations": [
+            {
+              "Iops": 1,
+              "Size": 1,
+              "Encrypted": false,
+              "RaidLevel": 1,
+              "MountPoint": "string",
+              "VolumeType": "string",
+              "NumberOfDisks": 1
+            }
+          ],
+          "CustomSecurityGroupIds": [
+            "string"
+          ],
+          "CustomInstanceProfileArn": "string",
+          "UseEbsOptimizedInstances": false,
+          "CloudWatchLogsConfiguration": {
+            "Enabled": false,
+            "LogStreams": [
+              {
+                "File": "string",
+                "Encoding": "string",
+                "TimeZone": "string",
+                "BatchSize": 1,
+                "BatchCount": 1,
+                "LogGroupName": "string",
+                "BufferDuration": 1,
+                "DatetimeFormat": "string",
+                "InitialPosition": "string",
+                "FileFingerprintLines": "string",
+                "MultiLineStartPattern": "string"
+              }
+            ]
+          },
+          "LifecycleEventConfiguration": {
+            "Shutdown": {
+              "ExecutionTimeout": 1,
+              "DelayUntilElbConnectionsDrained": false
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateMyUserProfile:
+    description: |-
+      Updates a user's SSH public key.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_UpdateMyUserProfile.html
+    example:
+      inputs: [
+        {
+          "SshPublicKey": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateRdsDbInstance:
+    description: |-
+      Updates an Amazon RDS instance.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_UpdateRdsDbInstance.html
+    example:
+      inputs: [
+        {
+          "DbUser": "string",
+          "DbPassword": "string",
+          "RdsDbInstanceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateStack:
+    description: |-
+      Updates a specified stack.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_UpdateStack.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "StackId": "string",
+          "DefaultOs": "string",
+          "Attributes": {
+            "string": "string"
+          },
+          "CustomJson": "string",
+          "AgentVersion": "string",
+          "HostnameTheme": "string",
+          "ServiceRoleArn": "string",
+          "DefaultSubnetId": "string",
+          "ChefConfiguration": {
+            "ManageBerkshelf": false,
+            "BerkshelfVersion": "string"
+          },
+          "DefaultSshKeyName": "string",
+          "UseCustomCookbooks": false,
+          "ConfigurationManager": {
+            "Name": "string",
+            "Version": "string"
+          },
+          "CustomCookbooksSource": {
+            "Url": "string",
+            "Type": "string",
+            "SshKey": "string",
+            "Password": "string",
+            "Revision": "string",
+            "Username": "string"
+          },
+          "DefaultRootDeviceType": "string",
+          "DefaultAvailabilityZone": "string",
+          "DefaultInstanceProfileArn": "string",
+          "UseOpsworksSecurityGroups": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateUserProfile:
+    description: |-
+      Updates a specified user profile.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_UpdateUserProfile.html
+    example:
+      inputs: [
+        {
+          "IamUserArn": "string",
+          "SshUsername": "string",
+          "SshPublicKey": "string",
+          "AllowSelfManagement": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateVolume:
+    description: |-
+      Updates an Amazon EBS volume's name or mount point. For more information, see Resource Management.
+    versions:
+      from: 2013.2.18
+    link: https://docs.aws.amazon.com/opsworks/latest/APIReference/API_UpdateVolume.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "VolumeId": "string",
+          "MountPoint": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

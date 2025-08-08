@@ -1,0 +1,179 @@
+Product:
+  name: Amazon Elastic Block Store
+  versions: [2019.11.2]
+  package: amazon.aws.ebs
+  description: |-
+    Amazon Elastic Block Store
+  link: https://docs.aws.amazon.com/ebs/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CompleteSnapshot:
+    description: |-
+      Seals and completes the snapshot after all of the required blocks of data have been written to it. Completing the snapshot changes the status to completed. You cannot write new blocks to a snapshot after it has been completed.
+    versions:
+      from: 2019.11.2
+    link: https://docs.aws.amazon.com/ebs/latest/APIReference/API_CompleteSnapshot.html
+    example:
+      inputs: [
+        {
+          "Checksum": "string",
+          "SnapshotId": "string",
+          "ChecksumAlgorithm": "string",
+          "ChangedBlocksCount": 1,
+          "ChecksumAggregationMethod": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string"
+        }
+      ]
+  GetSnapshotBlock:
+    description: |-
+      Returns the data in a block in an Amazon Elastic Block Store snapshot.
+    versions:
+      from: 2019.11.2
+    link: https://docs.aws.amazon.com/ebs/latest/APIReference/API_GetSnapshotBlock.html
+    example:
+      inputs: [
+        {
+          "BlockIndex": 1,
+          "BlockToken": "string",
+          "SnapshotId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Checksum": "string",
+          "BlockData": "blob",
+          "DataLength": 1,
+          "ChecksumAlgorithm": "string"
+        }
+      ]
+  ListChangedBlocks:
+    description: |-
+      Returns information about the blocks that are different between two Amazon Elastic Block Store snapshots of the same volume/snapshot lineage.
+    versions:
+      from: 2019.11.2
+    link: https://docs.aws.amazon.com/ebs/latest/APIReference/API_ListChangedBlocks.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "FirstSnapshotId": "string",
+          "SecondSnapshotId": "string",
+          "StartingBlockIndex": 1
+        }
+      ]
+      outputs: [
+        {
+          "BlockSize": 1,
+          "NextToken": "string",
+          "ExpiryTime": 1481289211.615,
+          "VolumeSize": 1,
+          "ChangedBlocks": [
+            {
+              "BlockIndex": 1,
+              "FirstBlockToken": "string",
+              "SecondBlockToken": "string"
+            }
+          ]
+        }
+      ]
+  ListSnapshotBlocks:
+    description: |-
+      Returns information about the blocks in an Amazon Elastic Block Store snapshot.
+    versions:
+      from: 2019.11.2
+    link: https://docs.aws.amazon.com/ebs/latest/APIReference/API_ListSnapshotBlocks.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "SnapshotId": "string",
+          "StartingBlockIndex": 1
+        }
+      ]
+      outputs: [
+        {
+          "Blocks": [
+            {
+              "BlockIndex": 1,
+              "BlockToken": "string"
+            }
+          ],
+          "BlockSize": 1,
+          "NextToken": "string",
+          "ExpiryTime": 1481289211.615,
+          "VolumeSize": 1
+        }
+      ]
+  PutSnapshotBlock:
+    description: |-
+      Writes a block of data to a snapshot. If the specified block contains data, the existing data is overwritten. The target snapshot must be in the pending state.
+    versions:
+      from: 2019.11.2
+    link: https://docs.aws.amazon.com/ebs/latest/APIReference/API_PutSnapshotBlock.html
+    example:
+      inputs: [
+        {
+          "Checksum": "string",
+          "Progress": 1,
+          "BlockData": "blob",
+          "BlockIndex": 1,
+          "DataLength": 1,
+          "SnapshotId": "string",
+          "ChecksumAlgorithm": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Checksum": "string",
+          "ChecksumAlgorithm": "string"
+        }
+      ]
+  StartSnapshot:
+    description: |-
+      Creates a new Amazon EBS snapshot. The new snapshot enters the pending state after the request completes.
+    versions:
+      from: 2019.11.2
+    link: https://docs.aws.amazon.com/ebs/latest/APIReference/API_StartSnapshot.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Timeout": 1,
+          "Encrypted": false,
+          "KmsKeyArn": "string",
+          "VolumeSize": 1,
+          "ClientToken": "string",
+          "Description": "string",
+          "ParentSnapshotId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Status": "string",
+          "OwnerId": "string",
+          "BlockSize": 1,
+          "KmsKeyArn": "string",
+          "StartTime": 1481289211.615,
+          "SnapshotId": "string",
+          "VolumeSize": 1,
+          "Description": "string",
+          "ParentSnapshotId": "string"
+        }
+      ]

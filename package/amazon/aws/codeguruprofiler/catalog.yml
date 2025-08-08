@@ -1,0 +1,704 @@
+Product:
+  name: Amazon CodeGuru Profiler
+  versions: [2019.7.18]
+  package: amazon.aws.codeguruprofiler
+  description: |-
+    Amazon CodeGuru Profiler
+  link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/Welcome.html
+  contentType: json
+Operations:
+  AddNotificationChannels:
+    description: |-
+      Add up to 2 anomaly notifications channels for a profiling group.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_AddNotificationChannels.html
+    example:
+      inputs: [
+        {
+          "channels": [
+            {
+              "id": "string",
+              "uri": "string",
+              "eventPublishers": [
+                "string"
+              ]
+            }
+          ],
+          "profilingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "notificationConfiguration": {
+            "channels": [
+              {
+                "id": "string",
+                "uri": "string",
+                "eventPublishers": [
+                  "string"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+  BatchGetFrameMetricData:
+    description: |-
+      Returns the time series of values for a requested list of frame metrics from a time period.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_BatchGetFrameMetricData.html
+    example:
+      inputs: [
+        {
+          "period": "string",
+          "endTime": 1481289211.615,
+          "startTime": 1481289211.615,
+          "frameMetrics": [
+            {
+              "type": "string",
+              "frameName": "string",
+              "threadStates": [
+                "string"
+              ]
+            }
+          ],
+          "targetResolution": "string",
+          "profilingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "endTime": 1481289211.615,
+          "endTimes": [
+            {
+              "value": 1481289211.615
+            }
+          ],
+          "startTime": 1481289211.615,
+          "resolution": "string",
+          "frameMetricData": [
+            {
+              "values": [
+                0.1
+              ],
+              "frameMetric": {
+                "type": "string",
+                "frameName": "string",
+                "threadStates": [
+                  "string"
+                ]
+              }
+            }
+          ],
+          "unprocessedEndTimes": {
+            "string": [
+              {
+                "value": 1481289211.615
+              }
+            ]
+          }
+        }
+      ]
+  ConfigureAgent:
+    description: |-
+      Used by profiler agents to report their current state and to receive remote configuration updates. For example, ConfigureAgent can be used to tell an agent whether to profile or not and for how long to return profiling data.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ConfigureAgent.html
+    example:
+      inputs: [
+        {
+          "metadata": {
+            "string": "string"
+          },
+          "fleetInstanceId": "string",
+          "profilingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "configuration": {
+            "shouldProfile": false,
+            "agentParameters": {
+              "string": "string"
+            },
+            "periodInSeconds": 1
+          }
+        }
+      ]
+  CreateProfilingGroup:
+    description: |-
+      Creates a profiling group.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_CreateProfilingGroup.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "clientToken": "string",
+          "computePlatform": "string",
+          "profilingGroupName": "string",
+          "agentOrchestrationConfig": {
+            "profilingEnabled": false
+          }
+        }
+      ]
+      outputs: [
+        {
+          "profilingGroup": {
+            "arn": "string",
+            "name": "string",
+            "tags": {
+              "string": "string"
+            },
+            "createdAt": 1481289211.615,
+            "updatedAt": 1481289211.615,
+            "computePlatform": "string",
+            "profilingStatus": {
+              "latestAggregatedProfile": {
+                "start": 1481289211.615,
+                "period": "string"
+              },
+              "latestAgentOrchestratedAt": 1481289211.615,
+              "latestAgentProfileReportedAt": 1481289211.615
+            },
+            "agentOrchestrationConfig": {
+              "profilingEnabled": false
+            }
+          }
+        }
+      ]
+  DeleteProfilingGroup:
+    description: |-
+      Deletes a profiling group.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_DeleteProfilingGroup.html
+    example:
+      inputs: [
+        {
+          "profilingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeProfilingGroup:
+    description: |-
+      Returns a ProfilingGroupDescription object that contains information about the requested profiling group.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_DescribeProfilingGroup.html
+    example:
+      inputs: [
+        {
+          "profilingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "profilingGroup": {
+            "arn": "string",
+            "name": "string",
+            "tags": {
+              "string": "string"
+            },
+            "createdAt": 1481289211.615,
+            "updatedAt": 1481289211.615,
+            "computePlatform": "string",
+            "profilingStatus": {
+              "latestAggregatedProfile": {
+                "start": 1481289211.615,
+                "period": "string"
+              },
+              "latestAgentOrchestratedAt": 1481289211.615,
+              "latestAgentProfileReportedAt": 1481289211.615
+            },
+            "agentOrchestrationConfig": {
+              "profilingEnabled": false
+            }
+          }
+        }
+      ]
+  GetFindingsReportAccountSummary:
+    description: |-
+      Returns a list of FindingsReportSummary objects that contain analysis results for all profiling groups in your AWS account.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_GetFindingsReportAccountSummary.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "dailyReportsOnly": false
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "reportSummaries": [
+            {
+              "id": "string",
+              "profileEndTime": 1481289211.615,
+              "profileStartTime": 1481289211.615,
+              "profilingGroupName": "string",
+              "totalNumberOfFindings": 1
+            }
+          ]
+        }
+      ]
+  GetNotificationConfiguration:
+    description: |-
+      Get the current configuration for anomaly notifications for a profiling group.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_GetNotificationConfiguration.html
+    example:
+      inputs: [
+        {
+          "profilingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "notificationConfiguration": {
+            "channels": [
+              {
+                "id": "string",
+                "uri": "string",
+                "eventPublishers": [
+                  "string"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+  GetPolicy:
+    description: |-
+      Returns the JSON-formatted resource-based policy on a profiling group.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_GetPolicy.html
+    example:
+      inputs: [
+        {
+          "profilingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "policy": "string",
+          "revisionId": "string"
+        }
+      ]
+  GetProfile:
+    description: |-
+      Gets the aggregated profile of a profiling group for a specified time range. Amazon CodeGuru Profiler collects posted agent profiles for a profiling group into aggregated profiles.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_GetProfile.html
+    example:
+      inputs: [
+        {
+          "accept": "string",
+          "period": "string",
+          "endTime": 1481289211.615,
+          "maxDepth": 1,
+          "startTime": 1481289211.615,
+          "profilingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "profile": "blob",
+          "contentType": "string",
+          "contentEncoding": "string"
+        }
+      ]
+  GetRecommendations:
+    description: |-
+      Returns a list of Recommendation objects that contain recommendations for a profiling group for a given time period. A list of Anomaly objects that contains details about anomalies detected in the profiling group for the same time period is also returned.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_GetRecommendations.html
+    example:
+      inputs: [
+        {
+          "locale": "string",
+          "endTime": 1481289211.615,
+          "startTime": 1481289211.615,
+          "profilingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "anomalies": [
+            {
+              "metric": {
+                "type": "string",
+                "frameName": "string",
+                "threadStates": [
+                  "string"
+                ]
+              },
+              "reason": "string",
+              "instances": [
+                {
+                  "id": "string",
+                  "endTime": 1481289211.615,
+                  "startTime": 1481289211.615,
+                  "userFeedback": {
+                    "type": "string"
+                  }
+                }
+              ]
+            }
+          ],
+          "profileEndTime": 1481289211.615,
+          "recommendations": [
+            {
+              "endTime": 1481289211.615,
+              "pattern": {
+                "id": "string",
+                "name": "string",
+                "description": "string",
+                "targetFrames": [
+                  {
+                    "0": "string"
+                  }
+                ],
+                "resolutionSteps": "string",
+                "thresholdPercent": 0.1,
+                "countersToAggregate": [
+                  "string"
+                ]
+              },
+              "startTime": 1481289211.615,
+              "topMatches": [
+                {
+                  "frameAddress": "string",
+                  "targetFramesIndex": 1,
+                  "thresholdBreachValue": 0.1
+                }
+              ],
+              "allMatchesSum": 0.1,
+              "allMatchesCount": 1
+            }
+          ],
+          "profileStartTime": 1481289211.615,
+          "profilingGroupName": "string"
+        }
+      ]
+  ListFindingsReports:
+    description: |-
+      List the available reports for a given profiling group and time range.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ListFindingsReports.html
+    example:
+      inputs: [
+        {
+          "endTime": 1481289211.615,
+          "nextToken": "string",
+          "startTime": 1481289211.615,
+          "maxResults": 1,
+          "dailyReportsOnly": false,
+          "profilingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "findingsReportSummaries": [
+            {
+              "id": "string",
+              "profileEndTime": 1481289211.615,
+              "profileStartTime": 1481289211.615,
+              "profilingGroupName": "string",
+              "totalNumberOfFindings": 1
+            }
+          ]
+        }
+      ]
+  ListProfileTimes:
+    description: |-
+      Lists the start times of the available aggregated profiles of a profiling group for an aggregation period within the specified time range.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ListProfileTimes.html
+    example:
+      inputs: [
+        {
+          "period": "string",
+          "endTime": 1481289211.615,
+          "orderBy": "string",
+          "nextToken": "string",
+          "startTime": 1481289211.615,
+          "maxResults": 1,
+          "profilingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "profileTimes": [
+            {
+              "start": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListProfilingGroups:
+    description: |-
+      Returns a list of profiling groups. The profiling groups are returned as ProfilingGroupDescription objects.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ListProfilingGroups.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "includeDescription": false
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "profilingGroups": [
+            {
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "createdAt": 1481289211.615,
+              "updatedAt": 1481289211.615,
+              "computePlatform": "string",
+              "profilingStatus": {
+                "latestAggregatedProfile": {
+                  "start": 1481289211.615,
+                  "period": "string"
+                },
+                "latestAgentOrchestratedAt": 1481289211.615,
+                "latestAgentProfileReportedAt": 1481289211.615
+              },
+              "agentOrchestrationConfig": {
+                "profilingEnabled": false
+              }
+            }
+          ],
+          "profilingGroupNames": [
+            "string"
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns a list of the tags that are assigned to a specified resource.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": {
+            "string": "string"
+          }
+        }
+      ]
+  PostAgentProfile:
+    description: |-
+      Submits profiling data to an aggregated profile of a profiling group. To get an aggregated profile that is created with this profiling data, use GetProfile .
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_PostAgentProfile.html
+    example:
+      inputs: [
+        {
+          "contentType": "string",
+          "agentProfile": "blob",
+          "profileToken": "string",
+          "profilingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutPermission:
+    description: |-
+      Adds permissions to a profiling group's resource-based policy that are provided using an action group. If a profiling group doesn't have a resource-based policy, one is created for it using the permissions in the action group and the roles and users in the principals parameter.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_PutPermission.html
+    example:
+      inputs: [
+        {
+          "principals": [
+            "string"
+          ],
+          "revisionId": "string",
+          "actionGroup": "string",
+          "profilingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "policy": "string",
+          "revisionId": "string"
+        }
+      ]
+  RemoveNotificationChannel:
+    description: |-
+      Remove one anomaly notifications channel for a profiling group.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_RemoveNotificationChannel.html
+    example:
+      inputs: [
+        {
+          "channelId": "string",
+          "profilingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "notificationConfiguration": {
+            "channels": [
+              {
+                "id": "string",
+                "uri": "string",
+                "eventPublishers": [
+                  "string"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+  RemovePermission:
+    description: |-
+      Removes permissions from a profiling group's resource-based policy that are provided using an action group. The one supported action group that can be removed is agentPermission which grants ConfigureAgent and PostAgent permissions. For more information, see Resource-based policies in CodeGuru Profiler in the Amazon CodeGuru Profiler User Guide, ConfigureAgent , and PostAgentProfile .
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_RemovePermission.html
+    example:
+      inputs: [
+        {
+          "revisionId": "string",
+          "actionGroup": "string",
+          "profilingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "policy": "string",
+          "revisionId": "string"
+        }
+      ]
+  SubmitFeedback:
+    description: |-
+      Sends feedback to CodeGuru Profiler about whether the anomaly detected by the analysis is useful or not.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_SubmitFeedback.html
+    example:
+      inputs: [
+        {
+          "type": "string",
+          "comment": "string",
+          "anomalyInstanceId": "string",
+          "profilingGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Use to assign one or more tags to a resource.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Use to remove one or more tags from a resource.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateProfilingGroup:
+    description: |-
+      Updates a profiling group.
+    versions:
+      from: 2019.7.18
+    link: https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_UpdateProfilingGroup.html
+    example:
+      inputs: [
+        {
+          "profilingGroupName": "string",
+          "agentOrchestrationConfig": {
+            "profilingEnabled": false
+          }
+        }
+      ]
+      outputs: [
+        {
+          "profilingGroup": {
+            "arn": "string",
+            "name": "string",
+            "tags": {
+              "string": "string"
+            },
+            "createdAt": 1481289211.615,
+            "updatedAt": 1481289211.615,
+            "computePlatform": "string",
+            "profilingStatus": {
+              "latestAggregatedProfile": {
+                "start": 1481289211.615,
+                "period": "string"
+              },
+              "latestAgentOrchestratedAt": 1481289211.615,
+              "latestAgentProfileReportedAt": 1481289211.615
+            },
+            "agentOrchestrationConfig": {
+              "profilingEnabled": false
+            }
+          }
+        }
+      ]

@@ -1,0 +1,510 @@
+Product:
+  name: Amazon Translate
+  versions: [2017.7.1]
+  package: amazon.aws.translate
+  description: |-
+    Amazon Translate
+  link: https://docs.aws.amazon.com/translate/latest/dg/what-is.html
+  contentType: json
+Operations:
+  CreateParallelData:
+    description: |-
+      Creates a parallel data resource in Amazon Translate by importing an input file from Amazon S3. Parallel data files contain examples that show how you want segments of text to be translated. By adding parallel data, you can influence the style, tone, and word choice in your translation output.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/translate/latest/dg/API_CreateParallelData.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "ClientToken": "string",
+          "Description": "string",
+          "EncryptionKey": {
+            "Id": "string",
+            "Type": "string"
+          },
+          "ParallelDataConfig": {
+            "S3Uri": "string",
+            "Format": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Status": "string"
+        }
+      ]
+  DeleteParallelData:
+    description: |-
+      Deletes a parallel data resource in Amazon Translate.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/translate/latest/dg/API_DeleteParallelData.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Status": "string"
+        }
+      ]
+  DeleteTerminology:
+    description: |-
+      A synchronous action that deletes a custom terminology.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/translate/latest/dg/API_DeleteTerminology.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeTextTranslationJob:
+    description: |-
+      Gets the properties associated with an asycnhronous batch translation job including name, ID, status, source and target languages, input/output S3 buckets, and so on.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/translate/latest/dg/API_DescribeTextTranslationJob.html
+    example:
+      inputs: [
+        {
+          "JobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TextTranslationJobProperties": {
+            "JobId": "string",
+            "EndTime": 1481289211.615,
+            "JobName": "string",
+            "Message": "string",
+            "JobStatus": "string",
+            "JobDetails": {
+              "InputDocumentsCount": 1,
+              "DocumentsWithErrorsCount": 1,
+              "TranslatedDocumentsCount": 1
+            },
+            "SubmittedTime": 1481289211.615,
+            "InputDataConfig": {
+              "S3Uri": "string",
+              "ContentType": "string"
+            },
+            "OutputDataConfig": {
+              "S3Uri": "string"
+            },
+            "TerminologyNames": [
+              "string"
+            ],
+            "DataAccessRoleArn": "string",
+            "ParallelDataNames": [
+              "string"
+            ],
+            "SourceLanguageCode": "string",
+            "TargetLanguageCodes": [
+              "string"
+            ]
+          }
+        }
+      ]
+  GetParallelData:
+    description: |-
+      Provides information about a parallel data resource.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/translate/latest/dg/API_GetParallelData.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DataLocation": {
+            "Location": "string",
+            "RepositoryType": "string"
+          },
+          "AuxiliaryDataLocation": {
+            "Location": "string",
+            "RepositoryType": "string"
+          },
+          "ParallelDataProperties": {
+            "Arn": "string",
+            "Name": "string",
+            "Status": "string",
+            "Message": "string",
+            "CreatedAt": 1481289211.615,
+            "Description": "string",
+            "EncryptionKey": {
+              "Id": "string",
+              "Type": "string"
+            },
+            "LastUpdatedAt": 1481289211.615,
+            "ImportedDataSize": 1,
+            "FailedRecordCount": 1,
+            "ParallelDataConfig": {
+              "S3Uri": "string",
+              "Format": "string"
+            },
+            "SkippedRecordCount": 1,
+            "SourceLanguageCode": "string",
+            "ImportedRecordCount": 1,
+            "TargetLanguageCodes": [
+              "string"
+            ],
+            "LatestUpdateAttemptAt": 1481289211.615,
+            "LatestUpdateAttemptStatus": "string"
+          },
+          "LatestUpdateAttemptAuxiliaryDataLocation": {
+            "Location": "string",
+            "RepositoryType": "string"
+          }
+        }
+      ]
+  GetTerminology:
+    description: |-
+      Retrieves a custom terminology.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/translate/latest/dg/API_GetTerminology.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "TerminologyDataFormat": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TerminologyProperties": {
+            "Arn": "string",
+            "Name": "string",
+            "CreatedAt": 1481289211.615,
+            "SizeBytes": 1,
+            "TermCount": 1,
+            "Description": "string",
+            "EncryptionKey": {
+              "Id": "string",
+              "Type": "string"
+            },
+            "LastUpdatedAt": 1481289211.615,
+            "SourceLanguageCode": "string",
+            "TargetLanguageCodes": [
+              "string"
+            ]
+          },
+          "TerminologyDataLocation": {
+            "Location": "string",
+            "RepositoryType": "string"
+          }
+        }
+      ]
+  ImportTerminology:
+    description: |-
+      Creates or updates a custom terminology, depending on whether or not one already exists for the given terminology name. Importing a terminology with the same name as an existing one will merge the terminologies based on the chosen merge strategy. Currently, the only supported merge strategy is OVERWRITE, and so the imported terminology will overwrite an existing terminology of the same name.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/translate/latest/dg/API_ImportTerminology.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Description": "string",
+          "EncryptionKey": {
+            "Id": "string",
+            "Type": "string"
+          },
+          "MergeStrategy": "string",
+          "TerminologyData": {
+            "File": "blob",
+            "Format": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "TerminologyProperties": {
+            "Arn": "string",
+            "Name": "string",
+            "CreatedAt": 1481289211.615,
+            "SizeBytes": 1,
+            "TermCount": 1,
+            "Description": "string",
+            "EncryptionKey": {
+              "Id": "string",
+              "Type": "string"
+            },
+            "LastUpdatedAt": 1481289211.615,
+            "SourceLanguageCode": "string",
+            "TargetLanguageCodes": [
+              "string"
+            ]
+          }
+        }
+      ]
+  ListParallelData:
+    description: |-
+      Provides a list of your parallel data resources in Amazon Translate.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/translate/latest/dg/API_ListParallelData.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ParallelDataPropertiesList": [
+            {
+              "Arn": "string",
+              "Name": "string",
+              "Status": "string",
+              "Message": "string",
+              "CreatedAt": 1481289211.615,
+              "Description": "string",
+              "EncryptionKey": {
+                "Id": "string",
+                "Type": "string"
+              },
+              "LastUpdatedAt": 1481289211.615,
+              "ImportedDataSize": 1,
+              "FailedRecordCount": 1,
+              "ParallelDataConfig": {
+                "S3Uri": "string",
+                "Format": "string"
+              },
+              "SkippedRecordCount": 1,
+              "SourceLanguageCode": "string",
+              "ImportedRecordCount": 1,
+              "TargetLanguageCodes": [
+                "string"
+              ],
+              "LatestUpdateAttemptAt": 1481289211.615,
+              "LatestUpdateAttemptStatus": "string"
+            }
+          ]
+        }
+      ]
+  ListTerminologies:
+    description: |-
+      Provides a list of custom terminologies associated with your account.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/translate/latest/dg/API_ListTerminologies.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "TerminologyPropertiesList": [
+            {
+              "Arn": "string",
+              "Name": "string",
+              "CreatedAt": 1481289211.615,
+              "SizeBytes": 1,
+              "TermCount": 1,
+              "Description": "string",
+              "EncryptionKey": {
+                "Id": "string",
+                "Type": "string"
+              },
+              "LastUpdatedAt": 1481289211.615,
+              "SourceLanguageCode": "string",
+              "TargetLanguageCodes": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  ListTextTranslationJobs:
+    description: |-
+      Gets a list of the batch translation jobs that you have submitted.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/translate/latest/dg/API_ListTextTranslationJobs.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "JobName": "string",
+            "JobStatus": "string",
+            "SubmittedAfterTime": 1481289211.615,
+            "SubmittedBeforeTime": 1481289211.615
+          },
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "TextTranslationJobPropertiesList": [
+            {
+              "JobId": "string",
+              "EndTime": 1481289211.615,
+              "JobName": "string",
+              "Message": "string",
+              "JobStatus": "string",
+              "JobDetails": {
+                "InputDocumentsCount": 1,
+                "DocumentsWithErrorsCount": 1,
+                "TranslatedDocumentsCount": 1
+              },
+              "SubmittedTime": 1481289211.615,
+              "InputDataConfig": {
+                "S3Uri": "string",
+                "ContentType": "string"
+              },
+              "OutputDataConfig": {
+                "S3Uri": "string"
+              },
+              "TerminologyNames": [
+                "string"
+              ],
+              "DataAccessRoleArn": "string",
+              "ParallelDataNames": [
+                "string"
+              ],
+              "SourceLanguageCode": "string",
+              "TargetLanguageCodes": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  StartTextTranslationJob:
+    description: |-
+      Starts an asynchronous batch translation job. Batch translation jobs can be used to translate large volumes of text across multiple documents at once. For more information, see Asynchronous Batch Processing with Amazon Translate.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/translate/latest/dg/API_StartTextTranslationJob.html
+    example:
+      inputs: [
+        {
+          "JobName": "string",
+          "ClientToken": "string",
+          "InputDataConfig": {
+            "S3Uri": "string",
+            "ContentType": "string"
+          },
+          "OutputDataConfig": {
+            "S3Uri": "string"
+          },
+          "TerminologyNames": [
+            "string"
+          ],
+          "DataAccessRoleArn": "string",
+          "ParallelDataNames": [
+            "string"
+          ],
+          "SourceLanguageCode": "string",
+          "TargetLanguageCodes": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "JobId": "string",
+          "JobStatus": "string"
+        }
+      ]
+  StopTextTranslationJob:
+    description: |-
+      Stops an asynchronous batch translation job that is in progress.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/translate/latest/dg/API_StopTextTranslationJob.html
+    example:
+      inputs: [
+        {
+          "JobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "JobId": "string",
+          "JobStatus": "string"
+        }
+      ]
+  TranslateText:
+    description: |-
+      Translates input text from the source language to the target language. For a list of available languages and language codes, see Supported Languages and Language Codes.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/translate/latest/dg/API_TranslateText.html
+    example:
+      inputs: [
+        {
+          "Text": "string",
+          "TerminologyNames": [
+            "string"
+          ],
+          "SourceLanguageCode": "string",
+          "TargetLanguageCode": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TranslatedText": "string",
+          "SourceLanguageCode": "string",
+          "TargetLanguageCode": "string",
+          "AppliedTerminologies": [
+            {
+              "Name": "string",
+              "Terms": [
+                {
+                  "SourceText": "string",
+                  "TargetText": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  UpdateParallelData:
+    description: |-
+      Updates a previously created parallel data resource by importing a new input file from Amazon S3.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/translate/latest/dg/API_UpdateParallelData.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "ClientToken": "string",
+          "Description": "string",
+          "ParallelDataConfig": {
+            "S3Uri": "string",
+            "Format": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Status": "string",
+          "LatestUpdateAttemptAt": 1481289211.615,
+          "LatestUpdateAttemptStatus": "string"
+        }
+      ]

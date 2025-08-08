@@ -1,0 +1,882 @@
+Product:
+  name: AWS Elemental MediaPackage VOD
+  versions: [2018.11.7]
+  package: amazon.aws.elementalmediapackagevod
+  description: |-
+    AWS Elemental MediaPackage VOD
+  link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/what-is-mp-vod.html
+  contentType: json
+Operations:
+  CreateAsset:
+    description: |-
+      Creates an asset to ingest VOD content.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/assets.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "SourceArn": "string",
+          "ResourceId": "string",
+          "SourceRoleArn": "string",
+          "PackagingGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Arn": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "CreatedAt": "string",
+          "SourceArn": "string",
+          "ResourceId": "string",
+          "SourceRoleArn": "string",
+          "EgressEndpoints": [
+            {
+              "Url": "string",
+              "PackagingConfigurationId": "string"
+            }
+          ],
+          "PackagingGroupId": "string"
+        }
+      ]
+  ListAssets:
+    description: |-
+      Lists assets that match a set of filters that you define.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/assets.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "PackagingGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Assets": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Tags": {
+                "string": "string"
+              },
+              "CreatedAt": "string",
+              "SourceArn": "string",
+              "ResourceId": "string",
+              "SourceRoleArn": "string",
+              "PackagingGroupId": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DeleteAsset:
+    description: |-
+      Permanently deletes an asset.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/assets-id.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeAsset:
+    description: |-
+      Provides details about an asset.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/assets-id.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Arn": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "CreatedAt": "string",
+          "SourceArn": "string",
+          "ResourceId": "string",
+          "SourceRoleArn": "string",
+          "EgressEndpoints": [
+            {
+              "Url": "string",
+              "PackagingConfigurationId": "string"
+            }
+          ],
+          "PackagingGroupId": "string"
+        }
+      ]
+  CreatePackagingConfiguration:
+    description: |-
+      Creates a packaging configuration in a packaging group.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/packaging_configurations.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "HlsPackage": {
+            "Encryption": {
+              "EncryptionMethod": "string",
+              "SpekeKeyProvider": {
+                "Url": "string",
+                "RoleArn": "string",
+                "SystemIds": [
+                  "string"
+                ]
+              },
+              "ConstantInitializationVector": "string"
+            },
+            "HlsManifests": [
+              {
+                "AdMarkers": "string",
+                "ManifestName": "string",
+                "RepeatExtXKey": false,
+                "StreamSelection": {
+                  "StreamOrder": "string",
+                  "MaxVideoBitsPerSecond": 1,
+                  "MinVideoBitsPerSecond": 1
+                },
+                "IncludeIframeOnlyStream": false,
+                "ProgramDateTimeIntervalSeconds": 1
+              }
+            ],
+            "SegmentDurationSeconds": 1,
+            "UseAudioRenditionGroup": false
+          },
+          "MssPackage": {
+            "Encryption": {
+              "SpekeKeyProvider": {
+                "Url": "string",
+                "RoleArn": "string",
+                "SystemIds": [
+                  "string"
+                ]
+              }
+            },
+            "MssManifests": [
+              {
+                "ManifestName": "string",
+                "StreamSelection": {
+                  "StreamOrder": "string",
+                  "MaxVideoBitsPerSecond": 1,
+                  "MinVideoBitsPerSecond": 1
+                }
+              }
+            ],
+            "SegmentDurationSeconds": 1
+          },
+          "CmafPackage": {
+            "Encryption": {
+              "SpekeKeyProvider": {
+                "Url": "string",
+                "RoleArn": "string",
+                "SystemIds": [
+                  "string"
+                ]
+              }
+            },
+            "HlsManifests": [
+              {
+                "AdMarkers": "string",
+                "ManifestName": "string",
+                "RepeatExtXKey": false,
+                "StreamSelection": {
+                  "StreamOrder": "string",
+                  "MaxVideoBitsPerSecond": 1,
+                  "MinVideoBitsPerSecond": 1
+                },
+                "IncludeIframeOnlyStream": false,
+                "ProgramDateTimeIntervalSeconds": 1
+              }
+            ],
+            "SegmentDurationSeconds": 1
+          },
+          "DashPackage": {
+            "Encryption": {
+              "SpekeKeyProvider": {
+                "Url": "string",
+                "RoleArn": "string",
+                "SystemIds": [
+                  "string"
+                ]
+              }
+            },
+            "DashManifests": [
+              {
+                "Profile": "string",
+                "ManifestName": "string",
+                "ManifestLayout": "string",
+                "StreamSelection": {
+                  "StreamOrder": "string",
+                  "MaxVideoBitsPerSecond": 1,
+                  "MinVideoBitsPerSecond": 1
+                },
+                "MinBufferTimeSeconds": 1
+              }
+            ],
+            "PeriodTriggers": [
+              "string"
+            ],
+            "SegmentTemplateFormat": "string",
+            "SegmentDurationSeconds": 1
+          },
+          "PackagingGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Arn": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "HlsPackage": {
+            "Encryption": {
+              "EncryptionMethod": "string",
+              "SpekeKeyProvider": {
+                "Url": "string",
+                "RoleArn": "string",
+                "SystemIds": [
+                  "string"
+                ]
+              },
+              "ConstantInitializationVector": "string"
+            },
+            "HlsManifests": [
+              {
+                "AdMarkers": "string",
+                "ManifestName": "string",
+                "RepeatExtXKey": false,
+                "StreamSelection": {
+                  "StreamOrder": "string",
+                  "MaxVideoBitsPerSecond": 1,
+                  "MinVideoBitsPerSecond": 1
+                },
+                "IncludeIframeOnlyStream": false,
+                "ProgramDateTimeIntervalSeconds": 1
+              }
+            ],
+            "SegmentDurationSeconds": 1,
+            "UseAudioRenditionGroup": false
+          },
+          "MssPackage": {
+            "Encryption": {
+              "SpekeKeyProvider": {
+                "Url": "string",
+                "RoleArn": "string",
+                "SystemIds": [
+                  "string"
+                ]
+              }
+            },
+            "MssManifests": [
+              {
+                "ManifestName": "string",
+                "StreamSelection": {
+                  "StreamOrder": "string",
+                  "MaxVideoBitsPerSecond": 1,
+                  "MinVideoBitsPerSecond": 1
+                }
+              }
+            ],
+            "SegmentDurationSeconds": 1
+          },
+          "CmafPackage": {
+            "Encryption": {
+              "SpekeKeyProvider": {
+                "Url": "string",
+                "RoleArn": "string",
+                "SystemIds": [
+                  "string"
+                ]
+              }
+            },
+            "HlsManifests": [
+              {
+                "AdMarkers": "string",
+                "ManifestName": "string",
+                "RepeatExtXKey": false,
+                "StreamSelection": {
+                  "StreamOrder": "string",
+                  "MaxVideoBitsPerSecond": 1,
+                  "MinVideoBitsPerSecond": 1
+                },
+                "IncludeIframeOnlyStream": false,
+                "ProgramDateTimeIntervalSeconds": 1
+              }
+            ],
+            "SegmentDurationSeconds": 1
+          },
+          "DashPackage": {
+            "Encryption": {
+              "SpekeKeyProvider": {
+                "Url": "string",
+                "RoleArn": "string",
+                "SystemIds": [
+                  "string"
+                ]
+              }
+            },
+            "DashManifests": [
+              {
+                "Profile": "string",
+                "ManifestName": "string",
+                "ManifestLayout": "string",
+                "StreamSelection": {
+                  "StreamOrder": "string",
+                  "MaxVideoBitsPerSecond": 1,
+                  "MinVideoBitsPerSecond": 1
+                },
+                "MinBufferTimeSeconds": 1
+              }
+            ],
+            "PeriodTriggers": [
+              "string"
+            ],
+            "SegmentTemplateFormat": "string",
+            "SegmentDurationSeconds": 1
+          },
+          "PackagingGroupId": "string"
+        }
+      ]
+  ListPackagingConfigurations:
+    description: |-
+      Lists packaging configurations that match a set of filters that you define.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/packaging_configurations.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "PackagingGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "PackagingConfigurations": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Tags": {
+                "string": "string"
+              },
+              "HlsPackage": {
+                "Encryption": {
+                  "EncryptionMethod": "string",
+                  "SpekeKeyProvider": {
+                    "Url": "string",
+                    "RoleArn": "string",
+                    "SystemIds": [
+                      "string"
+                    ]
+                  },
+                  "ConstantInitializationVector": "string"
+                },
+                "HlsManifests": [
+                  {
+                    "AdMarkers": "string",
+                    "ManifestName": "string",
+                    "RepeatExtXKey": false,
+                    "StreamSelection": {
+                      "StreamOrder": "string",
+                      "MaxVideoBitsPerSecond": 1,
+                      "MinVideoBitsPerSecond": 1
+                    },
+                    "IncludeIframeOnlyStream": false,
+                    "ProgramDateTimeIntervalSeconds": 1
+                  }
+                ],
+                "SegmentDurationSeconds": 1,
+                "UseAudioRenditionGroup": false
+              },
+              "MssPackage": {
+                "Encryption": {
+                  "SpekeKeyProvider": {
+                    "Url": "string",
+                    "RoleArn": "string",
+                    "SystemIds": [
+                      "string"
+                    ]
+                  }
+                },
+                "MssManifests": [
+                  {
+                    "ManifestName": "string",
+                    "StreamSelection": {
+                      "StreamOrder": "string",
+                      "MaxVideoBitsPerSecond": 1,
+                      "MinVideoBitsPerSecond": 1
+                    }
+                  }
+                ],
+                "SegmentDurationSeconds": 1
+              },
+              "CmafPackage": {
+                "Encryption": {
+                  "SpekeKeyProvider": {
+                    "Url": "string",
+                    "RoleArn": "string",
+                    "SystemIds": [
+                      "string"
+                    ]
+                  }
+                },
+                "HlsManifests": [
+                  {
+                    "AdMarkers": "string",
+                    "ManifestName": "string",
+                    "RepeatExtXKey": false,
+                    "StreamSelection": {
+                      "StreamOrder": "string",
+                      "MaxVideoBitsPerSecond": 1,
+                      "MinVideoBitsPerSecond": 1
+                    },
+                    "IncludeIframeOnlyStream": false,
+                    "ProgramDateTimeIntervalSeconds": 1
+                  }
+                ],
+                "SegmentDurationSeconds": 1
+              },
+              "DashPackage": {
+                "Encryption": {
+                  "SpekeKeyProvider": {
+                    "Url": "string",
+                    "RoleArn": "string",
+                    "SystemIds": [
+                      "string"
+                    ]
+                  }
+                },
+                "DashManifests": [
+                  {
+                    "Profile": "string",
+                    "ManifestName": "string",
+                    "ManifestLayout": "string",
+                    "StreamSelection": {
+                      "StreamOrder": "string",
+                      "MaxVideoBitsPerSecond": 1,
+                      "MinVideoBitsPerSecond": 1
+                    },
+                    "MinBufferTimeSeconds": 1
+                  }
+                ],
+                "PeriodTriggers": [
+                  "string"
+                ],
+                "SegmentTemplateFormat": "string",
+                "SegmentDurationSeconds": 1
+              },
+              "PackagingGroupId": "string"
+            }
+          ]
+        }
+      ]
+  DeletePackagingConfiguration:
+    description: |-
+      Permanently deletes a packaging configuration.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/packaging_configurations-id.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribePackagingConfiguration:
+    description: |-
+      Provides details about a packaging configuration.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/packaging_configurations-id.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Arn": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "HlsPackage": {
+            "Encryption": {
+              "EncryptionMethod": "string",
+              "SpekeKeyProvider": {
+                "Url": "string",
+                "RoleArn": "string",
+                "SystemIds": [
+                  "string"
+                ]
+              },
+              "ConstantInitializationVector": "string"
+            },
+            "HlsManifests": [
+              {
+                "AdMarkers": "string",
+                "ManifestName": "string",
+                "RepeatExtXKey": false,
+                "StreamSelection": {
+                  "StreamOrder": "string",
+                  "MaxVideoBitsPerSecond": 1,
+                  "MinVideoBitsPerSecond": 1
+                },
+                "IncludeIframeOnlyStream": false,
+                "ProgramDateTimeIntervalSeconds": 1
+              }
+            ],
+            "SegmentDurationSeconds": 1,
+            "UseAudioRenditionGroup": false
+          },
+          "MssPackage": {
+            "Encryption": {
+              "SpekeKeyProvider": {
+                "Url": "string",
+                "RoleArn": "string",
+                "SystemIds": [
+                  "string"
+                ]
+              }
+            },
+            "MssManifests": [
+              {
+                "ManifestName": "string",
+                "StreamSelection": {
+                  "StreamOrder": "string",
+                  "MaxVideoBitsPerSecond": 1,
+                  "MinVideoBitsPerSecond": 1
+                }
+              }
+            ],
+            "SegmentDurationSeconds": 1
+          },
+          "CmafPackage": {
+            "Encryption": {
+              "SpekeKeyProvider": {
+                "Url": "string",
+                "RoleArn": "string",
+                "SystemIds": [
+                  "string"
+                ]
+              }
+            },
+            "HlsManifests": [
+              {
+                "AdMarkers": "string",
+                "ManifestName": "string",
+                "RepeatExtXKey": false,
+                "StreamSelection": {
+                  "StreamOrder": "string",
+                  "MaxVideoBitsPerSecond": 1,
+                  "MinVideoBitsPerSecond": 1
+                },
+                "IncludeIframeOnlyStream": false,
+                "ProgramDateTimeIntervalSeconds": 1
+              }
+            ],
+            "SegmentDurationSeconds": 1
+          },
+          "DashPackage": {
+            "Encryption": {
+              "SpekeKeyProvider": {
+                "Url": "string",
+                "RoleArn": "string",
+                "SystemIds": [
+                  "string"
+                ]
+              }
+            },
+            "DashManifests": [
+              {
+                "Profile": "string",
+                "ManifestName": "string",
+                "ManifestLayout": "string",
+                "StreamSelection": {
+                  "StreamOrder": "string",
+                  "MaxVideoBitsPerSecond": 1,
+                  "MinVideoBitsPerSecond": 1
+                },
+                "MinBufferTimeSeconds": 1
+              }
+            ],
+            "PeriodTriggers": [
+              "string"
+            ],
+            "SegmentTemplateFormat": "string",
+            "SegmentDurationSeconds": 1
+          },
+          "PackagingGroupId": "string"
+        }
+      ]
+  CreatePackagingGroup:
+    description: |-
+      Creates a packaging group.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/packaging_groups.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Authorization": {
+            "SecretsRoleArn": "string",
+            "CdnIdentifierSecret": "string"
+          },
+          "EgressAccessLogs": {
+            "LogGroupName": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Arn": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "DomainName": "string",
+          "Authorization": {
+            "SecretsRoleArn": "string",
+            "CdnIdentifierSecret": "string"
+          },
+          "EgressAccessLogs": {
+            "LogGroupName": "string"
+          }
+        }
+      ]
+  ListPackagingGroups:
+    description: |-
+      Lists packaging groups that match a set of filters that you define.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/packaging_groups.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "PackagingGroups": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Tags": {
+                "string": "string"
+              },
+              "DomainName": "string",
+              "Authorization": {
+                "SecretsRoleArn": "string",
+                "CdnIdentifierSecret": "string"
+              },
+              "EgressAccessLogs": {
+                "LogGroupName": "string"
+              }
+            }
+          ]
+        }
+      ]
+  ConfigureLogs:
+    description: |-
+      Configures access logs for a packaging group.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/packaging_groups-id-configure_logs.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "EgressAccessLogs": {
+            "LogGroupName": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Arn": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "DomainName": "string",
+          "Authorization": {
+            "SecretsRoleArn": "string",
+            "CdnIdentifierSecret": "string"
+          },
+          "EgressAccessLogs": {
+            "LogGroupName": "string"
+          }
+        }
+      ]
+  DeletePackagingGroup:
+    description: |-
+      Permanently deletes a packaging group.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/packaging_groups-id.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribePackagingGroup:
+    description: |-
+      Provides details about a packaging group.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/packaging_groups-id.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Arn": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "DomainName": "string",
+          "Authorization": {
+            "SecretsRoleArn": "string",
+            "CdnIdentifierSecret": "string"
+          },
+          "EgressAccessLogs": {
+            "LogGroupName": "string"
+          }
+        }
+      ]
+  UpdatePackagingGroup:
+    description: |-
+      Updates a specific packaging group.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/packaging_groups-id.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Authorization": {
+            "SecretsRoleArn": "string",
+            "CdnIdentifierSecret": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Arn": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "DomainName": "string",
+          "Authorization": {
+            "SecretsRoleArn": "string",
+            "CdnIdentifierSecret": "string"
+          },
+          "EgressAccessLogs": {
+            "LogGroupName": "string"
+          }
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns a list of the tags assigned to the specified resource.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/tags-resource-arn.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds tags to the specified resource. You can specify one or more tags to add.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/tags-resource-arn.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes tags from the specified resource. You can specify one or more tags to remove.
+    versions:
+      from: 2018.11.7
+    link: https://docs.aws.amazon.com/mediapackage-vod/latest/apireference/tags-resource-arn.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

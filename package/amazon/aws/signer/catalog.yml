@@ -1,0 +1,564 @@
+Product:
+  name: AWS Signer
+  versions: [2017.8.25]
+  package: amazon.aws.signer
+  description: |-
+    AWS Signer
+  link: https://docs.aws.amazon.com/signer/latest/api/Welcome.html
+  contentType: json
+Operations:
+  AddProfilePermission:
+    description: |-
+      Adds cross-account permissions to a signing profile.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_AddProfilePermission.html
+    example:
+      inputs: [
+        {
+          "action": "string",
+          "principal": "string",
+          "revisionId": "string",
+          "profileName": "string",
+          "statementId": "string",
+          "profileVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "revisionId": "string"
+        }
+      ]
+  CancelSigningProfile:
+    description: |-
+      Changes the state of an ACTIVE signing profile to CANCELED. A canceled profile is still viewable with the ListSigningProfiles operation, but it cannot perform new signing jobs, and is deleted two years after cancelation.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_CancelSigningProfile.html
+    example:
+      inputs: [
+        {
+          "profileName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeSigningJob:
+    description: |-
+      Returns information about a specific code signing job. You specify the job by using the jobId value that is returned by the StartSigningJob operation.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_DescribeSigningJob.html
+    example:
+      inputs: [
+        {
+          "jobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "jobId": "string",
+          "source": {
+            "s3": {
+              "key": "string",
+              "version": "string",
+              "bucketName": "string"
+            }
+          },
+          "status": "string",
+          "jobOwner": "string",
+          "createdAt": 1481289211.615,
+          "overrides": {
+            "signingImageFormat": "string",
+            "signingConfiguration": {
+              "hashAlgorithm": "string",
+              "encryptionAlgorithm": "string"
+            }
+          },
+          "jobInvoker": "string",
+          "platformId": "string",
+          "completedAt": 1481289211.615,
+          "profileName": "string",
+          "requestedBy": "string",
+          "signedObject": {
+            "s3": {
+              "key": "string",
+              "bucketName": "string"
+            }
+          },
+          "statusReason": "string",
+          "profileVersion": "string",
+          "signingMaterial": {
+            "certificateArn": "string"
+          },
+          "revocationRecord": {
+            "reason": "string",
+            "revokedAt": 1481289211.615,
+            "revokedBy": "string"
+          },
+          "signingParameters": {
+            "string": "string"
+          },
+          "signatureExpiresAt": 1481289211.615,
+          "platformDisplayName": "string"
+        }
+      ]
+  GetSigningPlatform:
+    description: |-
+      Returns information on a specific signing platform.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_GetSigningPlatform.html
+    example:
+      inputs: [
+        {
+          "platformId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "target": "string",
+          "partner": "string",
+          "category": "string",
+          "platformId": "string",
+          "displayName": "string",
+          "maxSizeInMB": 1,
+          "signingImageFormat": {
+            "defaultFormat": "string",
+            "supportedFormats": [
+              "string"
+            ]
+          },
+          "revocationSupported": false,
+          "signingConfiguration": {
+            "hashAlgorithmOptions": {
+              "defaultValue": "string",
+              "allowedValues": [
+                "string"
+              ]
+            },
+            "encryptionAlgorithmOptions": {
+              "defaultValue": "string",
+              "allowedValues": [
+                "string"
+              ]
+            }
+          }
+        }
+      ]
+  GetSigningProfile:
+    description: |-
+      Returns information on a specific signing profile.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_GetSigningProfile.html
+    example:
+      inputs: [
+        {
+          "profileName": "string",
+          "profileOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "arn": "string",
+          "tags": {
+            "string": "string"
+          },
+          "status": "string",
+          "overrides": {
+            "signingImageFormat": "string",
+            "signingConfiguration": {
+              "hashAlgorithm": "string",
+              "encryptionAlgorithm": "string"
+            }
+          },
+          "platformId": "string",
+          "profileName": "string",
+          "statusReason": "string",
+          "profileVersion": "string",
+          "signingMaterial": {
+            "certificateArn": "string"
+          },
+          "revocationRecord": {
+            "revokedAt": 1481289211.615,
+            "revokedBy": "string",
+            "revocationEffectiveFrom": 1481289211.615
+          },
+          "profileVersionArn": "string",
+          "signingParameters": {
+            "string": "string"
+          },
+          "platformDisplayName": "string",
+          "signatureValidityPeriod": {
+            "type": "string",
+            "value": 1
+          }
+        }
+      ]
+  ListProfilePermissions:
+    description: |-
+      Lists the cross-account permissions associated with a signing profile.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_ListProfilePermissions.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "profileName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "revisionId": "string",
+          "permissions": [
+            {
+              "action": "string",
+              "principal": "string",
+              "statementId": "string",
+              "profileVersion": "string"
+            }
+          ],
+          "policySizeBytes": 1
+        }
+      ]
+  ListSigningJobs:
+    description: |-
+      Lists all your signing jobs. You can use the maxResults parameter to limit the number of signing jobs that are returned in the response. If additional jobs remain to be listed, code signing returns a nextToken value. Use this value in subsequent calls to ListSigningJobs to fetch the remaining values. You can continue calling ListSigningJobs with your maxResults parameter and with new values that code signing returns in the nextToken parameter until all of your signing jobs have been returned.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_ListSigningJobs.html
+    example:
+      inputs: [
+        {
+          "status": "string",
+          "isRevoked": false,
+          "nextToken": "string",
+          "jobInvoker": "string",
+          "maxResults": 1,
+          "platformId": "string",
+          "requestedBy": "string",
+          "signatureExpiresAfter": 1481289211.615,
+          "signatureExpiresBefore": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "jobs": [
+            {
+              "jobId": "string",
+              "source": {
+                "s3": {
+                  "key": "string",
+                  "version": "string",
+                  "bucketName": "string"
+                }
+              },
+              "status": "string",
+              "jobOwner": "string",
+              "createdAt": 1481289211.615,
+              "isRevoked": false,
+              "jobInvoker": "string",
+              "platformId": "string",
+              "profileName": "string",
+              "signedObject": {
+                "s3": {
+                  "key": "string",
+                  "bucketName": "string"
+                }
+              },
+              "profileVersion": "string",
+              "signingMaterial": {
+                "certificateArn": "string"
+              },
+              "signatureExpiresAt": 1481289211.615,
+              "platformDisplayName": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListSigningPlatforms:
+    description: |-
+      Lists all signing platforms available in code signing that match the request parameters. If additional jobs remain to be listed, code signing returns a nextToken value. Use this value in subsequent calls to ListSigningJobs to fetch the remaining values. You can continue calling ListSigningJobs with your maxResults parameter and with new values that code signing returns in the nextToken parameter until all of your signing jobs have been returned.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_ListSigningPlatforms.html
+    example:
+      inputs: [
+        {
+          "target": "string",
+          "partner": "string",
+          "category": "string",
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "platforms": [
+            {
+              "target": "string",
+              "partner": "string",
+              "category": "string",
+              "platformId": "string",
+              "displayName": "string",
+              "maxSizeInMB": 1,
+              "signingImageFormat": {
+                "defaultFormat": "string",
+                "supportedFormats": [
+                  "string"
+                ]
+              },
+              "revocationSupported": false,
+              "signingConfiguration": {
+                "hashAlgorithmOptions": {
+                  "defaultValue": "string",
+                  "allowedValues": [
+                    "string"
+                  ]
+                },
+                "encryptionAlgorithmOptions": {
+                  "defaultValue": "string",
+                  "allowedValues": [
+                    "string"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+  ListSigningProfiles:
+    description: |-
+      Lists all available signing profiles in your AWS account. Returns only profiles with an ACTIVE status unless the includeCanceled request field is set to true. If additional jobs remain to be listed, code signing returns a nextToken value. Use this value in subsequent calls to ListSigningJobs to fetch the remaining values. You can continue calling ListSigningJobs with your maxResults parameter and with new values that code signing returns in the nextToken parameter until all of your signing jobs have been returned.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_ListSigningProfiles.html
+    example:
+      inputs: [
+        {
+          "statuses": [
+            "string"
+          ],
+          "nextToken": "string",
+          "maxResults": 1,
+          "platformId": "string",
+          "includeCanceled": false
+        }
+      ]
+      outputs: [
+        {
+          "profiles": [
+            {
+              "arn": "string",
+              "tags": {
+                "string": "string"
+              },
+              "status": "string",
+              "platformId": "string",
+              "profileName": "string",
+              "profileVersion": "string",
+              "signingMaterial": {
+                "certificateArn": "string"
+              },
+              "profileVersionArn": "string",
+              "signingParameters": {
+                "string": "string"
+              },
+              "platformDisplayName": "string",
+              "signatureValidityPeriod": {
+                "type": "string",
+                "value": 1
+              }
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns a list of the tags associated with a signing profile resource.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": {
+            "string": "string"
+          }
+        }
+      ]
+  PutSigningProfile:
+    description: |-
+      Creates a signing profile. A signing profile is a code signing template that can be used to carry out a pre-defined signing job.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_PutSigningProfile.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "overrides": {
+            "signingImageFormat": "string",
+            "signingConfiguration": {
+              "hashAlgorithm": "string",
+              "encryptionAlgorithm": "string"
+            }
+          },
+          "platformId": "string",
+          "profileName": "string",
+          "signingMaterial": {
+            "certificateArn": "string"
+          },
+          "signingParameters": {
+            "string": "string"
+          },
+          "signatureValidityPeriod": {
+            "type": "string",
+            "value": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "arn": "string",
+          "profileVersion": "string",
+          "profileVersionArn": "string"
+        }
+      ]
+  RemoveProfilePermission:
+    description: |-
+      Removes cross-account permissions from a signing profile.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_RemoveProfilePermission.html
+    example:
+      inputs: [
+        {
+          "revisionId": "string",
+          "profileName": "string",
+          "statementId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "revisionId": "string"
+        }
+      ]
+  RevokeSignature:
+    description: |-
+      Changes the state of a signing job to REVOKED. This indicates that the signature is no longer valid.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_RevokeSignature.html
+    example:
+      inputs: [
+        {
+          "jobId": "string",
+          "reason": "string",
+          "jobOwner": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RevokeSigningProfile:
+    description: |-
+      Changes the state of a signing profile to REVOKED. This indicates that signatures generated using the signing profile after an effective start date are no longer valid.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_RevokeSigningProfile.html
+    example:
+      inputs: [
+        {
+          "reason": "string",
+          "profileName": "string",
+          "effectiveTime": 1481289211.615,
+          "profileVersion": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartSigningJob:
+    description: |-
+      Initiates a signing job to be performed on the code provided. Signing jobs are viewable by the ListSigningJobs operation for two years after they are performed.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_StartSigningJob.html
+    example:
+      inputs: [
+        {
+          "source": {
+            "s3": {
+              "key": "string",
+              "version": "string",
+              "bucketName": "string"
+            }
+          },
+          "destination": {
+            "s3": {
+              "prefix": "string",
+              "bucketName": "string"
+            }
+          },
+          "profileName": "string",
+          "profileOwner": "string",
+          "clientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "jobId": "string",
+          "jobOwner": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds one or more tags to a signing profile. Tags are labels that you can use to identify and organize your AWS resources. Each tag consists of a key and an optional value. To specify the signing profile, use its Amazon Resource Name (ARN). To specify the tag, use a key-value pair.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes one or more tags from a signing profile. To remove the tags, specify a list of tag keys.
+    versions:
+      from: 2017.8.25
+    link: https://docs.aws.amazon.com/signer/latest/api/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

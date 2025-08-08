@@ -1,0 +1,551 @@
+Product:
+  name: AWS Compute Optimizer
+  versions: [2019.11.1]
+  package: amazon.aws.computeoptimizer
+  description: |-
+    AWS Compute Optimizer
+  link: https://docs.aws.amazon.com/compute-optimizer/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  DescribeRecommendationExportJobs:
+    description: |-
+      Describes recommendation export jobs created in the last seven days.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/compute-optimizer/latest/APIReference/API_DescribeRecommendationExportJobs.html
+    example:
+      inputs: [
+        {
+          "jobIds": [
+            "string"
+          ],
+          "filters": [
+            {
+              "name": "string",
+              "values": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "recommendationExportJobs": [
+            {
+              "jobId": "string",
+              "status": "string",
+              "destination": {
+                "s3": {
+                  "key": "string",
+                  "bucket": "string",
+                  "metadataKey": "string"
+                }
+              },
+              "resourceType": "string",
+              "failureReason": "string",
+              "creationTimestamp": 1481289211.615,
+              "lastUpdatedTimestamp": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ExportAutoScalingGroupRecommendations:
+    description: |-
+      Exports optimization recommendations for Auto Scaling groups.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/compute-optimizer/latest/APIReference/API_ExportAutoScalingGroupRecommendations.html
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "name": "string",
+              "values": [
+                "string"
+              ]
+            }
+          ],
+          "accountIds": [
+            "string"
+          ],
+          "fileFormat": "string",
+          "fieldsToExport": [
+            "string"
+          ],
+          "s3DestinationConfig": {
+            "bucket": "string",
+            "keyPrefix": "string"
+          },
+          "includeMemberAccounts": false
+        }
+      ]
+      outputs: [
+        {
+          "jobId": "string",
+          "s3Destination": {
+            "key": "string",
+            "bucket": "string",
+            "metadataKey": "string"
+          }
+        }
+      ]
+  ExportEC2InstanceRecommendations:
+    description: |-
+      Exports optimization recommendations for Amazon EC2 instances.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/compute-optimizer/latest/APIReference/API_ExportEC2InstanceRecommendations.html
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "name": "string",
+              "values": [
+                "string"
+              ]
+            }
+          ],
+          "accountIds": [
+            "string"
+          ],
+          "fileFormat": "string",
+          "fieldsToExport": [
+            "string"
+          ],
+          "s3DestinationConfig": {
+            "bucket": "string",
+            "keyPrefix": "string"
+          },
+          "includeMemberAccounts": false
+        }
+      ]
+      outputs: [
+        {
+          "jobId": "string",
+          "s3Destination": {
+            "key": "string",
+            "bucket": "string",
+            "metadataKey": "string"
+          }
+        }
+      ]
+  GetAutoScalingGroupRecommendations:
+    description: |-
+      Returns Auto Scaling group recommendations.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/compute-optimizer/latest/APIReference/API_GetAutoScalingGroupRecommendations.html
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "name": "string",
+              "values": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "accountIds": [
+            "string"
+          ],
+          "maxResults": 1,
+          "autoScalingGroupArns": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "errors": [
+            {
+              "code": "string",
+              "message": "string",
+              "identifier": "string"
+            }
+          ],
+          "nextToken": "string",
+          "autoScalingGroupRecommendations": [
+            {
+              "finding": "string",
+              "accountId": "string",
+              "utilizationMetrics": [
+                {
+                  "name": "string",
+                  "value": 0.1,
+                  "statistic": "string"
+                }
+              ],
+              "autoScalingGroupArn": "string",
+              "autoScalingGroupName": "string",
+              "currentConfiguration": {
+                "maxSize": 1,
+                "minSize": 1,
+                "instanceType": "string",
+                "desiredCapacity": 1
+              },
+              "lastRefreshTimestamp": 1481289211.615,
+              "lookBackPeriodInDays": 0.1,
+              "recommendationOptions": [
+                {
+                  "rank": 1,
+                  "configuration": {
+                    "maxSize": 1,
+                    "minSize": 1,
+                    "instanceType": "string",
+                    "desiredCapacity": 1
+                  },
+                  "performanceRisk": 0.1,
+                  "projectedUtilizationMetrics": [
+                    {
+                      "name": "string",
+                      "value": 0.1,
+                      "statistic": "string"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  GetEBSVolumeRecommendations:
+    description: |-
+      Returns Amazon Elastic Block Store (Amazon EBS) volume recommendations.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/compute-optimizer/latest/APIReference/API_GetEBSVolumeRecommendations.html
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "name": "string",
+              "values": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "accountIds": [
+            "string"
+          ],
+          "maxResults": 1,
+          "volumeArns": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "errors": [
+            {
+              "code": "string",
+              "message": "string",
+              "identifier": "string"
+            }
+          ],
+          "nextToken": "string",
+          "volumeRecommendations": [
+            {
+              "finding": "string",
+              "accountId": "string",
+              "volumeArn": "string",
+              "utilizationMetrics": [
+                {
+                  "name": "string",
+                  "value": 0.1,
+                  "statistic": "string"
+                }
+              ],
+              "currentConfiguration": {
+                "volumeSize": 1,
+                "volumeType": "string",
+                "volumeBurstIOPS": 1,
+                "volumeBaselineIOPS": 1,
+                "volumeBurstThroughput": 1,
+                "volumeBaselineThroughput": 1
+              },
+              "lastRefreshTimestamp": 1481289211.615,
+              "lookBackPeriodInDays": 0.1,
+              "volumeRecommendationOptions": [
+                {
+                  "rank": 1,
+                  "configuration": {
+                    "volumeSize": 1,
+                    "volumeType": "string",
+                    "volumeBurstIOPS": 1,
+                    "volumeBaselineIOPS": 1,
+                    "volumeBurstThroughput": 1,
+                    "volumeBaselineThroughput": 1
+                  },
+                  "performanceRisk": 0.1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  GetEC2InstanceRecommendations:
+    description: |-
+      Returns Amazon EC2 instance recommendations.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/compute-optimizer/latest/APIReference/API_GetEC2InstanceRecommendations.html
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "name": "string",
+              "values": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "accountIds": [
+            "string"
+          ],
+          "maxResults": 1,
+          "instanceArns": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "errors": [
+            {
+              "code": "string",
+              "message": "string",
+              "identifier": "string"
+            }
+          ],
+          "nextToken": "string",
+          "instanceRecommendations": [
+            {
+              "finding": "string",
+              "accountId": "string",
+              "instanceArn": "string",
+              "instanceName": "string",
+              "utilizationMetrics": [
+                {
+                  "name": "string",
+                  "value": 0.1,
+                  "statistic": "string"
+                }
+              ],
+              "currentInstanceType": "string",
+              "lastRefreshTimestamp": 1481289211.615,
+              "lookBackPeriodInDays": 0.1,
+              "recommendationOptions": [
+                {
+                  "rank": 1,
+                  "instanceType": "string",
+                  "performanceRisk": 0.1,
+                  "projectedUtilizationMetrics": [
+                    {
+                      "name": "string",
+                      "value": 0.1,
+                      "statistic": "string"
+                    }
+                  ]
+                }
+              ],
+              "recommendationSources": [
+                {
+                  "recommendationSourceArn": "string",
+                  "recommendationSourceType": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  GetEC2RecommendationProjectedMetrics:
+    description: |-
+      Returns the projected utilization metrics of Amazon EC2 instance recommendations.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/compute-optimizer/latest/APIReference/API_GetEC2RecommendationProjectedMetrics.html
+    example:
+      inputs: [
+        {
+          "stat": "string",
+          "period": 1,
+          "endTime": 1481289211.615,
+          "startTime": 1481289211.615,
+          "instanceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "recommendedOptionProjectedMetrics": [
+            {
+              "rank": 1,
+              "projectedMetrics": [
+                {
+                  "name": "string",
+                  "values": [
+                    0.1
+                  ],
+                  "timestamps": [
+                    1481289211.615
+                  ]
+                }
+              ],
+              "recommendedInstanceType": "string"
+            }
+          ]
+        }
+      ]
+  GetEnrollmentStatus:
+    description: |-
+      Returns the enrollment (opt in) status of an account to the AWS Compute Optimizer service.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/compute-optimizer/latest/APIReference/API_GetEnrollmentStatus.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "status": "string",
+          "statusReason": "string",
+          "memberAccountsEnrolled": false
+        }
+      ]
+  GetLambdaFunctionRecommendations:
+    description: |-
+      Returns AWS Lambda function recommendations.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/compute-optimizer/latest/APIReference/API_GetLambdaFunctionRecommendations.html
+    example:
+      inputs: [
+        {
+          "filters": [
+            {
+              "name": "string",
+              "values": [
+                "string"
+              ]
+            }
+          ],
+          "nextToken": "string",
+          "accountIds": [
+            "string"
+          ],
+          "maxResults": 1,
+          "functionArns": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "lambdaFunctionRecommendations": [
+            {
+              "finding": "string",
+              "accountId": "string",
+              "functionArn": "string",
+              "functionVersion": "string",
+              "currentMemorySize": 1,
+              "findingReasonCodes": [
+                "string"
+              ],
+              "utilizationMetrics": [
+                {
+                  "name": "string",
+                  "value": 0.1,
+                  "statistic": "string"
+                }
+              ],
+              "numberOfInvocations": 1,
+              "lastRefreshTimestamp": 1481289211.615,
+              "lookbackPeriodInDays": 0.1,
+              "memorySizeRecommendationOptions": [
+                {
+                  "rank": 1,
+                  "memorySize": 1,
+                  "projectedUtilizationMetrics": [
+                    {
+                      "name": "string",
+                      "value": 0.1,
+                      "statistic": "string"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  GetRecommendationSummaries:
+    description: |-
+      Returns the optimization findings for an account.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/compute-optimizer/latest/APIReference/API_GetRecommendationSummaries.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "accountIds": [
+            "string"
+          ],
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "recommendationSummaries": [
+            {
+              "accountId": "string",
+              "summaries": [
+                {
+                  "name": "string",
+                  "value": 0.1,
+                  "reasonCodeSummaries": [
+                    {
+                      "name": "string",
+                      "value": 0.1
+                    }
+                  ]
+                }
+              ],
+              "recommendationResourceType": "string"
+            }
+          ]
+        }
+      ]
+  UpdateEnrollmentStatus:
+    description: |-
+      Updates the enrollment (opt in and opt out) status of an account to the AWS Compute Optimizer service.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/compute-optimizer/latest/APIReference/API_UpdateEnrollmentStatus.html
+    example:
+      inputs: [
+        {
+          "status": "string",
+          "includeMemberAccounts": false
+        }
+      ]
+      outputs: [
+        {
+          "status": "string",
+          "statusReason": "string"
+        }
+      ]

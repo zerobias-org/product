@@ -1,0 +1,368 @@
+Product:
+  name: AWS Application Auto Scaling
+  versions: [2016.2.6]
+  package: amazon.aws.applicationautoscaling
+  description: |-
+    Application Auto Scaling
+  link: https://docs.aws.amazon.com/autoscaling/application/APIReference/Welcome.html
+  contentType: json
+Operations:
+  DeleteScalingPolicy:
+    description: |-
+      Deletes the specified scaling policy for an Application Auto Scaling scalable target.
+    versions:
+      from: 2016.2.6
+    link: https://docs.aws.amazon.com/autoscaling/application/APIReference/API_DeleteScalingPolicy.html
+    example:
+      inputs: [
+        {
+          "PolicyName": "string",
+          "ResourceId": "string",
+          "ServiceNamespace": "string",
+          "ScalableDimension": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteScheduledAction:
+    description: |-
+      Deletes the specified scheduled action for an Application Auto Scaling scalable target.
+    versions:
+      from: 2016.2.6
+    link: https://docs.aws.amazon.com/autoscaling/application/APIReference/API_DeleteScheduledAction.html
+    example:
+      inputs: [
+        {
+          "ResourceId": "string",
+          "ServiceNamespace": "string",
+          "ScalableDimension": "string",
+          "ScheduledActionName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeregisterScalableTarget:
+    description: |-
+      Deregisters an Application Auto Scaling scalable target when you have finished using it. To see which resources have been registered, use DescribeScalableTargets.
+    versions:
+      from: 2016.2.6
+    link: https://docs.aws.amazon.com/autoscaling/application/APIReference/API_DeregisterScalableTarget.html
+    example:
+      inputs: [
+        {
+          "ResourceId": "string",
+          "ServiceNamespace": "string",
+          "ScalableDimension": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeScalableTargets:
+    description: |-
+      Gets information about the scalable targets in the specified namespace.
+    versions:
+      from: 2016.2.6
+    link: https://docs.aws.amazon.com/autoscaling/application/APIReference/API_DescribeScalableTargets.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceIds": [
+            "string"
+          ],
+          "ServiceNamespace": "string",
+          "ScalableDimension": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ScalableTargets": [
+            {
+              "RoleARN": "string",
+              "ResourceId": "string",
+              "MaxCapacity": 1,
+              "MinCapacity": 1,
+              "CreationTime": 1481289211.615,
+              "SuspendedState": {
+                "DynamicScalingInSuspended": false,
+                "ScheduledScalingSuspended": false,
+                "DynamicScalingOutSuspended": false
+              },
+              "ServiceNamespace": "string",
+              "ScalableDimension": "string"
+            }
+          ]
+        }
+      ]
+  DescribeScalingActivities:
+    description: |-
+      Provides descriptive information about the scaling activities in the specified namespace from the previous six weeks.
+    versions:
+      from: 2016.2.6
+    link: https://docs.aws.amazon.com/autoscaling/application/APIReference/API_DescribeScalingActivities.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceId": "string",
+          "ServiceNamespace": "string",
+          "ScalableDimension": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ScalingActivities": [
+            {
+              "Cause": "string",
+              "Details": "string",
+              "EndTime": 1481289211.615,
+              "StartTime": 1481289211.615,
+              "ActivityId": "string",
+              "ResourceId": "string",
+              "StatusCode": "string",
+              "Description": "string",
+              "StatusMessage": "string",
+              "ServiceNamespace": "string",
+              "ScalableDimension": "string"
+            }
+          ]
+        }
+      ]
+  DescribeScalingPolicies:
+    description: |-
+      Describes the Application Auto Scaling scaling policies for the specified service namespace.
+    versions:
+      from: 2016.2.6
+    link: https://docs.aws.amazon.com/autoscaling/application/APIReference/API_DescribeScalingPolicies.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceId": "string",
+          "PolicyNames": [
+            "string"
+          ],
+          "ServiceNamespace": "string",
+          "ScalableDimension": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ScalingPolicies": [
+            {
+              "Alarms": [
+                {
+                  "AlarmARN": "string",
+                  "AlarmName": "string"
+                }
+              ],
+              "PolicyARN": "string",
+              "PolicyName": "string",
+              "PolicyType": "string",
+              "ResourceId": "string",
+              "CreationTime": 1481289211.615,
+              "ServiceNamespace": "string",
+              "ScalableDimension": "string",
+              "StepScalingPolicyConfiguration": {
+                "Cooldown": 1,
+                "AdjustmentType": "string",
+                "StepAdjustments": [
+                  {
+                    "ScalingAdjustment": 1,
+                    "MetricIntervalLowerBound": 0.1,
+                    "MetricIntervalUpperBound": 0.1
+                  }
+                ],
+                "MetricAggregationType": "string",
+                "MinAdjustmentMagnitude": 1
+              },
+              "TargetTrackingScalingPolicyConfiguration": {
+                "TargetValue": 0.1,
+                "DisableScaleIn": false,
+                "ScaleInCooldown": 1,
+                "ScaleOutCooldown": 1,
+                "CustomizedMetricSpecification": {
+                  "Unit": "string",
+                  "Namespace": "string",
+                  "Statistic": "string",
+                  "Dimensions": [
+                    {
+                      "Name": "string",
+                      "Value": "string"
+                    }
+                  ],
+                  "MetricName": "string"
+                },
+                "PredefinedMetricSpecification": {
+                  "ResourceLabel": "string",
+                  "PredefinedMetricType": "string"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  DescribeScheduledActions:
+    description: |-
+      Describes the Application Auto Scaling scheduled actions for the specified service namespace.
+    versions:
+      from: 2016.2.6
+    link: https://docs.aws.amazon.com/autoscaling/application/APIReference/API_DescribeScheduledActions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceId": "string",
+          "ServiceNamespace": "string",
+          "ScalableDimension": "string",
+          "ScheduledActionNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ScheduledActions": [
+            {
+              "EndTime": 1481289211.615,
+              "Schedule": "string",
+              "Timezone": "string",
+              "StartTime": 1481289211.615,
+              "ResourceId": "string",
+              "CreationTime": 1481289211.615,
+              "ServiceNamespace": "string",
+              "ScalableDimension": "string",
+              "ScheduledActionARN": "string",
+              "ScheduledActionName": "string",
+              "ScalableTargetAction": {
+                "MaxCapacity": 1,
+                "MinCapacity": 1
+              }
+            }
+          ]
+        }
+      ]
+  PutScalingPolicy:
+    description: |-
+      Creates or updates a scaling policy for an Application Auto Scaling scalable target.
+    versions:
+      from: 2016.2.6
+    link: https://docs.aws.amazon.com/autoscaling/application/APIReference/API_PutScalingPolicy.html
+    example:
+      inputs: [
+        {
+          "PolicyName": "string",
+          "PolicyType": "string",
+          "ResourceId": "string",
+          "ServiceNamespace": "string",
+          "ScalableDimension": "string",
+          "StepScalingPolicyConfiguration": {
+            "Cooldown": 1,
+            "AdjustmentType": "string",
+            "StepAdjustments": [
+              {
+                "ScalingAdjustment": 1,
+                "MetricIntervalLowerBound": 0.1,
+                "MetricIntervalUpperBound": 0.1
+              }
+            ],
+            "MetricAggregationType": "string",
+            "MinAdjustmentMagnitude": 1
+          },
+          "TargetTrackingScalingPolicyConfiguration": {
+            "TargetValue": 0.1,
+            "DisableScaleIn": false,
+            "ScaleInCooldown": 1,
+            "ScaleOutCooldown": 1,
+            "CustomizedMetricSpecification": {
+              "Unit": "string",
+              "Namespace": "string",
+              "Statistic": "string",
+              "Dimensions": [
+                {
+                  "Name": "string",
+                  "Value": "string"
+                }
+              ],
+              "MetricName": "string"
+            },
+            "PredefinedMetricSpecification": {
+              "ResourceLabel": "string",
+              "PredefinedMetricType": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Alarms": [
+            {
+              "AlarmARN": "string",
+              "AlarmName": "string"
+            }
+          ],
+          "PolicyARN": "string"
+        }
+      ]
+  PutScheduledAction:
+    description: |-
+      Creates or updates a scheduled action for an Application Auto Scaling scalable target.
+    versions:
+      from: 2016.2.6
+    link: https://docs.aws.amazon.com/autoscaling/application/APIReference/API_PutScheduledAction.html
+    example:
+      inputs: [
+        {
+          "EndTime": 1481289211.615,
+          "Schedule": "string",
+          "Timezone": "string",
+          "StartTime": 1481289211.615,
+          "ResourceId": "string",
+          "ServiceNamespace": "string",
+          "ScalableDimension": "string",
+          "ScheduledActionName": "string",
+          "ScalableTargetAction": {
+            "MaxCapacity": 1,
+            "MinCapacity": 1
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RegisterScalableTarget:
+    description: |-
+      Registers or updates a scalable target.
+    versions:
+      from: 2016.2.6
+    link: https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html
+    example:
+      inputs: [
+        {
+          "RoleARN": "string",
+          "ResourceId": "string",
+          "MaxCapacity": 1,
+          "MinCapacity": 1,
+          "SuspendedState": {
+            "DynamicScalingInSuspended": false,
+            "ScheduledScalingSuspended": false,
+            "DynamicScalingOutSuspended": false
+          },
+          "ServiceNamespace": "string",
+          "ScalableDimension": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
