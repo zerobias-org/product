@@ -1,0 +1,1417 @@
+Product:
+  name: Amazon WorkDocs
+  versions: [2016.5.1]
+  package: amazon.aws.workdocs
+  description: |-
+    Amazon WorkDocs
+  link: https://docs.aws.amazon.com/workdocs/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AbortDocumentVersionUpload:
+    description: |-
+      Aborts the upload of the specified document version that was previously initiated by InitiateDocumentVersionUpload. The client should make this call only when it no longer intends to upload the document version, or fails to do so.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_AbortDocumentVersionUpload.html
+    example:
+      inputs: [
+        {
+          "VersionId": "string",
+          "DocumentId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ActivateUser:
+    description: |-
+      Activates the specified user. Only active users can access Amazon WorkDocs.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_ActivateUser.html
+    example:
+      inputs: [
+        {
+          "UserId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "User": {
+            "Id": "string",
+            "Type": "string",
+            "Locale": "string",
+            "Status": "string",
+            "Storage": {
+              "StorageRule": {
+                "StorageType": "string",
+                "StorageAllocatedInBytes": 1
+              },
+              "StorageUtilizedInBytes": 1
+            },
+            "Surname": "string",
+            "Username": "string",
+            "GivenName": "string",
+            "TimeZoneId": "string",
+            "EmailAddress": "string",
+            "RootFolderId": "string",
+            "OrganizationId": "string",
+            "CreatedTimestamp": 1481289211.615,
+            "ModifiedTimestamp": 1481289211.615,
+            "RecycleBinFolderId": "string"
+          }
+        }
+      ]
+  AddResourcePermissions:
+    description: |-
+      Creates a set of permissions for the specified folder or document. The resource permissions are overwritten if the principals already have different permissions.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_AddResourcePermissions.html
+    example:
+      inputs: [
+        {
+          "Principals": [
+            {
+              "Id": "string",
+              "Role": "string",
+              "Type": "string"
+            }
+          ],
+          "ResourceId": "string",
+          "AuthenticationToken": "string",
+          "NotificationOptions": {
+            "SendEmail": false,
+            "EmailMessage": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ShareResults": [
+            {
+              "Role": "string",
+              "Status": "string",
+              "ShareId": "string",
+              "PrincipalId": "string",
+              "StatusMessage": "string",
+              "InviteePrincipalId": "string"
+            }
+          ]
+        }
+      ]
+  CreateComment:
+    description: |-
+      Adds a new comment to the specified document version.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_CreateComment.html
+    example:
+      inputs: [
+        {
+          "Text": "string",
+          "ParentId": "string",
+          "ThreadId": "string",
+          "VersionId": "string",
+          "DocumentId": "string",
+          "Visibility": "string",
+          "AuthenticationToken": "string",
+          "NotifyCollaborators": false
+        }
+      ]
+      outputs: [
+        {
+          "Comment": {
+            "Text": "string",
+            "Status": "string",
+            "ParentId": "string",
+            "ThreadId": "string",
+            "CommentId": "string",
+            "Visibility": "string",
+            "Contributor": {
+              "Id": "string",
+              "Type": "string",
+              "Locale": "string",
+              "Status": "string",
+              "Storage": {
+                "StorageRule": {
+                  "StorageType": "string",
+                  "StorageAllocatedInBytes": 1
+                },
+                "StorageUtilizedInBytes": 1
+              },
+              "Surname": "string",
+              "Username": "string",
+              "GivenName": "string",
+              "TimeZoneId": "string",
+              "EmailAddress": "string",
+              "RootFolderId": "string",
+              "OrganizationId": "string",
+              "CreatedTimestamp": 1481289211.615,
+              "ModifiedTimestamp": 1481289211.615,
+              "RecycleBinFolderId": "string"
+            },
+            "RecipientId": "string",
+            "CreatedTimestamp": 1481289211.615
+          }
+        }
+      ]
+  CreateCustomMetadata:
+    description: |-
+      Adds one or more custom properties to the specified resource (a folder, document, or version).
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_CreateCustomMetadata.html
+    example:
+      inputs: [
+        {
+          "VersionId": "string",
+          "ResourceId": "string",
+          "CustomMetadata": {
+            "string": "string"
+          },
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateFolder:
+    description: |-
+      Creates a folder with the specified name and parent folder.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_CreateFolder.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "ParentFolderId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Metadata": {
+            "Id": "string",
+            "Name": "string",
+            "Size": 1,
+            "Labels": [
+              "string"
+            ],
+            "CreatorId": "string",
+            "Signature": "string",
+            "ResourceState": "string",
+            "ParentFolderId": "string",
+            "CreatedTimestamp": 1481289211.615,
+            "LatestVersionSize": 1,
+            "ModifiedTimestamp": 1481289211.615
+          }
+        }
+      ]
+  CreateLabels:
+    description: |-
+      Adds the specified list of labels to the given resource (a document or folder)
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_CreateLabels.html
+    example:
+      inputs: [
+        {
+          "Labels": [
+            "string"
+          ],
+          "ResourceId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateNotificationSubscription:
+    description: |-
+      Configure Amazon WorkDocs to use Amazon SNS notifications. The endpoint receives a confirmation message, and must confirm the subscription.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_CreateNotificationSubscription.html
+    example:
+      inputs: [
+        {
+          "Endpoint": "string",
+          "Protocol": "string",
+          "OrganizationId": "string",
+          "SubscriptionType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Subscription": {
+            "EndPoint": "string",
+            "Protocol": "string",
+            "SubscriptionId": "string"
+          }
+        }
+      ]
+  CreateUser:
+    description: |-
+      Creates a user in a Simple AD or Microsoft AD directory. The status of a newly created user is "ACTIVE". New users can access Amazon WorkDocs.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_CreateUser.html
+    example:
+      inputs: [
+        {
+          "Surname": "string",
+          "Password": "string",
+          "Username": "string",
+          "GivenName": "string",
+          "TimeZoneId": "string",
+          "StorageRule": {
+            "StorageType": "string",
+            "StorageAllocatedInBytes": 1
+          },
+          "EmailAddress": "string",
+          "OrganizationId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "User": {
+            "Id": "string",
+            "Type": "string",
+            "Locale": "string",
+            "Status": "string",
+            "Storage": {
+              "StorageRule": {
+                "StorageType": "string",
+                "StorageAllocatedInBytes": 1
+              },
+              "StorageUtilizedInBytes": 1
+            },
+            "Surname": "string",
+            "Username": "string",
+            "GivenName": "string",
+            "TimeZoneId": "string",
+            "EmailAddress": "string",
+            "RootFolderId": "string",
+            "OrganizationId": "string",
+            "CreatedTimestamp": 1481289211.615,
+            "ModifiedTimestamp": 1481289211.615,
+            "RecycleBinFolderId": "string"
+          }
+        }
+      ]
+  DeactivateUser:
+    description: |-
+      Deactivates the specified user, which revokes the user's access to Amazon WorkDocs.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DeactivateUser.html
+    example:
+      inputs: [
+        {
+          "UserId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteComment:
+    description: |-
+      Deletes the specified comment from the document version.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DeleteComment.html
+    example:
+      inputs: [
+        {
+          "CommentId": "string",
+          "VersionId": "string",
+          "DocumentId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteCustomMetadata:
+    description: |-
+      Deletes custom metadata from the specified resource.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DeleteCustomMetadata.html
+    example:
+      inputs: [
+        {
+          "Keys": [
+            "string"
+          ],
+          "DeleteAll": false,
+          "VersionId": "string",
+          "ResourceId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDocument:
+    description: |-
+      Permanently deletes the specified document and its associated metadata.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DeleteDocument.html
+    example:
+      inputs: [
+        {
+          "DocumentId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteFolderContents:
+    description: |-
+      Deletes the contents of the specified folder.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DeleteFolderContents.html
+    example:
+      inputs: [
+        {
+          "FolderId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteFolder:
+    description: |-
+      Permanently deletes the specified folder and its contents.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DeleteFolder.html
+    example:
+      inputs: [
+        {
+          "FolderId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteLabels:
+    description: |-
+      Deletes the specified list of labels from a resource.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DeleteLabels.html
+    example:
+      inputs: [
+        {
+          "Labels": [
+            "string"
+          ],
+          "DeleteAll": false,
+          "ResourceId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteNotificationSubscription:
+    description: |-
+      Deletes the specified subscription from the specified organization.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DeleteNotificationSubscription.html
+    example:
+      inputs: [
+        {
+          "OrganizationId": "string",
+          "SubscriptionId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteUser:
+    description: |-
+      Deletes the specified user from a Simple AD or Microsoft AD directory.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DeleteUser.html
+    example:
+      inputs: [
+        {
+          "UserId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeActivities:
+    description: |-
+      Describes the user activities in a specified time period.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DescribeActivities.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "UserId": "string",
+          "EndTime": 1481289211.615,
+          "StartTime": 1481289211.615,
+          "ResourceId": "string",
+          "ActivityTypes": "string",
+          "OrganizationId": "string",
+          "AuthenticationToken": "string",
+          "IncludeIndirectActivities": false
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "UserActivities": [
+            {
+              "Type": "string",
+              "Initiator": {
+                "Id": "string",
+                "Surname": "string",
+                "Username": "string",
+                "GivenName": "string",
+                "EmailAddress": "string"
+              },
+              "TimeStamp": 1481289211.615,
+              "Participants": {
+                "Users": [
+                  {
+                    "Id": "string",
+                    "Surname": "string",
+                    "Username": "string",
+                    "GivenName": "string",
+                    "EmailAddress": "string"
+                  }
+                ],
+                "Groups": [
+                  {
+                    "Id": "string",
+                    "Name": "string"
+                  }
+                ]
+              },
+              "OrganizationId": "string",
+              "OriginalParent": {
+                "Id": "string",
+                "Name": "string",
+                "Type": "string",
+                "Owner": {
+                  "Id": "string",
+                  "Surname": "string",
+                  "Username": "string",
+                  "GivenName": "string",
+                  "EmailAddress": "string"
+                },
+                "ParentId": "string",
+                "VersionId": "string",
+                "OriginalName": "string"
+              },
+              "CommentMetadata": {
+                "CommentId": "string",
+                "Contributor": {
+                  "Id": "string",
+                  "Type": "string",
+                  "Locale": "string",
+                  "Status": "string",
+                  "Storage": {
+                    "StorageRule": {
+                      "StorageType": "string",
+                      "StorageAllocatedInBytes": 1
+                    },
+                    "StorageUtilizedInBytes": 1
+                  },
+                  "Surname": "string",
+                  "Username": "string",
+                  "GivenName": "string",
+                  "TimeZoneId": "string",
+                  "EmailAddress": "string",
+                  "RootFolderId": "string",
+                  "OrganizationId": "string",
+                  "CreatedTimestamp": 1481289211.615,
+                  "ModifiedTimestamp": 1481289211.615,
+                  "RecycleBinFolderId": "string"
+                },
+                "RecipientId": "string",
+                "CommentStatus": "string",
+                "CreatedTimestamp": 1481289211.615
+              },
+              "ResourceMetadata": {
+                "Id": "string",
+                "Name": "string",
+                "Type": "string",
+                "Owner": {
+                  "Id": "string",
+                  "Surname": "string",
+                  "Username": "string",
+                  "GivenName": "string",
+                  "EmailAddress": "string"
+                },
+                "ParentId": "string",
+                "VersionId": "string",
+                "OriginalName": "string"
+              },
+              "IsIndirectActivity": false
+            }
+          ]
+        }
+      ]
+  DescribeComments:
+    description: |-
+      List all the comments for the specified document version.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DescribeComments.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "VersionId": "string",
+          "DocumentId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "Comments": [
+            {
+              "Text": "string",
+              "Status": "string",
+              "ParentId": "string",
+              "ThreadId": "string",
+              "CommentId": "string",
+              "Visibility": "string",
+              "Contributor": {
+                "Id": "string",
+                "Type": "string",
+                "Locale": "string",
+                "Status": "string",
+                "Storage": {
+                  "StorageRule": {
+                    "StorageType": "string",
+                    "StorageAllocatedInBytes": 1
+                  },
+                  "StorageUtilizedInBytes": 1
+                },
+                "Surname": "string",
+                "Username": "string",
+                "GivenName": "string",
+                "TimeZoneId": "string",
+                "EmailAddress": "string",
+                "RootFolderId": "string",
+                "OrganizationId": "string",
+                "CreatedTimestamp": 1481289211.615,
+                "ModifiedTimestamp": 1481289211.615,
+                "RecycleBinFolderId": "string"
+              },
+              "RecipientId": "string",
+              "CreatedTimestamp": 1481289211.615
+            }
+          ]
+        }
+      ]
+  DescribeDocumentVersions:
+    description: |-
+      Retrieves the document versions for the specified document.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DescribeDocumentVersions.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Fields": "string",
+          "Marker": "string",
+          "Include": "string",
+          "DocumentId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "DocumentVersions": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Size": 1,
+              "Source": {
+                "string": "string"
+              },
+              "Status": "string",
+              "CreatorId": "string",
+              "Signature": "string",
+              "Thumbnail": {
+                "string": "string"
+              },
+              "ContentType": "string",
+              "CreatedTimestamp": 1481289211.615,
+              "ModifiedTimestamp": 1481289211.615,
+              "ContentCreatedTimestamp": 1481289211.615,
+              "ContentModifiedTimestamp": 1481289211.615
+            }
+          ]
+        }
+      ]
+  DescribeFolderContents:
+    description: |-
+      Describes the contents of the specified folder, including its documents and subfolders.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DescribeFolderContents.html
+    example:
+      inputs: [
+        {
+          "Sort": "string",
+          "Type": "string",
+          "Limit": 1,
+          "Order": "string",
+          "Marker": "string",
+          "Include": "string",
+          "FolderId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "Folders": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Size": 1,
+              "Labels": [
+                "string"
+              ],
+              "CreatorId": "string",
+              "Signature": "string",
+              "ResourceState": "string",
+              "ParentFolderId": "string",
+              "CreatedTimestamp": 1481289211.615,
+              "LatestVersionSize": 1,
+              "ModifiedTimestamp": 1481289211.615
+            }
+          ],
+          "Documents": [
+            {
+              "Id": "string",
+              "Labels": [
+                "string"
+              ],
+              "CreatorId": "string",
+              "ResourceState": "string",
+              "ParentFolderId": "string",
+              "CreatedTimestamp": 1481289211.615,
+              "ModifiedTimestamp": 1481289211.615,
+              "LatestVersionMetadata": {
+                "Id": "string",
+                "Name": "string",
+                "Size": 1,
+                "Source": {
+                  "string": "string"
+                },
+                "Status": "string",
+                "CreatorId": "string",
+                "Signature": "string",
+                "Thumbnail": {
+                  "string": "string"
+                },
+                "ContentType": "string",
+                "CreatedTimestamp": 1481289211.615,
+                "ModifiedTimestamp": 1481289211.615,
+                "ContentCreatedTimestamp": 1481289211.615,
+                "ContentModifiedTimestamp": 1481289211.615
+              }
+            }
+          ]
+        }
+      ]
+  DescribeGroups:
+    description: |-
+      Describes the groups specified by the query. Groups are defined by the underlying Active Directory.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DescribeGroups.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "SearchQuery": "string",
+          "OrganizationId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Groups": [
+            {
+              "Id": "string",
+              "Name": "string"
+            }
+          ],
+          "Marker": "string"
+        }
+      ]
+  DescribeNotificationSubscriptions:
+    description: |-
+      Lists the specified notification subscriptions.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DescribeNotificationSubscriptions.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "OrganizationId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "Subscriptions": [
+            {
+              "EndPoint": "string",
+              "Protocol": "string",
+              "SubscriptionId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeResourcePermissions:
+    description: |-
+      Describes the permissions of a specified resource.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DescribeResourcePermissions.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "ResourceId": "string",
+          "PrincipalId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "Principals": [
+            {
+              "Id": "string",
+              "Type": "string",
+              "Roles": [
+                {
+                  "Role": "string",
+                  "Type": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  DescribeRootFolders:
+    description: |-
+      Describes the current user's special folders; the RootFolder and the RecycleBin. RootFolder is the root of user's files and folders and RecycleBin is the root of recycled items. This is not a valid action for SigV4 (administrative API) clients.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DescribeRootFolders.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "Folders": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Size": 1,
+              "Labels": [
+                "string"
+              ],
+              "CreatorId": "string",
+              "Signature": "string",
+              "ResourceState": "string",
+              "ParentFolderId": "string",
+              "CreatedTimestamp": 1481289211.615,
+              "LatestVersionSize": 1,
+              "ModifiedTimestamp": 1481289211.615
+            }
+          ]
+        }
+      ]
+  DescribeUsers:
+    description: |-
+      Describes the specified users. You can describe all users or filter the results (for example, by status or organization).
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_DescribeUsers.html
+    example:
+      inputs: [
+        {
+          "Sort": "string",
+          "Limit": 1,
+          "Order": "string",
+          "Query": "string",
+          "Fields": "string",
+          "Marker": "string",
+          "Include": "string",
+          "UserIds": "string",
+          "OrganizationId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Users": [
+            {
+              "Id": "string",
+              "Type": "string",
+              "Locale": "string",
+              "Status": "string",
+              "Storage": {
+                "StorageRule": {
+                  "StorageType": "string",
+                  "StorageAllocatedInBytes": 1
+                },
+                "StorageUtilizedInBytes": 1
+              },
+              "Surname": "string",
+              "Username": "string",
+              "GivenName": "string",
+              "TimeZoneId": "string",
+              "EmailAddress": "string",
+              "RootFolderId": "string",
+              "OrganizationId": "string",
+              "CreatedTimestamp": 1481289211.615,
+              "ModifiedTimestamp": 1481289211.615,
+              "RecycleBinFolderId": "string"
+            }
+          ],
+          "Marker": "string",
+          "TotalNumberOfUsers": 1
+        }
+      ]
+  GetCurrentUser:
+    description: |-
+      Retrieves details of the current user for whom the authentication token was generated. This is not a valid action for SigV4 (administrative API) clients.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_GetCurrentUser.html
+    example:
+      inputs: [
+        {
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "User": {
+            "Id": "string",
+            "Type": "string",
+            "Locale": "string",
+            "Status": "string",
+            "Storage": {
+              "StorageRule": {
+                "StorageType": "string",
+                "StorageAllocatedInBytes": 1
+              },
+              "StorageUtilizedInBytes": 1
+            },
+            "Surname": "string",
+            "Username": "string",
+            "GivenName": "string",
+            "TimeZoneId": "string",
+            "EmailAddress": "string",
+            "RootFolderId": "string",
+            "OrganizationId": "string",
+            "CreatedTimestamp": 1481289211.615,
+            "ModifiedTimestamp": 1481289211.615,
+            "RecycleBinFolderId": "string"
+          }
+        }
+      ]
+  GetDocument:
+    description: |-
+      Retrieves details of a document.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_GetDocument.html
+    example:
+      inputs: [
+        {
+          "DocumentId": "string",
+          "AuthenticationToken": "string",
+          "IncludeCustomMetadata": false
+        }
+      ]
+      outputs: [
+        {
+          "Metadata": {
+            "Id": "string",
+            "Labels": [
+              "string"
+            ],
+            "CreatorId": "string",
+            "ResourceState": "string",
+            "ParentFolderId": "string",
+            "CreatedTimestamp": 1481289211.615,
+            "ModifiedTimestamp": 1481289211.615,
+            "LatestVersionMetadata": {
+              "Id": "string",
+              "Name": "string",
+              "Size": 1,
+              "Source": {
+                "string": "string"
+              },
+              "Status": "string",
+              "CreatorId": "string",
+              "Signature": "string",
+              "Thumbnail": {
+                "string": "string"
+              },
+              "ContentType": "string",
+              "CreatedTimestamp": 1481289211.615,
+              "ModifiedTimestamp": 1481289211.615,
+              "ContentCreatedTimestamp": 1481289211.615,
+              "ContentModifiedTimestamp": 1481289211.615
+            }
+          },
+          "CustomMetadata": {
+            "string": "string"
+          }
+        }
+      ]
+  GetDocumentPath:
+    description: |-
+      Retrieves the path information (the hierarchy from the root folder) for the requested document.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_GetDocumentPath.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Fields": "string",
+          "Marker": "string",
+          "DocumentId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Path": {
+            "Components": [
+              {
+                "Id": "string",
+                "Name": "string"
+              }
+            ]
+          }
+        }
+      ]
+  GetDocumentVersion:
+    description: |-
+      Retrieves version metadata for the specified document.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_GetDocumentVersion.html
+    example:
+      inputs: [
+        {
+          "Fields": "string",
+          "VersionId": "string",
+          "DocumentId": "string",
+          "AuthenticationToken": "string",
+          "IncludeCustomMetadata": false
+        }
+      ]
+      outputs: [
+        {
+          "Metadata": {
+            "Id": "string",
+            "Name": "string",
+            "Size": 1,
+            "Source": {
+              "string": "string"
+            },
+            "Status": "string",
+            "CreatorId": "string",
+            "Signature": "string",
+            "Thumbnail": {
+              "string": "string"
+            },
+            "ContentType": "string",
+            "CreatedTimestamp": 1481289211.615,
+            "ModifiedTimestamp": 1481289211.615,
+            "ContentCreatedTimestamp": 1481289211.615,
+            "ContentModifiedTimestamp": 1481289211.615
+          },
+          "CustomMetadata": {
+            "string": "string"
+          }
+        }
+      ]
+  GetFolder:
+    description: |-
+      Retrieves the metadata of the specified folder.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_GetFolder.html
+    example:
+      inputs: [
+        {
+          "FolderId": "string",
+          "AuthenticationToken": "string",
+          "IncludeCustomMetadata": false
+        }
+      ]
+      outputs: [
+        {
+          "Metadata": {
+            "Id": "string",
+            "Name": "string",
+            "Size": 1,
+            "Labels": [
+              "string"
+            ],
+            "CreatorId": "string",
+            "Signature": "string",
+            "ResourceState": "string",
+            "ParentFolderId": "string",
+            "CreatedTimestamp": 1481289211.615,
+            "LatestVersionSize": 1,
+            "ModifiedTimestamp": 1481289211.615
+          },
+          "CustomMetadata": {
+            "string": "string"
+          }
+        }
+      ]
+  GetFolderPath:
+    description: |-
+      Retrieves the path information (the hierarchy from the root folder) for the specified folder.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_GetFolderPath.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Fields": "string",
+          "Marker": "string",
+          "FolderId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Path": {
+            "Components": [
+              {
+                "Id": "string",
+                "Name": "string"
+              }
+            ]
+          }
+        }
+      ]
+  GetResources:
+    description: |-
+      Retrieves a collection of resources, including folders and documents. The only CollectionType supported is SHARED_WITH_ME.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_GetResources.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "UserId": "string",
+          "CollectionType": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "Folders": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Size": 1,
+              "Labels": [
+                "string"
+              ],
+              "CreatorId": "string",
+              "Signature": "string",
+              "ResourceState": "string",
+              "ParentFolderId": "string",
+              "CreatedTimestamp": 1481289211.615,
+              "LatestVersionSize": 1,
+              "ModifiedTimestamp": 1481289211.615
+            }
+          ],
+          "Documents": [
+            {
+              "Id": "string",
+              "Labels": [
+                "string"
+              ],
+              "CreatorId": "string",
+              "ResourceState": "string",
+              "ParentFolderId": "string",
+              "CreatedTimestamp": 1481289211.615,
+              "ModifiedTimestamp": 1481289211.615,
+              "LatestVersionMetadata": {
+                "Id": "string",
+                "Name": "string",
+                "Size": 1,
+                "Source": {
+                  "string": "string"
+                },
+                "Status": "string",
+                "CreatorId": "string",
+                "Signature": "string",
+                "Thumbnail": {
+                  "string": "string"
+                },
+                "ContentType": "string",
+                "CreatedTimestamp": 1481289211.615,
+                "ModifiedTimestamp": 1481289211.615,
+                "ContentCreatedTimestamp": 1481289211.615,
+                "ContentModifiedTimestamp": 1481289211.615
+              }
+            }
+          ]
+        }
+      ]
+  InitiateDocumentVersionUpload:
+    description: |-
+      Creates a new document object and version object.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_InitiateDocumentVersionUpload.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "ContentType": "string",
+          "ParentFolderId": "string",
+          "AuthenticationToken": "string",
+          "DocumentSizeInBytes": 1,
+          "ContentCreatedTimestamp": 1481289211.615,
+          "ContentModifiedTimestamp": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "Metadata": {
+            "Id": "string",
+            "Labels": [
+              "string"
+            ],
+            "CreatorId": "string",
+            "ResourceState": "string",
+            "ParentFolderId": "string",
+            "CreatedTimestamp": 1481289211.615,
+            "ModifiedTimestamp": 1481289211.615,
+            "LatestVersionMetadata": {
+              "Id": "string",
+              "Name": "string",
+              "Size": 1,
+              "Source": {
+                "string": "string"
+              },
+              "Status": "string",
+              "CreatorId": "string",
+              "Signature": "string",
+              "Thumbnail": {
+                "string": "string"
+              },
+              "ContentType": "string",
+              "CreatedTimestamp": 1481289211.615,
+              "ModifiedTimestamp": 1481289211.615,
+              "ContentCreatedTimestamp": 1481289211.615,
+              "ContentModifiedTimestamp": 1481289211.615
+            }
+          },
+          "UploadMetadata": {
+            "UploadUrl": "string",
+            "SignedHeaders": {
+              "string": "string"
+            }
+          }
+        }
+      ]
+  RemoveAllResourcePermissions:
+    description: |-
+      Removes all the permissions from the specified resource.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_RemoveAllResourcePermissions.html
+    example:
+      inputs: [
+        {
+          "ResourceId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RemoveResourcePermission:
+    description: |-
+      Removes the permission for the specified principal from the specified resource.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_RemoveResourcePermission.html
+    example:
+      inputs: [
+        {
+          "ResourceId": "string",
+          "PrincipalId": "string",
+          "PrincipalType": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateDocument:
+    description: |-
+      Updates the specified attributes of a document. The user must have access to both the document and its parent folder, if applicable.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_UpdateDocument.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "DocumentId": "string",
+          "ResourceState": "string",
+          "ParentFolderId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateDocumentVersion:
+    description: |-
+      Changes the status of the document version to ACTIVE.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_UpdateDocumentVersion.html
+    example:
+      inputs: [
+        {
+          "VersionId": "string",
+          "DocumentId": "string",
+          "VersionStatus": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateFolder:
+    description: |-
+      Updates the specified attributes of the specified folder. The user must have access to both the folder and its parent folder, if applicable.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_UpdateFolder.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "FolderId": "string",
+          "ResourceState": "string",
+          "ParentFolderId": "string",
+          "AuthenticationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateUser:
+    description: |-
+      Updates the specified attributes of the specified user, and grants or revokes administrative privileges to the Amazon WorkDocs site.
+    versions:
+      from: 2016.5.1
+    link: https://docs.aws.amazon.com/workdocs/latest/APIReference/API_UpdateUser.html
+    example:
+      inputs: [
+        {
+          "Type": "string",
+          "Locale": "string",
+          "UserId": "string",
+          "Surname": "string",
+          "GivenName": "string",
+          "TimeZoneId": "string",
+          "StorageRule": {
+            "StorageType": "string",
+            "StorageAllocatedInBytes": 1
+          },
+          "AuthenticationToken": "string",
+          "GrantPoweruserPrivileges": "string"
+        }
+      ]
+      outputs: [
+        {
+          "User": {
+            "Id": "string",
+            "Type": "string",
+            "Locale": "string",
+            "Status": "string",
+            "Storage": {
+              "StorageRule": {
+                "StorageType": "string",
+                "StorageAllocatedInBytes": 1
+              },
+              "StorageUtilizedInBytes": 1
+            },
+            "Surname": "string",
+            "Username": "string",
+            "GivenName": "string",
+            "TimeZoneId": "string",
+            "EmailAddress": "string",
+            "RootFolderId": "string",
+            "OrganizationId": "string",
+            "CreatedTimestamp": 1481289211.615,
+            "ModifiedTimestamp": 1481289211.615,
+            "RecycleBinFolderId": "string"
+          }
+        }
+      ]

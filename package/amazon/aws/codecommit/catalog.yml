@@ -1,0 +1,2723 @@
+Product:
+  name: AWS CodeCommit
+  versions: [2015.4.13]
+  package: amazon.aws.codecommit
+  description: |-
+    AWS CodeCommit
+  link: https://docs.aws.amazon.com/codecommit/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AssociateApprovalRuleTemplateWithRepository:
+    description: |-
+      Creates an association between an approval rule template and a specified repository. Then, the next time a pull request is created in the repository where the destination reference (if specified) matches the destination reference (branch) for the pull request, an approval rule that matches the template conditions is automatically created for that pull request. If no destination references are specified in the template, an approval rule that matches the template contents is created for all pull requests in that repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_AssociateApprovalRuleTemplateWithRepository.html
+    example:
+      inputs: [
+        {
+          "repositoryName": "string",
+          "approvalRuleTemplateName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  BatchAssociateApprovalRuleTemplateWithRepositories:
+    description: |-
+      Creates an association between an approval rule template and one or more specified repositories.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_BatchAssociateApprovalRuleTemplateWithRepositories.html
+    example:
+      inputs: [
+        {
+          "repositoryNames": [
+            "string"
+          ],
+          "approvalRuleTemplateName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "errors": [
+            {
+              "errorCode": "string",
+              "errorMessage": "string",
+              "repositoryName": "string"
+            }
+          ],
+          "associatedRepositoryNames": [
+            "string"
+          ]
+        }
+      ]
+  BatchDescribeMergeConflicts:
+    description: |-
+      Returns information about one or more merge conflicts in the attempted merge of two commit specifiers using the squash or three-way merge strategy.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_BatchDescribeMergeConflicts.html
+    example:
+      inputs: [
+        {
+          "filePaths": [
+            "string"
+          ],
+          "nextToken": "string",
+          "mergeOption": "string",
+          "maxMergeHunks": 1,
+          "repositoryName": "string",
+          "maxConflictFiles": 1,
+          "conflictDetailLevel": "string",
+          "sourceCommitSpecifier": "string",
+          "conflictResolutionStrategy": "string",
+          "destinationCommitSpecifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "errors": [
+            {
+              "message": "string",
+              "filePath": "string",
+              "exceptionName": "string"
+            }
+          ],
+          "conflicts": [
+            {
+              "mergeHunks": [
+                {
+                  "base": {
+                    "endLine": 1,
+                    "startLine": 1,
+                    "hunkContent": "string"
+                  },
+                  "source": {
+                    "endLine": 1,
+                    "startLine": 1,
+                    "hunkContent": "string"
+                  },
+                  "isConflict": false,
+                  "destination": {
+                    "endLine": 1,
+                    "startLine": 1,
+                    "hunkContent": "string"
+                  }
+                }
+              ],
+              "conflictMetadata": {
+                "filePath": "string",
+                "fileModes": {
+                  "base": "string",
+                  "source": "string",
+                  "destination": "string"
+                },
+                "fileSizes": {
+                  "base": 1,
+                  "source": 1,
+                  "destination": 1
+                },
+                "objectTypes": {
+                  "base": "string",
+                  "source": "string",
+                  "destination": "string"
+                },
+                "isBinaryFile": {
+                  "base": false,
+                  "source": false,
+                  "destination": false
+                },
+                "contentConflict": false,
+                "mergeOperations": {
+                  "source": "string",
+                  "destination": "string"
+                },
+                "fileModeConflict": false,
+                "numberOfConflicts": 1,
+                "objectTypeConflict": false
+              }
+            }
+          ],
+          "nextToken": "string",
+          "baseCommitId": "string",
+          "sourceCommitId": "string",
+          "destinationCommitId": "string"
+        }
+      ]
+  BatchDisassociateApprovalRuleTemplateFromRepositories:
+    description: |-
+      Removes the association between an approval rule template and one or more specified repositories.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_BatchDisassociateApprovalRuleTemplateFromRepositories.html
+    example:
+      inputs: [
+        {
+          "repositoryNames": [
+            "string"
+          ],
+          "approvalRuleTemplateName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "errors": [
+            {
+              "errorCode": "string",
+              "errorMessage": "string",
+              "repositoryName": "string"
+            }
+          ],
+          "disassociatedRepositoryNames": [
+            "string"
+          ]
+        }
+      ]
+  BatchGetCommits:
+    description: |-
+      Returns information about the contents of one or more commits in a repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_BatchGetCommits.html
+    example:
+      inputs: [
+        {
+          "commitIds": [
+            "string"
+          ],
+          "repositoryName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "errors": [
+            {
+              "commitId": "string",
+              "errorCode": "string",
+              "errorMessage": "string"
+            }
+          ],
+          "commits": [
+            {
+              "author": {
+                "date": "string",
+                "name": "string",
+                "email": "string"
+              },
+              "treeId": "string",
+              "message": "string",
+              "parents": [
+                "string"
+              ],
+              "commitId": "string",
+              "committer": {
+                "date": "string",
+                "name": "string",
+                "email": "string"
+              },
+              "additionalData": "string"
+            }
+          ]
+        }
+      ]
+  BatchGetRepositories:
+    description: |-
+      Returns information about one or more repositories.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_BatchGetRepositories.html
+    example:
+      inputs: [
+        {
+          "repositoryNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "repositories": [
+            {
+              "Arn": "string",
+              "accountId": "string",
+              "cloneUrlSsh": "string",
+              "cloneUrlHttp": "string",
+              "creationDate": 1481289211.615,
+              "repositoryId": "string",
+              "defaultBranch": "string",
+              "repositoryName": "string",
+              "lastModifiedDate": 1481289211.615,
+              "repositoryDescription": "string"
+            }
+          ],
+          "repositoriesNotFound": [
+            "string"
+          ]
+        }
+      ]
+  CreateApprovalRuleTemplate:
+    description: |-
+      Creates a template for approval rules that can then be associated with one or more repositories in your AWS account. When you associate a template with a repository, AWS CodeCommit creates an approval rule that matches the conditions of the template for all pull requests that meet the conditions of the template. For more information, see AssociateApprovalRuleTemplateWithRepository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_CreateApprovalRuleTemplate.html
+    example:
+      inputs: [
+        {
+          "approvalRuleTemplateName": "string",
+          "approvalRuleTemplateContent": "string",
+          "approvalRuleTemplateDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "approvalRuleTemplate": {
+            "creationDate": 1481289211.615,
+            "lastModifiedDate": 1481289211.615,
+            "lastModifiedUser": "string",
+            "ruleContentSha256": "string",
+            "approvalRuleTemplateId": "string",
+            "approvalRuleTemplateName": "string",
+            "approvalRuleTemplateContent": "string",
+            "approvalRuleTemplateDescription": "string"
+          }
+        }
+      ]
+  CreateBranch:
+    description: |-
+      Creates a branch in a repository and points the branch to a commit.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_CreateBranch.html
+    example:
+      inputs: [
+        {
+          "commitId": "string",
+          "branchName": "string",
+          "repositoryName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateCommit:
+    description: |-
+      Creates a commit for a repository on the tip of a specified branch.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_CreateCommit.html
+    example:
+      inputs: [
+        {
+          "email": "string",
+          "putFiles": [
+            {
+              "fileMode": "string",
+              "filePath": "string",
+              "sourceFile": {
+                "isMove": false,
+                "filePath": "string"
+              },
+              "fileContent": "blob"
+            }
+          ],
+          "authorName": "string",
+          "branchName": "string",
+          "deleteFiles": [
+            {
+              "filePath": "string"
+            }
+          ],
+          "setFileModes": [
+            {
+              "fileMode": "string",
+              "filePath": "string"
+            }
+          ],
+          "commitMessage": "string",
+          "parentCommitId": "string",
+          "repositoryName": "string",
+          "keepEmptyFolders": false
+        }
+      ]
+      outputs: [
+        {
+          "treeId": "string",
+          "commitId": "string",
+          "filesAdded": [
+            {
+              "blobId": "string",
+              "fileMode": "string",
+              "absolutePath": "string"
+            }
+          ],
+          "filesDeleted": [
+            {
+              "blobId": "string",
+              "fileMode": "string",
+              "absolutePath": "string"
+            }
+          ],
+          "filesUpdated": [
+            {
+              "blobId": "string",
+              "fileMode": "string",
+              "absolutePath": "string"
+            }
+          ]
+        }
+      ]
+  CreatePullRequestApprovalRule:
+    description: |-
+      Creates an approval rule for a pull request.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_CreatePullRequestApprovalRule.html
+    example:
+      inputs: [
+        {
+          "pullRequestId": "string",
+          "approvalRuleName": "string",
+          "approvalRuleContent": "string"
+        }
+      ]
+      outputs: [
+        {
+          "approvalRule": {
+            "creationDate": 1481289211.615,
+            "approvalRuleId": "string",
+            "approvalRuleName": "string",
+            "lastModifiedDate": 1481289211.615,
+            "lastModifiedUser": "string",
+            "ruleContentSha256": "string",
+            "approvalRuleContent": "string",
+            "originApprovalRuleTemplate": {
+              "approvalRuleTemplateId": "string",
+              "approvalRuleTemplateName": "string"
+            }
+          }
+        }
+      ]
+  CreatePullRequest:
+    description: |-
+      Creates a pull request in the specified repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_CreatePullRequest.html
+    example:
+      inputs: [
+        {
+          "title": "string",
+          "targets": [
+            {
+              "repositoryName": "string",
+              "sourceReference": "string",
+              "destinationReference": "string"
+            }
+          ],
+          "description": "string",
+          "clientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "pullRequest": {
+            "title": "string",
+            "authorArn": "string",
+            "revisionId": "string",
+            "description": "string",
+            "creationDate": 1481289211.615,
+            "approvalRules": [
+              {
+                "creationDate": 1481289211.615,
+                "approvalRuleId": "string",
+                "approvalRuleName": "string",
+                "lastModifiedDate": 1481289211.615,
+                "lastModifiedUser": "string",
+                "ruleContentSha256": "string",
+                "approvalRuleContent": "string",
+                "originApprovalRuleTemplate": {
+                  "approvalRuleTemplateId": "string",
+                  "approvalRuleTemplateName": "string"
+                }
+              }
+            ],
+            "pullRequestId": "string",
+            "lastActivityDate": 1481289211.615,
+            "pullRequestStatus": "string",
+            "clientRequestToken": "string",
+            "pullRequestTargets": [
+              {
+                "mergeBase": "string",
+                "sourceCommit": "string",
+                "mergeMetadata": {
+                  "isMerged": false,
+                  "mergedBy": "string",
+                  "mergeOption": "string",
+                  "mergeCommitId": "string"
+                },
+                "repositoryName": "string",
+                "sourceReference": "string",
+                "destinationCommit": "string",
+                "destinationReference": "string"
+              }
+            ]
+          }
+        }
+      ]
+  CreateRepository:
+    description: |-
+      Creates a new, empty repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_CreateRepository.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "repositoryName": "string",
+          "repositoryDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "repositoryMetadata": {
+            "Arn": "string",
+            "accountId": "string",
+            "cloneUrlSsh": "string",
+            "cloneUrlHttp": "string",
+            "creationDate": 1481289211.615,
+            "repositoryId": "string",
+            "defaultBranch": "string",
+            "repositoryName": "string",
+            "lastModifiedDate": 1481289211.615,
+            "repositoryDescription": "string"
+          }
+        }
+      ]
+  CreateUnreferencedMergeCommit:
+    description: |-
+      Creates an unreferenced commit that represents the result of merging two branches using a specified merge strategy. This can help you determine the outcome of a potential merge. This API cannot be used with the fast-forward merge strategy because that strategy does not create a merge commit.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_CreateUnreferencedMergeCommit.html
+    example:
+      inputs: [
+        {
+          "email": "string",
+          "authorName": "string",
+          "mergeOption": "string",
+          "commitMessage": "string",
+          "repositoryName": "string",
+          "keepEmptyFolders": false,
+          "conflictResolution": {
+            "deleteFiles": [
+              {
+                "filePath": "string"
+              }
+            ],
+            "setFileModes": [
+              {
+                "fileMode": "string",
+                "filePath": "string"
+              }
+            ],
+            "replaceContents": [
+              {
+                "content": "blob",
+                "fileMode": "string",
+                "filePath": "string",
+                "replacementType": "string"
+              }
+            ]
+          },
+          "conflictDetailLevel": "string",
+          "sourceCommitSpecifier": "string",
+          "conflictResolutionStrategy": "string",
+          "destinationCommitSpecifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "treeId": "string",
+          "commitId": "string"
+        }
+      ]
+  DeleteApprovalRuleTemplate:
+    description: |-
+      Deletes a specified approval rule template. Deleting a template does not remove approval rules on pull requests already created with the template.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_DeleteApprovalRuleTemplate.html
+    example:
+      inputs: [
+        {
+          "approvalRuleTemplateName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "approvalRuleTemplateId": "string"
+        }
+      ]
+  DeleteBranch:
+    description: |-
+      Deletes a branch from a repository, unless that branch is the default branch for the repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_DeleteBranch.html
+    example:
+      inputs: [
+        {
+          "branchName": "string",
+          "repositoryName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "deletedBranch": {
+            "commitId": "string",
+            "branchName": "string"
+          }
+        }
+      ]
+  DeleteCommentContent:
+    description: |-
+      Deletes the content of a comment made on a change, file, or commit in a repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_DeleteCommentContent.html
+    example:
+      inputs: [
+        {
+          "commentId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "comment": {
+            "content": "string",
+            "deleted": false,
+            "authorArn": "string",
+            "commentId": "string",
+            "inReplyTo": "string",
+            "creationDate": 1481289211.615,
+            "reactionCounts": {
+              "string": 1
+            },
+            "callerReactions": [
+              "string"
+            ],
+            "lastModifiedDate": 1481289211.615,
+            "clientRequestToken": "string"
+          }
+        }
+      ]
+  DeleteFile:
+    description: |-
+      Deletes a specified file from a specified branch. A commit is created on the branch that contains the revision. The file still exists in the commits earlier to the commit that contains the deletion.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_DeleteFile.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "email": "string",
+          "filePath": "string",
+          "branchName": "string",
+          "commitMessage": "string",
+          "parentCommitId": "string",
+          "repositoryName": "string",
+          "keepEmptyFolders": false
+        }
+      ]
+      outputs: [
+        {
+          "blobId": "string",
+          "treeId": "string",
+          "commitId": "string",
+          "filePath": "string"
+        }
+      ]
+  DeletePullRequestApprovalRule:
+    description: |-
+      Deletes an approval rule from a specified pull request. Approval rules can be deleted from a pull request only if the pull request is open, and if the approval rule was created specifically for a pull request and not generated from an approval rule template associated with the repository where the pull request was created. You cannot delete an approval rule from a merged or closed pull request.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_DeletePullRequestApprovalRule.html
+    example:
+      inputs: [
+        {
+          "pullRequestId": "string",
+          "approvalRuleName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "approvalRuleId": "string"
+        }
+      ]
+  DeleteRepository:
+    description: |-
+      Deletes a repository. If a specified repository was already deleted, a null repository ID is returned.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_DeleteRepository.html
+    example:
+      inputs: [
+        {
+          "repositoryName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "repositoryId": "string"
+        }
+      ]
+  DescribeMergeConflicts:
+    description: |-
+      Returns information about one or more merge conflicts in the attempted merge of two commit specifiers using the squash or three-way merge strategy. If the merge option for the attempted merge is specified as FAST_FORWARD_MERGE, an exception is thrown.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_DescribeMergeConflicts.html
+    example:
+      inputs: [
+        {
+          "filePath": "string",
+          "nextToken": "string",
+          "mergeOption": "string",
+          "maxMergeHunks": 1,
+          "repositoryName": "string",
+          "conflictDetailLevel": "string",
+          "sourceCommitSpecifier": "string",
+          "conflictResolutionStrategy": "string",
+          "destinationCommitSpecifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "mergeHunks": [
+            {
+              "base": {
+                "endLine": 1,
+                "startLine": 1,
+                "hunkContent": "string"
+              },
+              "source": {
+                "endLine": 1,
+                "startLine": 1,
+                "hunkContent": "string"
+              },
+              "isConflict": false,
+              "destination": {
+                "endLine": 1,
+                "startLine": 1,
+                "hunkContent": "string"
+              }
+            }
+          ],
+          "baseCommitId": "string",
+          "sourceCommitId": "string",
+          "conflictMetadata": {
+            "filePath": "string",
+            "fileModes": {
+              "base": "string",
+              "source": "string",
+              "destination": "string"
+            },
+            "fileSizes": {
+              "base": 1,
+              "source": 1,
+              "destination": 1
+            },
+            "objectTypes": {
+              "base": "string",
+              "source": "string",
+              "destination": "string"
+            },
+            "isBinaryFile": {
+              "base": false,
+              "source": false,
+              "destination": false
+            },
+            "contentConflict": false,
+            "mergeOperations": {
+              "source": "string",
+              "destination": "string"
+            },
+            "fileModeConflict": false,
+            "numberOfConflicts": 1,
+            "objectTypeConflict": false
+          },
+          "destinationCommitId": "string"
+        }
+      ]
+  DescribePullRequestEvents:
+    description: |-
+      Returns information about one or more pull request events.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_DescribePullRequestEvents.html
+    example:
+      inputs: [
+        {
+          "actorArn": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "pullRequestId": "string",
+          "pullRequestEventType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "pullRequestEvents": [
+            {
+              "actorArn": "string",
+              "eventDate": 1481289211.615,
+              "pullRequestId": "string",
+              "pullRequestEventType": "string",
+              "approvalRuleEventMetadata": {
+                "approvalRuleId": "string",
+                "approvalRuleName": "string",
+                "approvalRuleContent": "string"
+              },
+              "pullRequestCreatedEventMetadata": {
+                "mergeBase": "string",
+                "repositoryName": "string",
+                "sourceCommitId": "string",
+                "destinationCommitId": "string"
+              },
+              "approvalStateChangedEventMetadata": {
+                "revisionId": "string",
+                "approvalStatus": "string"
+              },
+              "approvalRuleOverriddenEventMetadata": {
+                "revisionId": "string",
+                "overrideStatus": "string"
+              },
+              "pullRequestStatusChangedEventMetadata": {
+                "pullRequestStatus": "string"
+              },
+              "pullRequestMergedStateChangedEventMetadata": {
+                "mergeMetadata": {
+                  "isMerged": false,
+                  "mergedBy": "string",
+                  "mergeOption": "string",
+                  "mergeCommitId": "string"
+                },
+                "repositoryName": "string",
+                "destinationReference": "string"
+              },
+              "pullRequestSourceReferenceUpdatedEventMetadata": {
+                "mergeBase": "string",
+                "afterCommitId": "string",
+                "beforeCommitId": "string",
+                "repositoryName": "string"
+              }
+            }
+          ]
+        }
+      ]
+  DisassociateApprovalRuleTemplateFromRepository:
+    description: |-
+      Removes the association between a template and a repository so that approval rules based on the template are not automatically created when pull requests are created in the specified repository. This does not delete any approval rules previously created for pull requests through the template association.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_DisassociateApprovalRuleTemplateFromRepository.html
+    example:
+      inputs: [
+        {
+          "repositoryName": "string",
+          "approvalRuleTemplateName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  EvaluatePullRequestApprovalRules:
+    description: |-
+      Evaluates whether a pull request has met all the conditions specified in its associated approval rules.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_EvaluatePullRequestApprovalRules.html
+    example:
+      inputs: [
+        {
+          "revisionId": "string",
+          "pullRequestId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "evaluation": {
+            "approved": false,
+            "overridden": false,
+            "approvalRulesSatisfied": [
+              "string"
+            ],
+            "approvalRulesNotSatisfied": [
+              "string"
+            ]
+          }
+        }
+      ]
+  GetApprovalRuleTemplate:
+    description: |-
+      Returns information about a specified approval rule template.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetApprovalRuleTemplate.html
+    example:
+      inputs: [
+        {
+          "approvalRuleTemplateName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "approvalRuleTemplate": {
+            "creationDate": 1481289211.615,
+            "lastModifiedDate": 1481289211.615,
+            "lastModifiedUser": "string",
+            "ruleContentSha256": "string",
+            "approvalRuleTemplateId": "string",
+            "approvalRuleTemplateName": "string",
+            "approvalRuleTemplateContent": "string",
+            "approvalRuleTemplateDescription": "string"
+          }
+        }
+      ]
+  GetBlob:
+    description: |-
+      Returns the base-64 encoded content of an individual blob in a repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetBlob.html
+    example:
+      inputs: [
+        {
+          "blobId": "string",
+          "repositoryName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "content": "blob"
+        }
+      ]
+  GetBranch:
+    description: |-
+      Returns information about a repository branch, including its name and the last commit ID.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetBranch.html
+    example:
+      inputs: [
+        {
+          "branchName": "string",
+          "repositoryName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "branch": {
+            "commitId": "string",
+            "branchName": "string"
+          }
+        }
+      ]
+  GetComment:
+    description: |-
+      Returns the content of a comment made on a change, file, or commit in a repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetComment.html
+    example:
+      inputs: [
+        {
+          "commentId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "comment": {
+            "content": "string",
+            "deleted": false,
+            "authorArn": "string",
+            "commentId": "string",
+            "inReplyTo": "string",
+            "creationDate": 1481289211.615,
+            "reactionCounts": {
+              "string": 1
+            },
+            "callerReactions": [
+              "string"
+            ],
+            "lastModifiedDate": 1481289211.615,
+            "clientRequestToken": "string"
+          }
+        }
+      ]
+  GetCommentReactions:
+    description: |-
+      Returns information about reactions to a specified comment ID. Reactions from users who have been deleted will not be included in the count.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetCommentReactions.html
+    example:
+      inputs: [
+        {
+          "commentId": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "reactionUserArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "reactionsForComment": [
+            {
+              "reaction": {
+                "emoji": "string",
+                "unicode": "string",
+                "shortCode": "string"
+              },
+              "reactionUsers": [
+                "string"
+              ],
+              "reactionsFromDeletedUsersCount": 1
+            }
+          ]
+        }
+      ]
+  GetCommentsForComparedCommit:
+    description: |-
+      Returns information about comments made on the comparison between two commits.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetCommentsForComparedCommit.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "afterCommitId": "string",
+          "beforeCommitId": "string",
+          "repositoryName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "commentsForComparedCommitData": [
+            {
+              "comments": [
+                {
+                  "content": "string",
+                  "deleted": false,
+                  "authorArn": "string",
+                  "commentId": "string",
+                  "inReplyTo": "string",
+                  "creationDate": 1481289211.615,
+                  "reactionCounts": {
+                    "string": 1
+                  },
+                  "callerReactions": [
+                    "string"
+                  ],
+                  "lastModifiedDate": 1481289211.615,
+                  "clientRequestToken": "string"
+                }
+              ],
+              "location": {
+                "filePath": "string",
+                "filePosition": 1,
+                "relativeFileVersion": "string"
+              },
+              "afterBlobId": "string",
+              "beforeBlobId": "string",
+              "afterCommitId": "string",
+              "beforeCommitId": "string",
+              "repositoryName": "string"
+            }
+          ]
+        }
+      ]
+  GetCommentsForPullRequest:
+    description: |-
+      Returns comments made on a pull request.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetCommentsForPullRequest.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "afterCommitId": "string",
+          "pullRequestId": "string",
+          "beforeCommitId": "string",
+          "repositoryName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "commentsForPullRequestData": [
+            {
+              "comments": [
+                {
+                  "content": "string",
+                  "deleted": false,
+                  "authorArn": "string",
+                  "commentId": "string",
+                  "inReplyTo": "string",
+                  "creationDate": 1481289211.615,
+                  "reactionCounts": {
+                    "string": 1
+                  },
+                  "callerReactions": [
+                    "string"
+                  ],
+                  "lastModifiedDate": 1481289211.615,
+                  "clientRequestToken": "string"
+                }
+              ],
+              "location": {
+                "filePath": "string",
+                "filePosition": 1,
+                "relativeFileVersion": "string"
+              },
+              "afterBlobId": "string",
+              "beforeBlobId": "string",
+              "afterCommitId": "string",
+              "pullRequestId": "string",
+              "beforeCommitId": "string",
+              "repositoryName": "string"
+            }
+          ]
+        }
+      ]
+  GetCommit:
+    description: |-
+      Returns information about a commit, including commit message and committer information.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetCommit.html
+    example:
+      inputs: [
+        {
+          "commitId": "string",
+          "repositoryName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "commit": {
+            "author": {
+              "date": "string",
+              "name": "string",
+              "email": "string"
+            },
+            "treeId": "string",
+            "message": "string",
+            "parents": [
+              "string"
+            ],
+            "commitId": "string",
+            "committer": {
+              "date": "string",
+              "name": "string",
+              "email": "string"
+            },
+            "additionalData": "string"
+          }
+        }
+      ]
+  GetDifferences:
+    description: |-
+      Returns information about the differences in a valid commit specifier (such as a branch, tag, HEAD, commit ID, or other fully qualified reference). Results can be limited to a specified path.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetDifferences.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "afterPath": "string",
+          "MaxResults": 1,
+          "beforePath": "string",
+          "repositoryName": "string",
+          "afterCommitSpecifier": "string",
+          "beforeCommitSpecifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "differences": [
+            {
+              "afterBlob": {
+                "mode": "string",
+                "path": "string",
+                "blobId": "string"
+              },
+              "beforeBlob": {
+                "mode": "string",
+                "path": "string",
+                "blobId": "string"
+              },
+              "changeType": "string"
+            }
+          ]
+        }
+      ]
+  GetFile:
+    description: |-
+      Returns the base-64 encoded contents of a specified file and its metadata.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetFile.html
+    example:
+      inputs: [
+        {
+          "filePath": "string",
+          "repositoryName": "string",
+          "commitSpecifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "blobId": "string",
+          "commitId": "string",
+          "fileMode": "string",
+          "filePath": "string",
+          "fileSize": 1,
+          "fileContent": "blob"
+        }
+      ]
+  GetFolder:
+    description: |-
+      Returns the contents of a specified folder in a repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetFolder.html
+    example:
+      inputs: [
+        {
+          "folderPath": "string",
+          "repositoryName": "string",
+          "commitSpecifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "files": [
+            {
+              "blobId": "string",
+              "fileMode": "string",
+              "absolutePath": "string",
+              "relativePath": "string"
+            }
+          ],
+          "treeId": "string",
+          "commitId": "string",
+          "folderPath": "string",
+          "subFolders": [
+            {
+              "treeId": "string",
+              "absolutePath": "string",
+              "relativePath": "string"
+            }
+          ],
+          "subModules": [
+            {
+              "commitId": "string",
+              "absolutePath": "string",
+              "relativePath": "string"
+            }
+          ],
+          "symbolicLinks": [
+            {
+              "blobId": "string",
+              "fileMode": "string",
+              "absolutePath": "string",
+              "relativePath": "string"
+            }
+          ]
+        }
+      ]
+  GetMergeCommit:
+    description: |-
+      Returns information about a specified merge commit.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetMergeCommit.html
+    example:
+      inputs: [
+        {
+          "repositoryName": "string",
+          "conflictDetailLevel": "string",
+          "sourceCommitSpecifier": "string",
+          "conflictResolutionStrategy": "string",
+          "destinationCommitSpecifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "baseCommitId": "string",
+          "mergedCommitId": "string",
+          "sourceCommitId": "string",
+          "destinationCommitId": "string"
+        }
+      ]
+  GetMergeConflicts:
+    description: |-
+      Returns information about merge conflicts between the before and after commit IDs for a pull request in a repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetMergeConflicts.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "mergeOption": "string",
+          "repositoryName": "string",
+          "maxConflictFiles": 1,
+          "conflictDetailLevel": "string",
+          "sourceCommitSpecifier": "string",
+          "conflictResolutionStrategy": "string",
+          "destinationCommitSpecifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "mergeable": false,
+          "nextToken": "string",
+          "baseCommitId": "string",
+          "sourceCommitId": "string",
+          "destinationCommitId": "string",
+          "conflictMetadataList": [
+            {
+              "filePath": "string",
+              "fileModes": {
+                "base": "string",
+                "source": "string",
+                "destination": "string"
+              },
+              "fileSizes": {
+                "base": 1,
+                "source": 1,
+                "destination": 1
+              },
+              "objectTypes": {
+                "base": "string",
+                "source": "string",
+                "destination": "string"
+              },
+              "isBinaryFile": {
+                "base": false,
+                "source": false,
+                "destination": false
+              },
+              "contentConflict": false,
+              "mergeOperations": {
+                "source": "string",
+                "destination": "string"
+              },
+              "fileModeConflict": false,
+              "numberOfConflicts": 1,
+              "objectTypeConflict": false
+            }
+          ]
+        }
+      ]
+  GetMergeOptions:
+    description: |-
+      Returns information about the merge options available for merging two specified branches. For details about why a merge option is not available, use GetMergeConflicts or DescribeMergeConflicts.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetMergeOptions.html
+    example:
+      inputs: [
+        {
+          "repositoryName": "string",
+          "conflictDetailLevel": "string",
+          "sourceCommitSpecifier": "string",
+          "conflictResolutionStrategy": "string",
+          "destinationCommitSpecifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "baseCommitId": "string",
+          "mergeOptions": [
+            "string"
+          ],
+          "sourceCommitId": "string",
+          "destinationCommitId": "string"
+        }
+      ]
+  GetPullRequestApprovalStates:
+    description: |-
+      Gets information about the approval states for a specified pull request. Approval states only apply to pull requests that have one or more approval rules applied to them.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetPullRequestApprovalStates.html
+    example:
+      inputs: [
+        {
+          "revisionId": "string",
+          "pullRequestId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "approvals": [
+            {
+              "userArn": "string",
+              "approvalState": "string"
+            }
+          ]
+        }
+      ]
+  GetPullRequest:
+    description: |-
+      Gets information about a pull request in a specified repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetPullRequest.html
+    example:
+      inputs: [
+        {
+          "pullRequestId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "pullRequest": {
+            "title": "string",
+            "authorArn": "string",
+            "revisionId": "string",
+            "description": "string",
+            "creationDate": 1481289211.615,
+            "approvalRules": [
+              {
+                "creationDate": 1481289211.615,
+                "approvalRuleId": "string",
+                "approvalRuleName": "string",
+                "lastModifiedDate": 1481289211.615,
+                "lastModifiedUser": "string",
+                "ruleContentSha256": "string",
+                "approvalRuleContent": "string",
+                "originApprovalRuleTemplate": {
+                  "approvalRuleTemplateId": "string",
+                  "approvalRuleTemplateName": "string"
+                }
+              }
+            ],
+            "pullRequestId": "string",
+            "lastActivityDate": 1481289211.615,
+            "pullRequestStatus": "string",
+            "clientRequestToken": "string",
+            "pullRequestTargets": [
+              {
+                "mergeBase": "string",
+                "sourceCommit": "string",
+                "mergeMetadata": {
+                  "isMerged": false,
+                  "mergedBy": "string",
+                  "mergeOption": "string",
+                  "mergeCommitId": "string"
+                },
+                "repositoryName": "string",
+                "sourceReference": "string",
+                "destinationCommit": "string",
+                "destinationReference": "string"
+              }
+            ]
+          }
+        }
+      ]
+  GetPullRequestOverrideState:
+    description: |-
+      Returns information about whether approval rules have been set aside (overridden) for a pull request, and if so, the Amazon Resource Name (ARN) of the user or identity that overrode the rules and their requirements for the pull request.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetPullRequestOverrideState.html
+    example:
+      inputs: [
+        {
+          "revisionId": "string",
+          "pullRequestId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "overrider": "string",
+          "overridden": false
+        }
+      ]
+  GetRepository:
+    description: |-
+      Returns information about a repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetRepository.html
+    example:
+      inputs: [
+        {
+          "repositoryName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "repositoryMetadata": {
+            "Arn": "string",
+            "accountId": "string",
+            "cloneUrlSsh": "string",
+            "cloneUrlHttp": "string",
+            "creationDate": 1481289211.615,
+            "repositoryId": "string",
+            "defaultBranch": "string",
+            "repositoryName": "string",
+            "lastModifiedDate": 1481289211.615,
+            "repositoryDescription": "string"
+          }
+        }
+      ]
+  GetRepositoryTriggers:
+    description: |-
+      Gets information about triggers configured for a repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetRepositoryTriggers.html
+    example:
+      inputs: [
+        {
+          "repositoryName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "triggers": [
+            {
+              "name": "string",
+              "events": [
+                "string"
+              ],
+              "branches": [
+                "string"
+              ],
+              "customData": "string",
+              "destinationArn": "string"
+            }
+          ],
+          "configurationId": "string"
+        }
+      ]
+  ListApprovalRuleTemplates:
+    description: |-
+      Lists all approval rule templates in the specified AWS Region in your AWS account. If an AWS Region is not specified, the AWS Region where you are signed in is used.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_ListApprovalRuleTemplates.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "approvalRuleTemplateNames": [
+            "string"
+          ]
+        }
+      ]
+  ListAssociatedApprovalRuleTemplatesForRepository:
+    description: |-
+      Lists all approval rule templates that are associated with a specified repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_ListAssociatedApprovalRuleTemplatesForRepository.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "repositoryName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "approvalRuleTemplateNames": [
+            "string"
+          ]
+        }
+      ]
+  ListBranches:
+    description: |-
+      Gets information about one or more branches in a repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_ListBranches.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "repositoryName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "branches": [
+            "string"
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListPullRequests:
+    description: |-
+      Returns a list of pull requests for a specified repository. The return list can be refined by pull request status or pull request author ARN.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_ListPullRequests.html
+    example:
+      inputs: [
+        {
+          "authorArn": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "repositoryName": "string",
+          "pullRequestStatus": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "pullRequestIds": [
+            "string"
+          ]
+        }
+      ]
+  ListRepositoriesForApprovalRuleTemplate:
+    description: |-
+      Lists all repositories associated with the specified approval rule template.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_ListRepositoriesForApprovalRuleTemplate.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "approvalRuleTemplateName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "repositoryNames": [
+            "string"
+          ]
+        }
+      ]
+  ListRepositories:
+    description: |-
+      Gets information about one or more repositories.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_ListRepositories.html
+    example:
+      inputs: [
+        {
+          "order": "string",
+          "sortBy": "string",
+          "nextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "repositories": [
+            {
+              "repositoryId": "string",
+              "repositoryName": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Gets information about AWS tags for a specified Amazon Resource Name (ARN) in AWS CodeCommit. For a list of valid resources in AWS CodeCommit, see CodeCommit Resources and Operations in the AWS CodeCommit User Guide.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "nextToken": "string"
+        }
+      ]
+  MergeBranchesByFastForward:
+    description: |-
+      Merges two branches using the fast-forward merge strategy.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_MergeBranchesByFastForward.html
+    example:
+      inputs: [
+        {
+          "targetBranch": "string",
+          "repositoryName": "string",
+          "sourceCommitSpecifier": "string",
+          "destinationCommitSpecifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "treeId": "string",
+          "commitId": "string"
+        }
+      ]
+  MergeBranchesBySquash:
+    description: |-
+      Merges two branches using the squash merge strategy.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_MergeBranchesBySquash.html
+    example:
+      inputs: [
+        {
+          "email": "string",
+          "authorName": "string",
+          "targetBranch": "string",
+          "commitMessage": "string",
+          "repositoryName": "string",
+          "keepEmptyFolders": false,
+          "conflictResolution": {
+            "deleteFiles": [
+              {
+                "filePath": "string"
+              }
+            ],
+            "setFileModes": [
+              {
+                "fileMode": "string",
+                "filePath": "string"
+              }
+            ],
+            "replaceContents": [
+              {
+                "content": "blob",
+                "fileMode": "string",
+                "filePath": "string",
+                "replacementType": "string"
+              }
+            ]
+          },
+          "conflictDetailLevel": "string",
+          "sourceCommitSpecifier": "string",
+          "conflictResolutionStrategy": "string",
+          "destinationCommitSpecifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "treeId": "string",
+          "commitId": "string"
+        }
+      ]
+  MergeBranchesByThreeWay:
+    description: |-
+      Merges two specified branches using the three-way merge strategy.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_MergeBranchesByThreeWay.html
+    example:
+      inputs: [
+        {
+          "email": "string",
+          "authorName": "string",
+          "targetBranch": "string",
+          "commitMessage": "string",
+          "repositoryName": "string",
+          "keepEmptyFolders": false,
+          "conflictResolution": {
+            "deleteFiles": [
+              {
+                "filePath": "string"
+              }
+            ],
+            "setFileModes": [
+              {
+                "fileMode": "string",
+                "filePath": "string"
+              }
+            ],
+            "replaceContents": [
+              {
+                "content": "blob",
+                "fileMode": "string",
+                "filePath": "string",
+                "replacementType": "string"
+              }
+            ]
+          },
+          "conflictDetailLevel": "string",
+          "sourceCommitSpecifier": "string",
+          "conflictResolutionStrategy": "string",
+          "destinationCommitSpecifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "treeId": "string",
+          "commitId": "string"
+        }
+      ]
+  MergePullRequestByFastForward:
+    description: |-
+      Attempts to merge the source commit of a pull request into the specified destination branch for that pull request at the specified commit using the fast-forward merge strategy. If the merge is successful, it closes the pull request.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_MergePullRequestByFastForward.html
+    example:
+      inputs: [
+        {
+          "pullRequestId": "string",
+          "repositoryName": "string",
+          "sourceCommitId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "pullRequest": {
+            "title": "string",
+            "authorArn": "string",
+            "revisionId": "string",
+            "description": "string",
+            "creationDate": 1481289211.615,
+            "approvalRules": [
+              {
+                "creationDate": 1481289211.615,
+                "approvalRuleId": "string",
+                "approvalRuleName": "string",
+                "lastModifiedDate": 1481289211.615,
+                "lastModifiedUser": "string",
+                "ruleContentSha256": "string",
+                "approvalRuleContent": "string",
+                "originApprovalRuleTemplate": {
+                  "approvalRuleTemplateId": "string",
+                  "approvalRuleTemplateName": "string"
+                }
+              }
+            ],
+            "pullRequestId": "string",
+            "lastActivityDate": 1481289211.615,
+            "pullRequestStatus": "string",
+            "clientRequestToken": "string",
+            "pullRequestTargets": [
+              {
+                "mergeBase": "string",
+                "sourceCommit": "string",
+                "mergeMetadata": {
+                  "isMerged": false,
+                  "mergedBy": "string",
+                  "mergeOption": "string",
+                  "mergeCommitId": "string"
+                },
+                "repositoryName": "string",
+                "sourceReference": "string",
+                "destinationCommit": "string",
+                "destinationReference": "string"
+              }
+            ]
+          }
+        }
+      ]
+  MergePullRequestBySquash:
+    description: |-
+      Attempts to merge the source commit of a pull request into the specified destination branch for that pull request at the specified commit using the squash merge strategy. If the merge is successful, it closes the pull request.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_MergePullRequestBySquash.html
+    example:
+      inputs: [
+        {
+          "email": "string",
+          "authorName": "string",
+          "commitMessage": "string",
+          "pullRequestId": "string",
+          "repositoryName": "string",
+          "sourceCommitId": "string",
+          "keepEmptyFolders": false,
+          "conflictResolution": {
+            "deleteFiles": [
+              {
+                "filePath": "string"
+              }
+            ],
+            "setFileModes": [
+              {
+                "fileMode": "string",
+                "filePath": "string"
+              }
+            ],
+            "replaceContents": [
+              {
+                "content": "blob",
+                "fileMode": "string",
+                "filePath": "string",
+                "replacementType": "string"
+              }
+            ]
+          },
+          "conflictDetailLevel": "string",
+          "conflictResolutionStrategy": "string"
+        }
+      ]
+      outputs: [
+        {
+          "pullRequest": {
+            "title": "string",
+            "authorArn": "string",
+            "revisionId": "string",
+            "description": "string",
+            "creationDate": 1481289211.615,
+            "approvalRules": [
+              {
+                "creationDate": 1481289211.615,
+                "approvalRuleId": "string",
+                "approvalRuleName": "string",
+                "lastModifiedDate": 1481289211.615,
+                "lastModifiedUser": "string",
+                "ruleContentSha256": "string",
+                "approvalRuleContent": "string",
+                "originApprovalRuleTemplate": {
+                  "approvalRuleTemplateId": "string",
+                  "approvalRuleTemplateName": "string"
+                }
+              }
+            ],
+            "pullRequestId": "string",
+            "lastActivityDate": 1481289211.615,
+            "pullRequestStatus": "string",
+            "clientRequestToken": "string",
+            "pullRequestTargets": [
+              {
+                "mergeBase": "string",
+                "sourceCommit": "string",
+                "mergeMetadata": {
+                  "isMerged": false,
+                  "mergedBy": "string",
+                  "mergeOption": "string",
+                  "mergeCommitId": "string"
+                },
+                "repositoryName": "string",
+                "sourceReference": "string",
+                "destinationCommit": "string",
+                "destinationReference": "string"
+              }
+            ]
+          }
+        }
+      ]
+  MergePullRequestByThreeWay:
+    description: |-
+      Attempts to merge the source commit of a pull request into the specified destination branch for that pull request at the specified commit using the three-way merge strategy. If the merge is successful, it closes the pull request.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_MergePullRequestByThreeWay.html
+    example:
+      inputs: [
+        {
+          "email": "string",
+          "authorName": "string",
+          "commitMessage": "string",
+          "pullRequestId": "string",
+          "repositoryName": "string",
+          "sourceCommitId": "string",
+          "keepEmptyFolders": false,
+          "conflictResolution": {
+            "deleteFiles": [
+              {
+                "filePath": "string"
+              }
+            ],
+            "setFileModes": [
+              {
+                "fileMode": "string",
+                "filePath": "string"
+              }
+            ],
+            "replaceContents": [
+              {
+                "content": "blob",
+                "fileMode": "string",
+                "filePath": "string",
+                "replacementType": "string"
+              }
+            ]
+          },
+          "conflictDetailLevel": "string",
+          "conflictResolutionStrategy": "string"
+        }
+      ]
+      outputs: [
+        {
+          "pullRequest": {
+            "title": "string",
+            "authorArn": "string",
+            "revisionId": "string",
+            "description": "string",
+            "creationDate": 1481289211.615,
+            "approvalRules": [
+              {
+                "creationDate": 1481289211.615,
+                "approvalRuleId": "string",
+                "approvalRuleName": "string",
+                "lastModifiedDate": 1481289211.615,
+                "lastModifiedUser": "string",
+                "ruleContentSha256": "string",
+                "approvalRuleContent": "string",
+                "originApprovalRuleTemplate": {
+                  "approvalRuleTemplateId": "string",
+                  "approvalRuleTemplateName": "string"
+                }
+              }
+            ],
+            "pullRequestId": "string",
+            "lastActivityDate": 1481289211.615,
+            "pullRequestStatus": "string",
+            "clientRequestToken": "string",
+            "pullRequestTargets": [
+              {
+                "mergeBase": "string",
+                "sourceCommit": "string",
+                "mergeMetadata": {
+                  "isMerged": false,
+                  "mergedBy": "string",
+                  "mergeOption": "string",
+                  "mergeCommitId": "string"
+                },
+                "repositoryName": "string",
+                "sourceReference": "string",
+                "destinationCommit": "string",
+                "destinationReference": "string"
+              }
+            ]
+          }
+        }
+      ]
+  OverridePullRequestApprovalRules:
+    description: |-
+      Sets aside (overrides) all approval rule requirements for a specified pull request.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_OverridePullRequestApprovalRules.html
+    example:
+      inputs: [
+        {
+          "revisionId": "string",
+          "pullRequestId": "string",
+          "overrideStatus": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PostCommentForComparedCommit:
+    description: |-
+      Posts a comment on the comparison between two commits.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_PostCommentForComparedCommit.html
+    example:
+      inputs: [
+        {
+          "content": "string",
+          "location": {
+            "filePath": "string",
+            "filePosition": 1,
+            "relativeFileVersion": "string"
+          },
+          "afterCommitId": "string",
+          "beforeCommitId": "string",
+          "repositoryName": "string",
+          "clientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "comment": {
+            "content": "string",
+            "deleted": false,
+            "authorArn": "string",
+            "commentId": "string",
+            "inReplyTo": "string",
+            "creationDate": 1481289211.615,
+            "reactionCounts": {
+              "string": 1
+            },
+            "callerReactions": [
+              "string"
+            ],
+            "lastModifiedDate": 1481289211.615,
+            "clientRequestToken": "string"
+          },
+          "location": {
+            "filePath": "string",
+            "filePosition": 1,
+            "relativeFileVersion": "string"
+          },
+          "afterBlobId": "string",
+          "beforeBlobId": "string",
+          "afterCommitId": "string",
+          "beforeCommitId": "string",
+          "repositoryName": "string"
+        }
+      ]
+  PostCommentForPullRequest:
+    description: |-
+      Posts a comment on a pull request.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_PostCommentForPullRequest.html
+    example:
+      inputs: [
+        {
+          "content": "string",
+          "location": {
+            "filePath": "string",
+            "filePosition": 1,
+            "relativeFileVersion": "string"
+          },
+          "afterCommitId": "string",
+          "pullRequestId": "string",
+          "beforeCommitId": "string",
+          "repositoryName": "string",
+          "clientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "comment": {
+            "content": "string",
+            "deleted": false,
+            "authorArn": "string",
+            "commentId": "string",
+            "inReplyTo": "string",
+            "creationDate": 1481289211.615,
+            "reactionCounts": {
+              "string": 1
+            },
+            "callerReactions": [
+              "string"
+            ],
+            "lastModifiedDate": 1481289211.615,
+            "clientRequestToken": "string"
+          },
+          "location": {
+            "filePath": "string",
+            "filePosition": 1,
+            "relativeFileVersion": "string"
+          },
+          "afterBlobId": "string",
+          "beforeBlobId": "string",
+          "afterCommitId": "string",
+          "pullRequestId": "string",
+          "beforeCommitId": "string",
+          "repositoryName": "string"
+        }
+      ]
+  PostCommentReply:
+    description: |-
+      Posts a comment in reply to an existing comment on a comparison between commits or a pull request.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_PostCommentReply.html
+    example:
+      inputs: [
+        {
+          "content": "string",
+          "inReplyTo": "string",
+          "clientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "comment": {
+            "content": "string",
+            "deleted": false,
+            "authorArn": "string",
+            "commentId": "string",
+            "inReplyTo": "string",
+            "creationDate": 1481289211.615,
+            "reactionCounts": {
+              "string": 1
+            },
+            "callerReactions": [
+              "string"
+            ],
+            "lastModifiedDate": 1481289211.615,
+            "clientRequestToken": "string"
+          }
+        }
+      ]
+  PutCommentReaction:
+    description: |-
+      Adds or updates a reaction to a specified comment for the user whose identity is used to make the request. You can only add or update a reaction for yourself. You cannot add, modify, or delete a reaction for another user.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_PutCommentReaction.html
+    example:
+      inputs: [
+        {
+          "commentId": "string",
+          "reactionValue": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutFile:
+    description: |-
+      Adds or updates a file in a branch in an AWS CodeCommit repository, and generates a commit for the addition in the specified branch.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_PutFile.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "email": "string",
+          "fileMode": "string",
+          "filePath": "string",
+          "branchName": "string",
+          "fileContent": "blob",
+          "commitMessage": "string",
+          "parentCommitId": "string",
+          "repositoryName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "blobId": "string",
+          "treeId": "string",
+          "commitId": "string"
+        }
+      ]
+  PutRepositoryTriggers:
+    description: |-
+      Replaces all triggers for a repository. Used to create or delete triggers.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_PutRepositoryTriggers.html
+    example:
+      inputs: [
+        {
+          "triggers": [
+            {
+              "name": "string",
+              "events": [
+                "string"
+              ],
+              "branches": [
+                "string"
+              ],
+              "customData": "string",
+              "destinationArn": "string"
+            }
+          ],
+          "repositoryName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "configurationId": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds or updates tags for a resource in AWS CodeCommit. For a list of valid resources in AWS CodeCommit, see CodeCommit Resources and Operations in the AWS CodeCommit User Guide.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TestRepositoryTriggers:
+    description: |-
+      Tests the functionality of repository triggers by sending information to the trigger target. If real data is available in the repository, the test sends data from the last commit. If no data is available, sample data is generated.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_TestRepositoryTriggers.html
+    example:
+      inputs: [
+        {
+          "triggers": [
+            {
+              "name": "string",
+              "events": [
+                "string"
+              ],
+              "branches": [
+                "string"
+              ],
+              "customData": "string",
+              "destinationArn": "string"
+            }
+          ],
+          "repositoryName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "failedExecutions": [
+            {
+              "trigger": "string",
+              "failureMessage": "string"
+            }
+          ],
+          "successfulExecutions": [
+            "string"
+          ]
+        }
+      ]
+  UntagResource:
+    description: |-
+      Removes tags for a resource in AWS CodeCommit. For a list of valid resources in AWS CodeCommit, see CodeCommit Resources and Operations in the AWS CodeCommit User Guide.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateApprovalRuleTemplateContent:
+    description: |-
+      Updates the content of an approval rule template. You can change the number of required approvals, the membership of the approval rule, and whether an approval pool is defined.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_UpdateApprovalRuleTemplateContent.html
+    example:
+      inputs: [
+        {
+          "newRuleContent": "string",
+          "approvalRuleTemplateName": "string",
+          "existingRuleContentSha256": "string"
+        }
+      ]
+      outputs: [
+        {
+          "approvalRuleTemplate": {
+            "creationDate": 1481289211.615,
+            "lastModifiedDate": 1481289211.615,
+            "lastModifiedUser": "string",
+            "ruleContentSha256": "string",
+            "approvalRuleTemplateId": "string",
+            "approvalRuleTemplateName": "string",
+            "approvalRuleTemplateContent": "string",
+            "approvalRuleTemplateDescription": "string"
+          }
+        }
+      ]
+  UpdateApprovalRuleTemplateDescription:
+    description: |-
+      Updates the description for a specified approval rule template.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_UpdateApprovalRuleTemplateDescription.html
+    example:
+      inputs: [
+        {
+          "approvalRuleTemplateName": "string",
+          "approvalRuleTemplateDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "approvalRuleTemplate": {
+            "creationDate": 1481289211.615,
+            "lastModifiedDate": 1481289211.615,
+            "lastModifiedUser": "string",
+            "ruleContentSha256": "string",
+            "approvalRuleTemplateId": "string",
+            "approvalRuleTemplateName": "string",
+            "approvalRuleTemplateContent": "string",
+            "approvalRuleTemplateDescription": "string"
+          }
+        }
+      ]
+  UpdateApprovalRuleTemplateName:
+    description: |-
+      Updates the name of a specified approval rule template.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_UpdateApprovalRuleTemplateName.html
+    example:
+      inputs: [
+        {
+          "newApprovalRuleTemplateName": "string",
+          "oldApprovalRuleTemplateName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "approvalRuleTemplate": {
+            "creationDate": 1481289211.615,
+            "lastModifiedDate": 1481289211.615,
+            "lastModifiedUser": "string",
+            "ruleContentSha256": "string",
+            "approvalRuleTemplateId": "string",
+            "approvalRuleTemplateName": "string",
+            "approvalRuleTemplateContent": "string",
+            "approvalRuleTemplateDescription": "string"
+          }
+        }
+      ]
+  UpdateComment:
+    description: |-
+      Replaces the contents of a comment.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_UpdateComment.html
+    example:
+      inputs: [
+        {
+          "content": "string",
+          "commentId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "comment": {
+            "content": "string",
+            "deleted": false,
+            "authorArn": "string",
+            "commentId": "string",
+            "inReplyTo": "string",
+            "creationDate": 1481289211.615,
+            "reactionCounts": {
+              "string": 1
+            },
+            "callerReactions": [
+              "string"
+            ],
+            "lastModifiedDate": 1481289211.615,
+            "clientRequestToken": "string"
+          }
+        }
+      ]
+  UpdateDefaultBranch:
+    description: |-
+      Sets or changes the default branch name for the specified repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_UpdateDefaultBranch.html
+    example:
+      inputs: [
+        {
+          "repositoryName": "string",
+          "defaultBranchName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdatePullRequestApprovalRuleContent:
+    description: |-
+      Updates the structure of an approval rule created specifically for a pull request. For example, you can change the number of required approvers and the approval pool for approvers.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_UpdatePullRequestApprovalRuleContent.html
+    example:
+      inputs: [
+        {
+          "pullRequestId": "string",
+          "newRuleContent": "string",
+          "approvalRuleName": "string",
+          "existingRuleContentSha256": "string"
+        }
+      ]
+      outputs: [
+        {
+          "approvalRule": {
+            "creationDate": 1481289211.615,
+            "approvalRuleId": "string",
+            "approvalRuleName": "string",
+            "lastModifiedDate": 1481289211.615,
+            "lastModifiedUser": "string",
+            "ruleContentSha256": "string",
+            "approvalRuleContent": "string",
+            "originApprovalRuleTemplate": {
+              "approvalRuleTemplateId": "string",
+              "approvalRuleTemplateName": "string"
+            }
+          }
+        }
+      ]
+  UpdatePullRequestApprovalState:
+    description: |-
+      Updates the state of a user's approval on a pull request. The user is derived from the signed-in account when the request is made.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_UpdatePullRequestApprovalState.html
+    example:
+      inputs: [
+        {
+          "revisionId": "string",
+          "approvalState": "string",
+          "pullRequestId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdatePullRequestDescription:
+    description: |-
+      Replaces the contents of the description of a pull request.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_UpdatePullRequestDescription.html
+    example:
+      inputs: [
+        {
+          "description": "string",
+          "pullRequestId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "pullRequest": {
+            "title": "string",
+            "authorArn": "string",
+            "revisionId": "string",
+            "description": "string",
+            "creationDate": 1481289211.615,
+            "approvalRules": [
+              {
+                "creationDate": 1481289211.615,
+                "approvalRuleId": "string",
+                "approvalRuleName": "string",
+                "lastModifiedDate": 1481289211.615,
+                "lastModifiedUser": "string",
+                "ruleContentSha256": "string",
+                "approvalRuleContent": "string",
+                "originApprovalRuleTemplate": {
+                  "approvalRuleTemplateId": "string",
+                  "approvalRuleTemplateName": "string"
+                }
+              }
+            ],
+            "pullRequestId": "string",
+            "lastActivityDate": 1481289211.615,
+            "pullRequestStatus": "string",
+            "clientRequestToken": "string",
+            "pullRequestTargets": [
+              {
+                "mergeBase": "string",
+                "sourceCommit": "string",
+                "mergeMetadata": {
+                  "isMerged": false,
+                  "mergedBy": "string",
+                  "mergeOption": "string",
+                  "mergeCommitId": "string"
+                },
+                "repositoryName": "string",
+                "sourceReference": "string",
+                "destinationCommit": "string",
+                "destinationReference": "string"
+              }
+            ]
+          }
+        }
+      ]
+  UpdatePullRequestStatus:
+    description: |-
+      Updates the status of a pull request.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_UpdatePullRequestStatus.html
+    example:
+      inputs: [
+        {
+          "pullRequestId": "string",
+          "pullRequestStatus": "string"
+        }
+      ]
+      outputs: [
+        {
+          "pullRequest": {
+            "title": "string",
+            "authorArn": "string",
+            "revisionId": "string",
+            "description": "string",
+            "creationDate": 1481289211.615,
+            "approvalRules": [
+              {
+                "creationDate": 1481289211.615,
+                "approvalRuleId": "string",
+                "approvalRuleName": "string",
+                "lastModifiedDate": 1481289211.615,
+                "lastModifiedUser": "string",
+                "ruleContentSha256": "string",
+                "approvalRuleContent": "string",
+                "originApprovalRuleTemplate": {
+                  "approvalRuleTemplateId": "string",
+                  "approvalRuleTemplateName": "string"
+                }
+              }
+            ],
+            "pullRequestId": "string",
+            "lastActivityDate": 1481289211.615,
+            "pullRequestStatus": "string",
+            "clientRequestToken": "string",
+            "pullRequestTargets": [
+              {
+                "mergeBase": "string",
+                "sourceCommit": "string",
+                "mergeMetadata": {
+                  "isMerged": false,
+                  "mergedBy": "string",
+                  "mergeOption": "string",
+                  "mergeCommitId": "string"
+                },
+                "repositoryName": "string",
+                "sourceReference": "string",
+                "destinationCommit": "string",
+                "destinationReference": "string"
+              }
+            ]
+          }
+        }
+      ]
+  UpdatePullRequestTitle:
+    description: |-
+      Replaces the title of a pull request.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_UpdatePullRequestTitle.html
+    example:
+      inputs: [
+        {
+          "title": "string",
+          "pullRequestId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "pullRequest": {
+            "title": "string",
+            "authorArn": "string",
+            "revisionId": "string",
+            "description": "string",
+            "creationDate": 1481289211.615,
+            "approvalRules": [
+              {
+                "creationDate": 1481289211.615,
+                "approvalRuleId": "string",
+                "approvalRuleName": "string",
+                "lastModifiedDate": 1481289211.615,
+                "lastModifiedUser": "string",
+                "ruleContentSha256": "string",
+                "approvalRuleContent": "string",
+                "originApprovalRuleTemplate": {
+                  "approvalRuleTemplateId": "string",
+                  "approvalRuleTemplateName": "string"
+                }
+              }
+            ],
+            "pullRequestId": "string",
+            "lastActivityDate": 1481289211.615,
+            "pullRequestStatus": "string",
+            "clientRequestToken": "string",
+            "pullRequestTargets": [
+              {
+                "mergeBase": "string",
+                "sourceCommit": "string",
+                "mergeMetadata": {
+                  "isMerged": false,
+                  "mergedBy": "string",
+                  "mergeOption": "string",
+                  "mergeCommitId": "string"
+                },
+                "repositoryName": "string",
+                "sourceReference": "string",
+                "destinationCommit": "string",
+                "destinationReference": "string"
+              }
+            ]
+          }
+        }
+      ]
+  UpdateRepositoryDescription:
+    description: |-
+      Sets or changes the comment or description for a repository.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_UpdateRepositoryDescription.html
+    example:
+      inputs: [
+        {
+          "repositoryName": "string",
+          "repositoryDescription": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateRepositoryName:
+    description: |-
+      Renames a repository. The repository name must be unique across the calling AWS account. Repository names are limited to 100 alphanumeric, dash, and underscore characters, and cannot include certain characters. The suffix .git is prohibited. For more information about the limits on repository names, see Limits in the AWS CodeCommit User Guide.
+    versions:
+      from: 2015.4.13
+    link: https://docs.aws.amazon.com/codecommit/latest/APIReference/API_UpdateRepositoryName.html
+    example:
+      inputs: [
+        {
+          "newName": "string",
+          "oldName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

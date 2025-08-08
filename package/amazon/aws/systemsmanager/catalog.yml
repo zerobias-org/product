@@ -1,0 +1,5987 @@
+Product:
+  name: AWS Systems Manager
+  versions: [2014.11.6]
+  package: amazon.aws.systemsmanager
+  description: |-
+    AWS Systems Manager
+  link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AddTagsToResource:
+    description: |-
+      Adds or overwrites one or more tags for the specified resource. Tags are metadata that you can assign to your documents, managed instances, maintenance windows, Parameter Store parameters, and patch baselines. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment. Each tag consists of a key and an optional value, both of which you define. For example, you could define a set of tags for your account's managed instances that helps you track each instance's owner and stack level. For example:Key=Owner and Value=DbAdmin, SysAdmin, or Dev. Or Key=Stack and Value=Production, Pre-Production, or Test.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_AddTagsToResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceId": "string",
+          "ResourceType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CancelCommand:
+    description: |-
+      Attempts to cancel the command specified by the Command ID. There is no guarantee that the command will be terminated and the underlying process stopped.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CancelCommand.html
+    example:
+      inputs: [
+        {
+          "CommandId": "string",
+          "InstanceIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CancelMaintenanceWindowExecution:
+    description: |-
+      Stops a maintenance window execution that is already in progress and cancels any tasks in the window that have not already starting running. (Tasks already in progress will continue to completion.)
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CancelMaintenanceWindowExecution.html
+    example:
+      inputs: [
+        {
+          "WindowExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateActivation:
+    description: |-
+      Generates an activation code and activation ID you can use to register your on-premises server or virtual machine (VM) with Systems Manager. Registering these machines with Systems Manager makes it possible to manage them using Systems Manager capabilities. You use the activation code and ID when installing SSM Agent on machines in your hybrid environment. For more information about requirements for managing on-premises instances and VMs using Systems Manager, see Setting up AWS Systems Manager for hybrid environments in the AWS Systems Manager User Guide.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateActivation.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "IamRole": "string",
+          "Description": "string",
+          "ExpirationDate": "number",
+          "RegistrationLimit": "number",
+          "DefaultInstanceName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ActivationId": "string",
+          "ActivationCode": "string"
+        }
+      ]
+  CreateAssociationBatch:
+    description: |-
+      Associates the specified Systems Manager document with the specified instances or targets.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateAssociationBatch.html
+    example:
+      inputs: [
+        {
+          "Entries": [
+            {
+              "Name": "string",
+              "Targets": [
+                {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ]
+                }
+              ],
+              "MaxErrors": "string",
+              "InstanceId": "string",
+              "Parameters": {
+                "string": [
+                  "string"
+                ]
+              },
+              "MaxConcurrency": "string",
+              "OutputLocation": {
+                "S3Location": {
+                  "OutputS3Region": "string",
+                  "OutputS3KeyPrefix": "string",
+                  "OutputS3BucketName": "string"
+                }
+              },
+              "SyncCompliance": "string",
+              "AssociationName": "string",
+              "DocumentVersion": "string",
+              "TargetLocations": [
+                {
+                  "Regions": [
+                    "string"
+                  ],
+                  "Accounts": [
+                    "string"
+                  ],
+                  "ExecutionRoleName": "string",
+                  "TargetLocationMaxErrors": "string",
+                  "TargetLocationMaxConcurrency": "string"
+                }
+              ],
+              "ComplianceSeverity": "string",
+              "ScheduleExpression": "string",
+              "ApplyOnlyAtCronInterval": "boolean",
+              "AutomationTargetParameterName": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Failed": [
+            {
+              "Entry": {
+                "Name": "string",
+                "Targets": [
+                  {
+                    "Key": "string",
+                    "Values": [
+                      "string"
+                    ]
+                  }
+                ],
+                "MaxErrors": "string",
+                "InstanceId": "string",
+                "Parameters": {
+                  "string": [
+                    "string"
+                  ]
+                },
+                "MaxConcurrency": "string",
+                "OutputLocation": {
+                  "S3Location": {
+                    "OutputS3Region": "string",
+                    "OutputS3KeyPrefix": "string",
+                    "OutputS3BucketName": "string"
+                  }
+                },
+                "SyncCompliance": "string",
+                "AssociationName": "string",
+                "DocumentVersion": "string",
+                "TargetLocations": [
+                  {
+                    "Regions": [
+                      "string"
+                    ],
+                    "Accounts": [
+                      "string"
+                    ],
+                    "ExecutionRoleName": "string",
+                    "TargetLocationMaxErrors": "string",
+                    "TargetLocationMaxConcurrency": "string"
+                  }
+                ],
+                "ComplianceSeverity": "string",
+                "ScheduleExpression": "string",
+                "ApplyOnlyAtCronInterval": "boolean",
+                "AutomationTargetParameterName": "string"
+              },
+              "Fault": "string",
+              "Message": "string"
+            }
+          ],
+          "Successful": [
+            {
+              "Date": "number",
+              "Name": "string",
+              "Status": {
+                "Date": "number",
+                "Name": "string",
+                "Message": "string",
+                "AdditionalInfo": "string"
+              },
+              "Targets": [
+                {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ]
+                }
+              ],
+              "Overview": {
+                "Status": "string",
+                "DetailedStatus": "string",
+                "AssociationStatusAggregatedCount": {
+                  "string": "number"
+                }
+              },
+              "MaxErrors": "string",
+              "InstanceId": "string",
+              "Parameters": {
+                "string": [
+                  "string"
+                ]
+              },
+              "AssociationId": "string",
+              "MaxConcurrency": "string",
+              "OutputLocation": {
+                "S3Location": {
+                  "OutputS3Region": "string",
+                  "OutputS3KeyPrefix": "string",
+                  "OutputS3BucketName": "string"
+                }
+              },
+              "SyncCompliance": "string",
+              "AssociationName": "string",
+              "DocumentVersion": "string",
+              "TargetLocations": [
+                {
+                  "Regions": [
+                    "string"
+                  ],
+                  "Accounts": [
+                    "string"
+                  ],
+                  "ExecutionRoleName": "string",
+                  "TargetLocationMaxErrors": "string",
+                  "TargetLocationMaxConcurrency": "string"
+                }
+              ],
+              "LastExecutionDate": "number",
+              "AssociationVersion": "string",
+              "ComplianceSeverity": "string",
+              "ScheduleExpression": "string",
+              "ApplyOnlyAtCronInterval": "boolean",
+              "LastUpdateAssociationDate": "number",
+              "LastSuccessfulExecutionDate": "number",
+              "AutomationTargetParameterName": "string"
+            }
+          ]
+        }
+      ]
+  CreateAssociation:
+    description: |-
+      A State Manager association defines the state that you want to maintain on your instances. For example, an association can specify that anti-virus software must be installed and running on your instances, or that certain ports must be closed. For static targets, the association specifies a schedule for when the configuration is reapplied. For dynamic targets, such as an AWS Resource Group or an AWS Autoscaling Group, State Manager applies the configuration when new instances are added to the group. The association also specifies actions to take when applying the configuration. For example, an association for anti-virus software might run once a day. If the software is not installed, then State Manager installs it. If the software is installed, but the service is not running, then the association might instruct State Manager to start the service.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateAssociation.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Targets": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "MaxErrors": "string",
+          "InstanceId": "string",
+          "Parameters": {
+            "string": [
+              "string"
+            ]
+          },
+          "MaxConcurrency": "string",
+          "OutputLocation": {
+            "S3Location": {
+              "OutputS3Region": "string",
+              "OutputS3KeyPrefix": "string",
+              "OutputS3BucketName": "string"
+            }
+          },
+          "SyncCompliance": "string",
+          "AssociationName": "string",
+          "DocumentVersion": "string",
+          "TargetLocations": [
+            {
+              "Regions": [
+                "string"
+              ],
+              "Accounts": [
+                "string"
+              ],
+              "ExecutionRoleName": "string",
+              "TargetLocationMaxErrors": "string",
+              "TargetLocationMaxConcurrency": "string"
+            }
+          ],
+          "ComplianceSeverity": "string",
+          "ScheduleExpression": "string",
+          "ApplyOnlyAtCronInterval": "boolean",
+          "AutomationTargetParameterName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "AssociationDescription": {
+            "Date": "number",
+            "Name": "string",
+            "Status": {
+              "Date": "number",
+              "Name": "string",
+              "Message": "string",
+              "AdditionalInfo": "string"
+            },
+            "Targets": [
+              {
+                "Key": "string",
+                "Values": [
+                  "string"
+                ]
+              }
+            ],
+            "Overview": {
+              "Status": "string",
+              "DetailedStatus": "string",
+              "AssociationStatusAggregatedCount": {
+                "string": "number"
+              }
+            },
+            "MaxErrors": "string",
+            "InstanceId": "string",
+            "Parameters": {
+              "string": [
+                "string"
+              ]
+            },
+            "AssociationId": "string",
+            "MaxConcurrency": "string",
+            "OutputLocation": {
+              "S3Location": {
+                "OutputS3Region": "string",
+                "OutputS3KeyPrefix": "string",
+                "OutputS3BucketName": "string"
+              }
+            },
+            "SyncCompliance": "string",
+            "AssociationName": "string",
+            "DocumentVersion": "string",
+            "TargetLocations": [
+              {
+                "Regions": [
+                  "string"
+                ],
+                "Accounts": [
+                  "string"
+                ],
+                "ExecutionRoleName": "string",
+                "TargetLocationMaxErrors": "string",
+                "TargetLocationMaxConcurrency": "string"
+              }
+            ],
+            "LastExecutionDate": "number",
+            "AssociationVersion": "string",
+            "ComplianceSeverity": "string",
+            "ScheduleExpression": "string",
+            "ApplyOnlyAtCronInterval": "boolean",
+            "LastUpdateAssociationDate": "number",
+            "LastSuccessfulExecutionDate": "number",
+            "AutomationTargetParameterName": "string"
+          }
+        }
+      ]
+  CreateDocument:
+    description: |-
+      Creates a Systems Manager (SSM) document. An SSM document defines the actions that Systems Manager performs on your managed instances. For more information about SSM documents, including information about supported schemas, features, and syntax, see AWS Systems Manager Documents in the AWS Systems Manager User Guide.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateDocument.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Content": "string",
+          "Requires": [
+            {
+              "Name": "string",
+              "Version": "string"
+            }
+          ],
+          "TargetType": "string",
+          "Attachments": [
+            {
+              "Key": "string",
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "VersionName": "string",
+          "DocumentType": "string",
+          "DocumentFormat": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DocumentDescription": {
+            "Hash": "string",
+            "Name": "string",
+            "Sha1": "string",
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "Owner": "string",
+            "Author": "string",
+            "Status": "string",
+            "HashType": "string",
+            "Requires": [
+              {
+                "Name": "string",
+                "Version": "string"
+              }
+            ],
+            "Parameters": [
+              {
+                "Name": "string",
+                "Type": "string",
+                "Description": "string",
+                "DefaultValue": "string"
+              }
+            ],
+            "TargetType": "string",
+            "CreatedDate": "number",
+            "Description": "string",
+            "VersionName": "string",
+            "DocumentType": "string",
+            "ReviewStatus": "string",
+            "LatestVersion": "string",
+            "PlatformTypes": [
+              "string"
+            ],
+            "SchemaVersion": "string",
+            "DefaultVersion": "string",
+            "DocumentFormat": "string",
+            "ApprovedVersion": "string",
+            "DocumentVersion": "string",
+            "ReviewInformation": [
+              {
+                "Status": "string",
+                "Reviewer": "string",
+                "ReviewedTime": "number"
+              }
+            ],
+            "StatusInformation": "string",
+            "PendingReviewVersion": "string",
+            "AttachmentsInformation": [
+              {
+                "Name": "string"
+              }
+            ]
+          }
+        }
+      ]
+  CreateMaintenanceWindow:
+    description: |-
+      Creates a new maintenance window.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateMaintenanceWindow.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Cutoff": "number",
+          "EndDate": "string",
+          "Duration": "number",
+          "Schedule": "string",
+          "StartDate": "string",
+          "ClientToken": "string",
+          "Description": "string",
+          "ScheduleOffset": "number",
+          "ScheduleTimezone": "string",
+          "AllowUnassociatedTargets": "boolean"
+        }
+      ]
+      outputs: [
+        {
+          "WindowId": "string"
+        }
+      ]
+  CreateOpsItem:
+    description: |-
+      Creates a new OpsItem. You must have permission in AWS Identity and Access Management (IAM) to create a new OpsItem. For more information, see Getting started with OpsCenter in the AWS Systems Manager User Guide.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateOpsItem.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Title": "string",
+          "Source": "string",
+          "Category": "string",
+          "Priority": "number",
+          "Severity": "string",
+          "Description": "string",
+          "OpsItemType": "string",
+          "ActualEndTime": "number",
+          "Notifications": [
+            {
+              "Arn": "string"
+            }
+          ],
+          "PlannedEndTime": "number",
+          "ActualStartTime": "number",
+          "OperationalData": {
+            "string": {
+              "Type": "string",
+              "Value": "string"
+            }
+          },
+          "RelatedOpsItems": [
+            {
+              "OpsItemId": "string"
+            }
+          ],
+          "PlannedStartTime": "number"
+        }
+      ]
+      outputs: [
+        {
+          "OpsItemId": "string"
+        }
+      ]
+  CreateOpsMetadata:
+    description: |-
+      If you create a new application in Application Manager, Systems Manager calls this API action to specify information about the new application, including the application type.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateOpsMetadata.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Metadata": {
+            "string": {
+              "Value": "string"
+            }
+          },
+          "ResourceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "OpsMetadataArn": "string"
+        }
+      ]
+  CreatePatchBaseline:
+    description: |-
+      Creates a patch baseline.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreatePatchBaseline.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Sources": [
+            {
+              "Name": "string",
+              "Products": [
+                "string"
+              ],
+              "Configuration": "string"
+            }
+          ],
+          "ClientToken": "string",
+          "Description": "string",
+          "ApprovalRules": {
+            "PatchRules": [
+              {
+                "ComplianceLevel": "string",
+                "ApproveAfterDays": "number",
+                "ApproveUntilDate": "string",
+                "PatchFilterGroup": {
+                  "PatchFilters": [
+                    {
+                      "Key": "string",
+                      "Values": [
+                        "string"
+                      ]
+                    }
+                  ]
+                },
+                "EnableNonSecurity": "boolean"
+              }
+            ]
+          },
+          "GlobalFilters": {
+            "PatchFilters": [
+              {
+                "Key": "string",
+                "Values": [
+                  "string"
+                ]
+              }
+            ]
+          },
+          "ApprovedPatches": [
+            "string"
+          ],
+          "OperatingSystem": "string",
+          "RejectedPatches": [
+            "string"
+          ],
+          "RejectedPatchesAction": "string",
+          "ApprovedPatchesComplianceLevel": "string",
+          "ApprovedPatchesEnableNonSecurity": "boolean"
+        }
+      ]
+      outputs: [
+        {
+          "BaselineId": "string"
+        }
+      ]
+  CreateResourceDataSync:
+    description: |-
+      A resource data sync helps you view data from multiple sources in a single location. Systems Manager offers two types of resource data sync:SyncToDestination and SyncFromSource.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateResourceDataSync.html
+    example:
+      inputs: [
+        {
+          "SyncName": "string",
+          "SyncType": "string",
+          "SyncSource": {
+            "SourceType": "string",
+            "SourceRegions": [
+              "string"
+            ],
+            "IncludeFutureRegions": "boolean",
+            "AwsOrganizationsSource": {
+              "OrganizationalUnits": [
+                {
+                  "OrganizationalUnitId": "string"
+                }
+              ],
+              "OrganizationSourceType": "string"
+            },
+            "EnableAllOpsDataSources": "boolean"
+          },
+          "S3Destination": {
+            "Prefix": "string",
+            "Region": "string",
+            "BucketName": "string",
+            "SyncFormat": "string",
+            "AWSKMSKeyARN": "string",
+            "DestinationDataSharing": {
+              "DestinationDataSharingType": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteActivation:
+    description: |-
+      Deletes an activation. You are not required to delete an activation. If you delete an activation, you can no longer use it to register additional managed instances. Deleting an activation does not de-register managed instances. You must manually de-register managed instances.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DeleteActivation.html
+    example:
+      inputs: [
+        {
+          "ActivationId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteAssociation:
+    description: |-
+      Disassociates the specified Systems Manager document from the specified instance.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DeleteAssociation.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "InstanceId": "string",
+          "AssociationId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDocument:
+    description: |-
+      Deletes the Systems Manager document and all instance associations to the document.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DeleteDocument.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Force": "boolean",
+          "VersionName": "string",
+          "DocumentVersion": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteInventory:
+    description: |-
+      Delete a custom inventory type or the data associated with a custom Inventory type. Deleting a custom inventory type is also referred to as deleting a custom inventory schema.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DeleteInventory.html
+    example:
+      inputs: [
+        {
+          "DryRun": "boolean",
+          "TypeName": "string",
+          "ClientToken": "string",
+          "SchemaDeleteOption": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TypeName": "string",
+          "DeletionId": "string",
+          "DeletionSummary": {
+            "TotalCount": "number",
+            "SummaryItems": [
+              {
+                "Count": "number",
+                "Version": "string",
+                "RemainingCount": "number"
+              }
+            ],
+            "RemainingCount": "number"
+          }
+        }
+      ]
+  DeleteMaintenanceWindow:
+    description: |-
+      Deletes a maintenance window.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DeleteMaintenanceWindow.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "WindowId": "string"
+        }
+      ]
+  DeleteOpsMetadata:
+    description: |-
+      Delete OpsMetadata related to an application.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DeleteOpsMetadata.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteParameter:
+    description: |-
+      Delete a parameter from the system.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DeleteParameter.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteParameters:
+    description: |-
+      Delete a list of parameters.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DeleteParameters.html
+    example:
+      inputs: [
+        {
+          "Names": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "DeletedParameters": [
+            "string"
+          ],
+          "InvalidParameters": [
+            "string"
+          ]
+        }
+      ]
+  DeletePatchBaseline:
+    description: |-
+      Deletes a patch baseline.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DeletePatchBaseline.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "BaselineId": "string"
+        }
+      ]
+  DeleteResourceDataSync:
+    description: |-
+      Deletes a Resource Data Sync configuration. After the configuration is deleted, changes to data on managed instances are no longer synced to or from the target. Deleting a sync configuration does not delete data.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DeleteResourceDataSync.html
+    example:
+      inputs: [
+        {
+          "SyncName": "string",
+          "SyncType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeregisterManagedInstance:
+    description: |-
+      Removes the server or virtual machine from the list of registered servers. You can reregister the instance again at any time. If you don't plan to use Run Command on the server, we suggest uninstalling SSM Agent first.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DeregisterManagedInstance.html
+    example:
+      inputs: [
+        {
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeregisterPatchBaselineForPatchGroup:
+    description: |-
+      Removes a patch group from a patch baseline.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DeregisterPatchBaselineForPatchGroup.html
+    example:
+      inputs: [
+        {
+          "BaselineId": "string",
+          "PatchGroup": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeregisterTargetFromMaintenanceWindow:
+    description: |-
+      Removes a target from a maintenance window.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DeregisterTargetFromMaintenanceWindow.html
+    example:
+      inputs: [
+        {
+          "Safe": "boolean",
+          "WindowId": "string",
+          "WindowTargetId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "WindowId": "string",
+          "WindowTargetId": "string"
+        }
+      ]
+  DeregisterTaskFromMaintenanceWindow:
+    description: |-
+      Removes a task from a maintenance window.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DeregisterTaskFromMaintenanceWindow.html
+    example:
+      inputs: [
+        {
+          "WindowId": "string",
+          "WindowTaskId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeActivations:
+    description: |-
+      Describes details about the activation, such as the date and time the activation was created, its expiration date, the IAM role assigned to the instances in the activation, and the number of instances registered by using this activation.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeActivations.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "FilterKey": "string",
+              "FilterValues": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ActivationList": [
+            {
+              "Tags": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ],
+              "Expired": "boolean",
+              "IamRole": "string",
+              "CreatedDate": "number",
+              "Description": "string",
+              "ActivationId": "string",
+              "ExpirationDate": "number",
+              "RegistrationLimit": "number",
+              "RegistrationsCount": "number",
+              "DefaultInstanceName": "string"
+            }
+          ]
+        }
+      ]
+  DescribeAssociationExecutions:
+    description: |-
+      Use this API action to view all executions for a specific association ID.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeAssociationExecutions.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Type": "string",
+              "Value": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number",
+          "AssociationId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "AssociationExecutions": [
+            {
+              "Status": "string",
+              "CreatedTime": "number",
+              "ExecutionId": "string",
+              "AssociationId": "string",
+              "DetailedStatus": "string",
+              "LastExecutionDate": "number",
+              "AssociationVersion": "string",
+              "ResourceCountByStatus": "string"
+            }
+          ]
+        }
+      ]
+  DescribeAssociationExecutionTargets:
+    description: |-
+      Use this API action to view information about a specific execution of a specific association.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeAssociationExecutionTargets.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number",
+          "ExecutionId": "string",
+          "AssociationId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "AssociationExecutionTargets": [
+            {
+              "Status": "string",
+              "ResourceId": "string",
+              "ExecutionId": "string",
+              "OutputSource": {
+                "OutputSourceId": "string",
+                "OutputSourceType": "string"
+              },
+              "ResourceType": "string",
+              "AssociationId": "string",
+              "DetailedStatus": "string",
+              "LastExecutionDate": "number",
+              "AssociationVersion": "string"
+            }
+          ]
+        }
+      ]
+  DescribeAssociation:
+    description: |-
+      Describes the association for the specified target or instance. If you created the association by using the Targets parameter, then you must retrieve the association by using the association ID. If you created the association by specifying an instance ID and a Systems Manager document, then you retrieve the association by specifying the document name and the instance ID.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeAssociation.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "InstanceId": "string",
+          "AssociationId": "string",
+          "AssociationVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "AssociationDescription": {
+            "Date": "number",
+            "Name": "string",
+            "Status": {
+              "Date": "number",
+              "Name": "string",
+              "Message": "string",
+              "AdditionalInfo": "string"
+            },
+            "Targets": [
+              {
+                "Key": "string",
+                "Values": [
+                  "string"
+                ]
+              }
+            ],
+            "Overview": {
+              "Status": "string",
+              "DetailedStatus": "string",
+              "AssociationStatusAggregatedCount": {
+                "string": "number"
+              }
+            },
+            "MaxErrors": "string",
+            "InstanceId": "string",
+            "Parameters": {
+              "string": [
+                "string"
+              ]
+            },
+            "AssociationId": "string",
+            "MaxConcurrency": "string",
+            "OutputLocation": {
+              "S3Location": {
+                "OutputS3Region": "string",
+                "OutputS3KeyPrefix": "string",
+                "OutputS3BucketName": "string"
+              }
+            },
+            "SyncCompliance": "string",
+            "AssociationName": "string",
+            "DocumentVersion": "string",
+            "TargetLocations": [
+              {
+                "Regions": [
+                  "string"
+                ],
+                "Accounts": [
+                  "string"
+                ],
+                "ExecutionRoleName": "string",
+                "TargetLocationMaxErrors": "string",
+                "TargetLocationMaxConcurrency": "string"
+              }
+            ],
+            "LastExecutionDate": "number",
+            "AssociationVersion": "string",
+            "ComplianceSeverity": "string",
+            "ScheduleExpression": "string",
+            "ApplyOnlyAtCronInterval": "boolean",
+            "LastUpdateAssociationDate": "number",
+            "LastSuccessfulExecutionDate": "number",
+            "AutomationTargetParameterName": "string"
+          }
+        }
+      ]
+  DescribeAutomationExecutions:
+    description: |-
+      Provides details about all active and terminated Automation executions.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeAutomationExecutions.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "AutomationExecutionMetadataList": [
+            {
+              "Mode": "string",
+              "Target": "string",
+              "LogFile": "string",
+              "Outputs": {
+                "string": [
+                  "string"
+                ]
+              },
+              "Targets": [
+                {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ]
+                }
+              ],
+              "Runbooks": [
+                {
+                  "Targets": [
+                    {
+                      "Key": "string",
+                      "Values": [
+                        "string"
+                      ]
+                    }
+                  ],
+                  "MaxErrors": "string",
+                  "Parameters": {
+                    "string": [
+                      "string"
+                    ]
+                  },
+                  "DocumentName": "string",
+                  "MaxConcurrency": "string",
+                  "DocumentVersion": "string",
+                  "TargetLocations": [
+                    {
+                      "Regions": [
+                        "string"
+                      ],
+                      "Accounts": [
+                        "string"
+                      ],
+                      "ExecutionRoleName": "string",
+                      "TargetLocationMaxErrors": "string",
+                      "TargetLocationMaxConcurrency": "string"
+                    }
+                  ],
+                  "TargetParameterName": "string"
+                }
+              ],
+              "MaxErrors": "string",
+              "OpsItemId": "string",
+              "ExecutedBy": "string",
+              "TargetMaps": [
+                {
+                  "string": [
+                    "string"
+                  ]
+                }
+              ],
+              "DocumentName": "string",
+              "AssociationId": "string",
+              "CurrentAction": "string",
+              "ScheduledTime": "number",
+              "AutomationType": "string",
+              "FailureMessage": "string",
+              "MaxConcurrency": "string",
+              "CurrentStepName": "string",
+              "DocumentVersion": "string",
+              "ResolvedTargets": {
+                "Truncated": "boolean",
+                "ParameterValues": [
+                  "string"
+                ]
+              },
+              "ExecutionEndTime": "number",
+              "AutomationSubtype": "string",
+              "ChangeRequestName": "string",
+              "ExecutionStartTime": "number",
+              "TargetParameterName": "string",
+              "AutomationExecutionId": "string",
+              "AutomationExecutionStatus": "string",
+              "ParentAutomationExecutionId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeAutomationStepExecutions:
+    description: |-
+      Information about all active and terminated step executions in an Automation workflow.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeAutomationStepExecutions.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number",
+          "ReverseOrder": "boolean",
+          "AutomationExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "StepExecutions": [
+            {
+              "IsEnd": "boolean",
+              "Action": "string",
+              "Inputs": {
+                "string": "string"
+              },
+              "Outputs": {
+                "string": [
+                  "string"
+                ]
+              },
+              "Targets": [
+                {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ]
+                }
+              ],
+              "NextStep": "string",
+              "Response": "string",
+              "StepName": "string",
+              "OnFailure": "string",
+              "IsCritical": "boolean",
+              "StepStatus": "string",
+              "MaxAttempts": "number",
+              "ResponseCode": "string",
+              "FailureDetails": {
+                "Details": {
+                  "string": [
+                    "string"
+                  ]
+                },
+                "FailureType": "string",
+                "FailureStage": "string"
+              },
+              "FailureMessage": "string",
+              "TargetLocation": {
+                "Regions": [
+                  "string"
+                ],
+                "Accounts": [
+                  "string"
+                ],
+                "ExecutionRoleName": "string",
+                "TargetLocationMaxErrors": "string",
+                "TargetLocationMaxConcurrency": "string"
+              },
+              "TimeoutSeconds": "number",
+              "ValidNextSteps": [
+                "string"
+              ],
+              "StepExecutionId": "string",
+              "ExecutionEndTime": "number",
+              "ExecutionStartTime": "number",
+              "OverriddenParameters": {
+                "string": [
+                  "string"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+  DescribeAvailablePatches:
+    description: |-
+      Lists all patches eligible to be included in a patch baseline.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeAvailablePatches.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Patches": [
+            {
+              "Id": "string",
+              "Arch": "string",
+              "Name": "string",
+              "Epoch": "number",
+              "Title": "string",
+              "CVEIds": [
+                "string"
+              ],
+              "Vendor": "string",
+              "Product": "string",
+              "Release": "string",
+              "Version": "string",
+              "KbNumber": "string",
+              "Language": "string",
+              "Severity": "string",
+              "ContentUrl": "string",
+              "MsrcNumber": "string",
+              "Repository": "string",
+              "AdvisoryIds": [
+                "string"
+              ],
+              "BugzillaIds": [
+                "string"
+              ],
+              "Description": "string",
+              "ReleaseDate": "number",
+              "MsrcSeverity": "string",
+              "ProductFamily": "string",
+              "Classification": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeDocument:
+    description: |-
+      Describes the specified Systems Manager document.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeDocument.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "VersionName": "string",
+          "DocumentVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Document": {
+            "Hash": "string",
+            "Name": "string",
+            "Sha1": "string",
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "Owner": "string",
+            "Author": "string",
+            "Status": "string",
+            "HashType": "string",
+            "Requires": [
+              {
+                "Name": "string",
+                "Version": "string"
+              }
+            ],
+            "Parameters": [
+              {
+                "Name": "string",
+                "Type": "string",
+                "Description": "string",
+                "DefaultValue": "string"
+              }
+            ],
+            "TargetType": "string",
+            "CreatedDate": "number",
+            "Description": "string",
+            "VersionName": "string",
+            "DocumentType": "string",
+            "ReviewStatus": "string",
+            "LatestVersion": "string",
+            "PlatformTypes": [
+              "string"
+            ],
+            "SchemaVersion": "string",
+            "DefaultVersion": "string",
+            "DocumentFormat": "string",
+            "ApprovedVersion": "string",
+            "DocumentVersion": "string",
+            "ReviewInformation": [
+              {
+                "Status": "string",
+                "Reviewer": "string",
+                "ReviewedTime": "number"
+              }
+            ],
+            "StatusInformation": "string",
+            "PendingReviewVersion": "string",
+            "AttachmentsInformation": [
+              {
+                "Name": "string"
+              }
+            ]
+          }
+        }
+      ]
+  DescribeDocumentPermission:
+    description: |-
+      Describes the permissions for a Systems Manager document. If you created the document, you are the owner. If a document is shared, it can either be shared privately (by specifying a user's AWS account ID) or publicly (All).
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeDocumentPermission.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "NextToken": "string",
+          "MaxResults": "number",
+          "PermissionType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "AccountIds": [
+            "string"
+          ],
+          "AccountSharingInfoList": [
+            {
+              "AccountId": "string",
+              "SharedDocumentVersion": "string"
+            }
+          ]
+        }
+      ]
+  DescribeEffectiveInstanceAssociations:
+    description: |-
+      All associations for the instance(s).
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeEffectiveInstanceAssociations.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "InstanceId": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Associations": [
+            {
+              "Content": "string",
+              "InstanceId": "string",
+              "AssociationId": "string",
+              "AssociationVersion": "string"
+            }
+          ]
+        }
+      ]
+  DescribeEffectivePatchesForPatchBaseline:
+    description: |-
+      Retrieves the current effective patches (the patch and the approval state) for the specified patch baseline. Note that this API applies only to Windows patch baselines.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeEffectivePatchesForPatchBaseline.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "BaselineId": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "EffectivePatches": [
+            {
+              "Patch": {
+                "Id": "string",
+                "Arch": "string",
+                "Name": "string",
+                "Epoch": "number",
+                "Title": "string",
+                "CVEIds": [
+                  "string"
+                ],
+                "Vendor": "string",
+                "Product": "string",
+                "Release": "string",
+                "Version": "string",
+                "KbNumber": "string",
+                "Language": "string",
+                "Severity": "string",
+                "ContentUrl": "string",
+                "MsrcNumber": "string",
+                "Repository": "string",
+                "AdvisoryIds": [
+                  "string"
+                ],
+                "BugzillaIds": [
+                  "string"
+                ],
+                "Description": "string",
+                "ReleaseDate": "number",
+                "MsrcSeverity": "string",
+                "ProductFamily": "string",
+                "Classification": "string"
+              },
+              "PatchStatus": {
+                "ApprovalDate": "number",
+                "ComplianceLevel": "string",
+                "DeploymentStatus": "string"
+              }
+            }
+          ]
+        }
+      ]
+  DescribeInstanceAssociationsStatus:
+    description: |-
+      The status of the associations for the instance(s).
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeInstanceAssociationsStatus.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "InstanceId": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "InstanceAssociationStatusInfos": [
+            {
+              "Name": "string",
+              "Status": "string",
+              "ErrorCode": "string",
+              "OutputUrl": {
+                "S3OutputUrl": {
+                  "OutputUrl": "string"
+                }
+              },
+              "InstanceId": "string",
+              "AssociationId": "string",
+              "ExecutionDate": "number",
+              "DetailedStatus": "string",
+              "AssociationName": "string",
+              "DocumentVersion": "string",
+              "ExecutionSummary": "string",
+              "AssociationVersion": "string"
+            }
+          ]
+        }
+      ]
+  DescribeInstanceInformation:
+    description: |-
+      Describes one or more of your instances, including information about the operating system platform, the version of SSM Agent installed on the instance, instance status, and so on.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeInstanceInformation.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number",
+          "InstanceInformationFilterList": [
+            {
+              "key": "string",
+              "valueSet": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "InstanceInformationList": [
+            {
+              "Name": "string",
+              "IamRole": "string",
+              "IPAddress": "string",
+              "InstanceId": "string",
+              "PingStatus": "string",
+              "ActivationId": "string",
+              "AgentVersion": "string",
+              "ComputerName": "string",
+              "PlatformName": "string",
+              "PlatformType": "string",
+              "ResourceType": "string",
+              "IsLatestVersion": "boolean",
+              "PlatformVersion": "string",
+              "LastPingDateTime": "number",
+              "RegistrationDate": "number",
+              "AssociationStatus": "string",
+              "AssociationOverview": {
+                "DetailedStatus": "string",
+                "InstanceAssociationStatusAggregatedCount": {
+                  "string": "number"
+                }
+              },
+              "LastAssociationExecutionDate": "number",
+              "LastSuccessfulAssociationExecutionDate": "number"
+            }
+          ]
+        }
+      ]
+  DescribeInstancePatches:
+    description: |-
+      Retrieves information about the patches on the specified instance and their state relative to the patch baseline being used for the instance.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeInstancePatches.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "InstanceId": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Patches": [
+            {
+              "KBId": "string",
+              "State": "string",
+              "Title": "string",
+              "CVEIds": "string",
+              "Severity": "string",
+              "InstalledTime": "number",
+              "Classification": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeInstancePatchStatesForPatchGroup:
+    description: |-
+      Retrieves the high-level patch state for the instances in the specified patch group.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeInstancePatchStatesForPatchGroup.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Type": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number",
+          "PatchGroup": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "InstancePatchStates": [
+            {
+              "Operation": "string",
+              "BaselineId": "string",
+              "InstanceId": "string",
+              "PatchGroup": "string",
+              "SnapshotId": "string",
+              "FailedCount": "number",
+              "MissingCount": "number",
+              "RebootOption": "string",
+              "InstalledCount": "number",
+              "OperationEndTime": "number",
+              "OwnerInformation": "string",
+              "NotApplicableCount": "number",
+              "OperationStartTime": "number",
+              "InstallOverrideList": "string",
+              "InstalledOtherCount": "number",
+              "InstalledRejectedCount": "number",
+              "OtherNonCompliantCount": "number",
+              "CriticalNonCompliantCount": "number",
+              "SecurityNonCompliantCount": "number",
+              "InstalledPendingRebootCount": "number",
+              "UnreportedNotApplicableCount": "number",
+              "LastNoRebootInstallOperationTime": "number"
+            }
+          ]
+        }
+      ]
+  DescribeInstancePatchStates:
+    description: |-
+      Retrieves the high-level patch state of one or more instances.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeInstancePatchStates.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": "number",
+          "InstanceIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "InstancePatchStates": [
+            {
+              "Operation": "string",
+              "BaselineId": "string",
+              "InstanceId": "string",
+              "PatchGroup": "string",
+              "SnapshotId": "string",
+              "FailedCount": "number",
+              "MissingCount": "number",
+              "RebootOption": "string",
+              "InstalledCount": "number",
+              "OperationEndTime": "number",
+              "OwnerInformation": "string",
+              "NotApplicableCount": "number",
+              "OperationStartTime": "number",
+              "InstallOverrideList": "string",
+              "InstalledOtherCount": "number",
+              "InstalledRejectedCount": "number",
+              "OtherNonCompliantCount": "number",
+              "CriticalNonCompliantCount": "number",
+              "SecurityNonCompliantCount": "number",
+              "InstalledPendingRebootCount": "number",
+              "UnreportedNotApplicableCount": "number",
+              "LastNoRebootInstallOperationTime": "number"
+            }
+          ]
+        }
+      ]
+  DescribeInventoryDeletions:
+    description: |-
+      Describes a specific delete inventory operation.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeInventoryDeletions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "DeletionId": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "InventoryDeletions": [
+            {
+              "TypeName": "string",
+              "DeletionId": "string",
+              "LastStatus": "string",
+              "DeletionSummary": {
+                "TotalCount": "number",
+                "SummaryItems": [
+                  {
+                    "Count": "number",
+                    "Version": "string",
+                    "RemainingCount": "number"
+                  }
+                ],
+                "RemainingCount": "number"
+              },
+              "DeletionStartTime": "number",
+              "LastStatusMessage": "string",
+              "LastStatusUpdateTime": "number"
+            }
+          ]
+        }
+      ]
+  DescribeMaintenanceWindowExecutions:
+    description: |-
+      Lists the executions of a maintenance window. This includes information about when the maintenance window was scheduled to be active, and information about tasks registered and run with the maintenance window.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeMaintenanceWindowExecutions.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "WindowId": "string",
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "WindowExecutions": [
+            {
+              "Status": "string",
+              "EndTime": "number",
+              "WindowId": "string",
+              "StartTime": "number",
+              "StatusDetails": "string",
+              "WindowExecutionId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeMaintenanceWindowExecutionTaskInvocations:
+    description: |-
+      Retrieves the individual task executions (one per target) for a particular task run as part of a maintenance window execution.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeMaintenanceWindowExecutionTaskInvocations.html
+    example:
+      inputs: [
+        {
+          "TaskId": "string",
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number",
+          "WindowExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "WindowExecutionTaskInvocationIdentities": [
+            {
+              "Status": "string",
+              "EndTime": "number",
+              "TaskType": "string",
+              "StartTime": "number",
+              "Parameters": "string",
+              "ExecutionId": "string",
+              "InvocationId": "string",
+              "StatusDetails": "string",
+              "WindowTargetId": "string",
+              "TaskExecutionId": "string",
+              "OwnerInformation": "string",
+              "WindowExecutionId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeMaintenanceWindowExecutionTasks:
+    description: |-
+      For a given maintenance window execution, lists the tasks that were run.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeMaintenanceWindowExecutionTasks.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number",
+          "WindowExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "WindowExecutionTaskIdentities": [
+            {
+              "Status": "string",
+              "EndTime": "number",
+              "TaskArn": "string",
+              "TaskType": "string",
+              "StartTime": "number",
+              "StatusDetails": "string",
+              "TaskExecutionId": "string",
+              "WindowExecutionId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeMaintenanceWindowSchedule:
+    description: |-
+      Retrieves information about upcoming executions of a maintenance window.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeMaintenanceWindowSchedule.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "Targets": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "WindowId": "string",
+          "NextToken": "string",
+          "MaxResults": "number",
+          "ResourceType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ScheduledWindowExecutions": [
+            {
+              "Name": "string",
+              "WindowId": "string",
+              "ExecutionTime": "string"
+            }
+          ]
+        }
+      ]
+  DescribeMaintenanceWindowsForTarget:
+    description: |-
+      Retrieves information about the maintenance window targets or tasks that an instance is associated with.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeMaintenanceWindowsForTarget.html
+    example:
+      inputs: [
+        {
+          "Targets": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number",
+          "ResourceType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "WindowIdentities": [
+            {
+              "Name": "string",
+              "WindowId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeMaintenanceWindows:
+    description: |-
+      Retrieves the maintenance windows in an AWS account.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeMaintenanceWindows.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "WindowIdentities": [
+            {
+              "Name": "string",
+              "Cutoff": "number",
+              "Enabled": "boolean",
+              "EndDate": "string",
+              "Duration": "number",
+              "Schedule": "string",
+              "WindowId": "string",
+              "StartDate": "string",
+              "Description": "string",
+              "ScheduleOffset": "number",
+              "ScheduleTimezone": "string",
+              "NextExecutionTime": "string"
+            }
+          ]
+        }
+      ]
+  DescribeMaintenanceWindowTargets:
+    description: |-
+      Lists the targets registered with the maintenance window.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeMaintenanceWindowTargets.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "WindowId": "string",
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Targets": [
+            {
+              "Name": "string",
+              "Targets": [
+                {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ]
+                }
+              ],
+              "WindowId": "string",
+              "Description": "string",
+              "ResourceType": "string",
+              "WindowTargetId": "string",
+              "OwnerInformation": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeMaintenanceWindowTasks:
+    description: |-
+      Lists the tasks in a maintenance window.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeMaintenanceWindowTasks.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "WindowId": "string",
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Tasks": [
+            {
+              "Name": "string",
+              "Type": "string",
+              "Targets": [
+                {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ]
+                }
+              ],
+              "TaskArn": "string",
+              "Priority": "number",
+              "WindowId": "string",
+              "MaxErrors": "string",
+              "Description": "string",
+              "LoggingInfo": {
+                "S3Region": "string",
+                "S3KeyPrefix": "string",
+                "S3BucketName": "string"
+              },
+              "WindowTaskId": "string",
+              "MaxConcurrency": "string",
+              "ServiceRoleArn": "string",
+              "TaskParameters": {
+                "string": {
+                  "Values": [
+                    "string"
+                  ]
+                }
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeOpsItems:
+    description: |-
+      Query a set of OpsItems. You must have permission in AWS Identity and Access Management (IAM) to query a list of OpsItems. For more information, see Getting started with OpsCenter in the AWS Systems Manager User Guide.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeOpsItems.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": "number",
+          "OpsItemFilters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "Operator": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "OpsItemSummaries": [
+            {
+              "Title": "string",
+              "Source": "string",
+              "Status": "string",
+              "Category": "string",
+              "Priority": "number",
+              "Severity": "string",
+              "CreatedBy": "string",
+              "OpsItemId": "string",
+              "CreatedTime": "number",
+              "OpsItemType": "string",
+              "ActualEndTime": "number",
+              "LastModifiedBy": "string",
+              "PlannedEndTime": "number",
+              "ActualStartTime": "number",
+              "OperationalData": {
+                "string": {
+                  "Type": "string",
+                  "Value": "string"
+                }
+              },
+              "LastModifiedTime": "number",
+              "PlannedStartTime": "number"
+            }
+          ]
+        }
+      ]
+  DescribeParameters:
+    description: |-
+      Get information about a parameter.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeParameters.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number",
+          "ParameterFilters": [
+            {
+              "Key": "string",
+              "Option": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Parameters": [
+            {
+              "Name": "string",
+              "Tier": "string",
+              "Type": "string",
+              "KeyId": "string",
+              "Version": "number",
+              "DataType": "string",
+              "Policies": [
+                {
+                  "PolicyText": "string",
+                  "PolicyType": "string",
+                  "PolicyStatus": "string"
+                }
+              ],
+              "Description": "string",
+              "AllowedPattern": "string",
+              "LastModifiedDate": "number",
+              "LastModifiedUser": "string"
+            }
+          ]
+        }
+      ]
+  DescribePatchBaselines:
+    description: |-
+      Lists the patch baselines in your AWS account.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribePatchBaselines.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "BaselineIdentities": [
+            {
+              "BaselineId": "string",
+              "BaselineName": "string",
+              "DefaultBaseline": "boolean",
+              "OperatingSystem": "string",
+              "BaselineDescription": "string"
+            }
+          ]
+        }
+      ]
+  DescribePatchGroups:
+    description: |-
+      Lists all patch groups that have been registered with patch baselines.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribePatchGroups.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Mappings": [
+            {
+              "PatchGroup": "string",
+              "BaselineIdentity": {
+                "BaselineId": "string",
+                "BaselineName": "string",
+                "DefaultBaseline": "boolean",
+                "OperatingSystem": "string",
+                "BaselineDescription": "string"
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribePatchGroupState:
+    description: |-
+      Returns high-level aggregated patch compliance state for a patch group.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribePatchGroupState.html
+    example:
+      inputs: [
+        {
+          "PatchGroup": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Instances": "number",
+          "InstancesWithFailedPatches": "number",
+          "InstancesWithMissingPatches": "number",
+          "InstancesWithInstalledPatches": "number",
+          "InstancesWithNotApplicablePatches": "number",
+          "InstancesWithInstalledOtherPatches": "number",
+          "InstancesWithInstalledRejectedPatches": "number",
+          "InstancesWithOtherNonCompliantPatches": "number",
+          "InstancesWithCriticalNonCompliantPatches": "number",
+          "InstancesWithSecurityNonCompliantPatches": "number",
+          "InstancesWithInstalledPendingRebootPatches": "number",
+          "InstancesWithUnreportedNotApplicablePatches": "number"
+        }
+      ]
+  DescribePatchProperties:
+    description: |-
+      Lists the properties of available patches organized by product, product family, classification, severity, and other properties of available patches. You can use the reported properties in the filters you specify in requests for actions such as CreatePatchBaseline, UpdatePatchBaseline, DescribeAvailablePatches, and DescribePatchBaselines.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribePatchProperties.html
+    example:
+      inputs: [
+        {
+          "PatchSet": "string",
+          "Property": "string",
+          "NextToken": "string",
+          "MaxResults": "number",
+          "OperatingSystem": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Properties": [
+            {
+              "string": "string"
+            }
+          ]
+        }
+      ]
+  DescribeSessions:
+    description: |-
+      Retrieves a list of all active sessions (both connected and disconnected) or terminated sessions from the past 30 days.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_DescribeSessions.html
+    example:
+      inputs: [
+        {
+          "State": "string",
+          "Filters": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Sessions": [
+            {
+              "Owner": "string",
+              "Status": "string",
+              "Target": "string",
+              "Details": "string",
+              "EndDate": "number",
+              "OutputUrl": {
+                "S3OutputUrl": "string",
+                "CloudWatchOutputUrl": "string"
+              },
+              "SessionId": "string",
+              "StartDate": "number",
+              "DocumentName": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  GetAutomationExecution:
+    description: |-
+      Get detailed information about a particular Automation execution.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetAutomationExecution.html
+    example:
+      inputs: [
+        {
+          "AutomationExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "AutomationExecution": {
+            "Mode": "string",
+            "Target": "string",
+            "Outputs": {
+              "string": [
+                "string"
+              ]
+            },
+            "Targets": [
+              {
+                "Key": "string",
+                "Values": [
+                  "string"
+                ]
+              }
+            ],
+            "Runbooks": [
+              {
+                "Targets": [
+                  {
+                    "Key": "string",
+                    "Values": [
+                      "string"
+                    ]
+                  }
+                ],
+                "MaxErrors": "string",
+                "Parameters": {
+                  "string": [
+                    "string"
+                  ]
+                },
+                "DocumentName": "string",
+                "MaxConcurrency": "string",
+                "DocumentVersion": "string",
+                "TargetLocations": [
+                  {
+                    "Regions": [
+                      "string"
+                    ],
+                    "Accounts": [
+                      "string"
+                    ],
+                    "ExecutionRoleName": "string",
+                    "TargetLocationMaxErrors": "string",
+                    "TargetLocationMaxConcurrency": "string"
+                  }
+                ],
+                "TargetParameterName": "string"
+              }
+            ],
+            "MaxErrors": "string",
+            "OpsItemId": "string",
+            "ExecutedBy": "string",
+            "Parameters": {
+              "string": [
+                "string"
+              ]
+            },
+            "TargetMaps": [
+              {
+                "string": [
+                  "string"
+                ]
+              }
+            ],
+            "DocumentName": "string",
+            "AssociationId": "string",
+            "CurrentAction": "string",
+            "ScheduledTime": "number",
+            "FailureMessage": "string",
+            "MaxConcurrency": "string",
+            "StepExecutions": [
+              {
+                "IsEnd": "boolean",
+                "Action": "string",
+                "Inputs": {
+                  "string": "string"
+                },
+                "Outputs": {
+                  "string": [
+                    "string"
+                  ]
+                },
+                "Targets": [
+                  {
+                    "Key": "string",
+                    "Values": [
+                      "string"
+                    ]
+                  }
+                ],
+                "NextStep": "string",
+                "Response": "string",
+                "StepName": "string",
+                "OnFailure": "string",
+                "IsCritical": "boolean",
+                "StepStatus": "string",
+                "MaxAttempts": "number",
+                "ResponseCode": "string",
+                "FailureDetails": {
+                  "Details": {
+                    "string": [
+                      "string"
+                    ]
+                  },
+                  "FailureType": "string",
+                  "FailureStage": "string"
+                },
+                "FailureMessage": "string",
+                "TargetLocation": {
+                  "Regions": [
+                    "string"
+                  ],
+                  "Accounts": [
+                    "string"
+                  ],
+                  "ExecutionRoleName": "string",
+                  "TargetLocationMaxErrors": "string",
+                  "TargetLocationMaxConcurrency": "string"
+                },
+                "TimeoutSeconds": "number",
+                "ValidNextSteps": [
+                  "string"
+                ],
+                "StepExecutionId": "string",
+                "ExecutionEndTime": "number",
+                "ExecutionStartTime": "number",
+                "OverriddenParameters": {
+                  "string": [
+                    "string"
+                  ]
+                }
+              }
+            ],
+            "CurrentStepName": "string",
+            "DocumentVersion": "string",
+            "ResolvedTargets": {
+              "Truncated": "boolean",
+              "ParameterValues": [
+                "string"
+              ]
+            },
+            "TargetLocations": [
+              {
+                "Regions": [
+                  "string"
+                ],
+                "Accounts": [
+                  "string"
+                ],
+                "ExecutionRoleName": "string",
+                "TargetLocationMaxErrors": "string",
+                "TargetLocationMaxConcurrency": "string"
+              }
+            ],
+            "ExecutionEndTime": "number",
+            "ProgressCounters": {
+              "TotalSteps": "number",
+              "FailedSteps": "number",
+              "SuccessSteps": "number",
+              "TimedOutSteps": "number",
+              "CancelledSteps": "number"
+            },
+            "AutomationSubtype": "string",
+            "ChangeRequestName": "string",
+            "ExecutionStartTime": "number",
+            "TargetParameterName": "string",
+            "AutomationExecutionId": "string",
+            "StepExecutionsTruncated": "boolean",
+            "AutomationExecutionStatus": "string",
+            "ParentAutomationExecutionId": "string"
+          }
+        }
+      ]
+  GetCalendarState:
+    description: |-
+      Gets the state of the AWS Systems Manager Change Calendar at an optional, specified time. If you specify a time, GetCalendarState returns the state of the calendar at a specific time, and returns the next time that the Change Calendar state will transition. If you do not specify a time, GetCalendarState assumes the current time. Change Calendar entries have two possible states:OPEN or CLOSED.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetCalendarState.html
+    example:
+      inputs: [
+        {
+          "AtTime": "string",
+          "CalendarNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "State": "string",
+          "AtTime": "string",
+          "NextTransitionTime": "string"
+        }
+      ]
+  GetCommandInvocation:
+    description: |-
+      Returns detailed information about command execution for an invocation or plugin.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetCommandInvocation.html
+    example:
+      inputs: [
+        {
+          "CommandId": "string",
+          "InstanceId": "string",
+          "PluginName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "Comment": "string",
+          "CommandId": "string",
+          "InstanceId": "string",
+          "PluginName": "string",
+          "DocumentName": "string",
+          "ResponseCode": "number",
+          "StatusDetails": "string",
+          "DocumentVersion": "string",
+          "StandardErrorUrl": "string",
+          "StandardOutputUrl": "string",
+          "ExecutionElapsedTime": "string",
+          "ExecutionEndDateTime": "string",
+          "StandardErrorContent": "string",
+          "StandardOutputContent": "string",
+          "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "string",
+            "CloudWatchOutputEnabled": "boolean"
+          },
+          "ExecutionStartDateTime": "string"
+        }
+      ]
+  GetConnectionStatus:
+    description: |-
+      Retrieves the Session Manager connection status for an instance to determine whether it is running and ready to receive Session Manager connections.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetConnectionStatus.html
+    example:
+      inputs: [
+        {
+          "Target": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "Target": "string"
+        }
+      ]
+  GetDefaultPatchBaseline:
+    description: |-
+      Retrieves the default patch baseline. Note that Systems Manager supports creating multiple default patch baselines. For example, you can create a default patch baseline for each operating system.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetDefaultPatchBaseline.html
+    example:
+      inputs: [
+        {
+          "OperatingSystem": "string"
+        }
+      ]
+      outputs: [
+        {
+          "BaselineId": "string",
+          "OperatingSystem": "string"
+        }
+      ]
+  GetDeployablePatchSnapshotForInstance:
+    description: |-
+      Retrieves the current snapshot for the patch baseline the instance uses. This API is primarily used by the AWS-RunPatchBaseline Systems Manager document.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetDeployablePatchSnapshotForInstance.html
+    example:
+      inputs: [
+        {
+          "InstanceId": "string",
+          "SnapshotId": "string",
+          "BaselineOverride": {
+            "Sources": [
+              {
+                "Name": "string",
+                "Products": [
+                  "string"
+                ],
+                "Configuration": "string"
+              }
+            ],
+            "ApprovalRules": {
+              "PatchRules": [
+                {
+                  "ComplianceLevel": "string",
+                  "ApproveAfterDays": "number",
+                  "ApproveUntilDate": "string",
+                  "PatchFilterGroup": {
+                    "PatchFilters": [
+                      {
+                        "Key": "string",
+                        "Values": [
+                          "string"
+                        ]
+                      }
+                    ]
+                  },
+                  "EnableNonSecurity": "boolean"
+                }
+              ]
+            },
+            "GlobalFilters": {
+              "PatchFilters": [
+                {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ]
+                }
+              ]
+            },
+            "ApprovedPatches": [
+              "string"
+            ],
+            "OperatingSystem": "string",
+            "RejectedPatches": [
+              "string"
+            ],
+            "RejectedPatchesAction": "string",
+            "ApprovedPatchesComplianceLevel": "string",
+            "ApprovedPatchesEnableNonSecurity": "boolean"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Product": "string",
+          "InstanceId": "string",
+          "SnapshotId": "string",
+          "SnapshotDownloadUrl": "string"
+        }
+      ]
+  GetDocument:
+    description: |-
+      Gets the contents of the specified Systems Manager document.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetDocument.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "VersionName": "string",
+          "DocumentFormat": "string",
+          "DocumentVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Status": "string",
+          "Content": "string",
+          "Requires": [
+            {
+              "Name": "string",
+              "Version": "string"
+            }
+          ],
+          "VersionName": "string",
+          "DocumentType": "string",
+          "ReviewStatus": "string",
+          "DocumentFormat": "string",
+          "DocumentVersion": "string",
+          "StatusInformation": "string",
+          "AttachmentsContent": [
+            {
+              "Url": "string",
+              "Hash": "string",
+              "Name": "string",
+              "Size": "number",
+              "HashType": "string"
+            }
+          ]
+        }
+      ]
+  GetInventory:
+    description: |-
+      Query inventory information.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetInventory.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Type": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number",
+          "Aggregators": [
+            {
+              "Groups": [
+                {
+                  "Name": "string",
+                  "Filters": [
+                    {
+                      "Key": "string",
+                      "Type": "string",
+                      "Values": [
+                        "string"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "Expression": "string",
+              "Aggregators": [
+                "InventoryAggregator"
+              ]
+            }
+          ],
+          "ResultAttributes": [
+            {
+              "TypeName": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Entities": [
+            {
+              "Id": "string",
+              "Data": {
+                "string": {
+                  "Content": [
+                    {
+                      "string": "string"
+                    }
+                  ],
+                  "TypeName": "string",
+                  "CaptureTime": "string",
+                  "ContentHash": "string",
+                  "SchemaVersion": "string"
+                }
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  GetInventorySchema:
+    description: |-
+      Return a list of inventory type names for the account, or return a list of attribute names for a specific Inventory item type.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetInventorySchema.html
+    example:
+      inputs: [
+        {
+          "SubType": "boolean",
+          "TypeName": "string",
+          "NextToken": "string",
+          "Aggregator": "boolean",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Schemas": [
+            {
+              "Version": "string",
+              "TypeName": "string",
+              "Attributes": [
+                {
+                  "Name": "string",
+                  "DataType": "string"
+                }
+              ],
+              "DisplayName": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  GetMaintenanceWindowExecution:
+    description: |-
+      Retrieves details about a specific a maintenance window execution.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetMaintenanceWindowExecution.html
+    example:
+      inputs: [
+        {
+          "WindowExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "EndTime": "number",
+          "TaskIds": [
+            "string"
+          ],
+          "StartTime": "number",
+          "StatusDetails": "string",
+          "WindowExecutionId": "string"
+        }
+      ]
+  GetMaintenanceWindowExecutionTask:
+    description: |-
+      Retrieves the details about a specific task run as part of a maintenance window execution.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetMaintenanceWindowExecutionTask.html
+    example:
+      inputs: [
+        {
+          "TaskId": "string",
+          "WindowExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Type": "string",
+          "Status": "string",
+          "EndTime": "number",
+          "TaskArn": "string",
+          "Priority": "number",
+          "MaxErrors": "string",
+          "StartTime": "number",
+          "ServiceRole": "string",
+          "StatusDetails": "string",
+          "MaxConcurrency": "string",
+          "TaskParameters": [
+            {
+              "string": {
+                "Values": [
+                  "string"
+                ]
+              }
+            }
+          ],
+          "TaskExecutionId": "string",
+          "WindowExecutionId": "string"
+        }
+      ]
+  GetMaintenanceWindowExecutionTaskInvocation:
+    description: |-
+      Retrieves information about a specific task running on a specific target.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetMaintenanceWindowExecutionTaskInvocation.html
+    example:
+      inputs: [
+        {
+          "TaskId": "string",
+          "InvocationId": "string",
+          "WindowExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "EndTime": "number",
+          "TaskType": "string",
+          "StartTime": "number",
+          "Parameters": "string",
+          "ExecutionId": "string",
+          "InvocationId": "string",
+          "StatusDetails": "string",
+          "WindowTargetId": "string",
+          "TaskExecutionId": "string",
+          "OwnerInformation": "string",
+          "WindowExecutionId": "string"
+        }
+      ]
+  GetMaintenanceWindow:
+    description: |-
+      Retrieves a maintenance window.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetMaintenanceWindow.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Cutoff": "number",
+          "Enabled": "boolean",
+          "EndDate": "string",
+          "Duration": "number",
+          "Schedule": "string",
+          "WindowId": "string",
+          "StartDate": "string",
+          "CreatedDate": "number",
+          "Description": "string",
+          "ModifiedDate": "number",
+          "ScheduleOffset": "number",
+          "ScheduleTimezone": "string",
+          "NextExecutionTime": "string",
+          "AllowUnassociatedTargets": "boolean"
+        }
+      ]
+  GetMaintenanceWindowTask:
+    description: |-
+      Lists the tasks in a maintenance window.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetMaintenanceWindowTask.html
+    example:
+      inputs: [
+        {
+          "WindowId": "string",
+          "WindowTaskId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Targets": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "TaskArn": "string",
+          "Priority": "number",
+          "TaskType": "string",
+          "WindowId": "string",
+          "MaxErrors": "string",
+          "Description": "string",
+          "LoggingInfo": {
+            "S3Region": "string",
+            "S3KeyPrefix": "string",
+            "S3BucketName": "string"
+          },
+          "WindowTaskId": "string",
+          "MaxConcurrency": "string",
+          "ServiceRoleArn": "string",
+          "TaskParameters": {
+            "string": {
+              "Values": [
+                "string"
+              ]
+            }
+          },
+          "TaskInvocationParameters": {
+            "Lambda": {
+              "Payload": "blob",
+              "Qualifier": "string",
+              "ClientContext": "string"
+            },
+            "Automation": {
+              "Parameters": {
+                "string": [
+                  "string"
+                ]
+              },
+              "DocumentVersion": "string"
+            },
+            "RunCommand": {
+              "Comment": "string",
+              "Parameters": {
+                "string": [
+                  "string"
+                ]
+              },
+              "DocumentHash": "string",
+              "ServiceRoleArn": "string",
+              "TimeoutSeconds": "number",
+              "DocumentVersion": "string",
+              "DocumentHashType": "string",
+              "OutputS3KeyPrefix": "string",
+              "NotificationConfig": {
+                "NotificationArn": "string",
+                "NotificationType": "string",
+                "NotificationEvents": [
+                  "string"
+                ]
+              },
+              "OutputS3BucketName": "string",
+              "CloudWatchOutputConfig": {
+                "CloudWatchLogGroupName": "string",
+                "CloudWatchOutputEnabled": "boolean"
+              }
+            },
+            "StepFunctions": {
+              "Name": "string",
+              "Input": "string"
+            }
+          }
+        }
+      ]
+  GetOpsItem:
+    description: |-
+      Get information about an OpsItem by using the ID. You must have permission in AWS Identity and Access Management (IAM) to view information about an OpsItem. For more information, see Getting started with OpsCenter in the AWS Systems Manager User Guide.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetOpsItem.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "OpsItem": {
+            "Title": "string",
+            "Source": "string",
+            "Status": "string",
+            "Version": "string",
+            "Category": "string",
+            "Priority": "number",
+            "Severity": "string",
+            "CreatedBy": "string",
+            "OpsItemId": "string",
+            "CreatedTime": "number",
+            "Description": "string",
+            "OpsItemType": "string",
+            "ActualEndTime": "number",
+            "Notifications": [
+              {
+                "Arn": "string"
+              }
+            ],
+            "LastModifiedBy": "string",
+            "PlannedEndTime": "number",
+            "ActualStartTime": "number",
+            "OperationalData": {
+              "string": {
+                "Type": "string",
+                "Value": "string"
+              }
+            },
+            "RelatedOpsItems": [
+              {
+                "OpsItemId": "string"
+              }
+            ],
+            "LastModifiedTime": "number",
+            "PlannedStartTime": "number"
+          }
+        }
+      ]
+  GetOpsMetadata:
+    description: |-
+      View operational metadata related to an application in Application Manager.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetOpsMetadata.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": "number",
+          "OpsMetadataArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Metadata": {
+            "string": {
+              "Value": "string"
+            }
+          },
+          "NextToken": "string",
+          "ResourceId": "string"
+        }
+      ]
+  GetOpsSummary:
+    description: |-
+      View a summary of OpsItems based on specified filters and aggregators.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetOpsSummary.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Type": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "SyncName": "string",
+          "NextToken": "string",
+          "MaxResults": "number",
+          "Aggregators": [
+            {
+              "Values": {
+                "string": "string"
+              },
+              "Filters": [
+                {
+                  "Key": "string",
+                  "Type": "string",
+                  "Values": [
+                    "string"
+                  ]
+                }
+              ],
+              "TypeName": "string",
+              "Aggregators": [
+                "OpsAggregator"
+              ],
+              "AttributeName": "string",
+              "AggregatorType": "string"
+            }
+          ],
+          "ResultAttributes": [
+            {
+              "TypeName": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Entities": [
+            {
+              "Id": "string",
+              "Data": {
+                "string": {
+                  "Content": [
+                    {
+                      "string": "string"
+                    }
+                  ],
+                  "CaptureTime": "string"
+                }
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  GetParameterHistory:
+    description: |-
+      Retrieves the history of all changes to a parameter.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParameterHistory.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "NextToken": "string",
+          "MaxResults": "number",
+          "WithDecryption": "boolean"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Parameters": [
+            {
+              "Name": "string",
+              "Tier": "string",
+              "Type": "string",
+              "KeyId": "string",
+              "Value": "string",
+              "Labels": [
+                "string"
+              ],
+              "Version": "number",
+              "DataType": "string",
+              "Policies": [
+                {
+                  "PolicyText": "string",
+                  "PolicyType": "string",
+                  "PolicyStatus": "string"
+                }
+              ],
+              "Description": "string",
+              "AllowedPattern": "string",
+              "LastModifiedDate": "number",
+              "LastModifiedUser": "string"
+            }
+          ]
+        }
+      ]
+  GetParameter:
+    description: |-
+      Get information about a parameter by using the parameter name. Don't confuse this API action with the GetParameters API action.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParameter.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "WithDecryption": "boolean"
+        }
+      ]
+      outputs: [
+        {
+          "Parameter": {
+            "ARN": "string",
+            "Name": "string",
+            "Type": "string",
+            "Value": "string",
+            "Version": "number",
+            "DataType": "string",
+            "Selector": "string",
+            "SourceResult": "string",
+            "LastModifiedDate": "number"
+          }
+        }
+      ]
+  GetParametersByPath:
+    description: |-
+      Retrieve information about one or more parameters in a specific hierarchy.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParametersByPath.html
+    example:
+      inputs: [
+        {
+          "Path": "string",
+          "NextToken": "string",
+          "Recursive": "boolean",
+          "MaxResults": "number",
+          "WithDecryption": "boolean",
+          "ParameterFilters": [
+            {
+              "Key": "string",
+              "Option": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Parameters": [
+            {
+              "ARN": "string",
+              "Name": "string",
+              "Type": "string",
+              "Value": "string",
+              "Version": "number",
+              "DataType": "string",
+              "Selector": "string",
+              "SourceResult": "string",
+              "LastModifiedDate": "number"
+            }
+          ]
+        }
+      ]
+  GetParameters:
+    description: |-
+      Get details of a parameter. Don't confuse this API action with the GetParameter API action.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetParameters.html
+    example:
+      inputs: [
+        {
+          "Names": [
+            "string"
+          ],
+          "WithDecryption": "boolean"
+        }
+      ]
+      outputs: [
+        {
+          "Parameters": [
+            {
+              "ARN": "string",
+              "Name": "string",
+              "Type": "string",
+              "Value": "string",
+              "Version": "number",
+              "DataType": "string",
+              "Selector": "string",
+              "SourceResult": "string",
+              "LastModifiedDate": "number"
+            }
+          ],
+          "InvalidParameters": [
+            "string"
+          ]
+        }
+      ]
+  GetPatchBaselineForPatchGroup:
+    description: |-
+      Retrieves the patch baseline that should be used for the specified patch group.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetPatchBaselineForPatchGroup.html
+    example:
+      inputs: [
+        {
+          "PatchGroup": "string",
+          "OperatingSystem": "string"
+        }
+      ]
+      outputs: [
+        {
+          "BaselineId": "string",
+          "PatchGroup": "string",
+          "OperatingSystem": "string"
+        }
+      ]
+  GetPatchBaseline:
+    description: |-
+      Retrieves information about a patch baseline.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetPatchBaseline.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Sources": [
+            {
+              "Name": "string",
+              "Products": [
+                "string"
+              ],
+              "Configuration": "string"
+            }
+          ],
+          "BaselineId": "string",
+          "CreatedDate": "number",
+          "Description": "string",
+          "PatchGroups": [
+            "string"
+          ],
+          "ModifiedDate": "number",
+          "ApprovalRules": {
+            "PatchRules": [
+              {
+                "ComplianceLevel": "string",
+                "ApproveAfterDays": "number",
+                "ApproveUntilDate": "string",
+                "PatchFilterGroup": {
+                  "PatchFilters": [
+                    {
+                      "Key": "string",
+                      "Values": [
+                        "string"
+                      ]
+                    }
+                  ]
+                },
+                "EnableNonSecurity": "boolean"
+              }
+            ]
+          },
+          "GlobalFilters": {
+            "PatchFilters": [
+              {
+                "Key": "string",
+                "Values": [
+                  "string"
+                ]
+              }
+            ]
+          },
+          "ApprovedPatches": [
+            "string"
+          ],
+          "OperatingSystem": "string",
+          "RejectedPatches": [
+            "string"
+          ],
+          "RejectedPatchesAction": "string",
+          "ApprovedPatchesComplianceLevel": "string",
+          "ApprovedPatchesEnableNonSecurity": "boolean"
+        }
+      ]
+  GetServiceSetting:
+    description: |-
+      ServiceSetting is an account-level setting for an AWS service. This setting defines how a user interacts with or uses a service or a feature of a service. For example, if an AWS service charges money to the account based on feature or service usage, then the AWS service team might create a default setting of "false". This means the user can't use this feature unless they change the setting to "true" and intentionally opt in for a paid feature.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetServiceSetting.html
+    example:
+      inputs: [
+        {
+          "SettingId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ServiceSetting": {
+            "ARN": "string",
+            "Status": "string",
+            "SettingId": "string",
+            "SettingValue": "string",
+            "LastModifiedDate": "number",
+            "LastModifiedUser": "string"
+          }
+        }
+      ]
+  LabelParameterVersion:
+    description: |-
+      A parameter label is a user-defined alias to help you manage different versions of a parameter. When you modify a parameter, Systems Manager automatically saves a new version and increments the version number by one. A label can help you remember the purpose of a parameter when there are multiple versions.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_LabelParameterVersion.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Labels": [
+            "string"
+          ],
+          "ParameterVersion": "number"
+        }
+      ]
+      outputs: [
+        {
+          "InvalidLabels": [
+            "string"
+          ],
+          "ParameterVersion": "number"
+        }
+      ]
+  ListAssociations:
+    description: |-
+      Returns all State Manager associations in the current AWS account and Region. You can limit the results to a specific State Manager association document or instance by specifying a filter.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ListAssociations.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": "number",
+          "AssociationFilterList": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Associations": [
+            {
+              "Name": "string",
+              "Targets": [
+                {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ]
+                }
+              ],
+              "Overview": {
+                "Status": "string",
+                "DetailedStatus": "string",
+                "AssociationStatusAggregatedCount": {
+                  "string": "number"
+                }
+              },
+              "InstanceId": "string",
+              "AssociationId": "string",
+              "AssociationName": "string",
+              "DocumentVersion": "string",
+              "LastExecutionDate": "number",
+              "AssociationVersion": "string",
+              "ScheduleExpression": "string"
+            }
+          ]
+        }
+      ]
+  ListAssociationVersions:
+    description: |-
+      Retrieves all versions of an association for a specific association ID.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ListAssociationVersions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": "number",
+          "AssociationId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "AssociationVersions": [
+            {
+              "Name": "string",
+              "Targets": [
+                {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ]
+                }
+              ],
+              "MaxErrors": "string",
+              "Parameters": {
+                "string": [
+                  "string"
+                ]
+              },
+              "CreatedDate": "number",
+              "AssociationId": "string",
+              "MaxConcurrency": "string",
+              "OutputLocation": {
+                "S3Location": {
+                  "OutputS3Region": "string",
+                  "OutputS3KeyPrefix": "string",
+                  "OutputS3BucketName": "string"
+                }
+              },
+              "SyncCompliance": "string",
+              "AssociationName": "string",
+              "DocumentVersion": "string",
+              "TargetLocations": [
+                {
+                  "Regions": [
+                    "string"
+                  ],
+                  "Accounts": [
+                    "string"
+                  ],
+                  "ExecutionRoleName": "string",
+                  "TargetLocationMaxErrors": "string",
+                  "TargetLocationMaxConcurrency": "string"
+                }
+              ],
+              "AssociationVersion": "string",
+              "ComplianceSeverity": "string",
+              "ScheduleExpression": "string",
+              "ApplyOnlyAtCronInterval": "boolean"
+            }
+          ]
+        }
+      ]
+  ListCommandInvocations:
+    description: |-
+      An invocation is copy of a command sent to a specific instance. A command can apply to one or more instances. A command invocation applies to one instance. For example, if a user runs SendCommand against three instances, then a command invocation is created for each requested instance ID. ListCommandInvocations provide status about command execution.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ListCommandInvocations.html
+    example:
+      inputs: [
+        {
+          "Details": "boolean",
+          "Filters": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "CommandId": "string",
+          "NextToken": "string",
+          "InstanceId": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CommandInvocations": [
+            {
+              "Status": "string",
+              "Comment": "string",
+              "CommandId": "string",
+              "InstanceId": "string",
+              "ServiceRole": "string",
+              "TraceOutput": "string",
+              "DocumentName": "string",
+              "InstanceName": "string",
+              "StatusDetails": "string",
+              "CommandPlugins": [
+                {
+                  "Name": "string",
+                  "Output": "string",
+                  "Status": "string",
+                  "ResponseCode": "number",
+                  "StatusDetails": "string",
+                  "OutputS3Region": "string",
+                  "StandardErrorUrl": "string",
+                  "OutputS3KeyPrefix": "string",
+                  "StandardOutputUrl": "string",
+                  "OutputS3BucketName": "string",
+                  "ResponseStartDateTime": "number",
+                  "ResponseFinishDateTime": "number"
+                }
+              ],
+              "DocumentVersion": "string",
+              "StandardErrorUrl": "string",
+              "RequestedDateTime": "number",
+              "StandardOutputUrl": "string",
+              "NotificationConfig": {
+                "NotificationArn": "string",
+                "NotificationType": "string",
+                "NotificationEvents": [
+                  "string"
+                ]
+              },
+              "CloudWatchOutputConfig": {
+                "CloudWatchLogGroupName": "string",
+                "CloudWatchOutputEnabled": "boolean"
+              }
+            }
+          ]
+        }
+      ]
+  ListCommands:
+    description: |-
+      Lists the commands requested by users of the AWS account.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ListCommands.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "CommandId": "string",
+          "NextToken": "string",
+          "InstanceId": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Commands": [
+            {
+              "Status": "string",
+              "Comment": "string",
+              "Targets": [
+                {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ]
+                }
+              ],
+              "CommandId": "string",
+              "MaxErrors": "string",
+              "ErrorCount": "number",
+              "Parameters": {
+                "string": [
+                  "string"
+                ]
+              },
+              "InstanceIds": [
+                "string"
+              ],
+              "ServiceRole": "string",
+              "TargetCount": "number",
+              "DocumentName": "string",
+              "ExpiresAfter": "number",
+              "StatusDetails": "string",
+              "CompletedCount": "number",
+              "MaxConcurrency": "string",
+              "OutputS3Region": "string",
+              "TimeoutSeconds": "number",
+              "DocumentVersion": "string",
+              "OutputS3KeyPrefix": "string",
+              "RequestedDateTime": "number",
+              "NotificationConfig": {
+                "NotificationArn": "string",
+                "NotificationType": "string",
+                "NotificationEvents": [
+                  "string"
+                ]
+              },
+              "OutputS3BucketName": "string",
+              "DeliveryTimedOutCount": "number",
+              "CloudWatchOutputConfig": {
+                "CloudWatchLogGroupName": "string",
+                "CloudWatchOutputEnabled": "boolean"
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListComplianceItems:
+    description: |-
+      For a specified resource ID, this API action returns a list of compliance statuses for different resource types. Currently, you can only specify one resource ID per call. List results depend on the criteria specified in the filter.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ListComplianceItems.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Type": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number",
+          "ResourceIds": [
+            "string"
+          ],
+          "ResourceTypes": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ComplianceItems": [
+            {
+              "Id": "string",
+              "Title": "string",
+              "Status": "string",
+              "Details": {
+                "string": "string"
+              },
+              "Severity": "string",
+              "ResourceId": "string",
+              "ResourceType": "string",
+              "ComplianceType": "string",
+              "ExecutionSummary": {
+                "ExecutionId": "string",
+                "ExecutionTime": "number",
+                "ExecutionType": "string"
+              }
+            }
+          ]
+        }
+      ]
+  ListComplianceSummaries:
+    description: |-
+      Returns a summary count of compliant and non-compliant resources for a compliance type. For example, this call can return State Manager associations, patches, or custom compliance types according to the filter criteria that you specify.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ListComplianceSummaries.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Type": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ComplianceSummaryItems": [
+            {
+              "ComplianceType": "string",
+              "CompliantSummary": {
+                "CompliantCount": "number",
+                "SeveritySummary": {
+                  "LowCount": "number",
+                  "HighCount": "number",
+                  "MediumCount": "number",
+                  "CriticalCount": "number",
+                  "UnspecifiedCount": "number",
+                  "InformationalCount": "number"
+                }
+              },
+              "NonCompliantSummary": {
+                "SeveritySummary": {
+                  "LowCount": "number",
+                  "HighCount": "number",
+                  "MediumCount": "number",
+                  "CriticalCount": "number",
+                  "UnspecifiedCount": "number",
+                  "InformationalCount": "number"
+                },
+                "NonCompliantCount": "number"
+              }
+            }
+          ]
+        }
+      ]
+  ListDocumentMetadataHistory:
+    description: |-
+      Information about approval reviews for a version of an SSM document.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ListDocumentMetadataHistory.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Metadata": "string",
+          "NextToken": "string",
+          "MaxResults": "number",
+          "DocumentVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Author": "string",
+          "Metadata": {
+            "ReviewerResponse": [
+              {
+                "Comment": [
+                  {
+                    "Type": "string",
+                    "Content": "string"
+                  }
+                ],
+                "Reviewer": "string",
+                "CreateTime": "number",
+                "UpdatedTime": "number",
+                "ReviewStatus": "string"
+              }
+            ]
+          },
+          "NextToken": "string",
+          "DocumentVersion": "string"
+        }
+      ]
+  ListDocuments:
+    description: |-
+      Returns all Systems Manager (SSM) documents in the current AWS account and Region. You can limit the results of this request by using a filter.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ListDocuments.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number",
+          "DocumentFilterList": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DocumentIdentifiers": [
+            {
+              "Name": "string",
+              "Tags": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ],
+              "Owner": "string",
+              "Author": "string",
+              "Requires": [
+                {
+                  "Name": "string",
+                  "Version": "string"
+                }
+              ],
+              "TargetType": "string",
+              "VersionName": "string",
+              "DocumentType": "string",
+              "ReviewStatus": "string",
+              "PlatformTypes": [
+                "string"
+              ],
+              "SchemaVersion": "string",
+              "DocumentFormat": "string",
+              "DocumentVersion": "string"
+            }
+          ]
+        }
+      ]
+  ListDocumentVersions:
+    description: |-
+      List all versions for a document.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ListDocumentVersions.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DocumentVersions": [
+            {
+              "Name": "string",
+              "Status": "string",
+              "CreatedDate": "number",
+              "VersionName": "string",
+              "ReviewStatus": "string",
+              "DocumentFormat": "string",
+              "DocumentVersion": "string",
+              "IsDefaultVersion": "boolean",
+              "StatusInformation": "string"
+            }
+          ]
+        }
+      ]
+  ListInventoryEntries:
+    description: |-
+      A list of inventory items returned by the request.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ListInventoryEntries.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Type": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "TypeName": "string",
+          "NextToken": "string",
+          "InstanceId": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Entries": [
+            {
+              "string": "string"
+            }
+          ],
+          "TypeName": "string",
+          "NextToken": "string",
+          "InstanceId": "string",
+          "CaptureTime": "string",
+          "SchemaVersion": "string"
+        }
+      ]
+  ListOpsItemEvents:
+    description: |-
+      Returns a list of all OpsItem events in the current AWS account and Region. You can limit the results to events associated with specific OpsItems by specifying a filter.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ListOpsItemEvents.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "Operator": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Summaries": [
+            {
+              "Detail": "string",
+              "Source": "string",
+              "EventId": "string",
+              "CreatedBy": {
+                "Arn": "string"
+              },
+              "OpsItemId": "string",
+              "DetailType": "string",
+              "CreatedTime": "number"
+            }
+          ]
+        }
+      ]
+  ListOpsMetadata:
+    description: |-
+      Systems Manager calls this API action when displaying all Application Manager OpsMetadata objects or blobs.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ListOpsMetadata.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "OpsMetadataList": [
+            {
+              "ResourceId": "string",
+              "CreationDate": "number",
+              "OpsMetadataArn": "string",
+              "LastModifiedDate": "number",
+              "LastModifiedUser": "string"
+            }
+          ]
+        }
+      ]
+  ListResourceComplianceSummaries:
+    description: |-
+      Returns a resource-level summary count. The summary includes information about compliant and non-compliant statuses and detailed compliance-item severity counts, according to the filter criteria you specify.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ListResourceComplianceSummaries.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Type": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ResourceComplianceSummaryItems": [
+            {
+              "Status": "string",
+              "ResourceId": "string",
+              "ResourceType": "string",
+              "ComplianceType": "string",
+              "OverallSeverity": "string",
+              "CompliantSummary": {
+                "CompliantCount": "number",
+                "SeveritySummary": {
+                  "LowCount": "number",
+                  "HighCount": "number",
+                  "MediumCount": "number",
+                  "CriticalCount": "number",
+                  "UnspecifiedCount": "number",
+                  "InformationalCount": "number"
+                }
+              },
+              "ExecutionSummary": {
+                "ExecutionId": "string",
+                "ExecutionTime": "number",
+                "ExecutionType": "string"
+              },
+              "NonCompliantSummary": {
+                "SeveritySummary": {
+                  "LowCount": "number",
+                  "HighCount": "number",
+                  "MediumCount": "number",
+                  "CriticalCount": "number",
+                  "UnspecifiedCount": "number",
+                  "InformationalCount": "number"
+                },
+                "NonCompliantCount": "number"
+              }
+            }
+          ]
+        }
+      ]
+  ListResourceDataSync:
+    description: |-
+      Lists your resource data sync configurations. Includes information about the last time a sync attempted to start, the last sync status, and the last time a sync successfully completed.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ListResourceDataSync.html
+    example:
+      inputs: [
+        {
+          "SyncType": "string",
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ResourceDataSyncItems": [
+            {
+              "SyncName": "string",
+              "SyncType": "string",
+              "LastStatus": "string",
+              "SyncSource": {
+                "State": "string",
+                "SourceType": "string",
+                "SourceRegions": [
+                  "string"
+                ],
+                "IncludeFutureRegions": "boolean",
+                "AwsOrganizationsSource": {
+                  "OrganizationalUnits": [
+                    {
+                      "OrganizationalUnitId": "string"
+                    }
+                  ],
+                  "OrganizationSourceType": "string"
+                },
+                "EnableAllOpsDataSources": "boolean"
+              },
+              "LastSyncTime": "number",
+              "S3Destination": {
+                "Prefix": "string",
+                "Region": "string",
+                "BucketName": "string",
+                "SyncFormat": "string",
+                "AWSKMSKeyARN": "string",
+                "DestinationDataSharing": {
+                  "DestinationDataSharingType": "string"
+                }
+              },
+              "SyncCreatedTime": "number",
+              "SyncLastModifiedTime": "number",
+              "LastSyncStatusMessage": "string",
+              "LastSuccessfulSyncTime": "number"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns a list of the tags assigned to the specified resource.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceId": "string",
+          "ResourceType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TagList": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  ModifyDocumentPermission:
+    description: |-
+      Shares a Systems Manager document publicly or privately. If you share a document privately, you must specify the AWS user account IDs for those people who can use the document. If you share a document publicly, you must specify All as the account ID.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ModifyDocumentPermission.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "PermissionType": "string",
+          "AccountIdsToAdd": [
+            "string"
+          ],
+          "AccountIdsToRemove": [
+            "string"
+          ],
+          "SharedDocumentVersion": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutComplianceItems:
+    description: |-
+      Registers a compliance type and other compliance details on a designated resource. This action lets you register custom compliance details with a resource. This call overwrites existing compliance information on the resource, so you must provide a full list of compliance items each time that you send the request.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_PutComplianceItems.html
+    example:
+      inputs: [
+        {
+          "Items": [
+            {
+              "Id": "string",
+              "Title": "string",
+              "Status": "string",
+              "Details": {
+                "string": "string"
+              },
+              "Severity": "string"
+            }
+          ],
+          "ResourceId": "string",
+          "UploadType": "string",
+          "ResourceType": "string",
+          "ComplianceType": "string",
+          "ItemContentHash": "string",
+          "ExecutionSummary": {
+            "ExecutionId": "string",
+            "ExecutionTime": "number",
+            "ExecutionType": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutInventory:
+    description: |-
+      Bulk update custom inventory items on one more instance. The request adds an inventory item, if it doesn't already exist, or updates an inventory item, if it does exist.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_PutInventory.html
+    example:
+      inputs: [
+        {
+          "Items": [
+            {
+              "Content": [
+                {
+                  "string": "string"
+                }
+              ],
+              "Context": {
+                "string": "string"
+              },
+              "TypeName": "string",
+              "CaptureTime": "string",
+              "ContentHash": "string",
+              "SchemaVersion": "string"
+            }
+          ],
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Message": "string"
+        }
+      ]
+  PutParameter:
+    description: |-
+      Add a parameter to the system.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_PutParameter.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Tier": "string",
+          "Type": "string",
+          "KeyId": "string",
+          "Value": "string",
+          "DataType": "string",
+          "Policies": "string",
+          "Overwrite": "boolean",
+          "Description": "string",
+          "AllowedPattern": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tier": "string",
+          "Version": "number"
+        }
+      ]
+  RegisterDefaultPatchBaseline:
+    description: |-
+      Defines the default patch baseline for the relevant operating system.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_RegisterDefaultPatchBaseline.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "BaselineId": "string"
+        }
+      ]
+  RegisterPatchBaselineForPatchGroup:
+    description: |-
+      Registers a patch baseline for a patch group.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_RegisterPatchBaselineForPatchGroup.html
+    example:
+      inputs: [
+        {
+          "BaselineId": "string",
+          "PatchGroup": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RegisterTargetWithMaintenanceWindow:
+    description: |-
+      Registers a target with a maintenance window.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_RegisterTargetWithMaintenanceWindow.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Targets": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "WindowId": "string",
+          "ClientToken": "string",
+          "Description": "string",
+          "ResourceType": "string",
+          "OwnerInformation": "string"
+        }
+      ]
+      outputs: [
+        {
+          "WindowTargetId": "string"
+        }
+      ]
+  RegisterTaskWithMaintenanceWindow:
+    description: |-
+      Adds a new task to a maintenance window.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_RegisterTaskWithMaintenanceWindow.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Targets": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "TaskArn": "string",
+          "Priority": "number",
+          "TaskType": "string",
+          "WindowId": "string",
+          "MaxErrors": "string",
+          "ClientToken": "string",
+          "Description": "string",
+          "LoggingInfo": {
+            "S3Region": "string",
+            "S3KeyPrefix": "string",
+            "S3BucketName": "string"
+          },
+          "MaxConcurrency": "string",
+          "ServiceRoleArn": "string",
+          "TaskParameters": {
+            "string": {
+              "Values": [
+                "string"
+              ]
+            }
+          },
+          "TaskInvocationParameters": {
+            "Lambda": {
+              "Payload": "blob",
+              "Qualifier": "string",
+              "ClientContext": "string"
+            },
+            "Automation": {
+              "Parameters": {
+                "string": [
+                  "string"
+                ]
+              },
+              "DocumentVersion": "string"
+            },
+            "RunCommand": {
+              "Comment": "string",
+              "Parameters": {
+                "string": [
+                  "string"
+                ]
+              },
+              "DocumentHash": "string",
+              "ServiceRoleArn": "string",
+              "TimeoutSeconds": "number",
+              "DocumentVersion": "string",
+              "DocumentHashType": "string",
+              "OutputS3KeyPrefix": "string",
+              "NotificationConfig": {
+                "NotificationArn": "string",
+                "NotificationType": "string",
+                "NotificationEvents": [
+                  "string"
+                ]
+              },
+              "OutputS3BucketName": "string",
+              "CloudWatchOutputConfig": {
+                "CloudWatchLogGroupName": "string",
+                "CloudWatchOutputEnabled": "boolean"
+              }
+            },
+            "StepFunctions": {
+              "Name": "string",
+              "Input": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "WindowTaskId": "string"
+        }
+      ]
+  RemoveTagsFromResource:
+    description: |-
+      Removes tag keys from the specified resource.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_RemoveTagsFromResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceId": "string",
+          "ResourceType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ResetServiceSetting:
+    description: |-
+      ServiceSetting is an account-level setting for an AWS service. This setting defines how a user interacts with or uses a service or a feature of a service. For example, if an AWS service charges money to the account based on feature or service usage, then the AWS service team might create a default setting of "false". This means the user can't use this feature unless they change the setting to "true" and intentionally opt in for a paid feature.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ResetServiceSetting.html
+    example:
+      inputs: [
+        {
+          "SettingId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ServiceSetting": {
+            "ARN": "string",
+            "Status": "string",
+            "SettingId": "string",
+            "SettingValue": "string",
+            "LastModifiedDate": "number",
+            "LastModifiedUser": "string"
+          }
+        }
+      ]
+  ResumeSession:
+    description: |-
+      Reconnects a session to an instance after it has been disconnected. Connections can be resumed for disconnected sessions, but not terminated sessions.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_ResumeSession.html
+    example:
+      inputs: [
+        {
+          "SessionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "SessionId": "string",
+          "StreamUrl": "string",
+          "TokenValue": "string"
+        }
+      ]
+  SendAutomationSignal:
+    description: |-
+      Sends a signal to an Automation execution to change the current behavior or status of the execution.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_SendAutomationSignal.html
+    example:
+      inputs: [
+        {
+          "Payload": {
+            "string": [
+              "string"
+            ]
+          },
+          "SignalType": "string",
+          "AutomationExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SendCommand:
+    description: |-
+      Runs commands on one or more managed instances.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_SendCommand.html
+    example:
+      inputs: [
+        {
+          "Comment": "string",
+          "Targets": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "MaxErrors": "string",
+          "Parameters": {
+            "string": [
+              "string"
+            ]
+          },
+          "InstanceIds": [
+            "string"
+          ],
+          "DocumentHash": "string",
+          "DocumentName": "string",
+          "MaxConcurrency": "string",
+          "OutputS3Region": "string",
+          "ServiceRoleArn": "string",
+          "TimeoutSeconds": "number",
+          "DocumentVersion": "string",
+          "DocumentHashType": "string",
+          "OutputS3KeyPrefix": "string",
+          "NotificationConfig": {
+            "NotificationArn": "string",
+            "NotificationType": "string",
+            "NotificationEvents": [
+              "string"
+            ]
+          },
+          "OutputS3BucketName": "string",
+          "CloudWatchOutputConfig": {
+            "CloudWatchLogGroupName": "string",
+            "CloudWatchOutputEnabled": "boolean"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Command": {
+            "Status": "string",
+            "Comment": "string",
+            "Targets": [
+              {
+                "Key": "string",
+                "Values": [
+                  "string"
+                ]
+              }
+            ],
+            "CommandId": "string",
+            "MaxErrors": "string",
+            "ErrorCount": "number",
+            "Parameters": {
+              "string": [
+                "string"
+              ]
+            },
+            "InstanceIds": [
+              "string"
+            ],
+            "ServiceRole": "string",
+            "TargetCount": "number",
+            "DocumentName": "string",
+            "ExpiresAfter": "number",
+            "StatusDetails": "string",
+            "CompletedCount": "number",
+            "MaxConcurrency": "string",
+            "OutputS3Region": "string",
+            "TimeoutSeconds": "number",
+            "DocumentVersion": "string",
+            "OutputS3KeyPrefix": "string",
+            "RequestedDateTime": "number",
+            "NotificationConfig": {
+              "NotificationArn": "string",
+              "NotificationType": "string",
+              "NotificationEvents": [
+                "string"
+              ]
+            },
+            "OutputS3BucketName": "string",
+            "DeliveryTimedOutCount": "number",
+            "CloudWatchOutputConfig": {
+              "CloudWatchLogGroupName": "string",
+              "CloudWatchOutputEnabled": "boolean"
+            }
+          }
+        }
+      ]
+  StartAssociationsOnce:
+    description: |-
+      Use this API action to run an association immediately and only one time. This action can be helpful when troubleshooting associations.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_StartAssociationsOnce.html
+    example:
+      inputs: [
+        {
+          "AssociationIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartAutomationExecution:
+    description: |-
+      Initiates execution of an Automation document.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_StartAutomationExecution.html
+    example:
+      inputs: [
+        {
+          "Mode": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Targets": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "MaxErrors": "string",
+          "Parameters": {
+            "string": [
+              "string"
+            ]
+          },
+          "TargetMaps": [
+            {
+              "string": [
+                "string"
+              ]
+            }
+          ],
+          "ClientToken": "string",
+          "DocumentName": "string",
+          "MaxConcurrency": "string",
+          "DocumentVersion": "string",
+          "TargetLocations": [
+            {
+              "Regions": [
+                "string"
+              ],
+              "Accounts": [
+                "string"
+              ],
+              "ExecutionRoleName": "string",
+              "TargetLocationMaxErrors": "string",
+              "TargetLocationMaxConcurrency": "string"
+            }
+          ],
+          "TargetParameterName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartChangeRequestExecution:
+    description: |-
+      Creates a change request for Change Manager. The runbooks (Automation documents) specified in the change request run only after all required approvals for the change request have been received.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_StartChangeRequestExecution.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Runbooks": [
+            {
+              "Targets": [
+                {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ]
+                }
+              ],
+              "MaxErrors": "string",
+              "Parameters": {
+                "string": [
+                  "string"
+                ]
+              },
+              "DocumentName": "string",
+              "MaxConcurrency": "string",
+              "DocumentVersion": "string",
+              "TargetLocations": [
+                {
+                  "Regions": [
+                    "string"
+                  ],
+                  "Accounts": [
+                    "string"
+                  ],
+                  "ExecutionRoleName": "string",
+                  "TargetLocationMaxErrors": "string",
+                  "TargetLocationMaxConcurrency": "string"
+                }
+              ],
+              "TargetParameterName": "string"
+            }
+          ],
+          "Parameters": {
+            "string": [
+              "string"
+            ]
+          },
+          "ClientToken": "string",
+          "DocumentName": "string",
+          "ChangeDetails": "string",
+          "ScheduledTime": "number",
+          "DocumentVersion": "string",
+          "ScheduledEndTime": "number",
+          "ChangeRequestName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartSession:
+    description: |-
+      Initiates a connection to a target (for example, an instance) for a Session Manager session. Returns a URL and token that can be used to open a WebSocket connection for sending input and receiving outputs.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_StartSession.html
+    example:
+      inputs: [
+        {
+          "Target": "string",
+          "Parameters": {
+            "string": [
+              "string"
+            ]
+          },
+          "DocumentName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "SessionId": "string",
+          "StreamUrl": "string",
+          "TokenValue": "string"
+        }
+      ]
+  StopAutomationExecution:
+    description: |-
+      Stop an Automation that is currently running.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_StopAutomationExecution.html
+    example:
+      inputs: [
+        {
+          "Type": "string",
+          "AutomationExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TerminateSession:
+    description: |-
+      Permanently ends a session and closes the data connection between the Session Manager client and SSM Agent on the instance. A terminated session cannot be resumed.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_TerminateSession.html
+    example:
+      inputs: [
+        {
+          "SessionId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UnlabelParameterVersion:
+    description: |-
+      Remove a label or labels from a parameter.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_UnlabelParameterVersion.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Labels": [
+            "string"
+          ],
+          "ParameterVersion": "number"
+        }
+      ]
+      outputs: [
+        {
+          "InvalidLabels": [
+            "string"
+          ],
+          "RemovedLabels": [
+            "string"
+          ]
+        }
+      ]
+  UpdateAssociation:
+    description: |-
+      Updates an association. You can update the association name and version, the document version, schedule, parameters, and Amazon S3 output.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_UpdateAssociation.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Targets": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "MaxErrors": "string",
+          "Parameters": {
+            "string": [
+              "string"
+            ]
+          },
+          "AssociationId": "string",
+          "MaxConcurrency": "string",
+          "OutputLocation": {
+            "S3Location": {
+              "OutputS3Region": "string",
+              "OutputS3KeyPrefix": "string",
+              "OutputS3BucketName": "string"
+            }
+          },
+          "SyncCompliance": "string",
+          "AssociationName": "string",
+          "DocumentVersion": "string",
+          "TargetLocations": [
+            {
+              "Regions": [
+                "string"
+              ],
+              "Accounts": [
+                "string"
+              ],
+              "ExecutionRoleName": "string",
+              "TargetLocationMaxErrors": "string",
+              "TargetLocationMaxConcurrency": "string"
+            }
+          ],
+          "AssociationVersion": "string",
+          "ComplianceSeverity": "string",
+          "ScheduleExpression": "string",
+          "ApplyOnlyAtCronInterval": "boolean",
+          "AutomationTargetParameterName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "AssociationDescription": {
+            "Date": "number",
+            "Name": "string",
+            "Status": {
+              "Date": "number",
+              "Name": "string",
+              "Message": "string",
+              "AdditionalInfo": "string"
+            },
+            "Targets": [
+              {
+                "Key": "string",
+                "Values": [
+                  "string"
+                ]
+              }
+            ],
+            "Overview": {
+              "Status": "string",
+              "DetailedStatus": "string",
+              "AssociationStatusAggregatedCount": {
+                "string": "number"
+              }
+            },
+            "MaxErrors": "string",
+            "InstanceId": "string",
+            "Parameters": {
+              "string": [
+                "string"
+              ]
+            },
+            "AssociationId": "string",
+            "MaxConcurrency": "string",
+            "OutputLocation": {
+              "S3Location": {
+                "OutputS3Region": "string",
+                "OutputS3KeyPrefix": "string",
+                "OutputS3BucketName": "string"
+              }
+            },
+            "SyncCompliance": "string",
+            "AssociationName": "string",
+            "DocumentVersion": "string",
+            "TargetLocations": [
+              {
+                "Regions": [
+                  "string"
+                ],
+                "Accounts": [
+                  "string"
+                ],
+                "ExecutionRoleName": "string",
+                "TargetLocationMaxErrors": "string",
+                "TargetLocationMaxConcurrency": "string"
+              }
+            ],
+            "LastExecutionDate": "number",
+            "AssociationVersion": "string",
+            "ComplianceSeverity": "string",
+            "ScheduleExpression": "string",
+            "ApplyOnlyAtCronInterval": "boolean",
+            "LastUpdateAssociationDate": "number",
+            "LastSuccessfulExecutionDate": "number",
+            "AutomationTargetParameterName": "string"
+          }
+        }
+      ]
+  UpdateAssociationStatus:
+    description: |-
+      Updates the status of the Systems Manager document associated with the specified instance.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_UpdateAssociationStatus.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "InstanceId": "string",
+          "AssociationStatus": {
+            "Date": "number",
+            "Name": "string",
+            "Message": "string",
+            "AdditionalInfo": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "AssociationDescription": {
+            "Date": "number",
+            "Name": "string",
+            "Status": {
+              "Date": "number",
+              "Name": "string",
+              "Message": "string",
+              "AdditionalInfo": "string"
+            },
+            "Targets": [
+              {
+                "Key": "string",
+                "Values": [
+                  "string"
+                ]
+              }
+            ],
+            "Overview": {
+              "Status": "string",
+              "DetailedStatus": "string",
+              "AssociationStatusAggregatedCount": {
+                "string": "number"
+              }
+            },
+            "MaxErrors": "string",
+            "InstanceId": "string",
+            "Parameters": {
+              "string": [
+                "string"
+              ]
+            },
+            "AssociationId": "string",
+            "MaxConcurrency": "string",
+            "OutputLocation": {
+              "S3Location": {
+                "OutputS3Region": "string",
+                "OutputS3KeyPrefix": "string",
+                "OutputS3BucketName": "string"
+              }
+            },
+            "SyncCompliance": "string",
+            "AssociationName": "string",
+            "DocumentVersion": "string",
+            "TargetLocations": [
+              {
+                "Regions": [
+                  "string"
+                ],
+                "Accounts": [
+                  "string"
+                ],
+                "ExecutionRoleName": "string",
+                "TargetLocationMaxErrors": "string",
+                "TargetLocationMaxConcurrency": "string"
+              }
+            ],
+            "LastExecutionDate": "number",
+            "AssociationVersion": "string",
+            "ComplianceSeverity": "string",
+            "ScheduleExpression": "string",
+            "ApplyOnlyAtCronInterval": "boolean",
+            "LastUpdateAssociationDate": "number",
+            "LastSuccessfulExecutionDate": "number",
+            "AutomationTargetParameterName": "string"
+          }
+        }
+      ]
+  UpdateDocumentDefaultVersion:
+    description: |-
+      Set the default version of a document.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_UpdateDocumentDefaultVersion.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "DocumentVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Description": {
+            "Name": "string",
+            "DefaultVersion": "string",
+            "DefaultVersionName": "string"
+          }
+        }
+      ]
+  UpdateDocument:
+    description: |-
+      Updates one or more values for an SSM document.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_UpdateDocument.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Content": "string",
+          "TargetType": "string",
+          "Attachments": [
+            {
+              "Key": "string",
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "VersionName": "string",
+          "DocumentFormat": "string",
+          "DocumentVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DocumentDescription": {
+            "Hash": "string",
+            "Name": "string",
+            "Sha1": "string",
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "Owner": "string",
+            "Author": "string",
+            "Status": "string",
+            "HashType": "string",
+            "Requires": [
+              {
+                "Name": "string",
+                "Version": "string"
+              }
+            ],
+            "Parameters": [
+              {
+                "Name": "string",
+                "Type": "string",
+                "Description": "string",
+                "DefaultValue": "string"
+              }
+            ],
+            "TargetType": "string",
+            "CreatedDate": "number",
+            "Description": "string",
+            "VersionName": "string",
+            "DocumentType": "string",
+            "ReviewStatus": "string",
+            "LatestVersion": "string",
+            "PlatformTypes": [
+              "string"
+            ],
+            "SchemaVersion": "string",
+            "DefaultVersion": "string",
+            "DocumentFormat": "string",
+            "ApprovedVersion": "string",
+            "DocumentVersion": "string",
+            "ReviewInformation": [
+              {
+                "Status": "string",
+                "Reviewer": "string",
+                "ReviewedTime": "number"
+              }
+            ],
+            "StatusInformation": "string",
+            "PendingReviewVersion": "string",
+            "AttachmentsInformation": [
+              {
+                "Name": "string"
+              }
+            ]
+          }
+        }
+      ]
+  UpdateDocumentMetadata:
+    description: |-
+      Updates information related to approval reviews for a specific version of a document.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_UpdateDocumentMetadata.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "DocumentReviews": {
+            "Action": "string",
+            "Comment": [
+              {
+                "Type": "string",
+                "Content": "string"
+              }
+            ]
+          },
+          "DocumentVersion": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateMaintenanceWindow:
+    description: |-
+      Updates an existing maintenance window. Only specified parameters are modified.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_UpdateMaintenanceWindow.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Cutoff": "number",
+          "Enabled": "boolean",
+          "EndDate": "string",
+          "Replace": "boolean",
+          "Duration": "number",
+          "Schedule": "string",
+          "WindowId": "string",
+          "StartDate": "string",
+          "Description": "string",
+          "ScheduleOffset": "number",
+          "ScheduleTimezone": "string",
+          "AllowUnassociatedTargets": "boolean"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Cutoff": "number",
+          "Enabled": "boolean",
+          "EndDate": "string",
+          "Duration": "number",
+          "Schedule": "string",
+          "WindowId": "string",
+          "StartDate": "string",
+          "Description": "string",
+          "ScheduleOffset": "number",
+          "ScheduleTimezone": "string",
+          "AllowUnassociatedTargets": "boolean"
+        }
+      ]
+  UpdateMaintenanceWindowTarget:
+    description: |-
+      Modifies the target of an existing maintenance window.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_UpdateMaintenanceWindowTarget.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Replace": "boolean",
+          "Targets": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "WindowId": "string",
+          "Description": "string",
+          "WindowTargetId": "string",
+          "OwnerInformation": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Targets": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "WindowId": "string",
+          "Description": "string",
+          "WindowTargetId": "string",
+          "OwnerInformation": "string"
+        }
+      ]
+  UpdateMaintenanceWindowTask:
+    description: |-
+      Modifies a task assigned to a maintenance window.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_UpdateMaintenanceWindowTask.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Replace": "boolean",
+          "Targets": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "TaskArn": "string",
+          "Priority": "number",
+          "WindowId": "string",
+          "MaxErrors": "string",
+          "Description": "string",
+          "LoggingInfo": {
+            "S3Region": "string",
+            "S3KeyPrefix": "string",
+            "S3BucketName": "string"
+          },
+          "WindowTaskId": "string",
+          "MaxConcurrency": "string",
+          "ServiceRoleArn": "string",
+          "TaskParameters": {
+            "string": {
+              "Values": [
+                "string"
+              ]
+            }
+          },
+          "TaskInvocationParameters": {
+            "Lambda": {
+              "Payload": "blob",
+              "Qualifier": "string",
+              "ClientContext": "string"
+            },
+            "Automation": {
+              "Parameters": {
+                "string": [
+                  "string"
+                ]
+              },
+              "DocumentVersion": "string"
+            },
+            "RunCommand": {
+              "Comment": "string",
+              "Parameters": {
+                "string": [
+                  "string"
+                ]
+              },
+              "DocumentHash": "string",
+              "ServiceRoleArn": "string",
+              "TimeoutSeconds": "number",
+              "DocumentVersion": "string",
+              "DocumentHashType": "string",
+              "OutputS3KeyPrefix": "string",
+              "NotificationConfig": {
+                "NotificationArn": "string",
+                "NotificationType": "string",
+                "NotificationEvents": [
+                  "string"
+                ]
+              },
+              "OutputS3BucketName": "string",
+              "CloudWatchOutputConfig": {
+                "CloudWatchLogGroupName": "string",
+                "CloudWatchOutputEnabled": "boolean"
+              }
+            },
+            "StepFunctions": {
+              "Name": "string",
+              "Input": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Targets": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "TaskArn": "string",
+          "Priority": "number",
+          "WindowId": "string",
+          "MaxErrors": "string",
+          "Description": "string",
+          "LoggingInfo": {
+            "S3Region": "string",
+            "S3KeyPrefix": "string",
+            "S3BucketName": "string"
+          },
+          "WindowTaskId": "string",
+          "MaxConcurrency": "string",
+          "ServiceRoleArn": "string",
+          "TaskParameters": {
+            "string": {
+              "Values": [
+                "string"
+              ]
+            }
+          },
+          "TaskInvocationParameters": {
+            "Lambda": {
+              "Payload": "blob",
+              "Qualifier": "string",
+              "ClientContext": "string"
+            },
+            "Automation": {
+              "Parameters": {
+                "string": [
+                  "string"
+                ]
+              },
+              "DocumentVersion": "string"
+            },
+            "RunCommand": {
+              "Comment": "string",
+              "Parameters": {
+                "string": [
+                  "string"
+                ]
+              },
+              "DocumentHash": "string",
+              "ServiceRoleArn": "string",
+              "TimeoutSeconds": "number",
+              "DocumentVersion": "string",
+              "DocumentHashType": "string",
+              "OutputS3KeyPrefix": "string",
+              "NotificationConfig": {
+                "NotificationArn": "string",
+                "NotificationType": "string",
+                "NotificationEvents": [
+                  "string"
+                ]
+              },
+              "OutputS3BucketName": "string",
+              "CloudWatchOutputConfig": {
+                "CloudWatchLogGroupName": "string",
+                "CloudWatchOutputEnabled": "boolean"
+              }
+            },
+            "StepFunctions": {
+              "Name": "string",
+              "Input": "string"
+            }
+          }
+        }
+      ]
+  UpdateManagedInstanceRole:
+    description: |-
+      Changes the Amazon Identity and Access Management (IAM) role that is assigned to the on-premises instance or virtual machines (VM). IAM roles are first assigned to these hybrid instances during the activation process. For more information, see CreateActivation.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_UpdateManagedInstanceRole.html
+    example:
+      inputs: [
+        {
+          "IamRole": "string",
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateOpsItem:
+    description: |-
+      Edit or change an OpsItem. You must have permission in AWS Identity and Access Management (IAM) to update an OpsItem. For more information, see Getting started with OpsCenter in the AWS Systems Manager User Guide.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_UpdateOpsItem.html
+    example:
+      inputs: [
+        {
+          "Title": "string",
+          "Status": "string",
+          "Category": "string",
+          "Priority": "number",
+          "Severity": "string",
+          "OpsItemId": "string",
+          "Description": "string",
+          "ActualEndTime": "number",
+          "Notifications": [
+            {
+              "Arn": "string"
+            }
+          ],
+          "PlannedEndTime": "number",
+          "ActualStartTime": "number",
+          "OperationalData": {
+            "string": {
+              "Type": "string",
+              "Value": "string"
+            }
+          },
+          "RelatedOpsItems": [
+            {
+              "OpsItemId": "string"
+            }
+          ],
+          "PlannedStartTime": "number",
+          "OperationalDataToDelete": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateOpsMetadata:
+    description: |-
+      Systems Manager calls this API action when you edit OpsMetadata in Application Manager.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_UpdateOpsMetadata.html
+    example:
+      inputs: [
+        {
+          "KeysToDelete": [
+            "string"
+          ],
+          "OpsMetadataArn": "string",
+          "MetadataToUpdate": {
+            "string": {
+              "Value": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "OpsMetadataArn": "string"
+        }
+      ]
+  UpdatePatchBaseline:
+    description: |-
+      Modifies an existing patch baseline. Fields not specified in the request are left unchanged.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_UpdatePatchBaseline.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Replace": "boolean",
+          "Sources": [
+            {
+              "Name": "string",
+              "Products": [
+                "string"
+              ],
+              "Configuration": "string"
+            }
+          ],
+          "BaselineId": "string",
+          "Description": "string",
+          "ApprovalRules": {
+            "PatchRules": [
+              {
+                "ComplianceLevel": "string",
+                "ApproveAfterDays": "number",
+                "ApproveUntilDate": "string",
+                "PatchFilterGroup": {
+                  "PatchFilters": [
+                    {
+                      "Key": "string",
+                      "Values": [
+                        "string"
+                      ]
+                    }
+                  ]
+                },
+                "EnableNonSecurity": "boolean"
+              }
+            ]
+          },
+          "GlobalFilters": {
+            "PatchFilters": [
+              {
+                "Key": "string",
+                "Values": [
+                  "string"
+                ]
+              }
+            ]
+          },
+          "ApprovedPatches": [
+            "string"
+          ],
+          "RejectedPatches": [
+            "string"
+          ],
+          "RejectedPatchesAction": "string",
+          "ApprovedPatchesComplianceLevel": "string",
+          "ApprovedPatchesEnableNonSecurity": "boolean"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Sources": [
+            {
+              "Name": "string",
+              "Products": [
+                "string"
+              ],
+              "Configuration": "string"
+            }
+          ],
+          "BaselineId": "string",
+          "CreatedDate": "number",
+          "Description": "string",
+          "ModifiedDate": "number",
+          "ApprovalRules": {
+            "PatchRules": [
+              {
+                "ComplianceLevel": "string",
+                "ApproveAfterDays": "number",
+                "ApproveUntilDate": "string",
+                "PatchFilterGroup": {
+                  "PatchFilters": [
+                    {
+                      "Key": "string",
+                      "Values": [
+                        "string"
+                      ]
+                    }
+                  ]
+                },
+                "EnableNonSecurity": "boolean"
+              }
+            ]
+          },
+          "GlobalFilters": {
+            "PatchFilters": [
+              {
+                "Key": "string",
+                "Values": [
+                  "string"
+                ]
+              }
+            ]
+          },
+          "ApprovedPatches": [
+            "string"
+          ],
+          "OperatingSystem": "string",
+          "RejectedPatches": [
+            "string"
+          ],
+          "RejectedPatchesAction": "string",
+          "ApprovedPatchesComplianceLevel": "string",
+          "ApprovedPatchesEnableNonSecurity": "boolean"
+        }
+      ]
+  UpdateResourceDataSync:
+    description: |-
+      Update a resource data sync. After you create a resource data sync for a Region, you can't change the account options for that sync. For example, if you create a sync in the us-east-2 (Ohio) Region and you choose the Include only the current account option, you can't edit that sync later and choose the Include all accounts from my AWS Organizations configuration option. Instead, you must delete the first resource data sync, and create a new one.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_UpdateResourceDataSync.html
+    example:
+      inputs: [
+        {
+          "SyncName": "string",
+          "SyncType": "string",
+          "SyncSource": {
+            "SourceType": "string",
+            "SourceRegions": [
+              "string"
+            ],
+            "IncludeFutureRegions": "boolean",
+            "AwsOrganizationsSource": {
+              "OrganizationalUnits": [
+                {
+                  "OrganizationalUnitId": "string"
+                }
+              ],
+              "OrganizationSourceType": "string"
+            },
+            "EnableAllOpsDataSources": "boolean"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateServiceSetting:
+    description: |-
+      ServiceSetting is an account-level setting for an AWS service. This setting defines how a user interacts with or uses a service or a feature of a service. For example, if an AWS service charges money to the account based on feature or service usage, then the AWS service team might create a default setting of "false". This means the user can't use this feature unless they change the setting to "true" and intentionally opt in for a paid feature.
+    versions:
+      from: 2014.11.6
+    link: https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_UpdateServiceSetting.html
+    example:
+      inputs: [
+        {
+          "SettingId": "string",
+          "SettingValue": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

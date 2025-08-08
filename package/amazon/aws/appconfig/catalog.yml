@@ -1,0 +1,911 @@
+Product:
+  name: Amazon AppConfig
+  versions: [2019.10.9]
+  package: amazon.aws.appconfig
+  description: |-
+    Amazon AppConfig
+  link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CreateApplication:
+    description: |-
+      An application in AWS AppConfig is a logical unit of code that provides capabilities for your customers. For example, an application can be a microservice that runs on Amazon EC2 instances, a mobile application installed by your users, a serverless application using Amazon API Gateway and AWS Lambda, or any system you run on behalf of others.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_CreateApplication.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Description": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Description": "string"
+        }
+      ]
+  CreateConfigurationProfile:
+    description: |-
+      Information that enables AWS AppConfig to access the configuration source. Valid configuration sources include the AppConfig hosted configuration store, Systems Manager (SSM) documents, SSM Parameter Store parameters, Amazon S3 objects, or any integration source action supported by AWS CodePipeline. A configuration profile includes the following information.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_CreateConfigurationProfile.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Validators": [
+            {
+              "Type": "string",
+              "Content": "string"
+            }
+          ],
+          "Description": "string",
+          "LocationUri": "string",
+          "ApplicationId": "string",
+          "RetrievalRoleArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Validators": [
+            {
+              "Type": "string",
+              "Content": "string"
+            }
+          ],
+          "Description": "string",
+          "LocationUri": "string",
+          "ApplicationId": "string",
+          "RetrievalRoleArn": "string"
+        }
+      ]
+  CreateDeploymentStrategy:
+    description: |-
+      A deployment strategy defines important criteria for rolling out your configuration to the designated targets. A deployment strategy includes:the overall duration required, a percentage of targets to receive the deployment during each interval, an algorithm that defines how percentage grows, and bake time.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_CreateDeploymentStrategy.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "GrowthType": "string",
+          "Description": "string",
+          "ReplicateTo": "string",
+          "GrowthFactor": 0.1,
+          "FinalBakeTimeInMinutes": 1,
+          "DeploymentDurationInMinutes": 1
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "GrowthType": "string",
+          "Description": "string",
+          "ReplicateTo": "string",
+          "GrowthFactor": 0.1,
+          "FinalBakeTimeInMinutes": 1,
+          "DeploymentDurationInMinutes": 1
+        }
+      ]
+  CreateEnvironment:
+    description: |-
+      For each application, you define one or more environments. An environment is a logical deployment group of AWS AppConfig targets, such as applications in a Beta or Production environment. You can also define environments for application subcomponents such as the Web, Mobile and Back-end components for your application. You can configure Amazon CloudWatch alarms for each environment. The system monitors alarms during a configuration deployment. If an alarm is triggered, the system rolls back the configuration.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_CreateEnvironment.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Monitors": [
+            {
+              "AlarmArn": "string",
+              "AlarmRoleArn": "string"
+            }
+          ],
+          "Description": "string",
+          "ApplicationId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "State": "string",
+          "Monitors": [
+            {
+              "AlarmArn": "string",
+              "AlarmRoleArn": "string"
+            }
+          ],
+          "Description": "string",
+          "ApplicationId": "string"
+        }
+      ]
+  CreateHostedConfigurationVersion:
+    description: |-
+      Create a new configuration in the AWS AppConfig hosted configuration store.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_CreateHostedConfigurationVersion.html
+    example:
+      inputs: [
+        {
+          "Content": "blob",
+          "ContentType": "string",
+          "Description": "string",
+          "ApplicationId": "string",
+          "LatestVersionNumber": 1,
+          "ConfigurationProfileId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Content": "blob",
+          "ContentType": "string",
+          "Description": "string",
+          "ApplicationId": "string",
+          "VersionNumber": 1,
+          "ConfigurationProfileId": "string"
+        }
+      ]
+  DeleteApplication:
+    description: |-
+      Delete an application. Deleting an application does not delete a configuration from a host.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_DeleteApplication.html
+    example:
+      inputs: [
+        {
+          "ApplicationId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteConfigurationProfile:
+    description: |-
+      Delete a configuration profile. Deleting a configuration profile does not delete a configuration from a host.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_DeleteConfigurationProfile.html
+    example:
+      inputs: [
+        {
+          "ApplicationId": "string",
+          "ConfigurationProfileId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDeploymentStrategy:
+    description: |-
+      Delete a deployment strategy. Deleting a deployment strategy does not delete a configuration from a host.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_DeleteDeploymentStrategy.html
+    example:
+      inputs: [
+        {
+          "DeploymentStrategyId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteEnvironment:
+    description: |-
+      Delete an environment. Deleting an environment does not delete a configuration from a host.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_DeleteEnvironment.html
+    example:
+      inputs: [
+        {
+          "ApplicationId": "string",
+          "EnvironmentId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteHostedConfigurationVersion:
+    description: |-
+      Delete a version of a configuration from the AWS AppConfig hosted configuration store.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_DeleteHostedConfigurationVersion.html
+    example:
+      inputs: [
+        {
+          "ApplicationId": "string",
+          "VersionNumber": 1,
+          "ConfigurationProfileId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetApplication:
+    description: |-
+      Retrieve information about an application.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_GetApplication.html
+    example:
+      inputs: [
+        {
+          "ApplicationId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Description": "string"
+        }
+      ]
+  GetConfiguration:
+    description: |-
+      Receive information about a configuration.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_GetConfiguration.html
+    example:
+      inputs: [
+        {
+          "ClientId": "string",
+          "Application": "string",
+          "Environment": "string",
+          "Configuration": "string",
+          "ClientConfigurationVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Content": "blob",
+          "ContentType": "string",
+          "ConfigurationVersion": "string"
+        }
+      ]
+  GetConfigurationProfile:
+    description: |-
+      Retrieve information about a configuration profile.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_GetConfigurationProfile.html
+    example:
+      inputs: [
+        {
+          "ApplicationId": "string",
+          "ConfigurationProfileId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Validators": [
+            {
+              "Type": "string",
+              "Content": "string"
+            }
+          ],
+          "Description": "string",
+          "LocationUri": "string",
+          "ApplicationId": "string",
+          "RetrievalRoleArn": "string"
+        }
+      ]
+  GetDeployment:
+    description: |-
+      Retrieve information about a configuration deployment.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_GetDeployment.html
+    example:
+      inputs: [
+        {
+          "ApplicationId": "string",
+          "EnvironmentId": "string",
+          "DeploymentNumber": 1
+        }
+      ]
+      outputs: [
+        {
+          "State": "string",
+          "EventLog": [
+            {
+              "EventType": "string",
+              "OccurredAt": 1481289211.615,
+              "Description": "string",
+              "TriggeredBy": "string"
+            }
+          ],
+          "StartedAt": 1481289211.615,
+          "GrowthType": "string",
+          "CompletedAt": 1481289211.615,
+          "Description": "string",
+          "GrowthFactor": 0.1,
+          "ApplicationId": "string",
+          "EnvironmentId": "string",
+          "DeploymentNumber": 1,
+          "ConfigurationName": "string",
+          "PercentageComplete": 0.1,
+          "ConfigurationVersion": "string",
+          "DeploymentStrategyId": "string",
+          "ConfigurationProfileId": "string",
+          "FinalBakeTimeInMinutes": 1,
+          "ConfigurationLocationUri": "string",
+          "DeploymentDurationInMinutes": 1
+        }
+      ]
+  GetDeploymentStrategy:
+    description: |-
+      Retrieve information about a deployment strategy. A deployment strategy defines important criteria for rolling out your configuration to the designated targets. A deployment strategy includes:the overall duration required, a percentage of targets to receive the deployment during each interval, an algorithm that defines how percentage grows, and bake time.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_GetDeploymentStrategy.html
+    example:
+      inputs: [
+        {
+          "DeploymentStrategyId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "GrowthType": "string",
+          "Description": "string",
+          "ReplicateTo": "string",
+          "GrowthFactor": 0.1,
+          "FinalBakeTimeInMinutes": 1,
+          "DeploymentDurationInMinutes": 1
+        }
+      ]
+  GetEnvironment:
+    description: |-
+      Retrieve information about an environment. An environment is a logical deployment group of AWS AppConfig applications, such as applications in a Production environment or in an EU_Region environment. Each configuration deployment targets an environment. You can enable one or more Amazon CloudWatch alarms for an environment. If an alarm is triggered during a deployment, AWS AppConfig roles back the configuration.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_GetEnvironment.html
+    example:
+      inputs: [
+        {
+          "ApplicationId": "string",
+          "EnvironmentId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "State": "string",
+          "Monitors": [
+            {
+              "AlarmArn": "string",
+              "AlarmRoleArn": "string"
+            }
+          ],
+          "Description": "string",
+          "ApplicationId": "string"
+        }
+      ]
+  GetHostedConfigurationVersion:
+    description: |-
+      Get information about a specific configuration version.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_GetHostedConfigurationVersion.html
+    example:
+      inputs: [
+        {
+          "ApplicationId": "string",
+          "VersionNumber": 1,
+          "ConfigurationProfileId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Content": "blob",
+          "ContentType": "string",
+          "Description": "string",
+          "ApplicationId": "string",
+          "VersionNumber": 1,
+          "ConfigurationProfileId": "string"
+        }
+      ]
+  ListApplications:
+    description: |-
+      List all applications in your AWS account.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_ListApplications.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Items": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Description": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListConfigurationProfiles:
+    description: |-
+      Lists the configuration profiles for an application.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_ListConfigurationProfiles.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ApplicationId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Items": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "LocationUri": "string",
+              "ApplicationId": "string",
+              "ValidatorTypes": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListDeployments:
+    description: |-
+      Lists the deployments for an environment.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_ListDeployments.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ApplicationId": "string",
+          "EnvironmentId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Items": [
+            {
+              "State": "string",
+              "StartedAt": 1481289211.615,
+              "GrowthType": "string",
+              "CompletedAt": 1481289211.615,
+              "GrowthFactor": 0.1,
+              "DeploymentNumber": 1,
+              "ConfigurationName": "string",
+              "PercentageComplete": 0.1,
+              "ConfigurationVersion": "string",
+              "FinalBakeTimeInMinutes": 1,
+              "DeploymentDurationInMinutes": 1
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListDeploymentStrategies:
+    description: |-
+      List deployment strategies.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_ListDeploymentStrategies.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Items": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "GrowthType": "string",
+              "Description": "string",
+              "ReplicateTo": "string",
+              "GrowthFactor": 0.1,
+              "FinalBakeTimeInMinutes": 1,
+              "DeploymentDurationInMinutes": 1
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListEnvironments:
+    description: |-
+      List the environments for an application.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_ListEnvironments.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ApplicationId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Items": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "State": "string",
+              "Monitors": [
+                {
+                  "AlarmArn": "string",
+                  "AlarmRoleArn": "string"
+                }
+              ],
+              "Description": "string",
+              "ApplicationId": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListHostedConfigurationVersions:
+    description: |-
+      View a list of configurations stored in the AWS AppConfig hosted configuration store by version.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_ListHostedConfigurationVersions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ApplicationId": "string",
+          "ConfigurationProfileId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Items": [
+            {
+              "ContentType": "string",
+              "Description": "string",
+              "ApplicationId": "string",
+              "VersionNumber": 1,
+              "ConfigurationProfileId": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Retrieves the list of key-value tags assigned to the resource.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  StartDeployment:
+    description: |-
+      Starts a deployment.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_StartDeployment.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "Description": "string",
+          "ApplicationId": "string",
+          "EnvironmentId": "string",
+          "ConfigurationVersion": "string",
+          "DeploymentStrategyId": "string",
+          "ConfigurationProfileId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "State": "string",
+          "EventLog": [
+            {
+              "EventType": "string",
+              "OccurredAt": 1481289211.615,
+              "Description": "string",
+              "TriggeredBy": "string"
+            }
+          ],
+          "StartedAt": 1481289211.615,
+          "GrowthType": "string",
+          "CompletedAt": 1481289211.615,
+          "Description": "string",
+          "GrowthFactor": 0.1,
+          "ApplicationId": "string",
+          "EnvironmentId": "string",
+          "DeploymentNumber": 1,
+          "ConfigurationName": "string",
+          "PercentageComplete": 0.1,
+          "ConfigurationVersion": "string",
+          "DeploymentStrategyId": "string",
+          "ConfigurationProfileId": "string",
+          "FinalBakeTimeInMinutes": 1,
+          "ConfigurationLocationUri": "string",
+          "DeploymentDurationInMinutes": 1
+        }
+      ]
+  StopDeployment:
+    description: |-
+      Stops a deployment. This API action works only on deployments that have a status of DEPLOYING. This action moves the deployment to a status of ROLLED_BACK.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_StopDeployment.html
+    example:
+      inputs: [
+        {
+          "ApplicationId": "string",
+          "EnvironmentId": "string",
+          "DeploymentNumber": 1
+        }
+      ]
+      outputs: [
+        {
+          "State": "string",
+          "EventLog": [
+            {
+              "EventType": "string",
+              "OccurredAt": 1481289211.615,
+              "Description": "string",
+              "TriggeredBy": "string"
+            }
+          ],
+          "StartedAt": 1481289211.615,
+          "GrowthType": "string",
+          "CompletedAt": 1481289211.615,
+          "Description": "string",
+          "GrowthFactor": 0.1,
+          "ApplicationId": "string",
+          "EnvironmentId": "string",
+          "DeploymentNumber": 1,
+          "ConfigurationName": "string",
+          "PercentageComplete": 0.1,
+          "ConfigurationVersion": "string",
+          "DeploymentStrategyId": "string",
+          "ConfigurationProfileId": "string",
+          "FinalBakeTimeInMinutes": 1,
+          "ConfigurationLocationUri": "string",
+          "DeploymentDurationInMinutes": 1
+        }
+      ]
+  TagResource:
+    description: |-
+      Metadata to assign to an AWS AppConfig resource. Tags help organize and categorize your AWS AppConfig resources. Each tag consists of a key and an optional value, both of which you define. You can specify a maximum of 50 tags for a resource.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Deletes a tag key and value from an AWS AppConfig resource.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateApplication:
+    description: |-
+      Updates an application.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_UpdateApplication.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Description": "string",
+          "ApplicationId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Description": "string"
+        }
+      ]
+  UpdateConfigurationProfile:
+    description: |-
+      Updates a configuration profile.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_UpdateConfigurationProfile.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Validators": [
+            {
+              "Type": "string",
+              "Content": "string"
+            }
+          ],
+          "Description": "string",
+          "ApplicationId": "string",
+          "RetrievalRoleArn": "string",
+          "ConfigurationProfileId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Validators": [
+            {
+              "Type": "string",
+              "Content": "string"
+            }
+          ],
+          "Description": "string",
+          "LocationUri": "string",
+          "ApplicationId": "string",
+          "RetrievalRoleArn": "string"
+        }
+      ]
+  UpdateDeploymentStrategy:
+    description: |-
+      Updates a deployment strategy.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_UpdateDeploymentStrategy.html
+    example:
+      inputs: [
+        {
+          "GrowthType": "string",
+          "Description": "string",
+          "GrowthFactor": 0.1,
+          "DeploymentStrategyId": "string",
+          "FinalBakeTimeInMinutes": 1,
+          "DeploymentDurationInMinutes": 1
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "GrowthType": "string",
+          "Description": "string",
+          "ReplicateTo": "string",
+          "GrowthFactor": 0.1,
+          "FinalBakeTimeInMinutes": 1,
+          "DeploymentDurationInMinutes": 1
+        }
+      ]
+  UpdateEnvironment:
+    description: |-
+      Updates an environment.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_UpdateEnvironment.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Monitors": [
+            {
+              "AlarmArn": "string",
+              "AlarmRoleArn": "string"
+            }
+          ],
+          "Description": "string",
+          "ApplicationId": "string",
+          "EnvironmentId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "State": "string",
+          "Monitors": [
+            {
+              "AlarmArn": "string",
+              "AlarmRoleArn": "string"
+            }
+          ],
+          "Description": "string",
+          "ApplicationId": "string"
+        }
+      ]
+  ValidateConfiguration:
+    description: |-
+      Uses the validators in a configuration profile to validate a configuration.
+    versions:
+      from: 2019.10.9
+    link: https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/API_ValidateConfiguration.html
+    example:
+      inputs: [
+        {
+          "ApplicationId": "string",
+          "ConfigurationVersion": "string",
+          "ConfigurationProfileId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

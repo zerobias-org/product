@@ -1,0 +1,458 @@
+Product:
+  name: Amazon Honeycode
+  versions: [2020.3.1]
+  package: amazon.aws.honeycode
+  description: |-
+    Amazon Honeycode
+  link: https://docs.aws.amazon.com/honeycode/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  BatchCreateTableRows:
+    description: |-
+      The BatchCreateTableRows API allows you to create one or more rows at the end of a table in a workbook. The API allows you to specify the values to set in some or all of the columns in the new rows.
+    versions:
+      from: 2020.3.1
+    link: https://docs.aws.amazon.com/honeycode/latest/APIReference/API_BatchCreateTableRows.html
+    example:
+      inputs: [
+        {
+          "tableId": "string",
+          "workbookId": "string",
+          "rowsToCreate": [
+            {
+              "batchItemId": "string",
+              "cellsToCreate": {
+                "string": {
+                  "fact": "string"
+                }
+              }
+            }
+          ],
+          "clientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "createdRows": {
+            "string": "string"
+          },
+          "workbookCursor": "number",
+          "failedBatchItems": [
+            {
+              "id": "string",
+              "errorMessage": "string"
+            }
+          ]
+        }
+      ]
+  BatchDeleteTableRows:
+    description: |-
+      The BatchDeleteTableRows API allows you to delete one or more rows from a table in a workbook. You need to specify the ids of the rows that you want to delete from the table.
+    versions:
+      from: 2020.3.1
+    link: https://docs.aws.amazon.com/honeycode/latest/APIReference/API_BatchDeleteTableRows.html
+    example:
+      inputs: [
+        {
+          "rowIds": [
+            "string"
+          ],
+          "tableId": "string",
+          "workbookId": "string",
+          "clientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "workbookCursor": "number",
+          "failedBatchItems": [
+            {
+              "id": "string",
+              "errorMessage": "string"
+            }
+          ]
+        }
+      ]
+  BatchUpdateTableRows:
+    description: |-
+      The BatchUpdateTableRows API allows you to update one or more rows in a table in a workbook.
+    versions:
+      from: 2020.3.1
+    link: https://docs.aws.amazon.com/honeycode/latest/APIReference/API_BatchUpdateTableRows.html
+    example:
+      inputs: [
+        {
+          "tableId": "string",
+          "workbookId": "string",
+          "rowsToUpdate": [
+            {
+              "rowId": "string",
+              "cellsToUpdate": {
+                "string": {
+                  "fact": "string"
+                }
+              }
+            }
+          ],
+          "clientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "workbookCursor": "number",
+          "failedBatchItems": [
+            {
+              "id": "string",
+              "errorMessage": "string"
+            }
+          ]
+        }
+      ]
+  BatchUpsertTableRows:
+    description: |-
+      The BatchUpsertTableRows API allows you to upsert one or more rows in a table. The upsert operation takes a filter expression as input and evaluates it to find matching rows on the destination table. If matching rows are found, it will update the cells in the matching rows to new values specified in the request. If no matching rows are found, a new row is added at the end of the table and the cells in that row are set to the new values specified in the request.
+    versions:
+      from: 2020.3.1
+    link: https://docs.aws.amazon.com/honeycode/latest/APIReference/API_BatchUpsertTableRows.html
+    example:
+      inputs: [
+        {
+          "tableId": "string",
+          "workbookId": "string",
+          "rowsToUpsert": [
+            {
+              "filter": {
+                "formula": "string",
+                "contextRowId": "string"
+              },
+              "batchItemId": "string",
+              "cellsToUpdate": {
+                "string": {
+                  "fact": "string"
+                }
+              }
+            }
+          ],
+          "clientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "rows": {
+            "string": {
+              "rowIds": [
+                "string"
+              ],
+              "upsertAction": "string"
+            }
+          },
+          "workbookCursor": "number",
+          "failedBatchItems": [
+            {
+              "id": "string",
+              "errorMessage": "string"
+            }
+          ]
+        }
+      ]
+  DescribeTableDataImportJob:
+    description: |-
+      The DescribeTableDataImportJob API allows you to retrieve the status and details of a table data import job.
+    versions:
+      from: 2020.3.1
+    link: https://docs.aws.amazon.com/honeycode/latest/APIReference/API_DescribeTableDataImportJob.html
+    example:
+      inputs: [
+        {
+          "jobId": "string",
+          "tableId": "string",
+          "workbookId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "message": "string",
+          "jobStatus": "string",
+          "jobMetadata": {
+            "submitter": {
+              "email": "string",
+              "userArn": "string"
+            },
+            "dataSource": {
+              "dataSourceConfig": {
+                "dataSourceUrl": "string"
+              }
+            },
+            "submitTime": "number",
+            "importOptions": {
+              "destinationOptions": {
+                "columnMap": {
+                  "string": {
+                    "columnIndex": "number"
+                  }
+                }
+              },
+              "delimitedTextOptions": {
+                "delimiter": "string",
+                "hasHeaderRow": "boolean",
+                "ignoreEmptyRows": "boolean",
+                "dataCharacterEncoding": "string"
+              }
+            }
+          }
+        }
+      ]
+  GetScreenData:
+    description: |-
+      The GetScreenData API allows retrieval of data from a screen in a Honeycode app. The API allows setting local variables in the screen to filter, sort or otherwise affect what will be displayed on the screen.
+    versions:
+      from: 2020.3.1
+    link: https://docs.aws.amazon.com/honeycode/latest/APIReference/API_GetScreenData.html
+    example:
+      inputs: [
+        {
+          "appId": "string",
+          "screenId": "string",
+          "nextToken": "string",
+          "variables": {
+            "string": {
+              "rawValue": "string"
+            }
+          },
+          "maxResults": "number",
+          "workbookId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "results": {
+            "string": {
+              "rows": [
+                {
+                  "rowId": "string",
+                  "dataItems": [
+                    {
+                      "rawValue": "string",
+                      "formattedValue": "string",
+                      "overrideFormat": "string"
+                    }
+                  ]
+                }
+              ],
+              "headers": [
+                {
+                  "name": "string",
+                  "format": "string"
+                }
+              ]
+            }
+          },
+          "nextToken": "string",
+          "workbookCursor": "number"
+        }
+      ]
+  InvokeScreenAutomation:
+    description: |-
+      The InvokeScreenAutomation API allows invoking an action defined in a screen in a Honeycode app. The API allows setting local variables, which can then be used in the automation being invoked. This allows automating the Honeycode app interactions to write, update or delete data in the workbook.
+    versions:
+      from: 2020.3.1
+    link: https://docs.aws.amazon.com/honeycode/latest/APIReference/API_InvokeScreenAutomation.html
+    example:
+      inputs: [
+        {
+          "appId": "string",
+          "rowId": "string",
+          "screenId": "string",
+          "variables": {
+            "string": {
+              "rawValue": "string"
+            }
+          },
+          "workbookId": "string",
+          "automationId": "string",
+          "clientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "workbookCursor": "number"
+        }
+      ]
+  ListTableColumns:
+    description: |-
+      The ListTableColumns API allows you to retrieve a list of all the columns in a table in a workbook.
+    versions:
+      from: 2020.3.1
+    link: https://docs.aws.amazon.com/honeycode/latest/APIReference/API_ListTableColumns.html
+    example:
+      inputs: [
+        {
+          "tableId": "string",
+          "nextToken": "string",
+          "workbookId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "tableColumns": [
+            {
+              "format": "string",
+              "tableColumnId": "string",
+              "tableColumnName": "string"
+            }
+          ],
+          "workbookCursor": "number"
+        }
+      ]
+  ListTableRows:
+    description: |-
+      The ListTableRows API allows you to retrieve a list of all the rows in a table in a workbook.
+    versions:
+      from: 2020.3.1
+    link: https://docs.aws.amazon.com/honeycode/latest/APIReference/API_ListTableRows.html
+    example:
+      inputs: [
+        {
+          "rowIds": [
+            "string"
+          ],
+          "tableId": "string",
+          "nextToken": "string",
+          "maxResults": "number",
+          "workbookId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "rows": [
+            {
+              "cells": [
+                {
+                  "format": "string",
+                  "formula": "string",
+                  "rawValue": "string",
+                  "formattedValue": "string"
+                }
+              ],
+              "rowId": "string"
+            }
+          ],
+          "columnIds": [
+            "string"
+          ],
+          "nextToken": "string",
+          "rowIdsNotFound": [
+            "string"
+          ],
+          "workbookCursor": "number"
+        }
+      ]
+  ListTables:
+    description: |-
+      The ListTables API allows you to retrieve a list of all the tables in a workbook.
+    versions:
+      from: 2020.3.1
+    link: https://docs.aws.amazon.com/honeycode/latest/APIReference/API_ListTables.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": "string",
+          "workbookId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tables": [
+            {
+              "tableId": "string",
+              "tableName": "string"
+            }
+          ],
+          "nextToken": "string",
+          "workbookCursor": "number"
+        }
+      ]
+  QueryTableRows:
+    description: |-
+      The QueryTableRows API allows you to use a filter formula to query for specific rows in a table.
+    versions:
+      from: 2020.3.1
+    link: https://docs.aws.amazon.com/honeycode/latest/APIReference/API_QueryTableRows.html
+    example:
+      inputs: [
+        {
+          "tableId": "string",
+          "nextToken": "string",
+          "maxResults": "number",
+          "workbookId": "string",
+          "filterFormula": {
+            "formula": "string",
+            "contextRowId": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "rows": [
+            {
+              "cells": [
+                {
+                  "format": "string",
+                  "formula": "string",
+                  "rawValue": "string",
+                  "formattedValue": "string"
+                }
+              ],
+              "rowId": "string"
+            }
+          ],
+          "columnIds": [
+            "string"
+          ],
+          "nextToken": "string",
+          "workbookCursor": "number"
+        }
+      ]
+  StartTableDataImportJob:
+    description: |-
+      The StartTableDataImportJob API allows you to start an import job on a table. This API will only return the id of the job that was started. To find out the status of the import request, you need to call the DescribeTableDataImportJob API.
+    versions:
+      from: 2020.3.1
+    link: https://docs.aws.amazon.com/honeycode/latest/APIReference/API_StartTableDataImportJob.html
+    example:
+      inputs: [
+        {
+          "tableId": "string",
+          "dataFormat": "string",
+          "dataSource": {
+            "dataSourceConfig": {
+              "dataSourceUrl": "string"
+            }
+          },
+          "workbookId": "string",
+          "importOptions": {
+            "destinationOptions": {
+              "columnMap": {
+                "string": {
+                  "columnIndex": "number"
+                }
+              }
+            },
+            "delimitedTextOptions": {
+              "delimiter": "string",
+              "hasHeaderRow": "boolean",
+              "ignoreEmptyRows": "boolean",
+              "dataCharacterEncoding": "string"
+            }
+          },
+          "clientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "jobId": "string",
+          "jobStatus": "string"
+        }
+      ]

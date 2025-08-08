@@ -1,0 +1,2238 @@
+Product:
+  name: AWS OpenSearch Service
+  versions: [2021.1.1]
+  package: amazon.aws.opensearch
+  description: |-
+    AWS OpenSearch Service
+  link: https://aws.amazon.com/opensearch-service/
+  contentType: json
+Operations:
+  AcceptInboundConnection:
+    description: |-
+      Allows the destination domain owner to accept an inbound cross-cluster search connection request.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-accept-inbound-cross-cluster-search-connection
+    example:
+      inputs: [
+        {
+          "CrossClusterSearchConnectionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CrossClusterSearchConnection": {
+            "ConnectionStatus": {
+              "Message": "string",
+              "StatusCode": "string"
+            },
+            "SourceDomainInfo": {
+              "Region": "string",
+              "OwnerId": "string",
+              "DomainName": "string"
+            },
+            "DestinationDomainInfo": {
+              "Region": "string",
+              "OwnerId": "string",
+              "DomainName": "string"
+            },
+            "CrossClusterSearchConnectionId": "string"
+          }
+        }
+      ]
+  AddTags:
+    description: |-
+      Attaches resource tags to an OpenSearch Service domain. For more information, see Tagging Amazon OpenSearch Service domains in the Amazon OpenSearch Service Developer Guide.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-addtags
+    example:
+      inputs: [
+        {
+          "ARN": "string",
+          "TagList": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  AssociatePackage:
+    description: |-
+      Associates a package with an OpenSearch Service domain.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-associatepackage
+    example:
+      inputs: [
+        {
+          "PackageID": "string",
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DomainPackageDetails": {
+            "PackageID": "string",
+            "DomainName": "string",
+            "LastUpdated": 1481289211.615,
+            "PackageName": "string",
+            "PackageType": "string",
+            "ErrorDetails": {
+              "ErrorType": "string",
+              "ErrorMessage": "string"
+            },
+            "ReferencePath": "string",
+            "PackageVersion": "string",
+            "DomainPackageStatus": "string"
+          }
+        }
+      ]
+  CreateDomain:
+    description: |-
+      Creates an OpenSearch Service domain. For more information, see Creating OpenSearch Service domains in the Amazon OpenSearch Service Developer Guide.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-createdomain
+    example:
+      inputs: [
+        {
+          "TagList": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Version": "string",
+          "DomainName": "string",
+          "EBSOptions": {
+            "Iops": 1,
+            "EBSEnabled": false,
+            "VolumeSize": 1,
+            "VolumeType": "string"
+          },
+          "VPCOptions": {
+            "SubnetIds": [
+              "string"
+            ],
+            "SecurityGroupIds": [
+              "string"
+            ]
+          },
+          "ClusterConfig": {
+            "WarmType": "string",
+            "WarmCount": 1,
+            "WarmEnabled": false,
+            "InstanceType": "string",
+            "InstanceCount": 1,
+            "DedicatedMasterType": "string",
+            "ZoneAwarenessConfig": {
+              "AvailabilityZoneCount": 1
+            },
+            "DedicatedMasterCount": 1,
+            "ZoneAwarenessEnabled": false,
+            "DedicatedMasterEnabled": false
+          },
+          "AccessPolicies": "string",
+          "CognitoOptions": {
+            "Enabled": false,
+            "RoleArn": "string",
+            "UserPoolId": "string",
+            "IdentityPoolId": "string"
+          },
+          "AdvancedOptions": {
+            "string": "string"
+          },
+          "AutoTuneOptions": {
+            "DesiredState": "string",
+            "MaintenanceSchedules": [
+              {
+                "StartAt": 1481289211.615,
+                "Duration": {
+                  "Unit": "string",
+                  "Value": 1
+                },
+                "CronExpressionForRecurrence": "string"
+              }
+            ]
+          },
+          "SnapshotOptions": {
+            "AutomatedSnapshotStartHour": 1
+          },
+          "LogPublishingOptions": {
+            "string": {
+              "Enabled": false,
+              "CloudWatchLogsLogGroupArn": "string"
+            }
+          },
+          "DomainEndpointOptions": {
+            "EnforceHTTPS": false,
+            "CustomEndpoint": "string",
+            "TLSSecurityPolicy": "string",
+            "CustomEndpointEnabled": false,
+            "CustomEndpointCertificateArn": "string"
+          },
+          "AdvancedSecurityOptions": {
+            "Enabled": false,
+            "SAMLOptions": {
+              "Idp": {
+                "EntityId": "string",
+                "MetadataContent": "string"
+              },
+              "Enabled": false,
+              "RolesKey": "string",
+              "SubjectKey": "string",
+              "MasterUserName": "string",
+              "MasterBackendRole": "string",
+              "SessionTimeoutMinutes": 1
+            },
+            "MasterUserOptions": {
+              "MasterUserARN": "string",
+              "MasterUserName": "string",
+              "MasterUserPassword": "string"
+            },
+            "InternalUserDatabaseEnabled": false
+          },
+          "EncryptionAtRestOptions": {
+            "Enabled": false,
+            "KmsKeyId": "string"
+          },
+          "NodeToNodeEncryptionOptions": {
+            "Enabled": false
+          }
+        }
+      ]
+      outputs: [
+        {
+          "DomainStatus": {
+            "ARN": "string",
+            "Created": false,
+            "Deleted": false,
+            "Version": "string",
+            "DomainId": "string",
+            "Endpoint": "string",
+            "Endpoints": {
+              "string": "string"
+            },
+            "DomainName": "string",
+            "EBSOptions": {
+              "Iops": 1,
+              "EBSEnabled": false,
+              "VolumeSize": 1,
+              "VolumeType": "string"
+            },
+            "Processing": false,
+            "VPCOptions": {
+              "VPCId": "string",
+              "SubnetIds": [
+                "string"
+              ],
+              "SecurityGroupIds": [
+                "string"
+              ],
+              "AvailabilityZones": [
+                "string"
+              ]
+            },
+            "ClusterConfig": {
+              "WarmType": "string",
+              "WarmCount": 1,
+              "WarmEnabled": false,
+              "InstanceType": "string",
+              "InstanceCount": 1,
+              "DedicatedMasterType": "string",
+              "ZoneAwarenessConfig": {
+                "AvailabilityZoneCount": 1
+              },
+              "DedicatedMasterCount": 1,
+              "ZoneAwarenessEnabled": false,
+              "DedicatedMasterEnabled": false
+            },
+            "AccessPolicies": "string",
+            "CognitoOptions": {
+              "Enabled": false,
+              "RoleArn": "string",
+              "UserPoolId": "string",
+              "IdentityPoolId": "string"
+            },
+            "AdvancedOptions": {
+              "string": "string"
+            },
+            "AutoTuneOptions": {
+              "State": "string",
+              "ErrorMessage": "string"
+            },
+            "SnapshotOptions": {
+              "AutomatedSnapshotStartHour": 1
+            },
+            "UpgradeProcessing": false,
+            "LogPublishingOptions": {
+              "string": {
+                "Enabled": false,
+                "CloudWatchLogsLogGroupArn": "string"
+              }
+            },
+            "DomainEndpointOptions": {
+              "EnforceHTTPS": false,
+              "CustomEndpoint": "string",
+              "TLSSecurityPolicy": "string",
+              "CustomEndpointEnabled": false,
+              "CustomEndpointCertificateArn": "string"
+            },
+            "ServiceSoftwareOptions": {
+              "NewVersion": "string",
+              "Cancellable": false,
+              "Description": "string",
+              "UpdateStatus": "string",
+              "CurrentVersion": "string",
+              "UpdateAvailable": false,
+              "OptionalDeployment": false,
+              "AutomatedUpdateDate": 1481289211.615
+            },
+            "AdvancedSecurityOptions": {
+              "Enabled": false,
+              "SAMLOptions": {
+                "Idp": {
+                  "EntityId": "string",
+                  "MetadataContent": "string"
+                },
+                "Enabled": false,
+                "RolesKey": "string",
+                "SubjectKey": "string",
+                "SessionTimeoutMinutes": 1
+              },
+              "InternalUserDatabaseEnabled": false
+            },
+            "EncryptionAtRestOptions": {
+              "Enabled": false,
+              "KmsKeyId": "string"
+            },
+            "NodeToNodeEncryptionOptions": {
+              "Enabled": false
+            }
+          }
+        }
+      ]
+  CreateOutboundConnection:
+    description: |-
+      Creates a new cross-cluster search connection from a source domain to a destination domain.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-create-outbound-cross-cluster-search-connection
+    example:
+      inputs: [
+        {
+          "ConnectionAlias": "string",
+          "SourceDomainInfo": {
+            "Region": "string",
+            "OwnerId": "string",
+            "DomainName": "string"
+          },
+          "DestinationDomainInfo": {
+            "Region": "string",
+            "OwnerId": "string",
+            "DomainName": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ConnectionAlias": "string",
+          "ConnectionStatus": {
+            "Message": "string",
+            "StatusCode": "string"
+          },
+          "SourceDomainInfo": {
+            "Region": "string",
+            "OwnerId": "string",
+            "DomainName": "string"
+          },
+          "DestinationDomainInfo": {
+            "Region": "string",
+            "OwnerId": "string",
+            "DomainName": "string"
+          },
+          "CrossClusterSearchConnectionId": "string"
+        }
+      ]
+  CreatePackage:
+    description: |-
+      Add a package for use with OpenSearch Service domains.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-createpackage
+    example:
+      inputs: [
+        {
+          "PackageName": "string",
+          "PackageType": "string",
+          "PackageSource": {
+            "S3Key": "string",
+            "S3BucketName": "string"
+          },
+          "PackageDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PackageDetails": {
+            "CreatedAt": 1481289211.615,
+            "PackageID": "string",
+            "PackageName": "string",
+            "PackageType": "string",
+            "ErrorDetails": {
+              "ErrorType": "string",
+              "ErrorMessage": "string"
+            },
+            "LastUpdatedAt": 1481289211.615,
+            "PackageStatus": "string",
+            "PackageDescription": "string",
+            "AvailablePackageVersion": "string"
+          }
+        }
+      ]
+  DeleteDomain:
+    description: |-
+      Deletes an OpenSearch Service domain and all of its data. You can't recover a domain after it's deleted.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-deletedomain
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DomainStatus": {
+            "ARN": "string",
+            "Created": false,
+            "Deleted": false,
+            "Version": "string",
+            "DomainId": "string",
+            "Endpoint": "string",
+            "Endpoints": {
+              "string": "string"
+            },
+            "DomainName": "string",
+            "EBSOptions": {
+              "Iops": 1,
+              "EBSEnabled": false,
+              "VolumeSize": 1,
+              "VolumeType": "string"
+            },
+            "Processing": false,
+            "VPCOptions": {
+              "VPCId": "string",
+              "SubnetIds": [
+                "string"
+              ],
+              "SecurityGroupIds": [
+                "string"
+              ],
+              "AvailabilityZones": [
+                "string"
+              ]
+            },
+            "ClusterConfig": {
+              "WarmType": "string",
+              "WarmCount": 1,
+              "WarmEnabled": false,
+              "InstanceType": "string",
+              "InstanceCount": 1,
+              "DedicatedMasterType": "string",
+              "ZoneAwarenessConfig": {
+                "AvailabilityZoneCount": 1
+              },
+              "DedicatedMasterCount": 1,
+              "ZoneAwarenessEnabled": false,
+              "DedicatedMasterEnabled": false
+            },
+            "AccessPolicies": "string",
+            "CognitoOptions": {
+              "Enabled": false,
+              "RoleArn": "string",
+              "UserPoolId": "string",
+              "IdentityPoolId": "string"
+            },
+            "AdvancedOptions": {
+              "string": "string"
+            },
+            "AutoTuneOptions": {
+              "State": "string",
+              "ErrorMessage": "string"
+            },
+            "SnapshotOptions": {
+              "AutomatedSnapshotStartHour": 1
+            },
+            "UpgradeProcessing": false,
+            "LogPublishingOptions": {
+              "string": {
+                "Enabled": false,
+                "CloudWatchLogsLogGroupArn": "string"
+              }
+            },
+            "DomainEndpointOptions": {
+              "EnforceHTTPS": false,
+              "CustomEndpoint": "string",
+              "TLSSecurityPolicy": "string",
+              "CustomEndpointEnabled": false,
+              "CustomEndpointCertificateArn": "string"
+            },
+            "ServiceSoftwareOptions": {
+              "NewVersion": "string",
+              "Cancellable": false,
+              "Description": "string",
+              "UpdateStatus": "string",
+              "CurrentVersion": "string",
+              "UpdateAvailable": false,
+              "OptionalDeployment": false,
+              "AutomatedUpdateDate": 1481289211.615
+            },
+            "AdvancedSecurityOptions": {
+              "Enabled": false,
+              "SAMLOptions": {
+                "Idp": {
+                  "EntityId": "string",
+                  "MetadataContent": "string"
+                },
+                "Enabled": false,
+                "RolesKey": "string",
+                "SubjectKey": "string",
+                "SessionTimeoutMinutes": 1
+              },
+              "InternalUserDatabaseEnabled": false
+            },
+            "EncryptionAtRestOptions": {
+              "Enabled": false,
+              "KmsKeyId": "string"
+            },
+            "NodeToNodeEncryptionOptions": {
+              "Enabled": false
+            }
+          }
+        }
+      ]
+  DeleteInboundConnection:
+    description: |-
+      Allows the destination domain owner to delete an existing inbound cross-cluster search connection.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-delete-inbound-cross-cluster-search-connection
+    example:
+      inputs: [
+        {
+          "CrossClusterSearchConnectionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CrossClusterSearchConnection": {
+            "ConnectionStatus": {
+              "Message": "string",
+              "StatusCode": "string"
+            },
+            "SourceDomainInfo": {
+              "Region": "string",
+              "OwnerId": "string",
+              "DomainName": "string"
+            },
+            "DestinationDomainInfo": {
+              "Region": "string",
+              "OwnerId": "string",
+              "DomainName": "string"
+            },
+            "CrossClusterSearchConnectionId": "string"
+          }
+        }
+      ]
+  DeleteOutboundConnection:
+    description: |-
+      Allows the source domain owner to delete an existing outbound cross-cluster search connection.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-delete-outbound-cross-cluster-search-connection
+    example:
+      inputs: [
+        {
+          "CrossClusterSearchConnectionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CrossClusterSearchConnection": {
+            "ConnectionAlias": "string",
+            "ConnectionStatus": {
+              "Message": "string",
+              "StatusCode": "string"
+            },
+            "SourceDomainInfo": {
+              "Region": "string",
+              "OwnerId": "string",
+              "DomainName": "string"
+            },
+            "DestinationDomainInfo": {
+              "Region": "string",
+              "OwnerId": "string",
+              "DomainName": "string"
+            },
+            "CrossClusterSearchConnectionId": "string"
+          }
+        }
+      ]
+  DeletePackage:
+    description: |-
+      Deletes a package from OpenSearch Service. The package can't be associated with any OpenSearch Service domain.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-deletepackage
+    example:
+      inputs: [
+        {
+          "PackageID": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PackageDetails": {
+            "CreatedAt": 1481289211.615,
+            "PackageID": "string",
+            "PackageName": "string",
+            "PackageType": "string",
+            "ErrorDetails": {
+              "ErrorType": "string",
+              "ErrorMessage": "string"
+            },
+            "LastUpdatedAt": 1481289211.615,
+            "PackageStatus": "string",
+            "PackageDescription": "string",
+            "AvailablePackageVersion": "string"
+          }
+        }
+      ]
+  DescribeDomainAutoTunes:
+    description: |-
+      Returns the list of optimizations that Auto-Tune has made to the domain.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-describeautotune
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "DomainName": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "AutoTunes": [
+            {
+              "AutoTuneType": "string",
+              "AutoTuneDetails": {
+                "ScheduledAutoTuneDetails": {
+                  "Date": 1481289211.615,
+                  "Action": "string",
+                  "Severity": "string",
+                  "ActionType": "string"
+                }
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeDomain:
+    description: |-
+      Describes the domain configuration for the specified OpenSearch Service domain, including the domain ID, domain service endpoint, and domain ARN.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-describedomain
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DomainStatus": {
+            "ARN": "string",
+            "Created": false,
+            "Deleted": false,
+            "Version": "string",
+            "DomainId": "string",
+            "Endpoint": "string",
+            "Endpoints": {
+              "string": "string"
+            },
+            "DomainName": "string",
+            "EBSOptions": {
+              "Iops": 1,
+              "EBSEnabled": false,
+              "VolumeSize": 1,
+              "VolumeType": "string"
+            },
+            "Processing": false,
+            "VPCOptions": {
+              "VPCId": "string",
+              "SubnetIds": [
+                "string"
+              ],
+              "SecurityGroupIds": [
+                "string"
+              ],
+              "AvailabilityZones": [
+                "string"
+              ]
+            },
+            "ClusterConfig": {
+              "WarmType": "string",
+              "WarmCount": 1,
+              "WarmEnabled": false,
+              "InstanceType": "string",
+              "InstanceCount": 1,
+              "DedicatedMasterType": "string",
+              "ZoneAwarenessConfig": {
+                "AvailabilityZoneCount": 1
+              },
+              "DedicatedMasterCount": 1,
+              "ZoneAwarenessEnabled": false,
+              "DedicatedMasterEnabled": false
+            },
+            "AccessPolicies": "string",
+            "CognitoOptions": {
+              "Enabled": false,
+              "RoleArn": "string",
+              "UserPoolId": "string",
+              "IdentityPoolId": "string"
+            },
+            "AdvancedOptions": {
+              "string": "string"
+            },
+            "AutoTuneOptions": {
+              "State": "string",
+              "ErrorMessage": "string"
+            },
+            "SnapshotOptions": {
+              "AutomatedSnapshotStartHour": 1
+            },
+            "UpgradeProcessing": false,
+            "LogPublishingOptions": {
+              "string": {
+                "Enabled": false,
+                "CloudWatchLogsLogGroupArn": "string"
+              }
+            },
+            "DomainEndpointOptions": {
+              "EnforceHTTPS": false,
+              "CustomEndpoint": "string",
+              "TLSSecurityPolicy": "string",
+              "CustomEndpointEnabled": false,
+              "CustomEndpointCertificateArn": "string"
+            },
+            "ServiceSoftwareOptions": {
+              "NewVersion": "string",
+              "Cancellable": false,
+              "Description": "string",
+              "UpdateStatus": "string",
+              "CurrentVersion": "string",
+              "UpdateAvailable": false,
+              "OptionalDeployment": false,
+              "AutomatedUpdateDate": 1481289211.615
+            },
+            "AdvancedSecurityOptions": {
+              "Enabled": false,
+              "SAMLOptions": {
+                "Idp": {
+                  "EntityId": "string",
+                  "MetadataContent": "string"
+                },
+                "Enabled": false,
+                "RolesKey": "string",
+                "SubjectKey": "string",
+                "SessionTimeoutMinutes": 1
+              },
+              "InternalUserDatabaseEnabled": false
+            },
+            "EncryptionAtRestOptions": {
+              "Enabled": false,
+              "KmsKeyId": "string"
+            },
+            "NodeToNodeEncryptionOptions": {
+              "Enabled": false
+            }
+          }
+        }
+      ]
+  DescribeDomainChangeProgress:
+    description: |-
+      Displays status information for a domain configuration change.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-describedomainchangeprogress
+    example:
+      inputs: [
+        {
+          "ChangeId": "string",
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ChangeProgressStatus": {
+            "Status": "string",
+            "ChangeId": "string",
+            "StartTime": 1481289211.615,
+            "PendingProperties": [
+              "string"
+            ],
+            "CompletedProperties": [
+              "string"
+            ],
+            "TotalNumberOfStages": 10,
+            "ChangeProgressStages": [
+              {
+                "Name": "string",
+                "Status": "string",
+                "Description": "string",
+                "LastUpdated": 1481289211.615
+              }
+            ]
+          }
+        }
+      ]
+  DescribeDomainConfig:
+    description: |-
+      Displays the configuration of an OpenSearch Service domain.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-describedomainconfig
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DomainConfig": {
+            "Version": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": "string"
+            },
+            "EBSOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Iops": 1,
+                "EBSEnabled": false,
+                "VolumeSize": 1,
+                "VolumeType": "string"
+              }
+            },
+            "VPCOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "VPCId": "string",
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ],
+                "AvailabilityZones": [
+                  "string"
+                ]
+              }
+            },
+            "ClusterConfig": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "WarmType": "string",
+                "WarmCount": 1,
+                "WarmEnabled": false,
+                "InstanceType": "string",
+                "InstanceCount": 1,
+                "DedicatedMasterType": "string",
+                "ZoneAwarenessConfig": {
+                  "AvailabilityZoneCount": 1
+                },
+                "DedicatedMasterCount": 1,
+                "ZoneAwarenessEnabled": false,
+                "DedicatedMasterEnabled": false
+              }
+            },
+            "AccessPolicies": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": "string"
+            },
+            "CognitoOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Enabled": false,
+                "RoleArn": "string",
+                "UserPoolId": "string",
+                "IdentityPoolId": "string"
+              }
+            },
+            "AdvancedOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "string": "string"
+              }
+            },
+            "AutoTuneOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "ErrorMessage": "string",
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "DesiredState": "string",
+                "RollbackOnDisable": "string",
+                "MaintenanceSchedules": [
+                  {
+                    "StartAt": 1481289211.615,
+                    "Duration": {
+                      "Unit": "string",
+                      "Value": 1
+                    },
+                    "CronExpressionForRecurrence": "string"
+                  }
+                ]
+              }
+            },
+            "SnapshotOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "AutomatedSnapshotStartHour": 1
+              }
+            },
+            "LogPublishingOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "string": {
+                  "Enabled": false,
+                  "CloudWatchLogsLogGroupArn": "string"
+                }
+              }
+            },
+            "DomainEndpointOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "EnforceHTTPS": false,
+                "CustomEndpoint": "string",
+                "TLSSecurityPolicy": "string",
+                "CustomEndpointEnabled": false,
+                "CustomEndpointCertificateArn": "string"
+              }
+            },
+            "AdvancedSecurityOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Enabled": false,
+                "SAMLOptions": {
+                  "Idp": {
+                    "EntityId": "string",
+                    "MetadataContent": "string"
+                  },
+                  "Enabled": false,
+                  "RolesKey": "string",
+                  "SubjectKey": "string",
+                  "SessionTimeoutMinutes": 1
+                },
+                "InternalUserDatabaseEnabled": false
+              }
+            },
+            "EncryptionAtRestOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Enabled": false,
+                "KmsKeyId": "string"
+              }
+            },
+            "NodeToNodeEncryptionOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Enabled": false
+              }
+            }
+          }
+        }
+      ]
+  DescribeDomains:
+    description: |-
+      Describes the domain configuration for up to five specified OpenSearch Service domains. Information includes the domain ID, domain service endpoint, and domain ARN.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-describedomains
+    example:
+      inputs: [
+        {
+          "DomainNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "DomainStatusList": [
+            {
+              "ARN": "string",
+              "Created": false,
+              "Deleted": false,
+              "Version": "string",
+              "DomainId": "string",
+              "Endpoint": "string",
+              "Endpoints": {
+                "string": "string"
+              },
+              "DomainName": "string",
+              "EBSOptions": {
+                "Iops": 1,
+                "EBSEnabled": false,
+                "VolumeSize": 1,
+                "VolumeType": "string"
+              },
+              "Processing": false,
+              "VPCOptions": {
+                "VPCId": "string",
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ],
+                "AvailabilityZones": [
+                  "string"
+                ]
+              },
+              "ClusterConfig": {
+                "WarmType": "string",
+                "WarmCount": 1,
+                "WarmEnabled": false,
+                "InstanceType": "string",
+                "InstanceCount": 1,
+                "DedicatedMasterType": "string",
+                "ZoneAwarenessConfig": {
+                  "AvailabilityZoneCount": 1
+                },
+                "DedicatedMasterCount": 1,
+                "ZoneAwarenessEnabled": false,
+                "DedicatedMasterEnabled": false
+              },
+              "AccessPolicies": "string",
+              "CognitoOptions": {
+                "Enabled": false,
+                "RoleArn": "string",
+                "UserPoolId": "string",
+                "IdentityPoolId": "string"
+              },
+              "AdvancedOptions": {
+                "string": "string"
+              },
+              "AutoTuneOptions": {
+                "State": "string",
+                "ErrorMessage": "string"
+              },
+              "SnapshotOptions": {
+                "AutomatedSnapshotStartHour": 1
+              },
+              "UpgradeProcessing": false,
+              "LogPublishingOptions": {
+                "string": {
+                  "Enabled": false,
+                  "CloudWatchLogsLogGroupArn": "string"
+                }
+              },
+              "DomainEndpointOptions": {
+                "EnforceHTTPS": false,
+                "CustomEndpoint": "string",
+                "TLSSecurityPolicy": "string",
+                "CustomEndpointEnabled": false,
+                "CustomEndpointCertificateArn": "string"
+              },
+              "ServiceSoftwareOptions": {
+                "NewVersion": "string",
+                "Cancellable": false,
+                "Description": "string",
+                "UpdateStatus": "string",
+                "CurrentVersion": "string",
+                "UpdateAvailable": false,
+                "OptionalDeployment": false,
+                "AutomatedUpdateDate": 1481289211.615
+              },
+              "AdvancedSecurityOptions": {
+                "Enabled": false,
+                "SAMLOptions": {
+                  "Idp": {
+                    "EntityId": "string",
+                    "MetadataContent": "string"
+                  },
+                  "Enabled": false,
+                  "RolesKey": "string",
+                  "SubjectKey": "string",
+                  "SessionTimeoutMinutes": 1
+                },
+                "InternalUserDatabaseEnabled": false
+              },
+              "EncryptionAtRestOptions": {
+                "Enabled": false,
+                "KmsKeyId": "string"
+              },
+              "NodeToNodeEncryptionOptions": {
+                "Enabled": false
+              }
+            }
+          ]
+        }
+      ]
+  DescribeInboundConnections:
+    description: |-
+      Lists all the inbound cross-cluster search connections for a destination domain.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-describe-inbound-cross-cluster-search-connections
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CrossClusterSearchConnections": [
+            {
+              "ConnectionStatus": {
+                "Message": "string",
+                "StatusCode": "string"
+              },
+              "SourceDomainInfo": {
+                "Region": "string",
+                "OwnerId": "string",
+                "DomainName": "string"
+              },
+              "DestinationDomainInfo": {
+                "Region": "string",
+                "OwnerId": "string",
+                "DomainName": "string"
+              },
+              "CrossClusterSearchConnectionId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeInstanceTypeLimits:
+    description: |-
+      Describes the instance count, storage, and master node limits for a given OpenSearch or Elasticsearch version and instance type.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-describeinstancetypelimits
+    example:
+      inputs: [
+        {
+          "DomainName": "string",
+          "InstanceType": "string",
+          "EngineVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LimitsByRole": {
+            "string": {
+              "StorageTypes": [
+                {
+                  "StorageTypeName": "string",
+                  "StorageTypeLimits": [
+                    {
+                      "LimitName": "string",
+                      "LimitValues": [
+                        "string"
+                      ]
+                    }
+                  ],
+                  "StorageSubTypeName": "string"
+                }
+              ],
+              "InstanceLimits": {
+                "InstanceCountLimits": {
+                  "MaximumInstanceCount": 1,
+                  "MinimumInstanceCount": 1
+                }
+              },
+              "AdditionalLimits": [
+                {
+                  "LimitName": "string",
+                  "LimitValues": [
+                    "string"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ]
+  DescribeOutboundConnections:
+    description: |-
+      Lists all the outbound cross-cluster search connections for a source domain.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-describe-outbound-cross-cluster-search-connections
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CrossClusterSearchConnections": [
+            {
+              "ConnectionAlias": "string",
+              "ConnectionStatus": {
+                "Message": "string",
+                "StatusCode": "string"
+              },
+              "SourceDomainInfo": {
+                "Region": "string",
+                "OwnerId": "string",
+                "DomainName": "string"
+              },
+              "DestinationDomainInfo": {
+                "Region": "string",
+                "OwnerId": "string",
+                "DomainName": "string"
+              },
+              "CrossClusterSearchConnectionId": "string"
+            }
+          ]
+        }
+      ]
+  DescribePackages:
+    description: |-
+      Describes all packages available to OpenSearch Service. Includes options for filtering, limiting the number of results, and pagination.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-describepackages
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Value": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "PackageDetailsList": [
+            {
+              "CreatedAt": 1481289211.615,
+              "PackageID": "string",
+              "PackageName": "string",
+              "PackageType": "string",
+              "ErrorDetails": {
+                "ErrorType": "string",
+                "ErrorMessage": "string"
+              },
+              "LastUpdatedAt": 1481289211.615,
+              "PackageStatus": "string",
+              "PackageDescription": "string",
+              "AvailablePackageVersion": "string"
+            }
+          ]
+        }
+      ]
+  DescribeReservedInstanceOfferings:
+    description: |-
+      Describes the available Reserved Instance offerings for a given Region.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-describereservedinstanceofferings
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "OfferingId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ReservedInstanceOfferings": [
+            {
+              "Duration": 1,
+              "FixedPrice": 0.1,
+              "UsagePrice": 0.1,
+              "CurrencyCode": "string",
+              "InstanceType": "string",
+              "PaymentOption": "string",
+              "RecurringCharges": [
+                {
+                  "RecurringChargeAmount": 0.1,
+                  "RecurringChargeFrequency": "string"
+                }
+              ],
+              "ReservedInstanceOfferingId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeReservedInstances:
+    description: |-
+      Describes the instance that you have reserved in a given Region.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-describereservedinstances
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ReservationId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ReservedInstances": [
+            {
+              "State": "string",
+              "Duration": 1,
+              "StartTime": 1481289211.615,
+              "FixedPrice": 0.1,
+              "UsagePrice": 0.1,
+              "CurrencyCode": "string",
+              "InstanceType": "string",
+              "InstanceCount": 1,
+              "PaymentOption": "string",
+              "ReservationName": "string",
+              "RecurringCharges": [
+                {
+                  "RecurringChargeAmount": 0.1,
+                  "RecurringChargeFrequency": "string"
+                }
+              ],
+              "ReservedInstanceId": "string",
+              "ReservedInstanceOfferingId": "string"
+            }
+          ]
+        }
+      ]
+  DissociatePackage:
+    description: |-
+      Removes the package from the specified OpenSearch Service domain. The package can't be in use with any OpenSearch index for the dissociation to succeed. The package is still available in OpenSearch Service for association later.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-dissociatepackage
+    example:
+      inputs: [
+        {
+          "PackageID": "string",
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DomainPackageDetails": {
+            "PackageID": "string",
+            "DomainName": "string",
+            "LastUpdated": 1481289211.615,
+            "PackageName": "string",
+            "PackageType": "string",
+            "ErrorDetails": {
+              "ErrorType": "string",
+              "ErrorMessage": "string"
+            },
+            "ReferencePath": "string",
+            "PackageVersion": "string",
+            "DomainPackageStatus": "string"
+          }
+        }
+      ]
+  GetCompatibleVersions:
+    description: |-
+      Returns a map of OpenSearch or Elasticsearch versions and the versions you can upgrade them to.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-get-compat-vers
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CompatibleVersions": [
+            {
+              "SourceVersion": "string",
+              "TargetVersions": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  GetPackageVersionHistory:
+    description: |-
+      Returns a map of OpenSearch versions and the versions you can upgrade them to.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-get-pac-ver-hist
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "PackageID": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "PackageID": "string",
+          "PackageVersionHistoryList": [
+            {
+              "CreatedAt": 1481289211.615,
+              "CommitMessage": "string",
+              "PackageVersion": "string"
+            }
+          ]
+        }
+      ]
+  GetUpgradeHistory:
+    description: |-
+      Retrieves the complete history of the last 10 upgrades that were performed on the domain.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-get-upgrade-hist
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "DomainName": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "UpgradeHistories": [
+            {
+              "StepsList": [
+                {
+                  "Issues": [
+                    "string"
+                  ],
+                  "UpgradeStep": "string",
+                  "ProgressPercent": 0.1,
+                  "UpgradeStepStatus": "string"
+                }
+              ],
+              "UpgradeName": "string",
+              "UpgradeStatus": "string",
+              "StartTimestamp": 1481289211.615
+            }
+          ]
+        }
+      ]
+  GetUpgradeStatus:
+    description: |-
+      Returns the most recent status of a domain's OpenSearch or Elasticsearch version upgrade.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-get-upgrade-stat
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "StepStatus": "string",
+          "UpgradeName": "string",
+          "UpgradeStep": "string"
+        }
+      ]
+  ListDomainNames:
+    description: |-
+      Displays the names of all OpenSearch Service domains owned by the current user in the active Region.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-listdomainnames
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "DomainNames": [
+            {
+              "DomainName": "string"
+            }
+          ]
+        }
+      ]
+  ListDomainsForPackage:
+    description: |-
+      Lists all OpenSearch Service domains that a package is associated with.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-listdomainsforpackage
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "PackageID": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DomainPackageDetailsList": [
+            {
+              "PackageID": "string",
+              "DomainName": "string",
+              "LastUpdated": 1481289211.615,
+              "PackageName": "string",
+              "PackageType": "string",
+              "ErrorDetails": {
+                "ErrorType": "string",
+                "ErrorMessage": "string"
+              },
+              "ReferencePath": "string",
+              "PackageVersion": "string",
+              "DomainPackageStatus": "string"
+            }
+          ]
+        }
+      ]
+  ListInstanceTypeDetails:
+    description: |-
+      Lists all instance types and available features for a given OpenSearch or Elasticsearch version.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-listinstancetypedetails
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "DomainName": "string",
+          "MaxResults": 1,
+          "EngineVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "InstanceTypeDetails": [
+            "string"
+          ]
+        }
+      ]
+  ListPackagesForDomain:
+    description: |-
+      Lists all packages associated with the OpenSearch Service domain.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-listpackagesfordomain
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "DomainName": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DomainPackageDetailsList": [
+            {
+              "PackageID": "string",
+              "DomainName": "string",
+              "LastUpdated": 1481289211.615,
+              "PackageName": "string",
+              "PackageType": "string",
+              "ErrorDetails": {
+                "ErrorType": "string",
+                "ErrorMessage": "string"
+              },
+              "ReferencePath": "string",
+              "PackageVersion": "string",
+              "DomainPackageStatus": "string"
+            }
+          ]
+        }
+      ]
+  ListTags:
+    description: |-
+      Displays all resource tags for an OpenSearch Service domain.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-listtags
+    example:
+      inputs: [
+        {
+          "ARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TagList": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  ListVersions:
+    description: |-
+      Lists all supported OpenSearch and Elasticsearch versions on OpenSearch Service.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-listversions
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Versions": [
+            "string"
+          ],
+          "NextToken": "string"
+        }
+      ]
+  PurchaseReservedInstanceOffering:
+    description: |-
+      Purchases a Reserved Instance.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-purchasereservedinstance
+    example:
+      inputs: [
+        {
+          "InstanceCount": 1,
+          "ReservationName": "string",
+          "ReservedInstanceOfferingId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ReservationName": "string",
+          "ReservedInstanceId": "string"
+        }
+      ]
+  RejectInboundConnection:
+    description: |-
+      Allows the destination domain owner to reject an inbound cross-cluster search connection request.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-reject-inbound-cross-cluster-search-connection
+    example:
+      inputs: [
+        {
+          "CrossClusterSearchConnectionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CrossClusterSearchConnection": {
+            "ConnectionStatus": {
+              "Message": "string",
+              "StatusCode": "string"
+            },
+            "SourceDomainInfo": {
+              "Region": "string",
+              "OwnerId": "string",
+              "DomainName": "string"
+            },
+            "DestinationDomainInfo": {
+              "Region": "string",
+              "OwnerId": "string",
+              "DomainName": "string"
+            },
+            "CrossClusterSearchConnectionId": "string"
+          }
+        }
+      ]
+  RemoveTags:
+    description: |-
+      Removes the specified resource tags from an OpenSearch Service domain.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-removetags
+    example:
+      inputs: [
+        {
+          "ARN": "string",
+          "TagKeys": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartServiceSoftwareUpdate:
+    description: |-
+      Schedules a service software update for an OpenSearch Service domain.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-startupdate
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ServiceSoftwareOptions": {
+            "NewVersion": "string",
+            "Cancellable": false,
+            "Description": "string",
+            "UpdateStatus": "string",
+            "CurrentVersion": "string",
+            "UpdateAvailable": false,
+            "OptionalDeployment": false,
+            "AutomatedUpdateDate": 1481289211.615
+          }
+        }
+      ]
+  CancelServiceSoftwareUpdate:
+    description: |-
+      Stops a scheduled service software update for an OpenSearch Service domain. Only works if the domain's UpdateStatus is PENDING_UPDATE.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-stopupdate
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ServiceSoftwareOptions": {
+            "NewVersion": "string",
+            "Cancellable": false,
+            "Description": "string",
+            "UpdateStatus": "string",
+            "CurrentVersion": "string",
+            "UpdateAvailable": false,
+            "OptionalDeployment": false,
+            "AutomatedUpdateDate": 1481289211.615
+          }
+        }
+      ]
+  UpdateDomainConfig:
+    description: |-
+      Modifies the configuration of an OpenSearch Service domain, such as the instance type and the number of instances. You only need to specify the values that you want to update.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-updatedomainconfig
+    example:
+      inputs: [
+        {
+          "DomainName": "string",
+          "EBSOptions": {
+            "Iops": 1,
+            "EBSEnabled": false,
+            "VolumeSize": 1,
+            "VolumeType": "string"
+          },
+          "VPCOptions": {
+            "SubnetIds": [
+              "string"
+            ],
+            "SecurityGroupIds": [
+              "string"
+            ]
+          },
+          "ClusterConfig": {
+            "WarmType": "string",
+            "WarmCount": 1,
+            "WarmEnabled": false,
+            "InstanceType": "string",
+            "InstanceCount": 1,
+            "DedicatedMasterType": "string",
+            "ZoneAwarenessConfig": {
+              "AvailabilityZoneCount": 1
+            },
+            "DedicatedMasterCount": 1,
+            "ZoneAwarenessEnabled": false,
+            "DedicatedMasterEnabled": false
+          },
+          "AccessPolicies": "string",
+          "CognitoOptions": {
+            "Enabled": false,
+            "RoleArn": "string",
+            "UserPoolId": "string",
+            "IdentityPoolId": "string"
+          },
+          "AdvancedOptions": {
+            "string": "string"
+          },
+          "AutoTuneOptions": {
+            "DesiredState": "string",
+            "RollbackOnDisable": "string",
+            "MaintenanceSchedules": [
+              {
+                "StartAt": 1481289211.615,
+                "Duration": {
+                  "Unit": "string",
+                  "Value": 1
+                },
+                "CronExpressionForRecurrence": "string"
+              }
+            ]
+          },
+          "SnapshotOptions": {
+            "AutomatedSnapshotStartHour": 1
+          },
+          "LogPublishingOptions": {
+            "string": {
+              "Enabled": false,
+              "CloudWatchLogsLogGroupArn": "string"
+            }
+          },
+          "DomainEndpointOptions": {
+            "EnforceHTTPS": false,
+            "CustomEndpoint": "string",
+            "TLSSecurityPolicy": "string",
+            "CustomEndpointEnabled": false,
+            "CustomEndpointCertificateArn": "string"
+          },
+          "AdvancedSecurityOptions": {
+            "Enabled": false,
+            "SAMLOptions": {
+              "Idp": {
+                "EntityId": "string",
+                "MetadataContent": "string"
+              },
+              "Enabled": false,
+              "RolesKey": "string",
+              "SubjectKey": "string",
+              "MasterUserName": "string",
+              "MasterBackendRole": "string",
+              "SessionTimeoutMinutes": 1
+            },
+            "MasterUserOptions": {
+              "MasterUserARN": "string",
+              "MasterUserName": "string",
+              "MasterUserPassword": "string"
+            },
+            "InternalUserDatabaseEnabled": false
+          },
+          "EncryptionAtRestOptions": {
+            "Enabled": false,
+            "KmsKeyId": "string"
+          },
+          "NodeToNodeEncryptionOptions": {
+            "Enabled": false
+          }
+        }
+      ]
+      outputs: [
+        {
+          "DomainConfig": {
+            "Version": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": "string"
+            },
+            "EBSOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Iops": 1,
+                "EBSEnabled": false,
+                "VolumeSize": 1,
+                "VolumeType": "string"
+              }
+            },
+            "VPCOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "VPCId": "string",
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ],
+                "AvailabilityZones": [
+                  "string"
+                ]
+              }
+            },
+            "ClusterConfig": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "WarmType": "string",
+                "WarmCount": 1,
+                "WarmEnabled": false,
+                "InstanceType": "string",
+                "InstanceCount": 1,
+                "DedicatedMasterType": "string",
+                "ZoneAwarenessConfig": {
+                  "AvailabilityZoneCount": 1
+                },
+                "DedicatedMasterCount": 1,
+                "ZoneAwarenessEnabled": false,
+                "DedicatedMasterEnabled": false
+              }
+            },
+            "AccessPolicies": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": "string"
+            },
+            "CognitoOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Enabled": false,
+                "RoleArn": "string",
+                "UserPoolId": "string",
+                "IdentityPoolId": "string"
+              }
+            },
+            "AdvancedOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "string": "string"
+              }
+            },
+            "AutoTuneOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "ErrorMessage": "string",
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "DesiredState": "string",
+                "RollbackOnDisable": "string",
+                "MaintenanceSchedules": [
+                  {
+                    "StartAt": 1481289211.615,
+                    "Duration": {
+                      "Unit": "string",
+                      "Value": 1
+                    },
+                    "CronExpressionForRecurrence": "string"
+                  }
+                ]
+              }
+            },
+            "SnapshotOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "AutomatedSnapshotStartHour": 1
+              }
+            },
+            "LogPublishingOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "string": {
+                  "Enabled": false,
+                  "CloudWatchLogsLogGroupArn": "string"
+                }
+              }
+            },
+            "DomainEndpointOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "EnforceHTTPS": false,
+                "CustomEndpoint": "string",
+                "TLSSecurityPolicy": "string",
+                "CustomEndpointEnabled": false,
+                "CustomEndpointCertificateArn": "string"
+              }
+            },
+            "AdvancedSecurityOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Enabled": false,
+                "SAMLOptions": {
+                  "Idp": {
+                    "EntityId": "string",
+                    "MetadataContent": "string"
+                  },
+                  "Enabled": false,
+                  "RolesKey": "string",
+                  "SubjectKey": "string",
+                  "SessionTimeoutMinutes": 1
+                },
+                "InternalUserDatabaseEnabled": false
+              }
+            },
+            "EncryptionAtRestOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Enabled": false,
+                "KmsKeyId": "string"
+              }
+            },
+            "NodeToNodeEncryptionOptions": {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "Enabled": false
+              }
+            }
+          }
+        }
+      ]
+  UpdatePackage:
+    description: |-
+      Update a package for use with OpenSearch Service domains.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-updatepackage
+    example:
+      inputs: [
+        {
+          "PackageID": "string",
+          "CommitMessage": "string",
+          "PackageSource": {
+            "S3Key": "string",
+            "S3BucketName": "string"
+          },
+          "PackageDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PackageDetails": {
+            "CreatedAt": 1481289211.615,
+            "PackageID": "string",
+            "PackageName": "string",
+            "PackageType": "string",
+            "ErrorDetails": {
+              "ErrorType": "string",
+              "ErrorMessage": "string"
+            },
+            "LastUpdatedAt": 1481289211.615,
+            "PackageStatus": "string",
+            "PackageDescription": "string",
+            "AvailablePackageVersion": "string"
+          }
+        }
+      ]
+  UpgradeDomain:
+    description: |-
+      Upgrades an OpenSearch Service domain to a new version of OpenSearch or Elasticsearch. Alternately, checks upgrade eligibility.
+    versions:
+      from: 2021.1.1
+    link: https://docs.aws.amazon.com/opensearch-service/latest/developerguide/configuration-api.html#configuration-api-actions-upgrade-domain
+    example:
+      inputs: [
+        {
+          "DomainName": "string",
+          "TargetVersion": "string",
+          "PerformCheckOnly": false
+        }
+      ]
+      outputs: [
+        {}
+      ]

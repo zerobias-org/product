@@ -1,0 +1,691 @@
+Product:
+  name: AWS Cloud Map
+  versions: [2017.3.14]
+  package: amazon.aws.cloudmap
+  description: |-
+    AWS Cloud Map
+  link: https://docs.aws.amazon.com/cloud-map/latest/api/Welcome.html
+  contentType: json
+Operations:
+  CreateHttpNamespace:
+    description: |-
+      Creates an HTTP namespace. Service instances that you register using an HTTP namespace can be discovered using a DiscoverInstances request but can't be discovered using DNS.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_CreateHttpNamespace.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Description": "string",
+          "CreatorRequestId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "OperationId": "string"
+        }
+      ]
+  CreatePrivateDnsNamespace:
+    description: |-
+      Creates a private namespace based on DNS, which is visible only inside a specified Amazon VPC. The namespace defines your service naming scheme. For example, if you name your namespace example.com and name your service backend, the resulting DNS name for the service is backend.example.com. For the current quota on the number of namespaces that you can create using the same AWS account, see AWS Cloud Map Limits in the AWS Cloud Map Developer Guide.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_CreatePrivateDnsNamespace.html
+    example:
+      inputs: [
+        {
+          "Vpc": "string",
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Description": "string",
+          "CreatorRequestId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "OperationId": "string"
+        }
+      ]
+  CreatePublicDnsNamespace:
+    description: |-
+      Creates a public namespace based on DNS, which is visible on the internet. The namespace defines your service naming scheme. For example, if you name your namespace example.com and name your service backend, the resulting DNS name for the service is backend.example.com. For the current quota on the number of namespaces that you can create using the same AWS account, see AWS Cloud Map Limits in the AWS Cloud Map Developer Guide.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_CreatePublicDnsNamespace.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Description": "string",
+          "CreatorRequestId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "OperationId": "string"
+        }
+      ]
+  CreateService:
+    description: ''
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_CreateService.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Type": "string",
+          "DnsConfig": {
+            "DnsRecords": [
+              {
+                "TTL": 1,
+                "Type": "string"
+              }
+            ],
+            "NamespaceId": "string",
+            "RoutingPolicy": "string"
+          },
+          "Description": "string",
+          "NamespaceId": "string",
+          "CreatorRequestId": "string",
+          "HealthCheckConfig": {
+            "Type": "string",
+            "ResourcePath": "string",
+            "FailureThreshold": 1
+          },
+          "HealthCheckCustomConfig": {
+            "FailureThreshold": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Service": {
+            "Id": "string",
+            "Arn": "string",
+            "Name": "string",
+            "Type": "string",
+            "DnsConfig": {
+              "DnsRecords": [
+                {
+                  "TTL": 1,
+                  "Type": "string"
+                }
+              ],
+              "NamespaceId": "string",
+              "RoutingPolicy": "string"
+            },
+            "CreateDate": 1481289211.615,
+            "Description": "string",
+            "NamespaceId": "string",
+            "InstanceCount": 1,
+            "CreatorRequestId": "string",
+            "HealthCheckConfig": {
+              "Type": "string",
+              "ResourcePath": "string",
+              "FailureThreshold": 1
+            },
+            "HealthCheckCustomConfig": {
+              "FailureThreshold": 1
+            }
+          }
+        }
+      ]
+  DeleteNamespace:
+    description: |-
+      Deletes a namespace from the current account. If the namespace still contains one or more services, the request fails.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_DeleteNamespace.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "OperationId": "string"
+        }
+      ]
+  DeleteService:
+    description: |-
+      Deletes a specified service. If the service still contains one or more registered instances, the request fails.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_DeleteService.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeregisterInstance:
+    description: |-
+      Deletes the Amazon Route 53 DNS records and health check, if any, that AWS Cloud Map created for the specified instance.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_DeregisterInstance.html
+    example:
+      inputs: [
+        {
+          "ServiceId": "string",
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "OperationId": "string"
+        }
+      ]
+  DiscoverInstances:
+    description: |-
+      Discovers registered instances for a specified namespace and service. You can use DiscoverInstances to discover instances for any type of namespace. For public and private DNS namespaces, you can also use DNS queries to discover instances.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_DiscoverInstances.html
+    example:
+      inputs: [
+        {
+          "MaxResults": 1,
+          "ServiceName": "string",
+          "HealthStatus": "string",
+          "NamespaceName": "string",
+          "QueryParameters": {
+            "string": "string"
+          },
+          "OptionalParameters": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Instances": [
+            {
+              "Attributes": {
+                "string": "string"
+              },
+              "InstanceId": "string",
+              "ServiceName": "string",
+              "HealthStatus": "string",
+              "NamespaceName": "string"
+            }
+          ]
+        }
+      ]
+  GetInstance:
+    description: |-
+      Gets information about a specified instance.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_GetInstance.html
+    example:
+      inputs: [
+        {
+          "ServiceId": "string",
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Instance": {
+            "Id": "string",
+            "Attributes": {
+              "string": "string"
+            },
+            "CreatorRequestId": "string"
+          }
+        }
+      ]
+  GetInstancesHealthStatus:
+    description: |-
+      Gets the current health status (Healthy, Unhealthy, or Unknown) of one or more instances that are associated with a specified service.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_GetInstancesHealthStatus.html
+    example:
+      inputs: [
+        {
+          "Instances": [
+            "string"
+          ],
+          "NextToken": "string",
+          "ServiceId": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Status": {
+            "string": "string"
+          },
+          "NextToken": "string"
+        }
+      ]
+  GetNamespace:
+    description: |-
+      Gets information about a namespace.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_GetNamespace.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Namespace": {
+            "Id": "string",
+            "Arn": "string",
+            "Name": "string",
+            "Type": "string",
+            "CreateDate": 1481289211.615,
+            "Properties": {
+              "DnsProperties": {
+                "HostedZoneId": "string"
+              },
+              "HttpProperties": {
+                "HttpName": "string"
+              }
+            },
+            "Description": "string",
+            "ServiceCount": 1,
+            "CreatorRequestId": "string"
+          }
+        }
+      ]
+  GetOperation:
+    description: |-
+      Gets information about any operation that returns an operation ID in the response, such as a CreateService request.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_GetOperation.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Operation": {
+            "Id": "string",
+            "Type": "string",
+            "Status": "string",
+            "Targets": {
+              "string": "string"
+            },
+            "ErrorCode": "string",
+            "CreateDate": 1481289211.615,
+            "UpdateDate": 1481289211.615,
+            "ErrorMessage": "string"
+          }
+        }
+      ]
+  GetService:
+    description: |-
+      Gets the settings for a specified service.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_GetService.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Service": {
+            "Id": "string",
+            "Arn": "string",
+            "Name": "string",
+            "Type": "string",
+            "DnsConfig": {
+              "DnsRecords": [
+                {
+                  "TTL": 1,
+                  "Type": "string"
+                }
+              ],
+              "NamespaceId": "string",
+              "RoutingPolicy": "string"
+            },
+            "CreateDate": 1481289211.615,
+            "Description": "string",
+            "NamespaceId": "string",
+            "InstanceCount": 1,
+            "CreatorRequestId": "string",
+            "HealthCheckConfig": {
+              "Type": "string",
+              "ResourcePath": "string",
+              "FailureThreshold": 1
+            },
+            "HealthCheckCustomConfig": {
+              "FailureThreshold": 1
+            }
+          }
+        }
+      ]
+  ListInstances:
+    description: |-
+      Lists summary information about the instances that you registered by using a specified service.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_ListInstances.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "ServiceId": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Instances": [
+            {
+              "Id": "string",
+              "Attributes": {
+                "string": "string"
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListNamespaces:
+    description: |-
+      Lists summary information about the namespaces that were created by the current AWS account.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_ListNamespaces.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ],
+              "Condition": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Namespaces": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Name": "string",
+              "Type": "string",
+              "CreateDate": 1481289211.615,
+              "Properties": {
+                "DnsProperties": {
+                  "HostedZoneId": "string"
+                },
+                "HttpProperties": {
+                  "HttpName": "string"
+                }
+              },
+              "Description": "string",
+              "ServiceCount": 1
+            }
+          ]
+        }
+      ]
+  ListOperations:
+    description: |-
+      Lists operations that match the criteria that you specify.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_ListOperations.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ],
+              "Condition": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Operations": [
+            {
+              "Id": "string",
+              "Status": "string"
+            }
+          ]
+        }
+      ]
+  ListServices:
+    description: |-
+      Lists summary information for all the services that are associated with one or more specified namespaces.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_ListServices.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ],
+              "Condition": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Services": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Name": "string",
+              "Type": "string",
+              "DnsConfig": {
+                "DnsRecords": [
+                  {
+                    "TTL": 1,
+                    "Type": "string"
+                  }
+                ],
+                "NamespaceId": "string",
+                "RoutingPolicy": "string"
+              },
+              "CreateDate": 1481289211.615,
+              "Description": "string",
+              "InstanceCount": 1,
+              "HealthCheckConfig": {
+                "Type": "string",
+                "ResourcePath": "string",
+                "FailureThreshold": 1
+              },
+              "HealthCheckCustomConfig": {
+                "FailureThreshold": 1
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists tags for the specified resource.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  RegisterInstance:
+    description: |-
+      Creates or updates one or more records and, optionally, creates a health check based on the settings in a specified service.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_RegisterInstance.html
+    example:
+      inputs: [
+        {
+          "ServiceId": "string",
+          "Attributes": {
+            "string": "string"
+          },
+          "InstanceId": "string",
+          "CreatorRequestId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "OperationId": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds one or more tags to the specified resource.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes one or more tags from the specified resource.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateInstanceCustomHealthStatus:
+    description: |-
+      Submits a request to change the health status of a custom health check to healthy or unhealthy.
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_UpdateInstanceCustomHealthStatus.html
+    example:
+      inputs: [
+        {
+          "Status": "string",
+          "ServiceId": "string",
+          "InstanceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateService:
+    description: ''
+    versions:
+      from: 2017.3.14
+    link: https://docs.aws.amazon.com/cloud-map/latest/api/API_UpdateService.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Service": {
+            "DnsConfig": {
+              "DnsRecords": [
+                {
+                  "TTL": 1,
+                  "Type": "string"
+                }
+              ]
+            },
+            "Description": "string",
+            "HealthCheckConfig": {
+              "Type": "string",
+              "ResourcePath": "string",
+              "FailureThreshold": 1
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "OperationId": "string"
+        }
+      ]

@@ -1,0 +1,571 @@
+Product:
+  name: AWS Data Pipeline
+  versions: [2012.10.29]
+  package: amazon.aws.datapipeline
+  description: |-
+    AWS Data Pipeline
+  link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  ActivatePipeline:
+    description: |-
+      Validates the specified pipeline and starts processing pipeline tasks. If the pipeline does not pass validation, activation fails.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_ActivatePipeline.html
+    example:
+      inputs: [
+        {
+          "pipelineId": "string",
+          "startTimestamp": 1481289211.615,
+          "parameterValues": [
+            {
+              "id": "string",
+              "stringValue": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  AddTags:
+    description: |-
+      Adds or modifies tags for the specified pipeline.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_AddTags.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "pipelineId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreatePipeline:
+    description: |-
+      Creates a new, empty pipeline. Use PutPipelineDefinition to populate the pipeline.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_CreatePipeline.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "uniqueId": "string",
+          "description": "string"
+        }
+      ]
+      outputs: [
+        {
+          "pipelineId": "string"
+        }
+      ]
+  DeactivatePipeline:
+    description: |-
+      Deactivates the specified running pipeline. The pipeline is set to the DEACTIVATING state until the deactivation process completes.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_DeactivatePipeline.html
+    example:
+      inputs: [
+        {
+          "pipelineId": "string",
+          "cancelActive": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeletePipeline:
+    description: |-
+      Deletes a pipeline, its pipeline definition, and its run history. AWS Data Pipeline attempts to cancel instances associated with the pipeline that are currently being processed by task runners.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_DeletePipeline.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeObjects:
+    description: |-
+      Gets the object definitions for a set of objects associated with the pipeline. Object definitions are composed of a set of fields that define the properties of the object.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_DescribeObjects.html
+    example:
+      inputs: [
+        {
+          "marker": "string",
+          "objectIds": [
+            "string"
+          ],
+          "pipelineId": "string",
+          "evaluateExpressions": false
+        }
+      ]
+      outputs: [
+        {
+          "marker": "string",
+          "hasMoreResults": false,
+          "pipelineObjects": [
+            {
+              "id": "string",
+              "name": "string",
+              "fields": [
+                {
+                  "key": "string",
+                  "refValue": "string",
+                  "stringValue": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  DescribePipelines:
+    description: |-
+      Retrieves metadata about one or more pipelines. The information retrieved includes the name of the pipeline, the pipeline identifier, its current state, and the user account that owns the pipeline. Using account credentials, you can retrieve metadata about pipelines that you or your IAM users have created. If you are using an IAM user account, you can retrieve metadata about only those pipelines for which you have read permissions.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_DescribePipelines.html
+    example:
+      inputs: [
+        {
+          "pipelineIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "pipelineDescriptionList": [
+            {
+              "name": "string",
+              "tags": [
+                {
+                  "key": "string",
+                  "value": "string"
+                }
+              ],
+              "fields": [
+                {
+                  "key": "string",
+                  "refValue": "string",
+                  "stringValue": "string"
+                }
+              ],
+              "pipelineId": "string",
+              "description": "string"
+            }
+          ]
+        }
+      ]
+  EvaluateExpression:
+    description: |-
+      Task runners call EvaluateExpression to evaluate a string in the context of the specified object. For example, a task runner can evaluate SQL queries stored in Amazon S3.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_EvaluateExpression.html
+    example:
+      inputs: [
+        {
+          "objectId": "string",
+          "expression": "string",
+          "pipelineId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "evaluatedExpression": "string"
+        }
+      ]
+  GetPipelineDefinition:
+    description: |-
+      Gets the definition of the specified pipeline. You can call GetPipelineDefinition to retrieve the pipeline definition that you provided using PutPipelineDefinition.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_GetPipelineDefinition.html
+    example:
+      inputs: [
+        {
+          "version": "string",
+          "pipelineId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "parameterValues": [
+            {
+              "id": "string",
+              "stringValue": "string"
+            }
+          ],
+          "pipelineObjects": [
+            {
+              "id": "string",
+              "name": "string",
+              "fields": [
+                {
+                  "key": "string",
+                  "refValue": "string",
+                  "stringValue": "string"
+                }
+              ]
+            }
+          ],
+          "parameterObjects": [
+            {
+              "id": "string",
+              "attributes": [
+                {
+                  "key": "string",
+                  "stringValue": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  ListPipelines:
+    description: |-
+      Lists the pipeline identifiers for all active pipelines that you have permission to access.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_ListPipelines.html
+    example:
+      inputs: [
+        {
+          "marker": "string"
+        }
+      ]
+      outputs: [
+        {
+          "marker": "string",
+          "hasMoreResults": false,
+          "pipelineIdList": [
+            {
+              "id": "string",
+              "name": "string"
+            }
+          ]
+        }
+      ]
+  PollForTask:
+    description: |-
+      Task runners call PollForTask to receive a task to perform from AWS Data Pipeline. The task runner specifies which tasks it can perform by setting a value for the workerGroup parameter. The task returned can come from any of the pipelines that match the workerGroup value passed in by the task runner and that was launched using the IAM user credentials specified by the task runner.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_PollForTask.html
+    example:
+      inputs: [
+        {
+          "hostname": "string",
+          "workerGroup": "string",
+          "instanceIdentity": {
+            "document": "string",
+            "signature": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "taskObject": {
+            "taskId": "string",
+            "objects": {
+              "string": {
+                "id": "string",
+                "name": "string",
+                "fields": [
+                  {
+                    "key": "string",
+                    "refValue": "string",
+                    "stringValue": "string"
+                  }
+                ]
+              }
+            },
+            "attemptId": "string",
+            "pipelineId": "string"
+          }
+        }
+      ]
+  PutPipelineDefinition:
+    description: |-
+      Adds tasks, schedules, and preconditions to the specified pipeline. You can use PutPipelineDefinition to populate a new pipeline.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_PutPipelineDefinition.html
+    example:
+      inputs: [
+        {
+          "pipelineId": "string",
+          "parameterValues": [
+            {
+              "id": "string",
+              "stringValue": "string"
+            }
+          ],
+          "pipelineObjects": [
+            {
+              "id": "string",
+              "name": "string",
+              "fields": [
+                {
+                  "key": "string",
+                  "refValue": "string",
+                  "stringValue": "string"
+                }
+              ]
+            }
+          ],
+          "parameterObjects": [
+            {
+              "id": "string",
+              "attributes": [
+                {
+                  "key": "string",
+                  "stringValue": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "errored": false,
+          "validationErrors": [
+            {
+              "id": "string",
+              "errors": [
+                "string"
+              ]
+            }
+          ],
+          "validationWarnings": [
+            {
+              "id": "string",
+              "warnings": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  QueryObjects:
+    description: |-
+      Queries the specified pipeline for the names of objects that match the specified set of conditions.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_QueryObjects.html
+    example:
+      inputs: [
+        {
+          "limit": 1,
+          "query": {
+            "selectors": [
+              {
+                "operator": {
+                  "type": "string",
+                  "values": [
+                    "string"
+                  ]
+                },
+                "fieldName": "string"
+              }
+            ]
+          },
+          "marker": "string",
+          "sphere": "string",
+          "pipelineId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ids": [
+            "string"
+          ],
+          "marker": "string",
+          "hasMoreResults": false
+        }
+      ]
+  RemoveTags:
+    description: |-
+      Removes existing tags from the specified pipeline.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_RemoveTags.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "pipelineId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ReportTaskProgress:
+    description: |-
+      Task runners call ReportTaskProgress when assigned a task to acknowledge that it has the task. If the web service does not receive this acknowledgement within 2 minutes, it assigns the task in a subsequent PollForTask call. After this initial acknowledgement, the task runner only needs to report progress every 15 minutes to maintain its ownership of the task. You can change this reporting time from 15 minutes by specifying a reportProgressTimeout field in your pipeline.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_ReportTaskProgress.html
+    example:
+      inputs: [
+        {
+          "fields": [
+            {
+              "key": "string",
+              "refValue": "string",
+              "stringValue": "string"
+            }
+          ],
+          "taskId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "canceled": false
+        }
+      ]
+  ReportTaskRunnerHeartbeat:
+    description: |-
+      Task runners call ReportTaskRunnerHeartbeat every 15 minutes to indicate that they are operational. If the AWS Data Pipeline Task Runner is launched on a resource managed by AWS Data Pipeline, the web service can use this call to detect when the task runner application has failed and restart a new instance.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_ReportTaskRunnerHeartbeat.html
+    example:
+      inputs: [
+        {
+          "hostname": "string",
+          "workerGroup": "string",
+          "taskrunnerId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "terminate": false
+        }
+      ]
+  SetStatus:
+    description: |-
+      Requests that the status of the specified physical or logical pipeline objects be updated in the specified pipeline. This update might not occur immediately, but is eventually consistent. The status that can be set depends on the type of object (for example, DataNode or Activity). You cannot perform this operation on FINISHED pipelines and attempting to do so returns InvalidRequestException.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_SetStatus.html
+    example:
+      inputs: [
+        {
+          "status": "string",
+          "objectIds": [
+            "string"
+          ],
+          "pipelineId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SetTaskStatus:
+    description: |-
+      Task runners call SetTaskStatus to notify AWS Data Pipeline that a task is completed and provide information about the final status. A task runner makes this call regardless of whether the task was sucessful. A task runner does not need to call SetTaskStatus for tasks that are canceled by the web service during a call to ReportTaskProgress.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_SetTaskStatus.html
+    example:
+      inputs: [
+        {
+          "taskId": "string",
+          "errorId": "string",
+          "taskStatus": "string",
+          "errorMessage": "string",
+          "errorStackTrace": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ValidatePipelineDefinition:
+    description: |-
+      Validates the specified pipeline definition to ensure that it is well formed and can be run without error.
+    versions:
+      from: 2012.10.29
+    link: https://docs.aws.amazon.com/datapipeline/latest/APIReference/API_ValidatePipelineDefinition.html
+    example:
+      inputs: [
+        {
+          "pipelineId": "string",
+          "parameterValues": [
+            {
+              "id": "string",
+              "stringValue": "string"
+            }
+          ],
+          "pipelineObjects": [
+            {
+              "id": "string",
+              "name": "string",
+              "fields": [
+                {
+                  "key": "string",
+                  "refValue": "string",
+                  "stringValue": "string"
+                }
+              ]
+            }
+          ],
+          "parameterObjects": [
+            {
+              "id": "string",
+              "attributes": [
+                {
+                  "key": "string",
+                  "stringValue": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "errored": false,
+          "validationErrors": [
+            {
+              "id": "string",
+              "errors": [
+                "string"
+              ]
+            }
+          ],
+          "validationWarnings": [
+            {
+              "id": "string",
+              "warnings": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]

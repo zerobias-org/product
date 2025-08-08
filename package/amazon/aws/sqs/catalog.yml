@@ -1,0 +1,616 @@
+Product:
+  name: Amazon Simple Queue Service
+  versions: [2012.11.5]
+  package: amazon.aws.sqs
+  description: |-
+    Amazon Simple Queue Service
+  link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AddPermission:
+    description: |-
+      Adds a permission to a queue for a specific principal. This allows sharing access to the queue.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_AddPermission.html
+    example:
+      inputs: [
+        {
+          "Label": "string",
+          "QueueUrl": "string",
+          "ActionNames": [
+            "string"
+          ],
+          "AWSAccountIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "AddPermissionResponse": {
+            "ResponseMetadata": {
+              "RequestId": "9a285199-c8d6-47c2-bdb2-314cb47d599d"
+            }
+          }
+        }
+      ]
+  ChangeMessageVisibilityBatch:
+    description: |-
+      Changes the visibility timeout of multiple messages. This is a batch version of ChangeMessageVisibility. The result of the action on each message is reported individually in the response. You can send up to 10 ChangeMessageVisibility requests with each ChangeMessageVisibilityBatch action.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ChangeMessageVisibilityBatch.html
+    example:
+      inputs: [
+        {
+          "QueueUrl": "string",
+          "ChangeMessageVisibilityBatchRequestEntrys": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "ca9668f7-ab1b-4f7a-8859-f15747ab17a7"
+          },
+          "ChangeMessageVisibilityBatchResult": [
+            {
+              "Id": "change_visibility_msg_2"
+            },
+            {
+              "Id": "change_visibility_msg_3"
+            }
+          ]
+        }
+      ]
+  ChangeMessageVisibility:
+    description: |-
+      Changes the visibility timeout of a specified message in a queue to a new value. The default visibility timeout for a message is 30 seconds. The minimum is 0 seconds. The maximum is 12 hours. For more information, see Visibility Timeout in the Amazon Simple Queue Service Developer Guide.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ChangeMessageVisibility.html
+    example:
+      inputs: [
+        {
+          "QueueUrl": "string",
+          "ReceiptHandle": "string",
+          "VisibilityTimeout": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "6a7a282a-d013-4a59-aba9-335b0fa48bed"
+          }
+        }
+      ]
+  CreateQueue:
+    description: |-
+      Creates a new standard or FIFO queue. You can pass one or more attributes in the request.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "QueueName": "string",
+          "Attributes": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "7a62c49f-347e-4fc4-9331-6e8e7a96aa73"
+          },
+          "CreateQueueResult": {
+            "QueueUrl": "https://queue.amazonaws.com/123456789012/MyQueue"
+          }
+        }
+      ]
+  DeleteMessageBatch:
+    description: |-
+      Deletes up to ten messages from the specified queue. This is a batch version of DeleteMessage. The result of the action on each message is reported individually in the response.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessageBatch.html
+    example:
+      inputs: [
+        {
+          "QueueUrl": "string",
+          "DeleteMessageBatchRequestEntries": [
+            {
+              "Id": "string",
+              "ReceiptHandle": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "d6f86b7a-74d1-4439-b43f-196a1e29cd85"
+          },
+          "DeleteMessageBatchResult": [
+            {
+              "Id": "msg1"
+            },
+            {
+              "Id": "msg2"
+            }
+          ]
+        }
+      ]
+  DeleteMessage:
+    description: |-
+      Deletes the specified message from the specified queue. To select the message to delete, use the ReceiptHandle of the message (not the MessageId which you receive when you send the message). Amazon SQS can delete a message from a queue even if a visibility timeout setting causes the message to be locked by another consumer. Amazon SQS automatically deletes messages left in a queue longer than the retention period configured for the queue.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessage.html
+    example:
+      inputs: [
+        {
+          "QueueUrl": "string",
+          "ReceiptHandle": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "b5293cb5-d306-4a17-9048-b263635abe42"
+          }
+        }
+      ]
+  DeleteQueue:
+    description: |-
+      Deletes the queue specified by the QueueUrl, regardless of the queue's contents.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteQueue.html
+    example:
+      inputs: [
+        {
+          "QueueUrl": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "6fde8d1e-52cd-4581-8cd9-c512f4c64223"
+          }
+        }
+      ]
+  GetQueueAttributes:
+    description: |-
+      Gets attributes for the specified queue.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_GetQueueAttributes.html
+    example:
+      inputs: [
+        {
+          "QueueUrl": "string",
+          "AttributeNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "1ea71be5-b5a2-4f9d-b85a-945d8d08cd0b"
+          },
+          "GetQueueAttributesResult": [
+            {
+              "Name": "ReceiveMessageWaitTimeSeconds",
+              "Value": "2"
+            },
+            {
+              "Name": "VisibilityTimeout",
+              "Value": "30"
+            },
+            {
+              "Name": "ApproximateNumberOfMessages",
+              "Value": "0"
+            },
+            {
+              "Name": "ApproximateNumberOfMessagesNotVisible",
+              "Value": "0"
+            },
+            {
+              "Name": "CreatedTimestamp",
+              "Value": "1286771522"
+            },
+            {
+              "Name": "LastModifiedTimestamp",
+              "Value": "1286771522"
+            },
+            {
+              "Name": "QueueArn",
+              "Value": "arn:aws:sqs:us-east-2:123456789012:MyQueue"
+            },
+            {
+              "Name": "MaximumMessageSize",
+              "Value": "8192"
+            },
+            {
+              "Name": "MessageRetentionPeriod",
+              "Value": "345600"
+            }
+          ]
+        }
+      ]
+  GetQueueUrl:
+    description: |-
+      Returns the URL of an existing Amazon SQS queue.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_GetQueueUrl.html
+    example:
+      inputs: [
+        {
+          "QueueName": "string",
+          "QueueOwnerAWSAccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "470a6f13-2ed9-4181-ad8a-2fdea142988e"
+          },
+          "GetQueueUrlResult": {
+            "QueueUrl": "https://sqs.us-east-2.amazonaws.com/123456789012/MyQueue"
+          }
+        }
+      ]
+  ListDeadLetterSourceQueues:
+    description: |-
+      Returns a list of your queues that have the RedrivePolicy queue attribute configured with a dead-letter queue.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ListDeadLetterSourceQueues.html
+    example:
+      inputs: [
+        {
+          "QueueUrl": "string",
+          "NextToken": "string",
+          "MaxResults": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "8ffb921f-b85e-53d9-abcf-d8d0057f38fc"
+          },
+          "ListDeadLetterSourceQueuesResult": {
+            "QueueUrl": "https://sqs.us-east-2.amazonaws.com/123456789012/MySourceQueue"
+          }
+        }
+      ]
+  ListQueues:
+    description: |-
+      Returns a list of your queues in the current region. The response includes a maximum of 1,000 results. If you specify a value for the optional QueueNamePrefix parameter, only queues with a name that begins with the specified value are returned.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ListQueues.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": "string",
+          "QueueNamePrefix": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ListQueuesResult": {
+            "QueueUrl": "https://sqs.us-east-2.amazonaws.com/123456789012/MyQueue"
+          },
+          "ResponseMetadata": {
+            "RequestId": "725275ae-0b9b-4762-b238-436d7c65a1ac"
+          }
+        }
+      ]
+  ListQueueTags:
+    description: |-
+      List all cost allocation tags added to the specified Amazon SQS queue. For an overview, see Tagging Your Amazon SQS Queues in the Amazon Simple Queue Service Developer Guide.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ListQueueTags.html
+    example:
+      inputs: [
+        {
+          "QueueUrl": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "a1b2c3d4-e567-8901-23f4-g5678901hi23"
+          },
+          "ListQueueTagsResult": [
+            {
+              "Key": "QueueType",
+              "Value": "Production"
+            },
+            {
+              "Key": "Owner",
+              "Value": "Developer123"
+            }
+          ]
+        }
+      ]
+  PurgeQueue:
+    description: |-
+      Deletes the messages in a queue specified by the QueueURL parameter.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_PurgeQueue.html
+    example:
+      inputs: [
+        {
+          "QueueUrl": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "6fde8d1e-52cd-4581-8cd9-c512f4c64223"
+          }
+        }
+      ]
+  ReceiveMessage:
+    description: |-
+      Retrieves one or more messages (up to 10), from the specified queue. Using the WaitTimeSeconds parameter enables long-poll support. For more information, see Amazon SQS Long Polling in the Amazon Simple Queue Service Developer Guide.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ReceiveMessage.html
+    example:
+      inputs: [
+        {
+          "QueueUrl": "string",
+          "AttributeNames": [
+            "string"
+          ],
+          "WaitTimeSeconds": "number",
+          "VisibilityTimeout": "number",
+          "MaxNumberOfMessages": "number",
+          "MessageAttributeNames": [
+            "string"
+          ],
+          "ReceiveRequestAttemptId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "b6633655-283d-45b4-aee4-4e84e0ae6afa"
+          },
+          "ReceiveMessageResult": {
+            "Message": {
+              "Body": "This is a test message",
+              "Attribute": [
+                {
+                  "Name": "SenderId",
+                  "Value": "195004372649"
+                },
+                {
+                  "Name": "SentTimestamp",
+                  "Value": "1238099229000"
+                },
+                {
+                  "Name": "ApproximateReceiveCount",
+                  "Value": "5"
+                },
+                {
+                  "Name": "ApproximateFirstReceiveTimestamp",
+                  "Value": "1250700979248"
+                }
+              ],
+              "MD5OfBody": "fafb00f5732ab283681e124bf8747ed1",
+              "MessageId": "5fea7756-0ea4-451a-a703-a558b933e274",
+              "ReceiptHandle": "MbZj6wDWli+JvwwJaBV+3dcjk2YW2vA3+STFFljTM8tJJg6HRG6PYSasuWXPJB+Cw\n        Lj1FjgXUv1uSj1gUPAWV66FU/WeR4mq2OKpEGYWbnLmpRCJVAyeMjeU5ZBdtcQ+QE\n        auMZc8ZRv37sIW2iJKq3M9MFx1YvV11A2x/KSbkJ0="
+            }
+          }
+        }
+      ]
+  RemovePermission:
+    description: |-
+      Revokes any permissions in the queue policy that matches the specified Label parameter.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_RemovePermission.html
+    example:
+      inputs: [
+        {
+          "Label": "string",
+          "QueueUrl": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "6a7a282a-d013-4a59-aba9-335b0fa48bed"
+          }
+        }
+      ]
+  SendMessageBatch:
+    description: |-
+      Delivers up to ten messages to the specified queue. This is a batch version of SendMessage. For a FIFO queue, multiple messages within a single batch are enqueued in the order they are sent.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessageBatch.html
+    example:
+      inputs: [
+        {
+          "QueueUrl": "string",
+          "SendMessageBatchRequestEntry": [
+            {
+              "Id": "string",
+              "MessageBody": "string",
+              "DelaySeconds": "number",
+              "MessageGroupId": "string",
+              "MessageAttributes": [
+                {
+                  "Name": "string",
+                  "Value ": "string"
+                }
+              ],
+              "MessageDeduplicationId": "string",
+              "MessageSystemAttributes": [
+                {
+                  "Name": "string",
+                  "Value ": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "ca1ad5d0-8271-408b-8d0f-1351bf547e74"
+          },
+          "SendMessageBatchResult": [
+            {
+              "Id": "test_msg_001",
+              "MessageId": "0a5231c7-8bff-4955-be2e-8dc7c50a25fa",
+              "MD5OfMessageBody": "0e024d309850c78cba5eabbeff7cae71"
+            },
+            {
+              "Id": "test_msg_002",
+              "MessageId": "15ee1ed3-87e7-40c1-bdaa-2e49968ea7e9",
+              "MD5OfMessageBody": "7fb8146a82f95e0af155278f406862c2",
+              "MD5OfMessageAttributes": "295c5fa15a51aae6884d1d7c1d99ca50"
+            }
+          ]
+        }
+      ]
+  SendMessage:
+    description: |-
+      Delivers a message to the specified queue.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html
+    example:
+      inputs: [
+        {
+          "QueueUrl": "string",
+          "MessageBody": "string",
+          "DelaySeconds": "number",
+          "MessageGroupId": "string",
+          "MessageAttributes": [
+            {
+              "Name": "string",
+              "Value ": "string"
+            }
+          ],
+          "MessageDeduplicationId": "string",
+          "MessageSystemAttributes": [
+            {
+              "Name": "string",
+              "Value ": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "27daac76-34dd-47df-bd01-1f6e873584a0"
+          },
+          "SendMessageResult": {
+            "MessageId": "5fea7756-0ea4-451a-a703-a558b933e274",
+            "MD5OfMessageBody": "fafb00f5732ab283681e124bf8747ed1",
+            "MD5OfMessageAttributes": "3ae8f24a165a8cedc005670c81a27295"
+          }
+        }
+      ]
+  SetQueueAttributes:
+    description: |-
+      Sets the value of one or more queue attributes. When you change a queue's attributes, the change can take up to 60 seconds for most of the attributes to propagate throughout the Amazon SQS system. Changes made to the MessageRetentionPeriod attribute can take up to 15 minutes.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SetQueueAttributes.html
+    example:
+      inputs: [
+        {
+          "QueueUrl": "string",
+          "Attributes": [
+            {
+              "Name": "string",
+              "Value ": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "6a7a282a-d013-4a59-aba9-335b0fa48bed"
+          }
+        }
+      ]
+  TagQueue:
+    description: |-
+      Add cost allocation tags to the specified Amazon SQS queue. For an overview, see Tagging Your Amazon SQS Queues in the Amazon Simple Queue Service Developer Guide.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_TagQueue.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value ": "string"
+            }
+          ],
+          "QueueUrl": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "6a7a282a-d013-4a59-aba9-335b0fa48bed"
+          }
+        }
+      ]
+  UntagQueue:
+    description: |-
+      Remove cost allocation tags from the specified Amazon SQS queue. For an overview, see Tagging Your Amazon SQS Queues in the Amazon Simple Queue Service Developer Guide.
+    versions:
+      from: 2012.11.5
+    link: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_UntagQueue.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value ": "string"
+            }
+          ],
+          "QueueUrl": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMetadata": {
+            "RequestId": "6a7a282a-d013-4a59-aba9-335b0fa48bed"
+          }
+        }
+      ]

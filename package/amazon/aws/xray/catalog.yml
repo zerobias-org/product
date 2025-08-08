@@ -1,0 +1,1280 @@
+Product:
+  name: AWS X-Ray
+  versions: [2016.4.12]
+  package: amazon.aws.xray
+  description: |-
+    AWS X-Ray
+  link: https://docs.aws.amazon.com/xray/latest/api/Welcome.html
+  contentType: json
+Operations:
+  BatchGetTraces:
+    description: |-
+      Retrieves a list of traces specified by ID. Each trace is a collection of segment documents that originates from a single request. Use GetTraceSummaries to get a list of trace IDs.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_BatchGetTraces.html
+    example:
+      inputs: [
+        {
+          "TraceIds": [
+            "string"
+          ],
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Traces": [
+            {
+              "Id": "string",
+              "Duration": 0.1,
+              "Segments": [
+                {
+                  "Id": "string",
+                  "Document": "string"
+                }
+              ],
+              "LimitExceeded": false
+            }
+          ],
+          "NextToken": "string",
+          "UnprocessedTraceIds": [
+            "string"
+          ]
+        }
+      ]
+  CreateGroup:
+    description: |-
+      Creates a group resource with a name and a filter expression.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_CreateGroup.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "GroupName": "string",
+          "FilterExpression": "string",
+          "InsightsConfiguration": {
+            "InsightsEnabled": false,
+            "NotificationsEnabled": false
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Group": {
+            "GroupARN": "string",
+            "GroupName": "string",
+            "FilterExpression": "string",
+            "InsightsConfiguration": {
+              "InsightsEnabled": false,
+              "NotificationsEnabled": false
+            }
+          }
+        }
+      ]
+  CreateSamplingRule:
+    description: |-
+      Creates a rule to control sampling behavior for instrumented applications. Services retrieve rules with GetSamplingRules, and evaluate each rule in ascending order of priority for each request. If a rule matches, the service records a trace, borrowing it from the reservoir size. After 10 seconds, the service reports back to X-Ray with GetSamplingTargets to get updated versions of each in-use rule. The updated rule contains a trace quota that the service can use instead of borrowing from the reservoir.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_CreateSamplingRule.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "SamplingRule": {
+            "Host": "string",
+            "RuleARN": "string",
+            "URLPath": "string",
+            "Version": 1,
+            "Priority": 1,
+            "RuleName": "string",
+            "FixedRate": 0.1,
+            "Attributes": {
+              "string": "string"
+            },
+            "HTTPMethod": "string",
+            "ResourceARN": "string",
+            "ServiceName": "string",
+            "ServiceType": "string",
+            "ReservoirSize": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "SamplingRuleRecord": {
+            "CreatedAt": 1481289211.615,
+            "ModifiedAt": 1481289211.615,
+            "SamplingRule": {
+              "Host": "string",
+              "RuleARN": "string",
+              "URLPath": "string",
+              "Version": 1,
+              "Priority": 1,
+              "RuleName": "string",
+              "FixedRate": 0.1,
+              "Attributes": {
+                "string": "string"
+              },
+              "HTTPMethod": "string",
+              "ResourceARN": "string",
+              "ServiceName": "string",
+              "ServiceType": "string",
+              "ReservoirSize": 1
+            }
+          }
+        }
+      ]
+  DeleteGroup:
+    description: |-
+      Deletes a group resource.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_DeleteGroup.html
+    example:
+      inputs: [
+        {
+          "GroupARN": "string",
+          "GroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteSamplingRule:
+    description: |-
+      Deletes a sampling rule.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_DeleteSamplingRule.html
+    example:
+      inputs: [
+        {
+          "RuleARN": "string",
+          "RuleName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "SamplingRuleRecord": {
+            "CreatedAt": 1481289211.615,
+            "ModifiedAt": 1481289211.615,
+            "SamplingRule": {
+              "Host": "string",
+              "RuleARN": "string",
+              "URLPath": "string",
+              "Version": 1,
+              "Priority": 1,
+              "RuleName": "string",
+              "FixedRate": 0.1,
+              "Attributes": {
+                "string": "string"
+              },
+              "HTTPMethod": "string",
+              "ResourceARN": "string",
+              "ServiceName": "string",
+              "ServiceType": "string",
+              "ReservoirSize": 1
+            }
+          }
+        }
+      ]
+  GetEncryptionConfig:
+    description: |-
+      Retrieves the current encryption configuration for X-Ray data.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_GetEncryptionConfig.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "EncryptionConfig": {
+            "Type": "string",
+            "KeyId": "string",
+            "Status": "string"
+          }
+        }
+      ]
+  GetGroup:
+    description: |-
+      Retrieves group resource details.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_GetGroup.html
+    example:
+      inputs: [
+        {
+          "GroupARN": "string",
+          "GroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Group": {
+            "GroupARN": "string",
+            "GroupName": "string",
+            "FilterExpression": "string",
+            "InsightsConfiguration": {
+              "InsightsEnabled": false,
+              "NotificationsEnabled": false
+            }
+          }
+        }
+      ]
+  GetGroups:
+    description: |-
+      Retrieves all active group details.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_GetGroups.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Groups": [
+            {
+              "GroupARN": "string",
+              "GroupName": "string",
+              "FilterExpression": "string",
+              "InsightsConfiguration": {
+                "InsightsEnabled": false,
+                "NotificationsEnabled": false
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  GetInsightEvents:
+    description: |-
+      X-Ray reevaluates insights periodically until they're resolved, and records each intermediate state as an event. You can review an insight's events in the Impact Timeline on the Inspect page in the X-Ray console.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_GetInsightEvents.html
+    example:
+      inputs: [
+        {
+          "InsightId": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "InsightEvents": [
+            {
+              "Summary": "string",
+              "EventTime": 1481289211.615,
+              "TopAnomalousServices": [
+                {
+                  "ServiceId": {
+                    "Name": "string",
+                    "Type": "string",
+                    "Names": [
+                      "string"
+                    ],
+                    "AccountId": "string"
+                  }
+                }
+              ],
+              "ClientRequestImpactStatistics": {
+                "OkCount": 1,
+                "FaultCount": 1,
+                "TotalCount": 1
+              },
+              "RootCauseServiceRequestImpactStatistics": {
+                "OkCount": 1,
+                "FaultCount": 1,
+                "TotalCount": 1
+              }
+            }
+          ]
+        }
+      ]
+  GetInsight:
+    description: |-
+      Retrieves the summary information of an insight. This includes impact to clients and root cause services, the top anomalous services, the category, the state of the insight, and the start and end time of the insight.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_GetInsight.html
+    example:
+      inputs: [
+        {
+          "InsightId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Insight": {
+            "State": "string",
+            "EndTime": 1481289211.615,
+            "Summary": "string",
+            "GroupARN": "string",
+            "GroupName": "string",
+            "InsightId": "string",
+            "StartTime": 1481289211.615,
+            "Categories": [
+              "string"
+            ],
+            "RootCauseServiceId": {
+              "Name": "string",
+              "Type": "string",
+              "Names": [
+                "string"
+              ],
+              "AccountId": "string"
+            },
+            "TopAnomalousServices": [
+              {
+                "ServiceId": {
+                  "Name": "string",
+                  "Type": "string",
+                  "Names": [
+                    "string"
+                  ],
+                  "AccountId": "string"
+                }
+              }
+            ],
+            "ClientRequestImpactStatistics": {
+              "OkCount": 1,
+              "FaultCount": 1,
+              "TotalCount": 1
+            },
+            "RootCauseServiceRequestImpactStatistics": {
+              "OkCount": 1,
+              "FaultCount": 1,
+              "TotalCount": 1
+            }
+          }
+        }
+      ]
+  GetInsightImpactGraph:
+    description: |-
+      Retrieves a service graph structure filtered by the specified insight. The service graph is limited to only structural information. For a complete service graph, use this API with the GetServiceGraph API.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_GetInsightImpactGraph.html
+    example:
+      inputs: [
+        {
+          "EndTime": 1481289211.615,
+          "InsightId": "string",
+          "NextToken": "string",
+          "StartTime": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "EndTime": 1481289211.615,
+          "Services": [
+            {
+              "Name": "string",
+              "Type": "string",
+              "Edges": [
+                {
+                  "ReferenceId": 1
+                }
+              ],
+              "Names": [
+                "string"
+              ],
+              "AccountId": "string",
+              "ReferenceId": 1
+            }
+          ],
+          "InsightId": "string",
+          "NextToken": "string",
+          "StartTime": 1481289211.615,
+          "ServiceGraphEndTime": 1481289211.615,
+          "ServiceGraphStartTime": 1481289211.615
+        }
+      ]
+  GetInsightSummaries:
+    description: |-
+      Retrieves the summaries of all insights in the specified group matching the provided filter values.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_GetInsightSummaries.html
+    example:
+      inputs: [
+        {
+          "States": [
+            "string"
+          ],
+          "EndTime": 1481289211.615,
+          "GroupARN": "string",
+          "GroupName": "string",
+          "NextToken": "string",
+          "StartTime": 1481289211.615,
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "InsightSummaries": [
+            {
+              "State": "string",
+              "EndTime": 1481289211.615,
+              "Summary": "string",
+              "GroupARN": "string",
+              "GroupName": "string",
+              "InsightId": "string",
+              "StartTime": 1481289211.615,
+              "Categories": [
+                "string"
+              ],
+              "LastUpdateTime": 1481289211.615,
+              "RootCauseServiceId": {
+                "Name": "string",
+                "Type": "string",
+                "Names": [
+                  "string"
+                ],
+                "AccountId": "string"
+              },
+              "TopAnomalousServices": [
+                {
+                  "ServiceId": {
+                    "Name": "string",
+                    "Type": "string",
+                    "Names": [
+                      "string"
+                    ],
+                    "AccountId": "string"
+                  }
+                }
+              ],
+              "ClientRequestImpactStatistics": {
+                "OkCount": 1,
+                "FaultCount": 1,
+                "TotalCount": 1
+              },
+              "RootCauseServiceRequestImpactStatistics": {
+                "OkCount": 1,
+                "FaultCount": 1,
+                "TotalCount": 1
+              }
+            }
+          ]
+        }
+      ]
+  GetSamplingRules:
+    description: |-
+      Retrieves all sampling rules.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_GetSamplingRules.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "SamplingRuleRecords": [
+            {
+              "CreatedAt": 1481289211.615,
+              "ModifiedAt": 1481289211.615,
+              "SamplingRule": {
+                "Host": "string",
+                "RuleARN": "string",
+                "URLPath": "string",
+                "Version": 1,
+                "Priority": 1,
+                "RuleName": "string",
+                "FixedRate": 0.1,
+                "Attributes": {
+                  "string": "string"
+                },
+                "HTTPMethod": "string",
+                "ResourceARN": "string",
+                "ServiceName": "string",
+                "ServiceType": "string",
+                "ReservoirSize": 1
+              }
+            }
+          ]
+        }
+      ]
+  GetSamplingStatisticSummaries:
+    description: |-
+      Retrieves information about recent sampling results for all sampling rules.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_GetSamplingStatisticSummaries.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "SamplingStatisticSummaries": [
+            {
+              "RuleName": "string",
+              "Timestamp": 1481289211.615,
+              "BorrowCount": 1,
+              "RequestCount": 1,
+              "SampledCount": 1
+            }
+          ]
+        }
+      ]
+  GetSamplingTargets:
+    description: |-
+      Requests a sampling quota for rules that the service is using to sample requests.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_GetSamplingTargets.html
+    example:
+      inputs: [
+        {
+          "SamplingStatisticsDocuments": [
+            {
+              "ClientID": "string",
+              "RuleName": "string",
+              "Timestamp": 1481289211.615,
+              "BorrowCount": 1,
+              "RequestCount": 1,
+              "SampledCount": 1
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "LastRuleModification": 1481289211.615,
+          "UnprocessedStatistics": [
+            {
+              "Message": "string",
+              "RuleName": "string",
+              "ErrorCode": "string"
+            }
+          ],
+          "SamplingTargetDocuments": [
+            {
+              "Interval": 1,
+              "RuleName": "string",
+              "FixedRate": 0.1,
+              "ReservoirQuota": 1,
+              "ReservoirQuotaTTL": 1481289211.615
+            }
+          ]
+        }
+      ]
+  GetServiceGraph:
+    description: |-
+      Retrieves a document that describes services that process incoming requests, and downstream services that they call as a result. Root services process incoming requests and make calls to downstream services. Root services are applications that use the AWS X-Ray SDK. Downstream services can be other applications, AWS resources, HTTP web APIs, or SQL databases.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_GetServiceGraph.html
+    example:
+      inputs: [
+        {
+          "EndTime": 1481289211.615,
+          "GroupARN": "string",
+          "GroupName": "string",
+          "NextToken": "string",
+          "StartTime": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "EndTime": 1481289211.615,
+          "Services": [
+            {
+              "Name": "string",
+              "Root": false,
+              "Type": "string",
+              "Edges": [
+                {
+                  "Aliases": [
+                    {
+                      "Name": "string",
+                      "Type": "string",
+                      "Names": [
+                        "string"
+                      ]
+                    }
+                  ],
+                  "EndTime": 1481289211.615,
+                  "StartTime": 1481289211.615,
+                  "ReferenceId": 1,
+                  "SummaryStatistics": {
+                    "OkCount": 1,
+                    "TotalCount": 1,
+                    "ErrorStatistics": {
+                      "OtherCount": 1,
+                      "TotalCount": 1,
+                      "ThrottleCount": 1
+                    },
+                    "FaultStatistics": {
+                      "OtherCount": 1,
+                      "TotalCount": 1
+                    },
+                    "TotalResponseTime": 0.1
+                  },
+                  "ResponseTimeHistogram": [
+                    {
+                      "Count": 1,
+                      "Value": 0.1
+                    }
+                  ]
+                }
+              ],
+              "Names": [
+                "string"
+              ],
+              "State": "string",
+              "EndTime": 1481289211.615,
+              "AccountId": "string",
+              "StartTime": 1481289211.615,
+              "ReferenceId": 1,
+              "DurationHistogram": [
+                {
+                  "Count": 1,
+                  "Value": 0.1
+                }
+              ],
+              "SummaryStatistics": {
+                "OkCount": 1,
+                "TotalCount": 1,
+                "ErrorStatistics": {
+                  "OtherCount": 1,
+                  "TotalCount": 1,
+                  "ThrottleCount": 1
+                },
+                "FaultStatistics": {
+                  "OtherCount": 1,
+                  "TotalCount": 1
+                },
+                "TotalResponseTime": 0.1
+              },
+              "ResponseTimeHistogram": [
+                {
+                  "Count": 1,
+                  "Value": 0.1
+                }
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "StartTime": 1481289211.615,
+          "ContainsOldGroupVersions": false
+        }
+      ]
+  GetTimeSeriesServiceStatistics:
+    description: |-
+      Get an aggregation of service statistics defined by a specific time range.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_GetTimeSeriesServiceStatistics.html
+    example:
+      inputs: [
+        {
+          "Period": 1,
+          "EndTime": 1481289211.615,
+          "GroupARN": "string",
+          "GroupName": "string",
+          "NextToken": "string",
+          "StartTime": 1481289211.615,
+          "ForecastStatistics": false,
+          "EntitySelectorExpression": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ContainsOldGroupVersions": false,
+          "TimeSeriesServiceStatistics": [
+            {
+              "Timestamp": 1481289211.615,
+              "EdgeSummaryStatistics": {
+                "OkCount": 1,
+                "TotalCount": 1,
+                "ErrorStatistics": {
+                  "OtherCount": 1,
+                  "TotalCount": 1,
+                  "ThrottleCount": 1
+                },
+                "FaultStatistics": {
+                  "OtherCount": 1,
+                  "TotalCount": 1
+                },
+                "TotalResponseTime": 0.1
+              },
+              "ResponseTimeHistogram": [
+                {
+                  "Count": 1,
+                  "Value": 0.1
+                }
+              ],
+              "ServiceSummaryStatistics": {
+                "OkCount": 1,
+                "TotalCount": 1,
+                "ErrorStatistics": {
+                  "OtherCount": 1,
+                  "TotalCount": 1,
+                  "ThrottleCount": 1
+                },
+                "FaultStatistics": {
+                  "OtherCount": 1,
+                  "TotalCount": 1
+                },
+                "TotalResponseTime": 0.1
+              },
+              "ServiceForecastStatistics": {
+                "FaultCountLow": 1,
+                "FaultCountHigh": 1
+              }
+            }
+          ]
+        }
+      ]
+  GetTraceGraph:
+    description: |-
+      Retrieves a service graph for one or more specific trace IDs.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_GetTraceGraph.html
+    example:
+      inputs: [
+        {
+          "TraceIds": [
+            "string"
+          ],
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Services": [
+            {
+              "Name": "string",
+              "Root": false,
+              "Type": "string",
+              "Edges": [
+                {
+                  "Aliases": [
+                    {
+                      "Name": "string",
+                      "Type": "string",
+                      "Names": [
+                        "string"
+                      ]
+                    }
+                  ],
+                  "EndTime": 1481289211.615,
+                  "StartTime": 1481289211.615,
+                  "ReferenceId": 1,
+                  "SummaryStatistics": {
+                    "OkCount": 1,
+                    "TotalCount": 1,
+                    "ErrorStatistics": {
+                      "OtherCount": 1,
+                      "TotalCount": 1,
+                      "ThrottleCount": 1
+                    },
+                    "FaultStatistics": {
+                      "OtherCount": 1,
+                      "TotalCount": 1
+                    },
+                    "TotalResponseTime": 0.1
+                  },
+                  "ResponseTimeHistogram": [
+                    {
+                      "Count": 1,
+                      "Value": 0.1
+                    }
+                  ]
+                }
+              ],
+              "Names": [
+                "string"
+              ],
+              "State": "string",
+              "EndTime": 1481289211.615,
+              "AccountId": "string",
+              "StartTime": 1481289211.615,
+              "ReferenceId": 1,
+              "DurationHistogram": [
+                {
+                  "Count": 1,
+                  "Value": 0.1
+                }
+              ],
+              "SummaryStatistics": {
+                "OkCount": 1,
+                "TotalCount": 1,
+                "ErrorStatistics": {
+                  "OtherCount": 1,
+                  "TotalCount": 1,
+                  "ThrottleCount": 1
+                },
+                "FaultStatistics": {
+                  "OtherCount": 1,
+                  "TotalCount": 1
+                },
+                "TotalResponseTime": 0.1
+              },
+              "ResponseTimeHistogram": [
+                {
+                  "Count": 1,
+                  "Value": 0.1
+                }
+              ]
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  GetTraceSummaries:
+    description: |-
+      Retrieves IDs and annotations for traces available for a specified time frame using an optional filter. To get the full traces, pass the trace IDs to BatchGetTraces.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_GetTraceSummaries.html
+    example:
+      inputs: [
+        {
+          "EndTime": 1481289211.615,
+          "Sampling": false,
+          "NextToken": "string",
+          "StartTime": 1481289211.615,
+          "TimeRangeType": "string",
+          "FilterExpression": "string",
+          "SamplingStrategy": {
+            "Name": "string",
+            "Value": 0.1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "TraceSummaries": [
+            {
+              "Id": "string",
+              "Http": {
+                "HttpURL": "string",
+                "ClientIp": "string",
+                "UserAgent": "string",
+                "HttpMethod": "string",
+                "HttpStatus": 1
+              },
+              "Users": [
+                {
+                  "UserName": "string",
+                  "ServiceIds": [
+                    {
+                      "Name": "string",
+                      "Type": "string",
+                      "Names": [
+                        "string"
+                      ],
+                      "AccountId": "string"
+                    }
+                  ]
+                }
+              ],
+              "Duration": 0.1,
+              "HasError": false,
+              "HasFault": false,
+              "Revision": 1,
+              "IsPartial": false,
+              "EntryPoint": {
+                "Name": "string",
+                "Type": "string",
+                "Names": [
+                  "string"
+                ],
+                "AccountId": "string"
+              },
+              "ServiceIds": [
+                {
+                  "Name": "string",
+                  "Type": "string",
+                  "Names": [
+                    "string"
+                  ],
+                  "AccountId": "string"
+                }
+              ],
+              "Annotations": {
+                "string": [
+                  {
+                    "ServiceIds": [
+                      {
+                        "Name": "string",
+                        "Type": "string",
+                        "Names": [
+                          "string"
+                        ],
+                        "AccountId": "string"
+                      }
+                    ],
+                    "AnnotationValue": {
+                      "NumberValue": 0.1,
+                      "StringValue": "string",
+                      "BooleanValue": false
+                    }
+                  }
+                ]
+              },
+              "HasThrottle": false,
+              "InstanceIds": [
+                {
+                  "Id": "string"
+                }
+              ],
+              "ResourceARNs": [
+                {
+                  "ARN": "string"
+                }
+              ],
+              "ResponseTime": 0.1,
+              "ErrorRootCauses": [
+                {
+                  "Services": [
+                    {
+                      "Name": "string",
+                      "Type": "string",
+                      "Names": [
+                        "string"
+                      ],
+                      "Inferred": false,
+                      "AccountId": "string",
+                      "EntityPath": [
+                        {
+                          "Name": "string",
+                          "Remote": false,
+                          "Exceptions": [
+                            {
+                              "Name": "string",
+                              "Message": "string"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "ClientImpacting": false
+                }
+              ],
+              "FaultRootCauses": [
+                {
+                  "Services": [
+                    {
+                      "Name": "string",
+                      "Type": "string",
+                      "Names": [
+                        "string"
+                      ],
+                      "Inferred": false,
+                      "AccountId": "string",
+                      "EntityPath": [
+                        {
+                          "Name": "string",
+                          "Remote": false,
+                          "Exceptions": [
+                            {
+                              "Name": "string",
+                              "Message": "string"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "ClientImpacting": false
+                }
+              ],
+              "MatchedEventTime": 1481289211.615,
+              "AvailabilityZones": [
+                {
+                  "Name": "string"
+                }
+              ],
+              "ResponseTimeRootCauses": [
+                {
+                  "Services": [
+                    {
+                      "Name": "string",
+                      "Type": "string",
+                      "Names": [
+                        "string"
+                      ],
+                      "Inferred": false,
+                      "AccountId": "string",
+                      "EntityPath": [
+                        {
+                          "Name": "string",
+                          "Remote": false,
+                          "Coverage": 0.1
+                        }
+                      ]
+                    }
+                  ],
+                  "ClientImpacting": false
+                }
+              ]
+            }
+          ],
+          "ApproximateTime": 1481289211.615,
+          "TracesProcessedCount": 1
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns a list of tags that are applied to the specified AWS X-Ray group or sampling rule.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  PutEncryptionConfig:
+    description: |-
+      Updates the encryption configuration for X-Ray data.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_PutEncryptionConfig.html
+    example:
+      inputs: [
+        {
+          "Type": "string",
+          "KeyId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EncryptionConfig": {
+            "Type": "string",
+            "KeyId": "string",
+            "Status": "string"
+          }
+        }
+      ]
+  PutTelemetryRecords:
+    description: |-
+      Used by the AWS X-Ray daemon to upload telemetry.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_PutTelemetryRecords.html
+    example:
+      inputs: [
+        {
+          "Hostname": "string",
+          "ResourceARN": "string",
+          "EC2InstanceId": "string",
+          "TelemetryRecords": [
+            {
+              "Timestamp": 1481289211.615,
+              "SegmentsSentCount": 1,
+              "SegmentsReceivedCount": 1,
+              "SegmentsRejectedCount": 1,
+              "SegmentsSpilloverCount": 1,
+              "BackendConnectionErrors": {
+                "OtherCount": 1,
+                "TimeoutCount": 1,
+                "HTTPCode4XXCount": 1,
+                "HTTPCode5XXCount": 1,
+                "UnknownHostCount": 1,
+                "ConnectionRefusedCount": 1
+              }
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutTraceSegments:
+    description: |-
+      Uploads segment documents to AWS X-Ray. The X-Ray SDK generates segment documents and sends them to the X-Ray daemon, which uploads them in batches. A segment document can be a completed segment, an in-progress segment, or an array of subsegments.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_PutTraceSegments.html
+    example:
+      inputs: [
+        {
+          "TraceSegmentDocuments": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "UnprocessedTraceSegments": [
+            {
+              "Id": "string",
+              "Message": "string",
+              "ErrorCode": "string"
+            }
+          ]
+        }
+      ]
+  TagResource:
+    description: |-
+      Applies tags to an existing AWS X-Ray group or sampling rule.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes tags from an AWS X-Ray group or sampling rule. You cannot edit or delete system tags (those with an aws:prefix).
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateGroup:
+    description: |-
+      Updates a group resource.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_UpdateGroup.html
+    example:
+      inputs: [
+        {
+          "GroupARN": "string",
+          "GroupName": "string",
+          "FilterExpression": "string",
+          "InsightsConfiguration": {
+            "InsightsEnabled": false,
+            "NotificationsEnabled": false
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Group": {
+            "GroupARN": "string",
+            "GroupName": "string",
+            "FilterExpression": "string",
+            "InsightsConfiguration": {
+              "InsightsEnabled": false,
+              "NotificationsEnabled": false
+            }
+          }
+        }
+      ]
+  UpdateSamplingRule:
+    description: |-
+      Modifies a sampling rule's configuration.
+    versions:
+      from: 2016.4.12
+    link: https://docs.aws.amazon.com/xray/latest/api/API_UpdateSamplingRule.html
+    example:
+      inputs: [
+        {
+          "SamplingRuleUpdate": {
+            "Host": "string",
+            "RuleARN": "string",
+            "URLPath": "string",
+            "Priority": 1,
+            "RuleName": "string",
+            "FixedRate": 0.1,
+            "Attributes": {
+              "string": "string"
+            },
+            "HTTPMethod": "string",
+            "ResourceARN": "string",
+            "ServiceName": "string",
+            "ServiceType": "string",
+            "ReservoirSize": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "SamplingRuleRecord": {
+            "CreatedAt": 1481289211.615,
+            "ModifiedAt": 1481289211.615,
+            "SamplingRule": {
+              "Host": "string",
+              "RuleARN": "string",
+              "URLPath": "string",
+              "Version": 1,
+              "Priority": 1,
+              "RuleName": "string",
+              "FixedRate": 0.1,
+              "Attributes": {
+                "string": "string"
+              },
+              "HTTPMethod": "string",
+              "ResourceARN": "string",
+              "ServiceName": "string",
+              "ServiceType": "string",
+              "ReservoirSize": 1
+            }
+          }
+        }
+      ]

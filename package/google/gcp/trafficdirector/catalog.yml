@@ -1,0 +1,855 @@
+Product:
+  name: GCP Traffic Director Service
+  versions: [2.0.0]
+  package: google.gcp.trafficdirector
+  description: |-
+    Traffic Director Service
+  link: https://cloud.google.com/traffic-director
+  contentType: json
+Operations:
+  discovery.client_status:
+    description: ''
+    versions:
+      from: 2.0.0
+    link: https://cloud.google.com/traffic-director/v2/discovery/client_status
+    example:
+      inputs: [
+        {
+          "id": "ClientStatusRequest",
+          "type": "object",
+          "properties": {
+            "nodeMatchers": {
+              "type": "array",
+              "items": {
+                "id": "NodeMatcher",
+                "type": "object",
+                "properties": {
+                  "nodeId": {
+                    "id": "StringMatcher",
+                    "type": "object",
+                    "properties": {
+                      "exact": {
+                        "type": "string",
+                        "description": "The input string must match exactly the string specified here. Examples: * *abc* only matches the value *abc*."
+                      },
+                      "regex": {
+                        "type": "string",
+                        "description": "The input string must match the regular expression specified here. The regex grammar is defined `here `_. Examples: * The regex ``\\d{3}`` matches the value *123* * The regex ``\\d{3}`` does not match the value *1234* * The regex ``\\d{3}`` does not match the value *123.456* .. attention:: This field has been deprecated in favor of `safe_regex` as it is not safe for use with untrusted input in all cases."
+                      },
+                      "prefix": {
+                        "type": "string",
+                        "description": "The input string must have the prefix specified here. Note: empty prefix is not allowed, please use regex instead. Examples: * *abc* matches the value *abc.xyz*"
+                      },
+                      "suffix": {
+                        "type": "string",
+                        "description": "The input string must have the suffix specified here. Note: empty prefix is not allowed, please use regex instead. Examples: * *abc* matches the value *xyz.abc*"
+                      },
+                      "safeRegex": {
+                        "id": "RegexMatcher",
+                        "type": "object",
+                        "properties": {
+                          "regex": {
+                            "type": "string",
+                            "description": "The regex match string. The string must be supported by the configured engine."
+                          },
+                          "googleRe2": {
+                            "id": "GoogleRE2",
+                            "type": "object",
+                            "properties": {
+                              "maxProgramSize": {
+                                "type": "integer",
+                                "format": "uint32",
+                                "description": "This field controls the RE2 \"program size\" which is a rough estimate of how complex a compiled regex is to evaluate. A regex that has a program size greater than the configured value will fail to compile. In this case, the configured max program size can be increased or the regex can be simplified. If not specified, the default is 100. This field is deprecated; regexp validation should be performed on the management server instead of being done by each individual client."
+                              }
+                            },
+                            "description": "Google's RE2 regex engine."
+                          }
+                        },
+                        "description": "The input string must match the regular expression specified here."
+                      },
+                      "ignoreCase": {
+                        "type": "boolean",
+                        "description": "If true, indicates the exact/prefix/suffix matching should be case insensitive. This has no effect for the safe_regex match. For example, the matcher *data* will match both input string *Data* and *data* if set to true."
+                      }
+                    },
+                    "description": "Specifies match criteria on the node id."
+                  },
+                  "nodeMetadatas": {
+                    "type": "array",
+                    "items": {
+                      "id": "StructMatcher",
+                      "type": "object",
+                      "properties": {
+                        "path": {
+                          "type": "array",
+                          "items": {
+                            "id": "PathSegment",
+                            "type": "object",
+                            "properties": {
+                              "key": {
+                                "type": "string",
+                                "description": "If specified, use the key to retrieve the value in a Struct."
+                              }
+                            },
+                            "description": "Specifies the segment in a path to retrieve value from Struct."
+                          },
+                          "description": "The path to retrieve the Value from the Struct."
+                        },
+                        "value": {
+                          "id": "ValueMatcher",
+                          "type": "object",
+                          "properties": {
+                            "boolMatch": {
+                              "type": "boolean",
+                              "description": "If specified, a match occurs if and only if the target value is a bool value and is equal to this field."
+                            },
+                            "listMatch": {
+                              "id": "ListMatcher",
+                              "type": "object",
+                              "properties": {
+                                "oneOf": {
+                                  "id": "ValueMatcher",
+                                  "type": "object",
+                                  "properties": {},
+                                  "description": "If specified, at least one of the values in the list must match the value specified."
+                                }
+                              },
+                              "description": "If specified, a match occurs if and only if the target value is a list value and is matched to this field."
+                            },
+                            "nullMatch": {
+                              "id": "NullMatch",
+                              "type": "object",
+                              "properties": {},
+                              "description": "If specified, a match occurs if and only if the target value is a NullValue."
+                            },
+                            "doubleMatch": {
+                              "id": "DoubleMatcher",
+                              "type": "object",
+                              "properties": {
+                                "exact": {
+                                  "type": "number",
+                                  "format": "double",
+                                  "description": "If specified, the input double value must be equal to the value specified here."
+                                },
+                                "range": {
+                                  "id": "DoubleRange",
+                                  "type": "object",
+                                  "properties": {
+                                    "end": {
+                                      "type": "number",
+                                      "format": "double",
+                                      "description": "end of the range (exclusive)"
+                                    },
+                                    "start": {
+                                      "type": "number",
+                                      "format": "double",
+                                      "description": "start of the range (inclusive)"
+                                    }
+                                  },
+                                  "description": "If specified, the input double value must be in the range specified here. Note: The range is using half-open interval semantics [start, end)."
+                                }
+                              },
+                              "description": "If specified, a match occurs if and only if the target value is a double value and is matched to this field."
+                            },
+                            "stringMatch": {
+                              "id": "StringMatcher",
+                              "type": "object",
+                              "properties": {
+                                "exact": {
+                                  "type": "string",
+                                  "description": "The input string must match exactly the string specified here. Examples: * *abc* only matches the value *abc*."
+                                },
+                                "regex": {
+                                  "type": "string",
+                                  "description": "The input string must match the regular expression specified here. The regex grammar is defined `here `_. Examples: * The regex ``\\d{3}`` matches the value *123* * The regex ``\\d{3}`` does not match the value *1234* * The regex ``\\d{3}`` does not match the value *123.456* .. attention:: This field has been deprecated in favor of `safe_regex` as it is not safe for use with untrusted input in all cases."
+                                },
+                                "prefix": {
+                                  "type": "string",
+                                  "description": "The input string must have the prefix specified here. Note: empty prefix is not allowed, please use regex instead. Examples: * *abc* matches the value *abc.xyz*"
+                                },
+                                "suffix": {
+                                  "type": "string",
+                                  "description": "The input string must have the suffix specified here. Note: empty prefix is not allowed, please use regex instead. Examples: * *abc* matches the value *xyz.abc*"
+                                },
+                                "safeRegex": {
+                                  "id": "RegexMatcher",
+                                  "type": "object",
+                                  "properties": {
+                                    "regex": {
+                                      "type": "string",
+                                      "description": "The regex match string. The string must be supported by the configured engine."
+                                    },
+                                    "googleRe2": {
+                                      "id": "GoogleRE2",
+                                      "type": "object",
+                                      "properties": {
+                                        "maxProgramSize": {
+                                          "type": "integer",
+                                          "format": "uint32",
+                                          "description": "This field controls the RE2 \"program size\" which is a rough estimate of how complex a compiled regex is to evaluate. A regex that has a program size greater than the configured value will fail to compile. In this case, the configured max program size can be increased or the regex can be simplified. If not specified, the default is 100. This field is deprecated; regexp validation should be performed on the management server instead of being done by each individual client."
+                                        }
+                                      },
+                                      "description": "Google's RE2 regex engine."
+                                    }
+                                  },
+                                  "description": "The input string must match the regular expression specified here."
+                                },
+                                "ignoreCase": {
+                                  "type": "boolean",
+                                  "description": "If true, indicates the exact/prefix/suffix matching should be case insensitive. This has no effect for the safe_regex match. For example, the matcher *data* will match both input string *Data* and *data* if set to true."
+                                }
+                              },
+                              "description": "If specified, a match occurs if and only if the target value is a string value and is matched to this field."
+                            },
+                            "presentMatch": {
+                              "type": "boolean",
+                              "description": "If specified, value match will be performed based on whether the path is referring to a valid primitive value in the metadata. If the path is referring to a non-primitive value, the result is always not matched."
+                            }
+                          },
+                          "description": "The StructMatcher is matched if the value retrieved by path is matched to this value."
+                        }
+                      },
+                      "description": "StructMatcher provides a general interface to check if a given value is matched in google.protobuf.Struct. It uses `path` to retrieve the value from the struct and then check if it's matched to the specified value. For example, for the following Struct: .. code-block:: yaml fields: a: struct_value: fields: b: struct_value: fields: c: string_value: pro t: list_value: values: - string_value: m - string_value: n The following MetadataMatcher is matched as the path [a, b, c] will retrieve a string value \"pro\" from the Metadata which is matched to the specified prefix match. .. code-block:: yaml path: - key: a - key: b - key: c value: string_match: prefix: pr The following StructMatcher is matched as the code will match one of the string values in the list at the path [a, t]. .. code-block:: yaml path: - key: a - key: t value: list_match: one_of: string_match: exact: m An example use of StructMatcher is to match metadata in envoy.v*.core.Node."
+                    },
+                    "description": "Specifies match criteria on the node metadata."
+                  }
+                },
+                "description": "Specifies the way to match a Node. The match follows AND semantics."
+              },
+              "description": "Management server can use these match criteria to identify clients. The match follows OR semantics."
+            }
+          },
+          "description": "Request for client status of clients identified by a list of NodeMatchers."
+        }
+      ]
+      outputs: [
+        {
+          "id": "ClientStatusResponse",
+          "type": "object",
+          "properties": {
+            "config": {
+              "type": "array",
+              "items": {
+                "id": "ClientConfig",
+                "type": "object",
+                "properties": {
+                  "node": {
+                    "id": "Node",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "An opaque node identifier for the Envoy node. This also provides the local service node name. It should be set if any of the following features are used: :ref:`statsd `, :ref:`CDS `, and :ref:`HTTP tracing `, either in this message or via :option:`--service-node`."
+                      },
+                      "cluster": {
+                        "type": "string",
+                        "description": "Defines the local service cluster name where Envoy is running. Though optional, it should be set if any of the following features are used: :ref:`statsd `, :ref:`health check cluster verification `, :ref:`runtime override directory `, :ref:`user agent addition `, :ref:`HTTP global rate limiting `, :ref:`CDS `, and :ref:`HTTP tracing `, either in this message or via :option:`--service-cluster`."
+                      },
+                      "locality": {
+                        "id": "Locality",
+                        "type": "object",
+                        "properties": {
+                          "zone": {
+                            "type": "string",
+                            "description": "Defines the local service zone where Envoy is running. Though optional, it should be set if discovery service routing is used and the discovery service exposes :ref:`zone data `, either in this message or via :option:`--service-zone`. The meaning of zone is context dependent, e.g. `Availability Zone (AZ) `_ on AWS, `Zone `_ on GCP, etc."
+                          },
+                          "region": {
+                            "type": "string",
+                            "description": "Region this :ref:`zone ` belongs to."
+                          },
+                          "subZone": {
+                            "type": "string",
+                            "description": "When used for locality of upstream hosts, this field further splits zone into smaller chunks of sub-zones so they can be load balanced independently."
+                          }
+                        },
+                        "description": "Locality specifying where the Envoy instance is running."
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "description": "Opaque metadata extending the node identifier. Envoy will pass this directly to the management server.",
+                        "additionalProperties": {
+                          "type": "any",
+                          "description": "Properties of the object."
+                        }
+                      },
+                      "extensions": {
+                        "type": "array",
+                        "items": {
+                          "id": "Extension",
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "This is the name of the Envoy filter as specified in the Envoy configuration, e.g. envoy.filters.http.router, com.acme.widget."
+                            },
+                            "version": {
+                              "id": "BuildVersion",
+                              "type": "object",
+                              "properties": {
+                                "version": {
+                                  "id": "SemanticVersion",
+                                  "type": "object",
+                                  "properties": {
+                                    "patch": {
+                                      "type": "integer",
+                                      "format": "uint32"
+                                    },
+                                    "majorNumber": {
+                                      "type": "integer",
+                                      "format": "uint32"
+                                    },
+                                    "minorNumber": {
+                                      "type": "integer",
+                                      "format": "uint32"
+                                    }
+                                  },
+                                  "description": "SemVer version of extension."
+                                },
+                                "metadata": {
+                                  "type": "object",
+                                  "description": "Free-form build information. Envoy defines several well known keys in the source/common/version/version.h file",
+                                  "additionalProperties": {
+                                    "type": "any",
+                                    "description": "Properties of the object."
+                                  }
+                                }
+                              },
+                              "description": "The version is a property of the extension and maintained independently of other extensions and the Envoy API. This field is not set when extension did not provide version information."
+                            },
+                            "category": {
+                              "type": "string",
+                              "description": "Category of the extension. Extension category names use reverse DNS notation. For instance \"envoy.filters.listener\" for Envoy's built-in listener filters or \"com.acme.filters.http\" for HTTP filters from acme.com vendor. [#comment:"
+                            },
+                            "disabled": {
+                              "type": "boolean",
+                              "description": "Indicates that the extension is present but was disabled via dynamic configuration."
+                            },
+                            "typeDescriptor": {
+                              "type": "string",
+                              "description": "[#not-implemented-hide:] Type descriptor of extension configuration proto. [#comment:"
+                            }
+                          },
+                          "description": "Version and identification for an Envoy extension. [#next-free-field: 6]"
+                        },
+                        "description": "List of extensions and their versions supported by the node."
+                      },
+                      "buildVersion": {
+                        "type": "string",
+                        "description": "This is motivated by informing a management server during canary which version of Envoy is being tested in a heterogeneous fleet. This will be set by Envoy in management server RPCs. This field is deprecated in favor of the user_agent_name and user_agent_version values."
+                      },
+                      "userAgentName": {
+                        "type": "string",
+                        "description": "Free-form string that identifies the entity requesting config. E.g. \"envoy\" or \"grpc\""
+                      },
+                      "clientFeatures": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Client feature support list. These are well known features described in the Envoy API repository for a given major version of an API. Client features use reverse DNS naming scheme, for example `com.acme.feature`. See :ref:`the list of features ` that xDS client may support."
+                      },
+                      "userAgentVersion": {
+                        "type": "string",
+                        "description": "Free-form string that identifies the version of the entity requesting config. E.g. \"1.12.2\" or \"abcd1234\", or \"SpecialEnvoyBuild\""
+                      },
+                      "listeningAddresses": {
+                        "type": "array",
+                        "items": {
+                          "id": "Address",
+                          "type": "object",
+                          "properties": {
+                            "pipe": {
+                              "id": "Pipe",
+                              "type": "object",
+                              "properties": {
+                                "mode": {
+                                  "type": "integer",
+                                  "format": "uint32",
+                                  "description": "The mode for the Pipe. Not applicable for abstract sockets."
+                                },
+                                "path": {
+                                  "type": "string",
+                                  "description": "Unix Domain Socket path. On Linux, paths starting with '@' will use the abstract namespace. The starting '@' is replaced by a null byte by Envoy. Paths starting with '@' will result in an error in environments other than Linux."
+                                }
+                              }
+                            },
+                            "socketAddress": {
+                              "id": "SocketAddress",
+                              "type": "object",
+                              "properties": {
+                                "address": {
+                                  "type": "string",
+                                  "description": "The address for this socket. :ref:`Listeners ` will bind to the address. An empty address is not allowed. Specify ``0.0.0.0`` or ``::`` to bind to any address. [#comment:TODO(zuercher) reinstate when implemented: It is possible to distinguish a Listener address via the prefix/suffix matching in :ref:`FilterChainMatch `.] When used within an upstream :ref:`BindConfig `, the address controls the source address of outbound connections. For :ref:`clusters `, the cluster type determines whether the address must be an IP (*STATIC* or *EDS* clusters) or a hostname resolved by DNS (*STRICT_DNS* or *LOGICAL_DNS* clusters). Address resolution can be customized via :ref:`resolver_name `."
+                                },
+                                "protocol": {
+                                  "enum": [
+                                    "TCP",
+                                    "UDP"
+                                  ],
+                                  "type": "string",
+                                  "enumDescriptions": [
+                                    "",
+                                    ""
+                                  ]
+                                },
+                                "namedPort": {
+                                  "type": "string",
+                                  "description": "This is only valid if :ref:`resolver_name ` is specified below and the named resolver is capable of named port resolution."
+                                },
+                                "portValue": {
+                                  "type": "integer",
+                                  "format": "uint32"
+                                },
+                                "ipv4Compat": {
+                                  "type": "boolean",
+                                  "description": "When binding to an IPv6 address above, this enables `IPv4 compatibility `_. Binding to ``::`` will allow both IPv4 and IPv6 connections, with peer IPv4 addresses mapped into IPv6 space as ``::FFFF:``."
+                                },
+                                "resolverName": {
+                                  "type": "string",
+                                  "description": "The name of the custom resolver. This must have been registered with Envoy. If this is empty, a context dependent default applies. If the address is a concrete IP address, no resolution will occur. If address is a hostname this should be set for resolution other than DNS. Specifying a custom resolver with *STRICT_DNS* or *LOGICAL_DNS* will generate an error at runtime."
+                                }
+                              },
+                              "description": "[#next-free-field: 7]"
+                            }
+                          },
+                          "description": "Addresses specify either a logical or physical address and port, which are used to tell Envoy where to bind/listen, connect to upstream and find management servers."
+                        },
+                        "description": "Known listening ports on the node as a generic hint to the management server for filtering :ref:`listeners ` to be returned. For example, if there is a listener bound to port 80, the list can optionally contain the SocketAddress `(0.0.0.0,80)`. The field is optional and just a hint."
+                      },
+                      "userAgentBuildVersion": {
+                        "id": "BuildVersion",
+                        "type": "object",
+                        "properties": {
+                          "version": {
+                            "id": "SemanticVersion",
+                            "type": "object",
+                            "properties": {
+                              "patch": {
+                                "type": "integer",
+                                "format": "uint32"
+                              },
+                              "majorNumber": {
+                                "type": "integer",
+                                "format": "uint32"
+                              },
+                              "minorNumber": {
+                                "type": "integer",
+                                "format": "uint32"
+                              }
+                            },
+                            "description": "SemVer version of extension."
+                          },
+                          "metadata": {
+                            "type": "object",
+                            "description": "Free-form build information. Envoy defines several well known keys in the source/common/version/version.h file",
+                            "additionalProperties": {
+                              "type": "any",
+                              "description": "Properties of the object."
+                            }
+                          }
+                        },
+                        "description": "Structured version of the entity requesting config."
+                      }
+                    },
+                    "description": "Node for a particular client."
+                  },
+                  "xdsConfig": {
+                    "type": "array",
+                    "items": {
+                      "id": "PerXdsConfig",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "UNKNOWN",
+                            "SYNCED",
+                            "NOT_SENT",
+                            "STALE",
+                            "ERROR"
+                          ],
+                          "type": "string",
+                          "enumDescriptions": [
+                            "Status info is not available/unknown.",
+                            "Management server has sent the config to client and received ACK.",
+                            "Config is not sent.",
+                            "Management server has sent the config to client but hasn’t received ACK/NACK.",
+                            "Management server has sent the config to client but received NACK."
+                          ]
+                        },
+                        "routeConfig": {
+                          "id": "RoutesConfigDump",
+                          "type": "object",
+                          "properties": {
+                            "staticRouteConfigs": {
+                              "type": "array",
+                              "items": {
+                                "id": "StaticRouteConfig",
+                                "type": "object",
+                                "properties": {
+                                  "lastUpdated": {
+                                    "type": "string",
+                                    "format": "google-datetime",
+                                    "description": "The timestamp when the Route was last updated."
+                                  },
+                                  "routeConfig": {
+                                    "type": "object",
+                                    "description": "The route config.",
+                                    "additionalProperties": {
+                                      "type": "any",
+                                      "description": "Properties of the object. Contains field @type with type URL."
+                                    }
+                                  }
+                                }
+                              },
+                              "description": "The statically loaded route configs."
+                            },
+                            "dynamicRouteConfigs": {
+                              "type": "array",
+                              "items": {
+                                "id": "DynamicRouteConfig",
+                                "type": "object",
+                                "properties": {
+                                  "lastUpdated": {
+                                    "type": "string",
+                                    "format": "google-datetime",
+                                    "description": "The timestamp when the Route was last updated."
+                                  },
+                                  "routeConfig": {
+                                    "type": "object",
+                                    "description": "The route config.",
+                                    "additionalProperties": {
+                                      "type": "any",
+                                      "description": "Properties of the object. Contains field @type with type URL."
+                                    }
+                                  },
+                                  "versionInfo": {
+                                    "type": "string",
+                                    "description": "This is the per-resource version information. This version is currently taken from the :ref:`version_info ` field at the time that the route configuration was loaded."
+                                  }
+                                }
+                              },
+                              "description": "The dynamically loaded route configs."
+                            }
+                          },
+                          "description": "Envoy's RDS implementation fills this message with all currently loaded routes, as described by their RouteConfiguration objects. Static routes that are either defined in the bootstrap configuration or defined inline while configuring listeners are separated from those configured dynamically via RDS. Route configuration information can be used to recreate an Envoy configuration by populating all routes as static routes or by returning them in RDS responses."
+                        },
+                        "clusterConfig": {
+                          "id": "ClustersConfigDump",
+                          "type": "object",
+                          "properties": {
+                            "versionInfo": {
+                              "type": "string",
+                              "description": "This is the :ref:`version_info ` in the last processed CDS discovery response. If there are only static bootstrap clusters, this field will be \"\"."
+                            },
+                            "staticClusters": {
+                              "type": "array",
+                              "items": {
+                                "id": "StaticCluster",
+                                "type": "object",
+                                "properties": {
+                                  "cluster": {
+                                    "type": "object",
+                                    "description": "The cluster config.",
+                                    "additionalProperties": {
+                                      "type": "any",
+                                      "description": "Properties of the object. Contains field @type with type URL."
+                                    }
+                                  },
+                                  "lastUpdated": {
+                                    "type": "string",
+                                    "format": "google-datetime",
+                                    "description": "The timestamp when the Cluster was last updated."
+                                  }
+                                },
+                                "description": "Describes a statically loaded cluster."
+                              },
+                              "description": "The statically loaded cluster configs."
+                            },
+                            "dynamicActiveClusters": {
+                              "type": "array",
+                              "items": {
+                                "id": "DynamicCluster",
+                                "type": "object",
+                                "properties": {
+                                  "cluster": {
+                                    "type": "object",
+                                    "description": "The cluster config.",
+                                    "additionalProperties": {
+                                      "type": "any",
+                                      "description": "Properties of the object. Contains field @type with type URL."
+                                    }
+                                  },
+                                  "lastUpdated": {
+                                    "type": "string",
+                                    "format": "google-datetime",
+                                    "description": "The timestamp when the Cluster was last updated."
+                                  },
+                                  "versionInfo": {
+                                    "type": "string",
+                                    "description": "This is the per-resource version information. This version is currently taken from the :ref:`version_info ` field at the time that the cluster was loaded. In the future, discrete per-cluster versions may be supported by the API."
+                                  }
+                                },
+                                "description": "Describes a dynamically loaded cluster via the CDS API."
+                              },
+                              "description": "The dynamically loaded active clusters. These are clusters that are available to service data plane traffic."
+                            },
+                            "dynamicWarmingClusters": {
+                              "type": "array",
+                              "items": {
+                                "id": "DynamicCluster",
+                                "type": "object",
+                                "properties": {
+                                  "cluster": {
+                                    "type": "object",
+                                    "description": "The cluster config.",
+                                    "additionalProperties": {
+                                      "type": "any",
+                                      "description": "Properties of the object. Contains field @type with type URL."
+                                    }
+                                  },
+                                  "lastUpdated": {
+                                    "type": "string",
+                                    "format": "google-datetime",
+                                    "description": "The timestamp when the Cluster was last updated."
+                                  },
+                                  "versionInfo": {
+                                    "type": "string",
+                                    "description": "This is the per-resource version information. This version is currently taken from the :ref:`version_info ` field at the time that the cluster was loaded. In the future, discrete per-cluster versions may be supported by the API."
+                                  }
+                                },
+                                "description": "Describes a dynamically loaded cluster via the CDS API."
+                              },
+                              "description": "The dynamically loaded warming clusters. These are clusters that are currently undergoing warming in preparation to service data plane traffic. Note that if attempting to recreate an Envoy configuration from a configuration dump, the warming clusters should generally be discarded."
+                            }
+                          },
+                          "description": "Envoy's cluster manager fills this message with all currently known clusters. Cluster configuration information can be used to recreate an Envoy configuration by populating all clusters as static clusters or by returning them in a CDS response."
+                        },
+                        "listenerConfig": {
+                          "id": "ListenersConfigDump",
+                          "type": "object",
+                          "properties": {
+                            "versionInfo": {
+                              "type": "string",
+                              "description": "This is the :ref:`version_info ` in the last processed LDS discovery response. If there are only static bootstrap listeners, this field will be \"\"."
+                            },
+                            "staticListeners": {
+                              "type": "array",
+                              "items": {
+                                "id": "StaticListener",
+                                "type": "object",
+                                "properties": {
+                                  "listener": {
+                                    "type": "object",
+                                    "description": "The listener config.",
+                                    "additionalProperties": {
+                                      "type": "any",
+                                      "description": "Properties of the object. Contains field @type with type URL."
+                                    }
+                                  },
+                                  "lastUpdated": {
+                                    "type": "string",
+                                    "format": "google-datetime",
+                                    "description": "The timestamp when the Listener was last successfully updated."
+                                  }
+                                },
+                                "description": "Describes a statically loaded listener."
+                              },
+                              "description": "The statically loaded listener configs."
+                            },
+                            "dynamicListeners": {
+                              "type": "array",
+                              "items": {
+                                "id": "DynamicListener",
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "description": "The name or unique id of this listener, pulled from the DynamicListenerState config."
+                                  },
+                                  "errorState": {
+                                    "id": "UpdateFailureState",
+                                    "type": "object",
+                                    "properties": {
+                                      "details": {
+                                        "type": "string",
+                                        "description": "Details about the last failed update attempt."
+                                      },
+                                      "lastUpdateAttempt": {
+                                        "type": "string",
+                                        "format": "google-datetime",
+                                        "description": "Time of the latest failed update attempt."
+                                      },
+                                      "failedConfiguration": {
+                                        "type": "object",
+                                        "description": "What the component configuration would have been if the update had succeeded.",
+                                        "additionalProperties": {
+                                          "type": "any",
+                                          "description": "Properties of the object. Contains field @type with type URL."
+                                        }
+                                      }
+                                    },
+                                    "description": "Set if the last update failed, cleared after the next successful update."
+                                  },
+                                  "activeState": {
+                                    "id": "DynamicListenerState",
+                                    "type": "object",
+                                    "properties": {
+                                      "listener": {
+                                        "type": "object",
+                                        "description": "The listener config.",
+                                        "additionalProperties": {
+                                          "type": "any",
+                                          "description": "Properties of the object. Contains field @type with type URL."
+                                        }
+                                      },
+                                      "lastUpdated": {
+                                        "type": "string",
+                                        "format": "google-datetime",
+                                        "description": "The timestamp when the Listener was last successfully updated."
+                                      },
+                                      "versionInfo": {
+                                        "type": "string",
+                                        "description": "This is the per-resource version information. This version is currently taken from the :ref:`version_info ` field at the time that the listener was loaded. In the future, discrete per-listener versions may be supported by the API."
+                                      }
+                                    },
+                                    "description": "The listener state for any active listener by this name. These are listeners that are available to service data plane traffic."
+                                  },
+                                  "warmingState": {
+                                    "id": "DynamicListenerState",
+                                    "type": "object",
+                                    "properties": {
+                                      "listener": {
+                                        "type": "object",
+                                        "description": "The listener config.",
+                                        "additionalProperties": {
+                                          "type": "any",
+                                          "description": "Properties of the object. Contains field @type with type URL."
+                                        }
+                                      },
+                                      "lastUpdated": {
+                                        "type": "string",
+                                        "format": "google-datetime",
+                                        "description": "The timestamp when the Listener was last successfully updated."
+                                      },
+                                      "versionInfo": {
+                                        "type": "string",
+                                        "description": "This is the per-resource version information. This version is currently taken from the :ref:`version_info ` field at the time that the listener was loaded. In the future, discrete per-listener versions may be supported by the API."
+                                      }
+                                    },
+                                    "description": "The listener state for any warming listener by this name. These are listeners that are currently undergoing warming in preparation to service data plane traffic. Note that if attempting to recreate an Envoy configuration from a configuration dump, the warming listeners should generally be discarded."
+                                  },
+                                  "drainingState": {
+                                    "id": "DynamicListenerState",
+                                    "type": "object",
+                                    "properties": {
+                                      "listener": {
+                                        "type": "object",
+                                        "description": "The listener config.",
+                                        "additionalProperties": {
+                                          "type": "any",
+                                          "description": "Properties of the object. Contains field @type with type URL."
+                                        }
+                                      },
+                                      "lastUpdated": {
+                                        "type": "string",
+                                        "format": "google-datetime",
+                                        "description": "The timestamp when the Listener was last successfully updated."
+                                      },
+                                      "versionInfo": {
+                                        "type": "string",
+                                        "description": "This is the per-resource version information. This version is currently taken from the :ref:`version_info ` field at the time that the listener was loaded. In the future, discrete per-listener versions may be supported by the API."
+                                      }
+                                    },
+                                    "description": "The listener state for any draining listener by this name. These are listeners that are currently undergoing draining in preparation to stop servicing data plane traffic. Note that if attempting to recreate an Envoy configuration from a configuration dump, the draining listeners should generally be discarded."
+                                  }
+                                },
+                                "description": "Describes a dynamically loaded listener via the LDS API. [#next-free-field: 6]"
+                              },
+                              "description": "State for any warming, active, or draining listeners."
+                            }
+                          },
+                          "description": "Envoy's listener manager fills this message with all currently known listeners. Listener configuration information can be used to recreate an Envoy configuration by populating all listeners as static listeners or by returning them in a LDS response."
+                        },
+                        "scopedRouteConfig": {
+                          "id": "ScopedRoutesConfigDump",
+                          "type": "object",
+                          "properties": {
+                            "inlineScopedRouteConfigs": {
+                              "type": "array",
+                              "items": {
+                                "id": "InlineScopedRouteConfigs",
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "description": "The name assigned to the scoped route configurations."
+                                  },
+                                  "lastUpdated": {
+                                    "type": "string",
+                                    "format": "google-datetime",
+                                    "description": "The timestamp when the scoped route config set was last updated."
+                                  },
+                                  "scopedRouteConfigs": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "additionalProperties": {
+                                        "type": "any",
+                                        "description": "Properties of the object. Contains field @type with type URL."
+                                      }
+                                    },
+                                    "description": "The scoped route configurations."
+                                  }
+                                }
+                              },
+                              "description": "The statically loaded scoped route configs."
+                            },
+                            "dynamicScopedRouteConfigs": {
+                              "type": "array",
+                              "items": {
+                                "id": "DynamicScopedRouteConfigs",
+                                "type": "object",
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "description": "The name assigned to the scoped route configurations."
+                                  },
+                                  "lastUpdated": {
+                                    "type": "string",
+                                    "format": "google-datetime",
+                                    "description": "The timestamp when the scoped route config set was last updated."
+                                  },
+                                  "versionInfo": {
+                                    "type": "string",
+                                    "description": "This is the per-resource version information. This version is currently taken from the :ref:`version_info ` field at the time that the scoped routes configuration was loaded."
+                                  },
+                                  "scopedRouteConfigs": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "additionalProperties": {
+                                        "type": "any",
+                                        "description": "Properties of the object. Contains field @type with type URL."
+                                      }
+                                    },
+                                    "description": "The scoped route configurations."
+                                  }
+                                }
+                              },
+                              "description": "The dynamically loaded scoped route configs."
+                            }
+                          },
+                          "description": "Envoy's scoped RDS implementation fills this message with all currently loaded route configuration scopes (defined via ScopedRouteConfigurationsSet protos). This message lists both the scopes defined inline with the higher order object (i.e., the HttpConnectionManager) and the dynamically obtained scopes via the SRDS API."
+                        }
+                      },
+                      "description": "Detailed config (per xDS) with status. [#next-free-field: 6]"
+                    }
+                  }
+                },
+                "description": "All xds configs for a particular client."
+              },
+              "description": "Client configs for the clients specified in the ClientStatusRequest."
+            }
+          }
+        }
+      ]

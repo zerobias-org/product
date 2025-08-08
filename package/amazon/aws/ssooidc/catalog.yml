@@ -1,0 +1,89 @@
+Product:
+  name: AWS SSO OIDC
+  versions: [2019.6.10]
+  package: amazon.aws.ssooidc
+  description: |-
+    AWS SSO OIDC
+  link: https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/Welcome.html
+  contentType: json
+Operations:
+  CreateToken:
+    description: |-
+      Creates and returns an access token for the authorized client. The access token issued will be used to fetch short-term credentials for the assigned roles in the AWS account.
+    versions:
+      from: 2019.6.10
+    link: https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/API_CreateToken.html
+    example:
+      inputs: [
+        {
+          "code": "string",
+          "scope": [
+            "string"
+          ],
+          "clientId": "string",
+          "grantType": "string",
+          "deviceCode": "string",
+          "redirectUri": "string",
+          "clientSecret": "string",
+          "refreshToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "idToken": "string",
+          "expiresIn": 1,
+          "tokenType": "string",
+          "accessToken": "string",
+          "refreshToken": "string"
+        }
+      ]
+  RegisterClient:
+    description: |-
+      Registers a client with AWS SSO. This allows clients to initiate device authorization. The output should be persisted for reuse through many authentication requests.
+    versions:
+      from: 2019.6.10
+    link: https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/API_RegisterClient.html
+    example:
+      inputs: [
+        {
+          "scopes": [
+            "string"
+          ],
+          "clientName": "string",
+          "clientType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "clientId": "string",
+          "clientSecret": "string",
+          "tokenEndpoint": "string",
+          "clientIdIssuedAt": 1,
+          "authorizationEndpoint": "string",
+          "clientSecretExpiresAt": 1
+        }
+      ]
+  StartDeviceAuthorization:
+    description: |-
+      Initiates device authorization by requesting a pair of verification codes from the authorization service.
+    versions:
+      from: 2019.6.10
+    link: https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/API_StartDeviceAuthorization.html
+    example:
+      inputs: [
+        {
+          "clientId": "string",
+          "startUrl": "string",
+          "clientSecret": "string"
+        }
+      ]
+      outputs: [
+        {
+          "interval": 1,
+          "userCode": "string",
+          "expiresIn": 1,
+          "deviceCode": "string",
+          "verificationUri": "string",
+          "verificationUriComplete": "string"
+        }
+      ]

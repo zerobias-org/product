@@ -1,0 +1,4245 @@
+Product:
+  name: Amazon ElastiCache
+  versions: [2015.2.2]
+  package: amazon.aws.elasticache
+  description: |-
+    AWS ElastiCache
+  link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AddTagsToResource:
+    description: |-
+      A tag is a key-value pair where the key and value are case-sensitive. You can use tags to categorize and track all your ElastiCache resources, with the exception of global replication group. When you add or remove tags on replication groups, those actions will be replicated to all nodes in the replication group. For more information, see Resource-level permissions.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_AddTagsToResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TagList": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  AuthorizeCacheSecurityGroupIngress:
+    description: |-
+      Allows network ingress to a cache security group. Applications using ElastiCache must be running on Amazon EC2, and Amazon EC2 security groups are used as the authorization mechanism.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_AuthorizeCacheSecurityGroupIngress.html
+    example:
+      inputs: [
+        {
+          "EC2SecurityGroupName": "string",
+          "CacheSecurityGroupName": "string",
+          "EC2SecurityGroupOwnerId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CacheSecurityGroup": {
+            "ARN": "string",
+            "OwnerId": "string",
+            "Description": "string",
+            "EC2SecurityGroups": [
+              {
+                "Status": "string",
+                "EC2SecurityGroupName": "string",
+                "EC2SecurityGroupOwnerId": "string"
+              }
+            ],
+            "CacheSecurityGroupName": "string"
+          }
+        }
+      ]
+  BatchApplyUpdateAction:
+    description: |-
+      Apply the service update. For more information on service updates and applying them, see Applying Service Updates.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_BatchApplyUpdateAction.html
+    example:
+      inputs: [
+        {
+          "CacheClusterIds": [
+            "string"
+          ],
+          "ServiceUpdateName": "string",
+          "ReplicationGroupIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ProcessedUpdateActions": [
+            {
+              "CacheClusterId": "string",
+              "ServiceUpdateName": "string",
+              "ReplicationGroupId": "string",
+              "UpdateActionStatus": "string"
+            }
+          ],
+          "UnprocessedUpdateActions": [
+            {
+              "ErrorType": "string",
+              "ErrorMessage": "string",
+              "CacheClusterId": "string",
+              "ServiceUpdateName": "string",
+              "ReplicationGroupId": "string"
+            }
+          ]
+        }
+      ]
+  BatchStopUpdateAction:
+    description: |-
+      Stop the service update. For more information on service updates and stopping them, see Stopping Service Updates.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_BatchStopUpdateAction.html
+    example:
+      inputs: [
+        {
+          "CacheClusterIds": [
+            "string"
+          ],
+          "ServiceUpdateName": "string",
+          "ReplicationGroupIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ProcessedUpdateActions": [
+            {
+              "CacheClusterId": "string",
+              "ServiceUpdateName": "string",
+              "ReplicationGroupId": "string",
+              "UpdateActionStatus": "string"
+            }
+          ],
+          "UnprocessedUpdateActions": [
+            {
+              "ErrorType": "string",
+              "ErrorMessage": "string",
+              "CacheClusterId": "string",
+              "ServiceUpdateName": "string",
+              "ReplicationGroupId": "string"
+            }
+          ]
+        }
+      ]
+  CompleteMigration:
+    description: |-
+      Complete the migration of data.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_CompleteMigration.html
+    example:
+      inputs: [
+        {
+          "Force": false,
+          "ReplicationGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ReplicationGroup": {
+            "ARN": "string",
+            "Status": "string",
+            "MultiAZ": "string",
+            "KmsKeyId": "string",
+            "NodeGroups": [
+              {
+                "Slots": "string",
+                "Status": "string",
+                "NodeGroupId": "string",
+                "ReaderEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "PrimaryEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "NodeGroupMembers": [
+                  {
+                    "CacheNodeId": "string",
+                    "CurrentRole": "string",
+                    "ReadEndpoint": {
+                      "Port": 1,
+                      "Address": "string"
+                    },
+                    "CacheClusterId": "string",
+                    "PreferredOutpostArn": "string",
+                    "PreferredAvailabilityZone": "string"
+                  }
+                ]
+              }
+            ],
+            "Description": "string",
+            "UserGroupIds": [
+              "string"
+            ],
+            "CacheNodeType": "string",
+            "ClusterEnabled": false,
+            "MemberClusters": [
+              "string"
+            ],
+            "SnapshotWindow": "string",
+            "AuthTokenEnabled": false,
+            "AutomaticFailover": "string",
+            "ReplicationGroupId": "string",
+            "ConfigurationEndpoint": {
+              "Port": 1,
+              "Address": "string"
+            },
+            "PendingModifiedValues": {
+              "Resharding": {
+                "SlotMigration": {
+                  "ProgressPercentage": 0.1
+                }
+              },
+              "UserGroups": {
+                "UserGroupIdsToAdd": [
+                  "string"
+                ],
+                "UserGroupIdsToRemove": [
+                  "string"
+                ]
+              },
+              "AuthTokenStatus": "string",
+              "PrimaryClusterId": "string",
+              "AutomaticFailoverStatus": "string",
+              "LogDeliveryConfigurations": [
+                {
+                  "LogType": "string",
+                  "LogFormat": "string",
+                  "DestinationType": "string",
+                  "DestinationDetails": {
+                    "CloudWatchLogsDetails": {
+                      "LogGroup": "string"
+                    },
+                    "KinesisFirehoseDetails": {
+                      "DeliveryStream": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "SnapshottingClusterId": "string",
+            "SnapshotRetentionLimit": 1,
+            "AtRestEncryptionEnabled": false,
+            "TransitEncryptionEnabled": false,
+            "AuthTokenLastModifiedDate": 1481289211.615,
+            "LogDeliveryConfigurations": [
+              {
+                "Status": "string",
+                "LogType": "string",
+                "Message": "string",
+                "LogFormat": "string",
+                "DestinationType": "string",
+                "DestinationDetails": {
+                  "CloudWatchLogsDetails": {
+                    "LogGroup": "string"
+                  },
+                  "KinesisFirehoseDetails": {
+                    "DeliveryStream": "string"
+                  }
+                }
+              }
+            ],
+            "MemberClustersOutpostArns": [
+              "string"
+            ],
+            "GlobalReplicationGroupInfo": {
+              "GlobalReplicationGroupId": "string",
+              "GlobalReplicationGroupMemberRole": "string"
+            }
+          }
+        }
+      ]
+  CopySnapshot:
+    description: |-
+      Makes a copy of an existing snapshot.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_CopySnapshot.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "KmsKeyId": "string",
+          "TargetBucket": "string",
+          "SourceSnapshotName": "string",
+          "TargetSnapshotName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Snapshot": {
+            "ARN": "string",
+            "Port": 1,
+            "VpcId": "string",
+            "Engine": "string",
+            "KmsKeyId": "string",
+            "TopicArn": "string",
+            "SnapshotName": "string",
+            "CacheNodeType": "string",
+            "EngineVersion": "string",
+            "NodeSnapshots": [
+              {
+                "CacheSize": "string",
+                "CacheNodeId": "string",
+                "NodeGroupId": "string",
+                "CacheClusterId": "string",
+                "SnapshotCreateTime": 1481289211.615,
+                "CacheNodeCreateTime": 1481289211.615,
+                "NodeGroupConfiguration": {
+                  "Slots": "string",
+                  "NodeGroupId": "string",
+                  "ReplicaCount": 1,
+                  "PrimaryOutpostArn": "string",
+                  "ReplicaOutpostArns": [
+                    "string"
+                  ],
+                  "PrimaryAvailabilityZone": "string",
+                  "ReplicaAvailabilityZones": [
+                    "string"
+                  ]
+                }
+              }
+            ],
+            "NumCacheNodes": 1,
+            "NumNodeGroups": 1,
+            "CacheClusterId": "string",
+            "SnapshotSource": "string",
+            "SnapshotStatus": "string",
+            "SnapshotWindow": "string",
+            "AutomaticFailover": "string",
+            "ReplicationGroupId": "string",
+            "PreferredOutpostArn": "string",
+            "CacheSubnetGroupName": "string",
+            "CacheClusterCreateTime": 1481289211.615,
+            "SnapshotRetentionLimit": 1,
+            "AutoMinorVersionUpgrade": false,
+            "CacheParameterGroupName": "string",
+            "PreferredAvailabilityZone": "string",
+            "PreferredMaintenanceWindow": "string",
+            "ReplicationGroupDescription": "string"
+          }
+        }
+      ]
+  CreateCacheCluster:
+    description: |-
+      Creates a cluster. All nodes in the cluster run the same protocol-compliant cache engine software, either Memcached or Redis.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_CreateCacheCluster.html
+    example:
+      inputs: [
+        {
+          "Port": 1,
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "AZMode": "string",
+          "Engine": "string",
+          "AuthToken": "string",
+          "OutpostMode": "string",
+          "SnapshotArns": [
+            "string"
+          ],
+          "SnapshotName": "string",
+          "CacheNodeType": "string",
+          "EngineVersion": "string",
+          "NumCacheNodes": 1,
+          "CacheClusterId": "string",
+          "SnapshotWindow": "string",
+          "SecurityGroupIds": [
+            "string"
+          ],
+          "ReplicationGroupId": "string",
+          "PreferredOutpostArn": "string",
+          "CacheSubnetGroupName": "string",
+          "NotificationTopicArn": "string",
+          "PreferredOutpostArns": [
+            "string"
+          ],
+          "SnapshotRetentionLimit": 1,
+          "AutoMinorVersionUpgrade": false,
+          "CacheParameterGroupName": "string",
+          "CacheSecurityGroupNames": [
+            "string"
+          ],
+          "LogDeliveryConfigurations": [
+            {
+              "Enabled": false,
+              "LogType": "string",
+              "LogFormat": "string",
+              "DestinationType": "string",
+              "DestinationDetails": {
+                "CloudWatchLogsDetails": {
+                  "LogGroup": "string"
+                },
+                "KinesisFirehoseDetails": {
+                  "DeliveryStream": "string"
+                }
+              }
+            }
+          ],
+          "PreferredAvailabilityZone": "string",
+          "PreferredAvailabilityZones": [
+            "string"
+          ],
+          "PreferredMaintenanceWindow": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CacheCluster": {
+            "ARN": "string",
+            "Engine": "string",
+            "CacheNodes": [
+              {
+                "Endpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "CacheNodeId": "string",
+                "CacheNodeStatus": "string",
+                "SourceCacheNodeId": "string",
+                "CustomerOutpostArn": "string",
+                "CacheNodeCreateTime": 1481289211.615,
+                "ParameterGroupStatus": "string",
+                "CustomerAvailabilityZone": "string"
+              }
+            ],
+            "CacheNodeType": "string",
+            "EngineVersion": "string",
+            "NumCacheNodes": 1,
+            "CacheClusterId": "string",
+            "SecurityGroups": [
+              {
+                "Status": "string",
+                "SecurityGroupId": "string"
+              }
+            ],
+            "SnapshotWindow": "string",
+            "AuthTokenEnabled": false,
+            "CacheClusterStatus": "string",
+            "ReplicationGroupId": "string",
+            "CacheParameterGroup": {
+              "CacheNodeIdsToReboot": [
+                "string"
+              ],
+              "ParameterApplyStatus": "string",
+              "CacheParameterGroupName": "string"
+            },
+            "CacheSecurityGroups": [
+              {
+                "Status": "string",
+                "CacheSecurityGroupName": "string"
+              }
+            ],
+            "PreferredOutpostArn": "string",
+            "CacheSubnetGroupName": "string",
+            "ConfigurationEndpoint": {
+              "Port": 1,
+              "Address": "string"
+            },
+            "PendingModifiedValues": {
+              "CacheNodeType": "string",
+              "EngineVersion": "string",
+              "NumCacheNodes": 1,
+              "AuthTokenStatus": "string",
+              "CacheNodeIdsToRemove": [
+                "string"
+              ],
+              "LogDeliveryConfigurations": [
+                {
+                  "LogType": "string",
+                  "LogFormat": "string",
+                  "DestinationType": "string",
+                  "DestinationDetails": {
+                    "CloudWatchLogsDetails": {
+                      "LogGroup": "string"
+                    },
+                    "KinesisFirehoseDetails": {
+                      "DeliveryStream": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "CacheClusterCreateTime": 1481289211.615,
+            "SnapshotRetentionLimit": 1,
+            "AtRestEncryptionEnabled": false,
+            "AutoMinorVersionUpgrade": false,
+            "TransitEncryptionEnabled": false,
+            "AuthTokenLastModifiedDate": 1481289211.615,
+            "ClientDownloadLandingPage": "string",
+            "LogDeliveryConfigurations": [
+              {
+                "Status": "string",
+                "LogType": "string",
+                "Message": "string",
+                "LogFormat": "string",
+                "DestinationType": "string",
+                "DestinationDetails": {
+                  "CloudWatchLogsDetails": {
+                    "LogGroup": "string"
+                  },
+                  "KinesisFirehoseDetails": {
+                    "DeliveryStream": "string"
+                  }
+                }
+              }
+            ],
+            "NotificationConfiguration": {
+              "TopicArn": "string",
+              "TopicStatus": "string"
+            },
+            "PreferredAvailabilityZone": "string",
+            "PreferredMaintenanceWindow": "string",
+            "ReplicationGroupLogDeliveryEnabled": false
+          }
+        }
+      ]
+  CreateCacheParameterGroup:
+    description: |-
+      Creates a new Amazon ElastiCache cache parameter group. An ElastiCache cache parameter group is a collection of parameters and their values that are applied to all of the nodes in any cluster or replication group using the CacheParameterGroup.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_CreateCacheParameterGroup.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Description": "string",
+          "CacheParameterGroupName": "string",
+          "CacheParameterGroupFamily": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CacheParameterGroup": {
+            "ARN": "string",
+            "IsGlobal": false,
+            "Description": "string",
+            "CacheParameterGroupName": "string",
+            "CacheParameterGroupFamily": "string"
+          }
+        }
+      ]
+  CreateCacheSecurityGroup:
+    description: |-
+      Creates a new cache security group. Use a cache security group to control access to one or more clusters.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_CreateCacheSecurityGroup.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Description": "string",
+          "CacheSecurityGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CacheSecurityGroup": {
+            "ARN": "string",
+            "OwnerId": "string",
+            "Description": "string",
+            "EC2SecurityGroups": [
+              {
+                "Status": "string",
+                "EC2SecurityGroupName": "string",
+                "EC2SecurityGroupOwnerId": "string"
+              }
+            ],
+            "CacheSecurityGroupName": "string"
+          }
+        }
+      ]
+  CreateCacheSubnetGroup:
+    description: |-
+      Creates a new cache subnet group.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_CreateCacheSubnetGroup.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "SubnetIds": [
+            "string"
+          ],
+          "CacheSubnetGroupName": "string",
+          "CacheSubnetGroupDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CacheSubnetGroup": {
+            "ARN": "string",
+            "VpcId": "string",
+            "Subnets": [
+              {
+                "SubnetOutpost": {
+                  "SubnetOutpostArn": "string"
+                },
+                "SubnetIdentifier": "string",
+                "SubnetAvailabilityZone": {
+                  "Name": "string"
+                }
+              }
+            ],
+            "CacheSubnetGroupName": "string",
+            "CacheSubnetGroupDescription": "string"
+          }
+        }
+      ]
+  CreateGlobalReplicationGroup:
+    description: |-
+      Global Datastore for Redis offers fully managed, fast, reliable and secure cross-region replication. Using Global Datastore for Redis, you can create cross-region read replica clusters for ElastiCache for Redis to enable low-latency reads and disaster recovery across regions. For more information, see Replication Across Regions Using Global Datastore.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_CreateGlobalReplicationGroup.html
+    example:
+      inputs: [
+        {
+          "PrimaryReplicationGroupId": "string",
+          "GlobalReplicationGroupIdSuffix": "string",
+          "GlobalReplicationGroupDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GlobalReplicationGroup": {
+            "ARN": "string",
+            "Engine": "string",
+            "Status": "string",
+            "Members": [
+              {
+                "Role": "string",
+                "Status": "string",
+                "AutomaticFailover": "string",
+                "ReplicationGroupId": "string",
+                "ReplicationGroupRegion": "string"
+              }
+            ],
+            "CacheNodeType": "string",
+            "EngineVersion": "string",
+            "ClusterEnabled": false,
+            "AuthTokenEnabled": false,
+            "GlobalNodeGroups": [
+              {
+                "Slots": "string",
+                "GlobalNodeGroupId": "string"
+              }
+            ],
+            "AtRestEncryptionEnabled": false,
+            "GlobalReplicationGroupId": "string",
+            "TransitEncryptionEnabled": false,
+            "GlobalReplicationGroupDescription": "string"
+          }
+        }
+      ]
+  CreateReplicationGroup:
+    description: |-
+      Creates a Redis (cluster mode disabled) or a Redis (cluster mode enabled) replication group.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_CreateReplicationGroup.html
+    example:
+      inputs: [
+        {
+          "Port": 1,
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Engine": "string",
+          "KmsKeyId": "string",
+          "AuthToken": "string",
+          "SnapshotArns": [
+            "string"
+          ],
+          "SnapshotName": "string",
+          "UserGroupIds": [
+            "string"
+          ],
+          "CacheNodeType": "string",
+          "EngineVersion": "string",
+          "NumNodeGroups": 1,
+          "MultiAZEnabled": false,
+          "SnapshotWindow": "string",
+          "NumCacheClusters": 1,
+          "PrimaryClusterId": "string",
+          "SecurityGroupIds": [
+            "string"
+          ],
+          "ReplicationGroupId": "string",
+          "CacheSubnetGroupName": "string",
+          "NotificationTopicArn": "string",
+          "ReplicasPerNodeGroup": 1,
+          "NodeGroupConfiguration": [
+            {
+              "Slots": "string",
+              "NodeGroupId": "string",
+              "ReplicaCount": 1,
+              "PrimaryOutpostArn": "string",
+              "ReplicaOutpostArns": [
+                "string"
+              ],
+              "PrimaryAvailabilityZone": "string",
+              "ReplicaAvailabilityZones": [
+                "string"
+              ]
+            }
+          ],
+          "SnapshotRetentionLimit": 1,
+          "AtRestEncryptionEnabled": false,
+          "AutoMinorVersionUpgrade": false,
+          "CacheParameterGroupName": "string",
+          "CacheSecurityGroupNames": [
+            "string"
+          ],
+          "AutomaticFailoverEnabled": false,
+          "GlobalReplicationGroupId": "string",
+          "PreferredCacheClusterAZs": [
+            "string"
+          ],
+          "TransitEncryptionEnabled": false,
+          "LogDeliveryConfigurations": [
+            {
+              "Enabled": false,
+              "LogType": "string",
+              "LogFormat": "string",
+              "DestinationType": "string",
+              "DestinationDetails": {
+                "CloudWatchLogsDetails": {
+                  "LogGroup": "string"
+                },
+                "KinesisFirehoseDetails": {
+                  "DeliveryStream": "string"
+                }
+              }
+            }
+          ],
+          "PreferredMaintenanceWindow": "string",
+          "ReplicationGroupDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ReplicationGroup": {
+            "ARN": "string",
+            "Status": "string",
+            "MultiAZ": "string",
+            "KmsKeyId": "string",
+            "NodeGroups": [
+              {
+                "Slots": "string",
+                "Status": "string",
+                "NodeGroupId": "string",
+                "ReaderEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "PrimaryEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "NodeGroupMembers": [
+                  {
+                    "CacheNodeId": "string",
+                    "CurrentRole": "string",
+                    "ReadEndpoint": {
+                      "Port": 1,
+                      "Address": "string"
+                    },
+                    "CacheClusterId": "string",
+                    "PreferredOutpostArn": "string",
+                    "PreferredAvailabilityZone": "string"
+                  }
+                ]
+              }
+            ],
+            "Description": "string",
+            "UserGroupIds": [
+              "string"
+            ],
+            "CacheNodeType": "string",
+            "ClusterEnabled": false,
+            "MemberClusters": [
+              "string"
+            ],
+            "SnapshotWindow": "string",
+            "AuthTokenEnabled": false,
+            "AutomaticFailover": "string",
+            "ReplicationGroupId": "string",
+            "ConfigurationEndpoint": {
+              "Port": 1,
+              "Address": "string"
+            },
+            "PendingModifiedValues": {
+              "Resharding": {
+                "SlotMigration": {
+                  "ProgressPercentage": 0.1
+                }
+              },
+              "UserGroups": {
+                "UserGroupIdsToAdd": [
+                  "string"
+                ],
+                "UserGroupIdsToRemove": [
+                  "string"
+                ]
+              },
+              "AuthTokenStatus": "string",
+              "PrimaryClusterId": "string",
+              "AutomaticFailoverStatus": "string",
+              "LogDeliveryConfigurations": [
+                {
+                  "LogType": "string",
+                  "LogFormat": "string",
+                  "DestinationType": "string",
+                  "DestinationDetails": {
+                    "CloudWatchLogsDetails": {
+                      "LogGroup": "string"
+                    },
+                    "KinesisFirehoseDetails": {
+                      "DeliveryStream": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "SnapshottingClusterId": "string",
+            "SnapshotRetentionLimit": 1,
+            "AtRestEncryptionEnabled": false,
+            "TransitEncryptionEnabled": false,
+            "AuthTokenLastModifiedDate": 1481289211.615,
+            "LogDeliveryConfigurations": [
+              {
+                "Status": "string",
+                "LogType": "string",
+                "Message": "string",
+                "LogFormat": "string",
+                "DestinationType": "string",
+                "DestinationDetails": {
+                  "CloudWatchLogsDetails": {
+                    "LogGroup": "string"
+                  },
+                  "KinesisFirehoseDetails": {
+                    "DeliveryStream": "string"
+                  }
+                }
+              }
+            ],
+            "MemberClustersOutpostArns": [
+              "string"
+            ],
+            "GlobalReplicationGroupInfo": {
+              "GlobalReplicationGroupId": "string",
+              "GlobalReplicationGroupMemberRole": "string"
+            }
+          }
+        }
+      ]
+  CreateSnapshot:
+    description: |-
+      Creates a copy of an entire cluster or replication group at a specific moment in time.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_CreateSnapshot.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "KmsKeyId": "string",
+          "SnapshotName": "string",
+          "CacheClusterId": "string",
+          "ReplicationGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Snapshot": {
+            "ARN": "string",
+            "Port": 1,
+            "VpcId": "string",
+            "Engine": "string",
+            "KmsKeyId": "string",
+            "TopicArn": "string",
+            "SnapshotName": "string",
+            "CacheNodeType": "string",
+            "EngineVersion": "string",
+            "NodeSnapshots": [
+              {
+                "CacheSize": "string",
+                "CacheNodeId": "string",
+                "NodeGroupId": "string",
+                "CacheClusterId": "string",
+                "SnapshotCreateTime": 1481289211.615,
+                "CacheNodeCreateTime": 1481289211.615,
+                "NodeGroupConfiguration": {
+                  "Slots": "string",
+                  "NodeGroupId": "string",
+                  "ReplicaCount": 1,
+                  "PrimaryOutpostArn": "string",
+                  "ReplicaOutpostArns": [
+                    "string"
+                  ],
+                  "PrimaryAvailabilityZone": "string",
+                  "ReplicaAvailabilityZones": [
+                    "string"
+                  ]
+                }
+              }
+            ],
+            "NumCacheNodes": 1,
+            "NumNodeGroups": 1,
+            "CacheClusterId": "string",
+            "SnapshotSource": "string",
+            "SnapshotStatus": "string",
+            "SnapshotWindow": "string",
+            "AutomaticFailover": "string",
+            "ReplicationGroupId": "string",
+            "PreferredOutpostArn": "string",
+            "CacheSubnetGroupName": "string",
+            "CacheClusterCreateTime": 1481289211.615,
+            "SnapshotRetentionLimit": 1,
+            "AutoMinorVersionUpgrade": false,
+            "CacheParameterGroupName": "string",
+            "PreferredAvailabilityZone": "string",
+            "PreferredMaintenanceWindow": "string",
+            "ReplicationGroupDescription": "string"
+          }
+        }
+      ]
+  CreateUserGroup:
+    description: |-
+      For Redis engine version 6.x onwards:Creates a Redis user group. For more information, see Using Role Based Access Control (RBAC)
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_CreateUserGroup.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Engine": "string",
+          "UserIds": [
+            "string"
+          ],
+          "UserGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "Engine": "string",
+          "Status": "string",
+          "UserIds": [
+            "string"
+          ],
+          "UserGroupId": "string",
+          "PendingChanges": {
+            "UserIdsToAdd": [
+              "string"
+            ],
+            "UserIdsToRemove": [
+              "string"
+            ]
+          },
+          "ReplicationGroups": [
+            "string"
+          ]
+        }
+      ]
+  CreateUser:
+    description: |-
+      For Redis engine version 6.x onwards:Creates a Redis user. For more information, see Using Role Based Access Control (RBAC).
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_CreateUser.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Engine": "string",
+          "UserId": "string",
+          "UserName": "string",
+          "Passwords": [
+            "string"
+          ],
+          "AccessString": "string",
+          "NoPasswordRequired": false
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "Engine": "string",
+          "Status": "string",
+          "UserId": "string",
+          "UserName": "string",
+          "AccessString": "string",
+          "UserGroupIds": [
+            "string"
+          ],
+          "Authentication": {
+            "Type": "string",
+            "PasswordCount": 1
+          }
+        }
+      ]
+  DecreaseNodeGroupsInGlobalReplicationGroup:
+    description: |-
+      Decreases the number of node groups in a Global datastore
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DecreaseNodeGroupsInGlobalReplicationGroup.html
+    example:
+      inputs: [
+        {
+          "NodeGroupCount": 1,
+          "ApplyImmediately": false,
+          "GlobalNodeGroupsToRemove": [
+            "string"
+          ],
+          "GlobalNodeGroupsToRetain": [
+            "string"
+          ],
+          "GlobalReplicationGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GlobalReplicationGroup": {
+            "ARN": "string",
+            "Engine": "string",
+            "Status": "string",
+            "Members": [
+              {
+                "Role": "string",
+                "Status": "string",
+                "AutomaticFailover": "string",
+                "ReplicationGroupId": "string",
+                "ReplicationGroupRegion": "string"
+              }
+            ],
+            "CacheNodeType": "string",
+            "EngineVersion": "string",
+            "ClusterEnabled": false,
+            "AuthTokenEnabled": false,
+            "GlobalNodeGroups": [
+              {
+                "Slots": "string",
+                "GlobalNodeGroupId": "string"
+              }
+            ],
+            "AtRestEncryptionEnabled": false,
+            "GlobalReplicationGroupId": "string",
+            "TransitEncryptionEnabled": false,
+            "GlobalReplicationGroupDescription": "string"
+          }
+        }
+      ]
+  DecreaseReplicaCount:
+    description: |-
+      Dynamically decreases the number of replicas in a Redis (cluster mode disabled) replication group or the number of replica nodes in one or more node groups (shards) of a Redis (cluster mode enabled) replication group. This operation is performed with no cluster down time.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DecreaseReplicaCount.html
+    example:
+      inputs: [
+        {
+          "NewReplicaCount": 1,
+          "ApplyImmediately": false,
+          "ReplicasToRemove": [
+            "string"
+          ],
+          "ReplicationGroupId": "string",
+          "ReplicaConfiguration": [
+            {
+              "NodeGroupId": "string",
+              "NewReplicaCount": 1,
+              "PreferredOutpostArns": [
+                "string"
+              ],
+              "PreferredAvailabilityZones": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ReplicationGroup": {
+            "ARN": "string",
+            "Status": "string",
+            "MultiAZ": "string",
+            "KmsKeyId": "string",
+            "NodeGroups": [
+              {
+                "Slots": "string",
+                "Status": "string",
+                "NodeGroupId": "string",
+                "ReaderEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "PrimaryEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "NodeGroupMembers": [
+                  {
+                    "CacheNodeId": "string",
+                    "CurrentRole": "string",
+                    "ReadEndpoint": {
+                      "Port": 1,
+                      "Address": "string"
+                    },
+                    "CacheClusterId": "string",
+                    "PreferredOutpostArn": "string",
+                    "PreferredAvailabilityZone": "string"
+                  }
+                ]
+              }
+            ],
+            "Description": "string",
+            "UserGroupIds": [
+              "string"
+            ],
+            "CacheNodeType": "string",
+            "ClusterEnabled": false,
+            "MemberClusters": [
+              "string"
+            ],
+            "SnapshotWindow": "string",
+            "AuthTokenEnabled": false,
+            "AutomaticFailover": "string",
+            "ReplicationGroupId": "string",
+            "ConfigurationEndpoint": {
+              "Port": 1,
+              "Address": "string"
+            },
+            "PendingModifiedValues": {
+              "Resharding": {
+                "SlotMigration": {
+                  "ProgressPercentage": 0.1
+                }
+              },
+              "UserGroups": {
+                "UserGroupIdsToAdd": [
+                  "string"
+                ],
+                "UserGroupIdsToRemove": [
+                  "string"
+                ]
+              },
+              "AuthTokenStatus": "string",
+              "PrimaryClusterId": "string",
+              "AutomaticFailoverStatus": "string",
+              "LogDeliveryConfigurations": [
+                {
+                  "LogType": "string",
+                  "LogFormat": "string",
+                  "DestinationType": "string",
+                  "DestinationDetails": {
+                    "CloudWatchLogsDetails": {
+                      "LogGroup": "string"
+                    },
+                    "KinesisFirehoseDetails": {
+                      "DeliveryStream": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "SnapshottingClusterId": "string",
+            "SnapshotRetentionLimit": 1,
+            "AtRestEncryptionEnabled": false,
+            "TransitEncryptionEnabled": false,
+            "AuthTokenLastModifiedDate": 1481289211.615,
+            "LogDeliveryConfigurations": [
+              {
+                "Status": "string",
+                "LogType": "string",
+                "Message": "string",
+                "LogFormat": "string",
+                "DestinationType": "string",
+                "DestinationDetails": {
+                  "CloudWatchLogsDetails": {
+                    "LogGroup": "string"
+                  },
+                  "KinesisFirehoseDetails": {
+                    "DeliveryStream": "string"
+                  }
+                }
+              }
+            ],
+            "MemberClustersOutpostArns": [
+              "string"
+            ],
+            "GlobalReplicationGroupInfo": {
+              "GlobalReplicationGroupId": "string",
+              "GlobalReplicationGroupMemberRole": "string"
+            }
+          }
+        }
+      ]
+  DeleteCacheCluster:
+    description: |-
+      Deletes a previously provisioned cluster. DeleteCacheCluster deletes all associated cache nodes, node endpoints and the cluster itself. When you receive a successful response from this operation, Amazon ElastiCache immediately begins deleting the cluster; you cannot cancel or revert this operation.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DeleteCacheCluster.html
+    example:
+      inputs: [
+        {
+          "CacheClusterId": "string",
+          "FinalSnapshotIdentifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CacheCluster": {
+            "ARN": "string",
+            "Engine": "string",
+            "CacheNodes": [
+              {
+                "Endpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "CacheNodeId": "string",
+                "CacheNodeStatus": "string",
+                "SourceCacheNodeId": "string",
+                "CustomerOutpostArn": "string",
+                "CacheNodeCreateTime": 1481289211.615,
+                "ParameterGroupStatus": "string",
+                "CustomerAvailabilityZone": "string"
+              }
+            ],
+            "CacheNodeType": "string",
+            "EngineVersion": "string",
+            "NumCacheNodes": 1,
+            "CacheClusterId": "string",
+            "SecurityGroups": [
+              {
+                "Status": "string",
+                "SecurityGroupId": "string"
+              }
+            ],
+            "SnapshotWindow": "string",
+            "AuthTokenEnabled": false,
+            "CacheClusterStatus": "string",
+            "ReplicationGroupId": "string",
+            "CacheParameterGroup": {
+              "CacheNodeIdsToReboot": [
+                "string"
+              ],
+              "ParameterApplyStatus": "string",
+              "CacheParameterGroupName": "string"
+            },
+            "CacheSecurityGroups": [
+              {
+                "Status": "string",
+                "CacheSecurityGroupName": "string"
+              }
+            ],
+            "PreferredOutpostArn": "string",
+            "CacheSubnetGroupName": "string",
+            "ConfigurationEndpoint": {
+              "Port": 1,
+              "Address": "string"
+            },
+            "PendingModifiedValues": {
+              "CacheNodeType": "string",
+              "EngineVersion": "string",
+              "NumCacheNodes": 1,
+              "AuthTokenStatus": "string",
+              "CacheNodeIdsToRemove": [
+                "string"
+              ],
+              "LogDeliveryConfigurations": [
+                {
+                  "LogType": "string",
+                  "LogFormat": "string",
+                  "DestinationType": "string",
+                  "DestinationDetails": {
+                    "CloudWatchLogsDetails": {
+                      "LogGroup": "string"
+                    },
+                    "KinesisFirehoseDetails": {
+                      "DeliveryStream": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "CacheClusterCreateTime": 1481289211.615,
+            "SnapshotRetentionLimit": 1,
+            "AtRestEncryptionEnabled": false,
+            "AutoMinorVersionUpgrade": false,
+            "TransitEncryptionEnabled": false,
+            "AuthTokenLastModifiedDate": 1481289211.615,
+            "ClientDownloadLandingPage": "string",
+            "LogDeliveryConfigurations": [
+              {
+                "Status": "string",
+                "LogType": "string",
+                "Message": "string",
+                "LogFormat": "string",
+                "DestinationType": "string",
+                "DestinationDetails": {
+                  "CloudWatchLogsDetails": {
+                    "LogGroup": "string"
+                  },
+                  "KinesisFirehoseDetails": {
+                    "DeliveryStream": "string"
+                  }
+                }
+              }
+            ],
+            "NotificationConfiguration": {
+              "TopicArn": "string",
+              "TopicStatus": "string"
+            },
+            "PreferredAvailabilityZone": "string",
+            "PreferredMaintenanceWindow": "string",
+            "ReplicationGroupLogDeliveryEnabled": false
+          }
+        }
+      ]
+  DeleteCacheParameterGroup:
+    description: |-
+      Deletes the specified cache parameter group. You cannot delete a cache parameter group if it is associated with any cache clusters. You cannot delete the default cache parameter groups in your account.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DeleteCacheParameterGroup.html
+    example:
+      inputs: [
+        {
+          "CacheParameterGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteCacheSecurityGroup:
+    description: |-
+      Deletes a cache security group.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DeleteCacheSecurityGroup.html
+    example:
+      inputs: [
+        {
+          "CacheSecurityGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteCacheSubnetGroup:
+    description: |-
+      Deletes a cache subnet group.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DeleteCacheSubnetGroup.html
+    example:
+      inputs: [
+        {
+          "CacheSubnetGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteGlobalReplicationGroup:
+    description: ''
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DeleteGlobalReplicationGroup.html
+    example:
+      inputs: [
+        {
+          "GlobalReplicationGroupId": "string",
+          "RetainPrimaryReplicationGroup": false
+        }
+      ]
+      outputs: [
+        {
+          "GlobalReplicationGroup": {
+            "ARN": "string",
+            "Engine": "string",
+            "Status": "string",
+            "Members": [
+              {
+                "Role": "string",
+                "Status": "string",
+                "AutomaticFailover": "string",
+                "ReplicationGroupId": "string",
+                "ReplicationGroupRegion": "string"
+              }
+            ],
+            "CacheNodeType": "string",
+            "EngineVersion": "string",
+            "ClusterEnabled": false,
+            "AuthTokenEnabled": false,
+            "GlobalNodeGroups": [
+              {
+                "Slots": "string",
+                "GlobalNodeGroupId": "string"
+              }
+            ],
+            "AtRestEncryptionEnabled": false,
+            "GlobalReplicationGroupId": "string",
+            "TransitEncryptionEnabled": false,
+            "GlobalReplicationGroupDescription": "string"
+          }
+        }
+      ]
+  DeleteReplicationGroup:
+    description: |-
+      Deletes an existing replication group. By default, this operation deletes the entire replication group, including the primary/primaries and all of the read replicas. If the replication group has only one primary, you can optionally delete only the read replicas, while retaining the primary by setting RetainPrimaryCluster=true.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DeleteReplicationGroup.html
+    example:
+      inputs: [
+        {
+          "ReplicationGroupId": "string",
+          "RetainPrimaryCluster": false,
+          "FinalSnapshotIdentifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ReplicationGroup": {
+            "ARN": "string",
+            "Status": "string",
+            "MultiAZ": "string",
+            "KmsKeyId": "string",
+            "NodeGroups": [
+              {
+                "Slots": "string",
+                "Status": "string",
+                "NodeGroupId": "string",
+                "ReaderEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "PrimaryEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "NodeGroupMembers": [
+                  {
+                    "CacheNodeId": "string",
+                    "CurrentRole": "string",
+                    "ReadEndpoint": {
+                      "Port": 1,
+                      "Address": "string"
+                    },
+                    "CacheClusterId": "string",
+                    "PreferredOutpostArn": "string",
+                    "PreferredAvailabilityZone": "string"
+                  }
+                ]
+              }
+            ],
+            "Description": "string",
+            "UserGroupIds": [
+              "string"
+            ],
+            "CacheNodeType": "string",
+            "ClusterEnabled": false,
+            "MemberClusters": [
+              "string"
+            ],
+            "SnapshotWindow": "string",
+            "AuthTokenEnabled": false,
+            "AutomaticFailover": "string",
+            "ReplicationGroupId": "string",
+            "ConfigurationEndpoint": {
+              "Port": 1,
+              "Address": "string"
+            },
+            "PendingModifiedValues": {
+              "Resharding": {
+                "SlotMigration": {
+                  "ProgressPercentage": 0.1
+                }
+              },
+              "UserGroups": {
+                "UserGroupIdsToAdd": [
+                  "string"
+                ],
+                "UserGroupIdsToRemove": [
+                  "string"
+                ]
+              },
+              "AuthTokenStatus": "string",
+              "PrimaryClusterId": "string",
+              "AutomaticFailoverStatus": "string",
+              "LogDeliveryConfigurations": [
+                {
+                  "LogType": "string",
+                  "LogFormat": "string",
+                  "DestinationType": "string",
+                  "DestinationDetails": {
+                    "CloudWatchLogsDetails": {
+                      "LogGroup": "string"
+                    },
+                    "KinesisFirehoseDetails": {
+                      "DeliveryStream": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "SnapshottingClusterId": "string",
+            "SnapshotRetentionLimit": 1,
+            "AtRestEncryptionEnabled": false,
+            "TransitEncryptionEnabled": false,
+            "AuthTokenLastModifiedDate": 1481289211.615,
+            "LogDeliveryConfigurations": [
+              {
+                "Status": "string",
+                "LogType": "string",
+                "Message": "string",
+                "LogFormat": "string",
+                "DestinationType": "string",
+                "DestinationDetails": {
+                  "CloudWatchLogsDetails": {
+                    "LogGroup": "string"
+                  },
+                  "KinesisFirehoseDetails": {
+                    "DeliveryStream": "string"
+                  }
+                }
+              }
+            ],
+            "MemberClustersOutpostArns": [
+              "string"
+            ],
+            "GlobalReplicationGroupInfo": {
+              "GlobalReplicationGroupId": "string",
+              "GlobalReplicationGroupMemberRole": "string"
+            }
+          }
+        }
+      ]
+  DeleteSnapshot:
+    description: |-
+      Deletes an existing snapshot. When you receive a successful response from this operation, ElastiCache immediately begins deleting the snapshot; you cannot cancel or revert this operation.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DeleteSnapshot.html
+    example:
+      inputs: [
+        {
+          "SnapshotName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Snapshot": {
+            "ARN": "string",
+            "Port": 1,
+            "VpcId": "string",
+            "Engine": "string",
+            "KmsKeyId": "string",
+            "TopicArn": "string",
+            "SnapshotName": "string",
+            "CacheNodeType": "string",
+            "EngineVersion": "string",
+            "NodeSnapshots": [
+              {
+                "CacheSize": "string",
+                "CacheNodeId": "string",
+                "NodeGroupId": "string",
+                "CacheClusterId": "string",
+                "SnapshotCreateTime": 1481289211.615,
+                "CacheNodeCreateTime": 1481289211.615,
+                "NodeGroupConfiguration": {
+                  "Slots": "string",
+                  "NodeGroupId": "string",
+                  "ReplicaCount": 1,
+                  "PrimaryOutpostArn": "string",
+                  "ReplicaOutpostArns": [
+                    "string"
+                  ],
+                  "PrimaryAvailabilityZone": "string",
+                  "ReplicaAvailabilityZones": [
+                    "string"
+                  ]
+                }
+              }
+            ],
+            "NumCacheNodes": 1,
+            "NumNodeGroups": 1,
+            "CacheClusterId": "string",
+            "SnapshotSource": "string",
+            "SnapshotStatus": "string",
+            "SnapshotWindow": "string",
+            "AutomaticFailover": "string",
+            "ReplicationGroupId": "string",
+            "PreferredOutpostArn": "string",
+            "CacheSubnetGroupName": "string",
+            "CacheClusterCreateTime": 1481289211.615,
+            "SnapshotRetentionLimit": 1,
+            "AutoMinorVersionUpgrade": false,
+            "CacheParameterGroupName": "string",
+            "PreferredAvailabilityZone": "string",
+            "PreferredMaintenanceWindow": "string",
+            "ReplicationGroupDescription": "string"
+          }
+        }
+      ]
+  DeleteUserGroup:
+    description: |-
+      For Redis engine version 6.x onwards:Deletes a user group. The user group must first be disassociated from the replication group before it can be deleted. For more information, see Using Role Based Access Control (RBAC).
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DeleteUserGroup.html
+    example:
+      inputs: [
+        {
+          "UserGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "Engine": "string",
+          "Status": "string",
+          "UserIds": [
+            "string"
+          ],
+          "UserGroupId": "string",
+          "PendingChanges": {
+            "UserIdsToAdd": [
+              "string"
+            ],
+            "UserIdsToRemove": [
+              "string"
+            ]
+          },
+          "ReplicationGroups": [
+            "string"
+          ]
+        }
+      ]
+  DeleteUser:
+    description: |-
+      For Redis engine version 6.x onwards:Deletes a user. The user will be removed from all user groups and in turn removed from all replication groups. For more information, see Using Role Based Access Control (RBAC).
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DeleteUser.html
+    example:
+      inputs: [
+        {
+          "UserId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "Engine": "string",
+          "Status": "string",
+          "UserId": "string",
+          "UserName": "string",
+          "AccessString": "string",
+          "UserGroupIds": [
+            "string"
+          ],
+          "Authentication": {
+            "Type": "string",
+            "PasswordCount": 1
+          }
+        }
+      ]
+  DescribeCacheClusters:
+    description: |-
+      Returns information about all provisioned clusters if no cluster identifier is specified, or about a specific cache cluster if a cluster identifier is supplied.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeCacheClusters.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxRecords": 1,
+          "CacheClusterId": "string",
+          "ShowCacheNodeInfo": false,
+          "ShowCacheClustersNotInReplicationGroups": false
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "CacheClusters": [
+            {
+              "ARN": "string",
+              "Engine": "string",
+              "CacheNodes": [
+                {
+                  "Endpoint": {
+                    "Port": 1,
+                    "Address": "string"
+                  },
+                  "CacheNodeId": "string",
+                  "CacheNodeStatus": "string",
+                  "SourceCacheNodeId": "string",
+                  "CustomerOutpostArn": "string",
+                  "CacheNodeCreateTime": 1481289211.615,
+                  "ParameterGroupStatus": "string",
+                  "CustomerAvailabilityZone": "string"
+                }
+              ],
+              "CacheNodeType": "string",
+              "EngineVersion": "string",
+              "NumCacheNodes": 1,
+              "CacheClusterId": "string",
+              "SecurityGroups": [
+                {
+                  "Status": "string",
+                  "SecurityGroupId": "string"
+                }
+              ],
+              "SnapshotWindow": "string",
+              "AuthTokenEnabled": false,
+              "CacheClusterStatus": "string",
+              "ReplicationGroupId": "string",
+              "CacheParameterGroup": {
+                "CacheNodeIdsToReboot": [
+                  "string"
+                ],
+                "ParameterApplyStatus": "string",
+                "CacheParameterGroupName": "string"
+              },
+              "CacheSecurityGroups": [
+                {
+                  "Status": "string",
+                  "CacheSecurityGroupName": "string"
+                }
+              ],
+              "PreferredOutpostArn": "string",
+              "CacheSubnetGroupName": "string",
+              "ConfigurationEndpoint": {
+                "Port": 1,
+                "Address": "string"
+              },
+              "PendingModifiedValues": {
+                "CacheNodeType": "string",
+                "EngineVersion": "string",
+                "NumCacheNodes": 1,
+                "AuthTokenStatus": "string",
+                "CacheNodeIdsToRemove": [
+                  "string"
+                ],
+                "LogDeliveryConfigurations": [
+                  {
+                    "LogType": "string",
+                    "LogFormat": "string",
+                    "DestinationType": "string",
+                    "DestinationDetails": {
+                      "CloudWatchLogsDetails": {
+                        "LogGroup": "string"
+                      },
+                      "KinesisFirehoseDetails": {
+                        "DeliveryStream": "string"
+                      }
+                    }
+                  }
+                ]
+              },
+              "CacheClusterCreateTime": 1481289211.615,
+              "SnapshotRetentionLimit": 1,
+              "AtRestEncryptionEnabled": false,
+              "AutoMinorVersionUpgrade": false,
+              "TransitEncryptionEnabled": false,
+              "AuthTokenLastModifiedDate": 1481289211.615,
+              "ClientDownloadLandingPage": "string",
+              "LogDeliveryConfigurations": [
+                {
+                  "Status": "string",
+                  "LogType": "string",
+                  "Message": "string",
+                  "LogFormat": "string",
+                  "DestinationType": "string",
+                  "DestinationDetails": {
+                    "CloudWatchLogsDetails": {
+                      "LogGroup": "string"
+                    },
+                    "KinesisFirehoseDetails": {
+                      "DeliveryStream": "string"
+                    }
+                  }
+                }
+              ],
+              "NotificationConfiguration": {
+                "TopicArn": "string",
+                "TopicStatus": "string"
+              },
+              "PreferredAvailabilityZone": "string",
+              "PreferredMaintenanceWindow": "string",
+              "ReplicationGroupLogDeliveryEnabled": false
+            }
+          ]
+        }
+      ]
+  DescribeCacheEngineVersions:
+    description: |-
+      Returns a list of the available cache engines and their versions.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeCacheEngineVersions.html
+    example:
+      inputs: [
+        {
+          "Engine": "string",
+          "Marker": "string",
+          "MaxRecords": 1,
+          "DefaultOnly": false,
+          "EngineVersion": "string",
+          "CacheParameterGroupFamily": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "CacheEngineVersions": [
+            {
+              "Engine": "string",
+              "EngineVersion": "string",
+              "CacheEngineDescription": "string",
+              "CacheParameterGroupFamily": "string",
+              "CacheEngineVersionDescription": "string"
+            }
+          ]
+        }
+      ]
+  DescribeCacheParameterGroups:
+    description: |-
+      Returns a list of cache parameter group descriptions. If a cache parameter group name is specified, the list contains only the descriptions for that group.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeCacheParameterGroups.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxRecords": 1,
+          "CacheParameterGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "CacheParameterGroups": [
+            {
+              "ARN": "string",
+              "IsGlobal": false,
+              "Description": "string",
+              "CacheParameterGroupName": "string",
+              "CacheParameterGroupFamily": "string"
+            }
+          ]
+        }
+      ]
+  DescribeCacheParameters:
+    description: |-
+      Returns the detailed parameter list for a particular cache parameter group.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeCacheParameters.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "Source": "string",
+          "MaxRecords": 1,
+          "CacheParameterGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "Parameters": [
+            {
+              "Source": "string",
+              "DataType": "string",
+              "ChangeType": "string",
+              "Description": "string",
+              "IsModifiable": false,
+              "AllowedValues": "string",
+              "ParameterName": "string",
+              "ParameterValue": "string",
+              "MinimumEngineVersion": "string"
+            }
+          ],
+          "CacheNodeTypeSpecificParameters": [
+            {
+              "Source": "string",
+              "DataType": "string",
+              "ChangeType": "string",
+              "Description": "string",
+              "IsModifiable": false,
+              "AllowedValues": "string",
+              "ParameterName": "string",
+              "MinimumEngineVersion": "string",
+              "CacheNodeTypeSpecificValues": [
+                {
+                  "Value": "string",
+                  "CacheNodeType": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  DescribeCacheSecurityGroups:
+    description: |-
+      Returns a list of cache security group descriptions. If a cache security group name is specified, the list contains only the description of that group. This applicable only when you have ElastiCache in Classic setup
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeCacheSecurityGroups.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxRecords": 1,
+          "CacheSecurityGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "CacheSecurityGroups": [
+            {
+              "ARN": "string",
+              "OwnerId": "string",
+              "Description": "string",
+              "EC2SecurityGroups": [
+                {
+                  "Status": "string",
+                  "EC2SecurityGroupName": "string",
+                  "EC2SecurityGroupOwnerId": "string"
+                }
+              ],
+              "CacheSecurityGroupName": "string"
+            }
+          ]
+        }
+      ]
+  DescribeCacheSubnetGroups:
+    description: |-
+      Returns a list of cache subnet group descriptions. If a subnet group name is specified, the list contains only the description of that group. This is applicable only when you have ElastiCache in VPC setup. All ElastiCache clusters now launch in VPC by default.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeCacheSubnetGroups.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxRecords": 1,
+          "CacheSubnetGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "CacheSubnetGroups": [
+            {
+              "ARN": "string",
+              "VpcId": "string",
+              "Subnets": [
+                {
+                  "SubnetOutpost": {
+                    "SubnetOutpostArn": "string"
+                  },
+                  "SubnetIdentifier": "string",
+                  "SubnetAvailabilityZone": {
+                    "Name": "string"
+                  }
+                }
+              ],
+              "CacheSubnetGroupName": "string",
+              "CacheSubnetGroupDescription": "string"
+            }
+          ]
+        }
+      ]
+  DescribeEngineDefaultParameters:
+    description: |-
+      Returns the default engine and system parameter information for the specified cache engine.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeEngineDefaultParameters.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxRecords": 1,
+          "CacheParameterGroupFamily": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EngineDefaults": {
+            "Marker": "string",
+            "Parameters": [
+              {
+                "Source": "string",
+                "DataType": "string",
+                "ChangeType": "string",
+                "Description": "string",
+                "IsModifiable": false,
+                "AllowedValues": "string",
+                "ParameterName": "string",
+                "ParameterValue": "string",
+                "MinimumEngineVersion": "string"
+              }
+            ],
+            "CacheParameterGroupFamily": "string",
+            "CacheNodeTypeSpecificParameters": [
+              {
+                "Source": "string",
+                "DataType": "string",
+                "ChangeType": "string",
+                "Description": "string",
+                "IsModifiable": false,
+                "AllowedValues": "string",
+                "ParameterName": "string",
+                "MinimumEngineVersion": "string",
+                "CacheNodeTypeSpecificValues": [
+                  {
+                    "Value": "string",
+                    "CacheNodeType": "string"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+  DescribeEvents:
+    description: |-
+      Returns events related to clusters, cache security groups, and cache parameter groups. You can obtain events specific to a particular cluster, cache security group, or cache parameter group by providing the name as a parameter.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeEvents.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "EndTime": 1481289211.615,
+          "Duration": 1,
+          "StartTime": 1481289211.615,
+          "MaxRecords": 1,
+          "SourceType": "string",
+          "SourceIdentifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Events": [
+            {
+              "Date": 1481289211.615,
+              "Message": "string",
+              "SourceType": "string",
+              "SourceIdentifier": "string"
+            }
+          ],
+          "Marker": "string"
+        }
+      ]
+  DescribeGlobalReplicationGroups:
+    description: |-
+      Returns information about a particular global replication group. If no identifier is specified, returns information about all Global datastores.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeGlobalReplicationGroups.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxRecords": 1,
+          "ShowMemberInfo": false,
+          "GlobalReplicationGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "GlobalReplicationGroups": [
+            {
+              "ARN": "string",
+              "Engine": "string",
+              "Status": "string",
+              "Members": [
+                {
+                  "Role": "string",
+                  "Status": "string",
+                  "AutomaticFailover": "string",
+                  "ReplicationGroupId": "string",
+                  "ReplicationGroupRegion": "string"
+                }
+              ],
+              "CacheNodeType": "string",
+              "EngineVersion": "string",
+              "ClusterEnabled": false,
+              "AuthTokenEnabled": false,
+              "GlobalNodeGroups": [
+                {
+                  "Slots": "string",
+                  "GlobalNodeGroupId": "string"
+                }
+              ],
+              "AtRestEncryptionEnabled": false,
+              "GlobalReplicationGroupId": "string",
+              "TransitEncryptionEnabled": false,
+              "GlobalReplicationGroupDescription": "string"
+            }
+          ]
+        }
+      ]
+  DescribeReplicationGroups:
+    description: |-
+      Returns information about a particular replication group. If no identifier is specified, DescribeReplicationGroups returns information about all replication groups.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeReplicationGroups.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxRecords": 1,
+          "ReplicationGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "ReplicationGroups": [
+            {
+              "ARN": "string",
+              "Status": "string",
+              "MultiAZ": "string",
+              "KmsKeyId": "string",
+              "NodeGroups": [
+                {
+                  "Slots": "string",
+                  "Status": "string",
+                  "NodeGroupId": "string",
+                  "ReaderEndpoint": {
+                    "Port": 1,
+                    "Address": "string"
+                  },
+                  "PrimaryEndpoint": {
+                    "Port": 1,
+                    "Address": "string"
+                  },
+                  "NodeGroupMembers": [
+                    {
+                      "CacheNodeId": "string",
+                      "CurrentRole": "string",
+                      "ReadEndpoint": {
+                        "Port": 1,
+                        "Address": "string"
+                      },
+                      "CacheClusterId": "string",
+                      "PreferredOutpostArn": "string",
+                      "PreferredAvailabilityZone": "string"
+                    }
+                  ]
+                }
+              ],
+              "Description": "string",
+              "UserGroupIds": [
+                "string"
+              ],
+              "CacheNodeType": "string",
+              "ClusterEnabled": false,
+              "MemberClusters": [
+                "string"
+              ],
+              "SnapshotWindow": "string",
+              "AuthTokenEnabled": false,
+              "AutomaticFailover": "string",
+              "ReplicationGroupId": "string",
+              "ConfigurationEndpoint": {
+                "Port": 1,
+                "Address": "string"
+              },
+              "PendingModifiedValues": {
+                "Resharding": {
+                  "SlotMigration": {
+                    "ProgressPercentage": 0.1
+                  }
+                },
+                "UserGroups": {
+                  "UserGroupIdsToAdd": [
+                    "string"
+                  ],
+                  "UserGroupIdsToRemove": [
+                    "string"
+                  ]
+                },
+                "AuthTokenStatus": "string",
+                "PrimaryClusterId": "string",
+                "AutomaticFailoverStatus": "string",
+                "LogDeliveryConfigurations": [
+                  {
+                    "LogType": "string",
+                    "LogFormat": "string",
+                    "DestinationType": "string",
+                    "DestinationDetails": {
+                      "CloudWatchLogsDetails": {
+                        "LogGroup": "string"
+                      },
+                      "KinesisFirehoseDetails": {
+                        "DeliveryStream": "string"
+                      }
+                    }
+                  }
+                ]
+              },
+              "SnapshottingClusterId": "string",
+              "SnapshotRetentionLimit": 1,
+              "AtRestEncryptionEnabled": false,
+              "TransitEncryptionEnabled": false,
+              "AuthTokenLastModifiedDate": 1481289211.615,
+              "LogDeliveryConfigurations": [
+                {
+                  "Status": "string",
+                  "LogType": "string",
+                  "Message": "string",
+                  "LogFormat": "string",
+                  "DestinationType": "string",
+                  "DestinationDetails": {
+                    "CloudWatchLogsDetails": {
+                      "LogGroup": "string"
+                    },
+                    "KinesisFirehoseDetails": {
+                      "DeliveryStream": "string"
+                    }
+                  }
+                }
+              ],
+              "MemberClustersOutpostArns": [
+                "string"
+              ],
+              "GlobalReplicationGroupInfo": {
+                "GlobalReplicationGroupId": "string",
+                "GlobalReplicationGroupMemberRole": "string"
+              }
+            }
+          ]
+        }
+      ]
+  DescribeReservedCacheNodes:
+    description: |-
+      Returns information about reserved cache nodes for this account, or about a specified reserved cache node.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeReservedCacheNodes.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "Duration": "string",
+          "MaxRecords": 1,
+          "OfferingType": "string",
+          "CacheNodeType": "string",
+          "ProductDescription": "string",
+          "ReservedCacheNodeId": "string",
+          "ReservedCacheNodesOfferingId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "ReservedCacheNodes": [
+            {
+              "State": "string",
+              "Duration": 1,
+              "StartTime": 1481289211.615,
+              "FixedPrice": 0.1,
+              "UsagePrice": 0.1,
+              "OfferingType": "string",
+              "CacheNodeType": "string",
+              "CacheNodeCount": 1,
+              "ReservationARN": "string",
+              "RecurringCharges": [
+                {
+                  "RecurringChargeAmount": 0.1,
+                  "RecurringChargeFrequency": "string"
+                }
+              ],
+              "ProductDescription": "string",
+              "ReservedCacheNodeId": "string",
+              "ReservedCacheNodesOfferingId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeReservedCacheNodesOfferings:
+    description: |-
+      Lists available reserved cache node offerings.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeReservedCacheNodesOfferings.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "Duration": "string",
+          "MaxRecords": 1,
+          "OfferingType": "string",
+          "CacheNodeType": "string",
+          "ProductDescription": "string",
+          "ReservedCacheNodesOfferingId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "ReservedCacheNodesOfferings": [
+            {
+              "Duration": 1,
+              "FixedPrice": 0.1,
+              "UsagePrice": 0.1,
+              "OfferingType": "string",
+              "CacheNodeType": "string",
+              "RecurringCharges": [
+                {
+                  "RecurringChargeAmount": 0.1,
+                  "RecurringChargeFrequency": "string"
+                }
+              ],
+              "ProductDescription": "string",
+              "ReservedCacheNodesOfferingId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeServiceUpdates:
+    description: |-
+      Returns details of the service updates
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeServiceUpdates.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxRecords": 1,
+          "ServiceUpdateName": "string",
+          "ServiceUpdateStatus": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "ServiceUpdates": [
+            {
+              "Engine": "string",
+              "EngineVersion": "string",
+              "ServiceUpdateName": "string",
+              "ServiceUpdateType": "string",
+              "EstimatedUpdateTime": "string",
+              "ServiceUpdateStatus": "string",
+              "ServiceUpdateEndDate": 1481289211.615,
+              "ServiceUpdateSeverity": "string",
+              "ServiceUpdateDescription": "string",
+              "ServiceUpdateReleaseDate": 1481289211.615,
+              "ServiceUpdateRecommendedApplyByDate": 1481289211.615,
+              "AutoUpdateAfterRecommendedApplyByDate": false
+            }
+          ]
+        }
+      ]
+  DescribeSnapshots:
+    description: |-
+      Returns information about cluster or replication group snapshots. By default, DescribeSnapshots lists all of your snapshots; it can optionally describe a single snapshot, or just the snapshots associated with a particular cache cluster.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeSnapshots.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxRecords": 1,
+          "SnapshotName": "string",
+          "CacheClusterId": "string",
+          "SnapshotSource": "string",
+          "ReplicationGroupId": "string",
+          "ShowNodeGroupConfig": false
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "Snapshots": [
+            {
+              "ARN": "string",
+              "Port": 1,
+              "VpcId": "string",
+              "Engine": "string",
+              "KmsKeyId": "string",
+              "TopicArn": "string",
+              "SnapshotName": "string",
+              "CacheNodeType": "string",
+              "EngineVersion": "string",
+              "NodeSnapshots": [
+                {
+                  "CacheSize": "string",
+                  "CacheNodeId": "string",
+                  "NodeGroupId": "string",
+                  "CacheClusterId": "string",
+                  "SnapshotCreateTime": 1481289211.615,
+                  "CacheNodeCreateTime": 1481289211.615,
+                  "NodeGroupConfiguration": {
+                    "Slots": "string",
+                    "NodeGroupId": "string",
+                    "ReplicaCount": 1,
+                    "PrimaryOutpostArn": "string",
+                    "ReplicaOutpostArns": [
+                      "string"
+                    ],
+                    "PrimaryAvailabilityZone": "string",
+                    "ReplicaAvailabilityZones": [
+                      "string"
+                    ]
+                  }
+                }
+              ],
+              "NumCacheNodes": 1,
+              "NumNodeGroups": 1,
+              "CacheClusterId": "string",
+              "SnapshotSource": "string",
+              "SnapshotStatus": "string",
+              "SnapshotWindow": "string",
+              "AutomaticFailover": "string",
+              "ReplicationGroupId": "string",
+              "PreferredOutpostArn": "string",
+              "CacheSubnetGroupName": "string",
+              "CacheClusterCreateTime": 1481289211.615,
+              "SnapshotRetentionLimit": 1,
+              "AutoMinorVersionUpgrade": false,
+              "CacheParameterGroupName": "string",
+              "PreferredAvailabilityZone": "string",
+              "PreferredMaintenanceWindow": "string",
+              "ReplicationGroupDescription": "string"
+            }
+          ]
+        }
+      ]
+  DescribeUpdateActions:
+    description: |-
+      Returns details of the update actions
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeUpdateActions.html
+    example:
+      inputs: [
+        {
+          "Engine": "string",
+          "Marker": "string",
+          "MaxRecords": 1,
+          "CacheClusterIds": [
+            "string"
+          ],
+          "ServiceUpdateName": "string",
+          "UpdateActionStatus": [
+            "string"
+          ],
+          "ReplicationGroupIds": [
+            "string"
+          ],
+          "ServiceUpdateStatus": [
+            "string"
+          ],
+          "ServiceUpdateTimeRange": {
+            "EndTime": 1481289211.615,
+            "StartTime": 1481289211.615
+          },
+          "ShowNodeLevelUpdateStatus": false
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "UpdateActions": [
+            {
+              "Engine": "string",
+              "SlaMet": "string",
+              "NodesUpdated": "string",
+              "CacheClusterId": "string",
+              "ServiceUpdateName": "string",
+              "ServiceUpdateType": "string",
+              "ReplicationGroupId": "string",
+              "UpdateActionStatus": "string",
+              "EstimatedUpdateTime": "string",
+              "ServiceUpdateStatus": "string",
+              "CacheNodeUpdateStatus": [
+                {
+                  "CacheNodeId": "string",
+                  "NodeDeletionDate": 1481289211.615,
+                  "NodeUpdateStatus": "string",
+                  "NodeUpdateEndDate": 1481289211.615,
+                  "NodeUpdateStartDate": 1481289211.615,
+                  "NodeUpdateInitiatedBy": "string",
+                  "NodeUpdateInitiatedDate": 1481289211.615,
+                  "NodeUpdateStatusModifiedDate": 1481289211.615
+                }
+              ],
+              "NodeGroupUpdateStatus": [
+                {
+                  "NodeGroupId": "string",
+                  "NodeGroupMemberUpdateStatus": [
+                    {
+                      "CacheNodeId": "string",
+                      "CacheClusterId": "string",
+                      "NodeDeletionDate": 1481289211.615,
+                      "NodeUpdateStatus": "string",
+                      "NodeUpdateEndDate": 1481289211.615,
+                      "NodeUpdateStartDate": 1481289211.615,
+                      "NodeUpdateInitiatedBy": "string",
+                      "NodeUpdateInitiatedDate": 1481289211.615,
+                      "NodeUpdateStatusModifiedDate": 1481289211.615
+                    }
+                  ]
+                }
+              ],
+              "ServiceUpdateSeverity": "string",
+              "ServiceUpdateReleaseDate": 1481289211.615,
+              "UpdateActionAvailableDate": 1481289211.615,
+              "UpdateActionStatusModifiedDate": 1481289211.615,
+              "ServiceUpdateRecommendedApplyByDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  DescribeUserGroups:
+    description: |-
+      Returns a list of user groups.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeUserGroups.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxRecords": 1,
+          "UserGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "UserGroups": [
+            {
+              "ARN": "string",
+              "Engine": "string",
+              "Status": "string",
+              "UserIds": [
+                "string"
+              ],
+              "UserGroupId": "string",
+              "PendingChanges": {
+                "UserIdsToAdd": [
+                  "string"
+                ],
+                "UserIdsToRemove": [
+                  "string"
+                ]
+              },
+              "ReplicationGroups": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  DescribeUsers:
+    description: |-
+      Returns a list of users.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeUsers.html
+    example:
+      inputs: [
+        {
+          "Engine": "string",
+          "Marker": "string",
+          "UserId": "string",
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "MaxRecords": 1
+        }
+      ]
+      outputs: [
+        {
+          "Users": [
+            {
+              "ARN": "string",
+              "Engine": "string",
+              "Status": "string",
+              "UserId": "string",
+              "UserName": "string",
+              "AccessString": "string",
+              "UserGroupIds": [
+                "string"
+              ],
+              "Authentication": {
+                "Type": "string",
+                "PasswordCount": 1
+              }
+            }
+          ],
+          "Marker": "string"
+        }
+      ]
+  DisassociateGlobalReplicationGroup:
+    description: |-
+      Remove a secondary cluster from the Global datastore using the Global datastore name. The secondary cluster will no longer receive updates from the primary cluster, but will remain as a standalone cluster in that AWS region.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DisassociateGlobalReplicationGroup.html
+    example:
+      inputs: [
+        {
+          "ReplicationGroupId": "string",
+          "ReplicationGroupRegion": "string",
+          "GlobalReplicationGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GlobalReplicationGroup": {
+            "ARN": "string",
+            "Engine": "string",
+            "Status": "string",
+            "Members": [
+              {
+                "Role": "string",
+                "Status": "string",
+                "AutomaticFailover": "string",
+                "ReplicationGroupId": "string",
+                "ReplicationGroupRegion": "string"
+              }
+            ],
+            "CacheNodeType": "string",
+            "EngineVersion": "string",
+            "ClusterEnabled": false,
+            "AuthTokenEnabled": false,
+            "GlobalNodeGroups": [
+              {
+                "Slots": "string",
+                "GlobalNodeGroupId": "string"
+              }
+            ],
+            "AtRestEncryptionEnabled": false,
+            "GlobalReplicationGroupId": "string",
+            "TransitEncryptionEnabled": false,
+            "GlobalReplicationGroupDescription": "string"
+          }
+        }
+      ]
+  FailoverGlobalReplicationGroup:
+    description: |-
+      Used to failover the primary region to a selected secondary region. The selected secondary region will become primary, and all other clusters will become secondary.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_FailoverGlobalReplicationGroup.html
+    example:
+      inputs: [
+        {
+          "PrimaryRegion": "string",
+          "GlobalReplicationGroupId": "string",
+          "PrimaryReplicationGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GlobalReplicationGroup": {
+            "ARN": "string",
+            "Engine": "string",
+            "Status": "string",
+            "Members": [
+              {
+                "Role": "string",
+                "Status": "string",
+                "AutomaticFailover": "string",
+                "ReplicationGroupId": "string",
+                "ReplicationGroupRegion": "string"
+              }
+            ],
+            "CacheNodeType": "string",
+            "EngineVersion": "string",
+            "ClusterEnabled": false,
+            "AuthTokenEnabled": false,
+            "GlobalNodeGroups": [
+              {
+                "Slots": "string",
+                "GlobalNodeGroupId": "string"
+              }
+            ],
+            "AtRestEncryptionEnabled": false,
+            "GlobalReplicationGroupId": "string",
+            "TransitEncryptionEnabled": false,
+            "GlobalReplicationGroupDescription": "string"
+          }
+        }
+      ]
+  IncreaseNodeGroupsInGlobalReplicationGroup:
+    description: |-
+      Increase the number of node groups in the Global datastore
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_IncreaseNodeGroupsInGlobalReplicationGroup.html
+    example:
+      inputs: [
+        {
+          "NodeGroupCount": 1,
+          "ApplyImmediately": false,
+          "RegionalConfigurations": [
+            {
+              "ReplicationGroupId": "string",
+              "ReplicationGroupRegion": "string",
+              "ReshardingConfiguration": [
+                {
+                  "NodeGroupId": "string",
+                  "PreferredAvailabilityZones": [
+                    "string"
+                  ]
+                }
+              ]
+            }
+          ],
+          "GlobalReplicationGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GlobalReplicationGroup": {
+            "ARN": "string",
+            "Engine": "string",
+            "Status": "string",
+            "Members": [
+              {
+                "Role": "string",
+                "Status": "string",
+                "AutomaticFailover": "string",
+                "ReplicationGroupId": "string",
+                "ReplicationGroupRegion": "string"
+              }
+            ],
+            "CacheNodeType": "string",
+            "EngineVersion": "string",
+            "ClusterEnabled": false,
+            "AuthTokenEnabled": false,
+            "GlobalNodeGroups": [
+              {
+                "Slots": "string",
+                "GlobalNodeGroupId": "string"
+              }
+            ],
+            "AtRestEncryptionEnabled": false,
+            "GlobalReplicationGroupId": "string",
+            "TransitEncryptionEnabled": false,
+            "GlobalReplicationGroupDescription": "string"
+          }
+        }
+      ]
+  IncreaseReplicaCount:
+    description: |-
+      Dynamically increases the number of replicas in a Redis (cluster mode disabled) replication group or the number of replica nodes in one or more node groups (shards) of a Redis (cluster mode enabled) replication group. This operation is performed with no cluster down time.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_IncreaseReplicaCount.html
+    example:
+      inputs: [
+        {
+          "NewReplicaCount": 1,
+          "ApplyImmediately": false,
+          "ReplicationGroupId": "string",
+          "ReplicaConfiguration": [
+            {
+              "NodeGroupId": "string",
+              "NewReplicaCount": 1,
+              "PreferredOutpostArns": [
+                "string"
+              ],
+              "PreferredAvailabilityZones": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ReplicationGroup": {
+            "ARN": "string",
+            "Status": "string",
+            "MultiAZ": "string",
+            "KmsKeyId": "string",
+            "NodeGroups": [
+              {
+                "Slots": "string",
+                "Status": "string",
+                "NodeGroupId": "string",
+                "ReaderEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "PrimaryEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "NodeGroupMembers": [
+                  {
+                    "CacheNodeId": "string",
+                    "CurrentRole": "string",
+                    "ReadEndpoint": {
+                      "Port": 1,
+                      "Address": "string"
+                    },
+                    "CacheClusterId": "string",
+                    "PreferredOutpostArn": "string",
+                    "PreferredAvailabilityZone": "string"
+                  }
+                ]
+              }
+            ],
+            "Description": "string",
+            "UserGroupIds": [
+              "string"
+            ],
+            "CacheNodeType": "string",
+            "ClusterEnabled": false,
+            "MemberClusters": [
+              "string"
+            ],
+            "SnapshotWindow": "string",
+            "AuthTokenEnabled": false,
+            "AutomaticFailover": "string",
+            "ReplicationGroupId": "string",
+            "ConfigurationEndpoint": {
+              "Port": 1,
+              "Address": "string"
+            },
+            "PendingModifiedValues": {
+              "Resharding": {
+                "SlotMigration": {
+                  "ProgressPercentage": 0.1
+                }
+              },
+              "UserGroups": {
+                "UserGroupIdsToAdd": [
+                  "string"
+                ],
+                "UserGroupIdsToRemove": [
+                  "string"
+                ]
+              },
+              "AuthTokenStatus": "string",
+              "PrimaryClusterId": "string",
+              "AutomaticFailoverStatus": "string",
+              "LogDeliveryConfigurations": [
+                {
+                  "LogType": "string",
+                  "LogFormat": "string",
+                  "DestinationType": "string",
+                  "DestinationDetails": {
+                    "CloudWatchLogsDetails": {
+                      "LogGroup": "string"
+                    },
+                    "KinesisFirehoseDetails": {
+                      "DeliveryStream": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "SnapshottingClusterId": "string",
+            "SnapshotRetentionLimit": 1,
+            "AtRestEncryptionEnabled": false,
+            "TransitEncryptionEnabled": false,
+            "AuthTokenLastModifiedDate": 1481289211.615,
+            "LogDeliveryConfigurations": [
+              {
+                "Status": "string",
+                "LogType": "string",
+                "Message": "string",
+                "LogFormat": "string",
+                "DestinationType": "string",
+                "DestinationDetails": {
+                  "CloudWatchLogsDetails": {
+                    "LogGroup": "string"
+                  },
+                  "KinesisFirehoseDetails": {
+                    "DeliveryStream": "string"
+                  }
+                }
+              }
+            ],
+            "MemberClustersOutpostArns": [
+              "string"
+            ],
+            "GlobalReplicationGroupInfo": {
+              "GlobalReplicationGroupId": "string",
+              "GlobalReplicationGroupMemberRole": "string"
+            }
+          }
+        }
+      ]
+  ListAllowedNodeTypeModifications:
+    description: |-
+      Lists all available node types that you can scale your Redis cluster's or replication group's current node type.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ListAllowedNodeTypeModifications.html
+    example:
+      inputs: [
+        {
+          "CacheClusterId": "string",
+          "ReplicationGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ScaleUpModifications": [
+            "string"
+          ],
+          "ScaleDownModifications": [
+            "string"
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists all tags currently on a named resource.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TagList": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  ModifyCacheCluster:
+    description: |-
+      Modifies the settings for a cluster. You can use this operation to change one or more cluster configuration parameters by specifying the parameters and the new values.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyCacheCluster.html
+    example:
+      inputs: [
+        {
+          "AZMode": "string",
+          "AuthToken": "string",
+          "CacheNodeType": "string",
+          "EngineVersion": "string",
+          "NumCacheNodes": 1,
+          "CacheClusterId": "string",
+          "SnapshotWindow": "string",
+          "ApplyImmediately": false,
+          "SecurityGroupIds": [
+            "string"
+          ],
+          "CacheNodeIdsToRemove": [
+            "string"
+          ],
+          "NewAvailabilityZones": [
+            "string"
+          ],
+          "NotificationTopicArn": "string",
+          "SnapshotRetentionLimit": 1,
+          "AuthTokenUpdateStrategy": "string",
+          "AutoMinorVersionUpgrade": false,
+          "CacheParameterGroupName": "string",
+          "CacheSecurityGroupNames": [
+            "string"
+          ],
+          "NotificationTopicStatus": "string",
+          "LogDeliveryConfigurations": [
+            {
+              "Enabled": false,
+              "LogType": "string",
+              "LogFormat": "string",
+              "DestinationType": "string",
+              "DestinationDetails": {
+                "CloudWatchLogsDetails": {
+                  "LogGroup": "string"
+                },
+                "KinesisFirehoseDetails": {
+                  "DeliveryStream": "string"
+                }
+              }
+            }
+          ],
+          "PreferredMaintenanceWindow": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CacheCluster": {
+            "ARN": "string",
+            "Engine": "string",
+            "CacheNodes": [
+              {
+                "Endpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "CacheNodeId": "string",
+                "CacheNodeStatus": "string",
+                "SourceCacheNodeId": "string",
+                "CustomerOutpostArn": "string",
+                "CacheNodeCreateTime": 1481289211.615,
+                "ParameterGroupStatus": "string",
+                "CustomerAvailabilityZone": "string"
+              }
+            ],
+            "CacheNodeType": "string",
+            "EngineVersion": "string",
+            "NumCacheNodes": 1,
+            "CacheClusterId": "string",
+            "SecurityGroups": [
+              {
+                "Status": "string",
+                "SecurityGroupId": "string"
+              }
+            ],
+            "SnapshotWindow": "string",
+            "AuthTokenEnabled": false,
+            "CacheClusterStatus": "string",
+            "ReplicationGroupId": "string",
+            "CacheParameterGroup": {
+              "CacheNodeIdsToReboot": [
+                "string"
+              ],
+              "ParameterApplyStatus": "string",
+              "CacheParameterGroupName": "string"
+            },
+            "CacheSecurityGroups": [
+              {
+                "Status": "string",
+                "CacheSecurityGroupName": "string"
+              }
+            ],
+            "PreferredOutpostArn": "string",
+            "CacheSubnetGroupName": "string",
+            "ConfigurationEndpoint": {
+              "Port": 1,
+              "Address": "string"
+            },
+            "PendingModifiedValues": {
+              "CacheNodeType": "string",
+              "EngineVersion": "string",
+              "NumCacheNodes": 1,
+              "AuthTokenStatus": "string",
+              "CacheNodeIdsToRemove": [
+                "string"
+              ],
+              "LogDeliveryConfigurations": [
+                {
+                  "LogType": "string",
+                  "LogFormat": "string",
+                  "DestinationType": "string",
+                  "DestinationDetails": {
+                    "CloudWatchLogsDetails": {
+                      "LogGroup": "string"
+                    },
+                    "KinesisFirehoseDetails": {
+                      "DeliveryStream": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "CacheClusterCreateTime": 1481289211.615,
+            "SnapshotRetentionLimit": 1,
+            "AtRestEncryptionEnabled": false,
+            "AutoMinorVersionUpgrade": false,
+            "TransitEncryptionEnabled": false,
+            "AuthTokenLastModifiedDate": 1481289211.615,
+            "ClientDownloadLandingPage": "string",
+            "LogDeliveryConfigurations": [
+              {
+                "Status": "string",
+                "LogType": "string",
+                "Message": "string",
+                "LogFormat": "string",
+                "DestinationType": "string",
+                "DestinationDetails": {
+                  "CloudWatchLogsDetails": {
+                    "LogGroup": "string"
+                  },
+                  "KinesisFirehoseDetails": {
+                    "DeliveryStream": "string"
+                  }
+                }
+              }
+            ],
+            "NotificationConfiguration": {
+              "TopicArn": "string",
+              "TopicStatus": "string"
+            },
+            "PreferredAvailabilityZone": "string",
+            "PreferredMaintenanceWindow": "string",
+            "ReplicationGroupLogDeliveryEnabled": false
+          }
+        }
+      ]
+  ModifyCacheParameterGroup:
+    description: |-
+      Modifies the parameters of a cache parameter group. You can modify up to 20 parameters in a single request by submitting a list parameter name and value pairs.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyCacheParameterGroup.html
+    example:
+      inputs: [
+        {
+          "ParameterNameValues": [
+            {
+              "ParameterName": "string",
+              "ParameterValue": "string"
+            }
+          ],
+          "CacheParameterGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ModifyCacheSubnetGroup:
+    description: |-
+      Modifies an existing cache subnet group.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyCacheSubnetGroup.html
+    example:
+      inputs: [
+        {
+          "SubnetIds": [
+            "string"
+          ],
+          "CacheSubnetGroupName": "string",
+          "CacheSubnetGroupDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CacheSubnetGroup": {
+            "ARN": "string",
+            "VpcId": "string",
+            "Subnets": [
+              {
+                "SubnetOutpost": {
+                  "SubnetOutpostArn": "string"
+                },
+                "SubnetIdentifier": "string",
+                "SubnetAvailabilityZone": {
+                  "Name": "string"
+                }
+              }
+            ],
+            "CacheSubnetGroupName": "string",
+            "CacheSubnetGroupDescription": "string"
+          }
+        }
+      ]
+  ModifyGlobalReplicationGroup:
+    description: |-
+      Modifies the settings for a Global datastore.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyGlobalReplicationGroup.html
+    example:
+      inputs: [
+        {
+          "CacheNodeType": "string",
+          "EngineVersion": "string",
+          "ApplyImmediately": false,
+          "CacheParameterGroupName": "string",
+          "AutomaticFailoverEnabled": false,
+          "GlobalReplicationGroupId": "string",
+          "GlobalReplicationGroupDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GlobalReplicationGroup": {
+            "ARN": "string",
+            "Engine": "string",
+            "Status": "string",
+            "Members": [
+              {
+                "Role": "string",
+                "Status": "string",
+                "AutomaticFailover": "string",
+                "ReplicationGroupId": "string",
+                "ReplicationGroupRegion": "string"
+              }
+            ],
+            "CacheNodeType": "string",
+            "EngineVersion": "string",
+            "ClusterEnabled": false,
+            "AuthTokenEnabled": false,
+            "GlobalNodeGroups": [
+              {
+                "Slots": "string",
+                "GlobalNodeGroupId": "string"
+              }
+            ],
+            "AtRestEncryptionEnabled": false,
+            "GlobalReplicationGroupId": "string",
+            "TransitEncryptionEnabled": false,
+            "GlobalReplicationGroupDescription": "string"
+          }
+        }
+      ]
+  ModifyReplicationGroup:
+    description: |-
+      Modifies the settings for a replication group.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyReplicationGroup.html
+    example:
+      inputs: [
+        {
+          "AuthToken": "string",
+          "NodeGroupId": "string",
+          "CacheNodeType": "string",
+          "EngineVersion": "string",
+          "MultiAZEnabled": false,
+          "SnapshotWindow": "string",
+          "ApplyImmediately": false,
+          "PrimaryClusterId": "string",
+          "RemoveUserGroups": false,
+          "SecurityGroupIds": [
+            "string"
+          ],
+          "UserGroupIdsToAdd": [
+            "string"
+          ],
+          "ReplicationGroupId": "string",
+          "NotificationTopicArn": "string",
+          "UserGroupIdsToRemove": [
+            "string"
+          ],
+          "SnapshottingClusterId": "string",
+          "SnapshotRetentionLimit": 1,
+          "AuthTokenUpdateStrategy": "string",
+          "AutoMinorVersionUpgrade": false,
+          "CacheParameterGroupName": "string",
+          "CacheSecurityGroupNames": [
+            "string"
+          ],
+          "NotificationTopicStatus": "string",
+          "AutomaticFailoverEnabled": false,
+          "LogDeliveryConfigurations": [
+            {
+              "Enabled": false,
+              "LogType": "string",
+              "LogFormat": "string",
+              "DestinationType": "string",
+              "DestinationDetails": {
+                "CloudWatchLogsDetails": {
+                  "LogGroup": "string"
+                },
+                "KinesisFirehoseDetails": {
+                  "DeliveryStream": "string"
+                }
+              }
+            }
+          ],
+          "PreferredMaintenanceWindow": "string",
+          "ReplicationGroupDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ReplicationGroup": {
+            "ARN": "string",
+            "Status": "string",
+            "MultiAZ": "string",
+            "KmsKeyId": "string",
+            "NodeGroups": [
+              {
+                "Slots": "string",
+                "Status": "string",
+                "NodeGroupId": "string",
+                "ReaderEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "PrimaryEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "NodeGroupMembers": [
+                  {
+                    "CacheNodeId": "string",
+                    "CurrentRole": "string",
+                    "ReadEndpoint": {
+                      "Port": 1,
+                      "Address": "string"
+                    },
+                    "CacheClusterId": "string",
+                    "PreferredOutpostArn": "string",
+                    "PreferredAvailabilityZone": "string"
+                  }
+                ]
+              }
+            ],
+            "Description": "string",
+            "UserGroupIds": [
+              "string"
+            ],
+            "CacheNodeType": "string",
+            "ClusterEnabled": false,
+            "MemberClusters": [
+              "string"
+            ],
+            "SnapshotWindow": "string",
+            "AuthTokenEnabled": false,
+            "AutomaticFailover": "string",
+            "ReplicationGroupId": "string",
+            "ConfigurationEndpoint": {
+              "Port": 1,
+              "Address": "string"
+            },
+            "PendingModifiedValues": {
+              "Resharding": {
+                "SlotMigration": {
+                  "ProgressPercentage": 0.1
+                }
+              },
+              "UserGroups": {
+                "UserGroupIdsToAdd": [
+                  "string"
+                ],
+                "UserGroupIdsToRemove": [
+                  "string"
+                ]
+              },
+              "AuthTokenStatus": "string",
+              "PrimaryClusterId": "string",
+              "AutomaticFailoverStatus": "string",
+              "LogDeliveryConfigurations": [
+                {
+                  "LogType": "string",
+                  "LogFormat": "string",
+                  "DestinationType": "string",
+                  "DestinationDetails": {
+                    "CloudWatchLogsDetails": {
+                      "LogGroup": "string"
+                    },
+                    "KinesisFirehoseDetails": {
+                      "DeliveryStream": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "SnapshottingClusterId": "string",
+            "SnapshotRetentionLimit": 1,
+            "AtRestEncryptionEnabled": false,
+            "TransitEncryptionEnabled": false,
+            "AuthTokenLastModifiedDate": 1481289211.615,
+            "LogDeliveryConfigurations": [
+              {
+                "Status": "string",
+                "LogType": "string",
+                "Message": "string",
+                "LogFormat": "string",
+                "DestinationType": "string",
+                "DestinationDetails": {
+                  "CloudWatchLogsDetails": {
+                    "LogGroup": "string"
+                  },
+                  "KinesisFirehoseDetails": {
+                    "DeliveryStream": "string"
+                  }
+                }
+              }
+            ],
+            "MemberClustersOutpostArns": [
+              "string"
+            ],
+            "GlobalReplicationGroupInfo": {
+              "GlobalReplicationGroupId": "string",
+              "GlobalReplicationGroupMemberRole": "string"
+            }
+          }
+        }
+      ]
+  ModifyReplicationGroupShardConfiguration:
+    description: |-
+      Modifies a replication group's shards (node groups) by allowing you to add shards, remove shards, or rebalance the keyspaces among existing shards.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyReplicationGroupShardConfiguration.html
+    example:
+      inputs: [
+        {
+          "NodeGroupCount": 1,
+          "ApplyImmediately": false,
+          "NodeGroupsToRemove": [
+            "string"
+          ],
+          "NodeGroupsToRetain": [
+            "string"
+          ],
+          "ReplicationGroupId": "string",
+          "ReshardingConfiguration": [
+            {
+              "NodeGroupId": "string",
+              "PreferredAvailabilityZones": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ReplicationGroup": {
+            "ARN": "string",
+            "Status": "string",
+            "MultiAZ": "string",
+            "KmsKeyId": "string",
+            "NodeGroups": [
+              {
+                "Slots": "string",
+                "Status": "string",
+                "NodeGroupId": "string",
+                "ReaderEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "PrimaryEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "NodeGroupMembers": [
+                  {
+                    "CacheNodeId": "string",
+                    "CurrentRole": "string",
+                    "ReadEndpoint": {
+                      "Port": 1,
+                      "Address": "string"
+                    },
+                    "CacheClusterId": "string",
+                    "PreferredOutpostArn": "string",
+                    "PreferredAvailabilityZone": "string"
+                  }
+                ]
+              }
+            ],
+            "Description": "string",
+            "UserGroupIds": [
+              "string"
+            ],
+            "CacheNodeType": "string",
+            "ClusterEnabled": false,
+            "MemberClusters": [
+              "string"
+            ],
+            "SnapshotWindow": "string",
+            "AuthTokenEnabled": false,
+            "AutomaticFailover": "string",
+            "ReplicationGroupId": "string",
+            "ConfigurationEndpoint": {
+              "Port": 1,
+              "Address": "string"
+            },
+            "PendingModifiedValues": {
+              "Resharding": {
+                "SlotMigration": {
+                  "ProgressPercentage": 0.1
+                }
+              },
+              "UserGroups": {
+                "UserGroupIdsToAdd": [
+                  "string"
+                ],
+                "UserGroupIdsToRemove": [
+                  "string"
+                ]
+              },
+              "AuthTokenStatus": "string",
+              "PrimaryClusterId": "string",
+              "AutomaticFailoverStatus": "string",
+              "LogDeliveryConfigurations": [
+                {
+                  "LogType": "string",
+                  "LogFormat": "string",
+                  "DestinationType": "string",
+                  "DestinationDetails": {
+                    "CloudWatchLogsDetails": {
+                      "LogGroup": "string"
+                    },
+                    "KinesisFirehoseDetails": {
+                      "DeliveryStream": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "SnapshottingClusterId": "string",
+            "SnapshotRetentionLimit": 1,
+            "AtRestEncryptionEnabled": false,
+            "TransitEncryptionEnabled": false,
+            "AuthTokenLastModifiedDate": 1481289211.615,
+            "LogDeliveryConfigurations": [
+              {
+                "Status": "string",
+                "LogType": "string",
+                "Message": "string",
+                "LogFormat": "string",
+                "DestinationType": "string",
+                "DestinationDetails": {
+                  "CloudWatchLogsDetails": {
+                    "LogGroup": "string"
+                  },
+                  "KinesisFirehoseDetails": {
+                    "DeliveryStream": "string"
+                  }
+                }
+              }
+            ],
+            "MemberClustersOutpostArns": [
+              "string"
+            ],
+            "GlobalReplicationGroupInfo": {
+              "GlobalReplicationGroupId": "string",
+              "GlobalReplicationGroupMemberRole": "string"
+            }
+          }
+        }
+      ]
+  ModifyUserGroup:
+    description: |-
+      Changes the list of users that belong to the user group.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyUserGroup.html
+    example:
+      inputs: [
+        {
+          "UserGroupId": "string",
+          "UserIdsToAdd": [
+            "string"
+          ],
+          "UserIdsToRemove": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "Engine": "string",
+          "Status": "string",
+          "UserIds": [
+            "string"
+          ],
+          "UserGroupId": "string",
+          "PendingChanges": {
+            "UserIdsToAdd": [
+              "string"
+            ],
+            "UserIdsToRemove": [
+              "string"
+            ]
+          },
+          "ReplicationGroups": [
+            "string"
+          ]
+        }
+      ]
+  ModifyUser:
+    description: |-
+      Changes user password(s) and/or access string.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyUser.html
+    example:
+      inputs: [
+        {
+          "UserId": "string",
+          "Passwords": [
+            "string"
+          ],
+          "AccessString": "string",
+          "AppendAccessString": "string",
+          "NoPasswordRequired": false
+        }
+      ]
+      outputs: [
+        {
+          "ARN": "string",
+          "Engine": "string",
+          "Status": "string",
+          "UserId": "string",
+          "UserName": "string",
+          "AccessString": "string",
+          "UserGroupIds": [
+            "string"
+          ],
+          "Authentication": {
+            "Type": "string",
+            "PasswordCount": 1
+          }
+        }
+      ]
+  PurchaseReservedCacheNodesOffering:
+    description: |-
+      Allows you to purchase a reserved cache node offering. Reserved nodes are not eligible for cancellation and are non-refundable. For more information, see Managing Costs with Reserved Nodes for Redis or Managing Costs with Reserved Nodes for Memcached.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_PurchaseReservedCacheNodesOffering.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "CacheNodeCount": 1,
+          "ReservedCacheNodeId": "string",
+          "ReservedCacheNodesOfferingId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ReservedCacheNode": {
+            "State": "string",
+            "Duration": 1,
+            "StartTime": 1481289211.615,
+            "FixedPrice": 0.1,
+            "UsagePrice": 0.1,
+            "OfferingType": "string",
+            "CacheNodeType": "string",
+            "CacheNodeCount": 1,
+            "ReservationARN": "string",
+            "RecurringCharges": [
+              {
+                "RecurringChargeAmount": 0.1,
+                "RecurringChargeFrequency": "string"
+              }
+            ],
+            "ProductDescription": "string",
+            "ReservedCacheNodeId": "string",
+            "ReservedCacheNodesOfferingId": "string"
+          }
+        }
+      ]
+  RebalanceSlotsInGlobalReplicationGroup:
+    description: |-
+      Redistribute slots to ensure uniform distribution across existing shards in the cluster.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_RebalanceSlotsInGlobalReplicationGroup.html
+    example:
+      inputs: [
+        {
+          "ApplyImmediately": false,
+          "GlobalReplicationGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GlobalReplicationGroup": {
+            "ARN": "string",
+            "Engine": "string",
+            "Status": "string",
+            "Members": [
+              {
+                "Role": "string",
+                "Status": "string",
+                "AutomaticFailover": "string",
+                "ReplicationGroupId": "string",
+                "ReplicationGroupRegion": "string"
+              }
+            ],
+            "CacheNodeType": "string",
+            "EngineVersion": "string",
+            "ClusterEnabled": false,
+            "AuthTokenEnabled": false,
+            "GlobalNodeGroups": [
+              {
+                "Slots": "string",
+                "GlobalNodeGroupId": "string"
+              }
+            ],
+            "AtRestEncryptionEnabled": false,
+            "GlobalReplicationGroupId": "string",
+            "TransitEncryptionEnabled": false,
+            "GlobalReplicationGroupDescription": "string"
+          }
+        }
+      ]
+  RebootCacheCluster:
+    description: |-
+      Reboots some, or all, of the cache nodes within a provisioned cluster. This operation applies any modified cache parameter groups to the cluster. The reboot operation takes place as soon as possible, and results in a momentary outage to the cluster. During the reboot, the cluster status is set to REBOOTING.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_RebootCacheCluster.html
+    example:
+      inputs: [
+        {
+          "CacheClusterId": "string",
+          "CacheNodeIdsToReboot": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "CacheCluster": {
+            "ARN": "string",
+            "Engine": "string",
+            "CacheNodes": [
+              {
+                "Endpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "CacheNodeId": "string",
+                "CacheNodeStatus": "string",
+                "SourceCacheNodeId": "string",
+                "CustomerOutpostArn": "string",
+                "CacheNodeCreateTime": 1481289211.615,
+                "ParameterGroupStatus": "string",
+                "CustomerAvailabilityZone": "string"
+              }
+            ],
+            "CacheNodeType": "string",
+            "EngineVersion": "string",
+            "NumCacheNodes": 1,
+            "CacheClusterId": "string",
+            "SecurityGroups": [
+              {
+                "Status": "string",
+                "SecurityGroupId": "string"
+              }
+            ],
+            "SnapshotWindow": "string",
+            "AuthTokenEnabled": false,
+            "CacheClusterStatus": "string",
+            "ReplicationGroupId": "string",
+            "CacheParameterGroup": {
+              "CacheNodeIdsToReboot": [
+                "string"
+              ],
+              "ParameterApplyStatus": "string",
+              "CacheParameterGroupName": "string"
+            },
+            "CacheSecurityGroups": [
+              {
+                "Status": "string",
+                "CacheSecurityGroupName": "string"
+              }
+            ],
+            "PreferredOutpostArn": "string",
+            "CacheSubnetGroupName": "string",
+            "ConfigurationEndpoint": {
+              "Port": 1,
+              "Address": "string"
+            },
+            "PendingModifiedValues": {
+              "CacheNodeType": "string",
+              "EngineVersion": "string",
+              "NumCacheNodes": 1,
+              "AuthTokenStatus": "string",
+              "CacheNodeIdsToRemove": [
+                "string"
+              ],
+              "LogDeliveryConfigurations": [
+                {
+                  "LogType": "string",
+                  "LogFormat": "string",
+                  "DestinationType": "string",
+                  "DestinationDetails": {
+                    "CloudWatchLogsDetails": {
+                      "LogGroup": "string"
+                    },
+                    "KinesisFirehoseDetails": {
+                      "DeliveryStream": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "CacheClusterCreateTime": 1481289211.615,
+            "SnapshotRetentionLimit": 1,
+            "AtRestEncryptionEnabled": false,
+            "AutoMinorVersionUpgrade": false,
+            "TransitEncryptionEnabled": false,
+            "AuthTokenLastModifiedDate": 1481289211.615,
+            "ClientDownloadLandingPage": "string",
+            "LogDeliveryConfigurations": [
+              {
+                "Status": "string",
+                "LogType": "string",
+                "Message": "string",
+                "LogFormat": "string",
+                "DestinationType": "string",
+                "DestinationDetails": {
+                  "CloudWatchLogsDetails": {
+                    "LogGroup": "string"
+                  },
+                  "KinesisFirehoseDetails": {
+                    "DeliveryStream": "string"
+                  }
+                }
+              }
+            ],
+            "NotificationConfiguration": {
+              "TopicArn": "string",
+              "TopicStatus": "string"
+            },
+            "PreferredAvailabilityZone": "string",
+            "PreferredMaintenanceWindow": "string",
+            "ReplicationGroupLogDeliveryEnabled": false
+          }
+        }
+      ]
+  RemoveTagsFromResource:
+    description: |-
+      Removes the tags identified by the TagKeys list from the named resource. A tag is a key-value pair where the key and value are case-sensitive. You can use tags to categorize and track all your ElastiCache resources, with the exception of global replication group. When you add or remove tags on replication groups, those actions will be replicated to all nodes in the replication group. For more information, see Resource-level permissions.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_RemoveTagsFromResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TagList": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  ResetCacheParameterGroup:
+    description: |-
+      Modifies the parameters of a cache parameter group to the engine or system default value. You can reset specific parameters by submitting a list of parameter names. To reset the entire cache parameter group, specify the ResetAllParameters and CacheParameterGroupName parameters.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ResetCacheParameterGroup.html
+    example:
+      inputs: [
+        {
+          "ResetAllParameters": false,
+          "ParameterNameValues": [
+            {
+              "ParameterName": "string",
+              "ParameterValue": "string"
+            }
+          ],
+          "CacheParameterGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RevokeCacheSecurityGroupIngress:
+    description: |-
+      Revokes ingress from a cache security group. Use this operation to disallow access from an Amazon EC2 security group that had been previously authorized.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_RevokeCacheSecurityGroupIngress.html
+    example:
+      inputs: [
+        {
+          "EC2SecurityGroupName": "string",
+          "CacheSecurityGroupName": "string",
+          "EC2SecurityGroupOwnerId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CacheSecurityGroup": {
+            "ARN": "string",
+            "OwnerId": "string",
+            "Description": "string",
+            "EC2SecurityGroups": [
+              {
+                "Status": "string",
+                "EC2SecurityGroupName": "string",
+                "EC2SecurityGroupOwnerId": "string"
+              }
+            ],
+            "CacheSecurityGroupName": "string"
+          }
+        }
+      ]
+  StartMigration:
+    description: |-
+      Start the migration of data.
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_StartMigration.html
+    example:
+      inputs: [
+        {
+          "ReplicationGroupId": "string",
+          "CustomerNodeEndpointList": [
+            {
+              "Port": 1,
+              "Address": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ReplicationGroup": {
+            "ARN": "string",
+            "Status": "string",
+            "MultiAZ": "string",
+            "KmsKeyId": "string",
+            "NodeGroups": [
+              {
+                "Slots": "string",
+                "Status": "string",
+                "NodeGroupId": "string",
+                "ReaderEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "PrimaryEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "NodeGroupMembers": [
+                  {
+                    "CacheNodeId": "string",
+                    "CurrentRole": "string",
+                    "ReadEndpoint": {
+                      "Port": 1,
+                      "Address": "string"
+                    },
+                    "CacheClusterId": "string",
+                    "PreferredOutpostArn": "string",
+                    "PreferredAvailabilityZone": "string"
+                  }
+                ]
+              }
+            ],
+            "Description": "string",
+            "UserGroupIds": [
+              "string"
+            ],
+            "CacheNodeType": "string",
+            "ClusterEnabled": false,
+            "MemberClusters": [
+              "string"
+            ],
+            "SnapshotWindow": "string",
+            "AuthTokenEnabled": false,
+            "AutomaticFailover": "string",
+            "ReplicationGroupId": "string",
+            "ConfigurationEndpoint": {
+              "Port": 1,
+              "Address": "string"
+            },
+            "PendingModifiedValues": {
+              "Resharding": {
+                "SlotMigration": {
+                  "ProgressPercentage": 0.1
+                }
+              },
+              "UserGroups": {
+                "UserGroupIdsToAdd": [
+                  "string"
+                ],
+                "UserGroupIdsToRemove": [
+                  "string"
+                ]
+              },
+              "AuthTokenStatus": "string",
+              "PrimaryClusterId": "string",
+              "AutomaticFailoverStatus": "string",
+              "LogDeliveryConfigurations": [
+                {
+                  "LogType": "string",
+                  "LogFormat": "string",
+                  "DestinationType": "string",
+                  "DestinationDetails": {
+                    "CloudWatchLogsDetails": {
+                      "LogGroup": "string"
+                    },
+                    "KinesisFirehoseDetails": {
+                      "DeliveryStream": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "SnapshottingClusterId": "string",
+            "SnapshotRetentionLimit": 1,
+            "AtRestEncryptionEnabled": false,
+            "TransitEncryptionEnabled": false,
+            "AuthTokenLastModifiedDate": 1481289211.615,
+            "LogDeliveryConfigurations": [
+              {
+                "Status": "string",
+                "LogType": "string",
+                "Message": "string",
+                "LogFormat": "string",
+                "DestinationType": "string",
+                "DestinationDetails": {
+                  "CloudWatchLogsDetails": {
+                    "LogGroup": "string"
+                  },
+                  "KinesisFirehoseDetails": {
+                    "DeliveryStream": "string"
+                  }
+                }
+              }
+            ],
+            "MemberClustersOutpostArns": [
+              "string"
+            ],
+            "GlobalReplicationGroupInfo": {
+              "GlobalReplicationGroupId": "string",
+              "GlobalReplicationGroupMemberRole": "string"
+            }
+          }
+        }
+      ]
+  TestFailover:
+    description: |-
+      Represents the input of a TestFailover operation which test automatic failover on a specified node group (called shard in the console) in a replication group (called cluster in the console).
+    versions:
+      from: 2015.2.2
+    link: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_TestFailover.html
+    example:
+      inputs: [
+        {
+          "NodeGroupId": "string",
+          "ReplicationGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ReplicationGroup": {
+            "ARN": "string",
+            "Status": "string",
+            "MultiAZ": "string",
+            "KmsKeyId": "string",
+            "NodeGroups": [
+              {
+                "Slots": "string",
+                "Status": "string",
+                "NodeGroupId": "string",
+                "ReaderEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "PrimaryEndpoint": {
+                  "Port": 1,
+                  "Address": "string"
+                },
+                "NodeGroupMembers": [
+                  {
+                    "CacheNodeId": "string",
+                    "CurrentRole": "string",
+                    "ReadEndpoint": {
+                      "Port": 1,
+                      "Address": "string"
+                    },
+                    "CacheClusterId": "string",
+                    "PreferredOutpostArn": "string",
+                    "PreferredAvailabilityZone": "string"
+                  }
+                ]
+              }
+            ],
+            "Description": "string",
+            "UserGroupIds": [
+              "string"
+            ],
+            "CacheNodeType": "string",
+            "ClusterEnabled": false,
+            "MemberClusters": [
+              "string"
+            ],
+            "SnapshotWindow": "string",
+            "AuthTokenEnabled": false,
+            "AutomaticFailover": "string",
+            "ReplicationGroupId": "string",
+            "ConfigurationEndpoint": {
+              "Port": 1,
+              "Address": "string"
+            },
+            "PendingModifiedValues": {
+              "Resharding": {
+                "SlotMigration": {
+                  "ProgressPercentage": 0.1
+                }
+              },
+              "UserGroups": {
+                "UserGroupIdsToAdd": [
+                  "string"
+                ],
+                "UserGroupIdsToRemove": [
+                  "string"
+                ]
+              },
+              "AuthTokenStatus": "string",
+              "PrimaryClusterId": "string",
+              "AutomaticFailoverStatus": "string",
+              "LogDeliveryConfigurations": [
+                {
+                  "LogType": "string",
+                  "LogFormat": "string",
+                  "DestinationType": "string",
+                  "DestinationDetails": {
+                    "CloudWatchLogsDetails": {
+                      "LogGroup": "string"
+                    },
+                    "KinesisFirehoseDetails": {
+                      "DeliveryStream": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "SnapshottingClusterId": "string",
+            "SnapshotRetentionLimit": 1,
+            "AtRestEncryptionEnabled": false,
+            "TransitEncryptionEnabled": false,
+            "AuthTokenLastModifiedDate": 1481289211.615,
+            "LogDeliveryConfigurations": [
+              {
+                "Status": "string",
+                "LogType": "string",
+                "Message": "string",
+                "LogFormat": "string",
+                "DestinationType": "string",
+                "DestinationDetails": {
+                  "CloudWatchLogsDetails": {
+                    "LogGroup": "string"
+                  },
+                  "KinesisFirehoseDetails": {
+                    "DeliveryStream": "string"
+                  }
+                }
+              }
+            ],
+            "MemberClustersOutpostArns": [
+              "string"
+            ],
+            "GlobalReplicationGroupInfo": {
+              "GlobalReplicationGroupId": "string",
+              "GlobalReplicationGroupMemberRole": "string"
+            }
+          }
+        }
+      ]

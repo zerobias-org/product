@@ -1,0 +1,520 @@
+Product:
+  name: Amazon Timestream
+  versions: [2018.11.1]
+  package: amazon.aws.timestream
+  description: |-
+    Amazon Timestream
+  link: https://docs.aws.amazon.com/timestream/latest/developerguide/what-is-timestream.html
+  contentType: json
+Operations:
+  write.CreateDatabase:
+    description: |-
+      Creates a new Timestream database. If the KMS key is not specified, the database will be encrypted with a Timestream managed KMS key located in your account. Refer to AWS managed KMS keys for more info. Service quotas apply. See code sample for details.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_CreateDatabase.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "KmsKeyId": "string",
+          "DatabaseName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Database": {
+            "Arn": "string",
+            "KmsKeyId": "string",
+            "TableCount": 1,
+            "CreationTime": 1481289211.615,
+            "DatabaseName": "string",
+            "LastUpdatedTime": 1481289211.615
+          }
+        }
+      ]
+  write.CreateTable:
+    description: |-
+      The CreateTable operation adds a new table to an existing database in your account. In an AWS account, table names must be at least unique within each Region if they are in the same database. You may have identical table names in the same Region if the tables are in seperate databases. While creating the table, you must specify the table name, database name, and the retention properties. Service quotas apply. See code sample for details.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_CreateTable.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "TableName": "string",
+          "DatabaseName": "string",
+          "RetentionProperties": {
+            "MemoryStoreRetentionPeriodInHours": 1,
+            "MagneticStoreRetentionPeriodInDays": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Table": {
+            "Arn": "string",
+            "TableName": "string",
+            "TableStatus": "string",
+            "CreationTime": 1481289211.615,
+            "DatabaseName": "string",
+            "LastUpdatedTime": 1481289211.615,
+            "RetentionProperties": {
+              "MemoryStoreRetentionPeriodInHours": 1,
+              "MagneticStoreRetentionPeriodInDays": 1
+            }
+          }
+        }
+      ]
+  write.DeleteDatabase:
+    description: |-
+      Deletes a given Timestream database. This is an irreversible operation. After a database is deleted, the time series data from its tables cannot be recovered.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_DeleteDatabase.html
+    example:
+      inputs: [
+        {
+          "DatabaseName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  write.DeleteTable:
+    description: |-
+      Deletes a given Timestream table. This is an irreversible operation. After a Timestream database table is deleted, the time series data stored in the table cannot be recovered.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_DeleteTable.html
+    example:
+      inputs: [
+        {
+          "TableName": "string",
+          "DatabaseName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  write.DescribeDatabase:
+    description: |-
+      Returns information about the database, including the database name, time that the database was created, and the total number of tables found within the database. Service quotas apply. See code sample for details.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_DescribeDatabase.html
+    example:
+      inputs: [
+        {
+          "DatabaseName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Database": {
+            "Arn": "string",
+            "KmsKeyId": "string",
+            "TableCount": 1,
+            "CreationTime": 1481289211.615,
+            "DatabaseName": "string",
+            "LastUpdatedTime": 1481289211.615
+          }
+        }
+      ]
+  write.DescribeEndpoints:
+    description: |-
+      DescribeEndpoints returns a list of available endpoints to make Timestream API calls against. This API is available through both Write and Query.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_DescribeEndpoints.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Endpoints": [
+            {
+              "Address": "string",
+              "CachePeriodInMinutes": 1
+            }
+          ]
+        }
+      ]
+  write.DescribeTable:
+    description: |-
+      Returns information about the table, including the table name, database name, retention duration of the memory store and the magnetic store. Service quotas apply. See code sample for details.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_DescribeTable.html
+    example:
+      inputs: [
+        {
+          "TableName": "string",
+          "DatabaseName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Table": {
+            "Arn": "string",
+            "TableName": "string",
+            "TableStatus": "string",
+            "CreationTime": 1481289211.615,
+            "DatabaseName": "string",
+            "LastUpdatedTime": 1481289211.615,
+            "RetentionProperties": {
+              "MemoryStoreRetentionPeriodInHours": 1,
+              "MagneticStoreRetentionPeriodInDays": 1
+            }
+          }
+        }
+      ]
+  write.ListDatabases:
+    description: |-
+      Returns a list of your Timestream databases. Service quotas apply. See code sample for details.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_ListDatabases.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Databases": [
+            {
+              "Arn": "string",
+              "KmsKeyId": "string",
+              "TableCount": 1,
+              "CreationTime": 1481289211.615,
+              "DatabaseName": "string",
+              "LastUpdatedTime": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  write.ListTables:
+    description: |-
+      A list of tables, along with the name, status and retention properties of each table. See code sample for details.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_ListTables.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "DatabaseName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tables": [
+            {
+              "Arn": "string",
+              "TableName": "string",
+              "TableStatus": "string",
+              "CreationTime": 1481289211.615,
+              "DatabaseName": "string",
+              "LastUpdatedTime": 1481289211.615,
+              "RetentionProperties": {
+                "MemoryStoreRetentionPeriodInHours": 1,
+                "MagneticStoreRetentionPeriodInDays": 1
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  write.ListTagsForResource:
+    description: |-
+      List all tags on a Timestream resource.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  query.CancelQuery:
+    description: |-
+      Cancels a query that has been issued. Cancellation is guaranteed only if the query has not completed execution before the cancellation request was issued. Because cancellation is an idempotent operation, subsequent cancellation requests will return a CancellationMessage, indicating that the query has already been canceled. See code sample for details.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_query_CancelQuery.html
+    example:
+      inputs: [
+        {
+          "QueryId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CancellationMessage": "string"
+        }
+      ]
+  query.DescribeEndpoints:
+    description: |-
+      DescribeEndpoints returns a list of available endpoints to make Timestream API calls against. This API is available through both Write and Query.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_query_DescribeEndpoints.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Endpoints": [
+            {
+              "Address": "string",
+              "CachePeriodInMinutes": "number"
+            }
+          ]
+        }
+      ]
+  Query:
+    description: |-
+      Query is a synchronous operation that enables you to execute a query against your Amazon Timestream data. Query will timeout after 60 seconds. You must update the default timeout in the SDK to support a timeout of 60 seconds. See the code sample for details.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_query_Query.html
+    example:
+      inputs: [
+        {
+          "MaxRows": "number",
+          "NextToken": "string",
+          "ClientToken": "string",
+          "QueryString": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Rows": [
+            {
+              "Data": [
+                {
+                  "RowValue": "Row",
+                  "NullValue": "boolean",
+                  "ArrayValue": [
+                    "Datum"
+                  ],
+                  "ScalarValue": "string",
+                  "TimeSeriesValue": [
+                    {
+                      "Time": "string",
+                      "Value": "Datum"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "QueryId": "string",
+          "NextToken": "string",
+          "ColumnInfo": [
+            {
+              "Name": "string",
+              "Type": {
+                "ScalarType": "string",
+                "RowColumnInfo": [
+                  "ColumnInfo"
+                ],
+                "ArrayColumnInfo": "ColumnInfo",
+                "TimeSeriesMeasureValueColumnInfo": "ColumnInfo"
+              }
+            }
+          ],
+          "QueryStatus": {
+            "ProgressPercentage": "number",
+            "CumulativeBytesMetered": "number",
+            "CumulativeBytesScanned": "number"
+          }
+        }
+      ]
+  write.TagResource:
+    description: |-
+      Associate a set of tags with a Timestream resource. You can then activate these user-defined tags so that they appear on the Billing and Cost Management console for cost allocation tracking.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  write.UntagResource:
+    description: |-
+      Removes the association of tags from a Timestream resource.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  write.UpdateDatabase:
+    description: |-
+      Modifies the KMS key for an existing database. While updating the database, you must specify the database name and the identifier of the new KMS key to be used (KmsKeyId). If there are any concurrent UpdateDatabase requests, first writer wins.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_UpdateDatabase.html
+    example:
+      inputs: [
+        {
+          "KmsKeyId": "string",
+          "DatabaseName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Database": {
+            "Arn": "string",
+            "KmsKeyId": "string",
+            "TableCount": 1,
+            "CreationTime": 1481289211.615,
+            "DatabaseName": "string",
+            "LastUpdatedTime": 1481289211.615
+          }
+        }
+      ]
+  write.UpdateTable:
+    description: |-
+      Modifies the retention duration of the memory store and magnetic store for your Timestream table. Note that the change in retention duration takes effect immediately. For example, if the retention period of the memory store was initially set to 2 hours and then changed to 24 hours, the memory store will be capable of holding 24 hours of data, but will be populated with 24 hours of data 22 hours after this change was made. Timestream does not retrieve data from the magnetic store to populate the memory store.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_UpdateTable.html
+    example:
+      inputs: [
+        {
+          "TableName": "string",
+          "DatabaseName": "string",
+          "RetentionProperties": {
+            "MemoryStoreRetentionPeriodInHours": 1,
+            "MagneticStoreRetentionPeriodInDays": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Table": {
+            "Arn": "string",
+            "TableName": "string",
+            "TableStatus": "string",
+            "CreationTime": 1481289211.615,
+            "DatabaseName": "string",
+            "LastUpdatedTime": 1481289211.615,
+            "RetentionProperties": {
+              "MemoryStoreRetentionPeriodInHours": 1,
+              "MagneticStoreRetentionPeriodInDays": 1
+            }
+          }
+        }
+      ]
+  query.WriteRecords:
+    description: |-
+      The WriteRecords operation enables you to write your time series data into Timestream.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_WriteRecords.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  write.WriteRecords:
+    description: |-
+      The WriteRecords operation enables you to write your time series data into Timestream. You can specify a single data point or a batch of data points to be inserted into the system. Timestream offers you with a flexible schema that auto detects the column names and data types for your Timestream tables based on the dimension names and data types of the data points you specify when invoking writes into the database. Timestream support eventual consistency read semantics. This means that when you query data immediately after writing a batch of data into Timestream, the query results might not reflect the results of a recently completed write operation. The results may also include some stale data. If you repeat the query request after a short time, the results should return the latest data. Service quotas apply.
+    versions:
+      from: 2018.11.1
+    link: https://docs.aws.amazon.com/timestream/latest/developerguide/API_WriteRecords.html
+    example:
+      inputs: [
+        {
+          "Records": [
+            {
+              "Time": "string",
+              "Version": 1,
+              "TimeUnit": "string",
+              "Dimensions": [
+                {
+                  "Name": "string",
+                  "Value": "string",
+                  "DimensionValueType": "string"
+                }
+              ],
+              "MeasureName": "string",
+              "MeasureValue": "string",
+              "MeasureValueType": "string"
+            }
+          ],
+          "TableName": "string",
+          "DatabaseName": "string",
+          "CommonAttributes": {
+            "Time": "string",
+            "Version": 1,
+            "TimeUnit": "string",
+            "Dimensions": [
+              {
+                "Name": "string",
+                "Value": "string",
+                "DimensionValueType": "string"
+              }
+            ],
+            "MeasureName": "string",
+            "MeasureValue": "string",
+            "MeasureValueType": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]

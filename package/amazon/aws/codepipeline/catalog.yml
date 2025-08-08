@@ -1,0 +1,1546 @@
+Product:
+  name: AWS CodePipeline
+  versions: [2015.7.9]
+  package: amazon.aws.codepipeline
+  description: |-
+    AWS CodePipeline
+  link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AcknowledgeJob:
+    description: |-
+      Returns information about a specified job and whether that job has been received by the job worker. Used for custom actions only.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_AcknowledgeJob.html
+    example:
+      inputs: [
+        {
+          "jobId": "string",
+          "nonce": "string"
+        }
+      ]
+      outputs: [
+        {
+          "status": "string"
+        }
+      ]
+  AcknowledgeThirdPartyJob:
+    description: |-
+      Confirms a job worker has received the specified job. Used for partner actions only.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_AcknowledgeThirdPartyJob.html
+    example:
+      inputs: [
+        {
+          "jobId": "string",
+          "nonce": "string",
+          "clientToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "status": "string"
+        }
+      ]
+  CreateCustomActionType:
+    description: |-
+      Creates a new custom action that can be used in all pipelines associated with the AWS account. Only used for custom actions.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_CreateCustomActionType.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "version": "string",
+          "category": "string",
+          "provider": "string",
+          "settings": {
+            "entityUrlTemplate": "string",
+            "revisionUrlTemplate": "string",
+            "executionUrlTemplate": "string",
+            "thirdPartyConfigurationUrl": "string"
+          },
+          "inputArtifactDetails": {
+            "maximumCount": 1,
+            "minimumCount": 1
+          },
+          "outputArtifactDetails": {
+            "maximumCount": 1,
+            "minimumCount": 1
+          },
+          "configurationProperties": [
+            {
+              "key": false,
+              "name": "string",
+              "type": "string",
+              "secret": false,
+              "required": false,
+              "queryable": false,
+              "description": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "actionType": {
+            "id": {
+              "owner": "string",
+              "version": "string",
+              "category": "string",
+              "provider": "string"
+            },
+            "settings": {
+              "entityUrlTemplate": "string",
+              "revisionUrlTemplate": "string",
+              "executionUrlTemplate": "string",
+              "thirdPartyConfigurationUrl": "string"
+            },
+            "inputArtifactDetails": {
+              "maximumCount": 1,
+              "minimumCount": 1
+            },
+            "outputArtifactDetails": {
+              "maximumCount": 1,
+              "minimumCount": 1
+            },
+            "actionConfigurationProperties": [
+              {
+                "key": false,
+                "name": "string",
+                "type": "string",
+                "secret": false,
+                "required": false,
+                "queryable": false,
+                "description": "string"
+              }
+            ]
+          }
+        }
+      ]
+  CreatePipeline:
+    description: |-
+      Creates a pipeline.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_CreatePipeline.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "pipeline": {
+            "name": "string",
+            "stages": [
+              {
+                "name": "string",
+                "actions": [
+                  {
+                    "name": "string",
+                    "region": "string",
+                    "roleArn": "string",
+                    "runOrder": 1,
+                    "namespace": "string",
+                    "actionTypeId": {
+                      "owner": "string",
+                      "version": "string",
+                      "category": "string",
+                      "provider": "string"
+                    },
+                    "configuration": {
+                      "string": "string"
+                    },
+                    "inputArtifacts": [
+                      {
+                        "name": "string"
+                      }
+                    ],
+                    "outputArtifacts": [
+                      {
+                        "name": "string"
+                      }
+                    ]
+                  }
+                ],
+                "blockers": [
+                  {
+                    "name": "string",
+                    "type": "string"
+                  }
+                ]
+              }
+            ],
+            "roleArn": "string",
+            "version": 1,
+            "artifactStore": {
+              "type": "string",
+              "location": "string",
+              "encryptionKey": {
+                "id": "string",
+                "type": "string"
+              }
+            },
+            "artifactStores": {
+              "string": {
+                "type": "string",
+                "location": "string",
+                "encryptionKey": {
+                  "id": "string",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteCustomActionType:
+    description: |-
+      Marks a custom action as deleted. PollForJobs for the custom action fails after the action is marked for deletion. Used for custom actions only.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_DeleteCustomActionType.html
+    example:
+      inputs: [
+        {
+          "version": "string",
+          "category": "string",
+          "provider": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeletePipeline:
+    description: |-
+      Deletes the specified pipeline.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_DeletePipeline.html
+    example:
+      inputs: [
+        {
+          "name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteWebhook:
+    description: |-
+      Deletes a previously created webhook by name. Deleting the webhook stops AWS CodePipeline from starting a pipeline every time an external event occurs. The API returns successfully when trying to delete a webhook that is already deleted. If a deleted webhook is re-created by calling PutWebhook with the same name, it will have a different URL.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_DeleteWebhook.html
+    example:
+      inputs: [
+        {
+          "name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeregisterWebhookWithThirdParty:
+    description: |-
+      Removes the connection between the webhook that was created by CodePipeline and the external tool with events to be detected. Currently supported only for webhooks that target an action type of GitHub.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_DeregisterWebhookWithThirdParty.html
+    example:
+      inputs: [
+        {
+          "webhookName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DisableStageTransition:
+    description: |-
+      Prevents artifacts in a pipeline from transitioning to the next stage in the pipeline.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_DisableStageTransition.html
+    example:
+      inputs: [
+        {
+          "reason": "string",
+          "stageName": "string",
+          "pipelineName": "string",
+          "transitionType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  EnableStageTransition:
+    description: |-
+      Enables artifacts in a pipeline to transition to a stage in a pipeline.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_EnableStageTransition.html
+    example:
+      inputs: [
+        {
+          "stageName": "string",
+          "pipelineName": "string",
+          "transitionType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetActionType:
+    description: |-
+      Returns information about an action type created for an external provider, where the action is to be used by customers of the external provider. The action can be created with any supported integration model.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_GetActionType.html
+    example:
+      inputs: [
+        {
+          "owner": "string",
+          "version": "string",
+          "category": "string",
+          "provider": "string"
+        }
+      ]
+      outputs: [
+        {
+          "actionType": {
+            "id": {
+              "owner": "string",
+              "version": "string",
+              "category": "string",
+              "provider": "string"
+            },
+            "urls": {
+              "configurationUrl": "string",
+              "entityUrlTemplate": "string",
+              "revisionUrlTemplate": "string",
+              "executionUrlTemplate": "string"
+            },
+            "executor": {
+              "type": "string",
+              "jobTimeout": 1,
+              "configuration": {
+                "lambdaExecutorConfiguration": {
+                  "lambdaFunctionArn": "string"
+                },
+                "jobWorkerExecutorConfiguration": {
+                  "pollingAccounts": [
+                    "string"
+                  ],
+                  "pollingServicePrincipals": [
+                    "string"
+                  ]
+                }
+              },
+              "policyStatementsTemplate": "string"
+            },
+            "properties": [
+              {
+                "key": false,
+                "name": "string",
+                "noEcho": false,
+                "optional": false,
+                "queryable": false,
+                "description": "string"
+              }
+            ],
+            "description": "string",
+            "permissions": {
+              "allowedAccounts": [
+                "string"
+              ]
+            },
+            "inputArtifactDetails": {
+              "maximumCount": 1,
+              "minimumCount": 1
+            },
+            "outputArtifactDetails": {
+              "maximumCount": 1,
+              "minimumCount": 1
+            }
+          }
+        }
+      ]
+  GetJobDetails:
+    description: |-
+      Returns information about a job. Used for custom actions only.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_GetJobDetails.html
+    example:
+      inputs: [
+        {
+          "jobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "jobDetails": {
+            "id": "string",
+            "data": {
+              "actionTypeId": {
+                "owner": "string",
+                "version": "string",
+                "category": "string",
+                "provider": "string"
+              },
+              "encryptionKey": {
+                "id": "string",
+                "type": "string"
+              },
+              "inputArtifacts": [
+                {
+                  "name": "string",
+                  "location": {
+                    "type": "string",
+                    "s3Location": {
+                      "objectKey": "string",
+                      "bucketName": "string"
+                    }
+                  },
+                  "revision": "string"
+                }
+              ],
+              "outputArtifacts": [
+                {
+                  "name": "string",
+                  "location": {
+                    "type": "string",
+                    "s3Location": {
+                      "objectKey": "string",
+                      "bucketName": "string"
+                    }
+                  },
+                  "revision": "string"
+                }
+              ],
+              "pipelineContext": {
+                "stage": {
+                  "name": "string"
+                },
+                "action": {
+                  "name": "string",
+                  "actionExecutionId": "string"
+                },
+                "pipelineArn": "string",
+                "pipelineName": "string",
+                "pipelineExecutionId": "string"
+              },
+              "continuationToken": "string",
+              "actionConfiguration": {
+                "configuration": {
+                  "string": "string"
+                }
+              },
+              "artifactCredentials": {
+                "accessKeyId": "string",
+                "sessionToken": "string",
+                "secretAccessKey": "string"
+              }
+            },
+            "accountId": "string"
+          }
+        }
+      ]
+  GetPipelineExecution:
+    description: |-
+      Returns information about an execution of a pipeline, including details about artifacts, the pipeline execution ID, and the name, version, and status of the pipeline.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_GetPipelineExecution.html
+    example:
+      inputs: [
+        {
+          "pipelineName": "string",
+          "pipelineExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "pipelineExecution": {
+            "status": "string",
+            "pipelineName": "string",
+            "statusSummary": "string",
+            "pipelineVersion": 1,
+            "artifactRevisions": [
+              {
+                "name": "string",
+                "created": 1481289211.615,
+                "revisionId": "string",
+                "revisionUrl": "string",
+                "revisionSummary": "string",
+                "revisionChangeIdentifier": "string"
+              }
+            ],
+            "pipelineExecutionId": "string"
+          }
+        }
+      ]
+  GetPipeline:
+    description: |-
+      Returns the metadata, structure, stages, and actions of a pipeline. Can be used to return the entire structure of a pipeline in JSON format, which can then be modified and used to update the pipeline structure with UpdatePipeline.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_GetPipeline.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "version": 1
+        }
+      ]
+      outputs: [
+        {
+          "metadata": {
+            "created": 1481289211.615,
+            "updated": 1481289211.615,
+            "pipelineArn": "string"
+          },
+          "pipeline": {
+            "name": "string",
+            "stages": [
+              {
+                "name": "string",
+                "actions": [
+                  {
+                    "name": "string",
+                    "region": "string",
+                    "roleArn": "string",
+                    "runOrder": 1,
+                    "namespace": "string",
+                    "actionTypeId": {
+                      "owner": "string",
+                      "version": "string",
+                      "category": "string",
+                      "provider": "string"
+                    },
+                    "configuration": {
+                      "string": "string"
+                    },
+                    "inputArtifacts": [
+                      {
+                        "name": "string"
+                      }
+                    ],
+                    "outputArtifacts": [
+                      {
+                        "name": "string"
+                      }
+                    ]
+                  }
+                ],
+                "blockers": [
+                  {
+                    "name": "string",
+                    "type": "string"
+                  }
+                ]
+              }
+            ],
+            "roleArn": "string",
+            "version": 1,
+            "artifactStore": {
+              "type": "string",
+              "location": "string",
+              "encryptionKey": {
+                "id": "string",
+                "type": "string"
+              }
+            },
+            "artifactStores": {
+              "string": {
+                "type": "string",
+                "location": "string",
+                "encryptionKey": {
+                  "id": "string",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      ]
+  GetPipelineState:
+    description: |-
+      Returns information about the state of a pipeline, including the stages and actions.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_GetPipelineState.html
+    example:
+      inputs: [
+        {
+          "name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "created": 1481289211.615,
+          "updated": 1481289211.615,
+          "stageStates": [
+            {
+              "stageName": "string",
+              "actionStates": [
+                {
+                  "entityUrl": "string",
+                  "actionName": "string",
+                  "revisionUrl": "string",
+                  "currentRevision": {
+                    "created": 1481289211.615,
+                    "revisionId": "string",
+                    "revisionChangeId": "string"
+                  },
+                  "latestExecution": {
+                    "token": "string",
+                    "status": "string",
+                    "summary": "string",
+                    "errorDetails": {
+                      "code": "string",
+                      "message": "string"
+                    },
+                    "lastUpdatedBy": "string",
+                    "percentComplete": 1,
+                    "lastStatusChange": 1481289211.615,
+                    "actionExecutionId": "string",
+                    "externalExecutionId": "string",
+                    "externalExecutionUrl": "string"
+                  }
+                }
+              ],
+              "latestExecution": {
+                "status": "string",
+                "pipelineExecutionId": "string"
+              },
+              "inboundExecution": {
+                "status": "string",
+                "pipelineExecutionId": "string"
+              },
+              "inboundTransitionState": {
+                "enabled": false,
+                "lastChangedAt": 1481289211.615,
+                "lastChangedBy": "string",
+                "disabledReason": "string"
+              }
+            }
+          ],
+          "pipelineName": "string",
+          "pipelineVersion": 1
+        }
+      ]
+  GetThirdPartyJobDetails:
+    description: |-
+      Requests the details of a job for a third party action. Used for partner actions only.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_GetThirdPartyJobDetails.html
+    example:
+      inputs: [
+        {
+          "jobId": "string",
+          "clientToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "jobDetails": {
+            "id": "string",
+            "data": {
+              "actionTypeId": {
+                "owner": "string",
+                "version": "string",
+                "category": "string",
+                "provider": "string"
+              },
+              "encryptionKey": {
+                "id": "string",
+                "type": "string"
+              },
+              "inputArtifacts": [
+                {
+                  "name": "string",
+                  "location": {
+                    "type": "string",
+                    "s3Location": {
+                      "objectKey": "string",
+                      "bucketName": "string"
+                    }
+                  },
+                  "revision": "string"
+                }
+              ],
+              "outputArtifacts": [
+                {
+                  "name": "string",
+                  "location": {
+                    "type": "string",
+                    "s3Location": {
+                      "objectKey": "string",
+                      "bucketName": "string"
+                    }
+                  },
+                  "revision": "string"
+                }
+              ],
+              "pipelineContext": {
+                "stage": {
+                  "name": "string"
+                },
+                "action": {
+                  "name": "string",
+                  "actionExecutionId": "string"
+                },
+                "pipelineArn": "string",
+                "pipelineName": "string",
+                "pipelineExecutionId": "string"
+              },
+              "continuationToken": "string",
+              "actionConfiguration": {
+                "configuration": {
+                  "string": "string"
+                }
+              },
+              "artifactCredentials": {
+                "accessKeyId": "string",
+                "sessionToken": "string",
+                "secretAccessKey": "string"
+              }
+            },
+            "nonce": "string"
+          }
+        }
+      ]
+  ListActionExecutions:
+    description: |-
+      Lists the action executions that have occurred in a pipeline.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListActionExecutions.html
+    example:
+      inputs: [
+        {
+          "filter": {
+            "pipelineExecutionId": "string"
+          },
+          "nextToken": "string",
+          "maxResults": 1,
+          "pipelineName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "actionExecutionDetails": [
+            {
+              "input": {
+                "region": "string",
+                "roleArn": "string",
+                "namespace": "string",
+                "actionTypeId": {
+                  "owner": "string",
+                  "version": "string",
+                  "category": "string",
+                  "provider": "string"
+                },
+                "configuration": {
+                  "string": "string"
+                },
+                "inputArtifacts": [
+                  {
+                    "name": "string",
+                    "s3location": {
+                      "key": "string",
+                      "bucket": "string"
+                    }
+                  }
+                ],
+                "resolvedConfiguration": {
+                  "string": "string"
+                }
+              },
+              "output": {
+                "executionResult": {
+                  "externalExecutionId": "string",
+                  "externalExecutionUrl": "string",
+                  "externalExecutionSummary": "string"
+                },
+                "outputArtifacts": [
+                  {
+                    "name": "string",
+                    "s3location": {
+                      "key": "string",
+                      "bucket": "string"
+                    }
+                  }
+                ],
+                "outputVariables": {
+                  "string": "string"
+                }
+              },
+              "status": "string",
+              "stageName": "string",
+              "startTime": 1481289211.615,
+              "actionName": "string",
+              "lastUpdateTime": 1481289211.615,
+              "pipelineVersion": 1,
+              "actionExecutionId": "string",
+              "pipelineExecutionId": "string"
+            }
+          ]
+        }
+      ]
+  ListActionTypes:
+    description: |-
+      Gets a summary of all AWS CodePipeline action types associated with your account.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListActionTypes.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "regionFilter": "string",
+          "actionOwnerFilter": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "actionTypes": [
+            {
+              "id": {
+                "owner": "string",
+                "version": "string",
+                "category": "string",
+                "provider": "string"
+              },
+              "settings": {
+                "entityUrlTemplate": "string",
+                "revisionUrlTemplate": "string",
+                "executionUrlTemplate": "string",
+                "thirdPartyConfigurationUrl": "string"
+              },
+              "inputArtifactDetails": {
+                "maximumCount": 1,
+                "minimumCount": 1
+              },
+              "outputArtifactDetails": {
+                "maximumCount": 1,
+                "minimumCount": 1
+              },
+              "actionConfigurationProperties": [
+                {
+                  "key": false,
+                  "name": "string",
+                  "type": "string",
+                  "secret": false,
+                  "required": false,
+                  "queryable": false,
+                  "description": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  ListPipelineExecutions:
+    description: |-
+      Gets a summary of the most recent executions for a pipeline.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListPipelineExecutions.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "pipelineName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "pipelineExecutionSummaries": [
+            {
+              "status": "string",
+              "trigger": {
+                "triggerType": "string",
+                "triggerDetail": "string"
+              },
+              "startTime": 1481289211.615,
+              "stopTrigger": {
+                "reason": "string"
+              },
+              "lastUpdateTime": 1481289211.615,
+              "sourceRevisions": [
+                {
+                  "actionName": "string",
+                  "revisionId": "string",
+                  "revisionUrl": "string",
+                  "revisionSummary": "string"
+                }
+              ],
+              "pipelineExecutionId": "string"
+            }
+          ]
+        }
+      ]
+  ListPipelines:
+    description: |-
+      Gets a summary of all of the pipelines associated with your account.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListPipelines.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "pipelines": [
+            {
+              "name": "string",
+              "created": 1481289211.615,
+              "updated": 1481289211.615,
+              "version": 1
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Gets the set of key-value pairs (metadata) that are used to manage the resource.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListWebhooks:
+    description: |-
+      Gets a listing of all the webhooks in this AWS Region for this account. The output lists all webhooks and includes the webhook URL and ARN and the configuration for each webhook.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_ListWebhooks.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "webhooks": [
+            {
+              "arn": "string",
+              "url": "string",
+              "tags": [
+                {
+                  "key": "string",
+                  "value": "string"
+                }
+              ],
+              "errorCode": "string",
+              "definition": {
+                "name": "string",
+                "filters": [
+                  {
+                    "jsonPath": "string",
+                    "matchEquals": "string"
+                  }
+                ],
+                "targetAction": "string",
+                "authentication": "string",
+                "targetPipeline": "string",
+                "authenticationConfiguration": {
+                  "SecretToken": "string",
+                  "AllowedIPRange": "string"
+                }
+              },
+              "errorMessage": "string",
+              "lastTriggered": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  PollForJobs:
+    description: |-
+      Returns information about any jobs for AWS CodePipeline to act on. PollForJobs is valid only for action types with "Custom" in the owner field. If the action type contains "AWS" or "ThirdParty" in the owner field, the PollForJobs action returns an error.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_PollForJobs.html
+    example:
+      inputs: [
+        {
+          "queryParam": {
+            "string": "string"
+          },
+          "actionTypeId": {
+            "owner": "string",
+            "version": "string",
+            "category": "string",
+            "provider": "string"
+          },
+          "maxBatchSize": 1
+        }
+      ]
+      outputs: [
+        {
+          "jobs": [
+            {
+              "id": "string",
+              "data": {
+                "actionTypeId": {
+                  "owner": "string",
+                  "version": "string",
+                  "category": "string",
+                  "provider": "string"
+                },
+                "encryptionKey": {
+                  "id": "string",
+                  "type": "string"
+                },
+                "inputArtifacts": [
+                  {
+                    "name": "string",
+                    "location": {
+                      "type": "string",
+                      "s3Location": {
+                        "objectKey": "string",
+                        "bucketName": "string"
+                      }
+                    },
+                    "revision": "string"
+                  }
+                ],
+                "outputArtifacts": [
+                  {
+                    "name": "string",
+                    "location": {
+                      "type": "string",
+                      "s3Location": {
+                        "objectKey": "string",
+                        "bucketName": "string"
+                      }
+                    },
+                    "revision": "string"
+                  }
+                ],
+                "pipelineContext": {
+                  "stage": {
+                    "name": "string"
+                  },
+                  "action": {
+                    "name": "string",
+                    "actionExecutionId": "string"
+                  },
+                  "pipelineArn": "string",
+                  "pipelineName": "string",
+                  "pipelineExecutionId": "string"
+                },
+                "continuationToken": "string",
+                "actionConfiguration": {
+                  "configuration": {
+                    "string": "string"
+                  }
+                },
+                "artifactCredentials": {
+                  "accessKeyId": "string",
+                  "sessionToken": "string",
+                  "secretAccessKey": "string"
+                }
+              },
+              "nonce": "string",
+              "accountId": "string"
+            }
+          ]
+        }
+      ]
+  PollForThirdPartyJobs:
+    description: |-
+      Determines whether there are any third party jobs for a job worker to act on. Used for partner actions only.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_PollForThirdPartyJobs.html
+    example:
+      inputs: [
+        {
+          "actionTypeId": {
+            "owner": "string",
+            "version": "string",
+            "category": "string",
+            "provider": "string"
+          },
+          "maxBatchSize": 1
+        }
+      ]
+      outputs: [
+        {
+          "jobs": [
+            {
+              "jobId": "string",
+              "clientId": "string"
+            }
+          ]
+        }
+      ]
+  PutActionRevision:
+    description: |-
+      Provides information to AWS CodePipeline about new revisions to a source.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_PutActionRevision.html
+    example:
+      inputs: [
+        {
+          "stageName": "string",
+          "actionName": "string",
+          "pipelineName": "string",
+          "actionRevision": {
+            "created": 1481289211.615,
+            "revisionId": "string",
+            "revisionChangeId": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "newRevision": false,
+          "pipelineExecutionId": "string"
+        }
+      ]
+  PutApprovalResult:
+    description: |-
+      Provides the response to a manual approval request to AWS CodePipeline. Valid responses include Approved and Rejected.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_PutApprovalResult.html
+    example:
+      inputs: [
+        {
+          "token": "string",
+          "result": {
+            "status": "string",
+            "summary": "string"
+          },
+          "stageName": "string",
+          "actionName": "string",
+          "pipelineName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "approvedAt": 1481289211.615
+        }
+      ]
+  PutJobFailureResult:
+    description: |-
+      Represents the failure of a job as returned to the pipeline by a job worker. Used for custom actions only.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_PutJobFailureResult.html
+    example:
+      inputs: [
+        {
+          "jobId": "string",
+          "failureDetails": {
+            "type": "string",
+            "message": "string",
+            "externalExecutionId": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutJobSuccessResult:
+    description: |-
+      Represents the success of a job as returned to the pipeline by a job worker. Used for custom actions only.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_PutJobSuccessResult.html
+    example:
+      inputs: [
+        {
+          "jobId": "string",
+          "currentRevision": {
+            "created": 1481289211.615,
+            "revision": "string",
+            "revisionSummary": "string",
+            "changeIdentifier": "string"
+          },
+          "outputVariables": {
+            "string": "string"
+          },
+          "executionDetails": {
+            "summary": "string",
+            "percentComplete": 1,
+            "externalExecutionId": "string"
+          },
+          "continuationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutThirdPartyJobFailureResult:
+    description: |-
+      Represents the failure of a third party job as returned to the pipeline by a job worker. Used for partner actions only.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_PutThirdPartyJobFailureResult.html
+    example:
+      inputs: [
+        {
+          "jobId": "string",
+          "clientToken": "string",
+          "failureDetails": {
+            "type": "string",
+            "message": "string",
+            "externalExecutionId": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutThirdPartyJobSuccessResult:
+    description: |-
+      Represents the success of a third party job as returned to the pipeline by a job worker. Used for partner actions only.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_PutThirdPartyJobSuccessResult.html
+    example:
+      inputs: [
+        {
+          "jobId": "string",
+          "clientToken": "string",
+          "currentRevision": {
+            "created": 1481289211.615,
+            "revision": "string",
+            "revisionSummary": "string",
+            "changeIdentifier": "string"
+          },
+          "executionDetails": {
+            "summary": "string",
+            "percentComplete": 1,
+            "externalExecutionId": "string"
+          },
+          "continuationToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutWebhook:
+    description: |-
+      Defines a webhook and returns a unique webhook URL generated by CodePipeline. This URL can be supplied to third party source hosting providers to call every time there's a code change. When CodePipeline receives a POST request on this URL, the pipeline defined in the webhook is started as long as the POST request satisfied the authentication and filtering requirements supplied when defining the webhook. RegisterWebhookWithThirdParty and DeregisterWebhookWithThirdParty APIs can be used to automatically configure supported third parties to call the generated webhook URL.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_PutWebhook.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "webhook": {
+            "name": "string",
+            "filters": [
+              {
+                "jsonPath": "string",
+                "matchEquals": "string"
+              }
+            ],
+            "targetAction": "string",
+            "authentication": "string",
+            "targetPipeline": "string",
+            "authenticationConfiguration": {
+              "SecretToken": "string",
+              "AllowedIPRange": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "webhook": {
+            "arn": "string",
+            "url": "string",
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "errorCode": "string",
+            "definition": {
+              "name": "string",
+              "filters": [
+                {
+                  "jsonPath": "string",
+                  "matchEquals": "string"
+                }
+              ],
+              "targetAction": "string",
+              "authentication": "string",
+              "targetPipeline": "string",
+              "authenticationConfiguration": {
+                "SecretToken": "string",
+                "AllowedIPRange": "string"
+              }
+            },
+            "errorMessage": "string",
+            "lastTriggered": 1481289211.615
+          }
+        }
+      ]
+  RegisterWebhookWithThirdParty:
+    description: |-
+      Configures a connection between the webhook that was created and the external tool with events to be detected.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_RegisterWebhookWithThirdParty.html
+    example:
+      inputs: [
+        {
+          "webhookName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RetryStageExecution:
+    description: |-
+      Resumes the pipeline execution by retrying the last failed actions in a stage. You can retry a stage immediately if any of the actions in the stage fail. When you retry, all actions that are still in progress continue working, and failed actions are triggered again.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_RetryStageExecution.html
+    example:
+      inputs: [
+        {
+          "retryMode": "string",
+          "stageName": "string",
+          "pipelineName": "string",
+          "pipelineExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "pipelineExecutionId": "string"
+        }
+      ]
+  StartPipelineExecution:
+    description: |-
+      Starts the specified pipeline. Specifically, it begins processing the latest commit to the source location specified as part of the pipeline.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_StartPipelineExecution.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "clientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "pipelineExecutionId": "string"
+        }
+      ]
+  StopPipelineExecution:
+    description: |-
+      Stops the specified pipeline execution. You choose to either stop the pipeline execution by completing in-progress actions without starting subsequent actions, or by abandoning in-progress actions. While completing or abandoning in-progress actions, the pipeline execution is in a Stopping state. After all in-progress actions are completed or abandoned, the pipeline execution is in a Stopped state.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_StopPipelineExecution.html
+    example:
+      inputs: [
+        {
+          "reason": "string",
+          "abandon": false,
+          "pipelineName": "string",
+          "pipelineExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "pipelineExecutionId": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds to or modifies the tags of the given resource. Tags are metadata that can be used to manage a resource.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes tags from an AWS resource.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateActionType:
+    description: |-
+      Updates an action type that was created with any supported integration model, where the action type is to be used by customers of the action type provider. Use a JSON file with the action definition and UpdateActionType to provide the full structure.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_UpdateActionType.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  UpdatePipeline:
+    description: |-
+      Updates a specified pipeline with edits or changes to its structure. Use a JSON file with the pipeline structure and UpdatePipeline to provide the full structure of the pipeline. Updating the pipeline increases the version number of the pipeline by 1.
+    versions:
+      from: 2015.7.9
+    link: https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_UpdatePipeline.html
+    example:
+      inputs: [
+        {
+          "pipeline": {
+            "name": "string",
+            "stages": [
+              {
+                "name": "string",
+                "actions": [
+                  {
+                    "name": "string",
+                    "region": "string",
+                    "roleArn": "string",
+                    "runOrder": 1,
+                    "namespace": "string",
+                    "actionTypeId": {
+                      "owner": "string",
+                      "version": "string",
+                      "category": "string",
+                      "provider": "string"
+                    },
+                    "configuration": {
+                      "string": "string"
+                    },
+                    "inputArtifacts": [
+                      {
+                        "name": "string"
+                      }
+                    ],
+                    "outputArtifacts": [
+                      {
+                        "name": "string"
+                      }
+                    ]
+                  }
+                ],
+                "blockers": [
+                  {
+                    "name": "string",
+                    "type": "string"
+                  }
+                ]
+              }
+            ],
+            "roleArn": "string",
+            "version": 1,
+            "artifactStore": {
+              "type": "string",
+              "location": "string",
+              "encryptionKey": {
+                "id": "string",
+                "type": "string"
+              }
+            },
+            "artifactStores": {
+              "string": {
+                "type": "string",
+                "location": "string",
+                "encryptionKey": {
+                  "id": "string",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]

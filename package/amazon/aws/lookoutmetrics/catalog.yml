@@ -1,0 +1,917 @@
+Product:
+  name: Amazon Lookout for Metrics
+  versions: [2017.7.25]
+  package: amazon.aws.lookoutmetrics
+  description: |-
+    Amazon Lookout for Metrics
+  link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/Welcome.html
+  contentType: json
+Operations:
+  ActivateAnomalyDetector:
+    description: |-
+      Activates an anomaly detector.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_ActivateAnomalyDetector.html
+    example:
+      inputs: [
+        {
+          "AnomalyDetectorArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  BackTestAnomalyDetector:
+    description: |-
+      Runs a backtest for anomaly detection for the specified resource.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_BackTestAnomalyDetector.html
+    example:
+      inputs: [
+        {
+          "AnomalyDetectorArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateAlert:
+    description: |-
+      Creates an alert for an anomaly detector.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_CreateAlert.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "Action": {
+            "SNSConfiguration": {
+              "RoleArn": "string",
+              "SnsTopicArn": "string"
+            },
+            "LambdaConfiguration": {
+              "RoleArn": "string",
+              "LambdaArn": "string"
+            }
+          },
+          "AlertName": "string",
+          "AlertDescription": "string",
+          "AnomalyDetectorArn": "string",
+          "AlertSensitivityThreshold": 1
+        }
+      ]
+      outputs: [
+        {
+          "AlertArn": "string"
+        }
+      ]
+  CreateAnomalyDetector:
+    description: |-
+      Creates an anomaly detector.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_CreateAnomalyDetector.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "KmsKeyArn": "string",
+          "AnomalyDetectorName": "string",
+          "AnomalyDetectorConfig": {
+            "AnomalyDetectorFrequency": "string"
+          },
+          "AnomalyDetectorDescription": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateMetricSet:
+    description: |-
+      Creates a dataset.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_CreateMetricSet.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "Offset": 1,
+          "Timezone": "string",
+          "MetricList": [
+            {
+              "Namespace": "string",
+              "MetricName": "string",
+              "AggregationFunction": "string"
+            }
+          ],
+          "MetricSource": {
+            "AppFlowConfig": {
+              "RoleArn": "string",
+              "FlowName": "string"
+            },
+            "S3SourceConfig": {
+              "RoleArn": "string",
+              "TemplatedPathList": [
+                "string"
+              ],
+              "FileFormatDescriptor": {
+                "CsvFormatDescriptor": {
+                  "Charset": "string",
+                  "Delimiter": "string",
+                  "HeaderList": [
+                    "string"
+                  ],
+                  "QuoteSymbol": "string",
+                  "ContainsHeader": false,
+                  "FileCompression": "string"
+                },
+                "JsonFormatDescriptor": {
+                  "Charset": "string",
+                  "FileCompression": "string"
+                }
+              },
+              "HistoricalDataPathList": [
+                "string"
+              ]
+            },
+            "RDSSourceConfig": {
+              "RoleArn": "string",
+              "TableName": "string",
+              "DatabaseHost": "string",
+              "DatabaseName": "string",
+              "DatabasePort": 1,
+              "SecretManagerArn": "string",
+              "VpcConfiguration": {
+                "SubnetIdList": [
+                  "string"
+                ],
+                "SecurityGroupIdList": [
+                  "string"
+                ]
+              },
+              "DBInstanceIdentifier": "string"
+            },
+            "CloudWatchConfig": {
+              "RoleArn": "string"
+            },
+            "RedshiftSourceConfig": {
+              "RoleArn": "string",
+              "TableName": "string",
+              "DatabaseHost": "string",
+              "DatabaseName": "string",
+              "DatabasePort": 1,
+              "SecretManagerArn": "string",
+              "VpcConfiguration": {
+                "SubnetIdList": [
+                  "string"
+                ],
+                "SecurityGroupIdList": [
+                  "string"
+                ]
+              },
+              "ClusterIdentifier": "string"
+            }
+          },
+          "DimensionList": [
+            "string"
+          ],
+          "MetricSetName": "string",
+          "TimestampColumn": {
+            "ColumnName": "string",
+            "ColumnFormat": "string"
+          },
+          "AnomalyDetectorArn": "string",
+          "MetricSetFrequency": "string",
+          "MetricSetDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "MetricSetArn": "string"
+        }
+      ]
+  DeleteAlert:
+    description: |-
+      Deletes an alert.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_DeleteAlert.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteAnomalyDetector:
+    description: |-
+      Deletes a detector. Deleting an anomaly detector will delete all of its corresponding resources including any configured datasets and alerts.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_DeleteAnomalyDetector.html
+    example:
+      inputs: [
+        {
+          "AnomalyDetectorArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeAlert:
+    description: |-
+      Describes an alert.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_DescribeAlert.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Alert": {
+            "Action": {
+              "SNSConfiguration": {
+                "RoleArn": "string",
+                "SnsTopicArn": "string"
+              },
+              "LambdaConfiguration": {
+                "RoleArn": "string",
+                "LambdaArn": "string"
+              }
+            },
+            "AlertArn": "string",
+            "AlertName": "string",
+            "AlertType": "string",
+            "AlertStatus": "string",
+            "CreationTime": 1481289211.615,
+            "AlertDescription": "string",
+            "AnomalyDetectorArn": "string",
+            "LastModificationTime": 1481289211.615,
+            "AlertSensitivityThreshold": 1
+          }
+        }
+      ]
+  DescribeAnomalyDetectionExecutions:
+    description: |-
+      Returns information about the status of the specified anomaly detection jobs.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_DescribeAnomalyDetectionExecutions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "Timestamp": "string",
+          "MaxResults": 1,
+          "AnomalyDetectorArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ExecutionList": [
+            {
+              "Status": "string",
+              "Timestamp": "string",
+              "FailureReason": "string"
+            }
+          ]
+        }
+      ]
+  DescribeAnomalyDetector:
+    description: |-
+      Describes a detector.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_DescribeAnomalyDetector.html
+    example:
+      inputs: [
+        {
+          "AnomalyDetectorArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "KmsKeyArn": "string",
+          "CreationTime": 1481289211.615,
+          "FailureReason": "string",
+          "AnomalyDetectorArn": "string",
+          "AnomalyDetectorName": "string",
+          "LastModificationTime": 1481289211.615,
+          "AnomalyDetectorConfig": {
+            "AnomalyDetectorFrequency": "string"
+          },
+          "AnomalyDetectorDescription": "string"
+        }
+      ]
+  DescribeMetricSet:
+    description: |-
+      Describes a dataset.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_DescribeMetricSet.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Offset": 1,
+          "Timezone": "string",
+          "MetricList": [
+            {
+              "Namespace": "string",
+              "MetricName": "string",
+              "AggregationFunction": "string"
+            }
+          ],
+          "CreationTime": 1481289211.615,
+          "MetricSetArn": "string",
+          "MetricSource": {
+            "AppFlowConfig": {
+              "RoleArn": "string",
+              "FlowName": "string"
+            },
+            "S3SourceConfig": {
+              "RoleArn": "string",
+              "TemplatedPathList": [
+                "string"
+              ],
+              "FileFormatDescriptor": {
+                "CsvFormatDescriptor": {
+                  "Charset": "string",
+                  "Delimiter": "string",
+                  "HeaderList": [
+                    "string"
+                  ],
+                  "QuoteSymbol": "string",
+                  "ContainsHeader": false,
+                  "FileCompression": "string"
+                },
+                "JsonFormatDescriptor": {
+                  "Charset": "string",
+                  "FileCompression": "string"
+                }
+              },
+              "HistoricalDataPathList": [
+                "string"
+              ]
+            },
+            "RDSSourceConfig": {
+              "RoleArn": "string",
+              "TableName": "string",
+              "DatabaseHost": "string",
+              "DatabaseName": "string",
+              "DatabasePort": 1,
+              "SecretManagerArn": "string",
+              "VpcConfiguration": {
+                "SubnetIdList": [
+                  "string"
+                ],
+                "SecurityGroupIdList": [
+                  "string"
+                ]
+              },
+              "DBInstanceIdentifier": "string"
+            },
+            "CloudWatchConfig": {
+              "RoleArn": "string"
+            },
+            "RedshiftSourceConfig": {
+              "RoleArn": "string",
+              "TableName": "string",
+              "DatabaseHost": "string",
+              "DatabaseName": "string",
+              "DatabasePort": 1,
+              "SecretManagerArn": "string",
+              "VpcConfiguration": {
+                "SubnetIdList": [
+                  "string"
+                ],
+                "SecurityGroupIdList": [
+                  "string"
+                ]
+              },
+              "ClusterIdentifier": "string"
+            }
+          },
+          "DimensionList": [
+            "string"
+          ],
+          "MetricSetName": "string",
+          "TimestampColumn": {
+            "ColumnName": "string",
+            "ColumnFormat": "string"
+          },
+          "AnomalyDetectorArn": "string",
+          "MetricSetFrequency": "string",
+          "LastModificationTime": 1481289211.615,
+          "MetricSetDescription": "string"
+        }
+      ]
+  GetAnomalyGroup:
+    description: |-
+      Returns details about a group of anomalous metrics.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_GetAnomalyGroup.html
+    example:
+      inputs: [
+        {
+          "AnomalyGroupId": "string",
+          "AnomalyDetectorArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "AnomalyGroup": {
+            "EndTime": "string",
+            "StartTime": "string",
+            "AnomalyGroupId": "string",
+            "AnomalyGroupScore": 0.1,
+            "PrimaryMetricName": "string",
+            "MetricLevelImpactList": [
+              {
+                "MetricName": "string",
+                "NumTimeSeries": 1,
+                "ContributionMatrix": {
+                  "DimensionContributionList": [
+                    {
+                      "DimensionName": "string",
+                      "DimensionValueContributionList": [
+                        {
+                          "DimensionValue": "string",
+                          "ContributionScore": 0.1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+  GetFeedback:
+    description: |-
+      Get feedback for an anomaly group.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_GetFeedback.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "AnomalyDetectorArn": "string",
+          "AnomalyGroupTimeSeriesFeedback": {
+            "TimeSeriesId": "string",
+            "AnomalyGroupId": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "AnomalyGroupTimeSeriesFeedback": [
+            {
+              "IsAnomaly": false,
+              "TimeSeriesId": "string"
+            }
+          ]
+        }
+      ]
+  GetSampleData:
+    description: |-
+      Returns a selection of sample records from an Amazon S3 datasource.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_GetSampleData.html
+    example:
+      inputs: [
+        {
+          "S3SourceConfig": {
+            "RoleArn": "string",
+            "TemplatedPathList": [
+              "string"
+            ],
+            "FileFormatDescriptor": {
+              "CsvFormatDescriptor": {
+                "Charset": "string",
+                "Delimiter": "string",
+                "HeaderList": [
+                  "string"
+                ],
+                "QuoteSymbol": "string",
+                "ContainsHeader": false,
+                "FileCompression": "string"
+              },
+              "JsonFormatDescriptor": {
+                "Charset": "string",
+                "FileCompression": "string"
+              }
+            },
+            "HistoricalDataPathList": [
+              "string"
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "SampleRows": [
+            {
+              "0": "string"
+            }
+          ],
+          "HeaderValues": [
+            "string"
+          ]
+        }
+      ]
+  ListAlerts:
+    description: |-
+      Lists the alerts attached to a detector.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_ListAlerts.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "AnomalyDetectorArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "AlertSummaryList": [
+            {
+              "Tags": {
+                "string": "string"
+              },
+              "AlertArn": "string",
+              "AlertName": "string",
+              "AlertType": "string",
+              "AlertStatus": "string",
+              "CreationTime": 1481289211.615,
+              "AnomalyDetectorArn": "string",
+              "LastModificationTime": 1481289211.615,
+              "AlertSensitivityThreshold": 1
+            }
+          ]
+        }
+      ]
+  ListAnomalyDetectors:
+    description: |-
+      Lists the detectors in the current AWS Region.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_ListAnomalyDetectors.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "AnomalyDetectorSummaryList": [
+            {
+              "Tags": {
+                "string": "string"
+              },
+              "Status": "string",
+              "CreationTime": 1481289211.615,
+              "AnomalyDetectorArn": "string",
+              "AnomalyDetectorName": "string",
+              "LastModificationTime": 1481289211.615,
+              "AnomalyDetectorDescription": "string"
+            }
+          ]
+        }
+      ]
+  ListAnomalyGroupSummaries:
+    description: |-
+      Returns a list of anomaly groups.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_ListAnomalyGroupSummaries.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "AnomalyDetectorArn": "string",
+          "SensitivityThreshold": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "AnomalyGroupStatistics": {
+            "TotalCount": 1,
+            "EvaluationStartDate": "string",
+            "ItemizedMetricStatsList": [
+              {
+                "MetricName": "string",
+                "OccurrenceCount": 1
+              }
+            ]
+          },
+          "AnomalyGroupSummaryList": [
+            {
+              "EndTime": "string",
+              "StartTime": "string",
+              "AnomalyGroupId": "string",
+              "AnomalyGroupScore": 0.1,
+              "PrimaryMetricName": "string"
+            }
+          ]
+        }
+      ]
+  ListAnomalyGroupTimeSeries:
+    description: |-
+      Gets a list of anomalous metrics for a measure in an anomaly group.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_ListAnomalyGroupTimeSeries.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "MetricName": "string",
+          "AnomalyGroupId": "string",
+          "AnomalyDetectorArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "MetricName": "string",
+          "TimestampList": [
+            "string"
+          ],
+          "AnomalyGroupId": "string",
+          "TimeSeriesList": [
+            {
+              "TimeSeriesId": "string",
+              "DimensionList": [
+                {
+                  "DimensionName": "string",
+                  "DimensionValue": "string"
+                }
+              ],
+              "MetricValueList": [
+                0.1
+              ]
+            }
+          ]
+        }
+      ]
+  ListMetricSets:
+    description: |-
+      Lists the datasets in the current AWS Region.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_ListMetricSets.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "AnomalyDetectorArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "MetricSetSummaryList": [
+            {
+              "Tags": {
+                "string": "string"
+              },
+              "CreationTime": 1481289211.615,
+              "MetricSetArn": "string",
+              "MetricSetName": "string",
+              "AnomalyDetectorArn": "string",
+              "LastModificationTime": 1481289211.615,
+              "MetricSetDescription": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Gets a list of tags for a detector, dataset, or alert.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  PutFeedback:
+    description: |-
+      Add feedback for an anomalous metric.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_PutFeedback.html
+    example:
+      inputs: [
+        {
+          "AnomalyDetectorArn": "string",
+          "AnomalyGroupTimeSeriesFeedback": {
+            "IsAnomaly": false,
+            "TimeSeriesId": "string",
+            "AnomalyGroupId": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Adds tags to a detector, dataset, or alert.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes tags from a detector, dataset, or alert.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateAnomalyDetector:
+    description: |-
+      Updates a detector. After activation, you can only change a detector's ingestion delay and description.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_UpdateAnomalyDetector.html
+    example:
+      inputs: [
+        {
+          "KmsKeyArn": "string",
+          "AnomalyDetectorArn": "string",
+          "AnomalyDetectorConfig": {
+            "AnomalyDetectorFrequency": "string"
+          },
+          "AnomalyDetectorDescription": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateMetricSet:
+    description: |-
+      Updates a dataset.
+    versions:
+      from: 2017.7.25
+    link: https://docs.aws.amazon.com/lookoutmetrics/latest/api/API_UpdateMetricSet.html
+    example:
+      inputs: [
+        {
+          "Offset": 1,
+          "MetricList": [
+            {
+              "Namespace": "string",
+              "MetricName": "string",
+              "AggregationFunction": "string"
+            }
+          ],
+          "MetricSetArn": "string",
+          "MetricSource": {
+            "AppFlowConfig": {
+              "RoleArn": "string",
+              "FlowName": "string"
+            },
+            "S3SourceConfig": {
+              "RoleArn": "string",
+              "TemplatedPathList": [
+                "string"
+              ],
+              "FileFormatDescriptor": {
+                "CsvFormatDescriptor": {
+                  "Charset": "string",
+                  "Delimiter": "string",
+                  "HeaderList": [
+                    "string"
+                  ],
+                  "QuoteSymbol": "string",
+                  "ContainsHeader": false,
+                  "FileCompression": "string"
+                },
+                "JsonFormatDescriptor": {
+                  "Charset": "string",
+                  "FileCompression": "string"
+                }
+              },
+              "HistoricalDataPathList": [
+                "string"
+              ]
+            },
+            "RDSSourceConfig": {
+              "RoleArn": "string",
+              "TableName": "string",
+              "DatabaseHost": "string",
+              "DatabaseName": "string",
+              "DatabasePort": 1,
+              "SecretManagerArn": "string",
+              "VpcConfiguration": {
+                "SubnetIdList": [
+                  "string"
+                ],
+                "SecurityGroupIdList": [
+                  "string"
+                ]
+              },
+              "DBInstanceIdentifier": "string"
+            },
+            "CloudWatchConfig": {
+              "RoleArn": "string"
+            },
+            "RedshiftSourceConfig": {
+              "RoleArn": "string",
+              "TableName": "string",
+              "DatabaseHost": "string",
+              "DatabaseName": "string",
+              "DatabasePort": 1,
+              "SecretManagerArn": "string",
+              "VpcConfiguration": {
+                "SubnetIdList": [
+                  "string"
+                ],
+                "SecurityGroupIdList": [
+                  "string"
+                ]
+              },
+              "ClusterIdentifier": "string"
+            }
+          },
+          "DimensionList": [
+            "string"
+          ],
+          "TimestampColumn": {
+            "ColumnName": "string",
+            "ColumnFormat": "string"
+          },
+          "MetricSetFrequency": "string",
+          "MetricSetDescription": "string"
+        }
+      ]
+      outputs: [
+        {
+          "MetricSetArn": "string"
+        }
+      ]

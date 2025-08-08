@@ -3,7 +3,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import yaml from 'yaml';
 import { UUID, URL } from '@auditmation/types-core-js';
-import { VspStatusEnum } from '@auditmation/module-auditmation-auditmation-portal';
+import { VspStatusEnum, FactoryTypeEnum, HostingTypeEnum } from '@auditmation/module-auditmation-auditmation-portal';
 
 const productTypes: Record<string, number> = {};
 
@@ -40,7 +40,7 @@ async function readAndParseFile(file: string, fullPathFile: string): Promise<any
   throw new Error(`File type not supported: ${file}`);
 }
 
-function processPackageJson(packageFile: Record<string, any>, code: string, vendor: string): void {
+function processPackageJson(packageFile: Record<string, any>, code: string, vendor: string, suite?: string): void {
   let check: any = packageFile.name !== undefined && packageFile.name !== null && packageFile.name === `@zerobias-org/product-${vendor}-${code}`
     ? true : new Error('package.json missing name or not set to @zerobias-org/product-<vendor>-<code>');
 
@@ -63,12 +63,14 @@ function processPackageJson(packageFile: Record<string, any>, code: string, vend
   }
 
   if (packageFile.dependencies && typeof packageFile.dependencies === 'object') {
-    if (Object.keys(packageFile.dependencies).length === 1) {
-      if (!packageFile[`@zerobias-org/vendor-${vendor}`]) {
-        throw new Error(`package.json dependencies missing dep for vendor ${vendor} artifact`);
+    if (suite) {
+      if (!packageFile.dependencies[`@zerobias-org/suite-${vendor}-${suite}`]) {
+        throw new Error(`package.json dependencies missing dep for suite @zerobias-org/suite-${vendor}-${suite} artifact`);
       }
     } else {
-      throw new Error(`package.json dependencies should only have 1 dep on the vendor ${vendor} artifact`);
+      if (!packageFile.dependencies[`@zerobias-org/vendor-${vendor}`]) {
+        throw new Error(`package.json dependencies missing dep for vendor @zerobias-org/vendor-${vendor} artifact`);
+      }
     }
   } else {
     throw new Error(`package.json missing dependency section with vendor ${vendor} artifact`);
@@ -76,7 +78,7 @@ function processPackageJson(packageFile: Record<string, any>, code: string, vend
 
 }
 
-async function processIndexYml(indexFile: Record<string, any>): Promise<{ code: string, vendor: string }> {
+async function processIndexYml(indexFile: Record<string, any>): Promise<{ code: string, vendor: string, suite?: string }> {
   const code = indexFile.code !== undefined && indexFile.code !== null && indexFile.code !== '{code}' ? indexFile.code
     : new Error('code not found in index.yml');
   if (typeof code !== 'string') {
@@ -115,10 +117,53 @@ async function processIndexYml(indexFile: Record<string, any>): Promise<{ code: 
     }
   }
 
-  const vendor = indexFile.vendor !== undefined && indexFile.vendor !== null ? indexFile.vendor
-    : new Error('vendor not found in index.yml');
+  check = indexFile.factoryTypes !== undefined && indexFile.factoryTypes !== null ? indexFile.factoryTypes : [];
+  if (!Array.isArray(check)) {
+    throw new Error(`factoryTypes must be an array.`);
+  }
+
+  for (const factoryType of check) {
+    try {
+      check = FactoryTypeEnum.from(factoryType);
+    } catch (error: any) {
+      throw new Error(`factoryType ${factoryType} not valid.`);
+    }
+  }
+
+  check = indexFile.hostingTypes !== undefined && indexFile.hostingTypes !== null ? indexFile.hostingTypes : [];
+  if (!Array.isArray(check)) {
+    throw new Error(`hostingTypes must be an array.`);
+  }
+
+  for (const hostingType of check) {
+    try {
+      check = HostingTypeEnum.from(hostingType);
+    } catch (error: any) {
+      throw new Error(`hostingType ${hostingType} not valid.`);
+    }
+  }
+
+  const parentType = indexFile.parentType !== undefined && indexFile.parentType !== null ? indexFile.parentType
+    : new Error('parentType not found in index.yml');
+
+  let vendor: string;
+  let suite: string | undefined;
+  if (parentType === 'vendor') {
+    check = indexFile.vendorId !== undefined && indexFile.vendorId !== null ? indexFile.vendorId : new Error('vendorId not found in index.yml');
+    vendor = indexFile.vendorCode !== undefined && indexFile.vendorCode !== null ? indexFile.vendorCode
+      : new Error('vendorCode not found in index.yml');
+  } else if (parentType === 'suite') {
+    check = indexFile.vendorId !== undefined && indexFile.vendorId !== null ? indexFile.vendorId : new Error('vendorId not found in index.yml');
+    vendor = indexFile.vendorCode !== undefined && indexFile.vendorCode !== null ? indexFile.vendorCode
+      : new Error('vendorCode not found in index.yml');
+    check = indexFile.suiteId !== undefined && indexFile.suiteId !== null ? indexFile.suiteId : new Error('suiteId not found in index.yml');
+    suite = indexFile.suiteCode !== undefined && indexFile.suiteCode !== null ? indexFile.suiteCode
+      : new Error('suiteCode not found in index.yml');
+  } else {
+    throw new Error('parentType in index.yml must be either vendor or suite.');
+  }
  
-  return { code, vendor };
+  return { code, vendor, suite };
 }
 
 async function processArtifact(directory: string) {
@@ -127,6 +172,23 @@ async function processArtifact(directory: string) {
 
   if (!checkDir || !checkDir.isDirectory()) {
     throw new Error(`Path given is not found or not a directory: ${directory}`);
+  }
+
+  const checkPackageJson = await fs.lstat(path.join(directory, 'package.json'))
+    .catch(() => undefined);
+
+  if (!checkPackageJson || !checkPackageJson.isFile()) {
+    throw new Error(`package.json file not found or is not file in directory: ${directory}`);
+  }
+
+  const packageJson = await readAndParseFile('package.json', path.join(directory, 'package.json'));
+  if (!packageJson) {
+    throw new Error('Unable to parse package.json');
+  }
+  
+  if (packageJson.auditmation && typeof packageJson.auditmation === 'object' && packageJson.auditmation.deprecated) {
+    console.log('This artifact is deprecated according to the package.json.');
+    return;
   }
 
   const checkIndexYml = await fs.lstat(path.join(directory, 'index.yml'))
@@ -140,22 +202,16 @@ async function processArtifact(directory: string) {
   if (!indexYml) {
     throw new Error('Unable to parse index.yml');
   }
+  
+  if (indexYml.deprecate) {
+    console.log('This artifact is deprecated due to index.yml.');
+    return;
+  }
 
-  const { code, vendor } = await processIndexYml(indexYml);
+  const { code, vendor, suite } = await processIndexYml(indexYml);
   console.log('Validated index.yml');
-  const checkPackageJson = await fs.lstat(path.join(directory, 'package.json'))
-    .catch(() => undefined);
 
-  if (!checkPackageJson || !checkPackageJson.isFile()) {
-    throw new Error(`package.json file not found or is not file in directory: ${directory}`);
-  }
-
-  const packageJson = await readAndParseFile('package.json', path.join(directory, 'package.json'));
-  if (!packageJson) {
-    throw new Error('Unable to parse package.json');
-  }
-
-  processPackageJson(packageJson, code, vendor);
+  processPackageJson(packageJson, code, vendor, suite);
   console.log('Validated package.json');
   const checkNpmrc = await fs.lstat(path.join(directory, '.npmrc'))
     .catch(() => undefined);

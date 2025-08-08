@@ -1,0 +1,478 @@
+Product:
+  name: Amazon CloudWatch Synthetics
+  versions: [2017.10.11]
+  package: amazon.aws.cloudwatchsynthetics
+  description: |-
+    Amazon CloudWatch Synthetics
+  link: https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CreateCanary:
+    description: |-
+      Creates a canary. Canaries are scripts that monitor your endpoints and APIs from the outside-in. Canaries help you check the availability and latency of your web services and troubleshoot anomalies by investigating load time data, screenshots of the UI, logs, and metrics. You can set up a canary to run continuously or just once.
+    versions:
+      from: 2017.10.11
+    link: https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_CreateCanary.html
+    example:
+      inputs: [
+        {
+          "Code": {
+            "S3Key": "string",
+            "Handler": "string",
+            "ZipFile": "blob",
+            "S3Bucket": "string",
+            "S3Version": "string"
+          },
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Schedule": {
+            "Expression": "string",
+            "DurationInSeconds": 1
+          },
+          "RunConfig": {
+            "MemoryInMB": 1,
+            "ActiveTracing": false,
+            "TimeoutInSeconds": 1,
+            "EnvironmentVariables": {
+              "string": "string"
+            }
+          },
+          "VpcConfig": {
+            "SubnetIds": [
+              "string"
+            ],
+            "SecurityGroupIds": [
+              "string"
+            ]
+          },
+          "RuntimeVersion": "string",
+          "ExecutionRoleArn": "string",
+          "ArtifactS3Location": "string",
+          "FailureRetentionPeriodInDays": 1,
+          "SuccessRetentionPeriodInDays": 1
+        }
+      ]
+      outputs: [
+        {
+          "Canary": {
+            "Id": "string",
+            "Code": {
+              "Handler": "string",
+              "SourceLocationArn": "string"
+            },
+            "Name": "string",
+            "Tags": {
+              "string": "string"
+            },
+            "Status": {
+              "State": "string",
+              "StateReason": "string",
+              "StateReasonCode": "string"
+            },
+            "Schedule": {
+              "Expression": "string",
+              "DurationInSeconds": 1
+            },
+            "Timeline": {
+              "Created": 1481289211.615,
+              "LastStarted": 1481289211.615,
+              "LastStopped": 1481289211.615,
+              "LastModified": 1481289211.615
+            },
+            "EngineArn": "string",
+            "RunConfig": {
+              "MemoryInMB": 1,
+              "ActiveTracing": false,
+              "TimeoutInSeconds": 1
+            },
+            "VpcConfig": {
+              "VpcId": "string",
+              "SubnetIds": [
+                "string"
+              ],
+              "SecurityGroupIds": [
+                "string"
+              ]
+            },
+            "RuntimeVersion": "string",
+            "ExecutionRoleArn": "string",
+            "ArtifactS3Location": "string",
+            "FailureRetentionPeriodInDays": 1,
+            "SuccessRetentionPeriodInDays": 1
+          }
+        }
+      ]
+  DeleteCanary:
+    description: |-
+      Permanently deletes the specified canary.
+    versions:
+      from: 2017.10.11
+    link: https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_DeleteCanary.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeCanaries:
+    description: |-
+      This operation returns a list of the canaries in your account, along with full details about each canary.
+    versions:
+      from: 2017.10.11
+    link: https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_DescribeCanaries.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Canaries": [
+            {
+              "Id": "string",
+              "Code": {
+                "Handler": "string",
+                "SourceLocationArn": "string"
+              },
+              "Name": "string",
+              "Tags": {
+                "string": "string"
+              },
+              "Status": {
+                "State": "string",
+                "StateReason": "string",
+                "StateReasonCode": "string"
+              },
+              "Schedule": {
+                "Expression": "string",
+                "DurationInSeconds": 1
+              },
+              "Timeline": {
+                "Created": 1481289211.615,
+                "LastStarted": 1481289211.615,
+                "LastStopped": 1481289211.615,
+                "LastModified": 1481289211.615
+              },
+              "EngineArn": "string",
+              "RunConfig": {
+                "MemoryInMB": 1,
+                "ActiveTracing": false,
+                "TimeoutInSeconds": 1
+              },
+              "VpcConfig": {
+                "VpcId": "string",
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupIds": [
+                  "string"
+                ]
+              },
+              "RuntimeVersion": "string",
+              "ExecutionRoleArn": "string",
+              "ArtifactS3Location": "string",
+              "FailureRetentionPeriodInDays": 1,
+              "SuccessRetentionPeriodInDays": 1
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeCanariesLastRun:
+    description: |-
+      Use this operation to see information from the most recent run of each canary that you have created.
+    versions:
+      from: 2017.10.11
+    link: https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_DescribeCanariesLastRun.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CanariesLastRun": [
+            {
+              "LastRun": {
+                "Id": "string",
+                "Name": "string",
+                "Status": {
+                  "State": "string",
+                  "StateReason": "string",
+                  "StateReasonCode": "string"
+                },
+                "Timeline": {
+                  "Started": 1481289211.615,
+                  "Completed": 1481289211.615
+                },
+                "ArtifactS3Location": "string"
+              },
+              "CanaryName": "string"
+            }
+          ]
+        }
+      ]
+  DescribeRuntimeVersions:
+    description: |-
+      Returns a list of Synthetics canary runtime versions. For more information, see Canary Runtime Versions.
+    versions:
+      from: 2017.10.11
+    link: https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_DescribeRuntimeVersions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "RuntimeVersions": [
+            {
+              "Description": "string",
+              "ReleaseDate": 1481289211.615,
+              "VersionName": "string",
+              "DeprecationDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  GetCanary:
+    description: |-
+      Retrieves complete information about one canary. You must specify the name of the canary that you want. To get a list of canaries and their names, use DescribeCanaries.
+    versions:
+      from: 2017.10.11
+    link: https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_GetCanary.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Canary": {
+            "Id": "string",
+            "Code": {
+              "Handler": "string",
+              "SourceLocationArn": "string"
+            },
+            "Name": "string",
+            "Tags": {
+              "string": "string"
+            },
+            "Status": {
+              "State": "string",
+              "StateReason": "string",
+              "StateReasonCode": "string"
+            },
+            "Schedule": {
+              "Expression": "string",
+              "DurationInSeconds": 1
+            },
+            "Timeline": {
+              "Created": 1481289211.615,
+              "LastStarted": 1481289211.615,
+              "LastStopped": 1481289211.615,
+              "LastModified": 1481289211.615
+            },
+            "EngineArn": "string",
+            "RunConfig": {
+              "MemoryInMB": 1,
+              "ActiveTracing": false,
+              "TimeoutInSeconds": 1
+            },
+            "VpcConfig": {
+              "VpcId": "string",
+              "SubnetIds": [
+                "string"
+              ],
+              "SecurityGroupIds": [
+                "string"
+              ]
+            },
+            "RuntimeVersion": "string",
+            "ExecutionRoleArn": "string",
+            "ArtifactS3Location": "string",
+            "FailureRetentionPeriodInDays": 1,
+            "SuccessRetentionPeriodInDays": 1
+          }
+        }
+      ]
+  GetCanaryRuns:
+    description: |-
+      Retrieves a list of runs for a specified canary.
+    versions:
+      from: 2017.10.11
+    link: https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_GetCanaryRuns.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CanaryRuns": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Status": {
+                "State": "string",
+                "StateReason": "string",
+                "StateReasonCode": "string"
+              },
+              "Timeline": {
+                "Started": 1481289211.615,
+                "Completed": 1481289211.615
+              },
+              "ArtifactS3Location": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Displays the tags associated with a canary.
+    versions:
+      from: 2017.10.11
+    link: https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  StartCanary:
+    description: |-
+      Use this operation to run a canary that has already been created. The frequency of the canary runs is determined by the value of the canary's Schedule. To see a canary's schedule, use GetCanary.
+    versions:
+      from: 2017.10.11
+    link: https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_StartCanary.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StopCanary:
+    description: |-
+      Stops the canary to prevent all future runs. If the canary is currently running, Synthetics stops waiting for the current run of the specified canary to complete. The run that is in progress completes on its own, publishes metrics, and uploads artifacts, but it is not recorded in Synthetics as a completed run.
+    versions:
+      from: 2017.10.11
+    link: https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_StopCanary.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Assigns one or more tags (key-value pairs) to the specified canary.
+    versions:
+      from: 2017.10.11
+    link: https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes one or more tags from the specified canary.
+    versions:
+      from: 2017.10.11
+    link: https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateCanary:
+    description: |-
+      Use this operation to change the settings of a canary that has already been created.
+    versions:
+      from: 2017.10.11
+    link: https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_UpdateCanary.html
+    example:
+      inputs: [
+        {
+          "Code": {
+            "S3Key": "string",
+            "Handler": "string",
+            "ZipFile": "blob",
+            "S3Bucket": "string",
+            "S3Version": "string"
+          },
+          "Name": "string",
+          "Schedule": {
+            "Expression": "string",
+            "DurationInSeconds": 1
+          },
+          "RunConfig": {
+            "MemoryInMB": 1,
+            "ActiveTracing": false,
+            "TimeoutInSeconds": 1,
+            "EnvironmentVariables": {
+              "string": "string"
+            }
+          },
+          "VpcConfig": {
+            "SubnetIds": [
+              "string"
+            ],
+            "SecurityGroupIds": [
+              "string"
+            ]
+          },
+          "RuntimeVersion": "string",
+          "ExecutionRoleArn": "string",
+          "FailureRetentionPeriodInDays": 1,
+          "SuccessRetentionPeriodInDays": 1
+        }
+      ]
+      outputs: [
+        {}
+      ]

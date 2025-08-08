@@ -1,0 +1,100 @@
+Product:
+  name: AWS Single Sign-On
+  versions: [2019.6.10]
+  package: amazon.aws.sso
+  description: |-
+    AWS Single Sign-On
+  link: https://docs.aws.amazon.com/singlesignon/latest/PortalAPIReference/Welcome.html
+  contentType: json
+Operations:
+  GetRoleCredentials:
+    description: |-
+      Returns the STS short-term credentials for a given role name that is assigned to the user.
+    versions:
+      from: 2019.6.10
+    link: https://docs.aws.amazon.com/singlesignon/latest/PortalAPIReference/API_GetRoleCredentials.html
+    example:
+      inputs: [
+        {
+          "roleName": "string",
+          "accountId": "string",
+          "accessToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "roleCredentials": {
+            "expiration": 1,
+            "accessKeyId": "string",
+            "sessionToken": "string",
+            "secretAccessKey": "string"
+          }
+        }
+      ]
+  ListAccountRoles:
+    description: |-
+      Lists all roles that are assigned to the user for a given AWS account.
+    versions:
+      from: 2019.6.10
+    link: https://docs.aws.amazon.com/singlesignon/latest/PortalAPIReference/API_ListAccountRoles.html
+    example:
+      inputs: [
+        {
+          "accountId": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "accessToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "roleList": [
+            {
+              "roleName": "string",
+              "accountId": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListAccounts:
+    description: |-
+      Lists all AWS accounts assigned to the user. These AWS accounts are assigned by the administrator of the account. For more information, see Assign User Access in the AWS SSO User Guide. This operation returns a paginated response.
+    versions:
+      from: 2019.6.10
+    link: https://docs.aws.amazon.com/singlesignon/latest/PortalAPIReference/API_ListAccounts.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "accessToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "accountList": [
+            {
+              "accountId": "string",
+              "accountName": "string",
+              "emailAddress": "string"
+            }
+          ]
+        }
+      ]
+  Logout:
+    description: |-
+      Removes the client- and server-side session that is associated with the user.
+    versions:
+      from: 2019.6.10
+    link: https://docs.aws.amazon.com/singlesignon/latest/PortalAPIReference/API_Logout.html
+    example:
+      inputs: [
+        {
+          "accessToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

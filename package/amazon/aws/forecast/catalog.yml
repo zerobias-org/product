@@ -1,0 +1,1109 @@
+Product:
+  name: Amazon Forecast
+  versions: [2018.6.26]
+  package: amazon.aws.forecast
+  description: |-
+    Amazon Forecast
+  link: https://docs.aws.amazon.com/forecast/latest/dg/what-is-forecast.html
+  contentType: json
+Operations:
+  CreateDatasetGroup:
+    description: |-
+      Creates a dataset group, which holds a collection of related datasets. You can add datasets to the dataset group when you create the dataset group, or later by using the UpdateDatasetGroup operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetGroup.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Domain": "string",
+          "DatasetArns": [
+            "string"
+          ],
+          "DatasetGroupName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DatasetGroupArn": "string"
+        }
+      ]
+  CreateDataset:
+    description: |-
+      Creates an Amazon Forecast dataset. The information about the dataset that you provide helps Forecast understand how to consume the data for model training.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDataset.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Domain": "string",
+          "Schema": {
+            "Attributes": [
+              {
+                "AttributeName": "string",
+                "AttributeType": "string"
+              }
+            ]
+          },
+          "DatasetName": "string",
+          "DatasetType": "string",
+          "DataFrequency": "string",
+          "EncryptionConfig": {
+            "RoleArn": "string",
+            "KMSKeyArn": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "DatasetArn": "string"
+        }
+      ]
+  CreateDatasetImportJob:
+    description: |-
+      Imports your training data to an Amazon Forecast dataset. You provide the location of your training data in an Amazon Simple Storage Service (Amazon S3) bucket and the Amazon Resource Name (ARN) of the dataset that you want to import the data to.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDatasetImportJob.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "TimeZone": "string",
+          "DataSource": {
+            "S3Config": {
+              "Path": "string",
+              "RoleArn": "string",
+              "KMSKeyArn": "string"
+            }
+          },
+          "DatasetArn": "string",
+          "TimestampFormat": "string",
+          "GeolocationFormat": "string",
+          "DatasetImportJobName": "string",
+          "UseGeolocationForTimeZone": false
+        }
+      ]
+      outputs: [
+        {
+          "DatasetImportJobArn": "string"
+        }
+      ]
+  CreateForecastExportJob:
+    description: |-
+      Exports a forecast created by the CreateForecast operation to your Amazon Simple Storage Service (Amazon S3) bucket.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_CreateForecastExportJob.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Destination": {
+            "S3Config": {
+              "Path": "string",
+              "RoleArn": "string",
+              "KMSKeyArn": "string"
+            }
+          },
+          "ForecastArn": "string",
+          "ForecastExportJobName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ForecastExportJobArn": "string"
+        }
+      ]
+  CreateForecast:
+    description: |-
+      Creates a forecast for each item in the TARGET_TIME_SERIES dataset that was used to train the predictor. This is known as inference. To retrieve the forecast for a single item at low latency, use the QueryForecast operation. To export the complete forecast into your Amazon Simple Storage Service (Amazon S3) bucket, use the CreateForecastExportJob operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_CreateForecast.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ForecastName": "string",
+          "PredictorArn": "string",
+          "ForecastTypes": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ForecastArn": "string"
+        }
+      ]
+  CreatePredictorBacktestExportJob:
+    description: |-
+      Exports backtest forecasts and accuracy metrics generated by the CreatePredictor operation. Two folders containing CSV files are exported to your specified S3 bucket.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_CreatePredictorBacktestExportJob.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Destination": {
+            "S3Config": {
+              "Path": "string",
+              "RoleArn": "string",
+              "KMSKeyArn": "string"
+            }
+          },
+          "PredictorArn": "string",
+          "PredictorBacktestExportJobName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PredictorBacktestExportJobArn": "string"
+        }
+      ]
+  CreatePredictor:
+    description: |-
+      Creates an Amazon Forecast predictor.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_CreatePredictor.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "HPOConfig": {
+            "ParameterRanges": {
+              "IntegerParameterRanges": [
+                {
+                  "Name": "string",
+                  "MaxValue": 1,
+                  "MinValue": 1,
+                  "ScalingType": "string"
+                }
+              ],
+              "ContinuousParameterRanges": [
+                {
+                  "Name": "string",
+                  "MaxValue": 0.1,
+                  "MinValue": 0.1,
+                  "ScalingType": "string"
+                }
+              ],
+              "CategoricalParameterRanges": [
+                {
+                  "Name": "string",
+                  "Values": [
+                    "string"
+                  ]
+                }
+              ]
+            }
+          },
+          "PerformHPO": false,
+          "AlgorithmArn": "string",
+          "ForecastTypes": [
+            "string"
+          ],
+          "PerformAutoML": false,
+          "PredictorName": "string",
+          "ForecastHorizon": 1,
+          "InputDataConfig": {
+            "DatasetGroupArn": "string",
+            "SupplementaryFeatures": [
+              {
+                "Name": "string",
+                "Value": "string"
+              }
+            ]
+          },
+          "EncryptionConfig": {
+            "RoleArn": "string",
+            "KMSKeyArn": "string"
+          },
+          "TrainingParameters": {
+            "string": "string"
+          },
+          "FeaturizationConfig": {
+            "Featurizations": [
+              {
+                "AttributeName": "string",
+                "FeaturizationPipeline": [
+                  {
+                    "FeaturizationMethodName": "string",
+                    "FeaturizationMethodParameters": {
+                      "string": "string"
+                    }
+                  }
+                ]
+              }
+            ],
+            "ForecastFrequency": "string",
+            "ForecastDimensions": [
+              "string"
+            ]
+          },
+          "EvaluationParameters": {
+            "BackTestWindowOffset": 1,
+            "NumberOfBacktestWindows": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "PredictorArn": "string"
+        }
+      ]
+  DeleteDatasetGroup:
+    description: |-
+      Deletes a dataset group created using the CreateDatasetGroup operation. You can only delete dataset groups that have a status of ACTIVE, CREATE_FAILED, or UPDATE_FAILED. To get the status, use the DescribeDatasetGroup operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_DeleteDatasetGroup.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDataset:
+    description: |-
+      Deletes an Amazon Forecast dataset that was created using the CreateDataset operation. You can only delete datasets that have a status of ACTIVE or CREATE_FAILED. To get the status use the DescribeDataset operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_DeleteDataset.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDatasetImportJob:
+    description: |-
+      Deletes a dataset import job created using the CreateDatasetImportJob operation. You can delete only dataset import jobs that have a status of ACTIVE or CREATE_FAILED. To get the status, use the DescribeDatasetImportJob operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_DeleteDatasetImportJob.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteForecastExportJob:
+    description: |-
+      Deletes a forecast export job created using the CreateForecastExportJob operation. You can delete only export jobs that have a status of ACTIVE or CREATE_FAILED. To get the status, use the DescribeForecastExportJob operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_DeleteForecastExportJob.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteForecast:
+    description: |-
+      Deletes a forecast created using the CreateForecast operation. You can delete only forecasts that have a status of ACTIVE or CREATE_FAILED. To get the status, use the DescribeForecast operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_DeleteForecast.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeletePredictorBacktestExportJob:
+    description: |-
+      Deletes a predictor backtest export job.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_DeletePredictorBacktestExportJob.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeletePredictor:
+    description: |-
+      Deletes a predictor created using the CreatePredictor operation. You can delete only predictor that have a status of ACTIVE or CREATE_FAILED. To get the status, use the DescribePredictor operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_DeletePredictor.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeDatasetGroup:
+    description: |-
+      Describes a dataset group created using the CreateDatasetGroup operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetGroup.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Domain": "string",
+          "Status": "string",
+          "DatasetArns": [
+            "string"
+          ],
+          "CreationTime": 1481289211.615,
+          "DatasetGroupArn": "string",
+          "DatasetGroupName": "string",
+          "LastModificationTime": 1481289211.615
+        }
+      ]
+  DescribeDataset:
+    description: |-
+      Describes an Amazon Forecast dataset created using the CreateDataset operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDataset.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Domain": "string",
+          "Schema": {
+            "Attributes": [
+              {
+                "AttributeName": "string",
+                "AttributeType": "string"
+              }
+            ]
+          },
+          "Status": "string",
+          "DatasetArn": "string",
+          "DatasetName": "string",
+          "DatasetType": "string",
+          "CreationTime": 1481289211.615,
+          "DataFrequency": "string",
+          "EncryptionConfig": {
+            "RoleArn": "string",
+            "KMSKeyArn": "string"
+          },
+          "LastModificationTime": 1481289211.615
+        }
+      ]
+  DescribeDatasetImportJob:
+    description: |-
+      Describes a dataset import job created using the CreateDatasetImportJob operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeDatasetImportJob.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "Message": "string",
+          "DataSize": 0.1,
+          "TimeZone": "string",
+          "DataSource": {
+            "S3Config": {
+              "Path": "string",
+              "RoleArn": "string",
+              "KMSKeyArn": "string"
+            }
+          },
+          "DatasetArn": "string",
+          "CreationTime": 1481289211.615,
+          "FieldStatistics": {
+            "string": {
+              "Avg": 0.1,
+              "Max": "string",
+              "Min": "string",
+              "Count": 1,
+              "Stddev": 0.1,
+              "CountNan": 1,
+              "CountNull": 1,
+              "CountDistinct": 1
+            }
+          },
+          "TimestampFormat": "string",
+          "GeolocationFormat": "string",
+          "DatasetImportJobArn": "string",
+          "DatasetImportJobName": "string",
+          "LastModificationTime": 1481289211.615,
+          "UseGeolocationForTimeZone": false,
+          "EstimatedTimeRemainingInMinutes": 1
+        }
+      ]
+  DescribeForecastExportJob:
+    description: |-
+      Describes a forecast export job created using the CreateForecastExportJob operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeForecastExportJob.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "Message": "string",
+          "Destination": {
+            "S3Config": {
+              "Path": "string",
+              "RoleArn": "string",
+              "KMSKeyArn": "string"
+            }
+          },
+          "ForecastArn": "string",
+          "CreationTime": 1481289211.615,
+          "ForecastExportJobArn": "string",
+          "LastModificationTime": 1481289211.615,
+          "ForecastExportJobName": "string"
+        }
+      ]
+  DescribeForecast:
+    description: |-
+      Describes a forecast created using the CreateForecast operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_DescribeForecast.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "Message": "string",
+          "ForecastArn": "string",
+          "CreationTime": 1481289211.615,
+          "ForecastName": "string",
+          "PredictorArn": "string",
+          "ForecastTypes": [
+            "string"
+          ],
+          "DatasetGroupArn": "string",
+          "LastModificationTime": 1481289211.615,
+          "EstimatedTimeRemainingInMinutes": 1
+        }
+      ]
+  DescribePredictorBacktestExportJob:
+    description: |-
+      Describes a predictor backtest export job created using the CreatePredictorBacktestExportJob operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_DescribePredictorBacktestExportJob.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "Message": "string",
+          "Destination": {
+            "S3Config": {
+              "Path": "string",
+              "RoleArn": "string",
+              "KMSKeyArn": "string"
+            }
+          },
+          "CreationTime": 1481289211.615,
+          "PredictorArn": "string",
+          "LastModificationTime": 1481289211.615,
+          "PredictorBacktestExportJobArn": "string",
+          "PredictorBacktestExportJobName": "string"
+        }
+      ]
+  DescribePredictor:
+    description: |-
+      Describes a predictor created using the CreatePredictor operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_DescribePredictor.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "Message": "string",
+          "HPOConfig": {
+            "ParameterRanges": {
+              "IntegerParameterRanges": [
+                {
+                  "Name": "string",
+                  "MaxValue": 1,
+                  "MinValue": 1,
+                  "ScalingType": "string"
+                }
+              ],
+              "ContinuousParameterRanges": [
+                {
+                  "Name": "string",
+                  "MaxValue": 0.1,
+                  "MinValue": 0.1,
+                  "ScalingType": "string"
+                }
+              ],
+              "CategoricalParameterRanges": [
+                {
+                  "Name": "string",
+                  "Values": [
+                    "string"
+                  ]
+                }
+              ]
+            }
+          },
+          "PerformHPO": false,
+          "AlgorithmArn": "string",
+          "CreationTime": 1481289211.615,
+          "PredictorArn": "string",
+          "ForecastTypes": [
+            "string"
+          ],
+          "PerformAutoML": false,
+          "PredictorName": "string",
+          "ForecastHorizon": 1,
+          "InputDataConfig": {
+            "DatasetGroupArn": "string",
+            "SupplementaryFeatures": [
+              {
+                "Name": "string",
+                "Value": "string"
+              }
+            ]
+          },
+          "EncryptionConfig": {
+            "RoleArn": "string",
+            "KMSKeyArn": "string"
+          },
+          "TrainingParameters": {
+            "string": "string"
+          },
+          "AutoMLAlgorithmArns": [
+            "string"
+          ],
+          "FeaturizationConfig": {
+            "Featurizations": [
+              {
+                "AttributeName": "string",
+                "FeaturizationPipeline": [
+                  {
+                    "FeaturizationMethodName": "string",
+                    "FeaturizationMethodParameters": {
+                      "string": "string"
+                    }
+                  }
+                ]
+              }
+            ],
+            "ForecastFrequency": "string",
+            "ForecastDimensions": [
+              "string"
+            ]
+          },
+          "DatasetImportJobArns": [
+            "string"
+          ],
+          "EvaluationParameters": {
+            "BackTestWindowOffset": 1,
+            "NumberOfBacktestWindows": 1
+          },
+          "LastModificationTime": 1481289211.615,
+          "PredictorExecutionDetails": {
+            "PredictorExecutions": [
+              {
+                "TestWindows": [
+                  {
+                    "Status": "string",
+                    "Message": "string",
+                    "TestWindowEnd": 1481289211.615,
+                    "TestWindowStart": 1481289211.615
+                  }
+                ],
+                "AlgorithmArn": "string"
+              }
+            ]
+          },
+          "EstimatedTimeRemainingInMinutes": 1
+        }
+      ]
+  QueryForecast:
+    description: |-
+      Retrieves a forecast for a single item, filtered by the supplied criteria.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_forecastquery_QueryForecast.html
+    example:
+      inputs: [
+        {
+          "EndDate": "string",
+          "Filters": {
+            "string": "string"
+          },
+          "NextToken": "string",
+          "StartDate": "string",
+          "ForecastArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Forecast": {
+            "Predictions": {
+              "string": [
+                {
+                  "Value": 0.1,
+                  "Timestamp": "string"
+                }
+              ]
+            }
+          }
+        }
+      ]
+  GetAccuracyMetrics:
+    description: |-
+      Provides metrics on the accuracy of the models that were trained by the CreatePredictor operation. Use metrics to see how well the model performed and to decide whether to use the predictor to generate a forecast. For more information, see Predictor Metrics.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_GetAccuracyMetrics.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "PredictorEvaluationResults": [
+            {
+              "TestWindows": [
+                {
+                  "Metrics": {
+                    "RMSE": 0.1,
+                    "ErrorMetrics": [
+                      {
+                        "RMSE": 0.1,
+                        "WAPE": 0.1,
+                        "ForecastType": "string"
+                      }
+                    ],
+                    "WeightedQuantileLosses": [
+                      {
+                        "Quantile": 0.1,
+                        "LossValue": 0.1
+                      }
+                    ]
+                  },
+                  "ItemCount": 1,
+                  "TestWindowEnd": 1481289211.615,
+                  "EvaluationType": "string",
+                  "TestWindowStart": 1481289211.615
+                }
+              ],
+              "AlgorithmArn": "string"
+            }
+          ]
+        }
+      ]
+  ListDatasetGroups:
+    description: |-
+      Returns a list of dataset groups created using the CreateDatasetGroup operation. For each dataset group, this operation returns a summary of its properties, including its Amazon Resource Name (ARN). You can retrieve the complete set of properties by using the dataset group ARN with the DescribeDatasetGroup operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_ListDatasetGroups.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DatasetGroups": [
+            {
+              "CreationTime": 1481289211.615,
+              "DatasetGroupArn": "string",
+              "DatasetGroupName": "string",
+              "LastModificationTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListDatasetImportJobs:
+    description: |-
+      Returns a list of dataset import jobs created using the CreateDatasetImportJob operation. For each import job, this operation returns a summary of its properties, including its Amazon Resource Name (ARN). You can retrieve the complete set of properties by using the ARN with the DescribeDatasetImportJob operation. You can filter the list by providing an array of Filter objects.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_ListDatasetImportJobs.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Value": "string",
+              "Condition": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DatasetImportJobs": [
+            {
+              "Status": "string",
+              "Message": "string",
+              "DataSource": {
+                "S3Config": {
+                  "Path": "string",
+                  "RoleArn": "string",
+                  "KMSKeyArn": "string"
+                }
+              },
+              "CreationTime": 1481289211.615,
+              "DatasetImportJobArn": "string",
+              "DatasetImportJobName": "string",
+              "LastModificationTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListDatasets:
+    description: |-
+      Returns a list of datasets created using the CreateDataset operation. For each dataset, a summary of its properties, including its Amazon Resource Name (ARN), is returned. To retrieve the complete set of properties, use the ARN with the DescribeDataset operation.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_ListDatasets.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Datasets": [
+            {
+              "Domain": "string",
+              "DatasetArn": "string",
+              "DatasetName": "string",
+              "DatasetType": "string",
+              "CreationTime": 1481289211.615,
+              "LastModificationTime": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListForecastExportJobs:
+    description: |-
+      Returns a list of forecast export jobs created using the CreateForecastExportJob operation. For each forecast export job, this operation returns a summary of its properties, including its Amazon Resource Name (ARN). To retrieve the complete set of properties, use the ARN with the DescribeForecastExportJob operation. You can filter the list using an array of Filter objects.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_ListForecastExportJobs.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Value": "string",
+              "Condition": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ForecastExportJobs": [
+            {
+              "Status": "string",
+              "Message": "string",
+              "Destination": {
+                "S3Config": {
+                  "Path": "string",
+                  "RoleArn": "string",
+                  "KMSKeyArn": "string"
+                }
+              },
+              "CreationTime": 1481289211.615,
+              "ForecastExportJobArn": "string",
+              "LastModificationTime": 1481289211.615,
+              "ForecastExportJobName": "string"
+            }
+          ]
+        }
+      ]
+  ListForecasts:
+    description: |-
+      Returns a list of forecasts created using the CreateForecast operation. For each forecast, this operation returns a summary of its properties, including its Amazon Resource Name (ARN). To retrieve the complete set of properties, specify the ARN with the DescribeForecast operation. You can filter the list using an array of Filter objects.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_ListForecasts.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Value": "string",
+              "Condition": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Forecasts": [
+            {
+              "Status": "string",
+              "Message": "string",
+              "ForecastArn": "string",
+              "CreationTime": 1481289211.615,
+              "ForecastName": "string",
+              "PredictorArn": "string",
+              "DatasetGroupArn": "string",
+              "LastModificationTime": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListPredictorBacktestExportJobs:
+    description: |-
+      Returns a list of predictor backtest export jobs created using the CreatePredictorBacktestExportJob operation. This operation returns a summary for each backtest export job. You can filter the list using an array of Filter objects.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_ListPredictorBacktestExportJobs.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Value": "string",
+              "Condition": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "PredictorBacktestExportJobs": [
+            {
+              "Status": "string",
+              "Message": "string",
+              "Destination": {
+                "S3Config": {
+                  "Path": "string",
+                  "RoleArn": "string",
+                  "KMSKeyArn": "string"
+                }
+              },
+              "CreationTime": 1481289211.615,
+              "LastModificationTime": 1481289211.615,
+              "PredictorBacktestExportJobArn": "string",
+              "PredictorBacktestExportJobName": "string"
+            }
+          ]
+        }
+      ]
+  ListPredictors:
+    description: |-
+      Returns a list of predictors created using the CreatePredictor operation. For each predictor, this operation returns a summary of its properties, including its Amazon Resource Name (ARN). You can retrieve the complete set of properties by using the ARN with the DescribePredictor operation. You can filter the list using an array of Filter objects.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_ListPredictors.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Key": "string",
+              "Value": "string",
+              "Condition": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Predictors": [
+            {
+              "Status": "string",
+              "Message": "string",
+              "CreationTime": 1481289211.615,
+              "PredictorArn": "string",
+              "PredictorName": "string",
+              "DatasetGroupArn": "string",
+              "LastModificationTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists the tags for an Amazon Forecast resource.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  StopResource:
+    description: |-
+      Stops a resource.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_StopResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Associates the specified tags to a resource with the specified resourceArn. If existing tags on a resource are not specified in the request parameters, they are not changed. When a resource is deleted, the tags associated with that resource are also deleted.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Deletes the specified tags from a resource.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateDatasetGroup:
+    description: |-
+      Replaces the datasets in a dataset group with the specified datasets.
+    versions:
+      from: 2018.6.26
+    link: https://docs.aws.amazon.com/forecast/latest/dg/API_UpdateDatasetGroup.html
+    example:
+      inputs: [
+        {
+          "DatasetArns": [
+            "string"
+          ],
+          "DatasetGroupArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

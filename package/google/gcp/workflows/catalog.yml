@@ -1,0 +1,2027 @@
+Product:
+  name: GCP Workflows
+  versions: [1.0.0]
+  package: google.gcp.workflows
+  description: |-
+    Workflows
+  link: https://cloud.google.com/workflows
+  contentType: json
+Operations:
+  workflowexecutions.projects.locations.workflows.executions.cancel:
+    description: |-
+      Cancels an execution of the given name.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/executions/rest/v1/projects.locations.workflows.executions/cancel
+    example:
+      inputs: [
+        {
+          "id": "CancelExecutionRequest",
+          "type": "object",
+          "properties": {},
+          "description": "Request for the CancelExecution method."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Execution",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The resource name of the execution. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}"
+            },
+            "error": {
+              "id": "Error",
+              "type": "object",
+              "readOnly": true,
+              "properties": {
+                "context": {
+                  "type": "string",
+                  "description": "Human readable stack trace string."
+                },
+                "payload": {
+                  "type": "string",
+                  "description": "Error message and data returned represented as a JSON string."
+                },
+                "stackTrace": {
+                  "id": "StackTrace",
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "id": "StackTraceElement",
+                        "type": "object",
+                        "properties": {
+                          "step": {
+                            "type": "string",
+                            "description": "The step the error occurred at."
+                          },
+                          "routine": {
+                            "type": "string",
+                            "description": "The routine where the error occurred."
+                          },
+                          "position": {
+                            "id": "Position",
+                            "type": "object",
+                            "properties": {
+                              "line": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The source code line number the current instruction was generated from."
+                              },
+                              "column": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The source code column position (of the line) the current instruction was generated from."
+                              },
+                              "length": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The length in bytes of text in this character group, e.g. digits of a number, string length, or AST (abstract syntax tree) node."
+                              }
+                            },
+                            "description": "The source position information of the stacktrace element."
+                          }
+                        },
+                        "description": "A single stack element (frame) where an error occurred."
+                      },
+                      "description": "An array of Stack elements."
+                    }
+                  },
+                  "description": "Stack trace with detailed information of where error was generated."
+                }
+              },
+              "description": "Output only. The error which caused the execution to finish prematurely. The value is only present if the execution's state is `FAILED` or `CANCELLED`."
+            },
+            "state": {
+              "enum": [
+                "STATE_UNSPECIFIED",
+                "ACTIVE",
+                "SUCCEEDED",
+                "FAILED",
+                "CANCELLED"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Current state of the execution.",
+              "enumDescriptions": [
+                "Invalid state.",
+                "The execution is in progress.",
+                "The execution finished successfully.",
+                "The execution failed with an error.",
+                "The execution was stopped intentionally."
+              ]
+            },
+            "result": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Output of the execution represented as a JSON string. The value can only be present if the execution's state is `SUCCEEDED`."
+            },
+            "endTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. Marks the end of execution, successful or not."
+            },
+            "argument": {
+              "type": "string",
+              "description": "Input parameters of the execution represented as a JSON string. The size limit is 32KB. *Note*: If you are using the REST API directly to run your workflow, you must escape any JSON string value of `argument`. Example: `'{\"argument\":\"{\\\"firstName\\\":\\\"FIRST\\\",\\\"lastName\\\":\\\"LAST\\\"}\"}'`"
+            },
+            "startTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. Marks the beginning of execution."
+            },
+            "workflowRevisionId": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Revision of the workflow this execution is using."
+            }
+          },
+          "description": "A running instance of a [Workflow](/workflows/docs/reference/rest/v1/projects.locations.workflows)."
+        }
+      ]
+  workflowexecutions.projects.locations.workflows.executions.create:
+    description: |-
+      Creates a new execution using the latest revision of the given workflow.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/executions/rest/v1/projects.locations.workflows.executions/create
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Execution",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The resource name of the execution. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}"
+            },
+            "error": {
+              "id": "Error",
+              "type": "object",
+              "readOnly": true,
+              "properties": {
+                "context": {
+                  "type": "string",
+                  "description": "Human readable stack trace string."
+                },
+                "payload": {
+                  "type": "string",
+                  "description": "Error message and data returned represented as a JSON string."
+                },
+                "stackTrace": {
+                  "id": "StackTrace",
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "id": "StackTraceElement",
+                        "type": "object",
+                        "properties": {
+                          "step": {
+                            "type": "string",
+                            "description": "The step the error occurred at."
+                          },
+                          "routine": {
+                            "type": "string",
+                            "description": "The routine where the error occurred."
+                          },
+                          "position": {
+                            "id": "Position",
+                            "type": "object",
+                            "properties": {
+                              "line": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The source code line number the current instruction was generated from."
+                              },
+                              "column": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The source code column position (of the line) the current instruction was generated from."
+                              },
+                              "length": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The length in bytes of text in this character group, e.g. digits of a number, string length, or AST (abstract syntax tree) node."
+                              }
+                            },
+                            "description": "The source position information of the stacktrace element."
+                          }
+                        },
+                        "description": "A single stack element (frame) where an error occurred."
+                      },
+                      "description": "An array of Stack elements."
+                    }
+                  },
+                  "description": "Stack trace with detailed information of where error was generated."
+                }
+              },
+              "description": "Output only. The error which caused the execution to finish prematurely. The value is only present if the execution's state is `FAILED` or `CANCELLED`."
+            },
+            "state": {
+              "enum": [
+                "STATE_UNSPECIFIED",
+                "ACTIVE",
+                "SUCCEEDED",
+                "FAILED",
+                "CANCELLED"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Current state of the execution.",
+              "enumDescriptions": [
+                "Invalid state.",
+                "The execution is in progress.",
+                "The execution finished successfully.",
+                "The execution failed with an error.",
+                "The execution was stopped intentionally."
+              ]
+            },
+            "result": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Output of the execution represented as a JSON string. The value can only be present if the execution's state is `SUCCEEDED`."
+            },
+            "endTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. Marks the end of execution, successful or not."
+            },
+            "argument": {
+              "type": "string",
+              "description": "Input parameters of the execution represented as a JSON string. The size limit is 32KB. *Note*: If you are using the REST API directly to run your workflow, you must escape any JSON string value of `argument`. Example: `'{\"argument\":\"{\\\"firstName\\\":\\\"FIRST\\\",\\\"lastName\\\":\\\"LAST\\\"}\"}'`"
+            },
+            "startTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. Marks the beginning of execution."
+            },
+            "workflowRevisionId": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Revision of the workflow this execution is using."
+            }
+          },
+          "description": "A running instance of a [Workflow](/workflows/docs/reference/rest/v1/projects.locations.workflows)."
+        }
+      ]
+  workflowexecutions.projects.locations.workflows.executions.get:
+    description: |-
+      Returns an execution of the given name.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/executions/rest/v1/projects.locations.workflows.executions/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Execution",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The resource name of the execution. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}"
+            },
+            "error": {
+              "id": "Error",
+              "type": "object",
+              "readOnly": true,
+              "properties": {
+                "context": {
+                  "type": "string",
+                  "description": "Human readable stack trace string."
+                },
+                "payload": {
+                  "type": "string",
+                  "description": "Error message and data returned represented as a JSON string."
+                },
+                "stackTrace": {
+                  "id": "StackTrace",
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "id": "StackTraceElement",
+                        "type": "object",
+                        "properties": {
+                          "step": {
+                            "type": "string",
+                            "description": "The step the error occurred at."
+                          },
+                          "routine": {
+                            "type": "string",
+                            "description": "The routine where the error occurred."
+                          },
+                          "position": {
+                            "id": "Position",
+                            "type": "object",
+                            "properties": {
+                              "line": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The source code line number the current instruction was generated from."
+                              },
+                              "column": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The source code column position (of the line) the current instruction was generated from."
+                              },
+                              "length": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The length in bytes of text in this character group, e.g. digits of a number, string length, or AST (abstract syntax tree) node."
+                              }
+                            },
+                            "description": "The source position information of the stacktrace element."
+                          }
+                        },
+                        "description": "A single stack element (frame) where an error occurred."
+                      },
+                      "description": "An array of Stack elements."
+                    }
+                  },
+                  "description": "Stack trace with detailed information of where error was generated."
+                }
+              },
+              "description": "Output only. The error which caused the execution to finish prematurely. The value is only present if the execution's state is `FAILED` or `CANCELLED`."
+            },
+            "state": {
+              "enum": [
+                "STATE_UNSPECIFIED",
+                "ACTIVE",
+                "SUCCEEDED",
+                "FAILED",
+                "CANCELLED"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Current state of the execution.",
+              "enumDescriptions": [
+                "Invalid state.",
+                "The execution is in progress.",
+                "The execution finished successfully.",
+                "The execution failed with an error.",
+                "The execution was stopped intentionally."
+              ]
+            },
+            "result": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Output of the execution represented as a JSON string. The value can only be present if the execution's state is `SUCCEEDED`."
+            },
+            "endTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. Marks the end of execution, successful or not."
+            },
+            "argument": {
+              "type": "string",
+              "description": "Input parameters of the execution represented as a JSON string. The size limit is 32KB. *Note*: If you are using the REST API directly to run your workflow, you must escape any JSON string value of `argument`. Example: `'{\"argument\":\"{\\\"firstName\\\":\\\"FIRST\\\",\\\"lastName\\\":\\\"LAST\\\"}\"}'`"
+            },
+            "startTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. Marks the beginning of execution."
+            },
+            "workflowRevisionId": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Revision of the workflow this execution is using."
+            }
+          },
+          "description": "A running instance of a [Workflow](/workflows/docs/reference/rest/v1/projects.locations.workflows)."
+        }
+      ]
+  workflowexecutions.projects.locations.workflows.executions.list:
+    description: |-
+      Returns a list of executions which belong to the workflow with the given name. The method returns executions of all workflow revisions. Returned executions are ordered by their start time (newest first).
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/executions/rest/v1/projects.locations.workflows.executions/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListExecutionsResponse",
+          "type": "object",
+          "properties": {
+            "executions": {
+              "type": "array",
+              "items": {
+                "id": "Execution",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. The resource name of the execution. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}"
+                  },
+                  "error": {
+                    "id": "Error",
+                    "type": "object",
+                    "readOnly": true,
+                    "properties": {
+                      "context": {
+                        "type": "string",
+                        "description": "Human readable stack trace string."
+                      },
+                      "payload": {
+                        "type": "string",
+                        "description": "Error message and data returned represented as a JSON string."
+                      },
+                      "stackTrace": {
+                        "id": "StackTrace",
+                        "type": "object",
+                        "properties": {
+                          "elements": {
+                            "type": "array",
+                            "items": {
+                              "id": "StackTraceElement",
+                              "type": "object",
+                              "properties": {
+                                "step": {
+                                  "type": "string",
+                                  "description": "The step the error occurred at."
+                                },
+                                "routine": {
+                                  "type": "string",
+                                  "description": "The routine where the error occurred."
+                                },
+                                "position": {
+                                  "id": "Position",
+                                  "type": "object",
+                                  "properties": {
+                                    "line": {
+                                      "type": "string",
+                                      "format": "int64",
+                                      "description": "The source code line number the current instruction was generated from."
+                                    },
+                                    "column": {
+                                      "type": "string",
+                                      "format": "int64",
+                                      "description": "The source code column position (of the line) the current instruction was generated from."
+                                    },
+                                    "length": {
+                                      "type": "string",
+                                      "format": "int64",
+                                      "description": "The length in bytes of text in this character group, e.g. digits of a number, string length, or AST (abstract syntax tree) node."
+                                    }
+                                  },
+                                  "description": "The source position information of the stacktrace element."
+                                }
+                              },
+                              "description": "A single stack element (frame) where an error occurred."
+                            },
+                            "description": "An array of Stack elements."
+                          }
+                        },
+                        "description": "Stack trace with detailed information of where error was generated."
+                      }
+                    },
+                    "description": "Output only. The error which caused the execution to finish prematurely. The value is only present if the execution's state is `FAILED` or `CANCELLED`."
+                  },
+                  "state": {
+                    "enum": [
+                      "STATE_UNSPECIFIED",
+                      "ACTIVE",
+                      "SUCCEEDED",
+                      "FAILED",
+                      "CANCELLED"
+                    ],
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. Current state of the execution.",
+                    "enumDescriptions": [
+                      "Invalid state.",
+                      "The execution is in progress.",
+                      "The execution finished successfully.",
+                      "The execution failed with an error.",
+                      "The execution was stopped intentionally."
+                    ]
+                  },
+                  "result": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. Output of the execution represented as a JSON string. The value can only be present if the execution's state is `SUCCEEDED`."
+                  },
+                  "endTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "readOnly": true,
+                    "description": "Output only. Marks the end of execution, successful or not."
+                  },
+                  "argument": {
+                    "type": "string",
+                    "description": "Input parameters of the execution represented as a JSON string. The size limit is 32KB. *Note*: If you are using the REST API directly to run your workflow, you must escape any JSON string value of `argument`. Example: `'{\"argument\":\"{\\\"firstName\\\":\\\"FIRST\\\",\\\"lastName\\\":\\\"LAST\\\"}\"}'`"
+                  },
+                  "startTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "readOnly": true,
+                    "description": "Output only. Marks the beginning of execution."
+                  },
+                  "workflowRevisionId": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. Revision of the workflow this execution is using."
+                  }
+                },
+                "description": "A running instance of a [Workflow](/workflows/docs/reference/rest/v1/projects.locations.workflows)."
+              },
+              "description": "The executions which match the request."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+            }
+          },
+          "description": "Response for the ListExecutions method."
+        }
+      ]
+  projects.locations.get:
+    description: |-
+      Gets information about a location.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Location",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+            },
+            "labels": {
+              "type": "object",
+              "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata. For example the available capacity at the given location.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "locationId": {
+              "type": "string",
+              "description": "The canonical id for this location. For example: `\"us-east1\"`."
+            },
+            "displayName": {
+              "type": "string",
+              "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+            }
+          },
+          "description": "A resource that represents Google Cloud Platform location."
+        }
+      ]
+  workflows.projects.locations.get:
+    description: |-
+      Gets information about a location.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Location",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+            },
+            "labels": {
+              "type": "object",
+              "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata. For example the available capacity at the given location.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "locationId": {
+              "type": "string",
+              "description": "The canonical id for this location. For example: `\"us-east1\"`."
+            },
+            "displayName": {
+              "type": "string",
+              "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+            }
+          },
+          "description": "A resource that represents Google Cloud Platform location."
+        }
+      ]
+  projects.locations.list:
+    description: |-
+      Lists information about the supported locations for this service.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListLocationsResponse",
+          "type": "object",
+          "properties": {
+            "locations": {
+              "type": "array",
+              "items": {
+                "id": "Location",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+                  },
+                  "labels": {
+                    "type": "object",
+                    "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Service-specific metadata. For example the available capacity at the given location.",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "locationId": {
+                    "type": "string",
+                    "description": "The canonical id for this location. For example: `\"us-east1\"`."
+                  },
+                  "displayName": {
+                    "type": "string",
+                    "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+                  }
+                },
+                "description": "A resource that represents Google Cloud Platform location."
+              },
+              "description": "A list of locations that matches the specified filter in the request."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "The standard List next-page token."
+            }
+          },
+          "description": "The response message for Locations.ListLocations."
+        }
+      ]
+  workflows.projects.locations.list:
+    description: |-
+      Lists information about the supported locations for this service.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListLocationsResponse",
+          "type": "object",
+          "properties": {
+            "locations": {
+              "type": "array",
+              "items": {
+                "id": "Location",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+                  },
+                  "labels": {
+                    "type": "object",
+                    "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Service-specific metadata. For example the available capacity at the given location.",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "locationId": {
+                    "type": "string",
+                    "description": "The canonical id for this location. For example: `\"us-east1\"`."
+                  },
+                  "displayName": {
+                    "type": "string",
+                    "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+                  }
+                },
+                "description": "A resource that represents Google Cloud Platform location."
+              },
+              "description": "A list of locations that matches the specified filter in the request."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "The standard List next-page token."
+            }
+          },
+          "description": "The response message for Locations.ListLocations."
+        }
+      ]
+  projects.locations.operations.delete:
+    description: |-
+      Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations.operations/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Empty",
+          "type": "object",
+          "properties": {},
+          "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`."
+        }
+      ]
+  workflows.projects.locations.operations.delete:
+    description: |-
+      Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations.operations/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Empty",
+          "type": "object",
+          "properties": {},
+          "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`."
+        }
+      ]
+  projects.locations.operations.get:
+    description: |-
+      Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations.operations/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  workflows.projects.locations.operations.get:
+    description: |-
+      Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations.operations/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.operations.list:
+    description: |-
+      Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/*}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations.operations/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListOperationsResponse",
+          "type": "object",
+          "properties": {
+            "operations": {
+              "type": "array",
+              "items": {
+                "id": "Operation",
+                "type": "object",
+                "properties": {
+                  "done": {
+                    "type": "boolean",
+                    "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+                  },
+                  "error": {
+                    "id": "Status",
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The status code, which should be an enum value of google.rpc.Code."
+                      },
+                      "details": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "any",
+                            "description": "Properties of the object. Contains field @type with type URL."
+                          }
+                        },
+                        "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                      },
+                      "message": {
+                        "type": "string",
+                        "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                      }
+                    },
+                    "description": "The error result of the operation in case of failure or cancellation."
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "response": {
+                    "type": "object",
+                    "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  }
+                },
+                "description": "This resource represents a long-running operation that is the result of a network API call."
+              },
+              "description": "A list of operations that matches the specified filter in the request."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "The standard List next-page token."
+            }
+          },
+          "description": "The response message for Operations.ListOperations."
+        }
+      ]
+  workflows.projects.locations.operations.list:
+    description: |-
+      Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/*}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations.operations/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListOperationsResponse",
+          "type": "object",
+          "properties": {
+            "operations": {
+              "type": "array",
+              "items": {
+                "id": "Operation",
+                "type": "object",
+                "properties": {
+                  "done": {
+                    "type": "boolean",
+                    "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+                  },
+                  "error": {
+                    "id": "Status",
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The status code, which should be an enum value of google.rpc.Code."
+                      },
+                      "details": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "any",
+                            "description": "Properties of the object. Contains field @type with type URL."
+                          }
+                        },
+                        "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                      },
+                      "message": {
+                        "type": "string",
+                        "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                      }
+                    },
+                    "description": "The error result of the operation in case of failure or cancellation."
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "response": {
+                    "type": "object",
+                    "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  }
+                },
+                "description": "This resource represents a long-running operation that is the result of a network API call."
+              },
+              "description": "A list of operations that matches the specified filter in the request."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "The standard List next-page token."
+            }
+          },
+          "description": "The response message for Operations.ListOperations."
+        }
+      ]
+  projects.locations.workflows.create:
+    description: |-
+      Creates a new workflow. If a workflow with the specified name already exists in the specified project and location, the long running operation will return ALREADY_EXISTS error.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations.workflows/create
+    example:
+      inputs: [
+        {
+          "id": "Workflow",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The resource name of the workflow. Format: projects/{project}/locations/{location}/workflows/{workflow}"
+            },
+            "state": {
+              "enum": [
+                "STATE_UNSPECIFIED",
+                "ACTIVE"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. State of the workflow deployment.",
+              "enumDescriptions": [
+                "Invalid state.",
+                "The workflow has been deployed successfully and is serving."
+              ]
+            },
+            "labels": {
+              "type": "object",
+              "description": "Labels associated with this workflow. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores and dashes. Label keys must start with a letter. International characters are allowed.",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "createTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The timestamp of when the workflow was created."
+            },
+            "revisionId": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The revision of the workflow. A new revision of a workflow is created as a result of updating the following properties of a workflow: - Service account - Workflow code to be executed The format is \"000001-a4d\", where the first 6 characters define the zero-padded revision ordinal number. They are followed by a hyphen and 3 hexadecimal random characters."
+            },
+            "updateTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The last update timestamp of the workflow."
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of the workflow provided by the user. Must be at most 1000 unicode characters long."
+            },
+            "serviceAccount": {
+              "type": "string",
+              "description": "Name of the service account associated with the latest workflow version. This service account represents the identity of the workflow and determines what permissions the workflow has. Format: projects/{project}/serviceAccounts/{account} Using `-` as a wildcard for the `{project}` will infer the project from the account. The `{account}` value can be the `email` address or the `unique_id` of the service account. If not provided, workflow will use the project's default service account. Modifying this field for an existing workflow results in a new workflow revision."
+            },
+            "sourceContents": {
+              "type": "string",
+              "description": "Workflow code to be executed. The size limit is 128KB."
+            },
+            "revisionCreateTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The timestamp that the latest revision of the workflow was created."
+            }
+          },
+          "description": "Workflow program to be executed by Workflows."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  workflows.projects.locations.workflows.create:
+    description: |-
+      Creates a new workflow. If a workflow with the specified name already exists in the specified project and location, the long running operation will return ALREADY_EXISTS error.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations.workflows/create
+    example:
+      inputs: [
+        {
+          "id": "Workflow",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The resource name of the workflow. Format: projects/{project}/locations/{location}/workflows/{workflow}"
+            },
+            "state": {
+              "enum": [
+                "STATE_UNSPECIFIED",
+                "ACTIVE"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. State of the workflow deployment.",
+              "enumDescriptions": [
+                "Invalid state.",
+                "The workflow has been deployed successfully and is serving."
+              ]
+            },
+            "labels": {
+              "type": "object",
+              "description": "Labels associated with this workflow. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores and dashes. Label keys must start with a letter. International characters are allowed.",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "createTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The timestamp of when the workflow was created."
+            },
+            "revisionId": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The revision of the workflow. A new revision of a workflow is created as a result of updating the following properties of a workflow: - Service account - Workflow code to be executed The format is \"000001-a4d\", where the first 6 characters define the zero-padded revision ordinal number. They are followed by a hyphen and 3 hexadecimal random characters."
+            },
+            "updateTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The last update timestamp of the workflow."
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of the workflow provided by the user. Must be at most 1000 unicode characters long."
+            },
+            "serviceAccount": {
+              "type": "string",
+              "description": "Name of the service account associated with the latest workflow version. This service account represents the identity of the workflow and determines what permissions the workflow has. Format: projects/{project}/serviceAccounts/{account} Using `-` as a wildcard for the `{project}` will infer the project from the account. The `{account}` value can be the `email` address or the `unique_id` of the service account. If not provided, workflow will use the project's default service account. Modifying this field for an existing workflow results in a new workflow revision."
+            },
+            "sourceContents": {
+              "type": "string",
+              "description": "Workflow code to be executed. The size limit is 128KB."
+            },
+            "revisionCreateTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The timestamp that the latest revision of the workflow was created."
+            }
+          },
+          "description": "Workflow program to be executed by Workflows."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.workflows.delete:
+    description: |-
+      Deletes a workflow with the specified name. This method also cancels and deletes all running executions of the workflow.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations.workflows/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  workflows.projects.locations.workflows.delete:
+    description: |-
+      Deletes a workflow with the specified name. This method also cancels and deletes all running executions of the workflow.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations.workflows/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.workflows.get:
+    description: |-
+      Gets details of a single Workflow.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations.workflows/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  workflows.projects.locations.workflows.get:
+    description: |-
+      Gets details of a single Workflow.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations.workflows/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  projects.locations.workflows.list:
+    description: |-
+      Lists Workflows in a given project and location. The default order is not specified.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations.workflows/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListWorkflowsResponse",
+          "type": "object",
+          "properties": {
+            "workflows": {
+              "type": "array",
+              "items": {
+                "id": "Workflow",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The resource name of the workflow. Format: projects/{project}/locations/{location}/workflows/{workflow}"
+                  },
+                  "state": {
+                    "enum": [
+                      "STATE_UNSPECIFIED",
+                      "ACTIVE"
+                    ],
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. State of the workflow deployment.",
+                    "enumDescriptions": [
+                      "Invalid state.",
+                      "The workflow has been deployed successfully and is serving."
+                    ]
+                  },
+                  "labels": {
+                    "type": "object",
+                    "description": "Labels associated with this workflow. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores and dashes. Label keys must start with a letter. International characters are allowed.",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "createTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "readOnly": true,
+                    "description": "Output only. The timestamp of when the workflow was created."
+                  },
+                  "revisionId": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. The revision of the workflow. A new revision of a workflow is created as a result of updating the following properties of a workflow: - Service account - Workflow code to be executed The format is \"000001-a4d\", where the first 6 characters define the zero-padded revision ordinal number. They are followed by a hyphen and 3 hexadecimal random characters."
+                  },
+                  "updateTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "readOnly": true,
+                    "description": "Output only. The last update timestamp of the workflow."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description of the workflow provided by the user. Must be at most 1000 unicode characters long."
+                  },
+                  "serviceAccount": {
+                    "type": "string",
+                    "description": "Name of the service account associated with the latest workflow version. This service account represents the identity of the workflow and determines what permissions the workflow has. Format: projects/{project}/serviceAccounts/{account} Using `-` as a wildcard for the `{project}` will infer the project from the account. The `{account}` value can be the `email` address or the `unique_id` of the service account. If not provided, workflow will use the project's default service account. Modifying this field for an existing workflow results in a new workflow revision."
+                  },
+                  "sourceContents": {
+                    "type": "string",
+                    "description": "Workflow code to be executed. The size limit is 128KB."
+                  },
+                  "revisionCreateTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "readOnly": true,
+                    "description": "Output only. The timestamp that the latest revision of the workflow was created."
+                  }
+                },
+                "description": "Workflow program to be executed by Workflows."
+              },
+              "description": "The workflows which match the request."
+            },
+            "unreachable": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Unreachable resources."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+            }
+          },
+          "description": "Response for the ListWorkflows method."
+        }
+      ]
+  workflows.projects.locations.workflows.list:
+    description: |-
+      Lists Workflows in a given project and location. The default order is not specified.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations.workflows/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListWorkflowsResponse",
+          "type": "object",
+          "properties": {
+            "workflows": {
+              "type": "array",
+              "items": {
+                "id": "Workflow",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The resource name of the workflow. Format: projects/{project}/locations/{location}/workflows/{workflow}"
+                  },
+                  "state": {
+                    "enum": [
+                      "STATE_UNSPECIFIED",
+                      "ACTIVE"
+                    ],
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. State of the workflow deployment.",
+                    "enumDescriptions": [
+                      "Invalid state.",
+                      "The workflow has been deployed successfully and is serving."
+                    ]
+                  },
+                  "labels": {
+                    "type": "object",
+                    "description": "Labels associated with this workflow. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores and dashes. Label keys must start with a letter. International characters are allowed.",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "createTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "readOnly": true,
+                    "description": "Output only. The timestamp of when the workflow was created."
+                  },
+                  "revisionId": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. The revision of the workflow. A new revision of a workflow is created as a result of updating the following properties of a workflow: - Service account - Workflow code to be executed The format is \"000001-a4d\", where the first 6 characters define the zero-padded revision ordinal number. They are followed by a hyphen and 3 hexadecimal random characters."
+                  },
+                  "updateTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "readOnly": true,
+                    "description": "Output only. The last update timestamp of the workflow."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description of the workflow provided by the user. Must be at most 1000 unicode characters long."
+                  },
+                  "serviceAccount": {
+                    "type": "string",
+                    "description": "Name of the service account associated with the latest workflow version. This service account represents the identity of the workflow and determines what permissions the workflow has. Format: projects/{project}/serviceAccounts/{account} Using `-` as a wildcard for the `{project}` will infer the project from the account. The `{account}` value can be the `email` address or the `unique_id` of the service account. If not provided, workflow will use the project's default service account. Modifying this field for an existing workflow results in a new workflow revision."
+                  },
+                  "sourceContents": {
+                    "type": "string",
+                    "description": "Workflow code to be executed. The size limit is 128KB."
+                  },
+                  "revisionCreateTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "readOnly": true,
+                    "description": "Output only. The timestamp that the latest revision of the workflow was created."
+                  }
+                },
+                "description": "Workflow program to be executed by Workflows."
+              },
+              "description": "The workflows which match the request."
+            },
+            "unreachable": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Unreachable resources."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+            }
+          },
+          "description": "Response for the ListWorkflows method."
+        }
+      ]
+  projects.locations.workflows.patch:
+    description: |-
+      Updates an existing workflow. Running this method has no impact on already running executions of the workflow. A new revision of the workflow may be created as a result of a successful update operation. In that case, such revision will be used in new workflow executions.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations.workflows/patch
+    example:
+      inputs: [
+        {
+          "id": "Workflow",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The resource name of the workflow. Format: projects/{project}/locations/{location}/workflows/{workflow}"
+            },
+            "state": {
+              "enum": [
+                "STATE_UNSPECIFIED",
+                "ACTIVE"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. State of the workflow deployment.",
+              "enumDescriptions": [
+                "Invalid state.",
+                "The workflow has been deployed successfully and is serving."
+              ]
+            },
+            "labels": {
+              "type": "object",
+              "description": "Labels associated with this workflow. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores and dashes. Label keys must start with a letter. International characters are allowed.",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "createTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The timestamp of when the workflow was created."
+            },
+            "revisionId": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The revision of the workflow. A new revision of a workflow is created as a result of updating the following properties of a workflow: - Service account - Workflow code to be executed The format is \"000001-a4d\", where the first 6 characters define the zero-padded revision ordinal number. They are followed by a hyphen and 3 hexadecimal random characters."
+            },
+            "updateTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The last update timestamp of the workflow."
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of the workflow provided by the user. Must be at most 1000 unicode characters long."
+            },
+            "serviceAccount": {
+              "type": "string",
+              "description": "Name of the service account associated with the latest workflow version. This service account represents the identity of the workflow and determines what permissions the workflow has. Format: projects/{project}/serviceAccounts/{account} Using `-` as a wildcard for the `{project}` will infer the project from the account. The `{account}` value can be the `email` address or the `unique_id` of the service account. If not provided, workflow will use the project's default service account. Modifying this field for an existing workflow results in a new workflow revision."
+            },
+            "sourceContents": {
+              "type": "string",
+              "description": "Workflow code to be executed. The size limit is 128KB."
+            },
+            "revisionCreateTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The timestamp that the latest revision of the workflow was created."
+            }
+          },
+          "description": "Workflow program to be executed by Workflows."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  workflows.projects.locations.workflows.patch:
+    description: |-
+      Updates an existing workflow. Running this method has no impact on already running executions of the workflow. A new revision of the workflow may be created as a result of a successful update operation. In that case, such revision will be used in new workflow executions.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/rest/v1/projects.locations.workflows/patch
+    example:
+      inputs: [
+        {
+          "id": "Workflow",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The resource name of the workflow. Format: projects/{project}/locations/{location}/workflows/{workflow}"
+            },
+            "state": {
+              "enum": [
+                "STATE_UNSPECIFIED",
+                "ACTIVE"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. State of the workflow deployment.",
+              "enumDescriptions": [
+                "Invalid state.",
+                "The workflow has been deployed successfully and is serving."
+              ]
+            },
+            "labels": {
+              "type": "object",
+              "description": "Labels associated with this workflow. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores and dashes. Label keys must start with a letter. International characters are allowed.",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "createTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The timestamp of when the workflow was created."
+            },
+            "revisionId": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The revision of the workflow. A new revision of a workflow is created as a result of updating the following properties of a workflow: - Service account - Workflow code to be executed The format is \"000001-a4d\", where the first 6 characters define the zero-padded revision ordinal number. They are followed by a hyphen and 3 hexadecimal random characters."
+            },
+            "updateTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The last update timestamp of the workflow."
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of the workflow provided by the user. Must be at most 1000 unicode characters long."
+            },
+            "serviceAccount": {
+              "type": "string",
+              "description": "Name of the service account associated with the latest workflow version. This service account represents the identity of the workflow and determines what permissions the workflow has. Format: projects/{project}/serviceAccounts/{account} Using `-` as a wildcard for the `{project}` will infer the project from the account. The `{account}` value can be the `email` address or the `unique_id` of the service account. If not provided, workflow will use the project's default service account. Modifying this field for an existing workflow results in a new workflow revision."
+            },
+            "sourceContents": {
+              "type": "string",
+              "description": "Workflow code to be executed. The size limit is 128KB."
+            },
+            "revisionCreateTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The timestamp that the latest revision of the workflow was created."
+            }
+          },
+          "description": "Workflow program to be executed by Workflows."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]

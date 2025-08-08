@@ -1,0 +1,4589 @@
+Product:
+  name: Amazon Cognito
+  versions: [2014.6.30,2016.4.18]
+  package: amazon.aws.cognito
+  description: |-
+    AWS Cognito
+  link: https://aws.amazon.com/cognito
+  contentType: json
+Operations:
+  cognitofederatedidentities.CreateIdentityPool:
+    description: |-
+      Creates a new identity pool. The identity pool is a store of user identity information that is specific to your AWS account.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_CreateIdentityPool.html
+    example:
+      inputs: [
+        {
+          "AllowClassicFlow": false,
+          "IdentityPoolName": "string",
+          "IdentityPoolTags": {
+            "string": "string"
+          },
+          "SamlProviderARNs": [
+            "string"
+          ],
+          "DeveloperProviderName": "string",
+          "SupportedLoginProviders": {
+            "string": "string"
+          },
+          "CognitoIdentityProviders": [
+            {
+              "ClientId": "string",
+              "ProviderName": "string",
+              "ServerSideTokenCheck": false
+            }
+          ],
+          "OpenIdConnectProviderARNs": [
+            "string"
+          ],
+          "AllowUnauthenticatedIdentities": false
+        }
+      ]
+      outputs: [
+        {
+          "IdentityPoolId": "string",
+          "AllowClassicFlow": false,
+          "IdentityPoolName": "string",
+          "IdentityPoolTags": {
+            "string": "string"
+          },
+          "SamlProviderARNs": [
+            "string"
+          ],
+          "DeveloperProviderName": "string",
+          "SupportedLoginProviders": {
+            "string": "string"
+          },
+          "CognitoIdentityProviders": [
+            {
+              "ClientId": "string",
+              "ProviderName": "string",
+              "ServerSideTokenCheck": false
+            }
+          ],
+          "OpenIdConnectProviderARNs": [
+            "string"
+          ],
+          "AllowUnauthenticatedIdentities": false
+        }
+      ]
+  cognitofederatedidentities.DeleteIdentities:
+    description: |-
+      Deletes identities from an identity pool. You can specify a list of 1-60 identities that you want to delete.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_DeleteIdentities.html
+    example:
+      inputs: [
+        {
+          "IdentityIdsToDelete": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "UnprocessedIdentityIds": [
+            {
+              "ErrorCode": "string",
+              "IdentityId": "string"
+            }
+          ]
+        }
+      ]
+  cognitofederatedidentities.DeleteIdentityPool:
+    description: |-
+      Deletes an identity pool. Once a pool is deleted, users will not be able to authenticate with the pool.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_DeleteIdentityPool.html
+    example:
+      inputs: [
+        {
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitofederatedidentities.DescribeIdentity:
+    description: |-
+      Returns metadata related to the given identity, including when the identity was created and any associated linked logins.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_DescribeIdentity.html
+    example:
+      inputs: [
+        {
+          "IdentityId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Logins": [
+            "string"
+          ],
+          "IdentityId": "string",
+          "CreationDate": 1481289211.615,
+          "LastModifiedDate": 1481289211.615
+        }
+      ]
+  cognitofederatedidentities.DescribeIdentityPool:
+    description: |-
+      Gets details about a particular identity pool, including the pool name, ID description, creation date, and current number of users.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_DescribeIdentityPool.html
+    example:
+      inputs: [
+        {
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IdentityPoolId": "string",
+          "AllowClassicFlow": false,
+          "IdentityPoolName": "string",
+          "IdentityPoolTags": {
+            "string": "string"
+          },
+          "SamlProviderARNs": [
+            "string"
+          ],
+          "DeveloperProviderName": "string",
+          "SupportedLoginProviders": {
+            "string": "string"
+          },
+          "CognitoIdentityProviders": [
+            {
+              "ClientId": "string",
+              "ProviderName": "string",
+              "ServerSideTokenCheck": false
+            }
+          ],
+          "OpenIdConnectProviderARNs": [
+            "string"
+          ],
+          "AllowUnauthenticatedIdentities": false
+        }
+      ]
+  cognitofederatedidentities.GetCredentialsForIdentity:
+    description: |-
+      Returns credentials for the provided identity ID. Any provided logins will be validated against supported login providers. If the token is for cognito-identity.amazonaws.com, it will be passed through to AWS Security Token Service with the appropriate role for the token.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html
+    example:
+      inputs: [
+        {
+          "Logins": {
+            "string": "string"
+          },
+          "IdentityId": "string",
+          "CustomRoleArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IdentityId": "string",
+          "Credentials": {
+            "SecretKey": "string",
+            "Expiration": 1481289211.615,
+            "AccessKeyId": "string",
+            "SessionToken": "string"
+          }
+        }
+      ]
+  cognitofederatedidentities.GetIdentityPoolRoles:
+    description: |-
+      Gets the roles for an identity pool.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetIdentityPoolRoles.html
+    example:
+      inputs: [
+        {
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Roles": {
+            "string": "string"
+          },
+          "RoleMappings": {
+            "string": {
+              "Type": "string",
+              "RulesConfiguration": {
+                "Rules": [
+                  {
+                    "Claim": "string",
+                    "Value": "string",
+                    "RoleARN": "string",
+                    "MatchType": "string"
+                  }
+                ]
+              },
+              "AmbiguousRoleResolution": "string"
+            }
+          },
+          "IdentityPoolId": "string"
+        }
+      ]
+  cognitofederatedidentities.GetId:
+    description: |-
+      Generates (or retrieves) IdentityID. Supplying multiple logins will create an implicit linked account.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetId.html
+    example:
+      inputs: [
+        {
+          "Logins": {
+            "string": "string"
+          },
+          "AccountId": "string",
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitofederatedidentities.GetOpenIdTokenForDeveloperIdentity:
+    description: |-
+      Registers (or retrieves) a Cognito IdentityId and an OpenID Connect token for a user authenticated by your backend authentication process. Supplying multiple logins will create an implicit linked account. You can only specify one developer provider as part of the Logins map, which is linked to the identity pool. The developer provider is the "domain" by which Cognito will refer to your users.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetOpenIdTokenForDeveloperIdentity.html
+    example:
+      inputs: [
+        {
+          "Logins": {
+            "string": "string"
+          },
+          "IdentityId": "string",
+          "PrincipalTags": {
+            "string": "string"
+          },
+          "TokenDuration": 1,
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Token": "string",
+          "IdentityId": "string"
+        }
+      ]
+  cognitofederatedidentities.GetOpenIdToken:
+    description: |-
+      Gets an OpenID token, using a known Cognito ID. This known Cognito ID is returned by GetId. You can optionally add additional logins for the identity. Supplying multiple logins creates an implicit link.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetOpenIdToken.html
+    example:
+      inputs: [
+        {
+          "Logins": {
+            "string": "string"
+          },
+          "IdentityId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Token": "string",
+          "IdentityId": "string"
+        }
+      ]
+  cognitofederatedidentities.GetPrincipalTagAttributeMap:
+    description: |-
+      Use GetPrincipalTagAttributeMap to list all mappings between PrincipalTags and user attributes.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetPrincipalTagAttributeMap.html
+    example:
+      inputs: [
+        {
+          "IdentityPoolId": "string",
+          "IdentityProviderName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UseDefaults": false,
+          "PrincipalTags": {
+            "string": "string"
+          },
+          "IdentityPoolId": "string",
+          "IdentityProviderName": "string"
+        }
+      ]
+  cognitofederatedidentities.ListIdentities:
+    description: |-
+      Lists the identities in an identity pool.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_ListIdentities.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "HideDisabled": false,
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Identities": [
+            {
+              "Logins": [
+                "string"
+              ],
+              "IdentityId": "string",
+              "CreationDate": 1481289211.615,
+              "LastModifiedDate": 1481289211.615
+            }
+          ],
+          "IdentityPoolId": "string"
+        }
+      ]
+  cognitofederatedidentities.ListIdentityPools:
+    description: |-
+      Lists all of the Cognito identity pools registered for your account.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_ListIdentityPools.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "IdentityPools": [
+            {
+              "IdentityPoolId": "string",
+              "IdentityPoolName": "string"
+            }
+          ]
+        }
+      ]
+  cognitofederatedidentities.ListTagsForResource:
+    description: |-
+      Lists the tags that are assigned to an Amazon Cognito identity pool.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  cognitofederatedidentities.LookupDeveloperIdentity:
+    description: |-
+      Retrieves the IdentityID associated with a DeveloperUserIdentifier or the list of DeveloperUserIdentifier values associated with an IdentityId for an existing identity. Either IdentityID or DeveloperUserIdentifier must not be null. If you supply only one of these values, the other value will be searched in the database and returned as a part of the response. If you supply both, DeveloperUserIdentifier will be matched against IdentityID. If the values are verified against the database, the response returns both values and is the same as the request. Otherwise a ResourceConflictException is thrown.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_LookupDeveloperIdentity.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "IdentityId": "string",
+          "MaxResults": 1,
+          "IdentityPoolId": "string",
+          "DeveloperUserIdentifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "IdentityId": "string",
+          "DeveloperUserIdentifierList": [
+            "string"
+          ]
+        }
+      ]
+  cognitofederatedidentities.MergeDeveloperIdentities:
+    description: |-
+      Merges two users having different IdentityIds, existing in the same identity pool, and identified by the same developer provider. You can use this action to request that discrete users be merged and identified as a single user in the Cognito environment. Cognito associates the given source user (SourceUserIdentifier) with the IdentityId of the DestinationUserIdentifier. Only developer-authenticated users can be merged. If the users to be merged are associated with the same public provider, but as two different users, an exception will be thrown.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_MergeDeveloperIdentities.html
+    example:
+      inputs: [
+        {
+          "IdentityPoolId": "string",
+          "SourceUserIdentifier": "string",
+          "DeveloperProviderName": "string",
+          "DestinationUserIdentifier": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitofederatedidentities.SetIdentityPoolRoles:
+    description: |-
+      Sets the roles for an identity pool. These roles are used when making calls to GetCredentialsForIdentity action.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_SetIdentityPoolRoles.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  cognitofederatedidentities.SetPrincipalTagAttributeMap:
+    description: |-
+      You can use this operation to use default (username and clientID) attribute or custom attribute mappings.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_SetPrincipalTagAttributeMap.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "UseDefaults": false,
+          "PrincipalTags": {
+            "string": "string"
+          },
+          "IdentityPoolId": "string",
+          "IdentityProviderName": "string"
+        }
+      ]
+  cognitofederatedidentities.TagResource:
+    description: |-
+      Assigns a set of tags to the specified Amazon Cognito identity pool. A tag is a label that you can use to categorize and manage identity pools in different ways, such as by purpose, owner, environment, or other criteria.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitofederatedidentities.UnlinkDeveloperIdentity:
+    description: |-
+      Unlinks a DeveloperUserIdentifier from an existing identity. Unlinked developer users will be considered new identities next time they are seen. If, for a given Cognito identity, you remove all federated identities as well as the developer user identifier, the Cognito identity becomes inaccessible.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_UnlinkDeveloperIdentity.html
+    example:
+      inputs: [
+        {
+          "IdentityId": "string",
+          "IdentityPoolId": "string",
+          "DeveloperProviderName": "string",
+          "DeveloperUserIdentifier": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitofederatedidentities.UnlinkIdentity:
+    description: |-
+      Unlinks a federated identity from an existing account. Unlinked logins will be considered new identities next time they are seen. Removing the last linked login will make this identity inaccessible.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_UnlinkIdentity.html
+    example:
+      inputs: [
+        {
+          "Logins": {
+            "string": "string"
+          },
+          "IdentityId": "string",
+          "LoginsToRemove": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitofederatedidentities.UntagResource:
+    description: |-
+      Removes the specified tags from the specified Amazon Cognito identity pool. You can use this action up to 5 times per second, per account
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitofederatedidentities.UpdateIdentityPool:
+    description: |-
+      Updates an identity pool.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_UpdateIdentityPool.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "IdentityPoolId": "string",
+          "AllowClassicFlow": false,
+          "IdentityPoolName": "string",
+          "IdentityPoolTags": {
+            "string": "string"
+          },
+          "SamlProviderARNs": [
+            "string"
+          ],
+          "DeveloperProviderName": "string",
+          "SupportedLoginProviders": {
+            "string": "string"
+          },
+          "CognitoIdentityProviders": [
+            {
+              "ClientId": "string",
+              "ProviderName": "string",
+              "ServerSideTokenCheck": false
+            }
+          ],
+          "OpenIdConnectProviderARNs": [
+            "string"
+          ],
+          "AllowUnauthenticatedIdentities": false
+        }
+      ]
+  cognitosync.BulkPublish:
+    description: |-
+      Initiates a bulk publish of all existing datasets for an Identity Pool to the configured stream. Customers are limited to one successful bulk publish per 24 hours. Bulk publish is an asynchronous request, customers can see the status of the request via the GetBulkPublishDetails operation.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_BulkPublish.html
+    example:
+      inputs: [
+        {
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitosync.DeleteDataset:
+    description: |-
+      Deletes the specific dataset. The dataset will be deleted permanently, and the action can't be undone. Datasets that this dataset was merged with will no longer report the merge. Any subsequent operation on this dataset will result in a ResourceNotFoundException.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_DeleteDataset.html
+    example:
+      inputs: [
+        {
+          "IdentityId": "string",
+          "DatasetName": "string",
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Dataset": {
+            "IdentityId": "string",
+            "NumRecords": 1,
+            "DataStorage": 1,
+            "DatasetName": "string",
+            "CreationDate": 1481289211.615,
+            "LastModifiedBy": "string",
+            "LastModifiedDate": 1481289211.615
+          }
+        }
+      ]
+  cognitosync.DescribeDataset:
+    description: |-
+      Gets meta data about a dataset by identity and dataset name. With Amazon Cognito Sync, each identity has access only to its own data. Thus, the credentials used to make this API call need to have access to the identity data.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_DescribeDataset.html
+    example:
+      inputs: [
+        {
+          "IdentityId": "string",
+          "DatasetName": "string",
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Dataset": {
+            "IdentityId": "string",
+            "NumRecords": 1,
+            "DataStorage": 1,
+            "DatasetName": "string",
+            "CreationDate": 1481289211.615,
+            "LastModifiedBy": "string",
+            "LastModifiedDate": 1481289211.615
+          }
+        }
+      ]
+  cognitosync.DescribeIdentityPoolUsage:
+    description: |-
+      Gets usage details (for example, data storage) about a particular identity pool.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_DescribeIdentityPoolUsage.html
+    example:
+      inputs: [
+        {
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IdentityPoolUsage": {
+            "DataStorage": 1,
+            "IdentityPoolId": "string",
+            "LastModifiedDate": 1481289211.615,
+            "SyncSessionsCount": 1
+          }
+        }
+      ]
+  cognitosync.DescribeIdentityUsage:
+    description: |-
+      Gets usage information for an identity, including number of datasets and data usage.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_DescribeIdentityUsage.html
+    example:
+      inputs: [
+        {
+          "IdentityId": "string",
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IdentityUsage": {
+            "IdentityId": "string",
+            "DataStorage": 1,
+            "DatasetCount": 1,
+            "IdentityPoolId": "string",
+            "LastModifiedDate": 1481289211.615
+          }
+        }
+      ]
+  cognitosync.GetBulkPublishDetails:
+    description: |-
+      Get the status of the last BulkPublish operation for an identity pool.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_GetBulkPublishDetails.html
+    example:
+      inputs: [
+        {
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FailureMessage": "string",
+          "IdentityPoolId": "string",
+          "BulkPublishStatus": "string",
+          "BulkPublishStartTime": 1481289211.615,
+          "BulkPublishCompleteTime": 1481289211.615
+        }
+      ]
+  cognitosync.GetCognitoEvents:
+    description: |-
+      Gets the events and the corresponding Lambda functions associated with an identity pool.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_GetCognitoEvents.html
+    example:
+      inputs: [
+        {
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Events": {
+            "string": "string"
+          }
+        }
+      ]
+  cognitosync.GetIdentityPoolConfiguration:
+    description: |-
+      Gets the configuration settings of an identity pool.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_GetIdentityPoolConfiguration.html
+    example:
+      inputs: [
+        {
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PushSync": {
+            "RoleArn": "string",
+            "ApplicationArns": [
+              "string"
+            ]
+          },
+          "CognitoStreams": {
+            "RoleArn": "string",
+            "StreamName": "string",
+            "StreamingStatus": "string"
+          },
+          "IdentityPoolId": "string"
+        }
+      ]
+  cognitosync.ListDatasets:
+    description: |-
+      Lists datasets for an identity. With Amazon Cognito Sync, each identity has access only to its own data. Thus, the credentials used to make this API call need to have access to the identity data.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_ListDatasets.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "IdentityId": "string",
+          "MaxResults": 1,
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Count": 1,
+          "Datasets": [
+            {
+              "IdentityId": "string",
+              "NumRecords": 1,
+              "DataStorage": 1,
+              "DatasetName": "string",
+              "CreationDate": 1481289211.615,
+              "LastModifiedBy": "string",
+              "LastModifiedDate": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  cognitosync.ListIdentityPoolUsage:
+    description: |-
+      Gets a list of identity pools registered with Cognito.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_ListIdentityPoolUsage.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Count": 1,
+          "NextToken": "string",
+          "MaxResults": 1,
+          "IdentityPoolUsages": [
+            {
+              "DataStorage": 1,
+              "IdentityPoolId": "string",
+              "LastModifiedDate": 1481289211.615,
+              "SyncSessionsCount": 1
+            }
+          ]
+        }
+      ]
+  cognitosync.ListRecords:
+    description: |-
+      Gets paginated records, optionally changed after a particular sync count for a dataset and identity. With Amazon Cognito Sync, each identity has access only to its own data. Thus, the credentials used to make this API call need to have access to the identity data.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_ListRecords.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "IdentityId": "string",
+          "MaxResults": 1,
+          "DatasetName": "string",
+          "LastSyncCount": 1,
+          "IdentityPoolId": "string",
+          "SyncSessionToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Count": 1,
+          "Records": [
+            {
+              "Key": "string",
+              "Value": "string",
+              "SyncCount": 1,
+              "LastModifiedBy": "string",
+              "LastModifiedDate": 1481289211.615,
+              "DeviceLastModifiedDate": 1481289211.615
+            }
+          ],
+          "NextToken": "string",
+          "DatasetExists": false,
+          "LastModifiedBy": "string",
+          "DatasetSyncCount": 1,
+          "SyncSessionToken": "string",
+          "MergedDatasetNames": [
+            "string"
+          ],
+          "DatasetDeletedAfterRequestedSyncCount": false
+        }
+      ]
+  cognitosync.RegisterDevice:
+    description: |-
+      Registers a device to receive push sync notifications.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_RegisterDevice.html
+    example:
+      inputs: [
+        {
+          "Token": "string",
+          "Platform": "string",
+          "IdentityId": "string",
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DeviceId": "string"
+        }
+      ]
+  cognitosync.SetCognitoEvents:
+    description: |-
+      Sets the AWS Lambda function for a given event type for an identity pool. This request only updates the key/value pair specified. Other key/values pairs are not updated. To remove a key value pair, pass a empty value for the particular key.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_SetCognitoEvents.html
+    example:
+      inputs: [
+        {
+          "Events": {
+            "string": "string"
+          },
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitosync.SetIdentityPoolConfiguration:
+    description: |-
+      Sets the necessary configuration for push sync.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_SetIdentityPoolConfiguration.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "PushSync": {
+            "RoleArn": "string",
+            "ApplicationArns": [
+              "string"
+            ]
+          },
+          "CognitoStreams": {
+            "RoleArn": "string",
+            "StreamName": "string",
+            "StreamingStatus": "string"
+          },
+          "IdentityPoolId": "string"
+        }
+      ]
+  cognitosync.SubscribeToDataset:
+    description: |-
+      Subscribes to receive notifications when a dataset is modified by another device.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_SubscribeToDataset.html
+    example:
+      inputs: [
+        {
+          "DeviceId": "string",
+          "IdentityId": "string",
+          "DatasetName": "string",
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitosync.UnsubscribeFromDataset:
+    description: |-
+      Unsubscribes from receiving notifications when a dataset is modified by another device.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_UnsubscribeFromDataset.html
+    example:
+      inputs: [
+        {
+          "DeviceId": "string",
+          "IdentityId": "string",
+          "DatasetName": "string",
+          "IdentityPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitosync.UpdateRecords:
+    description: |-
+      Posts updates to records and adds and deletes records for a dataset and user.
+    versions:
+      from: 2014.6.30
+    link: https://docs.aws.amazon.com/cognitosync/latest/APIReference/API_UpdateRecords.html
+    example:
+      inputs: [
+        {
+          "DeviceId": "string",
+          "IdentityId": "string",
+          "DatasetName": "string",
+          "ClientContext": "string",
+          "RecordPatches": [
+            {
+              "Op": "string",
+              "Key": "string",
+              "Value": "string",
+              "SyncCount": 1,
+              "DeviceLastModifiedDate": 1481289211.615
+            }
+          ],
+          "IdentityPoolId": "string",
+          "SyncSessionToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Records": [
+            {
+              "Key": "string",
+              "Value": "string",
+              "SyncCount": 1,
+              "LastModifiedBy": "string",
+              "LastModifiedDate": 1481289211.615,
+              "DeviceLastModifiedDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  cognitoidp.AddCustomAttributes:
+    description: |-
+      Adds additional user attributes to the user pool schema.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AddCustomAttributes.html
+    example:
+      inputs: [
+        {
+          "UserPoolId": "string",
+          "CustomAttributes": [
+            {
+              "Name": "string",
+              "Mutable": false,
+              "Required": false,
+              "AttributeDataType": "string",
+              "DeveloperOnlyAttribute": false,
+              "NumberAttributeConstraints": {
+                "MaxValue": "string",
+                "MinValue": "string"
+              },
+              "StringAttributeConstraints": {
+                "MaxLength": "string",
+                "MinLength": "string"
+              }
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminAddUserToGroup:
+    description: |-
+      Adds the specified user to the specified group.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminAddUserToGroup.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "GroupName": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminConfirmSignUp:
+    description: |-
+      Confirms user registration as an admin without using a confirmation code. Works on any user.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminConfirmSignUp.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "UserPoolId": "string",
+          "ClientMetadata": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminCreateUser:
+    description: |-
+      Creates a new user in the specified user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminCreateUser.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "UserPoolId": "string",
+          "MessageAction": "string",
+          "ClientMetadata": {
+            "string": "string"
+          },
+          "UserAttributes": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ],
+          "ValidationData": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ],
+          "TemporaryPassword": "string",
+          "ForceAliasCreation": false,
+          "DesiredDeliveryMediums": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "User": {
+            "Enabled": false,
+            "Username": "string",
+            "Attributes": [
+              {
+                "Name": "string",
+                "Value": "string"
+              }
+            ],
+            "MFAOptions": [
+              {
+                "AttributeName": "string",
+                "DeliveryMedium": "string"
+              }
+            ],
+            "UserStatus": "string",
+            "UserCreateDate": 1481289211.615,
+            "UserLastModifiedDate": 1481289211.615
+          }
+        }
+      ]
+  cognitoidp.AdminDeleteUserAttributes:
+    description: |-
+      Deletes the user attributes in a user pool as an administrator. Works on any user.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminDeleteUserAttributes.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "UserPoolId": "string",
+          "UserAttributeNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminDeleteUser:
+    description: |-
+      Deletes a user as an administrator. Works on any user.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminDeleteUser.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminDisableProviderForUser:
+    description: |-
+      Disables the user from signing in with the specified external (SAML or social) identity provider. If the user to disable is a Cognito User Pools native username + password user, they are not permitted to use their password to sign-in. If the user to disable is a linked external IdP user, any link between that user and an existing user is removed. The next time the external user (no longer attached to the previously linked DestinationUser) signs in, they must create a new user account. See AdminLinkProviderForUser.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminDisableProviderForUser.html
+    example:
+      inputs: [
+        {
+          "User": {
+            "ProviderName": "string",
+            "ProviderAttributeName": "string",
+            "ProviderAttributeValue": "string"
+          },
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminDisableUser:
+    description: |-
+      Disables the specified user.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminDisableUser.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminEnableUser:
+    description: |-
+      Enables the specified user as an administrator. Works on any user.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminEnableUser.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminForgetDevice:
+    description: |-
+      Forgets the device, as an administrator.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminForgetDevice.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "DeviceKey": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminGetDevice:
+    description: |-
+      Gets the device, as an administrator.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminGetDevice.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "DeviceKey": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Device": {
+            "DeviceKey": "string",
+            "DeviceAttributes": [
+              {
+                "Name": "string",
+                "Value": "string"
+              }
+            ],
+            "DeviceCreateDate": 1481289211.615,
+            "DeviceLastModifiedDate": 1481289211.615,
+            "DeviceLastAuthenticatedDate": 1481289211.615
+          }
+        }
+      ]
+  cognitoidp.AdminGetUser:
+    description: |-
+      Gets the specified user by user name in a user pool as an administrator. Works on any user.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminGetUser.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Enabled": false,
+          "Username": "string",
+          "MFAOptions": [
+            {
+              "AttributeName": "string",
+              "DeliveryMedium": "string"
+            }
+          ],
+          "UserStatus": "string",
+          "UserAttributes": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ],
+          "UserCreateDate": 1481289211.615,
+          "UserMFASettingList": [
+            "string"
+          ],
+          "PreferredMfaSetting": "string",
+          "UserLastModifiedDate": 1481289211.615
+        }
+      ]
+  cognitoidp.AdminInitiateAuth:
+    description: |-
+      Initiates the authentication flow, as an administrator.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminInitiateAuth.html
+    example:
+      inputs: [
+        {
+          "AuthFlow": "string",
+          "ClientId": "string",
+          "UserPoolId": "string",
+          "ContextData": {
+            "IpAddress": "string",
+            "ServerName": "string",
+            "ServerPath": "string",
+            "EncodedData": "string",
+            "HttpHeaders": [
+              {
+                "headerName": "string",
+                "headerValue": "string"
+              }
+            ]
+          },
+          "AuthParameters": {
+            "string": "string"
+          },
+          "ClientMetadata": {
+            "string": "string"
+          },
+          "AnalyticsMetadata": {
+            "AnalyticsEndpointId": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Session": "string",
+          "ChallengeName": "string",
+          "ChallengeParameters": {
+            "string": "string"
+          },
+          "AuthenticationResult": {
+            "IdToken": "string",
+            "ExpiresIn": 1,
+            "TokenType": "string",
+            "AccessToken": "string",
+            "RefreshToken": "string",
+            "NewDeviceMetadata": {
+              "DeviceKey": "string",
+              "DeviceGroupKey": "string"
+            }
+          }
+        }
+      ]
+  cognitoidp.AdminLinkProviderForUser:
+    description: |-
+      Links an existing user account in a user pool (DestinationUser) to an identity from an external identity provider (SourceUser) based on a specified attribute name and value from the external identity provider. This allows you to create a link from the existing user account to an external federated user identity that has not yet been used to sign in, so that the federated user identity can be used to sign in as the existing user account.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html
+    example:
+      inputs: [
+        {
+          "SourceUser": {
+            "ProviderName": "string",
+            "ProviderAttributeName": "string",
+            "ProviderAttributeValue": "string"
+          },
+          "UserPoolId": "string",
+          "DestinationUser": {
+            "ProviderName": "string",
+            "ProviderAttributeName": "string",
+            "ProviderAttributeValue": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminListDevices:
+    description: |-
+      Lists devices, as an administrator.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminListDevices.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Username": "string",
+          "UserPoolId": "string",
+          "PaginationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Devices": [
+            {
+              "DeviceKey": "string",
+              "DeviceAttributes": [
+                {
+                  "Name": "string",
+                  "Value": "string"
+                }
+              ],
+              "DeviceCreateDate": 1481289211.615,
+              "DeviceLastModifiedDate": 1481289211.615,
+              "DeviceLastAuthenticatedDate": 1481289211.615
+            }
+          ],
+          "PaginationToken": "string"
+        }
+      ]
+  cognitoidp.AdminListGroupsForUser:
+    description: |-
+      Lists the groups that the user belongs to.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminListGroupsForUser.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Username": "string",
+          "NextToken": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Groups": [
+            {
+              "RoleArn": "string",
+              "GroupName": "string",
+              "Precedence": 1,
+              "UserPoolId": "string",
+              "Description": "string",
+              "CreationDate": 1481289211.615,
+              "LastModifiedDate": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  cognitoidp.AdminListUserAuthEvents:
+    description: |-
+      Lists a history of user activity and any risks detected as part of Amazon Cognito advanced security.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminListUserAuthEvents.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "NextToken": "string",
+          "MaxResults": 1,
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "AuthEvents": [
+            {
+              "EventId": "string",
+              "EventRisk": {
+                "RiskLevel": "string",
+                "RiskDecision": "string",
+                "CompromisedCredentialsDetected": false
+              },
+              "EventType": "string",
+              "CreationDate": 1481289211.615,
+              "EventFeedback": {
+                "Provider": "string",
+                "FeedbackDate": 1481289211.615,
+                "FeedbackValue": "string"
+              },
+              "EventResponse": "string",
+              "EventContextData": {
+                "City": "string",
+                "Country": "string",
+                "Timezone": "string",
+                "IpAddress": "string",
+                "DeviceName": "string"
+              },
+              "ChallengeResponses": [
+                {
+                  "ChallengeName": "string",
+                  "ChallengeResponse": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  cognitoidp.AdminRemoveUserFromGroup:
+    description: |-
+      Removes the specified user from the specified group.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminRemoveUserFromGroup.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "GroupName": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminResetUserPassword:
+    description: |-
+      Resets the specified user's password in a user pool as an administrator. Works on any user.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminResetUserPassword.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "UserPoolId": "string",
+          "ClientMetadata": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminRespondToAuthChallenge:
+    description: |-
+      Responds to an authentication challenge, as an administrator.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminRespondToAuthChallenge.html
+    example:
+      inputs: [
+        {
+          "Session": "string",
+          "ClientId": "string",
+          "UserPoolId": "string",
+          "ContextData": {
+            "IpAddress": "string",
+            "ServerName": "string",
+            "ServerPath": "string",
+            "EncodedData": "string",
+            "HttpHeaders": [
+              {
+                "headerName": "string",
+                "headerValue": "string"
+              }
+            ]
+          },
+          "ChallengeName": "string",
+          "ClientMetadata": {
+            "string": "string"
+          },
+          "AnalyticsMetadata": {
+            "AnalyticsEndpointId": "string"
+          },
+          "ChallengeResponses": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Session": "string",
+          "ChallengeName": "string",
+          "ChallengeParameters": {
+            "string": "string"
+          },
+          "AuthenticationResult": {
+            "IdToken": "string",
+            "ExpiresIn": 1,
+            "TokenType": "string",
+            "AccessToken": "string",
+            "RefreshToken": "string",
+            "NewDeviceMetadata": {
+              "DeviceKey": "string",
+              "DeviceGroupKey": "string"
+            }
+          }
+        }
+      ]
+  cognitoidp.AdminSetUserMFAPreference:
+    description: |-
+      Sets the user's multi-factor authentication (MFA) preference, including which MFA options are enabled and if any are preferred. Only one factor can be set as preferred. The preferred MFA factor will be used to authenticate a user if multiple factors are enabled. If multiple options are enabled and no preference is set, a challenge to choose an MFA option will be returned during sign in.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminSetUserMFAPreference.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "UserPoolId": "string",
+          "SMSMfaSettings": {
+            "Enabled": false,
+            "PreferredMfa": false
+          },
+          "SoftwareTokenMfaSettings": {
+            "Enabled": false,
+            "PreferredMfa": false
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminSetUserPassword:
+    description: |-
+      Sets the specified user's password in a user pool as an administrator. Works on any user.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminSetUserPassword.html
+    example:
+      inputs: [
+        {
+          "Password": "string",
+          "Username": "string",
+          "Permanent": false,
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminSetUserSettings:
+    description: |-
+      This action is no longer supported. You can use it to configure only SMS MFA. You can't use it to configure TOTP software token MFA. To configure either type of MFA, use AdminSetUserMFAPreference instead.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminSetUserSettings.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "MFAOptions": [
+            {
+              "AttributeName": "string",
+              "DeliveryMedium": "string"
+            }
+          ],
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminUpdateAuthEventFeedback:
+    description: |-
+      Provides feedback for an authentication event as to whether it was from a valid user. This feedback is used for improving the risk evaluation decision for the user pool as part of Amazon Cognito advanced security.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateAuthEventFeedback.html
+    example:
+      inputs: [
+        {
+          "EventId": "string",
+          "Username": "string",
+          "UserPoolId": "string",
+          "FeedbackValue": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminUpdateDeviceStatus:
+    description: |-
+      Updates the device status as an administrator.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateDeviceStatus.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "DeviceKey": "string",
+          "UserPoolId": "string",
+          "DeviceRememberedStatus": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminUpdateUserAttributes:
+    description: |-
+      Updates the specified user's attributes, including developer attributes, as an administrator. Works on any user.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateUserAttributes.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "UserPoolId": "string",
+          "ClientMetadata": {
+            "string": "string"
+          },
+          "UserAttributes": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AdminUserGlobalSignOut:
+    description: |-
+      Signs out users from all devices, as an administrator. It also invalidates all refresh tokens issued to a user. The user's current access and Id tokens remain valid until their expiry. Access and Id tokens expire one hour after they are issued.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUserGlobalSignOut.html
+    example:
+      inputs: [
+        {
+          "Username": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.AssociateSoftwareToken:
+    description: |-
+      Returns a unique generated shared secret key code for the user account. The request takes an access token or a session string, but not both.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AssociateSoftwareToken.html
+    example:
+      inputs: [
+        {
+          "Session": "string",
+          "AccessToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Session": "string",
+          "SecretCode": "string"
+        }
+      ]
+  cognitoidp.ChangePassword:
+    description: |-
+      Changes the password for a specified user in a user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ChangePassword.html
+    example:
+      inputs: [
+        {
+          "AccessToken": "string",
+          "PreviousPassword": "string",
+          "ProposedPassword": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.ConfirmDevice:
+    description: |-
+      Confirms tracking of the device. This API call is the call that begins device tracking.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmDevice.html
+    example:
+      inputs: [
+        {
+          "DeviceKey": "string",
+          "DeviceName": "string",
+          "AccessToken": "string",
+          "DeviceSecretVerifierConfig": {
+            "Salt": "string",
+            "PasswordVerifier": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "UserConfirmationNecessary": false
+        }
+      ]
+  cognitoidp.ConfirmForgotPassword:
+    description: |-
+      Allows a user to enter a confirmation code to reset a forgotten password.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmForgotPassword.html
+    example:
+      inputs: [
+        {
+          "ClientId": "string",
+          "Password": "string",
+          "Username": "string",
+          "SecretHash": "string",
+          "ClientMetadata": {
+            "string": "string"
+          },
+          "UserContextData": {
+            "EncodedData": "string"
+          },
+          "ConfirmationCode": "string",
+          "AnalyticsMetadata": {
+            "AnalyticsEndpointId": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.ConfirmSignUp:
+    description: |-
+      Confirms registration of a user and handles the existing alias from a previous user.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmSignUp.html
+    example:
+      inputs: [
+        {
+          "ClientId": "string",
+          "Username": "string",
+          "SecretHash": "string",
+          "ClientMetadata": {
+            "string": "string"
+          },
+          "UserContextData": {
+            "EncodedData": "string"
+          },
+          "ConfirmationCode": "string",
+          "AnalyticsMetadata": {
+            "AnalyticsEndpointId": "string"
+          },
+          "ForceAliasCreation": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.CreateGroup:
+    description: |-
+      Creates a new group in the specified user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateGroup.html
+    example:
+      inputs: [
+        {
+          "RoleArn": "string",
+          "GroupName": "string",
+          "Precedence": 1,
+          "UserPoolId": "string",
+          "Description": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Group": {
+            "RoleArn": "string",
+            "GroupName": "string",
+            "Precedence": 1,
+            "UserPoolId": "string",
+            "Description": "string",
+            "CreationDate": 1481289211.615,
+            "LastModifiedDate": 1481289211.615
+          }
+        }
+      ]
+  cognitoidp.CreateIdentityProvider:
+    description: |-
+      Creates an identity provider for a user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateIdentityProvider.html
+    example:
+      inputs: [
+        {
+          "UserPoolId": "string",
+          "ProviderName": "string",
+          "ProviderType": "string",
+          "IdpIdentifiers": [
+            "string"
+          ],
+          "ProviderDetails": {
+            "string": "string"
+          },
+          "AttributeMapping": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "IdentityProvider": {
+            "UserPoolId": "string",
+            "CreationDate": 1481289211.615,
+            "ProviderName": "string",
+            "ProviderType": "string",
+            "IdpIdentifiers": [
+              "string"
+            ],
+            "ProviderDetails": {
+              "string": "string"
+            },
+            "AttributeMapping": {
+              "string": "string"
+            },
+            "LastModifiedDate": 1481289211.615
+          }
+        }
+      ]
+  cognitoidp.CreateResourceServer:
+    description: |-
+      Creates a new OAuth2.0 resource server and defines custom scopes in it.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateResourceServer.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Scopes": [
+            {
+              "ScopeName": "string",
+              "ScopeDescription": "string"
+            }
+          ],
+          "Identifier": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResourceServer": {
+            "Name": "string",
+            "Scopes": [
+              {
+                "ScopeName": "string",
+                "ScopeDescription": "string"
+              }
+            ],
+            "Identifier": "string",
+            "UserPoolId": "string"
+          }
+        }
+      ]
+  cognitoidp.CreateUserImportJob:
+    description: |-
+      Creates the user import job.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserImportJob.html
+    example:
+      inputs: [
+        {
+          "JobName": "string",
+          "UserPoolId": "string",
+          "CloudWatchLogsRoleArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UserImportJob": {
+            "JobId": "string",
+            "Status": "string",
+            "JobName": "string",
+            "StartDate": 1481289211.615,
+            "UserPoolId": "string",
+            "FailedUsers": 1,
+            "CreationDate": 1481289211.615,
+            "PreSignedUrl": "string",
+            "SkippedUsers": 1,
+            "ImportedUsers": 1,
+            "CompletionDate": 1481289211.615,
+            "CompletionMessage": "string",
+            "CloudWatchLogsRoleArn": "string"
+          }
+        }
+      ]
+  cognitoidp.CreateUserPoolClient:
+    description: |-
+      Creates the user pool client.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPoolClient.html
+    example:
+      inputs: [
+        {
+          "ClientName": "string",
+          "LogoutURLs": [
+            "string"
+          ],
+          "UserPoolId": "string",
+          "CallbackURLs": [
+            "string"
+          ],
+          "GenerateSecret": false,
+          "ReadAttributes": [
+            "string"
+          ],
+          "IdTokenValidity": 1,
+          "WriteAttributes": [
+            "string"
+          ],
+          "AllowedOAuthFlows": [
+            "string"
+          ],
+          "ExplicitAuthFlows": [
+            "string"
+          ],
+          "AllowedOAuthScopes": [
+            "string"
+          ],
+          "DefaultRedirectURI": "string",
+          "TokenValidityUnits": {
+            "IdToken": "string",
+            "AccessToken": "string",
+            "RefreshToken": "string"
+          },
+          "AccessTokenValidity": 1,
+          "RefreshTokenValidity": 1,
+          "AnalyticsConfiguration": {
+            "RoleArn": "string",
+            "ExternalId": "string",
+            "ApplicationId": "string",
+            "ApplicationArn": "string",
+            "UserDataShared": false
+          },
+          "PreventUserExistenceErrors": "string",
+          "SupportedIdentityProviders": [
+            "string"
+          ],
+          "AllowedOAuthFlowsUserPoolClient": false
+        }
+      ]
+      outputs: [
+        {
+          "UserPoolClient": {
+            "ClientId": "string",
+            "ClientName": "string",
+            "LogoutURLs": [
+              "string"
+            ],
+            "UserPoolId": "string",
+            "CallbackURLs": [
+              "string"
+            ],
+            "ClientSecret": "string",
+            "CreationDate": 1481289211.615,
+            "ReadAttributes": [
+              "string"
+            ],
+            "IdTokenValidity": 1,
+            "WriteAttributes": [
+              "string"
+            ],
+            "LastModifiedDate": 1481289211.615,
+            "AllowedOAuthFlows": [
+              "string"
+            ],
+            "ExplicitAuthFlows": [
+              "string"
+            ],
+            "AllowedOAuthScopes": [
+              "string"
+            ],
+            "DefaultRedirectURI": "string",
+            "TokenValidityUnits": {
+              "IdToken": "string",
+              "AccessToken": "string",
+              "RefreshToken": "string"
+            },
+            "AccessTokenValidity": 1,
+            "RefreshTokenValidity": 1,
+            "AnalyticsConfiguration": {
+              "RoleArn": "string",
+              "ExternalId": "string",
+              "ApplicationId": "string",
+              "ApplicationArn": "string",
+              "UserDataShared": false
+            },
+            "PreventUserExistenceErrors": "string",
+            "SupportedIdentityProviders": [
+              "string"
+            ],
+            "AllowedOAuthFlowsUserPoolClient": false
+          }
+        }
+      ]
+  cognitoidp.CreateUserPoolDomain:
+    description: |-
+      Creates a new domain for a user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPoolDomain.html
+    example:
+      inputs: [
+        {
+          "Domain": "string",
+          "UserPoolId": "string",
+          "CustomDomainConfig": {
+            "CertificateArn": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "CloudFrontDomain": "string"
+        }
+      ]
+  cognitoidp.CreateUserPool:
+    description: |-
+      Creates a new Amazon Cognito user pool and sets the password policy for the pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPool.html
+    example:
+      inputs: [
+        {
+          "Schema": [
+            {
+              "Name": "string",
+              "Mutable": false,
+              "Required": false,
+              "AttributeDataType": "string",
+              "DeveloperOnlyAttribute": false,
+              "NumberAttributeConstraints": {
+                "MaxValue": "string",
+                "MinValue": "string"
+              },
+              "StringAttributeConstraints": {
+                "MaxLength": "string",
+                "MinLength": "string"
+              }
+            }
+          ],
+          "Policies": {
+            "PasswordPolicy": {
+              "MinimumLength": 1,
+              "RequireNumbers": false,
+              "RequireSymbols": false,
+              "RequireLowercase": false,
+              "RequireUppercase": false,
+              "TemporaryPasswordValidityDays": 1
+            }
+          },
+          "PoolName": "string",
+          "LambdaConfig": {
+            "KMSKeyID": "string",
+            "PreSignUp": "string",
+            "CustomMessage": "string",
+            "UserMigration": "string",
+            "CustomSMSSender": {
+              "LambdaArn": "string",
+              "LambdaVersion": "string"
+            },
+            "PostConfirmation": "string",
+            "CustomEmailSender": {
+              "LambdaArn": "string",
+              "LambdaVersion": "string"
+            },
+            "PreAuthentication": "string",
+            "PostAuthentication": "string",
+            "PreTokenGeneration": "string",
+            "CreateAuthChallenge": "string",
+            "DefineAuthChallenge": "string",
+            "VerifyAuthChallengeResponse": "string"
+          },
+          "UserPoolTags": {
+            "string": "string"
+          },
+          "UserPoolAddOns": {
+            "AdvancedSecurityMode": "string"
+          },
+          "AliasAttributes": [
+            "string"
+          ],
+          "MfaConfiguration": "string",
+          "SmsConfiguration": {
+            "ExternalId": "string",
+            "SnsCallerArn": "string"
+          },
+          "EmailConfiguration": {
+            "From": "string",
+            "SourceArn": "string",
+            "ConfigurationSet": "string",
+            "EmailSendingAccount": "string",
+            "ReplyToEmailAddress": "string"
+          },
+          "UsernameAttributes": [
+            "string"
+          ],
+          "DeviceConfiguration": {
+            "ChallengeRequiredOnNewDevice": false,
+            "DeviceOnlyRememberedOnUserPrompt": false
+          },
+          "AdminCreateUserConfig": {
+            "InviteMessageTemplate": {
+              "SMSMessage": "string",
+              "EmailMessage": "string",
+              "EmailSubject": "string"
+            },
+            "AllowAdminCreateUserOnly": false,
+            "UnusedAccountValidityDays": 1
+          },
+          "UsernameConfiguration": {
+            "CaseSensitive": false
+          },
+          "AccountRecoverySetting": {
+            "RecoveryMechanisms": [
+              {
+                "Name": "string",
+                "Priority": 1
+              }
+            ]
+          },
+          "AutoVerifiedAttributes": [
+            "string"
+          ],
+          "SmsVerificationMessage": "string",
+          "EmailVerificationMessage": "string",
+          "EmailVerificationSubject": "string",
+          "SmsAuthenticationMessage": "string",
+          "VerificationMessageTemplate": {
+            "SmsMessage": "string",
+            "EmailMessage": "string",
+            "EmailSubject": "string",
+            "DefaultEmailOption": "string",
+            "EmailMessageByLink": "string",
+            "EmailSubjectByLink": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "UserPool": {
+            "Id": "string",
+            "Arn": "string",
+            "Name": "string",
+            "Domain": "string",
+            "Status": "string",
+            "Policies": {
+              "PasswordPolicy": {
+                "MinimumLength": 1,
+                "RequireNumbers": false,
+                "RequireSymbols": false,
+                "RequireLowercase": false,
+                "RequireUppercase": false,
+                "TemporaryPasswordValidityDays": 1
+              }
+            },
+            "CreationDate": 1481289211.615,
+            "CustomDomain": "string",
+            "LambdaConfig": {
+              "KMSKeyID": "string",
+              "PreSignUp": "string",
+              "CustomMessage": "string",
+              "UserMigration": "string",
+              "CustomSMSSender": {
+                "LambdaArn": "string",
+                "LambdaVersion": "string"
+              },
+              "PostConfirmation": "string",
+              "CustomEmailSender": {
+                "LambdaArn": "string",
+                "LambdaVersion": "string"
+              },
+              "PreAuthentication": "string",
+              "PostAuthentication": "string",
+              "PreTokenGeneration": "string",
+              "CreateAuthChallenge": "string",
+              "DefineAuthChallenge": "string",
+              "VerifyAuthChallengeResponse": "string"
+            },
+            "UserPoolTags": {
+              "string": "string"
+            },
+            "UserPoolAddOns": {
+              "AdvancedSecurityMode": "string"
+            },
+            "AliasAttributes": [
+              "string"
+            ],
+            "LastModifiedDate": 1481289211.615,
+            "MfaConfiguration": "string",
+            "SchemaAttributes": [
+              {
+                "Name": "string",
+                "Mutable": false,
+                "Required": false,
+                "AttributeDataType": "string",
+                "DeveloperOnlyAttribute": false,
+                "NumberAttributeConstraints": {
+                  "MaxValue": "string",
+                  "MinValue": "string"
+                },
+                "StringAttributeConstraints": {
+                  "MaxLength": "string",
+                  "MinLength": "string"
+                }
+              }
+            ],
+            "SmsConfiguration": {
+              "ExternalId": "string",
+              "SnsCallerArn": "string"
+            },
+            "EmailConfiguration": {
+              "From": "string",
+              "SourceArn": "string",
+              "ConfigurationSet": "string",
+              "EmailSendingAccount": "string",
+              "ReplyToEmailAddress": "string"
+            },
+            "UsernameAttributes": [
+              "string"
+            ],
+            "DeviceConfiguration": {
+              "ChallengeRequiredOnNewDevice": false,
+              "DeviceOnlyRememberedOnUserPrompt": false
+            },
+            "AdminCreateUserConfig": {
+              "InviteMessageTemplate": {
+                "SMSMessage": "string",
+                "EmailMessage": "string",
+                "EmailSubject": "string"
+              },
+              "AllowAdminCreateUserOnly": false,
+              "UnusedAccountValidityDays": 1
+            },
+            "UsernameConfiguration": {
+              "CaseSensitive": false
+            },
+            "AccountRecoverySetting": {
+              "RecoveryMechanisms": [
+                {
+                  "Name": "string",
+                  "Priority": 1
+                }
+              ]
+            },
+            "AutoVerifiedAttributes": [
+              "string"
+            ],
+            "EstimatedNumberOfUsers": 1,
+            "SmsVerificationMessage": "string",
+            "SmsConfigurationFailure": "string",
+            "EmailVerificationMessage": "string",
+            "EmailVerificationSubject": "string",
+            "SmsAuthenticationMessage": "string",
+            "EmailConfigurationFailure": "string",
+            "VerificationMessageTemplate": {
+              "SmsMessage": "string",
+              "EmailMessage": "string",
+              "EmailSubject": "string",
+              "DefaultEmailOption": "string",
+              "EmailMessageByLink": "string",
+              "EmailSubjectByLink": "string"
+            }
+          }
+        }
+      ]
+  cognitoidp.DeleteGroup:
+    description: |-
+      Deletes a group.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DeleteGroup.html
+    example:
+      inputs: [
+        {
+          "GroupName": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.DeleteIdentityProvider:
+    description: |-
+      Deletes an identity provider for a user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DeleteIdentityProvider.html
+    example:
+      inputs: [
+        {
+          "UserPoolId": "string",
+          "ProviderName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.DeleteResourceServer:
+    description: |-
+      Deletes a resource server.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DeleteResourceServer.html
+    example:
+      inputs: [
+        {
+          "Identifier": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.DeleteUserAttributes:
+    description: |-
+      Deletes the attributes for a user.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DeleteUserAttributes.html
+    example:
+      inputs: [
+        {
+          "AccessToken": "string",
+          "UserAttributeNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.DeleteUser:
+    description: |-
+      Allows a user to delete himself or herself.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DeleteUser.html
+    example:
+      inputs: [
+        {
+          "AccessToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.DeleteUserPoolClient:
+    description: |-
+      Allows the developer to delete the user pool client.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DeleteUserPoolClient.html
+    example:
+      inputs: [
+        {
+          "ClientId": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.DeleteUserPoolDomain:
+    description: |-
+      Deletes a domain for a user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DeleteUserPoolDomain.html
+    example:
+      inputs: [
+        {
+          "Domain": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.DeleteUserPool:
+    description: |-
+      Deletes the specified Amazon Cognito user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DeleteUserPool.html
+    example:
+      inputs: [
+        {
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.DescribeIdentityProvider:
+    description: |-
+      Gets information about a specific identity provider.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeIdentityProvider.html
+    example:
+      inputs: [
+        {
+          "UserPoolId": "string",
+          "ProviderName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IdentityProvider": {
+            "UserPoolId": "string",
+            "CreationDate": 1481289211.615,
+            "ProviderName": "string",
+            "ProviderType": "string",
+            "IdpIdentifiers": [
+              "string"
+            ],
+            "ProviderDetails": {
+              "string": "string"
+            },
+            "AttributeMapping": {
+              "string": "string"
+            },
+            "LastModifiedDate": 1481289211.615
+          }
+        }
+      ]
+  cognitoidp.DescribeResourceServer:
+    description: |-
+      Describes a resource server.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeResourceServer.html
+    example:
+      inputs: [
+        {
+          "Identifier": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResourceServer": {
+            "Name": "string",
+            "Scopes": [
+              {
+                "ScopeName": "string",
+                "ScopeDescription": "string"
+              }
+            ],
+            "Identifier": "string",
+            "UserPoolId": "string"
+          }
+        }
+      ]
+  cognitoidp.DescribeRiskConfiguration:
+    description: |-
+      Describes the risk configuration.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeRiskConfiguration.html
+    example:
+      inputs: [
+        {
+          "ClientId": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RiskConfiguration": {
+            "ClientId": "string",
+            "UserPoolId": "string",
+            "LastModifiedDate": 1481289211.615,
+            "RiskExceptionConfiguration": {
+              "BlockedIPRangeList": [
+                "string"
+              ],
+              "SkippedIPRangeList": [
+                "string"
+              ]
+            },
+            "AccountTakeoverRiskConfiguration": {
+              "Actions": {
+                "LowAction": {
+                  "Notify": false,
+                  "EventAction": "string"
+                },
+                "HighAction": {
+                  "Notify": false,
+                  "EventAction": "string"
+                },
+                "MediumAction": {
+                  "Notify": false,
+                  "EventAction": "string"
+                }
+              },
+              "NotifyConfiguration": {
+                "From": "string",
+                "ReplyTo": "string",
+                "MfaEmail": {
+                  "Subject": "string",
+                  "HtmlBody": "string",
+                  "TextBody": "string"
+                },
+                "SourceArn": "string",
+                "BlockEmail": {
+                  "Subject": "string",
+                  "HtmlBody": "string",
+                  "TextBody": "string"
+                },
+                "NoActionEmail": {
+                  "Subject": "string",
+                  "HtmlBody": "string",
+                  "TextBody": "string"
+                }
+              }
+            },
+            "CompromisedCredentialsRiskConfiguration": {
+              "Actions": {
+                "EventAction": "string"
+              },
+              "EventFilter": [
+                "string"
+              ]
+            }
+          }
+        }
+      ]
+  cognitoidp.DescribeUserImportJob:
+    description: |-
+      Describes the user import job.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserImportJob.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UserImportJob": {
+            "JobId": "string",
+            "Status": "string",
+            "JobName": "string",
+            "StartDate": 1481289211.615,
+            "UserPoolId": "string",
+            "FailedUsers": 1,
+            "CreationDate": 1481289211.615,
+            "PreSignedUrl": "string",
+            "SkippedUsers": 1,
+            "ImportedUsers": 1,
+            "CompletionDate": 1481289211.615,
+            "CompletionMessage": "string",
+            "CloudWatchLogsRoleArn": "string"
+          }
+        }
+      ]
+  cognitoidp.DescribeUserPoolClient:
+    description: |-
+      Client method for returning the configuration information and metadata of the specified user pool app client.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPoolClient.html
+    example:
+      inputs: [
+        {
+          "ClientId": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UserPoolClient": {
+            "ClientId": "string",
+            "ClientName": "string",
+            "LogoutURLs": [
+              "string"
+            ],
+            "UserPoolId": "string",
+            "CallbackURLs": [
+              "string"
+            ],
+            "ClientSecret": "string",
+            "CreationDate": 1481289211.615,
+            "ReadAttributes": [
+              "string"
+            ],
+            "IdTokenValidity": 1,
+            "WriteAttributes": [
+              "string"
+            ],
+            "LastModifiedDate": 1481289211.615,
+            "AllowedOAuthFlows": [
+              "string"
+            ],
+            "ExplicitAuthFlows": [
+              "string"
+            ],
+            "AllowedOAuthScopes": [
+              "string"
+            ],
+            "DefaultRedirectURI": "string",
+            "TokenValidityUnits": {
+              "IdToken": "string",
+              "AccessToken": "string",
+              "RefreshToken": "string"
+            },
+            "AccessTokenValidity": 1,
+            "RefreshTokenValidity": 1,
+            "AnalyticsConfiguration": {
+              "RoleArn": "string",
+              "ExternalId": "string",
+              "ApplicationId": "string",
+              "ApplicationArn": "string",
+              "UserDataShared": false
+            },
+            "PreventUserExistenceErrors": "string",
+            "SupportedIdentityProviders": [
+              "string"
+            ],
+            "AllowedOAuthFlowsUserPoolClient": false
+          }
+        }
+      ]
+  cognitoidp.DescribeUserPoolDomain:
+    description: |-
+      Gets information about a domain.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPoolDomain.html
+    example:
+      inputs: [
+        {
+          "Domain": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DomainDescription": {
+            "Domain": "string",
+            "Status": "string",
+            "Version": "string",
+            "S3Bucket": "string",
+            "UserPoolId": "string",
+            "AWSAccountId": "string",
+            "CustomDomainConfig": {
+              "CertificateArn": "string"
+            },
+            "CloudFrontDistribution": "string"
+          }
+        }
+      ]
+  cognitoidp.DescribeUserPool:
+    description: |-
+      Returns the configuration information and metadata of the specified user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPool.html
+    example:
+      inputs: [
+        {
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UserPool": {
+            "Id": "string",
+            "Arn": "string",
+            "Name": "string",
+            "Domain": "string",
+            "Status": "string",
+            "Policies": {
+              "PasswordPolicy": {
+                "MinimumLength": 1,
+                "RequireNumbers": false,
+                "RequireSymbols": false,
+                "RequireLowercase": false,
+                "RequireUppercase": false,
+                "TemporaryPasswordValidityDays": 1
+              }
+            },
+            "CreationDate": 1481289211.615,
+            "CustomDomain": "string",
+            "LambdaConfig": {
+              "KMSKeyID": "string",
+              "PreSignUp": "string",
+              "CustomMessage": "string",
+              "UserMigration": "string",
+              "CustomSMSSender": {
+                "LambdaArn": "string",
+                "LambdaVersion": "string"
+              },
+              "PostConfirmation": "string",
+              "CustomEmailSender": {
+                "LambdaArn": "string",
+                "LambdaVersion": "string"
+              },
+              "PreAuthentication": "string",
+              "PostAuthentication": "string",
+              "PreTokenGeneration": "string",
+              "CreateAuthChallenge": "string",
+              "DefineAuthChallenge": "string",
+              "VerifyAuthChallengeResponse": "string"
+            },
+            "UserPoolTags": {
+              "string": "string"
+            },
+            "UserPoolAddOns": {
+              "AdvancedSecurityMode": "string"
+            },
+            "AliasAttributes": [
+              "string"
+            ],
+            "LastModifiedDate": 1481289211.615,
+            "MfaConfiguration": "string",
+            "SchemaAttributes": [
+              {
+                "Name": "string",
+                "Mutable": false,
+                "Required": false,
+                "AttributeDataType": "string",
+                "DeveloperOnlyAttribute": false,
+                "NumberAttributeConstraints": {
+                  "MaxValue": "string",
+                  "MinValue": "string"
+                },
+                "StringAttributeConstraints": {
+                  "MaxLength": "string",
+                  "MinLength": "string"
+                }
+              }
+            ],
+            "SmsConfiguration": {
+              "ExternalId": "string",
+              "SnsCallerArn": "string"
+            },
+            "EmailConfiguration": {
+              "From": "string",
+              "SourceArn": "string",
+              "ConfigurationSet": "string",
+              "EmailSendingAccount": "string",
+              "ReplyToEmailAddress": "string"
+            },
+            "UsernameAttributes": [
+              "string"
+            ],
+            "DeviceConfiguration": {
+              "ChallengeRequiredOnNewDevice": false,
+              "DeviceOnlyRememberedOnUserPrompt": false
+            },
+            "AdminCreateUserConfig": {
+              "InviteMessageTemplate": {
+                "SMSMessage": "string",
+                "EmailMessage": "string",
+                "EmailSubject": "string"
+              },
+              "AllowAdminCreateUserOnly": false,
+              "UnusedAccountValidityDays": 1
+            },
+            "UsernameConfiguration": {
+              "CaseSensitive": false
+            },
+            "AccountRecoverySetting": {
+              "RecoveryMechanisms": [
+                {
+                  "Name": "string",
+                  "Priority": 1
+                }
+              ]
+            },
+            "AutoVerifiedAttributes": [
+              "string"
+            ],
+            "EstimatedNumberOfUsers": 1,
+            "SmsVerificationMessage": "string",
+            "SmsConfigurationFailure": "string",
+            "EmailVerificationMessage": "string",
+            "EmailVerificationSubject": "string",
+            "SmsAuthenticationMessage": "string",
+            "EmailConfigurationFailure": "string",
+            "VerificationMessageTemplate": {
+              "SmsMessage": "string",
+              "EmailMessage": "string",
+              "EmailSubject": "string",
+              "DefaultEmailOption": "string",
+              "EmailMessageByLink": "string",
+              "EmailSubjectByLink": "string"
+            }
+          }
+        }
+      ]
+  cognitoidp.ForgetDevice:
+    description: |-
+      Forgets the specified device.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ForgetDevice.html
+    example:
+      inputs: [
+        {
+          "DeviceKey": "string",
+          "AccessToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.ForgotPassword:
+    description: |-
+      Calling this API causes a message to be sent to the end user with a confirmation code that is required to change the user's password. For the Username parameter, you can use the username or user alias. The method used to send the confirmation code is sent according to the specified AccountRecoverySetting. For more information, see Recovering User Accounts in the Amazon Cognito Developer Guide. If neither a verified phone number nor a verified email exists, an InvalidParameterException is thrown. To use the confirmation code for resetting the password, call ConfirmForgotPassword.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ForgotPassword.html
+    example:
+      inputs: [
+        {
+          "ClientId": "string",
+          "Username": "string",
+          "SecretHash": "string",
+          "ClientMetadata": {
+            "string": "string"
+          },
+          "UserContextData": {
+            "EncodedData": "string"
+          },
+          "AnalyticsMetadata": {
+            "AnalyticsEndpointId": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "CodeDeliveryDetails": {
+            "Destination": "string",
+            "AttributeName": "string",
+            "DeliveryMedium": "string"
+          }
+        }
+      ]
+  cognitoidp.GetCSVHeader:
+    description: |-
+      Gets the header information for the .csv file to be used as input for the user import job.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GetCSVHeader.html
+    example:
+      inputs: [
+        {
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CSVHeader": [
+            "string"
+          ],
+          "UserPoolId": "string"
+        }
+      ]
+  cognitoidp.GetDevice:
+    description: |-
+      Gets the device.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GetDevice.html
+    example:
+      inputs: [
+        {
+          "DeviceKey": "string",
+          "AccessToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Device": {
+            "DeviceKey": "string",
+            "DeviceAttributes": [
+              {
+                "Name": "string",
+                "Value": "string"
+              }
+            ],
+            "DeviceCreateDate": 1481289211.615,
+            "DeviceLastModifiedDate": 1481289211.615,
+            "DeviceLastAuthenticatedDate": 1481289211.615
+          }
+        }
+      ]
+  cognitoidp.GetGroup:
+    description: |-
+      Gets a group.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GetGroup.html
+    example:
+      inputs: [
+        {
+          "GroupName": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Group": {
+            "RoleArn": "string",
+            "GroupName": "string",
+            "Precedence": 1,
+            "UserPoolId": "string",
+            "Description": "string",
+            "CreationDate": 1481289211.615,
+            "LastModifiedDate": 1481289211.615
+          }
+        }
+      ]
+  cognitoidp.GetIdentityProviderByIdentifier:
+    description: |-
+      Gets the specified identity provider.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GetIdentityProviderByIdentifier.html
+    example:
+      inputs: [
+        {
+          "UserPoolId": "string",
+          "IdpIdentifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IdentityProvider": {
+            "UserPoolId": "string",
+            "CreationDate": 1481289211.615,
+            "ProviderName": "string",
+            "ProviderType": "string",
+            "IdpIdentifiers": [
+              "string"
+            ],
+            "ProviderDetails": {
+              "string": "string"
+            },
+            "AttributeMapping": {
+              "string": "string"
+            },
+            "LastModifiedDate": 1481289211.615
+          }
+        }
+      ]
+  cognitoidp.GetSigningCertificate:
+    description: |-
+      This method takes a user pool ID, and returns the signing certificate.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GetSigningCertificate.html
+    example:
+      inputs: [
+        {
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Certificate": "string"
+        }
+      ]
+  cognitoidp.GetUICustomization:
+    description: |-
+      Gets the UI Customization information for a particular app client's app UI, if there is something set. If nothing is set for the particular client, but there is an existing pool level customization (app clientId will be ALL), then that is returned. If nothing is present, then an empty shape is returned.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GetUICustomization.html
+    example:
+      inputs: [
+        {
+          "ClientId": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UICustomization": {
+            "CSS": "string",
+            "ClientId": "string",
+            "ImageUrl": "string",
+            "CSSVersion": "string",
+            "UserPoolId": "string",
+            "CreationDate": 1481289211.615,
+            "LastModifiedDate": 1481289211.615
+          }
+        }
+      ]
+  cognitoidp.GetUserAttributeVerificationCode:
+    description: |-
+      Gets the user attribute verification code for the specified attribute name.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GetUserAttributeVerificationCode.html
+    example:
+      inputs: [
+        {
+          "AccessToken": "string",
+          "AttributeName": "string",
+          "ClientMetadata": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "CodeDeliveryDetails": {
+            "Destination": "string",
+            "AttributeName": "string",
+            "DeliveryMedium": "string"
+          }
+        }
+      ]
+  cognitoidp.GetUser:
+    description: |-
+      Gets the user attributes and metadata for a user.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GetUser.html
+    example:
+      inputs: [
+        {
+          "AccessToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Username": "string",
+          "MFAOptions": [
+            {
+              "AttributeName": "string",
+              "DeliveryMedium": "string"
+            }
+          ],
+          "UserAttributes": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ],
+          "UserMFASettingList": [
+            "string"
+          ],
+          "PreferredMfaSetting": "string"
+        }
+      ]
+  cognitoidp.GetUserPoolMfaConfig:
+    description: |-
+      Gets the user pool multi-factor authentication (MFA) configuration.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GetUserPoolMfaConfig.html
+    example:
+      inputs: [
+        {
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "MfaConfiguration": "string",
+          "SmsMfaConfiguration": {
+            "SmsConfiguration": {
+              "ExternalId": "string",
+              "SnsCallerArn": "string"
+            },
+            "SmsAuthenticationMessage": "string"
+          },
+          "SoftwareTokenMfaConfiguration": {
+            "Enabled": false
+          }
+        }
+      ]
+  cognitoidp.GlobalSignOut:
+    description: |-
+      Signs out users from all devices. It also invalidates all refresh tokens issued to a user. The user's current access and Id tokens remain valid until their expiry. Access and Id tokens expire one hour after they are issued.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_GlobalSignOut.html
+    example:
+      inputs: [
+        {
+          "AccessToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.InitiateAuth:
+    description: |-
+      Initiates the authentication flow.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html
+    example:
+      inputs: [
+        {
+          "AuthFlow": "string",
+          "ClientId": "string",
+          "AuthParameters": {
+            "string": "string"
+          },
+          "ClientMetadata": {
+            "string": "string"
+          },
+          "UserContextData": {
+            "EncodedData": "string"
+          },
+          "AnalyticsMetadata": {
+            "AnalyticsEndpointId": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Session": "string",
+          "ChallengeName": "string",
+          "ChallengeParameters": {
+            "string": "string"
+          },
+          "AuthenticationResult": {
+            "IdToken": "string",
+            "ExpiresIn": 1,
+            "TokenType": "string",
+            "AccessToken": "string",
+            "RefreshToken": "string",
+            "NewDeviceMetadata": {
+              "DeviceKey": "string",
+              "DeviceGroupKey": "string"
+            }
+          }
+        }
+      ]
+  cognitoidp.ListDevices:
+    description: |-
+      Lists the devices.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListDevices.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "AccessToken": "string",
+          "PaginationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Devices": [
+            {
+              "DeviceKey": "string",
+              "DeviceAttributes": [
+                {
+                  "Name": "string",
+                  "Value": "string"
+                }
+              ],
+              "DeviceCreateDate": 1481289211.615,
+              "DeviceLastModifiedDate": 1481289211.615,
+              "DeviceLastAuthenticatedDate": 1481289211.615
+            }
+          ],
+          "PaginationToken": "string"
+        }
+      ]
+  cognitoidp.ListGroups:
+    description: |-
+      Lists the groups associated with a user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListGroups.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Groups": [
+            {
+              "RoleArn": "string",
+              "GroupName": "string",
+              "Precedence": 1,
+              "UserPoolId": "string",
+              "Description": "string",
+              "CreationDate": 1481289211.615,
+              "LastModifiedDate": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  cognitoidp.ListIdentityProviders:
+    description: |-
+      Lists information about all identity providers for a user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListIdentityProviders.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Providers": [
+            {
+              "CreationDate": 1481289211.615,
+              "ProviderName": "string",
+              "ProviderType": "string",
+              "LastModifiedDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  cognitoidp.ListResourceServers:
+    description: |-
+      Lists the resource servers for a user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListResourceServers.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ResourceServers": [
+            {
+              "Name": "string",
+              "Scopes": [
+                {
+                  "ScopeName": "string",
+                  "ScopeDescription": "string"
+                }
+              ],
+              "Identifier": "string",
+              "UserPoolId": "string"
+            }
+          ]
+        }
+      ]
+  cognitoidp.ListTagsForResource:
+    description: |-
+      Lists the tags that are assigned to an Amazon Cognito user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  cognitoidp.ListUserImportJobs:
+    description: |-
+      Lists the user import jobs.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListUserImportJobs.html
+    example:
+      inputs: [
+        {
+          "MaxResults": 1,
+          "UserPoolId": "string",
+          "PaginationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UserImportJobs": [
+            {
+              "JobId": "string",
+              "Status": "string",
+              "JobName": "string",
+              "StartDate": 1481289211.615,
+              "UserPoolId": "string",
+              "FailedUsers": 1,
+              "CreationDate": 1481289211.615,
+              "PreSignedUrl": "string",
+              "SkippedUsers": 1,
+              "ImportedUsers": 1,
+              "CompletionDate": 1481289211.615,
+              "CompletionMessage": "string",
+              "CloudWatchLogsRoleArn": "string"
+            }
+          ],
+          "PaginationToken": "string"
+        }
+      ]
+  cognitoidp.ListUserPoolClients:
+    description: |-
+      Lists the clients that have been created for the specified user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListUserPoolClients.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "UserPoolClients": [
+            {
+              "ClientId": "string",
+              "ClientName": "string",
+              "UserPoolId": "string"
+            }
+          ]
+        }
+      ]
+  cognitoidp.ListUserPools:
+    description: |-
+      Lists the user pools associated with an AWS account.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListUserPools.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "UserPools": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Status": "string",
+              "CreationDate": 1481289211.615,
+              "LambdaConfig": {
+                "KMSKeyID": "string",
+                "PreSignUp": "string",
+                "CustomMessage": "string",
+                "UserMigration": "string",
+                "CustomSMSSender": {
+                  "LambdaArn": "string",
+                  "LambdaVersion": "string"
+                },
+                "PostConfirmation": "string",
+                "CustomEmailSender": {
+                  "LambdaArn": "string",
+                  "LambdaVersion": "string"
+                },
+                "PreAuthentication": "string",
+                "PostAuthentication": "string",
+                "PreTokenGeneration": "string",
+                "CreateAuthChallenge": "string",
+                "DefineAuthChallenge": "string",
+                "VerifyAuthChallengeResponse": "string"
+              },
+              "LastModifiedDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  cognitoidp.ListUsers:
+    description: |-
+      Lists the users in the Amazon Cognito user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListUsers.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Filter": "string",
+          "UserPoolId": "string",
+          "AttributesToGet": [
+            "string"
+          ],
+          "PaginationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Users": [
+            {
+              "Enabled": false,
+              "Username": "string",
+              "Attributes": [
+                {
+                  "Name": "string",
+                  "Value": "string"
+                }
+              ],
+              "MFAOptions": [
+                {
+                  "AttributeName": "string",
+                  "DeliveryMedium": "string"
+                }
+              ],
+              "UserStatus": "string",
+              "UserCreateDate": 1481289211.615,
+              "UserLastModifiedDate": 1481289211.615
+            }
+          ],
+          "PaginationToken": "string"
+        }
+      ]
+  cognitoidp.ListUsersInGroup:
+    description: |-
+      Lists the users in the specified group.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListUsersInGroup.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "GroupName": "string",
+          "NextToken": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Users": [
+            {
+              "Enabled": false,
+              "Username": "string",
+              "Attributes": [
+                {
+                  "Name": "string",
+                  "Value": "string"
+                }
+              ],
+              "MFAOptions": [
+                {
+                  "AttributeName": "string",
+                  "DeliveryMedium": "string"
+                }
+              ],
+              "UserStatus": "string",
+              "UserCreateDate": 1481289211.615,
+              "UserLastModifiedDate": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  cognitoidp.ResendConfirmationCode:
+    description: |-
+      Resends the confirmation (for confirmation of registration) to a specific user in the user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ResendConfirmationCode.html
+    example:
+      inputs: [
+        {
+          "ClientId": "string",
+          "Username": "string",
+          "SecretHash": "string",
+          "ClientMetadata": {
+            "string": "string"
+          },
+          "UserContextData": {
+            "EncodedData": "string"
+          },
+          "AnalyticsMetadata": {
+            "AnalyticsEndpointId": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "CodeDeliveryDetails": {
+            "Destination": "string",
+            "AttributeName": "string",
+            "DeliveryMedium": "string"
+          }
+        }
+      ]
+  cognitoidp.RespondToAuthChallenge:
+    description: |-
+      Responds to the authentication challenge.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RespondToAuthChallenge.html
+    example:
+      inputs: [
+        {
+          "Session": "string",
+          "ClientId": "string",
+          "ChallengeName": "string",
+          "ClientMetadata": {
+            "string": "string"
+          },
+          "UserContextData": {
+            "EncodedData": "string"
+          },
+          "AnalyticsMetadata": {
+            "AnalyticsEndpointId": "string"
+          },
+          "ChallengeResponses": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Session": "string",
+          "ChallengeName": "string",
+          "ChallengeParameters": {
+            "string": "string"
+          },
+          "AuthenticationResult": {
+            "IdToken": "string",
+            "ExpiresIn": 1,
+            "TokenType": "string",
+            "AccessToken": "string",
+            "RefreshToken": "string",
+            "NewDeviceMetadata": {
+              "DeviceKey": "string",
+              "DeviceGroupKey": "string"
+            }
+          }
+        }
+      ]
+  cognitoidp.SetRiskConfiguration:
+    description: |-
+      Configures actions on detected risks. To delete the risk configuration for UserPoolId or ClientId, pass null values for all four configuration types.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetRiskConfiguration.html
+    example:
+      inputs: [
+        {
+          "ClientId": "string",
+          "UserPoolId": "string",
+          "RiskExceptionConfiguration": {
+            "BlockedIPRangeList": [
+              "string"
+            ],
+            "SkippedIPRangeList": [
+              "string"
+            ]
+          },
+          "AccountTakeoverRiskConfiguration": {
+            "Actions": {
+              "LowAction": {
+                "Notify": false,
+                "EventAction": "string"
+              },
+              "HighAction": {
+                "Notify": false,
+                "EventAction": "string"
+              },
+              "MediumAction": {
+                "Notify": false,
+                "EventAction": "string"
+              }
+            },
+            "NotifyConfiguration": {
+              "From": "string",
+              "ReplyTo": "string",
+              "MfaEmail": {
+                "Subject": "string",
+                "HtmlBody": "string",
+                "TextBody": "string"
+              },
+              "SourceArn": "string",
+              "BlockEmail": {
+                "Subject": "string",
+                "HtmlBody": "string",
+                "TextBody": "string"
+              },
+              "NoActionEmail": {
+                "Subject": "string",
+                "HtmlBody": "string",
+                "TextBody": "string"
+              }
+            }
+          },
+          "CompromisedCredentialsRiskConfiguration": {
+            "Actions": {
+              "EventAction": "string"
+            },
+            "EventFilter": [
+              "string"
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "RiskConfiguration": {
+            "ClientId": "string",
+            "UserPoolId": "string",
+            "LastModifiedDate": 1481289211.615,
+            "RiskExceptionConfiguration": {
+              "BlockedIPRangeList": [
+                "string"
+              ],
+              "SkippedIPRangeList": [
+                "string"
+              ]
+            },
+            "AccountTakeoverRiskConfiguration": {
+              "Actions": {
+                "LowAction": {
+                  "Notify": false,
+                  "EventAction": "string"
+                },
+                "HighAction": {
+                  "Notify": false,
+                  "EventAction": "string"
+                },
+                "MediumAction": {
+                  "Notify": false,
+                  "EventAction": "string"
+                }
+              },
+              "NotifyConfiguration": {
+                "From": "string",
+                "ReplyTo": "string",
+                "MfaEmail": {
+                  "Subject": "string",
+                  "HtmlBody": "string",
+                  "TextBody": "string"
+                },
+                "SourceArn": "string",
+                "BlockEmail": {
+                  "Subject": "string",
+                  "HtmlBody": "string",
+                  "TextBody": "string"
+                },
+                "NoActionEmail": {
+                  "Subject": "string",
+                  "HtmlBody": "string",
+                  "TextBody": "string"
+                }
+              }
+            },
+            "CompromisedCredentialsRiskConfiguration": {
+              "Actions": {
+                "EventAction": "string"
+              },
+              "EventFilter": [
+                "string"
+              ]
+            }
+          }
+        }
+      ]
+  cognitoidp.SetUICustomization:
+    description: |-
+      Sets the UI customization information for a user pool's built-in app UI.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetUICustomization.html
+    example:
+      inputs: [
+        {
+          "CSS": "string",
+          "ClientId": "string",
+          "ImageFile": "blob",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UICustomization": {
+            "CSS": "string",
+            "ClientId": "string",
+            "ImageUrl": "string",
+            "CSSVersion": "string",
+            "UserPoolId": "string",
+            "CreationDate": 1481289211.615,
+            "LastModifiedDate": 1481289211.615
+          }
+        }
+      ]
+  cognitoidp.SetUserMFAPreference:
+    description: |-
+      Set the user's multi-factor authentication (MFA) method preference, including which MFA factors are enabled and if any are preferred. Only one factor can be set as preferred. The preferred MFA factor will be used to authenticate a user if multiple factors are enabled. If multiple options are enabled and no preference is set, a challenge to choose an MFA option will be returned during sign in. If an MFA type is enabled for a user, the user will be prompted for MFA during all sign in attempts, unless device tracking is turned on and the device has been trusted. If you would like MFA to be applied selectively based on the assessed risk level of sign in attempts, disable MFA for users and turn on Adaptive Authentication for the user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetUserMFAPreference.html
+    example:
+      inputs: [
+        {
+          "AccessToken": "string",
+          "SMSMfaSettings": {
+            "Enabled": false,
+            "PreferredMfa": false
+          },
+          "SoftwareTokenMfaSettings": {
+            "Enabled": false,
+            "PreferredMfa": false
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.SetUserPoolMfaConfig:
+    description: |-
+      Set the user pool multi-factor authentication (MFA) configuration.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetUserPoolMfaConfig.html
+    example:
+      inputs: [
+        {
+          "UserPoolId": "string",
+          "MfaConfiguration": "string",
+          "SmsMfaConfiguration": {
+            "SmsConfiguration": {
+              "ExternalId": "string",
+              "SnsCallerArn": "string"
+            },
+            "SmsAuthenticationMessage": "string"
+          },
+          "SoftwareTokenMfaConfiguration": {
+            "Enabled": false
+          }
+        }
+      ]
+      outputs: [
+        {
+          "MfaConfiguration": "string",
+          "SmsMfaConfiguration": {
+            "SmsConfiguration": {
+              "ExternalId": "string",
+              "SnsCallerArn": "string"
+            },
+            "SmsAuthenticationMessage": "string"
+          },
+          "SoftwareTokenMfaConfiguration": {
+            "Enabled": false
+          }
+        }
+      ]
+  cognitoidp.SetUserSettings:
+    description: |-
+      This action is no longer supported. You can use it to configure only SMS MFA. You can't use it to configure TOTP software token MFA. To configure either type of MFA, use SetUserMFAPreference instead.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetUserSettings.html
+    example:
+      inputs: [
+        {
+          "MFAOptions": [
+            {
+              "AttributeName": "string",
+              "DeliveryMedium": "string"
+            }
+          ],
+          "AccessToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.SignUp:
+    description: |-
+      Registers the user in the specified user pool and creates a user name, password, and user attributes.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SignUp.html
+    example:
+      inputs: [
+        {
+          "ClientId": "string",
+          "Password": "string",
+          "Username": "string",
+          "SecretHash": "string",
+          "ClientMetadata": {
+            "string": "string"
+          },
+          "UserAttributes": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ],
+          "ValidationData": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ],
+          "UserContextData": {
+            "EncodedData": "string"
+          },
+          "AnalyticsMetadata": {
+            "AnalyticsEndpointId": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "UserSub": "string",
+          "UserConfirmed": false,
+          "CodeDeliveryDetails": {
+            "Destination": "string",
+            "AttributeName": "string",
+            "DeliveryMedium": "string"
+          }
+        }
+      ]
+  cognitoidp.StartUserImportJob:
+    description: |-
+      Starts the user import.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_StartUserImportJob.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UserImportJob": {
+            "JobId": "string",
+            "Status": "string",
+            "JobName": "string",
+            "StartDate": 1481289211.615,
+            "UserPoolId": "string",
+            "FailedUsers": 1,
+            "CreationDate": 1481289211.615,
+            "PreSignedUrl": "string",
+            "SkippedUsers": 1,
+            "ImportedUsers": 1,
+            "CompletionDate": 1481289211.615,
+            "CompletionMessage": "string",
+            "CloudWatchLogsRoleArn": "string"
+          }
+        }
+      ]
+  cognitoidp.StopUserImportJob:
+    description: |-
+      Stops the user import job.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_StopUserImportJob.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "UserImportJob": {
+            "JobId": "string",
+            "Status": "string",
+            "JobName": "string",
+            "StartDate": 1481289211.615,
+            "UserPoolId": "string",
+            "FailedUsers": 1,
+            "CreationDate": 1481289211.615,
+            "PreSignedUrl": "string",
+            "SkippedUsers": 1,
+            "ImportedUsers": 1,
+            "CompletionDate": 1481289211.615,
+            "CompletionMessage": "string",
+            "CloudWatchLogsRoleArn": "string"
+          }
+        }
+      ]
+  cognitoidp.TagResource:
+    description: |-
+      Assigns a set of tags to an Amazon Cognito user pool. A tag is a label that you can use to categorize and manage user pools in different ways, such as by purpose, owner, environment, or other criteria.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.UntagResource:
+    description: |-
+      Removes the specified tags from an Amazon Cognito user pool. You can use this action up to 5 times per second, per account
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.UpdateAuthEventFeedback:
+    description: |-
+      Provides the feedback for an authentication event whether it was from a valid user or not. This feedback is used for improving the risk evaluation decision for the user pool as part of Amazon Cognito advanced security.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateAuthEventFeedback.html
+    example:
+      inputs: [
+        {
+          "EventId": "string",
+          "Username": "string",
+          "UserPoolId": "string",
+          "FeedbackToken": "string",
+          "FeedbackValue": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.UpdateDeviceStatus:
+    description: |-
+      Updates the device status.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateDeviceStatus.html
+    example:
+      inputs: [
+        {
+          "DeviceKey": "string",
+          "AccessToken": "string",
+          "DeviceRememberedStatus": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.UpdateGroup:
+    description: |-
+      Updates the specified group with the specified attributes.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateGroup.html
+    example:
+      inputs: [
+        {
+          "RoleArn": "string",
+          "GroupName": "string",
+          "Precedence": 1,
+          "UserPoolId": "string",
+          "Description": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Group": {
+            "RoleArn": "string",
+            "GroupName": "string",
+            "Precedence": 1,
+            "UserPoolId": "string",
+            "Description": "string",
+            "CreationDate": 1481289211.615,
+            "LastModifiedDate": 1481289211.615
+          }
+        }
+      ]
+  cognitoidp.UpdateIdentityProvider:
+    description: |-
+      Updates identity provider information for a user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateIdentityProvider.html
+    example:
+      inputs: [
+        {
+          "UserPoolId": "string",
+          "ProviderName": "string",
+          "IdpIdentifiers": [
+            "string"
+          ],
+          "ProviderDetails": {
+            "string": "string"
+          },
+          "AttributeMapping": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "IdentityProvider": {
+            "UserPoolId": "string",
+            "CreationDate": 1481289211.615,
+            "ProviderName": "string",
+            "ProviderType": "string",
+            "IdpIdentifiers": [
+              "string"
+            ],
+            "ProviderDetails": {
+              "string": "string"
+            },
+            "AttributeMapping": {
+              "string": "string"
+            },
+            "LastModifiedDate": 1481289211.615
+          }
+        }
+      ]
+  cognitoidp.UpdateResourceServer:
+    description: |-
+      Updates the name and scopes of resource server. All other fields are read-only.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateResourceServer.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Scopes": [
+            {
+              "ScopeName": "string",
+              "ScopeDescription": "string"
+            }
+          ],
+          "Identifier": "string",
+          "UserPoolId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResourceServer": {
+            "Name": "string",
+            "Scopes": [
+              {
+                "ScopeName": "string",
+                "ScopeDescription": "string"
+              }
+            ],
+            "Identifier": "string",
+            "UserPoolId": "string"
+          }
+        }
+      ]
+  cognitoidp.UpdateUserAttributes:
+    description: |-
+      Allows a user to update a specific attribute (one at a time).
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserAttributes.html
+    example:
+      inputs: [
+        {
+          "AccessToken": "string",
+          "ClientMetadata": {
+            "string": "string"
+          },
+          "UserAttributes": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "CodeDeliveryDetailsList": [
+            {
+              "Destination": "string",
+              "AttributeName": "string",
+              "DeliveryMedium": "string"
+            }
+          ]
+        }
+      ]
+  cognitoidp.UpdateUserPoolClient:
+    description: |-
+      Updates the specified user pool app client with the specified attributes. You can get a list of the current user pool app client settings using DescribeUserPoolClient.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPoolClient.html
+    example:
+      inputs: [
+        {
+          "ClientId": "string",
+          "ClientName": "string",
+          "LogoutURLs": [
+            "string"
+          ],
+          "UserPoolId": "string",
+          "CallbackURLs": [
+            "string"
+          ],
+          "ReadAttributes": [
+            "string"
+          ],
+          "IdTokenValidity": 1,
+          "WriteAttributes": [
+            "string"
+          ],
+          "AllowedOAuthFlows": [
+            "string"
+          ],
+          "ExplicitAuthFlows": [
+            "string"
+          ],
+          "AllowedOAuthScopes": [
+            "string"
+          ],
+          "DefaultRedirectURI": "string",
+          "TokenValidityUnits": {
+            "IdToken": "string",
+            "AccessToken": "string",
+            "RefreshToken": "string"
+          },
+          "AccessTokenValidity": 1,
+          "RefreshTokenValidity": 1,
+          "AnalyticsConfiguration": {
+            "RoleArn": "string",
+            "ExternalId": "string",
+            "ApplicationId": "string",
+            "ApplicationArn": "string",
+            "UserDataShared": false
+          },
+          "PreventUserExistenceErrors": "string",
+          "SupportedIdentityProviders": [
+            "string"
+          ],
+          "AllowedOAuthFlowsUserPoolClient": false
+        }
+      ]
+      outputs: [
+        {
+          "UserPoolClient": {
+            "ClientId": "string",
+            "ClientName": "string",
+            "LogoutURLs": [
+              "string"
+            ],
+            "UserPoolId": "string",
+            "CallbackURLs": [
+              "string"
+            ],
+            "ClientSecret": "string",
+            "CreationDate": 1481289211.615,
+            "ReadAttributes": [
+              "string"
+            ],
+            "IdTokenValidity": 1,
+            "WriteAttributes": [
+              "string"
+            ],
+            "LastModifiedDate": 1481289211.615,
+            "AllowedOAuthFlows": [
+              "string"
+            ],
+            "ExplicitAuthFlows": [
+              "string"
+            ],
+            "AllowedOAuthScopes": [
+              "string"
+            ],
+            "DefaultRedirectURI": "string",
+            "TokenValidityUnits": {
+              "IdToken": "string",
+              "AccessToken": "string",
+              "RefreshToken": "string"
+            },
+            "AccessTokenValidity": 1,
+            "RefreshTokenValidity": 1,
+            "AnalyticsConfiguration": {
+              "RoleArn": "string",
+              "ExternalId": "string",
+              "ApplicationId": "string",
+              "ApplicationArn": "string",
+              "UserDataShared": false
+            },
+            "PreventUserExistenceErrors": "string",
+            "SupportedIdentityProviders": [
+              "string"
+            ],
+            "AllowedOAuthFlowsUserPoolClient": false
+          }
+        }
+      ]
+  cognitoidp.UpdateUserPoolDomain:
+    description: |-
+      Updates the Secure Sockets Layer (SSL) certificate for the custom domain for your user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPoolDomain.html
+    example:
+      inputs: [
+        {
+          "Domain": "string",
+          "UserPoolId": "string",
+          "CustomDomainConfig": {
+            "CertificateArn": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "CloudFrontDomain": "string"
+        }
+      ]
+  cognitoidp.UpdateUserPool:
+    description: |-
+      Updates the specified user pool with the specified attributes. You can get a list of the current user pool settings using DescribeUserPool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPool.html
+    example:
+      inputs: [
+        {
+          "Policies": {
+            "PasswordPolicy": {
+              "MinimumLength": 1,
+              "RequireNumbers": false,
+              "RequireSymbols": false,
+              "RequireLowercase": false,
+              "RequireUppercase": false,
+              "TemporaryPasswordValidityDays": 1
+            }
+          },
+          "UserPoolId": "string",
+          "LambdaConfig": {
+            "KMSKeyID": "string",
+            "PreSignUp": "string",
+            "CustomMessage": "string",
+            "UserMigration": "string",
+            "CustomSMSSender": {
+              "LambdaArn": "string",
+              "LambdaVersion": "string"
+            },
+            "PostConfirmation": "string",
+            "CustomEmailSender": {
+              "LambdaArn": "string",
+              "LambdaVersion": "string"
+            },
+            "PreAuthentication": "string",
+            "PostAuthentication": "string",
+            "PreTokenGeneration": "string",
+            "CreateAuthChallenge": "string",
+            "DefineAuthChallenge": "string",
+            "VerifyAuthChallengeResponse": "string"
+          },
+          "UserPoolTags": {
+            "string": "string"
+          },
+          "UserPoolAddOns": {
+            "AdvancedSecurityMode": "string"
+          },
+          "MfaConfiguration": "string",
+          "SmsConfiguration": {
+            "ExternalId": "string",
+            "SnsCallerArn": "string"
+          },
+          "EmailConfiguration": {
+            "From": "string",
+            "SourceArn": "string",
+            "ConfigurationSet": "string",
+            "EmailSendingAccount": "string",
+            "ReplyToEmailAddress": "string"
+          },
+          "DeviceConfiguration": {
+            "ChallengeRequiredOnNewDevice": false,
+            "DeviceOnlyRememberedOnUserPrompt": false
+          },
+          "AdminCreateUserConfig": {
+            "InviteMessageTemplate": {
+              "SMSMessage": "string",
+              "EmailMessage": "string",
+              "EmailSubject": "string"
+            },
+            "AllowAdminCreateUserOnly": false,
+            "UnusedAccountValidityDays": 1
+          },
+          "AccountRecoverySetting": {
+            "RecoveryMechanisms": [
+              {
+                "Name": "string",
+                "Priority": 1
+              }
+            ]
+          },
+          "AutoVerifiedAttributes": [
+            "string"
+          ],
+          "SmsVerificationMessage": "string",
+          "EmailVerificationMessage": "string",
+          "EmailVerificationSubject": "string",
+          "SmsAuthenticationMessage": "string",
+          "VerificationMessageTemplate": {
+            "SmsMessage": "string",
+            "EmailMessage": "string",
+            "EmailSubject": "string",
+            "DefaultEmailOption": "string",
+            "EmailMessageByLink": "string",
+            "EmailSubjectByLink": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cognitoidp.VerifySoftwareToken:
+    description: |-
+      Use this API to register a user's entered TOTP code and mark the user's software token MFA status as "verified" if successful. The request takes an access token or a session string, but not both.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerifySoftwareToken.html
+    example:
+      inputs: [
+        {
+          "Session": "string",
+          "UserCode": "string",
+          "AccessToken": "string",
+          "FriendlyDeviceName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "Session": "string"
+        }
+      ]
+  cognitoidp.VerifyUserAttribute:
+    description: |-
+      Verifies the specified user attributes in the user pool.
+    versions:
+      from: 2016.4.18
+      to: 2016.4.18
+    link: https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerifyUserAttribute.html
+    example:
+      inputs: [
+        {
+          "Code": "string",
+          "AccessToken": "string",
+          "AttributeName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

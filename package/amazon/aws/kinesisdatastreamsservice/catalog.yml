@@ -1,0 +1,647 @@
+Product:
+  name: Amazon Kinesis Data Streams Service
+  versions: [2013.12.2]
+  package: amazon.aws.kinesisdatastreamsservice
+  description: |-
+    Amazon Kinesis Data Streams Service
+  link: https://docs.aws.amazon.com/kinesis/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AddTagsToStream:
+    description: |-
+      Adds or updates tags for the specified Kinesis data stream. You can assign up to 50 tags to a data stream.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_AddTagsToStream.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "StreamName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateStream:
+    description: |-
+      Creates a Kinesis data stream. A stream captures and transports data records that are continuously emitted from different data sources or producers. Scale-out within a stream is explicitly supported by means of shards, which are uniquely identified groups of data records in a stream.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_CreateStream.html
+    example:
+      inputs: [
+        {
+          "ShardCount": 1,
+          "StreamName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DecreaseStreamRetentionPeriod:
+    description: |-
+      Decreases the Kinesis data stream's retention period, which is the length of time data records are accessible after they are added to the stream. The minimum value of a stream's retention period is 24 hours.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_DecreaseStreamRetentionPeriod.html
+    example:
+      inputs: [
+        {
+          "StreamName": "string",
+          "RetentionPeriodHours": 1
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteStream:
+    description: |-
+      Deletes a Kinesis data stream and all its shards and data. You must shut down any applications that are operating on the stream before you delete the stream. If an application attempts to operate on a deleted stream, it receives the exception ResourceNotFoundException.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_DeleteStream.html
+    example:
+      inputs: [
+        {
+          "StreamName": "string",
+          "EnforceConsumerDeletion": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeregisterStreamConsumer:
+    description: |-
+      To deregister a consumer, provide its ARN. Alternatively, you can provide the ARN of the data stream and the name you gave the consumer when you registered it. You may also provide all three parameters, as long as they don't conflict with each other. If you don't know the name or ARN of the consumer that you want to deregister, you can use the ListStreamConsumers operation to get a list of the descriptions of all the consumers that are currently registered with a given data stream. The description of a consumer contains its name and ARN.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_DeregisterStreamConsumer.html
+    example:
+      inputs: [
+        {
+          "StreamARN": "string",
+          "ConsumerARN": "string",
+          "ConsumerName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeLimits:
+    description: |-
+      Describes the shard limits and usage for the account.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_DescribeLimits.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "ShardLimit": 1,
+          "OpenShardCount": 1
+        }
+      ]
+  DescribeStreamConsumer:
+    description: |-
+      To get the description of a registered consumer, provide the ARN of the consumer. Alternatively, you can provide the ARN of the data stream and the name you gave the consumer when you registered it. You may also provide all three parameters, as long as they don't conflict with each other. If you don't know the name or ARN of the consumer that you want to describe, you can use the ListStreamConsumers operation to get a list of the descriptions of all the consumers that are currently registered with a given data stream.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_DescribeStreamConsumer.html
+    example:
+      inputs: [
+        {
+          "StreamARN": "string",
+          "ConsumerARN": "string",
+          "ConsumerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ConsumerDescription": {
+            "StreamARN": "string",
+            "ConsumerARN": "string",
+            "ConsumerName": "string",
+            "ConsumerStatus": "string",
+            "ConsumerCreationTimestamp": 1481289211.615
+          }
+        }
+      ]
+  DescribeStream:
+    description: |-
+      Describes the specified Kinesis data stream.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_DescribeStream.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "StreamName": "string",
+          "ExclusiveStartShardId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "StreamDescription": {
+            "KeyId": "string",
+            "Shards": [
+              {
+                "ShardId": "string",
+                "HashKeyRange": {
+                  "EndingHashKey": "string",
+                  "StartingHashKey": "string"
+                },
+                "ParentShardId": "string",
+                "SequenceNumberRange": {
+                  "EndingSequenceNumber": "string",
+                  "StartingSequenceNumber": "string"
+                },
+                "AdjacentParentShardId": "string"
+              }
+            ],
+            "StreamARN": "string",
+            "StreamName": "string",
+            "StreamStatus": "string",
+            "HasMoreShards": false,
+            "EncryptionType": "string",
+            "EnhancedMonitoring": [
+              {
+                "ShardLevelMetrics": [
+                  "string"
+                ]
+              }
+            ],
+            "RetentionPeriodHours": 1,
+            "StreamCreationTimestamp": 1481289211.615
+          }
+        }
+      ]
+  DescribeStreamSummary:
+    description: |-
+      Provides a summarized description of the specified Kinesis data stream without the shard list.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_DescribeStreamSummary.html
+    example:
+      inputs: [
+        {
+          "StreamName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "StreamDescriptionSummary": {
+            "KeyId": "string",
+            "StreamARN": "string",
+            "StreamName": "string",
+            "StreamStatus": "string",
+            "ConsumerCount": 1,
+            "EncryptionType": "string",
+            "OpenShardCount": 1,
+            "EnhancedMonitoring": [
+              {
+                "ShardLevelMetrics": [
+                  "string"
+                ]
+              }
+            ],
+            "RetentionPeriodHours": 1,
+            "StreamCreationTimestamp": 1481289211.615
+          }
+        }
+      ]
+  DisableEnhancedMonitoring:
+    description: |-
+      Disables enhanced monitoring.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_DisableEnhancedMonitoring.html
+    example:
+      inputs: [
+        {
+          "StreamName": "string",
+          "ShardLevelMetrics": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "StreamName": "string",
+          "CurrentShardLevelMetrics": [
+            "string"
+          ],
+          "DesiredShardLevelMetrics": [
+            "string"
+          ]
+        }
+      ]
+  EnableEnhancedMonitoring:
+    description: |-
+      Enables enhanced Kinesis data stream monitoring for shard-level metrics.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_EnableEnhancedMonitoring.html
+    example:
+      inputs: [
+        {
+          "StreamName": "string",
+          "ShardLevelMetrics": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "StreamName": "string",
+          "CurrentShardLevelMetrics": [
+            "string"
+          ],
+          "DesiredShardLevelMetrics": [
+            "string"
+          ]
+        }
+      ]
+  GetRecords:
+    description: |-
+      Gets data records from a Kinesis data stream's shard.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetRecords.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "ShardIterator": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Records": [
+            {
+              "Data": "blob",
+              "PartitionKey": "string",
+              "EncryptionType": "string",
+              "SequenceNumber": "string",
+              "ApproximateArrivalTimestamp": 1481289211.615
+            }
+          ],
+          "ChildShards": [
+            {
+              "ShardId": "string",
+              "HashKeyRange": {
+                "EndingHashKey": "string",
+                "StartingHashKey": "string"
+              },
+              "ParentShards": [
+                "string"
+              ]
+            }
+          ],
+          "NextShardIterator": "string",
+          "MillisBehindLatest": 1
+        }
+      ]
+  GetShardIterator:
+    description: |-
+      Gets an Amazon Kinesis shard iterator. A shard iterator expires 5 minutes after it is returned to the requester.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetShardIterator.html
+    example:
+      inputs: [
+        {
+          "ShardId": "string",
+          "Timestamp": 1481289211.615,
+          "StreamName": "string",
+          "ShardIteratorType": "string",
+          "StartingSequenceNumber": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ShardIterator": "string"
+        }
+      ]
+  IncreaseStreamRetentionPeriod:
+    description: |-
+      Increases the Kinesis data stream's retention period, which is the length of time data records are accessible after they are added to the stream. The maximum value of a stream's retention period is 8760 hours (365 days).
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_IncreaseStreamRetentionPeriod.html
+    example:
+      inputs: [
+        {
+          "StreamName": "string",
+          "RetentionPeriodHours": 1
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListShards:
+    description: |-
+      Lists the shards in a stream and provides information about each shard. This operation has a limit of 100 transactions per second per data stream.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_ListShards.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "StreamName": "string",
+          "ShardFilter": {
+            "Type": "string",
+            "ShardId": "string",
+            "Timestamp": 1481289211.615
+          },
+          "ExclusiveStartShardId": "string",
+          "StreamCreationTimestamp": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "Shards": [
+            {
+              "ShardId": "string",
+              "HashKeyRange": {
+                "EndingHashKey": "string",
+                "StartingHashKey": "string"
+              },
+              "ParentShardId": "string",
+              "SequenceNumberRange": {
+                "EndingSequenceNumber": "string",
+                "StartingSequenceNumber": "string"
+              },
+              "AdjacentParentShardId": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListStreamConsumers:
+    description: |-
+      Lists the consumers registered to receive data from a stream using enhanced fan-out, and provides information about each consumer.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_ListStreamConsumers.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "StreamARN": "string",
+          "MaxResults": 1,
+          "StreamCreationTimestamp": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "Consumers": [
+            {
+              "ConsumerARN": "string",
+              "ConsumerName": "string",
+              "ConsumerStatus": "string",
+              "ConsumerCreationTimestamp": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListStreams:
+    description: |-
+      Lists your Kinesis data streams.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_ListStreams.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "ExclusiveStartStreamName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "StreamNames": [
+            "string"
+          ],
+          "HasMoreStreams": false
+        }
+      ]
+  ListTagsForStream:
+    description: |-
+      Lists the tags for the specified Kinesis data stream. This operation has a limit of five transactions per second per account.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_ListTagsForStream.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "StreamName": "string",
+          "ExclusiveStartTagKey": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "HasMoreTags": false
+        }
+      ]
+  MergeShards:
+    description: |-
+      Merges two adjacent shards in a Kinesis data stream and combines them into a single shard to reduce the stream's capacity to ingest and transport data. Two shards are considered adjacent if the union of the hash key ranges for the two shards form a contiguous set with no gaps. For example, if you have two shards, one with a hash key range of 276...381 and the other with a hash key range of 382...454, then you could merge these two shards into a single shard that would have a hash key range of 276...454. After the merge, the single child shard receives data for all hash key values covered by the two parent shards.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_MergeShards.html
+    example:
+      inputs: [
+        {
+          "StreamName": "string",
+          "ShardToMerge": "string",
+          "AdjacentShardToMerge": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutRecord:
+    description: |-
+      Writes a single data record into an Amazon Kinesis data stream. Call PutRecord to send data into the stream for real-time ingestion and subsequent processing, one record at a time. Each shard can support writes up to 1,000 records per second, up to a maximum data write total of 1 MiB per second.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecord.html
+    example:
+      inputs: [
+        {
+          "Data": "blob",
+          "StreamName": "string",
+          "PartitionKey": "string",
+          "ExplicitHashKey": "string",
+          "SequenceNumberForOrdering": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ShardId": "string",
+          "EncryptionType": "string",
+          "SequenceNumber": "string"
+        }
+      ]
+  PutRecords:
+    description: |-
+      Writes multiple data records into a Kinesis data stream in a single call (also referred to as a PutRecords request). Use this operation to send data into the stream for data ingestion and processing.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecords.html
+    example:
+      inputs: [
+        {
+          "Records": [
+            {
+              "Data": "blob",
+              "PartitionKey": "string",
+              "ExplicitHashKey": "string"
+            }
+          ],
+          "StreamName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Records": [
+            {
+              "ShardId": "string",
+              "ErrorCode": "string",
+              "ErrorMessage": "string",
+              "SequenceNumber": "string"
+            }
+          ],
+          "EncryptionType": "string",
+          "FailedRecordCount": 1
+        }
+      ]
+  RegisterStreamConsumer:
+    description: |-
+      Registers a consumer with a Kinesis data stream. When you use this operation, the consumer you register can then call SubscribeToShard to receive data from the stream using enhanced fan-out, at a rate of up to 2 MiB per second for every shard you subscribe to. This rate is unaffected by the total number of consumers that read from the same stream.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_RegisterStreamConsumer.html
+    example:
+      inputs: [
+        {
+          "StreamARN": "string",
+          "ConsumerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Consumer": {
+            "ConsumerARN": "string",
+            "ConsumerName": "string",
+            "ConsumerStatus": "string",
+            "ConsumerCreationTimestamp": 1481289211.615
+          }
+        }
+      ]
+  RemoveTagsFromStream:
+    description: |-
+      Removes tags from the specified Kinesis data stream. Removed tags are deleted and cannot be recovered after this operation successfully completes.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_RemoveTagsFromStream.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "StreamName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SplitShard:
+    description: |-
+      Splits a shard into two new shards in the Kinesis data stream, to increase the stream's capacity to ingest and transport data. SplitShard is called when there is a need to increase the overall capacity of a stream because of an expected increase in the volume of data records being ingested.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_SplitShard.html
+    example:
+      inputs: [
+        {
+          "StreamName": "string",
+          "ShardToSplit": "string",
+          "NewStartingHashKey": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartStreamEncryption:
+    description: |-
+      Enables or updates server-side encryption using an AWS KMS key for a specified stream.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_StartStreamEncryption.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "StreamName": "string",
+          "EncryptionType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StopStreamEncryption:
+    description: |-
+      Disables server-side encryption for a specified stream.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_StopStreamEncryption.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "StreamName": "string",
+          "EncryptionType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateShardCount:
+    description: |-
+      Updates the shard count of the specified stream to the specified number of shards.
+    versions:
+      from: 2013.12.2
+    link: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_UpdateShardCount.html
+    example:
+      inputs: [
+        {
+          "StreamName": "string",
+          "ScalingType": "string",
+          "TargetShardCount": 1
+        }
+      ]
+      outputs: [
+        {
+          "StreamName": "string",
+          "TargetShardCount": 1,
+          "CurrentShardCount": 1
+        }
+      ]
