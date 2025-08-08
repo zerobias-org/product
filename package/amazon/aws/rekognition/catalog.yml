@@ -1,0 +1,2429 @@
+Product:
+  name: Amazon Rekognition
+  versions: [2016.6.27]
+  package: amazon.aws.rekognition
+  description: |-
+    Amazon Rekognition
+  link: https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html
+  contentType: json
+Operations:
+  CompareFaces:
+    description: |-
+      Compares a face in the source input image with each of the 100 largest faces detected in the target input image.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_CompareFaces.html
+    example:
+      inputs: [
+        {
+          "SourceImage": {
+            "Bytes": "blob",
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "TargetImage": {
+            "Bytes": "blob",
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "QualityFilter": "string",
+          "SimilarityThreshold": 0.1
+        }
+      ]
+      outputs: [
+        {
+          "FaceMatches": [
+            {
+              "Face": {
+                "Pose": {
+                  "Yaw": 0.1,
+                  "Roll": 0.1,
+                  "Pitch": 0.1
+                },
+                "Quality": {
+                  "Sharpness": 0.1,
+                  "Brightness": 0.1
+                },
+                "Landmarks": [
+                  {
+                    "X": 0.1,
+                    "Y": 0.1,
+                    "Type": "string"
+                  }
+                ],
+                "Confidence": 0.1,
+                "BoundingBox": {
+                  "Top": 0.1,
+                  "Left": 0.1,
+                  "Width": 0.1,
+                  "Height": 0.1
+                }
+              },
+              "Similarity": 0.1
+            }
+          ],
+          "UnmatchedFaces": [
+            {
+              "Pose": {
+                "Yaw": 0.1,
+                "Roll": 0.1,
+                "Pitch": 0.1
+              },
+              "Quality": {
+                "Sharpness": 0.1,
+                "Brightness": 0.1
+              },
+              "Landmarks": [
+                {
+                  "X": 0.1,
+                  "Y": 0.1,
+                  "Type": "string"
+                }
+              ],
+              "Confidence": 0.1,
+              "BoundingBox": {
+                "Top": 0.1,
+                "Left": 0.1,
+                "Width": 0.1,
+                "Height": 0.1
+              }
+            }
+          ],
+          "SourceImageFace": {
+            "Confidence": 0.1,
+            "BoundingBox": {
+              "Top": 0.1,
+              "Left": 0.1,
+              "Width": 0.1,
+              "Height": 0.1
+            }
+          },
+          "SourceImageOrientationCorrection": "string",
+          "TargetImageOrientationCorrection": "string"
+        }
+      ]
+  CreateCollection:
+    description: |-
+      Creates a collection in an AWS Region. You can add faces to the collection using the IndexFaces operation.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_CreateCollection.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "CollectionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "StatusCode": 1,
+          "CollectionArn": "string",
+          "FaceModelVersion": "string"
+        }
+      ]
+  CreateProject:
+    description: |-
+      Creates a new Amazon Rekognition Custom Labels project. A project is a logical grouping of resources (images, Labels, models) and operations (training, evaluation and detection).
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_CreateProject.html
+    example:
+      inputs: [
+        {
+          "ProjectName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ProjectArn": "string"
+        }
+      ]
+  CreateProjectVersion:
+    description: |-
+      Creates a new version of a model and begins training. Models are managed as part of an Amazon Rekognition Custom Labels project. You can specify one training dataset and one testing dataset. The response from CreateProjectVersion is an Amazon Resource Name (ARN) for the version of the model.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_CreateProjectVersion.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ProjectArn": "string",
+          "TestingData": {
+            "Assets": [
+              {
+                "GroundTruthManifest": {
+                  "S3Object": {
+                    "Name": "string",
+                    "Bucket": "string",
+                    "Version": "string"
+                  }
+                }
+              }
+            ],
+            "AutoCreate": false
+          },
+          "VersionName": "string",
+          "OutputConfig": {
+            "S3Bucket": "string",
+            "S3KeyPrefix": "string"
+          },
+          "TrainingData": {
+            "Assets": [
+              {
+                "GroundTruthManifest": {
+                  "S3Object": {
+                    "Name": "string",
+                    "Bucket": "string",
+                    "Version": "string"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ProjectVersionArn": "string"
+        }
+      ]
+  CreateStreamProcessor:
+    description: |-
+      Creates an Amazon Rekognition stream processor that you can use to detect and recognize faces in a streaming video.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_CreateStreamProcessor.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Input": {
+            "KinesisVideoStream": {
+              "Arn": "string"
+            }
+          },
+          "Output": {
+            "KinesisDataStream": {
+              "Arn": "string"
+            }
+          },
+          "RoleArn": "string",
+          "Settings": {
+            "FaceSearch": {
+              "CollectionId": "string",
+              "FaceMatchThreshold": 0.1
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "StreamProcessorArn": "string"
+        }
+      ]
+  DeleteCollection:
+    description: |-
+      Deletes the specified collection. Note that this operation removes all faces in the collection. For an example, see Deleting a collection.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_DeleteCollection.html
+    example:
+      inputs: [
+        {
+          "CollectionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "StatusCode": 1
+        }
+      ]
+  DeleteFaces:
+    description: |-
+      Deletes faces from a collection. You specify a collection ID and an array of face IDs to remove from the collection.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_DeleteFaces.html
+    example:
+      inputs: [
+        {
+          "FaceIds": [
+            "string"
+          ],
+          "CollectionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DeletedFaces": [
+            "string"
+          ]
+        }
+      ]
+  DeleteProject:
+    description: |-
+      Deletes an Amazon Rekognition Custom Labels project. To delete a project you must first delete all models associated with the project. To delete a model, see DeleteProjectVersion.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_DeleteProject.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Status": "string"
+        }
+      ]
+  DeleteProjectVersion:
+    description: |-
+      Deletes an Amazon Rekognition Custom Labels model.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_DeleteProjectVersion.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Status": "string"
+        }
+      ]
+  DeleteStreamProcessor:
+    description: |-
+      Deletes the stream processor identified by Name. You assign the value for Name when you create the stream processor with CreateStreamProcessor. You might not be able to use the same name for a stream processor for a few seconds after calling DeleteStreamProcessor.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_DeleteStreamProcessor.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeCollection:
+    description: |-
+      Describes the specified collection. You can use DescribeCollection to get information, such as the number of faces indexed into a collection and the version of the model used by the collection for face detection.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_DescribeCollection.html
+    example:
+      inputs: [
+        {
+          "CollectionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FaceCount": 1,
+          "CollectionARN": "string",
+          "FaceModelVersion": "string",
+          "CreationTimestamp": 1481289211.615
+        }
+      ]
+  DescribeProjects:
+    description: |-
+      Lists and gets information about your Amazon Rekognition Custom Labels projects.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_DescribeProjects.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ProjectDescriptions": [
+            {
+              "Status": "string",
+              "ProjectArn": "string",
+              "CreationTimestamp": 1481289211.615
+            }
+          ]
+        }
+      ]
+  DescribeProjectVersions:
+    description: |-
+      Lists and describes the models in an Amazon Rekognition Custom Labels project. You can specify up to 10 model versions in ProjectVersionArns. If you don't specify a value, descriptions for all models are returned.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_DescribeProjectVersions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ProjectArn": "string",
+          "VersionNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ProjectVersionDescriptions": [
+            {
+              "Status": "string",
+              "OutputConfig": {
+                "S3Bucket": "string",
+                "S3KeyPrefix": "string"
+              },
+              "StatusMessage": "string",
+              "ManifestSummary": {
+                "S3Object": {
+                  "Name": "string",
+                  "Bucket": "string",
+                  "Version": "string"
+                }
+              },
+              "EvaluationResult": {
+                "F1Score": 0.1,
+                "Summary": {
+                  "S3Object": {
+                    "Name": "string",
+                    "Bucket": "string",
+                    "Version": "string"
+                  }
+                }
+              },
+              "CreationTimestamp": 1481289211.615,
+              "MinInferenceUnits": 1,
+              "ProjectVersionArn": "string",
+              "TestingDataResult": {
+                "Input": {
+                  "Assets": [
+                    {
+                      "GroundTruthManifest": {
+                        "S3Object": {
+                          "Name": "string",
+                          "Bucket": "string",
+                          "Version": "string"
+                        }
+                      }
+                    }
+                  ],
+                  "AutoCreate": false
+                },
+                "Output": {
+                  "Assets": [
+                    {
+                      "GroundTruthManifest": {
+                        "S3Object": {
+                          "Name": "string",
+                          "Bucket": "string",
+                          "Version": "string"
+                        }
+                      }
+                    }
+                  ],
+                  "AutoCreate": false
+                },
+                "Validation": {
+                  "Assets": [
+                    {
+                      "GroundTruthManifest": {
+                        "S3Object": {
+                          "Name": "string",
+                          "Bucket": "string",
+                          "Version": "string"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "TrainingDataResult": {
+                "Input": {
+                  "Assets": [
+                    {
+                      "GroundTruthManifest": {
+                        "S3Object": {
+                          "Name": "string",
+                          "Bucket": "string",
+                          "Version": "string"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "Output": {
+                  "Assets": [
+                    {
+                      "GroundTruthManifest": {
+                        "S3Object": {
+                          "Name": "string",
+                          "Bucket": "string",
+                          "Version": "string"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "Validation": {
+                  "Assets": [
+                    {
+                      "GroundTruthManifest": {
+                        "S3Object": {
+                          "Name": "string",
+                          "Bucket": "string",
+                          "Version": "string"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "TrainingEndTimestamp": 1481289211.615,
+              "BillableTrainingTimeInSeconds": 1
+            }
+          ]
+        }
+      ]
+  DescribeStreamProcessor:
+    description: |-
+      Provides information about a stream processor created by CreateStreamProcessor. You can get information about the input and output streams, the input parameters for the face recognition being performed, and the current status of the stream processor.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_DescribeStreamProcessor.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Input": {
+            "KinesisVideoStream": {
+              "Arn": "string"
+            }
+          },
+          "Output": {
+            "KinesisDataStream": {
+              "Arn": "string"
+            }
+          },
+          "Status": "string",
+          "RoleArn": "string",
+          "Settings": {
+            "FaceSearch": {
+              "CollectionId": "string",
+              "FaceMatchThreshold": 0.1
+            }
+          },
+          "StatusMessage": "string",
+          "CreationTimestamp": 1481289211.615,
+          "StreamProcessorArn": "string",
+          "LastUpdateTimestamp": 1481289211.615
+        }
+      ]
+  DetectCustomLabels:
+    description: |-
+      Detects custom labels in a supplied image by using an Amazon Rekognition Custom Labels model.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_DetectCustomLabels.html
+    example:
+      inputs: [
+        {
+          "Image": {
+            "Bytes": "blob",
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "MaxResults": 1,
+          "MinConfidence": 0.1,
+          "ProjectVersionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CustomLabels": [
+            {
+              "Name": "string",
+              "Geometry": {
+                "Polygon": [
+                  {
+                    "X": 0.1,
+                    "Y": 0.1
+                  }
+                ],
+                "BoundingBox": {
+                  "Top": 0.1,
+                  "Left": 0.1,
+                  "Width": 0.1,
+                  "Height": 0.1
+                }
+              },
+              "Confidence": 0.1
+            }
+          ]
+        }
+      ]
+  DetectFaces:
+    description: |-
+      Detects faces within an image that is provided as input.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_DetectFaces.html
+    example:
+      inputs: [
+        {
+          "Image": {
+            "Bytes": "blob",
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "Attributes": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "FaceDetails": [
+            {
+              "Pose": {
+                "Yaw": 0.1,
+                "Roll": 0.1,
+                "Pitch": 0.1
+              },
+              "Beard": {
+                "Value": false,
+                "Confidence": 0.1
+              },
+              "Smile": {
+                "Value": false,
+                "Confidence": 0.1
+              },
+              "Gender": {
+                "Value": "string",
+                "Confidence": 0.1
+              },
+              "Quality": {
+                "Sharpness": 0.1,
+                "Brightness": 0.1
+              },
+              "AgeRange": {
+                "Low": 1,
+                "High": 1
+              },
+              "Emotions": [
+                {
+                  "Type": "string",
+                  "Confidence": 0.1
+                }
+              ],
+              "EyesOpen": {
+                "Value": false,
+                "Confidence": 0.1
+              },
+              "Mustache": {
+                "Value": false,
+                "Confidence": 0.1
+              },
+              "Landmarks": [
+                {
+                  "X": 0.1,
+                  "Y": 0.1,
+                  "Type": "string"
+                }
+              ],
+              "MouthOpen": {
+                "Value": false,
+                "Confidence": 0.1
+              },
+              "Confidence": 0.1,
+              "Eyeglasses": {
+                "Value": false,
+                "Confidence": 0.1
+              },
+              "Sunglasses": {
+                "Value": false,
+                "Confidence": 0.1
+              },
+              "BoundingBox": {
+                "Top": 0.1,
+                "Left": 0.1,
+                "Width": 0.1,
+                "Height": 0.1
+              }
+            }
+          ],
+          "OrientationCorrection": "string"
+        }
+      ]
+  DetectLabels:
+    description: |-
+      Detects instances of real-world entities within an image (JPEG or PNG) provided as input. This includes objects like flower, tree, and table; events like wedding, graduation, and birthday party; and concepts like landscape, evening, and nature.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_DetectLabels.html
+    example:
+      inputs: [
+        {
+          "Image": {
+            "Bytes": "blob",
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "MaxLabels": 1,
+          "MinConfidence": 0.1
+        }
+      ]
+      outputs: [
+        {
+          "Labels": [
+            {
+              "Name": "string",
+              "Parents": [
+                {
+                  "Name": "string"
+                }
+              ],
+              "Instances": [
+                {
+                  "Confidence": 0.1,
+                  "BoundingBox": {
+                    "Top": 0.1,
+                    "Left": 0.1,
+                    "Width": 0.1,
+                    "Height": 0.1
+                  }
+                }
+              ],
+              "Confidence": 0.1
+            }
+          ],
+          "LabelModelVersion": "string",
+          "OrientationCorrection": "string"
+        }
+      ]
+  DetectModerationLabels:
+    description: |-
+      Detects unsafe content in a specified JPEG or PNG format image. Use DetectModerationLabels to moderate images depending on your requirements. For example, you might want to filter images that contain nudity, but not images containing suggestive content.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_DetectModerationLabels.html
+    example:
+      inputs: [
+        {
+          "Image": {
+            "Bytes": "blob",
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "MinConfidence": 0.1,
+          "HumanLoopConfig": {
+            "HumanLoopName": "string",
+            "DataAttributes": {
+              "ContentClassifiers": [
+                "string"
+              ]
+            },
+            "FlowDefinitionArn": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ModerationLabels": [
+            {
+              "Name": "string",
+              "Confidence": 0.1,
+              "ParentName": "string"
+            }
+          ],
+          "ModerationModelVersion": "string",
+          "HumanLoopActivationOutput": {
+            "HumanLoopArn": "string",
+            "HumanLoopActivationReasons": [
+              "string"
+            ],
+            "HumanLoopActivationConditionsEvaluationResults": "string"
+          }
+        }
+      ]
+  DetectProtectiveEquipment:
+    description: |-
+      Detects Personal Protective Equipment (PPE) worn by people detected in an image. Amazon Rekognition can detect the following types of PPE.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_DetectProtectiveEquipment.html
+    example:
+      inputs: [
+        {
+          "Image": {
+            "Bytes": "blob",
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "SummarizationAttributes": {
+            "MinConfidence": 0.1,
+            "RequiredEquipmentTypes": [
+              "string"
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Persons": [
+            {
+              "Id": 1,
+              "BodyParts": [
+                {
+                  "Name": "string",
+                  "Confidence": 0.1,
+                  "EquipmentDetections": [
+                    {
+                      "Type": "string",
+                      "Confidence": 0.1,
+                      "BoundingBox": {
+                        "Top": 0.1,
+                        "Left": 0.1,
+                        "Width": 0.1,
+                        "Height": 0.1
+                      },
+                      "CoversBodyPart": {
+                        "Value": false,
+                        "Confidence": 0.1
+                      }
+                    }
+                  ]
+                }
+              ],
+              "Confidence": 0.1,
+              "BoundingBox": {
+                "Top": 0.1,
+                "Left": 0.1,
+                "Width": 0.1,
+                "Height": 0.1
+              }
+            }
+          ],
+          "Summary": {
+            "PersonsIndeterminate": [
+              1
+            ],
+            "PersonsWithRequiredEquipment": [
+              1
+            ],
+            "PersonsWithoutRequiredEquipment": [
+              1
+            ]
+          },
+          "ProtectiveEquipmentModelVersion": "string"
+        }
+      ]
+  DetectText:
+    description: |-
+      Detects text in the input image and converts it into machine-readable text.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_DetectText.html
+    example:
+      inputs: [
+        {
+          "Image": {
+            "Bytes": "blob",
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "Filters": {
+            "WordFilter": {
+              "MinConfidence": 0.1,
+              "MinBoundingBoxWidth": 0.1,
+              "MinBoundingBoxHeight": 0.1
+            },
+            "RegionsOfInterest": [
+              {
+                "BoundingBox": {
+                  "Top": 0.1,
+                  "Left": 0.1,
+                  "Width": 0.1,
+                  "Height": 0.1
+                }
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "TextDetections": [
+            {
+              "Id": 1,
+              "Type": "string",
+              "Geometry": {
+                "Polygon": [
+                  {
+                    "X": 0.1,
+                    "Y": 0.1
+                  }
+                ],
+                "BoundingBox": {
+                  "Top": 0.1,
+                  "Left": 0.1,
+                  "Width": 0.1,
+                  "Height": 0.1
+                }
+              },
+              "ParentId": 1,
+              "Confidence": 0.1,
+              "DetectedText": "string"
+            }
+          ],
+          "TextModelVersion": "string"
+        }
+      ]
+  GetCelebrityInfo:
+    description: |-
+      Gets the name and additional information about a celebrity based on his or her Amazon Rekognition ID. The additional information is returned as an array of URLs. If there is no additional information about the celebrity, this list is empty.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_GetCelebrityInfo.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Urls": [
+            "string"
+          ]
+        }
+      ]
+  GetCelebrityRecognition:
+    description: |-
+      Gets the celebrity recognition results for a Amazon Rekognition Video analysis started by StartCelebrityRecognition.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_GetCelebrityRecognition.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "SortBy": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "JobStatus": "string",
+          "NextToken": "string",
+          "Celebrities": [
+            {
+              "Celebrity": {
+                "Id": "string",
+                "Face": {
+                  "Pose": {
+                    "Yaw": 0.1,
+                    "Roll": 0.1,
+                    "Pitch": 0.1
+                  },
+                  "Beard": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Smile": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Gender": {
+                    "Value": "string",
+                    "Confidence": 0.1
+                  },
+                  "Quality": {
+                    "Sharpness": 0.1,
+                    "Brightness": 0.1
+                  },
+                  "AgeRange": {
+                    "Low": 1,
+                    "High": 1
+                  },
+                  "Emotions": [
+                    {
+                      "Type": "string",
+                      "Confidence": 0.1
+                    }
+                  ],
+                  "EyesOpen": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Mustache": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Landmarks": [
+                    {
+                      "X": 0.1,
+                      "Y": 0.1,
+                      "Type": "string"
+                    }
+                  ],
+                  "MouthOpen": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Confidence": 0.1,
+                  "Eyeglasses": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Sunglasses": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "BoundingBox": {
+                    "Top": 0.1,
+                    "Left": 0.1,
+                    "Width": 0.1,
+                    "Height": 0.1
+                  }
+                },
+                "Name": "string",
+                "Urls": [
+                  "string"
+                ],
+                "Confidence": 0.1,
+                "BoundingBox": {
+                  "Top": 0.1,
+                  "Left": 0.1,
+                  "Width": 0.1,
+                  "Height": 0.1
+                }
+              },
+              "Timestamp": 1
+            }
+          ],
+          "StatusMessage": "string",
+          "VideoMetadata": {
+            "Codec": "string",
+            "Format": "string",
+            "FrameRate": 0.1,
+            "FrameWidth": 1,
+            "FrameHeight": 1,
+            "DurationMillis": 1
+          }
+        }
+      ]
+  GetContentModeration:
+    description: |-
+      Gets the unsafe content analysis results for a Amazon Rekognition Video analysis started by StartContentModeration.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_GetContentModeration.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "SortBy": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "JobStatus": "string",
+          "NextToken": "string",
+          "StatusMessage": "string",
+          "VideoMetadata": {
+            "Codec": "string",
+            "Format": "string",
+            "FrameRate": 0.1,
+            "FrameWidth": 1,
+            "FrameHeight": 1,
+            "DurationMillis": 1
+          },
+          "ModerationLabels": [
+            {
+              "Timestamp": 1,
+              "ModerationLabel": {
+                "Name": "string",
+                "Confidence": 0.1,
+                "ParentName": "string"
+              }
+            }
+          ],
+          "ModerationModelVersion": "string"
+        }
+      ]
+  GetFaceDetection:
+    description: |-
+      Gets face detection results for a Amazon Rekognition Video analysis started by StartFaceDetection.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_GetFaceDetection.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Faces": [
+            {
+              "Face": {
+                "Pose": {
+                  "Yaw": 0.1,
+                  "Roll": 0.1,
+                  "Pitch": 0.1
+                },
+                "Beard": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Smile": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Gender": {
+                  "Value": "string",
+                  "Confidence": 0.1
+                },
+                "Quality": {
+                  "Sharpness": 0.1,
+                  "Brightness": 0.1
+                },
+                "AgeRange": {
+                  "Low": 1,
+                  "High": 1
+                },
+                "Emotions": [
+                  {
+                    "Type": "string",
+                    "Confidence": 0.1
+                  }
+                ],
+                "EyesOpen": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Mustache": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Landmarks": [
+                  {
+                    "X": 0.1,
+                    "Y": 0.1,
+                    "Type": "string"
+                  }
+                ],
+                "MouthOpen": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Confidence": 0.1,
+                "Eyeglasses": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Sunglasses": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "BoundingBox": {
+                  "Top": 0.1,
+                  "Left": 0.1,
+                  "Width": 0.1,
+                  "Height": 0.1
+                }
+              },
+              "Timestamp": 1
+            }
+          ],
+          "JobStatus": "string",
+          "NextToken": "string",
+          "StatusMessage": "string",
+          "VideoMetadata": {
+            "Codec": "string",
+            "Format": "string",
+            "FrameRate": 0.1,
+            "FrameWidth": 1,
+            "FrameHeight": 1,
+            "DurationMillis": 1
+          }
+        }
+      ]
+  GetFaceSearch:
+    description: |-
+      Gets the face search results for Amazon Rekognition Video face search started by StartFaceSearch. The search returns faces in a collection that match the faces of persons detected in a video. It also includes the time(s) that faces are matched in the video.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_GetFaceSearch.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "SortBy": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Persons": [
+            {
+              "Person": {
+                "Face": {
+                  "Pose": {
+                    "Yaw": 0.1,
+                    "Roll": 0.1,
+                    "Pitch": 0.1
+                  },
+                  "Beard": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Smile": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Gender": {
+                    "Value": "string",
+                    "Confidence": 0.1
+                  },
+                  "Quality": {
+                    "Sharpness": 0.1,
+                    "Brightness": 0.1
+                  },
+                  "AgeRange": {
+                    "Low": 1,
+                    "High": 1
+                  },
+                  "Emotions": [
+                    {
+                      "Type": "string",
+                      "Confidence": 0.1
+                    }
+                  ],
+                  "EyesOpen": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Mustache": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Landmarks": [
+                    {
+                      "X": 0.1,
+                      "Y": 0.1,
+                      "Type": "string"
+                    }
+                  ],
+                  "MouthOpen": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Confidence": 0.1,
+                  "Eyeglasses": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Sunglasses": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "BoundingBox": {
+                    "Top": 0.1,
+                    "Left": 0.1,
+                    "Width": 0.1,
+                    "Height": 0.1
+                  }
+                },
+                "Index": 1,
+                "BoundingBox": {
+                  "Top": 0.1,
+                  "Left": 0.1,
+                  "Width": 0.1,
+                  "Height": 0.1
+                }
+              },
+              "Timestamp": 1,
+              "FaceMatches": [
+                {
+                  "Face": {
+                    "FaceId": "string",
+                    "ImageId": "string",
+                    "Confidence": 0.1,
+                    "BoundingBox": {
+                      "Top": 0.1,
+                      "Left": 0.1,
+                      "Width": 0.1,
+                      "Height": 0.1
+                    },
+                    "ExternalImageId": "string"
+                  },
+                  "Similarity": 0.1
+                }
+              ]
+            }
+          ],
+          "JobStatus": "string",
+          "NextToken": "string",
+          "StatusMessage": "string",
+          "VideoMetadata": {
+            "Codec": "string",
+            "Format": "string",
+            "FrameRate": 0.1,
+            "FrameWidth": 1,
+            "FrameHeight": 1,
+            "DurationMillis": 1
+          }
+        }
+      ]
+  GetLabelDetection:
+    description: |-
+      Gets the label detection results of a Amazon Rekognition Video analysis started by StartLabelDetection.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_GetLabelDetection.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "SortBy": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Labels": [
+            {
+              "Label": {
+                "Name": "string",
+                "Parents": [
+                  {
+                    "Name": "string"
+                  }
+                ],
+                "Instances": [
+                  {
+                    "Confidence": 0.1,
+                    "BoundingBox": {
+                      "Top": 0.1,
+                      "Left": 0.1,
+                      "Width": 0.1,
+                      "Height": 0.1
+                    }
+                  }
+                ],
+                "Confidence": 0.1
+              },
+              "Timestamp": 1
+            }
+          ],
+          "JobStatus": "string",
+          "NextToken": "string",
+          "StatusMessage": "string",
+          "VideoMetadata": {
+            "Codec": "string",
+            "Format": "string",
+            "FrameRate": 0.1,
+            "FrameWidth": 1,
+            "FrameHeight": 1,
+            "DurationMillis": 1
+          },
+          "LabelModelVersion": "string"
+        }
+      ]
+  GetPersonTracking:
+    description: |-
+      Gets the path tracking results of a Amazon Rekognition Video analysis started by StartPersonTracking.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_GetPersonTracking.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "SortBy": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Persons": [
+            {
+              "Person": {
+                "Face": {
+                  "Pose": {
+                    "Yaw": 0.1,
+                    "Roll": 0.1,
+                    "Pitch": 0.1
+                  },
+                  "Beard": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Smile": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Gender": {
+                    "Value": "string",
+                    "Confidence": 0.1
+                  },
+                  "Quality": {
+                    "Sharpness": 0.1,
+                    "Brightness": 0.1
+                  },
+                  "AgeRange": {
+                    "Low": 1,
+                    "High": 1
+                  },
+                  "Emotions": [
+                    {
+                      "Type": "string",
+                      "Confidence": 0.1
+                    }
+                  ],
+                  "EyesOpen": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Mustache": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Landmarks": [
+                    {
+                      "X": 0.1,
+                      "Y": 0.1,
+                      "Type": "string"
+                    }
+                  ],
+                  "MouthOpen": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Confidence": 0.1,
+                  "Eyeglasses": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "Sunglasses": {
+                    "Value": false,
+                    "Confidence": 0.1
+                  },
+                  "BoundingBox": {
+                    "Top": 0.1,
+                    "Left": 0.1,
+                    "Width": 0.1,
+                    "Height": 0.1
+                  }
+                },
+                "Index": 1,
+                "BoundingBox": {
+                  "Top": 0.1,
+                  "Left": 0.1,
+                  "Width": 0.1,
+                  "Height": 0.1
+                }
+              },
+              "Timestamp": 1
+            }
+          ],
+          "JobStatus": "string",
+          "NextToken": "string",
+          "StatusMessage": "string",
+          "VideoMetadata": {
+            "Codec": "string",
+            "Format": "string",
+            "FrameRate": 0.1,
+            "FrameWidth": 1,
+            "FrameHeight": 1,
+            "DurationMillis": 1
+          }
+        }
+      ]
+  GetSegmentDetection:
+    description: |-
+      Gets the segment detection results of a Amazon Rekognition Video analysis started by StartSegmentDetection.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_GetSegmentDetection.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Segments": [
+            {
+              "Type": "string",
+              "ShotSegment": {
+                "Index": 1,
+                "Confidence": 0.1
+              },
+              "DurationSMPTE": "string",
+              "DurationMillis": 1,
+              "EndTimecodeSMPTE": "string",
+              "EndTimestampMillis": 1,
+              "StartTimecodeSMPTE": "string",
+              "TechnicalCueSegment": {
+                "Type": "string",
+                "Confidence": 0.1
+              },
+              "StartTimestampMillis": 1
+            }
+          ],
+          "JobStatus": "string",
+          "NextToken": "string",
+          "AudioMetadata": [
+            {
+              "Codec": "string",
+              "SampleRate": 1,
+              "DurationMillis": 1,
+              "NumberOfChannels": 1
+            }
+          ],
+          "StatusMessage": "string",
+          "VideoMetadata": [
+            {
+              "Codec": "string",
+              "Format": "string",
+              "FrameRate": 0.1,
+              "FrameWidth": 1,
+              "FrameHeight": 1,
+              "DurationMillis": 1
+            }
+          ],
+          "SelectedSegmentTypes": [
+            {
+              "Type": "string",
+              "ModelVersion": "string"
+            }
+          ]
+        }
+      ]
+  GetTextDetection:
+    description: |-
+      Gets the text detection results of a Amazon Rekognition Video analysis started by StartTextDetection.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_GetTextDetection.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "JobStatus": "string",
+          "NextToken": "string",
+          "StatusMessage": "string",
+          "VideoMetadata": {
+            "Codec": "string",
+            "Format": "string",
+            "FrameRate": 0.1,
+            "FrameWidth": 1,
+            "FrameHeight": 1,
+            "DurationMillis": 1
+          },
+          "TextDetections": [
+            {
+              "Timestamp": 1,
+              "TextDetection": {
+                "Id": 1,
+                "Type": "string",
+                "Geometry": {
+                  "Polygon": [
+                    {
+                      "X": 0.1,
+                      "Y": 0.1
+                    }
+                  ],
+                  "BoundingBox": {
+                    "Top": 0.1,
+                    "Left": 0.1,
+                    "Width": 0.1,
+                    "Height": 0.1
+                  }
+                },
+                "ParentId": 1,
+                "Confidence": 0.1,
+                "DetectedText": "string"
+              }
+            }
+          ],
+          "TextModelVersion": "string"
+        }
+      ]
+  IndexFaces:
+    description: |-
+      Detects faces in the input image and adds them to the specified collection.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_IndexFaces.html
+    example:
+      inputs: [
+        {
+          "Image": {
+            "Bytes": "blob",
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "MaxFaces": 1,
+          "CollectionId": "string",
+          "QualityFilter": "string",
+          "ExternalImageId": "string",
+          "DetectionAttributes": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "FaceRecords": [
+            {
+              "Face": {
+                "FaceId": "string",
+                "ImageId": "string",
+                "Confidence": 0.1,
+                "BoundingBox": {
+                  "Top": 0.1,
+                  "Left": 0.1,
+                  "Width": 0.1,
+                  "Height": 0.1
+                },
+                "ExternalImageId": "string"
+              },
+              "FaceDetail": {
+                "Pose": {
+                  "Yaw": 0.1,
+                  "Roll": 0.1,
+                  "Pitch": 0.1
+                },
+                "Beard": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Smile": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Gender": {
+                  "Value": "string",
+                  "Confidence": 0.1
+                },
+                "Quality": {
+                  "Sharpness": 0.1,
+                  "Brightness": 0.1
+                },
+                "AgeRange": {
+                  "Low": 1,
+                  "High": 1
+                },
+                "Emotions": [
+                  {
+                    "Type": "string",
+                    "Confidence": 0.1
+                  }
+                ],
+                "EyesOpen": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Mustache": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Landmarks": [
+                  {
+                    "X": 0.1,
+                    "Y": 0.1,
+                    "Type": "string"
+                  }
+                ],
+                "MouthOpen": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Confidence": 0.1,
+                "Eyeglasses": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Sunglasses": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "BoundingBox": {
+                  "Top": 0.1,
+                  "Left": 0.1,
+                  "Width": 0.1,
+                  "Height": 0.1
+                }
+              }
+            }
+          ],
+          "UnindexedFaces": [
+            {
+              "Reasons": [
+                "string"
+              ],
+              "FaceDetail": {
+                "Pose": {
+                  "Yaw": 0.1,
+                  "Roll": 0.1,
+                  "Pitch": 0.1
+                },
+                "Beard": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Smile": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Gender": {
+                  "Value": "string",
+                  "Confidence": 0.1
+                },
+                "Quality": {
+                  "Sharpness": 0.1,
+                  "Brightness": 0.1
+                },
+                "AgeRange": {
+                  "Low": 1,
+                  "High": 1
+                },
+                "Emotions": [
+                  {
+                    "Type": "string",
+                    "Confidence": 0.1
+                  }
+                ],
+                "EyesOpen": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Mustache": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Landmarks": [
+                  {
+                    "X": 0.1,
+                    "Y": 0.1,
+                    "Type": "string"
+                  }
+                ],
+                "MouthOpen": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Confidence": 0.1,
+                "Eyeglasses": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "Sunglasses": {
+                  "Value": false,
+                  "Confidence": 0.1
+                },
+                "BoundingBox": {
+                  "Top": 0.1,
+                  "Left": 0.1,
+                  "Width": 0.1,
+                  "Height": 0.1
+                }
+              }
+            }
+          ],
+          "FaceModelVersion": "string",
+          "OrientationCorrection": "string"
+        }
+      ]
+  ListCollections:
+    description: |-
+      Returns list of collection IDs in your account. If the result is truncated, the response also provides a NextToken that you can use in the subsequent request to fetch the next set of collection IDs.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_ListCollections.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CollectionIds": [
+            "string"
+          ],
+          "FaceModelVersions": [
+            "string"
+          ]
+        }
+      ]
+  ListFaces:
+    description: |-
+      Returns metadata for faces in the specified collection. This metadata includes information such as the bounding box coordinates, the confidence (that the bounding box contains a face), and face ID. For an example, see Listing faces in a collection.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_ListFaces.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "CollectionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Faces": [
+            {
+              "FaceId": "string",
+              "ImageId": "string",
+              "Confidence": 0.1,
+              "BoundingBox": {
+                "Top": 0.1,
+                "Left": 0.1,
+                "Width": 0.1,
+                "Height": 0.1
+              },
+              "ExternalImageId": "string"
+            }
+          ],
+          "NextToken": "string",
+          "FaceModelVersion": "string"
+        }
+      ]
+  ListStreamProcessors:
+    description: |-
+      Gets a list of stream processors that you have created with CreateStreamProcessor.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_ListStreamProcessors.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "StreamProcessors": [
+            {
+              "Name": "string",
+              "Status": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns a list of tags in an Amazon Rekognition collection, stream processor, or Custom Labels model.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  RecognizeCelebrities:
+    description: |-
+      Returns an array of celebrities recognized in the input image. For more information, see Recognizing celebrities.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_RecognizeCelebrities.html
+    example:
+      inputs: [
+        {
+          "Image": {
+            "Bytes": "blob",
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "CelebrityFaces": [
+            {
+              "Id": "string",
+              "Face": {
+                "Pose": {
+                  "Yaw": 0.1,
+                  "Roll": 0.1,
+                  "Pitch": 0.1
+                },
+                "Quality": {
+                  "Sharpness": 0.1,
+                  "Brightness": 0.1
+                },
+                "Landmarks": [
+                  {
+                    "X": 0.1,
+                    "Y": 0.1,
+                    "Type": "string"
+                  }
+                ],
+                "Confidence": 0.1,
+                "BoundingBox": {
+                  "Top": 0.1,
+                  "Left": 0.1,
+                  "Width": 0.1,
+                  "Height": 0.1
+                }
+              },
+              "Name": "string",
+              "Urls": [
+                "string"
+              ],
+              "MatchConfidence": 0.1
+            }
+          ],
+          "UnrecognizedFaces": [
+            {
+              "Pose": {
+                "Yaw": 0.1,
+                "Roll": 0.1,
+                "Pitch": 0.1
+              },
+              "Quality": {
+                "Sharpness": 0.1,
+                "Brightness": 0.1
+              },
+              "Landmarks": [
+                {
+                  "X": 0.1,
+                  "Y": 0.1,
+                  "Type": "string"
+                }
+              ],
+              "Confidence": 0.1,
+              "BoundingBox": {
+                "Top": 0.1,
+                "Left": 0.1,
+                "Width": 0.1,
+                "Height": 0.1
+              }
+            }
+          ],
+          "OrientationCorrection": "string"
+        }
+      ]
+  SearchFacesByImage:
+    description: |-
+      For a given input image, first detects the largest face in the image, and then searches the specified collection for matching faces. The operation compares the features of the input face with faces in the specified collection.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_SearchFacesByImage.html
+    example:
+      inputs: [
+        {
+          "Image": {
+            "Bytes": "blob",
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "MaxFaces": 1,
+          "CollectionId": "string",
+          "QualityFilter": "string",
+          "FaceMatchThreshold": 0.1
+        }
+      ]
+      outputs: [
+        {
+          "FaceMatches": [
+            {
+              "Face": {
+                "FaceId": "string",
+                "ImageId": "string",
+                "Confidence": 0.1,
+                "BoundingBox": {
+                  "Top": 0.1,
+                  "Left": 0.1,
+                  "Width": 0.1,
+                  "Height": 0.1
+                },
+                "ExternalImageId": "string"
+              },
+              "Similarity": 0.1
+            }
+          ],
+          "FaceModelVersion": "string",
+          "SearchedFaceConfidence": 0.1,
+          "SearchedFaceBoundingBox": {
+            "Top": 0.1,
+            "Left": 0.1,
+            "Width": 0.1,
+            "Height": 0.1
+          }
+        }
+      ]
+  SearchFaces:
+    description: |-
+      For a given input face ID, searches for matching faces in the collection the face belongs to. You get a face ID when you add a face to the collection using the IndexFaces operation. The operation compares the features of the input face with faces in the specified collection.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_SearchFaces.html
+    example:
+      inputs: [
+        {
+          "FaceId": "string",
+          "MaxFaces": 1,
+          "CollectionId": "string",
+          "FaceMatchThreshold": 0.1
+        }
+      ]
+      outputs: [
+        {
+          "FaceMatches": [
+            {
+              "Face": {
+                "FaceId": "string",
+                "ImageId": "string",
+                "Confidence": 0.1,
+                "BoundingBox": {
+                  "Top": 0.1,
+                  "Left": 0.1,
+                  "Width": 0.1,
+                  "Height": 0.1
+                },
+                "ExternalImageId": "string"
+              },
+              "Similarity": 0.1
+            }
+          ],
+          "SearchedFaceId": "string",
+          "FaceModelVersion": "string"
+        }
+      ]
+  StartCelebrityRecognition:
+    description: |-
+      Starts asynchronous recognition of celebrities in a stored video.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_StartCelebrityRecognition.html
+    example:
+      inputs: [
+        {
+          "Video": {
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "JobTag": "string",
+          "ClientRequestToken": "string",
+          "NotificationChannel": {
+            "RoleArn": "string",
+            "SNSTopicArn": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartContentModeration:
+    description: |-
+      Starts asynchronous detection of unsafe content in a stored video.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_StartContentModeration.html
+    example:
+      inputs: [
+        {
+          "Video": {
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "JobTag": "string",
+          "MinConfidence": 0.1,
+          "ClientRequestToken": "string",
+          "NotificationChannel": {
+            "RoleArn": "string",
+            "SNSTopicArn": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartFaceDetection:
+    description: |-
+      Starts asynchronous detection of faces in a stored video.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_StartFaceDetection.html
+    example:
+      inputs: [
+        {
+          "Video": {
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "JobTag": "string",
+          "FaceAttributes": "string",
+          "ClientRequestToken": "string",
+          "NotificationChannel": {
+            "RoleArn": "string",
+            "SNSTopicArn": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartFaceSearch:
+    description: |-
+      Starts the asynchronous search for faces in a collection that match the faces of persons detected in a stored video.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_StartFaceSearch.html
+    example:
+      inputs: [
+        {
+          "Video": {
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "JobTag": "string",
+          "CollectionId": "string",
+          "ClientRequestToken": "string",
+          "FaceMatchThreshold": 0.1,
+          "NotificationChannel": {
+            "RoleArn": "string",
+            "SNSTopicArn": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartLabelDetection:
+    description: |-
+      Starts asynchronous detection of labels in a stored video.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_StartLabelDetection.html
+    example:
+      inputs: [
+        {
+          "Video": {
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "JobTag": "string",
+          "MinConfidence": 0.1,
+          "ClientRequestToken": "string",
+          "NotificationChannel": {
+            "RoleArn": "string",
+            "SNSTopicArn": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartPersonTracking:
+    description: |-
+      Starts the asynchronous tracking of a person's path in a stored video.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_StartPersonTracking.html
+    example:
+      inputs: [
+        {
+          "Video": {
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "JobTag": "string",
+          "ClientRequestToken": "string",
+          "NotificationChannel": {
+            "RoleArn": "string",
+            "SNSTopicArn": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartProjectVersion:
+    description: |-
+      Starts the running of the version of a model. Starting a model takes a while to complete. To check the current state of the model, use DescribeProjectVersions.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_StartProjectVersion.html
+    example:
+      inputs: [
+        {
+          "MinInferenceUnits": 1,
+          "ProjectVersionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string"
+        }
+      ]
+  StartSegmentDetection:
+    description: |-
+      Starts asynchronous detection of segment detection in a stored video.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_StartSegmentDetection.html
+    example:
+      inputs: [
+        {
+          "Video": {
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "JobTag": "string",
+          "Filters": {
+            "ShotFilter": {
+              "MinSegmentConfidence": 0.1
+            },
+            "TechnicalCueFilter": {
+              "MinSegmentConfidence": 0.1
+            }
+          },
+          "SegmentTypes": [
+            "string"
+          ],
+          "ClientRequestToken": "string",
+          "NotificationChannel": {
+            "RoleArn": "string",
+            "SNSTopicArn": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartStreamProcessor:
+    description: |-
+      Starts processing a stream processor. You create a stream processor by calling CreateStreamProcessor. To tell StartStreamProcessor which stream processor to start, use the value of the Name field specified in the call to CreateStreamProcessor.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_StartStreamProcessor.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartTextDetection:
+    description: |-
+      Starts asynchronous detection of text in a stored video.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_StartTextDetection.html
+    example:
+      inputs: [
+        {
+          "Video": {
+            "S3Object": {
+              "Name": "string",
+              "Bucket": "string",
+              "Version": "string"
+            }
+          },
+          "JobTag": "string",
+          "Filters": {
+            "WordFilter": {
+              "MinConfidence": 0.1,
+              "MinBoundingBoxWidth": 0.1,
+              "MinBoundingBoxHeight": 0.1
+            },
+            "RegionsOfInterest": [
+              {
+                "BoundingBox": {
+                  "Top": 0.1,
+                  "Left": 0.1,
+                  "Width": 0.1,
+                  "Height": 0.1
+                }
+              }
+            ]
+          },
+          "ClientRequestToken": "string",
+          "NotificationChannel": {
+            "RoleArn": "string",
+            "SNSTopicArn": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StopProjectVersion:
+    description: |-
+      Stops a running model. The operation might take a while to complete. To check the current status, call DescribeProjectVersions.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_StopProjectVersion.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Status": "string"
+        }
+      ]
+  StopStreamProcessor:
+    description: |-
+      Stops a running stream processor that was created by CreateStreamProcessor.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_StopStreamProcessor.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Adds one or more key-value tags to an Amazon Rekognition collection, stream processor, or Custom Labels model. For more information, see Tagging AWS Resources.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes one or more tags from an Amazon Rekognition collection, stream processor, or Custom Labels model.
+    versions:
+      from: 2016.6.27
+    link: https://docs.aws.amazon.com/rekognition/latest/dg/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

@@ -1,0 +1,1373 @@
+Product:
+  name: AWS Organizations
+  versions: [2016.11.28]
+  package: amazon.aws.organizations
+  description: |-
+    AWS Organizations
+  link: https://docs.aws.amazon.com/organizations/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AcceptHandshake:
+    description: |-
+      Sends a response to the originator of a handshake agreeing to the action proposed by the handshake request.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_AcceptHandshake.html
+    example:
+      inputs: [
+        {
+          "HandshakeId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Handshake": {
+            "Id": "string",
+            "Arn": "string",
+            "State": "string",
+            "Action": "string",
+            "Parties": [
+              {
+                "Id": "string",
+                "Type": "string"
+              }
+            ],
+            "Resources": [
+              {
+                "Type": "string",
+                "Value": "string",
+                "Resources": [
+                  "HandshakeResource"
+                ]
+              }
+            ],
+            "RequestedTimestamp": "number",
+            "ExpirationTimestamp": "number"
+          }
+        }
+      ]
+  AttachPolicy:
+    description: |-
+      Attaches a policy to a root, an organizational unit (OU), or an individual account. How the policy affects accounts depends on the type of policy.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_AttachPolicy.html
+    example:
+      inputs: [
+        {
+          "PolicyId": "string",
+          "TargetId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CancelHandshake:
+    description: |-
+      Cancels a handshake. Canceling a handshake sets the handshake state to CANCELED.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_CancelHandshake.html
+    example:
+      inputs: [
+        {
+          "HandshakeId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Handshake": {
+            "Id": "string",
+            "Arn": "string",
+            "State": "string",
+            "Action": "string",
+            "Parties": [
+              {
+                "Id": "string",
+                "Type": "string"
+              }
+            ],
+            "Resources": [
+              {
+                "Type": "string",
+                "Value": "string",
+                "Resources": [
+                  "HandshakeResource"
+                ]
+              }
+            ],
+            "RequestedTimestamp": "number",
+            "ExpirationTimestamp": "number"
+          }
+        }
+      ]
+  CreateAccount:
+    description: |-
+      Creates an AWS account that is automatically a member of the organization whose credentials made the request. This is an asynchronous request that AWS performs in the background. Because CreateAccount operates asynchronously, it can return a successful completion message even though account initialization might still be in progress. You might need to wait a few minutes before you can successfully access the account.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_CreateAccount.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Email": "string",
+          "RoleName": "string",
+          "AccountName": "string",
+          "IamUserAccessToBilling": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CreateAccountStatus": {
+            "Id": "string",
+            "State": "string",
+            "AccountId": "string",
+            "AccountName": "string",
+            "FailureReason": "string",
+            "GovCloudAccountId": "string",
+            "CompletedTimestamp": "number",
+            "RequestedTimestamp": "number"
+          }
+        }
+      ]
+  CreateGovCloudAccount:
+    description: ''
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_CreateGovCloudAccount.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Email": "string",
+          "RoleName": "string",
+          "AccountName": "string",
+          "IamUserAccessToBilling": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CreateAccountStatus": {
+            "Id": "string",
+            "State": "string",
+            "AccountId": "string",
+            "AccountName": "string",
+            "FailureReason": "string",
+            "GovCloudAccountId": "string",
+            "CompletedTimestamp": "number",
+            "RequestedTimestamp": "number"
+          }
+        }
+      ]
+  CreateOrganizationalUnit:
+    description: |-
+      Creates an organizational unit (OU) within a root or parent OU. An OU is a container for accounts that enables you to organize your accounts to apply policies according to your business requirements. The number of levels deep that you can nest OUs is dependent upon the policy types enabled for that root. For service control policies, the limit is five.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_CreateOrganizationalUnit.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ParentId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "OrganizationalUnit": {
+            "Id": "string",
+            "Arn": "string",
+            "Name": "string"
+          }
+        }
+      ]
+  CreateOrganization:
+    description: |-
+      Creates an AWS organization. The account whose user is calling the CreateOrganization operation automatically becomes the management account of the new organization.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_CreateOrganization.html
+    example:
+      inputs: [
+        {
+          "FeatureSet": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Organization": {
+            "Id": "string",
+            "Arn": "string",
+            "FeatureSet": "string",
+            "MasterAccountId": "string",
+            "MasterAccountArn": "string",
+            "MasterAccountEmail": "string",
+            "AvailablePolicyTypes": [
+              {
+                "Type": "string",
+                "Status": "string"
+              }
+            ]
+          }
+        }
+      ]
+  CreatePolicy:
+    description: |-
+      Creates a policy of a specified type that you can attach to a root, an organizational unit (OU), or an individual AWS account.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_CreatePolicy.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Type": "string",
+          "Content": "string",
+          "Description": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Policy": {
+            "Content": "string",
+            "PolicySummary": {
+              "Id": "string",
+              "Arn": "string",
+              "Name": "string",
+              "Type": "string",
+              "AwsManaged": "boolean",
+              "Description": "string"
+            }
+          }
+        }
+      ]
+  DeclineHandshake:
+    description: |-
+      Declines a handshake request. This sets the handshake state to DECLINED and effectively deactivates the request.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_DeclineHandshake.html
+    example:
+      inputs: [
+        {
+          "HandshakeId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Handshake": {
+            "Id": "string",
+            "Arn": "string",
+            "State": "string",
+            "Action": "string",
+            "Parties": [
+              {
+                "Id": "string",
+                "Type": "string"
+              }
+            ],
+            "Resources": [
+              {
+                "Type": "string",
+                "Value": "string",
+                "Resources": [
+                  "HandshakeResource"
+                ]
+              }
+            ],
+            "RequestedTimestamp": "number",
+            "ExpirationTimestamp": "number"
+          }
+        }
+      ]
+  DeleteOrganizationalUnit:
+    description: |-
+      Deletes an organizational unit (OU) from a root or another OU. You must first remove all accounts and child OUs from the OU that you want to delete.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_DeleteOrganizationalUnit.html
+    example:
+      inputs: [
+        {
+          "OrganizationalUnitId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteOrganization:
+    description: |-
+      Deletes the organization. You can delete an organization only by using credentials from the management account. The organization must be empty of member accounts.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_DeleteOrganization.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeletePolicy:
+    description: |-
+      Deletes the specified policy from your organization. Before you perform this operation, you must first detach the policy from all organizational units (OUs), roots, and accounts.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_DeletePolicy.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeregisterDelegatedAdministrator:
+    description: |-
+      Removes the specified member AWS account as a delegated administrator for the specified AWS service.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_DeregisterDelegatedAdministrator.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "ServicePrincipal": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeAccount:
+    description: |-
+      Retrieves AWS Organizations-related information about the specified account.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_DescribeAccount.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Account": {
+            "Id": "string",
+            "Arn": "string",
+            "Name": "string",
+            "Email": "string",
+            "Status": "string",
+            "JoinedMethod": "string",
+            "JoinedTimestamp": "number"
+          }
+        }
+      ]
+  DescribeCreateAccountStatus:
+    description: |-
+      Retrieves the current status of an asynchronous request to create an account.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_DescribeCreateAccountStatus.html
+    example:
+      inputs: [
+        {
+          "CreateAccountRequestId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CreateAccountStatus": {
+            "Id": "string",
+            "State": "string",
+            "AccountId": "string",
+            "AccountName": "string",
+            "FailureReason": "string",
+            "GovCloudAccountId": "string",
+            "CompletedTimestamp": "number",
+            "RequestedTimestamp": "number"
+          }
+        }
+      ]
+  DescribeEffectivePolicy:
+    description: |-
+      Returns the contents of the effective policy for specified policy type and account. The effective policy is the aggregation of any policies of the specified type that the account inherits, plus any policy of that type that is directly attached to the account.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_DescribeEffectivePolicy.html
+    example:
+      inputs: [
+        {
+          "TargetId": "string",
+          "PolicyType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EffectivePolicy": {
+            "TargetId": "string",
+            "PolicyType": "string",
+            "PolicyContent": "string",
+            "LastUpdatedTimestamp": "number"
+          }
+        }
+      ]
+  DescribeHandshake:
+    description: |-
+      Retrieves information about a previously requested handshake. The handshake ID comes from the response to the original InviteAccountToOrganization operation that generated the handshake.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_DescribeHandshake.html
+    example:
+      inputs: [
+        {
+          "HandshakeId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Handshake": {
+            "Id": "string",
+            "Arn": "string",
+            "State": "string",
+            "Action": "string",
+            "Parties": [
+              {
+                "Id": "string",
+                "Type": "string"
+              }
+            ],
+            "Resources": [
+              {
+                "Type": "string",
+                "Value": "string",
+                "Resources": [
+                  "HandshakeResource"
+                ]
+              }
+            ],
+            "RequestedTimestamp": "number",
+            "ExpirationTimestamp": "number"
+          }
+        }
+      ]
+  DescribeOrganizationalUnit:
+    description: |-
+      Retrieves information about an organizational unit (OU).
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_DescribeOrganizationalUnit.html
+    example:
+      inputs: [
+        {
+          "OrganizationalUnitId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "OrganizationalUnit": {
+            "Id": "string",
+            "Arn": "string",
+            "Name": "string"
+          }
+        }
+      ]
+  DescribeOrganization:
+    description: |-
+      Retrieves information about the organization that the user's account belongs to.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_DescribeOrganization.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Organization": {
+            "Id": "string",
+            "Arn": "string",
+            "FeatureSet": "string",
+            "MasterAccountId": "string",
+            "MasterAccountArn": "string",
+            "MasterAccountEmail": "string",
+            "AvailablePolicyTypes": [
+              {
+                "Type": "string",
+                "Status": "string"
+              }
+            ]
+          }
+        }
+      ]
+  DescribePolicy:
+    description: |-
+      Retrieves information about a policy.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_DescribePolicy.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Policy": {
+            "Content": "string",
+            "PolicySummary": {
+              "Id": "string",
+              "Arn": "string",
+              "Name": "string",
+              "Type": "string",
+              "AwsManaged": "boolean",
+              "Description": "string"
+            }
+          }
+        }
+      ]
+  DetachPolicy:
+    description: |-
+      Detaches a policy from a target root, organizational unit (OU), or account.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_DetachPolicy.html
+    example:
+      inputs: [
+        {
+          "PolicyId": "string",
+          "TargetId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DisableAWSServiceAccess:
+    description: |-
+      Disables the integration of an AWS service (the service that is specified by ServicePrincipal) with AWS Organizations. When you disable integration, the specified service no longer can create a service-linked role in new accounts in your organization. This means the service can't perform operations on your behalf on any new accounts in your organization. The service can still perform operations in older accounts until the service completes its clean-up from AWS Organizations.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_DisableAWSServiceAccess.html
+    example:
+      inputs: [
+        {
+          "ServicePrincipal": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DisablePolicyType:
+    description: |-
+      Disables an organizational policy type in a root. A policy of a certain type can be attached to entities in a root only if that type is enabled in the root. After you perform this operation, you no longer can attach policies of the specified type to that root or to any organizational unit (OU) or account in that root. You can undo this by using the EnablePolicyType operation.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_DisablePolicyType.html
+    example:
+      inputs: [
+        {
+          "RootId": "string",
+          "PolicyType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Root": {
+            "Id": "string",
+            "Arn": "string",
+            "Name": "string",
+            "PolicyTypes": [
+              {
+                "Type": "string",
+                "Status": "string"
+              }
+            ]
+          }
+        }
+      ]
+  EnableAllFeatures:
+    description: |-
+      Enables all features in an organization. This enables the use of organization policies that can restrict the services and actions that can be called in each account. Until you enable all features, you have access only to consolidated billing, and you can't use any of the advanced account administration features that AWS Organizations supports. For more information, see Enabling All Features in Your Organization in the AWS Organizations User Guide.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAllFeatures.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Handshake": {
+            "Id": "string",
+            "Arn": "string",
+            "State": "string",
+            "Action": "string",
+            "Parties": [
+              {
+                "Id": "string",
+                "Type": "string"
+              }
+            ],
+            "Resources": [
+              {
+                "Type": "string",
+                "Value": "string",
+                "Resources": [
+                  "HandshakeResource"
+                ]
+              }
+            ],
+            "RequestedTimestamp": "number",
+            "ExpirationTimestamp": "number"
+          }
+        }
+      ]
+  EnableAWSServiceAccess:
+    description: |-
+      Enables the integration of an AWS service (the service that is specified by ServicePrincipal) with AWS Organizations. When you enable integration, you allow the specified service to create a service-linked role in all the accounts in your organization. This allows the service to perform operations on your behalf in your organization and its accounts.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAWSServiceAccess.html
+    example:
+      inputs: [
+        {
+          "ServicePrincipal": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  EnablePolicyType:
+    description: |-
+      Enables a policy type in a root. After you enable a policy type in a root, you can attach policies of that type to the root, any organizational unit (OU), or account in that root. You can undo this by using the DisablePolicyType operation.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnablePolicyType.html
+    example:
+      inputs: [
+        {
+          "RootId": "string",
+          "PolicyType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Root": {
+            "Id": "string",
+            "Arn": "string",
+            "Name": "string",
+            "PolicyTypes": [
+              {
+                "Type": "string",
+                "Status": "string"
+              }
+            ]
+          }
+        }
+      ]
+  InviteAccountToOrganization:
+    description: |-
+      Sends an invitation to another account to join your organization as a member account. AWS Organizations sends email on your behalf to the email address that is associated with the other account's owner. The invitation is implemented as a Handshake whose details are in the response.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_InviteAccountToOrganization.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Notes": "string",
+          "Target": {
+            "Id": "string",
+            "Type": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Handshake": {
+            "Id": "string",
+            "Arn": "string",
+            "State": "string",
+            "Action": "string",
+            "Parties": [
+              {
+                "Id": "string",
+                "Type": "string"
+              }
+            ],
+            "Resources": [
+              {
+                "Type": "string",
+                "Value": "string",
+                "Resources": [
+                  "HandshakeResource"
+                ]
+              }
+            ],
+            "RequestedTimestamp": "number",
+            "ExpirationTimestamp": "number"
+          }
+        }
+      ]
+  LeaveOrganization:
+    description: |-
+      Removes a member account from its parent organization. This version of the operation is performed by the account that wants to leave. To remove a member account as a user in the management account, use RemoveAccountFromOrganization instead.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_LeaveOrganization.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  ListAccountsForParent:
+    description: |-
+      Lists the accounts in an organization that are contained by the specified target root or organizational unit (OU). If you specify the root, you get a list of all the accounts that aren't in any OU. If you specify an OU, you get a list of all the accounts in only that OU and not in any child OUs. To get a list of all accounts in the organization, use the ListAccounts operation.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListAccountsForParent.html
+    example:
+      inputs: [
+        {
+          "ParentId": "string",
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Accounts": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Name": "string",
+              "Email": "string",
+              "Status": "string",
+              "JoinedMethod": "string",
+              "JoinedTimestamp": "number"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListAccounts:
+    description: |-
+      Lists all the accounts in the organization. To request only the accounts in a specified root or organizational unit (OU), use the ListAccountsForParent operation instead.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListAccounts.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Accounts": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Name": "string",
+              "Email": "string",
+              "Status": "string",
+              "JoinedMethod": "string",
+              "JoinedTimestamp": "number"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListAWSServiceAccessForOrganization:
+    description: |-
+      Returns a list of the AWS services that you enabled to integrate with your organization. After a service on this list creates the resources that it requires for the integration, it can perform operations on your organization and its accounts.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListAWSServiceAccessForOrganization.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "EnabledServicePrincipals": [
+            {
+              "DateEnabled": "number",
+              "ServicePrincipal": "string"
+            }
+          ]
+        }
+      ]
+  ListChildren:
+    description: |-
+      Lists all of the organizational units (OUs) or accounts that are contained in the specified parent OU or root. This operation, along with ListParents enables you to traverse the tree structure that makes up this root.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListChildren.html
+    example:
+      inputs: [
+        {
+          "ParentId": "string",
+          "ChildType": "string",
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Children": [
+            {
+              "Id": "string",
+              "Type": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListCreateAccountStatus:
+    description: |-
+      Lists the account creation requests that match the specified status that is currently being tracked for the organization.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListCreateAccountStatus.html
+    example:
+      inputs: [
+        {
+          "States": [
+            "string"
+          ],
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CreateAccountStatuses": [
+            {
+              "Id": "string",
+              "State": "string",
+              "AccountId": "string",
+              "AccountName": "string",
+              "FailureReason": "string",
+              "GovCloudAccountId": "string",
+              "CompletedTimestamp": "number",
+              "RequestedTimestamp": "number"
+            }
+          ]
+        }
+      ]
+  ListDelegatedAdministrators:
+    description: |-
+      Lists the AWS accounts that are designated as delegated administrators in this organization.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListDelegatedAdministrators.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": "number",
+          "ServicePrincipal": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DelegatedAdministrators": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Name": "string",
+              "Email": "string",
+              "Status": "string",
+              "JoinedMethod": "string",
+              "JoinedTimestamp": "number",
+              "DelegationEnabledDate": "number"
+            }
+          ]
+        }
+      ]
+  ListDelegatedServicesForAccount:
+    description: |-
+      List the AWS services for which the specified account is a delegated administrator.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListDelegatedServicesForAccount.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DelegatedServices": [
+            {
+              "ServicePrincipal": "string",
+              "DelegationEnabledDate": "number"
+            }
+          ]
+        }
+      ]
+  ListHandshakesForAccount:
+    description: |-
+      Lists the current handshakes that are associated with the account of the requesting user.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListHandshakesForAccount.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "ActionType": "string",
+            "ParentHandshakeId": "string"
+          },
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Handshakes": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "State": "string",
+              "Action": "string",
+              "Parties": [
+                {
+                  "Id": "string",
+                  "Type": "string"
+                }
+              ],
+              "Resources": [
+                {
+                  "Type": "string",
+                  "Value": "string",
+                  "Resources": [
+                    "HandshakeResource"
+                  ]
+                }
+              ],
+              "RequestedTimestamp": "number",
+              "ExpirationTimestamp": "number"
+            }
+          ]
+        }
+      ]
+  ListHandshakesForOrganization:
+    description: |-
+      Lists the handshakes that are associated with the organization that the requesting user is part of. The ListHandshakesForOrganization operation returns a list of handshake structures. Each structure contains details and status about a handshake.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListHandshakesForOrganization.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "ActionType": "string",
+            "ParentHandshakeId": "string"
+          },
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Handshakes": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "State": "string",
+              "Action": "string",
+              "Parties": [
+                {
+                  "Id": "string",
+                  "Type": "string"
+                }
+              ],
+              "Resources": [
+                {
+                  "Type": "string",
+                  "Value": "string",
+                  "Resources": [
+                    "HandshakeResource"
+                  ]
+                }
+              ],
+              "RequestedTimestamp": "number",
+              "ExpirationTimestamp": "number"
+            }
+          ]
+        }
+      ]
+  ListOrganizationalUnitsForParent:
+    description: |-
+      Lists the organizational units (OUs) in a parent organizational unit or root.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListOrganizationalUnitsForParent.html
+    example:
+      inputs: [
+        {
+          "ParentId": "string",
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "OrganizationalUnits": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Name": "string"
+            }
+          ]
+        }
+      ]
+  ListParents:
+    description: |-
+      Lists the root or organizational units (OUs) that serve as the immediate parent of the specified child OU or account. This operation, along with ListChildren enables you to traverse the tree structure that makes up this root.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListParents.html
+    example:
+      inputs: [
+        {
+          "ChildId": "string",
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Parents": [
+            {
+              "Id": "string",
+              "Type": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListPoliciesForTarget:
+    description: |-
+      Lists the policies that are directly attached to the specified target root, organizational unit (OU), or account. You must specify the policy type that you want included in the returned list.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListPoliciesForTarget.html
+    example:
+      inputs: [
+        {
+          "Filter": "string",
+          "TargetId": "string",
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Policies": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Name": "string",
+              "Type": "string",
+              "AwsManaged": "boolean",
+              "Description": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListPolicies:
+    description: |-
+      Retrieves the list of all policies in an organization of a specified type.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListPolicies.html
+    example:
+      inputs: [
+        {
+          "Filter": "string",
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Policies": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Name": "string",
+              "Type": "string",
+              "AwsManaged": "boolean",
+              "Description": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListRoots:
+    description: |-
+      Lists the roots that are defined in the current organization.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListRoots.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Roots": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Name": "string",
+              "PolicyTypes": [
+                {
+                  "Type": "string",
+                  "Status": "string"
+                }
+              ]
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists tags that are attached to the specified resource.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "ResourceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListTargetsForPolicy:
+    description: |-
+      Lists all the roots, organizational units (OUs), and accounts that the specified policy is attached to.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListTargetsForPolicy.html
+    example:
+      inputs: [
+        {
+          "PolicyId": "string",
+          "NextToken": "string",
+          "MaxResults": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Targets": [
+            {
+              "Arn": "string",
+              "Name": "string",
+              "Type": "string",
+              "TargetId": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  MoveAccount:
+    description: |-
+      Moves an account from its current source parent root or organizational unit (OU) to the specified destination parent root or OU.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_MoveAccount.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "SourceParentId": "string",
+          "DestinationParentId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RegisterDelegatedAdministrator:
+    description: |-
+      Enables the specified member account to administer the Organizations features of the specified AWS service. It grants read-only access to AWS Organizations service data. The account still requires IAM permissions to access and administer the AWS service.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_RegisterDelegatedAdministrator.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "ServicePrincipal": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RemoveAccountFromOrganization:
+    description: |-
+      Removes the specified account from the organization.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_RemoveAccountFromOrganization.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Adds one or more tags to the specified resource.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes any tags with the specified keys from the specified resource.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateOrganizationalUnit:
+    description: |-
+      Renames the specified organizational unit (OU). The ID and ARN don't change. The child OUs and accounts remain in place, and any attached policies of the OU remain attached.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_UpdateOrganizationalUnit.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "OrganizationalUnitId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "OrganizationalUnit": {
+            "Id": "string",
+            "Arn": "string",
+            "Name": "string"
+          }
+        }
+      ]
+  UpdatePolicy:
+    description: |-
+      Updates an existing policy with a new name, description, or content. If you don't supply any parameter, that value remains unchanged. You can't change a policy's type.
+    versions:
+      from: 2016.11.28
+    link: https://docs.aws.amazon.com/organizations/latest/APIReference/API_UpdatePolicy.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Content": "string",
+          "PolicyId": "string",
+          "Description": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Policy": {
+            "Content": "string",
+            "PolicySummary": {
+              "Id": "string",
+              "Arn": "string",
+              "Name": "string",
+              "Type": "string",
+              "AwsManaged": "boolean",
+              "Description": "string"
+            }
+          }
+        }
+      ]

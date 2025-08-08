@@ -1,0 +1,584 @@
+Product:
+  name: AWS CloudHSM
+  versions: [2017.4.28]
+  package: amazon.aws.cloudhsm
+  description: |-
+    AWS CloudHSM
+  link: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CopyBackupToRegion:
+    description: |-
+      Copy an AWS CloudHSM cluster backup to a different region.
+    versions:
+      from: 2017.4.28
+    link: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_CopyBackupToRegion.html
+    example:
+      inputs: [
+        {
+          "TagList": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "BackupId": "string",
+          "DestinationRegion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DestinationBackup": {
+            "SourceBackup": "string",
+            "SourceRegion": "string",
+            "SourceCluster": "string",
+            "CreateTimestamp": 1481289211.615
+          }
+        }
+      ]
+  CreateCluster:
+    description: |-
+      Creates a new AWS CloudHSM cluster.
+    versions:
+      from: 2017.4.28
+    link: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_CreateCluster.html
+    example:
+      inputs: [
+        {
+          "HsmType": "string",
+          "TagList": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "SubnetIds": [
+            "string"
+          ],
+          "SourceBackupId": "string",
+          "BackupRetentionPolicy": {
+            "Type": "string",
+            "Value": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Cluster": {
+            "Hsms": [
+              {
+                "EniId": "string",
+                "EniIp": "string",
+                "HsmId": "string",
+                "State": "string",
+                "SubnetId": "string",
+                "ClusterId": "string",
+                "StateMessage": "string",
+                "AvailabilityZone": "string"
+              }
+            ],
+            "State": "string",
+            "VpcId": "string",
+            "HsmType": "string",
+            "TagList": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "ClusterId": "string",
+            "BackupPolicy": "string",
+            "Certificates": {
+              "ClusterCsr": "string",
+              "HsmCertificate": "string",
+              "ClusterCertificate": "string",
+              "AwsHardwareCertificate": "string",
+              "ManufacturerHardwareCertificate": "string"
+            },
+            "StateMessage": "string",
+            "PreCoPassword": "string",
+            "SecurityGroup": "string",
+            "SubnetMapping": {
+              "string": "string"
+            },
+            "SourceBackupId": "string",
+            "CreateTimestamp": 1481289211.615,
+            "BackupRetentionPolicy": {
+              "Type": "string",
+              "Value": "string"
+            }
+          }
+        }
+      ]
+  CreateHsm:
+    description: |-
+      Creates a new hardware security module (HSM) in the specified AWS CloudHSM cluster.
+    versions:
+      from: 2017.4.28
+    link: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_CreateHsm.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string",
+          "IpAddress": "string",
+          "AvailabilityZone": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Hsm": {
+            "EniId": "string",
+            "EniIp": "string",
+            "HsmId": "string",
+            "State": "string",
+            "SubnetId": "string",
+            "ClusterId": "string",
+            "StateMessage": "string",
+            "AvailabilityZone": "string"
+          }
+        }
+      ]
+  DeleteBackup:
+    description: |-
+      Deletes a specified AWS CloudHSM backup. A backup can be restored up to 7 days after the DeleteBackup request is made. For more information on restoring a backup, see RestoreBackup.
+    versions:
+      from: 2017.4.28
+    link: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_DeleteBackup.html
+    example:
+      inputs: [
+        {
+          "BackupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Backup": {
+            "TagList": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "BackupId": "string",
+            "ClusterId": "string",
+            "BackupState": "string",
+            "NeverExpires": false,
+            "SourceBackup": "string",
+            "SourceRegion": "string",
+            "CopyTimestamp": 1481289211.615,
+            "SourceCluster": "string",
+            "CreateTimestamp": 1481289211.615,
+            "DeleteTimestamp": 1481289211.615
+          }
+        }
+      ]
+  DeleteCluster:
+    description: |-
+      Deletes the specified AWS CloudHSM cluster. Before you can delete a cluster, you must delete all HSMs in the cluster. To see if the cluster contains any HSMs, use DescribeClusters. To delete an HSM, use DeleteHsm.
+    versions:
+      from: 2017.4.28
+    link: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_DeleteCluster.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Cluster": {
+            "Hsms": [
+              {
+                "EniId": "string",
+                "EniIp": "string",
+                "HsmId": "string",
+                "State": "string",
+                "SubnetId": "string",
+                "ClusterId": "string",
+                "StateMessage": "string",
+                "AvailabilityZone": "string"
+              }
+            ],
+            "State": "string",
+            "VpcId": "string",
+            "HsmType": "string",
+            "TagList": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "ClusterId": "string",
+            "BackupPolicy": "string",
+            "Certificates": {
+              "ClusterCsr": "string",
+              "HsmCertificate": "string",
+              "ClusterCertificate": "string",
+              "AwsHardwareCertificate": "string",
+              "ManufacturerHardwareCertificate": "string"
+            },
+            "StateMessage": "string",
+            "PreCoPassword": "string",
+            "SecurityGroup": "string",
+            "SubnetMapping": {
+              "string": "string"
+            },
+            "SourceBackupId": "string",
+            "CreateTimestamp": 1481289211.615,
+            "BackupRetentionPolicy": {
+              "Type": "string",
+              "Value": "string"
+            }
+          }
+        }
+      ]
+  DeleteHsm:
+    description: |-
+      Deletes the specified HSM. To specify an HSM, you can use its identifier (ID), the IP address of the HSM's elastic network interface (ENI), or the ID of the HSM's ENI. You need to specify only one of these values. To find these values, use DescribeClusters.
+    versions:
+      from: 2017.4.28
+    link: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_DeleteHsm.html
+    example:
+      inputs: [
+        {
+          "EniId": "string",
+          "EniIp": "string",
+          "HsmId": "string",
+          "ClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "HsmId": "string"
+        }
+      ]
+  DescribeBackups:
+    description: |-
+      Gets information about backups of AWS CloudHSM clusters.
+    versions:
+      from: 2017.4.28
+    link: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_DescribeBackups.html
+    example:
+      inputs: [
+        {
+          "Filters": {
+            "string": [
+              "string"
+            ]
+          },
+          "NextToken": "string",
+          "MaxResults": 1,
+          "SortAscending": false
+        }
+      ]
+      outputs: [
+        {
+          "Backups": [
+            {
+              "TagList": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ],
+              "BackupId": "string",
+              "ClusterId": "string",
+              "BackupState": "string",
+              "NeverExpires": false,
+              "SourceBackup": "string",
+              "SourceRegion": "string",
+              "CopyTimestamp": 1481289211.615,
+              "SourceCluster": "string",
+              "CreateTimestamp": 1481289211.615,
+              "DeleteTimestamp": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeClusters:
+    description: |-
+      Gets information about AWS CloudHSM clusters.
+    versions:
+      from: 2017.4.28
+    link: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_DescribeClusters.html
+    example:
+      inputs: [
+        {
+          "Filters": {
+            "string": [
+              "string"
+            ]
+          },
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Clusters": [
+            {
+              "Hsms": [
+                {
+                  "EniId": "string",
+                  "EniIp": "string",
+                  "HsmId": "string",
+                  "State": "string",
+                  "SubnetId": "string",
+                  "ClusterId": "string",
+                  "StateMessage": "string",
+                  "AvailabilityZone": "string"
+                }
+              ],
+              "State": "string",
+              "VpcId": "string",
+              "HsmType": "string",
+              "TagList": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ],
+              "ClusterId": "string",
+              "BackupPolicy": "string",
+              "Certificates": {
+                "ClusterCsr": "string",
+                "HsmCertificate": "string",
+                "ClusterCertificate": "string",
+                "AwsHardwareCertificate": "string",
+                "ManufacturerHardwareCertificate": "string"
+              },
+              "StateMessage": "string",
+              "PreCoPassword": "string",
+              "SecurityGroup": "string",
+              "SubnetMapping": {
+                "string": "string"
+              },
+              "SourceBackupId": "string",
+              "CreateTimestamp": 1481289211.615,
+              "BackupRetentionPolicy": {
+                "Type": "string",
+                "Value": "string"
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  InitializeCluster:
+    description: |-
+      Claims an AWS CloudHSM cluster by submitting the cluster certificate issued by your issuing certificate authority (CA) and the CA's root certificate. Before you can claim a cluster, you must sign the cluster's certificate signing request (CSR) with your issuing CA. To get the cluster's CSR, use DescribeClusters.
+    versions:
+      from: 2017.4.28
+    link: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_InitializeCluster.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string",
+          "SignedCert": "string",
+          "TrustAnchor": "string"
+        }
+      ]
+      outputs: [
+        {
+          "State": "string",
+          "StateMessage": "string"
+        }
+      ]
+  ListTags:
+    description: |-
+      Gets a list of tags for the specified AWS CloudHSM cluster.
+    versions:
+      from: 2017.4.28
+    link: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_ListTags.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TagList": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ModifyBackupAttributes:
+    description: |-
+      Modifies attributes for AWS CloudHSM backup.
+    versions:
+      from: 2017.4.28
+    link: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_ModifyBackupAttributes.html
+    example:
+      inputs: [
+        {
+          "BackupId": "string",
+          "NeverExpires": false
+        }
+      ]
+      outputs: [
+        {
+          "Backup": {
+            "TagList": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "BackupId": "string",
+            "ClusterId": "string",
+            "BackupState": "string",
+            "NeverExpires": false,
+            "SourceBackup": "string",
+            "SourceRegion": "string",
+            "CopyTimestamp": 1481289211.615,
+            "SourceCluster": "string",
+            "CreateTimestamp": 1481289211.615,
+            "DeleteTimestamp": 1481289211.615
+          }
+        }
+      ]
+  ModifyCluster:
+    description: |-
+      Modifies AWS CloudHSM cluster.
+    versions:
+      from: 2017.4.28
+    link: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_ModifyCluster.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string",
+          "BackupRetentionPolicy": {
+            "Type": "string",
+            "Value": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Cluster": {
+            "Hsms": [
+              {
+                "EniId": "string",
+                "EniIp": "string",
+                "HsmId": "string",
+                "State": "string",
+                "SubnetId": "string",
+                "ClusterId": "string",
+                "StateMessage": "string",
+                "AvailabilityZone": "string"
+              }
+            ],
+            "State": "string",
+            "VpcId": "string",
+            "HsmType": "string",
+            "TagList": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "ClusterId": "string",
+            "BackupPolicy": "string",
+            "Certificates": {
+              "ClusterCsr": "string",
+              "HsmCertificate": "string",
+              "ClusterCertificate": "string",
+              "AwsHardwareCertificate": "string",
+              "ManufacturerHardwareCertificate": "string"
+            },
+            "StateMessage": "string",
+            "PreCoPassword": "string",
+            "SecurityGroup": "string",
+            "SubnetMapping": {
+              "string": "string"
+            },
+            "SourceBackupId": "string",
+            "CreateTimestamp": 1481289211.615,
+            "BackupRetentionPolicy": {
+              "Type": "string",
+              "Value": "string"
+            }
+          }
+        }
+      ]
+  RestoreBackup:
+    description: |-
+      Restores a specified AWS CloudHSM backup that is in the PENDING_DELETION state. For mor information on deleting a backup, see DeleteBackup.
+    versions:
+      from: 2017.4.28
+    link: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_RestoreBackup.html
+    example:
+      inputs: [
+        {
+          "BackupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Backup": {
+            "TagList": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "BackupId": "string",
+            "ClusterId": "string",
+            "BackupState": "string",
+            "NeverExpires": false,
+            "SourceBackup": "string",
+            "SourceRegion": "string",
+            "CopyTimestamp": 1481289211.615,
+            "SourceCluster": "string",
+            "CreateTimestamp": 1481289211.615,
+            "DeleteTimestamp": 1481289211.615
+          }
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds or overwrites one or more tags for the specified AWS CloudHSM cluster.
+    versions:
+      from: 2017.4.28
+    link: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "TagList": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes the specified tag or tags from the specified AWS CloudHSM cluster.
+    versions:
+      from: 2017.4.28
+    link: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "ResourceId": "string",
+          "TagKeyList": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]

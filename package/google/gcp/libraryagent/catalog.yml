@@ -1,0 +1,233 @@
+Product:
+  name: GCP Library Agent
+  versions: [1.0.0]
+  package: google.gcp.libraryagent
+  description: |-
+    Library Agent
+  link: https://cloud.google.com/monitoring/docs/reference/libraries
+  contentType: json
+Operations:
+  shelves.books.borrow:
+    description: |-
+      Borrow a book from the library. Returns the book if it is borrowed successfully. Returns NOT_FOUND if the book does not exist in the library. Returns quota exceeded error if the amount of books borrowed exceeds allocation quota in any dimensions.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/docs/quota/v1/shelves.books/borrow
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "GoogleExampleLibraryagentV1Book",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The resource name of the book. Book names have the form `shelves/{shelf_id}/books/{book_id}`. The name is ignored when creating a book."
+            },
+            "read": {
+              "type": "boolean",
+              "description": "Value indicating whether the book has been read."
+            },
+            "title": {
+              "type": "string",
+              "description": "The title of the book."
+            },
+            "author": {
+              "type": "string",
+              "description": "The name of the book author."
+            }
+          },
+          "description": "A single book in the library."
+        }
+      ]
+  shelves.books.get:
+    description: |-
+      Gets a book. Returns NOT_FOUND if the book does not exist.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/docs/quota/v1/shelves.books/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "GoogleExampleLibraryagentV1Book",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The resource name of the book. Book names have the form `shelves/{shelf_id}/books/{book_id}`. The name is ignored when creating a book."
+            },
+            "read": {
+              "type": "boolean",
+              "description": "Value indicating whether the book has been read."
+            },
+            "title": {
+              "type": "string",
+              "description": "The title of the book."
+            },
+            "author": {
+              "type": "string",
+              "description": "The name of the book author."
+            }
+          },
+          "description": "A single book in the library."
+        }
+      ]
+  shelves.books.list:
+    description: |-
+      Lists books in a shelf. The order is unspecified but deterministic. Newly created books will not necessarily be added to the end of this list. Returns NOT_FOUND if the shelf does not exist.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/docs/quota/v1/shelves.books/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "GoogleExampleLibraryagentV1ListBooksResponse",
+          "type": "object",
+          "properties": {
+            "books": {
+              "type": "array",
+              "items": {
+                "id": "GoogleExampleLibraryagentV1Book",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The resource name of the book. Book names have the form `shelves/{shelf_id}/books/{book_id}`. The name is ignored when creating a book."
+                  },
+                  "read": {
+                    "type": "boolean",
+                    "description": "Value indicating whether the book has been read."
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "The title of the book."
+                  },
+                  "author": {
+                    "type": "string",
+                    "description": "The name of the book author."
+                  }
+                },
+                "description": "A single book in the library."
+              },
+              "description": "The list of books."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "A token to retrieve next page of results. Pass this value in the ListBooksRequest.page_token field in the subsequent call to `ListBooks` method to retrieve the next page of results."
+            }
+          },
+          "description": "Response message for LibraryAgent.ListBooks."
+        }
+      ]
+  shelves.books.return:
+    description: |-
+      Return a book to the library. Returns the book if it is returned to the library successfully. Returns error if the book does not belong to the library or the users didn't borrow before.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/docs/quota/v1/shelves.books/return
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "GoogleExampleLibraryagentV1Book",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The resource name of the book. Book names have the form `shelves/{shelf_id}/books/{book_id}`. The name is ignored when creating a book."
+            },
+            "read": {
+              "type": "boolean",
+              "description": "Value indicating whether the book has been read."
+            },
+            "title": {
+              "type": "string",
+              "description": "The title of the book."
+            },
+            "author": {
+              "type": "string",
+              "description": "The name of the book author."
+            }
+          },
+          "description": "A single book in the library."
+        }
+      ]
+  shelves.get:
+    description: |-
+      Gets a shelf. Returns NOT_FOUND if the shelf does not exist.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/docs/quota/v1/shelves/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "GoogleExampleLibraryagentV1Shelf",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Output only. The resource name of the shelf. Shelf names have the form `shelves/{shelf_id}`. The name is ignored when creating a shelf."
+            },
+            "theme": {
+              "type": "string",
+              "description": "The theme of the shelf"
+            }
+          },
+          "description": "A Shelf contains a collection of books with a theme."
+        }
+      ]
+  shelves.list:
+    description: |-
+      Lists shelves. The order is unspecified but deterministic. Newly created shelves will not necessarily be added to the end of this list.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/docs/quota/v1/shelves/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "GoogleExampleLibraryagentV1ListShelvesResponse",
+          "type": "object",
+          "properties": {
+            "shelves": {
+              "type": "array",
+              "items": {
+                "id": "GoogleExampleLibraryagentV1Shelf",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Output only. The resource name of the shelf. Shelf names have the form `shelves/{shelf_id}`. The name is ignored when creating a shelf."
+                  },
+                  "theme": {
+                    "type": "string",
+                    "description": "The theme of the shelf"
+                  }
+                },
+                "description": "A Shelf contains a collection of books with a theme."
+              },
+              "description": "The list of shelves."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "A token to retrieve next page of results. Pass this value in the ListShelvesRequest.page_token field in the subsequent call to `ListShelves` method to retrieve the next page of results."
+            }
+          },
+          "description": "Response message for LibraryAgent.ListShelves."
+        }
+      ]

@@ -1,0 +1,1421 @@
+Product:
+  name: AWS IoT Analytics
+  versions: [2017.11.27]
+  package: amazon.aws.iotanalytics
+  description: |-
+    AWS IoT Analytics
+  link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  BatchPutMessage:
+    description: |-
+      Sends messages to a channel.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_BatchPutMessage.html
+    example:
+      inputs: [
+        {
+          "messages": [
+            {
+              "payload": "blob",
+              "messageId": "string"
+            }
+          ],
+          "channelName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "batchPutMessageErrorEntries": [
+            {
+              "errorCode": "string",
+              "messageId": "string",
+              "errorMessage": "string"
+            }
+          ]
+        }
+      ]
+  CancelPipelineReprocessing:
+    description: |-
+      Cancels the reprocessing of data through the pipeline.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_CancelPipelineReprocessing.html
+    example:
+      inputs: [
+        {
+          "pipelineName": "string",
+          "reprocessingId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateChannel:
+    description: |-
+      Creates a channel. A channel collects data from an MQTT topic and archives the raw, unprocessed messages before publishing the data to a pipeline.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_CreateChannel.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "channelName": "string",
+          "channelStorage": {
+            "serviceManagedS3": {},
+            "customerManagedS3": {
+              "bucket": "string",
+              "roleArn": "string",
+              "keyPrefix": "string"
+            }
+          },
+          "retentionPeriod": {
+            "unlimited": false,
+            "numberOfDays": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "channelArn": "string",
+          "channelName": "string",
+          "retentionPeriod": {
+            "unlimited": false,
+            "numberOfDays": 1
+          }
+        }
+      ]
+  CreateDatasetContent:
+    description: |-
+      Creates the content of a data set by applying a queryAction (a SQL query) or a containerAction (executing a containerized application).
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_CreateDatasetContent.html
+    example:
+      inputs: [
+        {
+          "versionId": "string",
+          "datasetName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "versionId": "string"
+        }
+      ]
+  CreateDataset:
+    description: |-
+      Creates a dataset. A dataset stores data retrieved from a data store by applying a queryAction (a SQL query) or a containerAction (executing a containerized application). This operation creates the skeleton of a dataset. The dataset can be populated manually by calling CreateDatasetContent or automatically according to a trigger you specify.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_CreateDataset.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "actions": [
+            {
+              "actionName": "string",
+              "queryAction": {
+                "filters": [
+                  {
+                    "deltaTime": {
+                      "offsetSeconds": 1,
+                      "timeExpression": "string"
+                    }
+                  }
+                ],
+                "sqlQuery": "string"
+              },
+              "containerAction": {
+                "image": "string",
+                "variables": [
+                  {
+                    "name": "string",
+                    "doubleValue": 0.1,
+                    "stringValue": "string",
+                    "outputFileUriValue": {
+                      "fileName": "string"
+                    },
+                    "datasetContentVersionValue": {
+                      "datasetName": "string"
+                    }
+                  }
+                ],
+                "executionRoleArn": "string",
+                "resourceConfiguration": {
+                  "computeType": "string",
+                  "volumeSizeInGB": 1
+                }
+              }
+            }
+          ],
+          "triggers": [
+            {
+              "dataset": {
+                "name": "string"
+              },
+              "schedule": {
+                "expression": "string"
+              }
+            }
+          ],
+          "datasetName": "string",
+          "lateDataRules": [
+            {
+              "ruleName": "string",
+              "ruleConfiguration": {
+                "deltaTimeSessionWindowConfiguration": {
+                  "timeoutInMinutes": 1
+                }
+              }
+            }
+          ],
+          "retentionPeriod": {
+            "unlimited": false,
+            "numberOfDays": 1
+          },
+          "contentDeliveryRules": [
+            {
+              "entryName": "string",
+              "destination": {
+                "s3DestinationConfiguration": {
+                  "key": "string",
+                  "bucket": "string",
+                  "roleArn": "string",
+                  "glueConfiguration": {
+                    "tableName": "string",
+                    "databaseName": "string"
+                  }
+                },
+                "iotEventsDestinationConfiguration": {
+                  "roleArn": "string",
+                  "inputName": "string"
+                }
+              }
+            }
+          ],
+          "versioningConfiguration": {
+            "unlimited": false,
+            "maxVersions": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "datasetArn": "string",
+          "datasetName": "string",
+          "retentionPeriod": {
+            "unlimited": false,
+            "numberOfDays": 1
+          }
+        }
+      ]
+  CreateDatastore:
+    description: |-
+      Creates a data store, which is a repository for messages. Only data stores that are used to save pipeline data can be configured with ParquetConfiguration.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_CreateDatastore.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "datastoreName": "string",
+          "retentionPeriod": {
+            "unlimited": false,
+            "numberOfDays": 1
+          },
+          "datastoreStorage": {
+            "serviceManagedS3": {},
+            "customerManagedS3": {
+              "bucket": "string",
+              "roleArn": "string",
+              "keyPrefix": "string"
+            }
+          },
+          "fileFormatConfiguration": {
+            "jsonConfiguration": {},
+            "parquetConfiguration": {
+              "schemaDefinition": {
+                "columns": [
+                  {
+                    "name": "string",
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "datastoreArn": "string",
+          "datastoreName": "string",
+          "retentionPeriod": {
+            "unlimited": false,
+            "numberOfDays": 1
+          }
+        }
+      ]
+  CreatePipeline:
+    description: |-
+      Creates a pipeline. A pipeline consumes messages from a channel and allows you to process the messages before storing them in a data store. You must specify both a channel and a datastore activity and, optionally, as many as 23 additional activities in the pipelineActivities array.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_CreatePipeline.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "pipelineName": "string",
+          "pipelineActivities": [
+            {
+              "math": {
+                "math": "string",
+                "name": "string",
+                "next": "string",
+                "attribute": "string"
+              },
+              "filter": {
+                "name": "string",
+                "next": "string",
+                "filter": "string"
+              },
+              "lambda": {
+                "name": "string",
+                "next": "string",
+                "batchSize": 1,
+                "lambdaName": "string"
+              },
+              "channel": {
+                "name": "string",
+                "next": "string",
+                "channelName": "string"
+              },
+              "datastore": {
+                "name": "string",
+                "datastoreName": "string"
+              },
+              "addAttributes": {
+                "name": "string",
+                "next": "string",
+                "attributes": {
+                  "string": "string"
+                }
+              },
+              "removeAttributes": {
+                "name": "string",
+                "next": "string",
+                "attributes": [
+                  "string"
+                ]
+              },
+              "selectAttributes": {
+                "name": "string",
+                "next": "string",
+                "attributes": [
+                  "string"
+                ]
+              },
+              "deviceShadowEnrich": {
+                "name": "string",
+                "next": "string",
+                "roleArn": "string",
+                "attribute": "string",
+                "thingName": "string"
+              },
+              "deviceRegistryEnrich": {
+                "name": "string",
+                "next": "string",
+                "roleArn": "string",
+                "attribute": "string",
+                "thingName": "string"
+              }
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "pipelineArn": "string",
+          "pipelineName": "string"
+        }
+      ]
+  DeleteChannel:
+    description: |-
+      Deletes the specified channel.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DeleteChannel.html
+    example:
+      inputs: [
+        {
+          "channelName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDatasetContent:
+    description: |-
+      Deletes the content of the specified dataset.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DeleteDatasetContent.html
+    example:
+      inputs: [
+        {
+          "versionId": "string",
+          "datasetName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDataset:
+    description: |-
+      Deletes the specified dataset.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DeleteDataset.html
+    example:
+      inputs: [
+        {
+          "datasetName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDatastore:
+    description: |-
+      Deletes the specified data store.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DeleteDatastore.html
+    example:
+      inputs: [
+        {
+          "datastoreName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeletePipeline:
+    description: |-
+      Deletes the specified pipeline.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DeletePipeline.html
+    example:
+      inputs: [
+        {
+          "pipelineName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeChannel:
+    description: |-
+      Retrieves information about a channel.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DescribeChannel.html
+    example:
+      inputs: [
+        {
+          "channelName": "string",
+          "includeStatistics": false
+        }
+      ]
+      outputs: [
+        {
+          "channel": {
+            "arn": "string",
+            "name": "string",
+            "status": "string",
+            "storage": {
+              "serviceManagedS3": {},
+              "customerManagedS3": {
+                "bucket": "string",
+                "roleArn": "string",
+                "keyPrefix": "string"
+              }
+            },
+            "creationTime": 1481289211.615,
+            "lastUpdateTime": 1481289211.615,
+            "retentionPeriod": {
+              "unlimited": false,
+              "numberOfDays": 1
+            },
+            "lastMessageArrivalTime": 1481289211.615
+          },
+          "statistics": {
+            "size": {
+              "estimatedOn": 1481289211.615,
+              "estimatedSizeInBytes": 0.1
+            }
+          }
+        }
+      ]
+  DescribeDataset:
+    description: |-
+      Retrieves information about a dataset.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DescribeDataset.html
+    example:
+      inputs: [
+        {
+          "datasetName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "dataset": {
+            "arn": "string",
+            "name": "string",
+            "status": "string",
+            "actions": [
+              {
+                "actionName": "string",
+                "queryAction": {
+                  "filters": [
+                    {
+                      "deltaTime": {
+                        "offsetSeconds": 1,
+                        "timeExpression": "string"
+                      }
+                    }
+                  ],
+                  "sqlQuery": "string"
+                },
+                "containerAction": {
+                  "image": "string",
+                  "variables": [
+                    {
+                      "name": "string",
+                      "doubleValue": 0.1,
+                      "stringValue": "string",
+                      "outputFileUriValue": {
+                        "fileName": "string"
+                      },
+                      "datasetContentVersionValue": {
+                        "datasetName": "string"
+                      }
+                    }
+                  ],
+                  "executionRoleArn": "string",
+                  "resourceConfiguration": {
+                    "computeType": "string",
+                    "volumeSizeInGB": 1
+                  }
+                }
+              }
+            ],
+            "triggers": [
+              {
+                "dataset": {
+                  "name": "string"
+                },
+                "schedule": {
+                  "expression": "string"
+                }
+              }
+            ],
+            "creationTime": 1481289211.615,
+            "lateDataRules": [
+              {
+                "ruleName": "string",
+                "ruleConfiguration": {
+                  "deltaTimeSessionWindowConfiguration": {
+                    "timeoutInMinutes": 1
+                  }
+                }
+              }
+            ],
+            "lastUpdateTime": 1481289211.615,
+            "retentionPeriod": {
+              "unlimited": false,
+              "numberOfDays": 1
+            },
+            "contentDeliveryRules": [
+              {
+                "entryName": "string",
+                "destination": {
+                  "s3DestinationConfiguration": {
+                    "key": "string",
+                    "bucket": "string",
+                    "roleArn": "string",
+                    "glueConfiguration": {
+                      "tableName": "string",
+                      "databaseName": "string"
+                    }
+                  },
+                  "iotEventsDestinationConfiguration": {
+                    "roleArn": "string",
+                    "inputName": "string"
+                  }
+                }
+              }
+            ],
+            "versioningConfiguration": {
+              "unlimited": false,
+              "maxVersions": 1
+            }
+          }
+        }
+      ]
+  DescribeDatastore:
+    description: |-
+      Retrieves information about a data store.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DescribeDatastore.html
+    example:
+      inputs: [
+        {
+          "datastoreName": "string",
+          "includeStatistics": false
+        }
+      ]
+      outputs: [
+        {
+          "datastore": {
+            "arn": "string",
+            "name": "string",
+            "status": "string",
+            "storage": {
+              "serviceManagedS3": {},
+              "customerManagedS3": {
+                "bucket": "string",
+                "roleArn": "string",
+                "keyPrefix": "string"
+              }
+            },
+            "creationTime": 1481289211.615,
+            "lastUpdateTime": 1481289211.615,
+            "retentionPeriod": {
+              "unlimited": false,
+              "numberOfDays": 1
+            },
+            "lastMessageArrivalTime": 1481289211.615,
+            "fileFormatConfiguration": {
+              "jsonConfiguration": {},
+              "parquetConfiguration": {
+                "schemaDefinition": {
+                  "columns": [
+                    {
+                      "name": "string",
+                      "type": "string"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "statistics": {
+            "size": {
+              "estimatedOn": 1481289211.615,
+              "estimatedSizeInBytes": 0.1
+            }
+          }
+        }
+      ]
+  DescribeLoggingOptions:
+    description: |-
+      Retrieves the current settings of the AWS IoT Analytics logging options.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DescribeLoggingOptions.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "loggingOptions": {
+            "level": "string",
+            "enabled": false,
+            "roleArn": "string"
+          }
+        }
+      ]
+  DescribePipeline:
+    description: |-
+      Retrieves information about a pipeline.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DescribePipeline.html
+    example:
+      inputs: [
+        {
+          "pipelineName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "pipeline": {
+            "arn": "string",
+            "name": "string",
+            "activities": [
+              {
+                "math": {
+                  "math": "string",
+                  "name": "string",
+                  "next": "string",
+                  "attribute": "string"
+                },
+                "filter": {
+                  "name": "string",
+                  "next": "string",
+                  "filter": "string"
+                },
+                "lambda": {
+                  "name": "string",
+                  "next": "string",
+                  "batchSize": 1,
+                  "lambdaName": "string"
+                },
+                "channel": {
+                  "name": "string",
+                  "next": "string",
+                  "channelName": "string"
+                },
+                "datastore": {
+                  "name": "string",
+                  "datastoreName": "string"
+                },
+                "addAttributes": {
+                  "name": "string",
+                  "next": "string",
+                  "attributes": {
+                    "string": "string"
+                  }
+                },
+                "removeAttributes": {
+                  "name": "string",
+                  "next": "string",
+                  "attributes": [
+                    "string"
+                  ]
+                },
+                "selectAttributes": {
+                  "name": "string",
+                  "next": "string",
+                  "attributes": [
+                    "string"
+                  ]
+                },
+                "deviceShadowEnrich": {
+                  "name": "string",
+                  "next": "string",
+                  "roleArn": "string",
+                  "attribute": "string",
+                  "thingName": "string"
+                },
+                "deviceRegistryEnrich": {
+                  "name": "string",
+                  "next": "string",
+                  "roleArn": "string",
+                  "attribute": "string",
+                  "thingName": "string"
+                }
+              }
+            ],
+            "creationTime": 1481289211.615,
+            "lastUpdateTime": 1481289211.615,
+            "reprocessingSummaries": [
+              {
+                "id": "string",
+                "status": "string",
+                "creationTime": 1481289211.615
+              }
+            ]
+          }
+        }
+      ]
+  GetDatasetContent:
+    description: |-
+      Retrieves the contents of a data set as presigned URIs.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_GetDatasetContent.html
+    example:
+      inputs: [
+        {
+          "versionId": "string",
+          "datasetName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "status": {
+            "state": "string",
+            "reason": "string"
+          },
+          "entries": [
+            {
+              "dataURI": "string",
+              "entryName": "string"
+            }
+          ],
+          "timestamp": 1481289211.615
+        }
+      ]
+  ListChannels:
+    description: |-
+      Retrieves a list of channels.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_ListChannels.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "channelSummaries": [
+            {
+              "status": "string",
+              "channelName": "string",
+              "creationTime": 1481289211.615,
+              "channelStorage": {
+                "serviceManagedS3": {},
+                "customerManagedS3": {
+                  "bucket": "string",
+                  "roleArn": "string",
+                  "keyPrefix": "string"
+                }
+              },
+              "lastUpdateTime": 1481289211.615,
+              "lastMessageArrivalTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListDatasetContents:
+    description: |-
+      Lists information about data set contents that have been created.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_ListDatasetContents.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "datasetName": "string",
+          "scheduledBefore": 1481289211.615,
+          "scheduledOnOrAfter": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "datasetContentSummaries": [
+            {
+              "status": {
+                "state": "string",
+                "reason": "string"
+              },
+              "version": "string",
+              "creationTime": 1481289211.615,
+              "scheduleTime": 1481289211.615,
+              "completionTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListDatasets:
+    description: |-
+      Retrieves information about data sets.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_ListDatasets.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "datasetSummaries": [
+            {
+              "status": "string",
+              "actions": [
+                {
+                  "actionName": "string",
+                  "actionType": "string"
+                }
+              ],
+              "triggers": [
+                {
+                  "dataset": {
+                    "name": "string"
+                  },
+                  "schedule": {
+                    "expression": "string"
+                  }
+                }
+              ],
+              "datasetName": "string",
+              "creationTime": 1481289211.615,
+              "lastUpdateTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListDatastores:
+    description: |-
+      Retrieves a list of data stores.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_ListDatastores.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "datastoreSummaries": [
+            {
+              "status": "string",
+              "creationTime": 1481289211.615,
+              "datastoreName": "string",
+              "fileFormatType": "string",
+              "lastUpdateTime": 1481289211.615,
+              "datastoreStorage": {
+                "serviceManagedS3": {},
+                "customerManagedS3": {
+                  "bucket": "string",
+                  "roleArn": "string",
+                  "keyPrefix": "string"
+                }
+              },
+              "lastMessageArrivalTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListPipelines:
+    description: |-
+      Retrieves a list of pipelines.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_ListPipelines.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "pipelineSummaries": [
+            {
+              "creationTime": 1481289211.615,
+              "pipelineName": "string",
+              "lastUpdateTime": 1481289211.615,
+              "reprocessingSummaries": [
+                {
+                  "id": "string",
+                  "status": "string",
+                  "creationTime": 1481289211.615
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists the tags (metadata) that you have assigned to the resource.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ]
+        }
+      ]
+  PutLoggingOptions:
+    description: |-
+      Sets or updates the AWS IoT Analytics logging options.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_PutLoggingOptions.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  RunPipelineActivity:
+    description: |-
+      Simulates the results of running a pipeline activity on a message payload.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_RunPipelineActivity.html
+    example:
+      inputs: [
+        {
+          "payloads": [
+            "blob"
+          ],
+          "pipelineActivity": {
+            "math": {
+              "math": "string",
+              "name": "string",
+              "next": "string",
+              "attribute": "string"
+            },
+            "filter": {
+              "name": "string",
+              "next": "string",
+              "filter": "string"
+            },
+            "lambda": {
+              "name": "string",
+              "next": "string",
+              "batchSize": 1,
+              "lambdaName": "string"
+            },
+            "channel": {
+              "name": "string",
+              "next": "string",
+              "channelName": "string"
+            },
+            "datastore": {
+              "name": "string",
+              "datastoreName": "string"
+            },
+            "addAttributes": {
+              "name": "string",
+              "next": "string",
+              "attributes": {
+                "string": "string"
+              }
+            },
+            "removeAttributes": {
+              "name": "string",
+              "next": "string",
+              "attributes": [
+                "string"
+              ]
+            },
+            "selectAttributes": {
+              "name": "string",
+              "next": "string",
+              "attributes": [
+                "string"
+              ]
+            },
+            "deviceShadowEnrich": {
+              "name": "string",
+              "next": "string",
+              "roleArn": "string",
+              "attribute": "string",
+              "thingName": "string"
+            },
+            "deviceRegistryEnrich": {
+              "name": "string",
+              "next": "string",
+              "roleArn": "string",
+              "attribute": "string",
+              "thingName": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "payloads": [
+            "blob"
+          ],
+          "logResult": "string"
+        }
+      ]
+  SampleChannelData:
+    description: |-
+      Retrieves a sample of messages from the specified channel ingested during the specified timeframe. Up to 10 messages can be retrieved.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_SampleChannelData.html
+    example:
+      inputs: [
+        {
+          "endTime": 1481289211.615,
+          "startTime": 1481289211.615,
+          "channelName": "string",
+          "maxMessages": 1
+        }
+      ]
+      outputs: [
+        {
+          "payloads": [
+            "blob"
+          ]
+        }
+      ]
+  StartPipelineReprocessing:
+    description: |-
+      Starts the reprocessing of raw message data through the pipeline.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_StartPipelineReprocessing.html
+    example:
+      inputs: [
+        {
+          "endTime": 1481289211.615,
+          "startTime": 1481289211.615,
+          "pipelineName": "string",
+          "channelMessages": {
+            "s3Paths": [
+              "string"
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "reprocessingId": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds to or modifies the tags of the given resource. Tags are metadata that can be used to manage a resource.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes the given tags (metadata) from the resource.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateChannel:
+    description: |-
+      Updates the settings of a channel.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_UpdateChannel.html
+    example:
+      inputs: [
+        {
+          "channelName": "string",
+          "channelStorage": {
+            "serviceManagedS3": {},
+            "customerManagedS3": {
+              "bucket": "string",
+              "roleArn": "string",
+              "keyPrefix": "string"
+            }
+          },
+          "retentionPeriod": {
+            "unlimited": false,
+            "numberOfDays": 1
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateDataset:
+    description: |-
+      Updates the settings of a data set.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_UpdateDataset.html
+    example:
+      inputs: [
+        {
+          "actions": [
+            {
+              "actionName": "string",
+              "queryAction": {
+                "filters": [
+                  {
+                    "deltaTime": {
+                      "offsetSeconds": 1,
+                      "timeExpression": "string"
+                    }
+                  }
+                ],
+                "sqlQuery": "string"
+              },
+              "containerAction": {
+                "image": "string",
+                "variables": [
+                  {
+                    "name": "string",
+                    "doubleValue": 0.1,
+                    "stringValue": "string",
+                    "outputFileUriValue": {
+                      "fileName": "string"
+                    },
+                    "datasetContentVersionValue": {
+                      "datasetName": "string"
+                    }
+                  }
+                ],
+                "executionRoleArn": "string",
+                "resourceConfiguration": {
+                  "computeType": "string",
+                  "volumeSizeInGB": 1
+                }
+              }
+            }
+          ],
+          "triggers": [
+            {
+              "dataset": {
+                "name": "string"
+              },
+              "schedule": {
+                "expression": "string"
+              }
+            }
+          ],
+          "datasetName": "string",
+          "lateDataRules": [
+            {
+              "ruleName": "string",
+              "ruleConfiguration": {
+                "deltaTimeSessionWindowConfiguration": {
+                  "timeoutInMinutes": 1
+                }
+              }
+            }
+          ],
+          "retentionPeriod": {
+            "unlimited": false,
+            "numberOfDays": 1
+          },
+          "contentDeliveryRules": [
+            {
+              "entryName": "string",
+              "destination": {
+                "s3DestinationConfiguration": {
+                  "key": "string",
+                  "bucket": "string",
+                  "roleArn": "string",
+                  "glueConfiguration": {
+                    "tableName": "string",
+                    "databaseName": "string"
+                  }
+                },
+                "iotEventsDestinationConfiguration": {
+                  "roleArn": "string",
+                  "inputName": "string"
+                }
+              }
+            }
+          ],
+          "versioningConfiguration": {
+            "unlimited": false,
+            "maxVersions": 1
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateDatastore:
+    description: |-
+      Updates the settings of a data store.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_UpdateDatastore.html
+    example:
+      inputs: [
+        {
+          "datastoreName": "string",
+          "retentionPeriod": {
+            "unlimited": false,
+            "numberOfDays": 1
+          },
+          "datastoreStorage": {
+            "serviceManagedS3": {},
+            "customerManagedS3": {
+              "bucket": "string",
+              "roleArn": "string",
+              "keyPrefix": "string"
+            }
+          },
+          "fileFormatConfiguration": {
+            "jsonConfiguration": {},
+            "parquetConfiguration": {
+              "schemaDefinition": {
+                "columns": [
+                  {
+                    "name": "string",
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdatePipeline:
+    description: |-
+      Updates the settings of a pipeline. You must specify both a channel and a datastore activity and, optionally, as many as 23 additional activities in the pipelineActivities array.
+    versions:
+      from: 2017.11.27
+    link: https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_UpdatePipeline.html
+    example:
+      inputs: [
+        {
+          "pipelineName": "string",
+          "pipelineActivities": [
+            {
+              "math": {
+                "math": "string",
+                "name": "string",
+                "next": "string",
+                "attribute": "string"
+              },
+              "filter": {
+                "name": "string",
+                "next": "string",
+                "filter": "string"
+              },
+              "lambda": {
+                "name": "string",
+                "next": "string",
+                "batchSize": 1,
+                "lambdaName": "string"
+              },
+              "channel": {
+                "name": "string",
+                "next": "string",
+                "channelName": "string"
+              },
+              "datastore": {
+                "name": "string",
+                "datastoreName": "string"
+              },
+              "addAttributes": {
+                "name": "string",
+                "next": "string",
+                "attributes": {
+                  "string": "string"
+                }
+              },
+              "removeAttributes": {
+                "name": "string",
+                "next": "string",
+                "attributes": [
+                  "string"
+                ]
+              },
+              "selectAttributes": {
+                "name": "string",
+                "next": "string",
+                "attributes": [
+                  "string"
+                ]
+              },
+              "deviceShadowEnrich": {
+                "name": "string",
+                "next": "string",
+                "roleArn": "string",
+                "attribute": "string",
+                "thingName": "string"
+              },
+              "deviceRegistryEnrich": {
+                "name": "string",
+                "next": "string",
+                "roleArn": "string",
+                "attribute": "string",
+                "thingName": "string"
+              }
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]

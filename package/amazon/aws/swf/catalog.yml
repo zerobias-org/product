@@ -1,0 +1,1946 @@
+Product:
+  name: Amazon Simple Workflow Service
+  versions: [2012.1.25]
+  package: amazon.aws.swf
+  description: |-
+    Amazon Simple Workflow Service
+  link: https://docs.aws.amazon.com/amazonswf/latest/apireference/Welcome.html
+  contentType: json
+Operations:
+  CountClosedWorkflowExecutions:
+    description: |-
+      Returns the number of closed workflow executions within the given domain that meet the specified filtering criteria.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_CountClosedWorkflowExecutions.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "tagFilter": {
+            "tag": "string"
+          },
+          "typeFilter": {
+            "name": "string",
+            "version": "string"
+          },
+          "closeTimeFilter": {
+            "latestDate": 1481289211.615,
+            "oldestDate": 1481289211.615
+          },
+          "executionFilter": {
+            "workflowId": "string"
+          },
+          "startTimeFilter": {
+            "latestDate": 1481289211.615,
+            "oldestDate": 1481289211.615
+          },
+          "closeStatusFilter": {
+            "status": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "count": 1,
+          "truncated": false
+        }
+      ]
+  CountOpenWorkflowExecutions:
+    description: |-
+      Returns the number of open workflow executions within the given domain that meet the specified filtering criteria.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_CountOpenWorkflowExecutions.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "tagFilter": {
+            "tag": "string"
+          },
+          "typeFilter": {
+            "name": "string",
+            "version": "string"
+          },
+          "executionFilter": {
+            "workflowId": "string"
+          },
+          "startTimeFilter": {
+            "latestDate": 1481289211.615,
+            "oldestDate": 1481289211.615
+          }
+        }
+      ]
+      outputs: [
+        {
+          "count": 1,
+          "truncated": false
+        }
+      ]
+  CountPendingActivityTasks:
+    description: |-
+      Returns the estimated number of activity tasks in the specified task list. The count returned is an approximation and isn't guaranteed to be exact. If you specify a task list that no activity task was ever scheduled in then 0 is returned.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_CountPendingActivityTasks.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "taskList": {
+            "name": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "count": 1,
+          "truncated": false
+        }
+      ]
+  CountPendingDecisionTasks:
+    description: |-
+      Returns the estimated number of decision tasks in the specified task list. The count returned is an approximation and isn't guaranteed to be exact. If you specify a task list that no decision task was ever scheduled in then 0 is returned.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_CountPendingDecisionTasks.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "taskList": {
+            "name": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "count": 1,
+          "truncated": false
+        }
+      ]
+  DeprecateActivityType:
+    description: |-
+      Deprecates the specified activity type. After an activity type has been deprecated, you cannot create new tasks of that activity type. Tasks of this type that were scheduled before the type was deprecated continue to run.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_DeprecateActivityType.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "activityType": {
+            "name": "string",
+            "version": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeprecateDomain:
+    description: |-
+      Deprecates the specified domain. After a domain has been deprecated it cannot be used to create new workflow executions or register new types. However, you can still use visibility actions on this domain. Deprecating a domain also deprecates all activity and workflow types registered in the domain. Executions that were started before the domain was deprecated continues to run.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_DeprecateDomain.html
+    example:
+      inputs: [
+        {
+          "name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeprecateWorkflowType:
+    description: |-
+      Deprecates the specified workflow type. After a workflow type has been deprecated, you cannot create new executions of that type. Executions that were started before the type was deprecated continues to run. A deprecated workflow type may still be used when calling visibility actions.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_DeprecateWorkflowType.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "workflowType": {
+            "name": "string",
+            "version": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeActivityType:
+    description: |-
+      Returns information about the specified activity type. This includes configuration settings provided when the type was registered and other general information about the type.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_DescribeActivityType.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "activityType": {
+            "name": "string",
+            "version": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "typeInfo": {
+            "status": "string",
+            "description": "string",
+            "activityType": {
+              "name": "string",
+              "version": "string"
+            },
+            "creationDate": 1481289211.615,
+            "deprecationDate": 1481289211.615
+          },
+          "configuration": {
+            "defaultTaskList": {
+              "name": "string"
+            },
+            "defaultTaskPriority": "string",
+            "defaultTaskHeartbeatTimeout": "string",
+            "defaultTaskStartToCloseTimeout": "string",
+            "defaultTaskScheduleToCloseTimeout": "string",
+            "defaultTaskScheduleToStartTimeout": "string"
+          }
+        }
+      ]
+  DescribeDomain:
+    description: |-
+      Returns information about the specified domain, including description and status.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_DescribeDomain.html
+    example:
+      inputs: [
+        {
+          "name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "domainInfo": {
+            "arn": "string",
+            "name": "string",
+            "status": "string",
+            "description": "string"
+          },
+          "configuration": {
+            "workflowExecutionRetentionPeriodInDays": "string"
+          }
+        }
+      ]
+  DescribeWorkflowExecution:
+    description: |-
+      Returns information about the specified workflow execution including its type and some statistics.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_DescribeWorkflowExecution.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "execution": {
+            "runId": "string",
+            "workflowId": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "openCounts": {
+            "openTimers": 1,
+            "openActivityTasks": 1,
+            "openDecisionTasks": 1,
+            "openLambdaFunctions": 1,
+            "openChildWorkflowExecutions": 1
+          },
+          "executionInfo": {
+            "parent": {
+              "runId": "string",
+              "workflowId": "string"
+            },
+            "tagList": [
+              "string"
+            ],
+            "execution": {
+              "runId": "string",
+              "workflowId": "string"
+            },
+            "closeStatus": "string",
+            "workflowType": {
+              "name": "string",
+              "version": "string"
+            },
+            "closeTimestamp": 1481289211.615,
+            "startTimestamp": 1481289211.615,
+            "cancelRequested": false,
+            "executionStatus": "string"
+          },
+          "executionConfiguration": {
+            "taskList": {
+              "name": "string"
+            },
+            "lambdaRole": "string",
+            "childPolicy": "string",
+            "taskPriority": "string",
+            "taskStartToCloseTimeout": "string",
+            "executionStartToCloseTimeout": "string"
+          },
+          "latestExecutionContext": "string",
+          "latestActivityTaskTimestamp": 1481289211.615
+        }
+      ]
+  DescribeWorkflowType:
+    description: |-
+      Returns information about the specified workflow type. This includes configuration settings specified when the type was registered and other information such as creation date, current status, etc.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_DescribeWorkflowType.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "workflowType": {
+            "name": "string",
+            "version": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "typeInfo": {
+            "status": "string",
+            "description": "string",
+            "creationDate": 1481289211.615,
+            "workflowType": {
+              "name": "string",
+              "version": "string"
+            },
+            "deprecationDate": 1481289211.615
+          },
+          "configuration": {
+            "defaultTaskList": {
+              "name": "string"
+            },
+            "defaultLambdaRole": "string",
+            "defaultChildPolicy": "string",
+            "defaultTaskPriority": "string",
+            "defaultTaskStartToCloseTimeout": "string",
+            "defaultExecutionStartToCloseTimeout": "string"
+          }
+        }
+      ]
+  GetWorkflowExecutionHistory:
+    description: |-
+      Returns the history of the specified workflow execution. The results may be split into multiple pages. To retrieve subsequent pages, make the call again using the nextPageToken returned by the initial call.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_GetWorkflowExecutionHistory.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "execution": {
+            "runId": "string",
+            "workflowId": "string"
+          },
+          "reverseOrder": false,
+          "nextPageToken": "string",
+          "maximumPageSize": 1
+        }
+      ]
+      outputs: [
+        {
+          "events": [
+            {
+              "eventId": 1,
+              "eventType": "string",
+              "eventTimestamp": 1481289211.615,
+              "timerFiredEventAttributes": {
+                "timerId": "string",
+                "startedEventId": 1
+              },
+              "timerStartedEventAttributes": {
+                "control": "string",
+                "timerId": "string",
+                "startToFireTimeout": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "timerCanceledEventAttributes": {
+                "timerId": "string",
+                "startedEventId": 1,
+                "decisionTaskCompletedEventId": 1
+              },
+              "markerRecordedEventAttributes": {
+                "details": "string",
+                "markerName": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "startTimerFailedEventAttributes": {
+                "cause": "string",
+                "timerId": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "cancelTimerFailedEventAttributes": {
+                "cause": "string",
+                "timerId": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "activityTaskFailedEventAttributes": {
+                "reason": "string",
+                "details": "string",
+                "startedEventId": 1,
+                "scheduledEventId": 1
+              },
+              "recordMarkerFailedEventAttributes": {
+                "cause": "string",
+                "markerName": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "activityTaskStartedEventAttributes": {
+                "identity": "string",
+                "scheduledEventId": 1
+              },
+              "decisionTaskStartedEventAttributes": {
+                "identity": "string",
+                "scheduledEventId": 1
+              },
+              "activityTaskCanceledEventAttributes": {
+                "details": "string",
+                "startedEventId": 1,
+                "scheduledEventId": 1,
+                "latestCancelRequestedEventId": 1
+              },
+              "activityTaskTimedOutEventAttributes": {
+                "details": "string",
+                "timeoutType": "string",
+                "startedEventId": 1,
+                "scheduledEventId": 1
+              },
+              "decisionTaskTimedOutEventAttributes": {
+                "timeoutType": "string",
+                "startedEventId": 1,
+                "scheduledEventId": 1
+              },
+              "lambdaFunctionFailedEventAttributes": {
+                "reason": "string",
+                "details": "string",
+                "startedEventId": 1,
+                "scheduledEventId": 1
+              },
+              "activityTaskCompletedEventAttributes": {
+                "result": "string",
+                "startedEventId": 1,
+                "scheduledEventId": 1
+              },
+              "activityTaskScheduledEventAttributes": {
+                "input": "string",
+                "control": "string",
+                "taskList": {
+                  "name": "string"
+                },
+                "activityId": "string",
+                "activityType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "taskPriority": "string",
+                "heartbeatTimeout": "string",
+                "startToCloseTimeout": "string",
+                "scheduleToCloseTimeout": "string",
+                "scheduleToStartTimeout": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "decisionTaskCompletedEventAttributes": {
+                "startedEventId": 1,
+                "executionContext": "string",
+                "scheduledEventId": 1
+              },
+              "decisionTaskScheduledEventAttributes": {
+                "taskList": {
+                  "name": "string"
+                },
+                "taskPriority": "string",
+                "startToCloseTimeout": "string"
+              },
+              "lambdaFunctionStartedEventAttributes": {
+                "scheduledEventId": 1
+              },
+              "lambdaFunctionTimedOutEventAttributes": {
+                "timeoutType": "string",
+                "startedEventId": 1,
+                "scheduledEventId": 1
+              },
+              "lambdaFunctionCompletedEventAttributes": {
+                "result": "string",
+                "startedEventId": 1,
+                "scheduledEventId": 1
+              },
+              "lambdaFunctionScheduledEventAttributes": {
+                "id": "string",
+                "name": "string",
+                "input": "string",
+                "control": "string",
+                "startToCloseTimeout": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "workflowExecutionFailedEventAttributes": {
+                "reason": "string",
+                "details": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "workflowExecutionStartedEventAttributes": {
+                "input": "string",
+                "tagList": [
+                  "string"
+                ],
+                "taskList": {
+                  "name": "string"
+                },
+                "lambdaRole": "string",
+                "childPolicy": "string",
+                "taskPriority": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "parentInitiatedEventId": 1,
+                "continuedExecutionRunId": "string",
+                "parentWorkflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                },
+                "taskStartToCloseTimeout": "string",
+                "executionStartToCloseTimeout": "string"
+              },
+              "startLambdaFunctionFailedEventAttributes": {
+                "cause": "string",
+                "message": "string",
+                "scheduledEventId": 1
+              },
+              "workflowExecutionCanceledEventAttributes": {
+                "details": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "workflowExecutionSignaledEventAttributes": {
+                "input": "string",
+                "signalName": "string",
+                "externalInitiatedEventId": 1,
+                "externalWorkflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "workflowExecutionTimedOutEventAttributes": {
+                "childPolicy": "string",
+                "timeoutType": "string"
+              },
+              "scheduleActivityTaskFailedEventAttributes": {
+                "cause": "string",
+                "activityId": "string",
+                "activityType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "decisionTaskCompletedEventId": 1
+              },
+              "workflowExecutionCompletedEventAttributes": {
+                "result": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "activityTaskCancelRequestedEventAttributes": {
+                "activityId": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "failWorkflowExecutionFailedEventAttributes": {
+                "cause": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "workflowExecutionTerminatedEventAttributes": {
+                "cause": "string",
+                "reason": "string",
+                "details": "string",
+                "childPolicy": "string"
+              },
+              "childWorkflowExecutionFailedEventAttributes": {
+                "reason": "string",
+                "details": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "startedEventId": 1,
+                "initiatedEventId": 1,
+                "workflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "scheduleLambdaFunctionFailedEventAttributes": {
+                "id": "string",
+                "name": "string",
+                "cause": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "cancelWorkflowExecutionFailedEventAttributes": {
+                "cause": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "childWorkflowExecutionStartedEventAttributes": {
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "initiatedEventId": 1,
+                "workflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "childWorkflowExecutionCanceledEventAttributes": {
+                "details": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "startedEventId": 1,
+                "initiatedEventId": 1,
+                "workflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "childWorkflowExecutionTimedOutEventAttributes": {
+                "timeoutType": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "startedEventId": 1,
+                "initiatedEventId": 1,
+                "workflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "childWorkflowExecutionCompletedEventAttributes": {
+                "result": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "startedEventId": 1,
+                "initiatedEventId": 1,
+                "workflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "completeWorkflowExecutionFailedEventAttributes": {
+                "cause": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "requestCancelActivityTaskFailedEventAttributes": {
+                "cause": "string",
+                "activityId": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "workflowExecutionContinuedAsNewEventAttributes": {
+                "input": "string",
+                "tagList": [
+                  "string"
+                ],
+                "taskList": {
+                  "name": "string"
+                },
+                "lambdaRole": "string",
+                "childPolicy": "string",
+                "taskPriority": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "newExecutionRunId": "string",
+                "taskStartToCloseTimeout": "string",
+                "decisionTaskCompletedEventId": 1,
+                "executionStartToCloseTimeout": "string"
+              },
+              "childWorkflowExecutionTerminatedEventAttributes": {
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "startedEventId": 1,
+                "initiatedEventId": 1,
+                "workflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "workflowExecutionCancelRequestedEventAttributes": {
+                "cause": "string",
+                "externalInitiatedEventId": 1,
+                "externalWorkflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "externalWorkflowExecutionSignaledEventAttributes": {
+                "initiatedEventId": 1,
+                "workflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "startChildWorkflowExecutionFailedEventAttributes": {
+                "cause": "string",
+                "control": "string",
+                "workflowId": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "initiatedEventId": 1,
+                "decisionTaskCompletedEventId": 1
+              },
+              "continueAsNewWorkflowExecutionFailedEventAttributes": {
+                "cause": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "startChildWorkflowExecutionInitiatedEventAttributes": {
+                "input": "string",
+                "control": "string",
+                "tagList": [
+                  "string"
+                ],
+                "taskList": {
+                  "name": "string"
+                },
+                "lambdaRole": "string",
+                "workflowId": "string",
+                "childPolicy": "string",
+                "taskPriority": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "taskStartToCloseTimeout": "string",
+                "decisionTaskCompletedEventId": 1,
+                "executionStartToCloseTimeout": "string"
+              },
+              "signalExternalWorkflowExecutionFailedEventAttributes": {
+                "cause": "string",
+                "runId": "string",
+                "control": "string",
+                "workflowId": "string",
+                "initiatedEventId": 1,
+                "decisionTaskCompletedEventId": 1
+              },
+              "externalWorkflowExecutionCancelRequestedEventAttributes": {
+                "initiatedEventId": 1,
+                "workflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "signalExternalWorkflowExecutionInitiatedEventAttributes": {
+                "input": "string",
+                "runId": "string",
+                "control": "string",
+                "signalName": "string",
+                "workflowId": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "requestCancelExternalWorkflowExecutionFailedEventAttributes": {
+                "cause": "string",
+                "runId": "string",
+                "control": "string",
+                "workflowId": "string",
+                "initiatedEventId": 1,
+                "decisionTaskCompletedEventId": 1
+              },
+              "requestCancelExternalWorkflowExecutionInitiatedEventAttributes": {
+                "runId": "string",
+                "control": "string",
+                "workflowId": "string",
+                "decisionTaskCompletedEventId": 1
+              }
+            }
+          ],
+          "nextPageToken": "string"
+        }
+      ]
+  ListActivityTypes:
+    description: |-
+      Returns information about all activities registered in the specified domain that match the specified name and registration status. The result includes information like creation date, current status of the activity, etc. The results may be split into multiple pages. To retrieve subsequent pages, make the call again using the nextPageToken returned by the initial call.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_ListActivityTypes.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "domain": "string",
+          "reverseOrder": false,
+          "nextPageToken": "string",
+          "maximumPageSize": 1,
+          "registrationStatus": "string"
+        }
+      ]
+      outputs: [
+        {
+          "typeInfos": [
+            {
+              "status": "string",
+              "description": "string",
+              "activityType": {
+                "name": "string",
+                "version": "string"
+              },
+              "creationDate": 1481289211.615,
+              "deprecationDate": 1481289211.615
+            }
+          ],
+          "nextPageToken": "string"
+        }
+      ]
+  ListClosedWorkflowExecutions:
+    description: |-
+      Returns a list of closed workflow executions in the specified domain that meet the filtering criteria. The results may be split into multiple pages. To retrieve subsequent pages, make the call again using the nextPageToken returned by the initial call.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_ListClosedWorkflowExecutions.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "tagFilter": {
+            "tag": "string"
+          },
+          "typeFilter": {
+            "name": "string",
+            "version": "string"
+          },
+          "reverseOrder": false,
+          "nextPageToken": "string",
+          "closeTimeFilter": {
+            "latestDate": 1481289211.615,
+            "oldestDate": 1481289211.615
+          },
+          "executionFilter": {
+            "workflowId": "string"
+          },
+          "maximumPageSize": 1,
+          "startTimeFilter": {
+            "latestDate": 1481289211.615,
+            "oldestDate": 1481289211.615
+          },
+          "closeStatusFilter": {
+            "status": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "nextPageToken": "string",
+          "executionInfos": [
+            {
+              "parent": {
+                "runId": "string",
+                "workflowId": "string"
+              },
+              "tagList": [
+                "string"
+              ],
+              "execution": {
+                "runId": "string",
+                "workflowId": "string"
+              },
+              "closeStatus": "string",
+              "workflowType": {
+                "name": "string",
+                "version": "string"
+              },
+              "closeTimestamp": 1481289211.615,
+              "startTimestamp": 1481289211.615,
+              "cancelRequested": false,
+              "executionStatus": "string"
+            }
+          ]
+        }
+      ]
+  ListDomains:
+    description: |-
+      Returns the list of domains registered in the account. The results may be split into multiple pages. To retrieve subsequent pages, make the call again using the nextPageToken returned by the initial call.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_ListDomains.html
+    example:
+      inputs: [
+        {
+          "reverseOrder": false,
+          "nextPageToken": "string",
+          "maximumPageSize": 1,
+          "registrationStatus": "string"
+        }
+      ]
+      outputs: [
+        {
+          "domainInfos": [
+            {
+              "arn": "string",
+              "name": "string",
+              "status": "string",
+              "description": "string"
+            }
+          ],
+          "nextPageToken": "string"
+        }
+      ]
+  ListOpenWorkflowExecutions:
+    description: |-
+      Returns a list of open workflow executions in the specified domain that meet the filtering criteria. The results may be split into multiple pages. To retrieve subsequent pages, make the call again using the nextPageToken returned by the initial call.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_ListOpenWorkflowExecutions.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "tagFilter": {
+            "tag": "string"
+          },
+          "typeFilter": {
+            "name": "string",
+            "version": "string"
+          },
+          "reverseOrder": false,
+          "nextPageToken": "string",
+          "executionFilter": {
+            "workflowId": "string"
+          },
+          "maximumPageSize": 1,
+          "startTimeFilter": {
+            "latestDate": 1481289211.615,
+            "oldestDate": 1481289211.615
+          }
+        }
+      ]
+      outputs: [
+        {
+          "nextPageToken": "string",
+          "executionInfos": [
+            {
+              "parent": {
+                "runId": "string",
+                "workflowId": "string"
+              },
+              "tagList": [
+                "string"
+              ],
+              "execution": {
+                "runId": "string",
+                "workflowId": "string"
+              },
+              "closeStatus": "string",
+              "workflowType": {
+                "name": "string",
+                "version": "string"
+              },
+              "closeTimestamp": 1481289211.615,
+              "startTimestamp": 1481289211.615,
+              "cancelRequested": false,
+              "executionStatus": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      List tags for a given domain.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ]
+        }
+      ]
+  ListWorkflowTypes:
+    description: |-
+      Returns information about workflow types in the specified domain. The results may be split into multiple pages that can be retrieved by making the call repeatedly.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_ListWorkflowTypes.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "domain": "string",
+          "reverseOrder": false,
+          "nextPageToken": "string",
+          "maximumPageSize": 1,
+          "registrationStatus": "string"
+        }
+      ]
+      outputs: [
+        {
+          "typeInfos": [
+            {
+              "status": "string",
+              "description": "string",
+              "creationDate": 1481289211.615,
+              "workflowType": {
+                "name": "string",
+                "version": "string"
+              },
+              "deprecationDate": 1481289211.615
+            }
+          ],
+          "nextPageToken": "string"
+        }
+      ]
+  PollForActivityTask:
+    description: |-
+      Used by workers to get an ActivityTask from the specified activity taskList. This initiates a long poll, where the service holds the HTTP connection open and responds as soon as a task becomes available. The maximum time the service holds on to the request before responding is 60 seconds. If no task is available within 60 seconds, the poll returns an empty result. An empty result, in this context, means that an ActivityTask is returned, but that the value of taskToken is an empty string. If a task is returned, the worker should use its type to identify and process it correctly.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_PollForActivityTask.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "identity": "string",
+          "taskList": {
+            "name": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "input": "string",
+          "taskToken": "string",
+          "activityId": "string",
+          "activityType": {
+            "name": "string",
+            "version": "string"
+          },
+          "startedEventId": 1,
+          "workflowExecution": {
+            "runId": "string",
+            "workflowId": "string"
+          }
+        }
+      ]
+  PollForDecisionTask:
+    description: |-
+      Used by deciders to get a DecisionTask from the specified decision taskList. A decision task may be returned for any open workflow execution that is using the specified task list. The task includes a paginated view of the history of the workflow execution. The decider should use the workflow type and the history to determine how to properly handle the task.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_PollForDecisionTask.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "identity": "string",
+          "taskList": {
+            "name": "string"
+          },
+          "reverseOrder": false,
+          "nextPageToken": "string",
+          "maximumPageSize": 1
+        }
+      ]
+      outputs: [
+        {
+          "events": [
+            {
+              "eventId": 1,
+              "eventType": "string",
+              "eventTimestamp": 1481289211.615,
+              "timerFiredEventAttributes": {
+                "timerId": "string",
+                "startedEventId": 1
+              },
+              "timerStartedEventAttributes": {
+                "control": "string",
+                "timerId": "string",
+                "startToFireTimeout": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "timerCanceledEventAttributes": {
+                "timerId": "string",
+                "startedEventId": 1,
+                "decisionTaskCompletedEventId": 1
+              },
+              "markerRecordedEventAttributes": {
+                "details": "string",
+                "markerName": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "startTimerFailedEventAttributes": {
+                "cause": "string",
+                "timerId": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "cancelTimerFailedEventAttributes": {
+                "cause": "string",
+                "timerId": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "activityTaskFailedEventAttributes": {
+                "reason": "string",
+                "details": "string",
+                "startedEventId": 1,
+                "scheduledEventId": 1
+              },
+              "recordMarkerFailedEventAttributes": {
+                "cause": "string",
+                "markerName": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "activityTaskStartedEventAttributes": {
+                "identity": "string",
+                "scheduledEventId": 1
+              },
+              "decisionTaskStartedEventAttributes": {
+                "identity": "string",
+                "scheduledEventId": 1
+              },
+              "activityTaskCanceledEventAttributes": {
+                "details": "string",
+                "startedEventId": 1,
+                "scheduledEventId": 1,
+                "latestCancelRequestedEventId": 1
+              },
+              "activityTaskTimedOutEventAttributes": {
+                "details": "string",
+                "timeoutType": "string",
+                "startedEventId": 1,
+                "scheduledEventId": 1
+              },
+              "decisionTaskTimedOutEventAttributes": {
+                "timeoutType": "string",
+                "startedEventId": 1,
+                "scheduledEventId": 1
+              },
+              "lambdaFunctionFailedEventAttributes": {
+                "reason": "string",
+                "details": "string",
+                "startedEventId": 1,
+                "scheduledEventId": 1
+              },
+              "activityTaskCompletedEventAttributes": {
+                "result": "string",
+                "startedEventId": 1,
+                "scheduledEventId": 1
+              },
+              "activityTaskScheduledEventAttributes": {
+                "input": "string",
+                "control": "string",
+                "taskList": {
+                  "name": "string"
+                },
+                "activityId": "string",
+                "activityType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "taskPriority": "string",
+                "heartbeatTimeout": "string",
+                "startToCloseTimeout": "string",
+                "scheduleToCloseTimeout": "string",
+                "scheduleToStartTimeout": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "decisionTaskCompletedEventAttributes": {
+                "startedEventId": 1,
+                "executionContext": "string",
+                "scheduledEventId": 1
+              },
+              "decisionTaskScheduledEventAttributes": {
+                "taskList": {
+                  "name": "string"
+                },
+                "taskPriority": "string",
+                "startToCloseTimeout": "string"
+              },
+              "lambdaFunctionStartedEventAttributes": {
+                "scheduledEventId": 1
+              },
+              "lambdaFunctionTimedOutEventAttributes": {
+                "timeoutType": "string",
+                "startedEventId": 1,
+                "scheduledEventId": 1
+              },
+              "lambdaFunctionCompletedEventAttributes": {
+                "result": "string",
+                "startedEventId": 1,
+                "scheduledEventId": 1
+              },
+              "lambdaFunctionScheduledEventAttributes": {
+                "id": "string",
+                "name": "string",
+                "input": "string",
+                "control": "string",
+                "startToCloseTimeout": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "workflowExecutionFailedEventAttributes": {
+                "reason": "string",
+                "details": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "workflowExecutionStartedEventAttributes": {
+                "input": "string",
+                "tagList": [
+                  "string"
+                ],
+                "taskList": {
+                  "name": "string"
+                },
+                "lambdaRole": "string",
+                "childPolicy": "string",
+                "taskPriority": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "parentInitiatedEventId": 1,
+                "continuedExecutionRunId": "string",
+                "parentWorkflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                },
+                "taskStartToCloseTimeout": "string",
+                "executionStartToCloseTimeout": "string"
+              },
+              "startLambdaFunctionFailedEventAttributes": {
+                "cause": "string",
+                "message": "string",
+                "scheduledEventId": 1
+              },
+              "workflowExecutionCanceledEventAttributes": {
+                "details": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "workflowExecutionSignaledEventAttributes": {
+                "input": "string",
+                "signalName": "string",
+                "externalInitiatedEventId": 1,
+                "externalWorkflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "workflowExecutionTimedOutEventAttributes": {
+                "childPolicy": "string",
+                "timeoutType": "string"
+              },
+              "scheduleActivityTaskFailedEventAttributes": {
+                "cause": "string",
+                "activityId": "string",
+                "activityType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "decisionTaskCompletedEventId": 1
+              },
+              "workflowExecutionCompletedEventAttributes": {
+                "result": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "activityTaskCancelRequestedEventAttributes": {
+                "activityId": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "failWorkflowExecutionFailedEventAttributes": {
+                "cause": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "workflowExecutionTerminatedEventAttributes": {
+                "cause": "string",
+                "reason": "string",
+                "details": "string",
+                "childPolicy": "string"
+              },
+              "childWorkflowExecutionFailedEventAttributes": {
+                "reason": "string",
+                "details": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "startedEventId": 1,
+                "initiatedEventId": 1,
+                "workflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "scheduleLambdaFunctionFailedEventAttributes": {
+                "id": "string",
+                "name": "string",
+                "cause": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "cancelWorkflowExecutionFailedEventAttributes": {
+                "cause": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "childWorkflowExecutionStartedEventAttributes": {
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "initiatedEventId": 1,
+                "workflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "childWorkflowExecutionCanceledEventAttributes": {
+                "details": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "startedEventId": 1,
+                "initiatedEventId": 1,
+                "workflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "childWorkflowExecutionTimedOutEventAttributes": {
+                "timeoutType": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "startedEventId": 1,
+                "initiatedEventId": 1,
+                "workflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "childWorkflowExecutionCompletedEventAttributes": {
+                "result": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "startedEventId": 1,
+                "initiatedEventId": 1,
+                "workflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "completeWorkflowExecutionFailedEventAttributes": {
+                "cause": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "requestCancelActivityTaskFailedEventAttributes": {
+                "cause": "string",
+                "activityId": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "workflowExecutionContinuedAsNewEventAttributes": {
+                "input": "string",
+                "tagList": [
+                  "string"
+                ],
+                "taskList": {
+                  "name": "string"
+                },
+                "lambdaRole": "string",
+                "childPolicy": "string",
+                "taskPriority": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "newExecutionRunId": "string",
+                "taskStartToCloseTimeout": "string",
+                "decisionTaskCompletedEventId": 1,
+                "executionStartToCloseTimeout": "string"
+              },
+              "childWorkflowExecutionTerminatedEventAttributes": {
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "startedEventId": 1,
+                "initiatedEventId": 1,
+                "workflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "workflowExecutionCancelRequestedEventAttributes": {
+                "cause": "string",
+                "externalInitiatedEventId": 1,
+                "externalWorkflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "externalWorkflowExecutionSignaledEventAttributes": {
+                "initiatedEventId": 1,
+                "workflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "startChildWorkflowExecutionFailedEventAttributes": {
+                "cause": "string",
+                "control": "string",
+                "workflowId": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "initiatedEventId": 1,
+                "decisionTaskCompletedEventId": 1
+              },
+              "continueAsNewWorkflowExecutionFailedEventAttributes": {
+                "cause": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "startChildWorkflowExecutionInitiatedEventAttributes": {
+                "input": "string",
+                "control": "string",
+                "tagList": [
+                  "string"
+                ],
+                "taskList": {
+                  "name": "string"
+                },
+                "lambdaRole": "string",
+                "workflowId": "string",
+                "childPolicy": "string",
+                "taskPriority": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "taskStartToCloseTimeout": "string",
+                "decisionTaskCompletedEventId": 1,
+                "executionStartToCloseTimeout": "string"
+              },
+              "signalExternalWorkflowExecutionFailedEventAttributes": {
+                "cause": "string",
+                "runId": "string",
+                "control": "string",
+                "workflowId": "string",
+                "initiatedEventId": 1,
+                "decisionTaskCompletedEventId": 1
+              },
+              "externalWorkflowExecutionCancelRequestedEventAttributes": {
+                "initiatedEventId": 1,
+                "workflowExecution": {
+                  "runId": "string",
+                  "workflowId": "string"
+                }
+              },
+              "signalExternalWorkflowExecutionInitiatedEventAttributes": {
+                "input": "string",
+                "runId": "string",
+                "control": "string",
+                "signalName": "string",
+                "workflowId": "string",
+                "decisionTaskCompletedEventId": 1
+              },
+              "requestCancelExternalWorkflowExecutionFailedEventAttributes": {
+                "cause": "string",
+                "runId": "string",
+                "control": "string",
+                "workflowId": "string",
+                "initiatedEventId": 1,
+                "decisionTaskCompletedEventId": 1
+              },
+              "requestCancelExternalWorkflowExecutionInitiatedEventAttributes": {
+                "runId": "string",
+                "control": "string",
+                "workflowId": "string",
+                "decisionTaskCompletedEventId": 1
+              }
+            }
+          ],
+          "taskToken": "string",
+          "workflowType": {
+            "name": "string",
+            "version": "string"
+          },
+          "nextPageToken": "string",
+          "startedEventId": 1,
+          "workflowExecution": {
+            "runId": "string",
+            "workflowId": "string"
+          },
+          "previousStartedEventId": 1
+        }
+      ]
+  RecordActivityTaskHeartbeat:
+    description: |-
+      Used by activity workers to report to the service that the ActivityTask represented by the specified taskToken is still making progress. The worker can also specify details of the progress, for example percent complete, using the details parameter. This action can also be used by the worker as a mechanism to check if cancellation is being requested for the activity task. If a cancellation is being attempted for the specified task, then the boolean cancelRequested flag returned by the service is set to true.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_RecordActivityTaskHeartbeat.html
+    example:
+      inputs: [
+        {
+          "details": "string",
+          "taskToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "cancelRequested": false
+        }
+      ]
+  RegisterActivityType:
+    description: |-
+      Registers a new activity type along with its configuration settings in the specified domain.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_RegisterActivityType.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "domain": "string",
+          "version": "string",
+          "description": "string",
+          "defaultTaskList": {
+            "name": "string"
+          },
+          "defaultTaskPriority": "string",
+          "defaultTaskHeartbeatTimeout": "string",
+          "defaultTaskStartToCloseTimeout": "string",
+          "defaultTaskScheduleToCloseTimeout": "string",
+          "defaultTaskScheduleToStartTimeout": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RegisterDomain:
+    description: |-
+      Registers a new domain.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_RegisterDomain.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "description": "string",
+          "workflowExecutionRetentionPeriodInDays": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RegisterWorkflowType:
+    description: |-
+      Registers a new workflow type and its configuration settings in the specified domain.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_RegisterWorkflowType.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "domain": "string",
+          "version": "string",
+          "description": "string",
+          "defaultTaskList": {
+            "name": "string"
+          },
+          "defaultLambdaRole": "string",
+          "defaultChildPolicy": "string",
+          "defaultTaskPriority": "string",
+          "defaultTaskStartToCloseTimeout": "string",
+          "defaultExecutionStartToCloseTimeout": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RequestCancelWorkflowExecution:
+    description: |-
+      Records a WorkflowExecutionCancelRequested event in the currently running workflow execution identified by the given domain, workflowId, and runId. This logically requests the cancellation of the workflow execution as a whole. It is up to the decider to take appropriate actions when it receives an execution history with this event.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_RequestCancelWorkflowExecution.html
+    example:
+      inputs: [
+        {
+          "runId": "string",
+          "domain": "string",
+          "workflowId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RespondActivityTaskCanceled:
+    description: |-
+      Used by workers to tell the service that the ActivityTask identified by the taskToken was successfully canceled. Additional details can be provided using the details argument.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_RespondActivityTaskCanceled.html
+    example:
+      inputs: [
+        {
+          "details": "string",
+          "taskToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RespondActivityTaskCompleted:
+    description: |-
+      Used by workers to tell the service that the ActivityTask identified by the taskToken completed successfully with a result (if provided). The result appears in the ActivityTaskCompleted event in the workflow history.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_RespondActivityTaskCompleted.html
+    example:
+      inputs: [
+        {
+          "result": "string",
+          "taskToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RespondActivityTaskFailed:
+    description: |-
+      Used by workers to tell the service that the ActivityTask identified by the taskToken has failed with reason (if specified). The reason and details appear in the ActivityTaskFailed event added to the workflow history.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_RespondActivityTaskFailed.html
+    example:
+      inputs: [
+        {
+          "reason": "string",
+          "details": "string",
+          "taskToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RespondDecisionTaskCompleted:
+    description: |-
+      Used by deciders to tell the service that the DecisionTask identified by the taskToken has successfully completed. The decisions argument specifies the list of decisions made while processing the task.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_RespondDecisionTaskCompleted.html
+    example:
+      inputs: [
+        {
+          "decisions": [
+            {
+              "decisionType": "string",
+              "startTimerDecisionAttributes": {
+                "control": "string",
+                "timerId": "string",
+                "startToFireTimeout": "string"
+              },
+              "cancelTimerDecisionAttributes": {
+                "timerId": "string"
+              },
+              "recordMarkerDecisionAttributes": {
+                "details": "string",
+                "markerName": "string"
+              },
+              "scheduleActivityTaskDecisionAttributes": {
+                "input": "string",
+                "control": "string",
+                "taskList": {
+                  "name": "string"
+                },
+                "activityId": "string",
+                "activityType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "taskPriority": "string",
+                "heartbeatTimeout": "string",
+                "startToCloseTimeout": "string",
+                "scheduleToCloseTimeout": "string",
+                "scheduleToStartTimeout": "string"
+              },
+              "failWorkflowExecutionDecisionAttributes": {
+                "reason": "string",
+                "details": "string"
+              },
+              "scheduleLambdaFunctionDecisionAttributes": {
+                "id": "string",
+                "name": "string",
+                "input": "string",
+                "control": "string",
+                "startToCloseTimeout": "string"
+              },
+              "cancelWorkflowExecutionDecisionAttributes": {
+                "details": "string"
+              },
+              "completeWorkflowExecutionDecisionAttributes": {
+                "result": "string"
+              },
+              "requestCancelActivityTaskDecisionAttributes": {
+                "activityId": "string"
+              },
+              "startChildWorkflowExecutionDecisionAttributes": {
+                "input": "string",
+                "control": "string",
+                "tagList": [
+                  "string"
+                ],
+                "taskList": {
+                  "name": "string"
+                },
+                "lambdaRole": "string",
+                "workflowId": "string",
+                "childPolicy": "string",
+                "taskPriority": "string",
+                "workflowType": {
+                  "name": "string",
+                  "version": "string"
+                },
+                "taskStartToCloseTimeout": "string",
+                "executionStartToCloseTimeout": "string"
+              },
+              "continueAsNewWorkflowExecutionDecisionAttributes": {
+                "input": "string",
+                "tagList": [
+                  "string"
+                ],
+                "taskList": {
+                  "name": "string"
+                },
+                "lambdaRole": "string",
+                "childPolicy": "string",
+                "taskPriority": "string",
+                "workflowTypeVersion": "string",
+                "taskStartToCloseTimeout": "string",
+                "executionStartToCloseTimeout": "string"
+              },
+              "signalExternalWorkflowExecutionDecisionAttributes": {
+                "input": "string",
+                "runId": "string",
+                "control": "string",
+                "signalName": "string",
+                "workflowId": "string"
+              },
+              "requestCancelExternalWorkflowExecutionDecisionAttributes": {
+                "runId": "string",
+                "control": "string",
+                "workflowId": "string"
+              }
+            }
+          ],
+          "taskToken": "string",
+          "executionContext": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SignalWorkflowExecution:
+    description: |-
+      Records a WorkflowExecutionSignaled event in the workflow execution history and creates a decision task for the workflow execution identified by the given domain, workflowId and runId. The event is recorded with the specified user defined signalName and input (if provided).
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_SignalWorkflowExecution.html
+    example:
+      inputs: [
+        {
+          "input": "string",
+          "runId": "string",
+          "domain": "string",
+          "signalName": "string",
+          "workflowId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartWorkflowExecution:
+    description: |-
+      Starts an execution of the workflow type in the specified domain using the provided workflowId and input data.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_StartWorkflowExecution.html
+    example:
+      inputs: [
+        {
+          "input": "string",
+          "domain": "string",
+          "tagList": [
+            "string"
+          ],
+          "taskList": {
+            "name": "string"
+          },
+          "lambdaRole": "string",
+          "workflowId": "string",
+          "childPolicy": "string",
+          "taskPriority": "string",
+          "workflowType": {
+            "name": "string",
+            "version": "string"
+          },
+          "taskStartToCloseTimeout": "string",
+          "executionStartToCloseTimeout": "string"
+        }
+      ]
+      outputs: [
+        {
+          "runId": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Add a tag to a Amazon SWF domain.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TerminateWorkflowExecution:
+    description: |-
+      Records a WorkflowExecutionTerminated event and forces closure of the workflow execution identified by the given domain, runId, and workflowId. The child policy, registered with the workflow type or specified when starting this execution, is applied to any open child workflow executions of this workflow execution.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_TerminateWorkflowExecution.html
+    example:
+      inputs: [
+        {
+          "runId": "string",
+          "domain": "string",
+          "reason": "string",
+          "details": "string",
+          "workflowId": "string",
+          "childPolicy": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UndeprecateActivityType:
+    description: |-
+      Undeprecates a previously deprecated activity type. After an activity type has been undeprecated, you can create new tasks of that activity type.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_UndeprecateActivityType.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "activityType": {
+            "name": "string",
+            "version": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UndeprecateDomain:
+    description: |-
+      Undeprecates a previously deprecated domain. After a domain has been undeprecated it can be used to create new workflow executions or register new types.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_UndeprecateDomain.html
+    example:
+      inputs: [
+        {
+          "name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UndeprecateWorkflowType:
+    description: |-
+      Undeprecates a previously deprecated workflow type. After a workflow type has been undeprecated, you can create new executions of that type.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_UndeprecateWorkflowType.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "workflowType": {
+            "name": "string",
+            "version": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Remove a tag from a Amazon SWF domain.
+    versions:
+      from: 2012.1.25
+    link: https://docs.aws.amazon.com/amazonswf/latest/apireference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

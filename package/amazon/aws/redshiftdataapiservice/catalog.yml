@@ -1,0 +1,293 @@
+Product:
+  name: Amazon Redshift Data API Service
+  versions: [2019.12.20]
+  package: amazon.aws.redshiftdataapiservice
+  description: |-
+    Redshift Data API Service
+  link: https://docs.aws.amazon.com/redshift-data/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CancelStatement:
+    description: |-
+      Cancels a running query. To be canceled, a query must be running.
+    versions:
+      from: 2019.12.20
+    link: https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_CancelStatement.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": false
+        }
+      ]
+  DescribeStatement:
+    description: |-
+      Describes the details about a specific instance when a query was run by the Amazon Redshift Data API. The information includes when the query started, when it finished, the query status, the number of rows returned, and the SQL statement.
+    versions:
+      from: 2019.12.20
+    link: https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_DescribeStatement.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "Error": "string",
+          "DbUser": "string",
+          "Status": "string",
+          "Database": "string",
+          "Duration": 1,
+          "CreatedAt": 1481289211.615,
+          "SecretArn": "string",
+          "UpdatedAt": 1481289211.615,
+          "ResultRows": 1,
+          "ResultSize": 1,
+          "QueryString": "string",
+          "RedshiftPid": 1,
+          "HasResultSet": false,
+          "RedshiftQueryId": 1,
+          "ClusterIdentifier": "string"
+        }
+      ]
+  DescribeTable:
+    description: |-
+      Describes the detailed information about a table from metadata in the cluster. The information includes its columns. A token is returned to page through the column list.
+    versions:
+      from: 2019.12.20
+    link: https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_DescribeTable.html
+    example:
+      inputs: [
+        {
+          "Table": "string",
+          "DbUser": "string",
+          "Schema": "string",
+          "Database": "string",
+          "NextToken": "string",
+          "SecretArn": "string",
+          "MaxResults": 1,
+          "ClusterIdentifier": "string",
+          "ConnectedDatabase": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "TableName": "string",
+          "ColumnList": [
+            {
+              "name": "string",
+              "label": "string",
+              "scale": 1,
+              "length": 1,
+              "isSigned": false,
+              "nullable": 1,
+              "typeName": "string",
+              "precision": 1,
+              "tableName": "string",
+              "isCurrency": false,
+              "schemaName": "string",
+              "columnDefault": "string",
+              "isCaseSensitive": false
+            }
+          ]
+        }
+      ]
+  ExecuteStatement:
+    description: |-
+      Runs an SQL statement, which can be data manipulation language (DML) or data definition language (DDL). This statement must be a single SQL statement.
+    versions:
+      from: 2019.12.20
+    link: https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_ExecuteStatement.html
+    example:
+      inputs: [
+        {
+          "Sql": "string",
+          "DbUser": "string",
+          "Database": "string",
+          "SecretArn": "string",
+          "WithEvent": false,
+          "StatementName": "string",
+          "ClusterIdentifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Id": "string",
+          "DbUser": "string",
+          "Database": "string",
+          "CreatedAt": 1481289211.615,
+          "SecretArn": "string",
+          "ClusterIdentifier": "string"
+        }
+      ]
+  GetStatementResult:
+    description: |-
+      Fetches the temporarily cached result of an SQL statement. A token is returned to page through the statement results.
+    versions:
+      from: 2019.12.20
+    link: https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_GetStatementResult.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Records": [
+            {
+              "0": {
+                "isNull": false,
+                "blobValue": "blob",
+                "longValue": 1,
+                "doubleValue": 0.1,
+                "stringValue": "string",
+                "booleanValue": false
+              }
+            }
+          ],
+          "NextToken": "string",
+          "TotalNumRows": 1,
+          "ColumnMetadata": [
+            {
+              "name": "string",
+              "label": "string",
+              "scale": 1,
+              "length": 1,
+              "isSigned": false,
+              "nullable": 1,
+              "typeName": "string",
+              "precision": 1,
+              "tableName": "string",
+              "isCurrency": false,
+              "schemaName": "string",
+              "columnDefault": "string",
+              "isCaseSensitive": false
+            }
+          ]
+        }
+      ]
+  ListDatabases:
+    description: |-
+      List the databases in a cluster. A token is returned to page through the database list.
+    versions:
+      from: 2019.12.20
+    link: https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_ListDatabases.html
+    example:
+      inputs: [
+        {
+          "DbUser": "string",
+          "Database": "string",
+          "NextToken": "string",
+          "SecretArn": "string",
+          "MaxResults": 1,
+          "ClusterIdentifier": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Databases": [
+            "string"
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListSchemas:
+    description: |-
+      Lists the schemas in a database. A token is returned to page through the schema list.
+    versions:
+      from: 2019.12.20
+    link: https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_ListSchemas.html
+    example:
+      inputs: [
+        {
+          "DbUser": "string",
+          "Database": "string",
+          "NextToken": "string",
+          "SecretArn": "string",
+          "MaxResults": 1,
+          "SchemaPattern": "string",
+          "ClusterIdentifier": "string",
+          "ConnectedDatabase": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Schemas": [
+            "string"
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListStatements:
+    description: |-
+      List of SQL statements. By default, only finished statements are shown. A token is returned to page through the statement list.
+    versions:
+      from: 2019.12.20
+    link: https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_ListStatements.html
+    example:
+      inputs: [
+        {
+          "Status": "string",
+          "NextToken": "string",
+          "RoleLevel": false,
+          "MaxResults": 1,
+          "StatementName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Statements": [
+            {
+              "Id": "string",
+              "Status": "string",
+              "CreatedAt": 1481289211.615,
+              "SecretArn": "string",
+              "UpdatedAt": 1481289211.615,
+              "QueryString": "string",
+              "StatementName": "string"
+            }
+          ]
+        }
+      ]
+  ListTables:
+    description: |-
+      List the tables in a database. If neither SchemaPattern nor TablePattern are specified, then all tables in the database are returned. A token is returned to page through the table list.
+    versions:
+      from: 2019.12.20
+    link: https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_ListTables.html
+    example:
+      inputs: [
+        {
+          "DbUser": "string",
+          "Database": "string",
+          "NextToken": "string",
+          "SecretArn": "string",
+          "MaxResults": 1,
+          "TablePattern": "string",
+          "SchemaPattern": "string",
+          "ClusterIdentifier": "string",
+          "ConnectedDatabase": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tables": [
+            {
+              "name": "string",
+              "type": "string",
+              "schema": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]

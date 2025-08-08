@@ -1,0 +1,4811 @@
+Product:
+  name: Amazon S3
+  versions: [2006.3.1,2017.7.25,2018.8.20]
+  package: amazon.aws.s3
+  description: |-
+    AWS Simple Storage Service (S3)
+  link: https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html
+  contentType: json
+Operations:
+  AbortMultipartUpload:
+    description: |-
+      This action aborts a multipart upload. After a multipart upload is aborted, no additional parts can be uploaded using that upload ID. The storage consumed by any previously uploaded parts will be freed. However, if any part uploads are currently in progress, those part uploads might or might not succeed. As a result, it might be necessary to abort a given multipart upload multiple times in order to completely free all storage consumed by all parts.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Bucket": "string",
+          "UploadId": "string",
+          "RequestPayer": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RequestCharged": "string"
+        }
+      ]
+  CompleteMultipartUpload:
+    description: |-
+      Completes a multipart upload by assembling previously uploaded parts.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_CompleteMultipartUpload.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Bucket": "string",
+          "UploadId": "string",
+          "RequestPayer": "string",
+          "MultipartUpload": {
+            "Parts": [
+              {
+                "ETag": "string",
+                "PartNumber": 1
+              }
+            ]
+          },
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Key": "string",
+          "ETag": "string",
+          "Bucket": "string",
+          "Location": "string",
+          "VersionId": "string",
+          "Expiration": "string",
+          "SSEKMSKeyId": "string",
+          "RequestCharged": "string",
+          "BucketKeyEnabled": false,
+          "ServerSideEncryption": "string"
+        }
+      ]
+  CreateAccessPointForObjectLambda:
+    description: |-
+      Creates an Object Lambda Access Point. For more information, see Transforming objects with Object Lambda Access Points in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPointForObjectLambda.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AccountId": "string",
+          "Configuration": {
+            "AllowedFeatures": [
+              "string"
+            ],
+            "SupportingAccessPoint": "string",
+            "CloudWatchMetricsEnabled": false,
+            "TransformationConfigurations": [
+              {
+                "Actions": [
+                  "string"
+                ],
+                "ContentTransformation": {
+                  "AwsLambda": {
+                    "FunctionArn": "string",
+                    "FunctionPayload": "string"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ObjectLambdaAccessPointArn": "string"
+        }
+      ]
+  CreateAccessPoint:
+    description: |-
+      Creates an access point and associates it with the specified bucket. For more information, see Managing Data Access with Amazon S3 Access Points in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Bucket": "string",
+          "AccountId": "string",
+          "VpcConfiguration": {
+            "VpcId": "string"
+          },
+          "PublicAccessBlockConfiguration": {
+            "BlockPublicAcls": false,
+            "IgnorePublicAcls": false,
+            "BlockPublicPolicy": false,
+            "RestrictPublicBuckets": false
+          }
+        }
+      ]
+      outputs: [
+        {
+          "AccessPointArn": "string"
+        }
+      ]
+  CreateBucket:
+    description: |-
+      Creates a new Outposts bucket. By creating the bucket, you become the bucket owner. To create an Outposts bucket, you must have S3 on Outposts. For more information, see Using Amazon S3 on Outposts in Amazon S3 User Guide.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateBucket.html
+    example:
+      inputs: [
+        {
+          "ACL": "string",
+          "Bucket": "string",
+          "GrantRead": "string",
+          "OutpostId": "string",
+          "GrantWrite": "string",
+          "GrantReadACP": "string",
+          "GrantWriteACP": "string",
+          "GrantFullControl": "string",
+          "CreateBucketConfiguration": {
+            "LocationConstraint": "string"
+          },
+          "ObjectLockEnabledForBucket": false
+        }
+      ]
+      outputs: [
+        {
+          "Location": "string",
+          "BucketArn": "string"
+        }
+      ]
+  CreateJob:
+    description: |-
+      You can use S3 Batch Operations to perform large-scale batch actions on Amazon S3 objects. Batch Operations can run a single action on lists of Amazon S3 objects that you specify. For more information, see S3 Batch Operations in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Report": {
+            "Bucket": "string",
+            "Format": "string",
+            "Prefix": "string",
+            "Enabled": false,
+            "ReportScope": "string"
+          },
+          "RoleArn": "string",
+          "Manifest": {
+            "Spec": {
+              "Fields": [
+                "string"
+              ],
+              "Format": "string"
+            },
+            "Location": {
+              "ETag": "string",
+              "ObjectArn": "string",
+              "ObjectVersionId": "string"
+            }
+          },
+          "Priority": 1,
+          "AccountId": "string",
+          "Operation": {
+            "LambdaInvoke": {
+              "FunctionArn": "string"
+            },
+            "S3PutObjectAcl": {
+              "AccessControlPolicy": {
+                "AccessControlList": {
+                  "Owner": {
+                    "ID": "string",
+                    "DisplayName": "string"
+                  },
+                  "Grants": [
+                    {
+                      "Grantee": {
+                        "Identifier": "string",
+                        "DisplayName": "string",
+                        "TypeIdentifier": "string"
+                      },
+                      "Permission": "string"
+                    }
+                  ]
+                },
+                "CannedAccessControlList": "string"
+              }
+            },
+            "S3PutObjectCopy": {
+              "StorageClass": "string",
+              "RequesterPays": false,
+              "ObjectLockMode": "string",
+              "SSEAwsKmsKeyId": "string",
+              "TargetResource": "string",
+              "TargetKeyPrefix": "string",
+              "NewObjectTagging": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ],
+              "RedirectLocation": "string",
+              "MetadataDirective": "string",
+              "NewObjectMetadata": {
+                "ContentMD5": "string",
+                "ContentType": "string",
+                "CacheControl": "string",
+                "SSEAlgorithm": "string",
+                "UserMetadata": {
+                  "string": "string"
+                },
+                "ContentLength": 1,
+                "ContentEncoding": "string",
+                "ContentLanguage": "string",
+                "HttpExpiresDate": 1481289211.615,
+                "RequesterCharged": false,
+                "ContentDisposition": "string"
+              },
+              "AccessControlGrants": [
+                {
+                  "Grantee": {
+                    "Identifier": "string",
+                    "DisplayName": "string",
+                    "TypeIdentifier": "string"
+                  },
+                  "Permission": "string"
+                }
+              ],
+              "CannedAccessControlList": "string",
+              "ModifiedSinceConstraint": 1481289211.615,
+              "ObjectLockLegalHoldStatus": "string",
+              "ObjectLockRetainUntilDate": 1481289211.615,
+              "UnModifiedSinceConstraint": 1481289211.615
+            },
+            "S3PutObjectTagging": {
+              "TagSet": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ]
+            },
+            "S3PutObjectLegalHold": {
+              "LegalHold": {
+                "Status": "string"
+              }
+            },
+            "S3PutObjectRetention": {
+              "Retention": {
+                "Mode": "string",
+                "RetainUntilDate": 1481289211.615
+              },
+              "BypassGovernanceRetention": false
+            },
+            "S3DeleteObjectTagging": {},
+            "S3InitiateRestoreObject": {
+              "GlacierJobTier": "string",
+              "ExpirationInDays": 1
+            }
+          },
+          "Description": "string",
+          "ClientRequestToken": "string",
+          "ConfirmationRequired": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteAccessPointForObjectLambda:
+    description: |-
+      Deletes the specified Object Lambda Access Point.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointForObjectLambda.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteAccessPoint:
+    description: |-
+      Deletes the specified access point.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteAccessPointPolicyForObjectLambda:
+    description: |-
+      Removes the resource policy for an Object Lambda Access Point.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicyForObjectLambda.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteAccessPointPolicy:
+    description: |-
+      Deletes the access point policy for the specified access point.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicy.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBucket:
+    description: |-
+      Deletes the Amazon S3 on Outposts bucket. All objects (including all object versions and delete markers) in the bucket must be deleted before the bucket itself can be deleted. For more information, see Using Amazon S3 on Outposts in Amazon S3 User Guide.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucket.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBucketLifecycleConfiguration:
+    description: |-
+      Deletes the lifecycle configuration from the specified Outposts bucket. Amazon S3 on Outposts removes all the lifecycle configuration rules in the lifecycle subresource associated with the bucket. Your objects never expire, and Amazon S3 on Outposts no longer automatically deletes any objects on the basis of rules contained in the deleted lifecycle configuration. For more information, see Using Amazon S3 on Outposts in Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketLifecycleConfiguration.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBucketPolicy:
+    description: |-
+      This implementation of the DELETE action uses the policy subresource to delete the policy of a specified Amazon S3 on Outposts bucket. If you are using an identity other than the root user of the AWS account that owns the bucket, the calling identity must have the s3-outposts:DeleteBucketPolicy permissions on the specified Outposts bucket and belong to the bucket owner's account to use this action. For more information, see Using Amazon S3 on Outposts in Amazon S3 User Guide.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketPolicy.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBucketTagging:
+    description: |-
+      Deletes the tags from the Outposts bucket. For more information, see Using Amazon S3 on Outposts in Amazon S3 User Guide.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketTagging.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteJobTagging:
+    description: |-
+      Removes the entire tag set from the specified S3 Batch Operations job. To use this operation, you must have permission to perform the s3:DeleteJobTagging action. For more information, see Controlling access and labeling jobs using tags in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteJobTagging.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeletePublicAccessBlock:
+    description: |-
+      Removes the PublicAccessBlock configuration for an AWS account. For more information, see Using Amazon S3 block public access.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeletePublicAccessBlock.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteStorageLensConfiguration:
+    description: |-
+      Deletes the Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see Assessing your storage activity and usage with Amazon S3 Storage Lens in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteStorageLensConfiguration.html
+    example:
+      inputs: [
+        {
+          "ConfigId": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteStorageLensConfigurationTagging:
+    description: |-
+      Deletes the Amazon S3 Storage Lens configuration tags. For more information about S3 Storage Lens, see Assessing your storage activity and usage with Amazon S3 Storage Lens in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteStorageLensConfigurationTagging.html
+    example:
+      inputs: [
+        {
+          "ConfigId": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeJob:
+    description: |-
+      Retrieves the configuration parameters and status for a Batch Operations job. For more information, see S3 Batch Operations in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Job": {
+            "JobId": "string",
+            "JobArn": "string",
+            "Report": {
+              "Bucket": "string",
+              "Format": "string",
+              "Prefix": "string",
+              "Enabled": false,
+              "ReportScope": "string"
+            },
+            "Status": "string",
+            "RoleArn": "string",
+            "Manifest": {
+              "Spec": {
+                "Fields": [
+                  "string"
+                ],
+                "Format": "string"
+              },
+              "Location": {
+                "ETag": "string",
+                "ObjectArn": "string",
+                "ObjectVersionId": "string"
+              }
+            },
+            "Priority": 1,
+            "Operation": {
+              "LambdaInvoke": {
+                "FunctionArn": "string"
+              },
+              "S3PutObjectAcl": {
+                "AccessControlPolicy": {
+                  "AccessControlList": {
+                    "Owner": {
+                      "ID": "string",
+                      "DisplayName": "string"
+                    },
+                    "Grants": [
+                      {
+                        "Grantee": {
+                          "Identifier": "string",
+                          "DisplayName": "string",
+                          "TypeIdentifier": "string"
+                        },
+                        "Permission": "string"
+                      }
+                    ]
+                  },
+                  "CannedAccessControlList": "string"
+                }
+              },
+              "S3PutObjectCopy": {
+                "StorageClass": "string",
+                "RequesterPays": false,
+                "ObjectLockMode": "string",
+                "SSEAwsKmsKeyId": "string",
+                "TargetResource": "string",
+                "TargetKeyPrefix": "string",
+                "NewObjectTagging": [
+                  {
+                    "Key": "string",
+                    "Value": "string"
+                  }
+                ],
+                "RedirectLocation": "string",
+                "MetadataDirective": "string",
+                "NewObjectMetadata": {
+                  "ContentMD5": "string",
+                  "ContentType": "string",
+                  "CacheControl": "string",
+                  "SSEAlgorithm": "string",
+                  "UserMetadata": {
+                    "string": "string"
+                  },
+                  "ContentLength": 1,
+                  "ContentEncoding": "string",
+                  "ContentLanguage": "string",
+                  "HttpExpiresDate": 1481289211.615,
+                  "RequesterCharged": false,
+                  "ContentDisposition": "string"
+                },
+                "AccessControlGrants": [
+                  {
+                    "Grantee": {
+                      "Identifier": "string",
+                      "DisplayName": "string",
+                      "TypeIdentifier": "string"
+                    },
+                    "Permission": "string"
+                  }
+                ],
+                "CannedAccessControlList": "string",
+                "ModifiedSinceConstraint": 1481289211.615,
+                "ObjectLockLegalHoldStatus": "string",
+                "ObjectLockRetainUntilDate": 1481289211.615,
+                "UnModifiedSinceConstraint": 1481289211.615
+              },
+              "S3PutObjectTagging": {
+                "TagSet": [
+                  {
+                    "Key": "string",
+                    "Value": "string"
+                  }
+                ]
+              },
+              "S3PutObjectLegalHold": {
+                "LegalHold": {
+                  "Status": "string"
+                }
+              },
+              "S3PutObjectRetention": {
+                "Retention": {
+                  "Mode": "string",
+                  "RetainUntilDate": 1481289211.615
+                },
+                "BypassGovernanceRetention": false
+              },
+              "S3DeleteObjectTagging": {},
+              "S3InitiateRestoreObject": {
+                "GlacierJobTier": "string",
+                "ExpirationInDays": 1
+              }
+            },
+            "Description": "string",
+            "CreationTime": 1481289211.615,
+            "SuspendedDate": 1481289211.615,
+            "FailureReasons": [
+              {
+                "FailureCode": "string",
+                "FailureReason": "string"
+              }
+            ],
+            "SuspendedCause": "string",
+            "ProgressSummary": {
+              "TotalNumberOfTasks": 1,
+              "NumberOfTasksFailed": 1,
+              "NumberOfTasksSucceeded": 1
+            },
+            "TerminationDate": 1481289211.615,
+            "StatusUpdateReason": "string",
+            "ConfirmationRequired": false
+          }
+        }
+      ]
+  GetAccessPointConfigurationForObjectLambda:
+    description: |-
+      Returns configuration for an Object Lambda Access Point.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointConfigurationForObjectLambda.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Configuration": {
+            "AllowedFeatures": [
+              "string"
+            ],
+            "SupportingAccessPoint": "string",
+            "CloudWatchMetricsEnabled": false,
+            "TransformationConfigurations": [
+              {
+                "Actions": [
+                  "string"
+                ],
+                "ContentTransformation": {
+                  "AwsLambda": {
+                    "FunctionArn": "string",
+                    "FunctionPayload": "string"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+  GetAccessPointForObjectLambda:
+    description: |-
+      Returns configuration information about the specified Object Lambda Access Point
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointForObjectLambda.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "CreationDate": 1481289211.615,
+          "PublicAccessBlockConfiguration": {
+            "BlockPublicAcls": false,
+            "IgnorePublicAcls": false,
+            "BlockPublicPolicy": false,
+            "RestrictPublicBuckets": false
+          }
+        }
+      ]
+  GetAccessPoint:
+    description: |-
+      Returns configuration information about the specified access point.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Bucket": "string",
+          "CreationDate": 1481289211.615,
+          "NetworkOrigin": "string",
+          "VpcConfiguration": {
+            "VpcId": "string"
+          },
+          "PublicAccessBlockConfiguration": {
+            "BlockPublicAcls": false,
+            "IgnorePublicAcls": false,
+            "BlockPublicPolicy": false,
+            "RestrictPublicBuckets": false
+          }
+        }
+      ]
+  GetAccessPointPolicyForObjectLambda:
+    description: |-
+      Returns the resource policy for an Object Lambda Access Point.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointPolicyForObjectLambda.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Policy": "string"
+        }
+      ]
+  GetAccessPointPolicy:
+    description: |-
+      Returns the access point policy associated with the specified access point.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointPolicy.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Policy": "string"
+        }
+      ]
+  GetAccessPointPolicyStatusForObjectLambda:
+    description: |-
+      Returns the status of the resource policy associated with an Object Lambda Access Point.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointPolicyStatusForObjectLambda.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PolicyStatus": {
+            "IsPublic": false
+          }
+        }
+      ]
+  GetAccessPointPolicyStatus:
+    description: |-
+      Indicates whether the specified access point currently has a policy that allows public access. For more information about public access through access points, see Managing Data Access with Amazon S3 access points in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointPolicyStatus.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PolicyStatus": {
+            "IsPublic": false
+          }
+        }
+      ]
+  GetBucket:
+    description: |-
+      Gets an Amazon S3 on Outposts bucket. For more information, see Using Amazon S3 on Outposts in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucket.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Bucket": "string",
+          "CreationDate": 1481289211.615,
+          "PublicAccessBlockEnabled": false
+        }
+      ]
+  GetBucketLifecycleConfiguration:
+    description: |-
+      Returns the lifecycle configuration information set on the Outposts bucket. For more information, see Using Amazon S3 on Outposts and for information about lifecycle configuration, see Object Lifecycle Management in Amazon S3 User Guide.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Rules": [
+            {
+              "ID": "string",
+              "Filter": {
+                "And": {
+                  "Tags": [
+                    {
+                      "Key": "string",
+                      "Value": "string"
+                    }
+                  ],
+                  "Prefix": "string"
+                },
+                "Tag": {
+                  "Key": "string",
+                  "Value": "string"
+                },
+                "Prefix": "string"
+              },
+              "Status": "string",
+              "Expiration": {
+                "Date": 1481289211.615,
+                "Days": 1,
+                "ExpiredObjectDeleteMarker": false
+              },
+              "Transitions": [
+                {
+                  "Date": 1481289211.615,
+                  "Days": 1,
+                  "StorageClass": "string"
+                }
+              ],
+              "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 1
+              },
+              "NoncurrentVersionTransitions": [
+                {
+                  "StorageClass": "string",
+                  "NoncurrentDays": 1
+                }
+              ],
+              "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 1
+              }
+            }
+          ]
+        }
+      ]
+  GetBucketPolicy:
+    description: |-
+      Returns the policy of a specified Outposts bucket. For more information, see Using Amazon S3 on Outposts in the Amazon S3 User Guide.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketPolicy.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Policy": "string"
+        }
+      ]
+  GetBucketTagging:
+    description: |-
+      Returns the tag set associated with the Outposts bucket. For more information, see Using Amazon S3 on Outposts in the Amazon S3 User Guide.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketTagging.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TagSet": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  GetJobTagging:
+    description: |-
+      Returns the tags on an S3 Batch Operations job. To use this operation, you must have permission to perform the s3:GetJobTagging action. For more information, see Controlling access and labeling jobs using tags in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetJobTagging.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  GetPublicAccessBlock:
+    description: |-
+      Retrieves the PublicAccessBlock configuration for an AWS account. For more information, see Using Amazon S3 block public access.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetPublicAccessBlock.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PublicAccessBlockConfiguration": {
+            "BlockPublicAcls": false,
+            "IgnorePublicAcls": false,
+            "BlockPublicPolicy": false,
+            "RestrictPublicBuckets": false
+          }
+        }
+      ]
+  GetStorageLensConfiguration:
+    description: |-
+      Gets the Amazon S3 Storage Lens configuration. For more information, see Assessing your storage activity and usage with Amazon S3 Storage Lens in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetStorageLensConfiguration.html
+    example:
+      inputs: [
+        {
+          "ConfigId": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "StorageLensConfiguration": {
+            "Id": "string",
+            "AwsOrg": {
+              "Arn": "string"
+            },
+            "Exclude": {
+              "Buckets": [
+                "string"
+              ],
+              "Regions": [
+                "string"
+              ]
+            },
+            "Include": {
+              "Buckets": [
+                "string"
+              ],
+              "Regions": [
+                "string"
+              ]
+            },
+            "IsEnabled": false,
+            "DataExport": {
+              "S3BucketDestination": {
+                "Arn": "string",
+                "Format": "string",
+                "Prefix": "string",
+                "AccountId": "string",
+                "Encryption": {
+                  "SSES3": {},
+                  "SSEKMS": {
+                    "KeyId": "string"
+                  }
+                },
+                "OutputSchemaVersion": "string"
+              }
+            },
+            "AccountLevel": {
+              "BucketLevel": {
+                "PrefixLevel": {
+                  "StorageMetrics": {
+                    "IsEnabled": false,
+                    "SelectionCriteria": {
+                      "MaxDepth": 1,
+                      "Delimiter": "string",
+                      "MinStorageBytesPercentage": 0.1
+                    }
+                  }
+                },
+                "ActivityMetrics": {
+                  "IsEnabled": false
+                }
+              },
+              "ActivityMetrics": {
+                "IsEnabled": false
+              }
+            },
+            "StorageLensArn": "string"
+          }
+        }
+      ]
+  GetStorageLensConfigurationTagging:
+    description: |-
+      Gets the tags of Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see Assessing your storage activity and usage with Amazon S3 Storage Lens in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetStorageLensConfigurationTagging.html
+    example:
+      inputs: [
+        {
+          "ConfigId": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  ListAccessPointsForObjectLambda:
+    description: |-
+      Returns a list of the access points associated with the Object Lambda Access Point. You can retrieve up to 1000 access points per call. If there are more than 1,000 access points (or the number specified in maxResults, whichever is less), the response will include a continuation token that you can use to list the additional access points.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPointsForObjectLambda.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ObjectLambdaAccessPointList": [
+            {
+              "Name": "string",
+              "ObjectLambdaAccessPointArn": "string"
+            }
+          ]
+        }
+      ]
+  ListAccessPoints:
+    description: |-
+      Returns a list of the access points currently associated with the specified bucket. You can retrieve up to 1000 access points per call. If the specified bucket has more than 1,000 access points (or the number specified in maxResults, whichever is less), the response will include a continuation token that you can use to list the additional access points.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPoints.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "AccountId": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "AccessPointList": [
+            {
+              "Name": "string",
+              "Bucket": "string",
+              "NetworkOrigin": "string",
+              "AccessPointArn": "string",
+              "VpcConfiguration": {
+                "VpcId": "string"
+              }
+            }
+          ]
+        }
+      ]
+  ListJobs:
+    description: |-
+      Lists current S3 Batch Operations jobs and jobs that have ended within the last 30 days for the AWS account making the request. For more information, see S3 Batch Operations in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "NextToken": "string",
+          "MaxResults": 1,
+          "JobStatuses": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Jobs": [
+            {
+              "JobId": "string",
+              "Status": "string",
+              "Priority": 1,
+              "Operation": "string",
+              "Description": "string",
+              "CreationTime": 1481289211.615,
+              "ProgressSummary": {
+                "TotalNumberOfTasks": 1,
+                "NumberOfTasksFailed": 1,
+                "NumberOfTasksSucceeded": 1
+              },
+              "TerminationDate": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListRegionalBuckets:
+    description: |-
+      Returns a list of all Outposts buckets in an Outpost that are owned by the authenticated sender of the request. For more information, see Using Amazon S3 on Outposts in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListRegionalBuckets.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "NextToken": "string",
+          "OutpostId": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "RegionalBucketList": [
+            {
+              "Bucket": "string",
+              "BucketArn": "string",
+              "OutpostId": "string",
+              "CreationDate": 1481289211.615,
+              "PublicAccessBlockEnabled": false
+            }
+          ]
+        }
+      ]
+  ListStorageLensConfigurations:
+    description: |-
+      Gets a list of Amazon S3 Storage Lens configurations. For more information about S3 Storage Lens, see Assessing your storage activity and usage with Amazon S3 Storage Lens in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListStorageLensConfigurations.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "NextToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "StorageLensConfigurationList": [
+            {
+              "Id": "string",
+              "IsEnabled": false,
+              "HomeRegion": "string",
+              "StorageLensArn": "string"
+            }
+          ]
+        }
+      ]
+  PutAccessPointConfigurationForObjectLambda:
+    description: |-
+      Replaces configuration for an Object Lambda Access Point.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointConfigurationForObjectLambda.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AccountId": "string",
+          "Configuration": {
+            "AllowedFeatures": [
+              "string"
+            ],
+            "SupportingAccessPoint": "string",
+            "CloudWatchMetricsEnabled": false,
+            "TransformationConfigurations": [
+              {
+                "Actions": [
+                  "string"
+                ],
+                "ContentTransformation": {
+                  "AwsLambda": {
+                    "FunctionArn": "string",
+                    "FunctionPayload": "string"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutAccessPointPolicyForObjectLambda:
+    description: |-
+      Creates or replaces resource policy for an Object Lambda Access Point. For an example policy, see Creating Object Lambda Access Points in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicyForObjectLambda.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Policy": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutAccessPointPolicy:
+    description: |-
+      Associates an access policy with the specified access point. Each access point can have only one policy, so a request made to this API replaces any existing policy associated with the specified access point.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Policy": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketLifecycleConfiguration:
+    description: |-
+      Creates a new lifecycle configuration for the S3 on Outposts bucket or replaces an existing lifecycle configuration. Outposts buckets only support lifecycle configurations that delete/expire objects after a certain period of time and abort incomplete multipart uploads.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketLifecycleConfiguration.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "AccountId": "string",
+          "LifecycleConfiguration": {
+            "Rules": [
+              {
+                "ID": "string",
+                "Filter": {
+                  "And": {
+                    "Tags": [
+                      {
+                        "Key": "string",
+                        "Value": "string"
+                      }
+                    ],
+                    "Prefix": "string"
+                  },
+                  "Tag": {
+                    "Key": "string",
+                    "Value": "string"
+                  },
+                  "Prefix": "string"
+                },
+                "Status": "string",
+                "Expiration": {
+                  "Date": 1481289211.615,
+                  "Days": 1,
+                  "ExpiredObjectDeleteMarker": false
+                },
+                "Transitions": [
+                  {
+                    "Date": 1481289211.615,
+                    "Days": 1,
+                    "StorageClass": "string"
+                  }
+                ],
+                "NoncurrentVersionExpiration": {
+                  "NoncurrentDays": 1
+                },
+                "NoncurrentVersionTransitions": [
+                  {
+                    "StorageClass": "string",
+                    "NoncurrentDays": 1
+                  }
+                ],
+                "AbortIncompleteMultipartUpload": {
+                  "DaysAfterInitiation": 1
+                }
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketPolicy:
+    description: |-
+      Applies an Amazon S3 bucket policy to an Outposts bucket. For more information, see Using Amazon S3 on Outposts in the Amazon S3 User Guide.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketPolicy.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "Policy": "string",
+          "AccountId": "string",
+          "ConfirmRemoveSelfBucketAccess": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketTagging:
+    description: |-
+      Sets the tags for an S3 on Outposts bucket. For more information, see Using Amazon S3 on Outposts in the Amazon S3 User Guide.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketTagging.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "Tagging": {
+            "TagSet": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ]
+          },
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutJobTagging:
+    description: |-
+      Sets the supplied tag-set on an S3 Batch Operations job.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutJobTagging.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "JobId": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutPublicAccessBlock:
+    description: |-
+      Creates or modifies the PublicAccessBlock configuration for an AWS account. For more information, see Using Amazon S3 block public access.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutPublicAccessBlock.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "PublicAccessBlockConfiguration": {
+            "BlockPublicAcls": false,
+            "IgnorePublicAcls": false,
+            "BlockPublicPolicy": false,
+            "RestrictPublicBuckets": false
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutStorageLensConfiguration:
+    description: |-
+      Puts an Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see Working with Amazon S3 Storage Lens in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutStorageLensConfiguration.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ConfigId": "string",
+          "AccountId": "string",
+          "StorageLensConfiguration": {
+            "Id": "string",
+            "AwsOrg": {
+              "Arn": "string"
+            },
+            "Exclude": {
+              "Buckets": [
+                "string"
+              ],
+              "Regions": [
+                "string"
+              ]
+            },
+            "Include": {
+              "Buckets": [
+                "string"
+              ],
+              "Regions": [
+                "string"
+              ]
+            },
+            "IsEnabled": false,
+            "DataExport": {
+              "S3BucketDestination": {
+                "Arn": "string",
+                "Format": "string",
+                "Prefix": "string",
+                "AccountId": "string",
+                "Encryption": {
+                  "SSES3": {},
+                  "SSEKMS": {
+                    "KeyId": "string"
+                  }
+                },
+                "OutputSchemaVersion": "string"
+              }
+            },
+            "AccountLevel": {
+              "BucketLevel": {
+                "PrefixLevel": {
+                  "StorageMetrics": {
+                    "IsEnabled": false,
+                    "SelectionCriteria": {
+                      "MaxDepth": 1,
+                      "Delimiter": "string",
+                      "MinStorageBytesPercentage": 0.1
+                    }
+                  }
+                },
+                "ActivityMetrics": {
+                  "IsEnabled": false
+                }
+              },
+              "ActivityMetrics": {
+                "IsEnabled": false
+              }
+            },
+            "StorageLensArn": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutStorageLensConfigurationTagging:
+    description: |-
+      Put or replace tags on an existing Amazon S3 Storage Lens configuration. For more information about S3 Storage Lens, see Assessing your storage activity and usage with Amazon S3 Storage Lens in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutStorageLensConfigurationTagging.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ConfigId": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateJobPriority:
+    description: |-
+      Updates an existing S3 Batch Operations job's priority. For more information, see S3 Batch Operations in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "Priority": 1,
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "JobId": "string",
+          "Priority": 1
+        }
+      ]
+  UpdateJobStatus:
+    description: |-
+      Updates the status for the specified job. Use this action to confirm that you want to run a job or to cancel an existing job. For more information, see S3 Batch Operations in the Amazon S3 User Guide.
+    versions:
+      from: 2018.8.20
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "AccountId": "string",
+          "RequestedJobStatus": "string",
+          "StatusUpdateReason": "string"
+        }
+      ]
+      outputs: [
+        {
+          "JobId": "string",
+          "Status": "string",
+          "StatusUpdateReason": "string"
+        }
+      ]
+  CopyObject:
+    description: |-
+      Creates a copy of an object that is already stored in Amazon S3.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html
+    example:
+      inputs: [
+        {
+          "ACL": "string",
+          "Key": "string",
+          "Bucket": "string",
+          "Expires": 1481289211.615,
+          "Tagging": "string",
+          "Metadata": {
+            "string": "string"
+          },
+          "GrantRead": "string",
+          "CopySource": "string",
+          "ContentType": "string",
+          "SSEKMSKeyId": "string",
+          "CacheControl": "string",
+          "GrantReadACP": "string",
+          "RequestPayer": "string",
+          "StorageClass": "string",
+          "GrantWriteACP": "string",
+          "ObjectLockMode": "string",
+          "SSECustomerKey": "blob",
+          "ContentEncoding": "string",
+          "ContentLanguage": "string",
+          "BucketKeyEnabled": false,
+          "GrantFullControl": "string",
+          "TaggingDirective": "string",
+          "CopySourceIfMatch": "string",
+          "MetadataDirective": "string",
+          "SSECustomerKeyMD5": "string",
+          "ContentDisposition": "string",
+          "ExpectedBucketOwner": "string",
+          "SSECustomerAlgorithm": "string",
+          "ServerSideEncryption": "string",
+          "CopySourceIfNoneMatch": "string",
+          "SSEKMSEncryptionContext": "string",
+          "WebsiteRedirectLocation": "string",
+          "CopySourceSSECustomerKey": "blob",
+          "CopySourceIfModifiedSince": 1481289211.615,
+          "ExpectedSourceBucketOwner": "string",
+          "ObjectLockLegalHoldStatus": "string",
+          "ObjectLockRetainUntilDate": 1481289211.615,
+          "CopySourceIfUnmodifiedSince": 1481289211.615,
+          "CopySourceSSECustomerKeyMD5": "string",
+          "CopySourceSSECustomerAlgorithm": "string"
+        }
+      ]
+      outputs: [
+        {
+          "VersionId": "string",
+          "Expiration": "string",
+          "SSEKMSKeyId": "string",
+          "RequestCharged": "string",
+          "BucketKeyEnabled": false,
+          "CopyObjectResult": {
+            "ETag": "string",
+            "LastModified": 1481289211.615
+          },
+          "SSECustomerKeyMD5": "string",
+          "CopySourceVersionId": "string",
+          "SSECustomerAlgorithm": "string",
+          "ServerSideEncryption": "string",
+          "SSEKMSEncryptionContext": "string"
+        }
+      ]
+  CreateMultipartUpload:
+    description: |-
+      This action initiates a multipart upload and returns an upload ID. This upload ID is used to associate all of the parts in the specific multipart upload. You specify this upload ID in each of your subsequent upload part requests (see UploadPart). You also include this upload ID in the final request to either complete or abort the multipart upload request.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html
+    example:
+      inputs: [
+        {
+          "ACL": "string",
+          "Key": "string",
+          "Bucket": "string",
+          "Expires": 1481289211.615,
+          "Tagging": "string",
+          "Metadata": {
+            "string": "string"
+          },
+          "GrantRead": "string",
+          "ContentType": "string",
+          "SSEKMSKeyId": "string",
+          "CacheControl": "string",
+          "GrantReadACP": "string",
+          "RequestPayer": "string",
+          "StorageClass": "string",
+          "GrantWriteACP": "string",
+          "ObjectLockMode": "string",
+          "SSECustomerKey": "blob",
+          "ContentEncoding": "string",
+          "ContentLanguage": "string",
+          "BucketKeyEnabled": false,
+          "GrantFullControl": "string",
+          "SSECustomerKeyMD5": "string",
+          "ContentDisposition": "string",
+          "ExpectedBucketOwner": "string",
+          "SSECustomerAlgorithm": "string",
+          "ServerSideEncryption": "string",
+          "SSEKMSEncryptionContext": "string",
+          "WebsiteRedirectLocation": "string",
+          "ObjectLockLegalHoldStatus": "string",
+          "ObjectLockRetainUntilDate": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "Key": "string",
+          "Bucket": "string",
+          "UploadId": "string",
+          "AbortDate": 1481289211.615,
+          "AbortRuleId": "string",
+          "SSEKMSKeyId": "string",
+          "RequestCharged": "string",
+          "BucketKeyEnabled": false,
+          "SSECustomerKeyMD5": "string",
+          "SSECustomerAlgorithm": "string",
+          "ServerSideEncryption": "string",
+          "SSEKMSEncryptionContext": "string"
+        }
+      ]
+  DeleteBucketAnalyticsConfiguration:
+    description: |-
+      Deletes an analytics configuration for the bucket (specified by the analytics configuration ID).
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketAnalyticsConfiguration.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBucketCors:
+    description: |-
+      Deletes the cors configuration information set for the bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketCors.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBucketEncryption:
+    description: |-
+      This implementation of the DELETE action removes default encryption from the bucket. For information about the Amazon S3 default encryption feature, see Amazon S3 Default Bucket Encryption in the Amazon S3 User Guide.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketEncryption.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBucketIntelligentTieringConfiguration:
+    description: |-
+      Deletes the S3 Intelligent-Tiering configuration from the specified bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketIntelligentTieringConfiguration.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Bucket": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBucketInventoryConfiguration:
+    description: |-
+      Deletes an inventory configuration (identified by the inventory ID) from the bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketInventoryConfiguration.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBucketLifecycle:
+    description: |-
+      Deletes the lifecycle configuration from the specified bucket. Amazon S3 removes all the lifecycle configuration rules in the lifecycle subresource associated with the bucket. Your objects never expire, and Amazon S3 no longer automatically deletes any objects on the basis of rules contained in the deleted lifecycle configuration.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketLifecycle.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBucketMetricsConfiguration:
+    description: |-
+      Deletes a metrics configuration for the Amazon CloudWatch request metrics (specified by the metrics configuration ID) from the bucket. Note that this doesn't include the daily storage metrics.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketMetricsConfiguration.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBucketOwnershipControls:
+    description: |-
+      Removes OwnershipControls for an Amazon S3 bucket. To use this operation, you must have the s3:PutBucketOwnershipControls permission. For more information about Amazon S3 permissions, see Specifying Permissions in a Policy.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketOwnershipControls.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBucketReplication:
+    description: |-
+      Deletes the replication configuration from the bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketReplication.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBucketWebsite:
+    description: |-
+      This action removes the website configuration for a bucket. Amazon S3 returns a 200 OK response upon successfully deleting a website configuration on the specified bucket. You will get a 200 OK response if the website configuration you are trying to delete does not exist on the bucket. Amazon S3 returns a 404 response if the bucket specified in the request does not exist.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketWebsite.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteObject:
+    description: |-
+      Removes the null version (if there is one) of an object and inserts a delete marker, which becomes the latest version of the object. If there isn't a null version, Amazon S3 does not remove any objects but will still respond that the command was successful.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "MFA": "string",
+          "Bucket": "string",
+          "VersionId": "string",
+          "RequestPayer": "string",
+          "ExpectedBucketOwner": "string",
+          "BypassGovernanceRetention": false
+        }
+      ]
+      outputs: [
+        {
+          "VersionId": "string",
+          "DeleteMarker": false,
+          "RequestCharged": "string"
+        }
+      ]
+  DeleteObjects:
+    description: |-
+      This action enables you to delete multiple objects from a bucket using a single HTTP request. If you know the object keys that you want to delete, then this action provides a suitable alternative to sending individual delete requests, reducing per-request overhead.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjects.html
+    example:
+      inputs: [
+        {
+          "MFA": "string",
+          "Bucket": "string",
+          "Delete": {
+            "Quiet": false,
+            "Objects": [
+              {
+                "Key": "string",
+                "VersionId": "string"
+              }
+            ]
+          },
+          "RequestPayer": "string",
+          "ExpectedBucketOwner": "string",
+          "BypassGovernanceRetention": false
+        }
+      ]
+      outputs: [
+        {
+          "Errors": [
+            {
+              "Key": "string",
+              "Code": "string",
+              "Message": "string",
+              "VersionId": "string"
+            }
+          ],
+          "Deleted": [
+            {
+              "Key": "string",
+              "VersionId": "string",
+              "DeleteMarker": false,
+              "DeleteMarkerVersionId": "string"
+            }
+          ],
+          "RequestCharged": "string"
+        }
+      ]
+  DeleteObjectTagging:
+    description: |-
+      Removes the entire tag set from the specified object. For more information about managing object tags, see Object Tagging.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjectTagging.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Bucket": "string",
+          "VersionId": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "VersionId": "string"
+        }
+      ]
+  GetBucketAccelerateConfiguration:
+    description: |-
+      This implementation of the GET action uses the accelerate subresource to return the Transfer Acceleration state of a bucket, which is either Enabled or Suspended. Amazon S3 Transfer Acceleration is a bucket-level feature that enables you to perform faster data transfers to and from Amazon S3.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketAccelerateConfiguration.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string"
+        }
+      ]
+  GetBucketAcl:
+    description: |-
+      This implementation of the GET action uses the acl subresource to return the access control list (ACL) of a bucket. To use GET to return the ACL of the bucket, you must have READ_ACP access to the bucket. If READ_ACP permission is granted to the anonymous user, you can return the ACL of the bucket without using an authorization header.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketAcl.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Owner": {
+            "ID": "string",
+            "DisplayName": "string"
+          },
+          "Grants": [
+            {
+              "Grantee": {
+                "ID": "string",
+                "URI": "string",
+                "Type": "string",
+                "DisplayName": "string",
+                "EmailAddress": "string"
+              },
+              "Permission": "string"
+            }
+          ]
+        }
+      ]
+  GetBucketAnalyticsConfiguration:
+    description: |-
+      This implementation of the GET action returns an analytics configuration (identified by the analytics configuration ID) from the bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketAnalyticsConfiguration.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "AnalyticsConfiguration": {
+            "Id": "string",
+            "Filter": {
+              "And": {
+                "Tags": [
+                  {
+                    "Key": "string",
+                    "Value": "string"
+                  }
+                ],
+                "Prefix": "string"
+              },
+              "Tag": {
+                "Key": "string",
+                "Value": "string"
+              },
+              "Prefix": "string"
+            },
+            "StorageClassAnalysis": {
+              "DataExport": {
+                "Destination": {
+                  "S3BucketDestination": {
+                    "Bucket": "string",
+                    "Format": "string",
+                    "Prefix": "string",
+                    "BucketAccountId": "string"
+                  }
+                },
+                "OutputSchemaVersion": "string"
+              }
+            }
+          }
+        }
+      ]
+  GetBucketCors:
+    description: |-
+      Returns the cors configuration information set for the bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketCors.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CORSRules": [
+            {
+              "ID": "string",
+              "ExposeHeaders": [
+                "string"
+              ],
+              "MaxAgeSeconds": 1,
+              "AllowedHeaders": [
+                "string"
+              ],
+              "AllowedMethods": [
+                "string"
+              ],
+              "AllowedOrigins": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  GetBucketEncryption:
+    description: |-
+      Returns the default encryption configuration for an Amazon S3 bucket. If the bucket does not have a default encryption configuration, GetBucketEncryption returns ServerSideEncryptionConfigurationNotFoundError.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketEncryption.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ServerSideEncryptionConfiguration": {
+            "Rules": [
+              {
+                "BucketKeyEnabled": false,
+                "ApplyServerSideEncryptionByDefault": {
+                  "SSEAlgorithm": "string",
+                  "KMSMasterKeyID": "string"
+                }
+              }
+            ]
+          }
+        }
+      ]
+  GetBucketIntelligentTieringConfiguration:
+    description: |-
+      Gets the S3 Intelligent-Tiering configuration from the specified bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketIntelligentTieringConfiguration.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Bucket": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IntelligentTieringConfiguration": {
+            "Id": "string",
+            "Filter": {
+              "And": {
+                "Tags": [
+                  {
+                    "Key": "string",
+                    "Value": "string"
+                  }
+                ],
+                "Prefix": "string"
+              },
+              "Tag": {
+                "Key": "string",
+                "Value": "string"
+              },
+              "Prefix": "string"
+            },
+            "Status": "string",
+            "Tierings": [
+              {
+                "Days": 1,
+                "AccessTier": "string"
+              }
+            ]
+          }
+        }
+      ]
+  GetBucketInventoryConfiguration:
+    description: |-
+      Returns an inventory configuration (identified by the inventory configuration ID) from the bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketInventoryConfiguration.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "InventoryConfiguration": {
+            "Id": "string",
+            "Filter": {
+              "Prefix": "string"
+            },
+            "Schedule": {
+              "Frequency": "string"
+            },
+            "IsEnabled": false,
+            "Destination": {
+              "S3BucketDestination": {
+                "Bucket": "string",
+                "Format": "string",
+                "Prefix": "string",
+                "AccountId": "string",
+                "Encryption": {
+                  "SSES3": {},
+                  "SSEKMS": {
+                    "KeyId": "string"
+                  }
+                }
+              }
+            },
+            "OptionalFields": [
+              "string"
+            ],
+            "IncludedObjectVersions": "string"
+          }
+        }
+      ]
+  GetBucketLifecycle:
+    description: |-
+      Returns the lifecycle configuration information set on the bucket. For information about lifecycle configuration, see Object Lifecycle Management.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLifecycle.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Rules": [
+            {
+              "ID": "string",
+              "Prefix": "string",
+              "Status": "string",
+              "Expiration": {
+                "Date": 1481289211.615,
+                "Days": 1,
+                "ExpiredObjectDeleteMarker": false
+              },
+              "Transition": {
+                "Date": 1481289211.615,
+                "Days": 1,
+                "StorageClass": "string"
+              },
+              "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 1
+              },
+              "NoncurrentVersionTransition": {
+                "StorageClass": "string",
+                "NoncurrentDays": 1
+              },
+              "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 1
+              }
+            }
+          ]
+        }
+      ]
+  GetBucketLocation:
+    description: |-
+      Returns the Region the bucket resides in. You set the bucket's Region using the LocationConstraint request parameter in a CreateBucket request. For more information, see CreateBucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLocation.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LocationConstraint": "string"
+        }
+      ]
+  GetBucketLogging:
+    description: |-
+      Returns the logging status of a bucket and the permissions users have to view and modify that status. To use GET, you must be the bucket owner.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLogging.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LoggingEnabled": {
+            "TargetBucket": "string",
+            "TargetGrants": [
+              {
+                "Grantee": {
+                  "ID": "string",
+                  "URI": "string",
+                  "Type": "string",
+                  "DisplayName": "string",
+                  "EmailAddress": "string"
+                },
+                "Permission": "string"
+              }
+            ],
+            "TargetPrefix": "string"
+          }
+        }
+      ]
+  GetBucketMetricsConfiguration:
+    description: |-
+      Gets a metrics configuration (specified by the metrics configuration ID) from the bucket. Note that this doesn't include the daily storage metrics.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketMetricsConfiguration.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "MetricsConfiguration": {
+            "Id": "string",
+            "Filter": {
+              "And": {
+                "Tags": [
+                  {
+                    "Key": "string",
+                    "Value": "string"
+                  }
+                ],
+                "Prefix": "string"
+              },
+              "Tag": {
+                "Key": "string",
+                "Value": "string"
+              },
+              "Prefix": "string"
+            }
+          }
+        }
+      ]
+  GetBucketNotificationConfiguration:
+    description: |-
+      Returns the notification configuration of a bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketNotificationConfiguration.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "QueueConfigurations": [
+            {
+              "Id": "string",
+              "Events": [
+                "string"
+              ],
+              "Filter": {
+                "Key": {
+                  "FilterRules": [
+                    {
+                      "Name": "string",
+                      "Value": "string"
+                    }
+                  ]
+                }
+              },
+              "QueueArn": "string"
+            }
+          ],
+          "TopicConfigurations": [
+            {
+              "Id": "string",
+              "Events": [
+                "string"
+              ],
+              "Filter": {
+                "Key": {
+                  "FilterRules": [
+                    {
+                      "Name": "string",
+                      "Value": "string"
+                    }
+                  ]
+                }
+              },
+              "TopicArn": "string"
+            }
+          ],
+          "LambdaFunctionConfigurations": [
+            {
+              "Id": "string",
+              "Events": [
+                "string"
+              ],
+              "Filter": {
+                "Key": {
+                  "FilterRules": [
+                    {
+                      "Name": "string",
+                      "Value": "string"
+                    }
+                  ]
+                }
+              },
+              "LambdaFunctionArn": "string"
+            }
+          ]
+        }
+      ]
+  GetBucketNotification:
+    description: |-
+      No longer used, see GetBucketNotificationConfiguration.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketNotification.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "QueueConfiguration": {
+            "Id": "string",
+            "Event": "string",
+            "Queue": "string",
+            "Events": [
+              "string"
+            ]
+          },
+          "TopicConfiguration": {
+            "Id": "string",
+            "Event": "string",
+            "Topic": "string",
+            "Events": [
+              "string"
+            ]
+          },
+          "CloudFunctionConfiguration": {
+            "Id": "string",
+            "Event": "string",
+            "Events": [
+              "string"
+            ],
+            "CloudFunction": "string",
+            "InvocationRole": "string"
+          }
+        }
+      ]
+  GetBucketOwnershipControls:
+    description: |-
+      Retrieves OwnershipControls for an Amazon S3 bucket. To use this operation, you must have the s3:GetBucketOwnershipControls permission. For more information about Amazon S3 permissions, see Specifying Permissions in a Policy.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketOwnershipControls.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "OwnershipControls": {
+            "Rules": [
+              {
+                "ObjectOwnership": "string"
+              }
+            ]
+          }
+        }
+      ]
+  GetBucketPolicyStatus:
+    description: |-
+      Retrieves the policy status for an Amazon S3 bucket, indicating whether the bucket is public. In order to use this operation, you must have the s3:GetBucketPolicyStatus permission. For more information about Amazon S3 permissions, see Specifying Permissions in a Policy.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketPolicyStatus.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PolicyStatus": {
+            "IsPublic": false
+          }
+        }
+      ]
+  GetBucketReplication:
+    description: |-
+      Returns the replication configuration of a bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketReplication.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ReplicationConfiguration": {
+            "Role": "string",
+            "Rules": [
+              {
+                "ID": "string",
+                "Filter": {
+                  "And": {
+                    "Tags": [
+                      {
+                        "Key": "string",
+                        "Value": "string"
+                      }
+                    ],
+                    "Prefix": "string"
+                  },
+                  "Tag": {
+                    "Key": "string",
+                    "Value": "string"
+                  },
+                  "Prefix": "string"
+                },
+                "Prefix": "string",
+                "Status": "string",
+                "Priority": 1,
+                "Destination": {
+                  "Bucket": "string",
+                  "Account": "string",
+                  "Metrics": {
+                    "Status": "string",
+                    "EventThreshold": {
+                      "Minutes": 1
+                    }
+                  },
+                  "StorageClass": "string",
+                  "ReplicationTime": {
+                    "Time": {
+                      "Minutes": 1
+                    },
+                    "Status": "string"
+                  },
+                  "EncryptionConfiguration": {
+                    "ReplicaKmsKeyID": "string"
+                  },
+                  "AccessControlTranslation": {
+                    "Owner": "string"
+                  }
+                },
+                "DeleteMarkerReplication": {
+                  "Status": "string"
+                },
+                "SourceSelectionCriteria": {
+                  "ReplicaModifications": {
+                    "Status": "string"
+                  },
+                  "SseKmsEncryptedObjects": {
+                    "Status": "string"
+                  }
+                },
+                "ExistingObjectReplication": {
+                  "Status": "string"
+                }
+              }
+            ]
+          }
+        }
+      ]
+  GetBucketRequestPayment:
+    description: |-
+      Returns the request payment configuration of a bucket. To use this version of the operation, you must be the bucket owner. For more information, see Requester Pays Buckets.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketRequestPayment.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Payer": "string"
+        }
+      ]
+  GetBucketVersioning:
+    description: |-
+      Returns the versioning state of a bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "MFADelete": "string"
+        }
+      ]
+  GetBucketWebsite:
+    description: |-
+      Returns the website configuration for a bucket. To host website on Amazon S3, you can configure a bucket as website by adding a website configuration. For more information about hosting websites, see Hosting Websites on Amazon S3.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketWebsite.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RoutingRules": [
+            {
+              "Redirect": {
+                "HostName": "string",
+                "Protocol": "string",
+                "ReplaceKeyWith": "string",
+                "HttpRedirectCode": "string",
+                "ReplaceKeyPrefixWith": "string"
+              },
+              "Condition": {
+                "KeyPrefixEquals": "string",
+                "HttpErrorCodeReturnedEquals": "string"
+              }
+            }
+          ],
+          "ErrorDocument": {
+            "Key": "string"
+          },
+          "IndexDocument": {
+            "Suffix": "string"
+          },
+          "RedirectAllRequestsTo": {
+            "HostName": "string",
+            "Protocol": "string"
+          }
+        }
+      ]
+  GetObjectAcl:
+    description: |-
+      Returns the access control list (ACL) of an object. To use this operation, you must have READ_ACP access to the object.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAcl.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Bucket": "string",
+          "VersionId": "string",
+          "RequestPayer": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Owner": {
+            "ID": "string",
+            "DisplayName": "string"
+          },
+          "Grants": [
+            {
+              "Grantee": {
+                "ID": "string",
+                "URI": "string",
+                "Type": "string",
+                "DisplayName": "string",
+                "EmailAddress": "string"
+              },
+              "Permission": "string"
+            }
+          ],
+          "RequestCharged": "string"
+        }
+      ]
+  GetObject:
+    description: |-
+      Retrieves objects from Amazon S3. To use GET, you must have READ access to the object. If you grant READ access to the anonymous user, you can return the object without using an authorization header.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Range": "string",
+          "Bucket": "string",
+          "IfMatch": "string",
+          "VersionId": "string",
+          "PartNumber": 1,
+          "IfNoneMatch": "string",
+          "RequestPayer": "string",
+          "SSECustomerKey": "blob",
+          "IfModifiedSince": 1481289211.615,
+          "ResponseExpires": 1481289211.615,
+          "IfUnmodifiedSince": 1481289211.615,
+          "SSECustomerKeyMD5": "string",
+          "ExpectedBucketOwner": "string",
+          "ResponseContentType": "string",
+          "ResponseCacheControl": "string",
+          "SSECustomerAlgorithm": "string",
+          "ResponseContentEncoding": "string",
+          "ResponseContentLanguage": "string",
+          "ResponseContentDisposition": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Body": "blob",
+          "ETag": "string",
+          "Expires": 1481289211.615,
+          "Restore": "string",
+          "Metadata": {
+            "string": "string"
+          },
+          "TagCount": 1,
+          "VersionId": "string",
+          "Expiration": "string",
+          "PartsCount": 1,
+          "ContentType": "string",
+          "MissingMeta": 1,
+          "SSEKMSKeyId": "string",
+          "AcceptRanges": "string",
+          "CacheControl": "string",
+          "ContentRange": "string",
+          "DeleteMarker": false,
+          "LastModified": 1481289211.615,
+          "StorageClass": "string",
+          "ContentLength": 1,
+          "ObjectLockMode": "string",
+          "RequestCharged": "string",
+          "ContentEncoding": "string",
+          "ContentLanguage": "string",
+          "BucketKeyEnabled": false,
+          "ReplicationStatus": "string",
+          "SSECustomerKeyMD5": "string",
+          "ContentDisposition": "string",
+          "SSECustomerAlgorithm": "string",
+          "ServerSideEncryption": "string",
+          "WebsiteRedirectLocation": "string",
+          "ObjectLockLegalHoldStatus": "string",
+          "ObjectLockRetainUntilDate": 1481289211.615
+        }
+      ]
+  GetObjectLegalHold:
+    description: |-
+      Gets an object's current Legal Hold status. For more information, see Locking Objects.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectLegalHold.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Bucket": "string",
+          "VersionId": "string",
+          "RequestPayer": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LegalHold": {
+            "Status": "string"
+          }
+        }
+      ]
+  GetObjectLockConfiguration:
+    description: |-
+      Gets the Object Lock configuration for a bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket. For more information, see Locking Objects.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectLockConfiguration.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ObjectLockConfiguration": {
+            "Rule": {
+              "DefaultRetention": {
+                "Days": 1,
+                "Mode": "string",
+                "Years": 1
+              }
+            },
+            "ObjectLockEnabled": "string"
+          }
+        }
+      ]
+  GetObjectRetention:
+    description: |-
+      Retrieves an object's retention settings. For more information, see Locking Objects.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectRetention.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Bucket": "string",
+          "VersionId": "string",
+          "RequestPayer": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Retention": {
+            "Mode": "string",
+            "RetainUntilDate": 1481289211.615
+          }
+        }
+      ]
+  GetObjectTagging:
+    description: |-
+      Returns the tag-set of an object. You send the GET request against the tagging subresource associated with the object.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTagging.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Bucket": "string",
+          "VersionId": "string",
+          "RequestPayer": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TagSet": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "VersionId": "string"
+        }
+      ]
+  GetObjectTorrent:
+    description: |-
+      Returns torrent files from a bucket. BitTorrent can save you bandwidth when you're distributing large files. For more information about BitTorrent, see Using BitTorrent with Amazon S3.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTorrent.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Bucket": "string",
+          "RequestPayer": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Body": "blob",
+          "RequestCharged": "string"
+        }
+      ]
+  HeadBucket:
+    description: |-
+      This action is useful to determine if a bucket exists and you have permission to access it. The action returns a 200 OK if the bucket exists and you have permission to access it.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadBucket.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  HeadObject:
+    description: |-
+      The HEAD action retrieves metadata from an object without returning the object itself. This action is useful if you're only interested in an object's metadata. To use HEAD, you must have READ access to the object.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Range": "string",
+          "Bucket": "string",
+          "IfMatch": "string",
+          "VersionId": "string",
+          "PartNumber": 1,
+          "IfNoneMatch": "string",
+          "RequestPayer": "string",
+          "SSECustomerKey": "blob",
+          "IfModifiedSince": 1481289211.615,
+          "IfUnmodifiedSince": 1481289211.615,
+          "SSECustomerKeyMD5": "string",
+          "ExpectedBucketOwner": "string",
+          "SSECustomerAlgorithm": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "Expires": 1481289211.615,
+          "Restore": "string",
+          "Metadata": {
+            "string": "string"
+          },
+          "VersionId": "string",
+          "Expiration": "string",
+          "PartsCount": 1,
+          "ContentType": "string",
+          "MissingMeta": 1,
+          "SSEKMSKeyId": "string",
+          "AcceptRanges": "string",
+          "CacheControl": "string",
+          "DeleteMarker": false,
+          "LastModified": 1481289211.615,
+          "StorageClass": "string",
+          "ArchiveStatus": "string",
+          "ContentLength": 1,
+          "ObjectLockMode": "string",
+          "RequestCharged": "string",
+          "ContentEncoding": "string",
+          "ContentLanguage": "string",
+          "BucketKeyEnabled": false,
+          "ReplicationStatus": "string",
+          "SSECustomerKeyMD5": "string",
+          "ContentDisposition": "string",
+          "SSECustomerAlgorithm": "string",
+          "ServerSideEncryption": "string",
+          "WebsiteRedirectLocation": "string",
+          "ObjectLockLegalHoldStatus": "string",
+          "ObjectLockRetainUntilDate": 1481289211.615
+        }
+      ]
+  ListBucketAnalyticsConfigurations:
+    description: |-
+      Lists the analytics configurations for the bucket. You can have up to 1,000 analytics configurations per bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBucketAnalyticsConfigurations.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ContinuationToken": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IsTruncated": false,
+          "ContinuationToken": "string",
+          "NextContinuationToken": "string",
+          "AnalyticsConfigurationList": [
+            {
+              "Id": "string",
+              "Filter": {
+                "And": {
+                  "Tags": [
+                    {
+                      "Key": "string",
+                      "Value": "string"
+                    }
+                  ],
+                  "Prefix": "string"
+                },
+                "Tag": {
+                  "Key": "string",
+                  "Value": "string"
+                },
+                "Prefix": "string"
+              },
+              "StorageClassAnalysis": {
+                "DataExport": {
+                  "Destination": {
+                    "S3BucketDestination": {
+                      "Bucket": "string",
+                      "Format": "string",
+                      "Prefix": "string",
+                      "BucketAccountId": "string"
+                    }
+                  },
+                  "OutputSchemaVersion": "string"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  ListBucketIntelligentTieringConfigurations:
+    description: |-
+      Lists the S3 Intelligent-Tiering configuration from the specified bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBucketIntelligentTieringConfigurations.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ContinuationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IsTruncated": false,
+          "ContinuationToken": "string",
+          "NextContinuationToken": "string",
+          "IntelligentTieringConfigurationList": [
+            {
+              "Id": "string",
+              "Filter": {
+                "And": {
+                  "Tags": [
+                    {
+                      "Key": "string",
+                      "Value": "string"
+                    }
+                  ],
+                  "Prefix": "string"
+                },
+                "Tag": {
+                  "Key": "string",
+                  "Value": "string"
+                },
+                "Prefix": "string"
+              },
+              "Status": "string",
+              "Tierings": [
+                {
+                  "Days": 1,
+                  "AccessTier": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  ListBucketInventoryConfigurations:
+    description: |-
+      Returns a list of inventory configurations for the bucket. You can have up to 1,000 analytics configurations per bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBucketInventoryConfigurations.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ContinuationToken": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IsTruncated": false,
+          "ContinuationToken": "string",
+          "NextContinuationToken": "string",
+          "InventoryConfigurationList": [
+            {
+              "Id": "string",
+              "Filter": {
+                "Prefix": "string"
+              },
+              "Schedule": {
+                "Frequency": "string"
+              },
+              "IsEnabled": false,
+              "Destination": {
+                "S3BucketDestination": {
+                  "Bucket": "string",
+                  "Format": "string",
+                  "Prefix": "string",
+                  "AccountId": "string",
+                  "Encryption": {
+                    "SSES3": {},
+                    "SSEKMS": {
+                      "KeyId": "string"
+                    }
+                  }
+                }
+              },
+              "OptionalFields": [
+                "string"
+              ],
+              "IncludedObjectVersions": "string"
+            }
+          ]
+        }
+      ]
+  ListBucketMetricsConfigurations:
+    description: |-
+      Lists the metrics configurations for the bucket. The metrics configurations are only for the request metrics of the bucket and do not provide information on daily storage metrics. You can have up to 1,000 configurations per bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBucketMetricsConfigurations.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ContinuationToken": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IsTruncated": false,
+          "ContinuationToken": "string",
+          "NextContinuationToken": "string",
+          "MetricsConfigurationList": [
+            {
+              "Id": "string",
+              "Filter": {
+                "And": {
+                  "Tags": [
+                    {
+                      "Key": "string",
+                      "Value": "string"
+                    }
+                  ],
+                  "Prefix": "string"
+                },
+                "Tag": {
+                  "Key": "string",
+                  "Value": "string"
+                },
+                "Prefix": "string"
+              }
+            }
+          ]
+        }
+      ]
+  ListBuckets:
+    description: |-
+      Returns a list of all buckets owned by the authenticated sender of the request.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBuckets.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Owner": {
+            "ID": "string",
+            "DisplayName": "string"
+          },
+          "Buckets": [
+            {
+              "Name": "string",
+              "CreationDate": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListMultipartUploads:
+    description: |-
+      This action lists in-progress multipart uploads. An in-progress multipart upload is a multipart upload that has been initiated using the Initiate Multipart Upload request, but has not yet been completed or aborted.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "Prefix": "string",
+          "Delimiter": "string",
+          "KeyMarker": "string",
+          "MaxUploads": 1,
+          "EncodingType": "string",
+          "UploadIdMarker": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Bucket": "string",
+          "Prefix": "string",
+          "Uploads": [
+            {
+              "Key": "string",
+              "Owner": {
+                "ID": "string",
+                "DisplayName": "string"
+              },
+              "UploadId": "string",
+              "Initiated": 1481289211.615,
+              "Initiator": {
+                "ID": "string",
+                "DisplayName": "string"
+              },
+              "StorageClass": "string"
+            }
+          ],
+          "Delimiter": "string",
+          "KeyMarker": "string",
+          "MaxUploads": 1,
+          "IsTruncated": false,
+          "EncodingType": "string",
+          "NextKeyMarker": "string",
+          "CommonPrefixes": [
+            {
+              "Prefix": "string"
+            }
+          ],
+          "UploadIdMarker": "string",
+          "NextUploadIdMarker": "string"
+        }
+      ]
+  ListObjects:
+    description: |-
+      Returns some or all (up to 1,000) of the objects in a bucket. You can use the request parameters as selection criteria to return a subset of the objects in a bucket. A 200 OK response can contain valid or invalid XML. Be sure to design your application to parse the contents of the response and handle it appropriately.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "Marker": "string",
+          "Prefix": "string",
+          "MaxKeys": 1,
+          "Delimiter": "string",
+          "EncodingType": "string",
+          "RequestPayer": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Marker": "string",
+          "Prefix": "string",
+          "MaxKeys": 1,
+          "Contents": [
+            {
+              "Key": "string",
+              "ETag": "string",
+              "Size": 1,
+              "Owner": {
+                "ID": "string",
+                "DisplayName": "string"
+              },
+              "LastModified": 1481289211.615,
+              "StorageClass": "string"
+            }
+          ],
+          "Delimiter": "string",
+          "NextMarker": "string",
+          "IsTruncated": false,
+          "EncodingType": "string",
+          "CommonPrefixes": [
+            {
+              "Prefix": "string"
+            }
+          ]
+        }
+      ]
+  ListObjectsV2:
+    description: |-
+      Returns some or all (up to 1,000) of the objects in a bucket with each request. You can use the request parameters as selection criteria to return a subset of the objects in a bucket. A 200 OK response can contain valid or invalid XML. Make sure to design your application to parse the contents of the response and handle it appropriately. Objects are returned sorted in an ascending order of the respective key names in the list. For more information about listing objects, see Listing object keys programmatically
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "Prefix": "string",
+          "MaxKeys": 1,
+          "Delimiter": "string",
+          "FetchOwner": false,
+          "StartAfter": "string",
+          "EncodingType": "string",
+          "RequestPayer": "string",
+          "ContinuationToken": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Prefix": "string",
+          "MaxKeys": 1,
+          "Contents": [
+            {
+              "Key": "string",
+              "ETag": "string",
+              "Size": 1,
+              "Owner": {
+                "ID": "string",
+                "DisplayName": "string"
+              },
+              "LastModified": 1481289211.615,
+              "StorageClass": "string"
+            }
+          ],
+          "KeyCount": 1,
+          "Delimiter": "string",
+          "StartAfter": "string",
+          "IsTruncated": false,
+          "EncodingType": "string",
+          "CommonPrefixes": [
+            {
+              "Prefix": "string"
+            }
+          ],
+          "ContinuationToken": "string",
+          "NextContinuationToken": "string"
+        }
+      ]
+  ListObjectVersions:
+    description: |-
+      Returns metadata about all versions of the objects in a bucket. You can also use request parameters as selection criteria to return metadata about a subset of all the object versions.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectVersions.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "Prefix": "string",
+          "MaxKeys": 1,
+          "Delimiter": "string",
+          "KeyMarker": "string",
+          "EncodingType": "string",
+          "VersionIdMarker": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Prefix": "string",
+          "MaxKeys": 1,
+          "Versions": [
+            {
+              "Key": "string",
+              "ETag": "string",
+              "Size": 1,
+              "Owner": {
+                "ID": "string",
+                "DisplayName": "string"
+              },
+              "IsLatest": false,
+              "VersionId": "string",
+              "LastModified": 1481289211.615,
+              "StorageClass": "string"
+            }
+          ],
+          "Delimiter": "string",
+          "KeyMarker": "string",
+          "IsTruncated": false,
+          "EncodingType": "string",
+          "DeleteMarkers": [
+            {
+              "Key": "string",
+              "Owner": {
+                "ID": "string",
+                "DisplayName": "string"
+              },
+              "IsLatest": false,
+              "VersionId": "string",
+              "LastModified": 1481289211.615
+            }
+          ],
+          "NextKeyMarker": "string",
+          "CommonPrefixes": [
+            {
+              "Prefix": "string"
+            }
+          ],
+          "VersionIdMarker": "string",
+          "NextVersionIdMarker": "string"
+        }
+      ]
+  ListParts:
+    description: |-
+      Lists the parts that have been uploaded for a specific multipart upload. This operation must include the upload ID, which you obtain by sending the initiate multipart upload request (see CreateMultipartUpload). This request returns a maximum of 1,000 uploaded parts. The default number of parts returned is 1,000 parts. You can restrict the number of parts returned by specifying the max-parts request parameter. If your multipart upload consists of more than 1,000 parts, the response returns an IsTruncated field with the value of true, and a NextPartNumberMarker element. In subsequent ListParts requests you can include the part-number-marker query string parameter and set its value to the NextPartNumberMarker field value from the previous response.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Bucket": "string",
+          "MaxParts": 1,
+          "UploadId": "string",
+          "RequestPayer": "string",
+          "PartNumberMarker": 1,
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Key": "string",
+          "Owner": {
+            "ID": "string",
+            "DisplayName": "string"
+          },
+          "Parts": [
+            {
+              "ETag": "string",
+              "Size": 1,
+              "PartNumber": 1,
+              "LastModified": 1481289211.615
+            }
+          ],
+          "Bucket": "string",
+          "MaxParts": 1,
+          "UploadId": "string",
+          "AbortDate": 1481289211.615,
+          "Initiator": {
+            "ID": "string",
+            "DisplayName": "string"
+          },
+          "AbortRuleId": "string",
+          "IsTruncated": false,
+          "StorageClass": "string",
+          "RequestCharged": "string",
+          "PartNumberMarker": 1,
+          "NextPartNumberMarker": 1
+        }
+      ]
+  PutBucketAccelerateConfiguration:
+    description: |-
+      Sets the accelerate configuration of an existing bucket. Amazon S3 Transfer Acceleration is a bucket-level feature that enables you to perform faster data transfers to Amazon S3.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAccelerateConfiguration.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string",
+          "AccelerateConfiguration": {
+            "Status": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketAcl:
+    description: |-
+      Sets the permissions on an existing bucket using access control lists (ACL). For more information, see Using ACLs. To set the ACL of a bucket, you must have WRITE_ACP permission.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAcl.html
+    example:
+      inputs: [
+        {
+          "ACL": "string",
+          "Bucket": "string",
+          "GrantRead": "string",
+          "ContentMD5": "string",
+          "GrantWrite": "string",
+          "GrantReadACP": "string",
+          "GrantWriteACP": "string",
+          "GrantFullControl": "string",
+          "AccessControlPolicy": {
+            "Owner": {
+              "ID": "string",
+              "DisplayName": "string"
+            },
+            "Grants": [
+              {
+                "Grantee": {
+                  "ID": "string",
+                  "URI": "string",
+                  "Type": "string",
+                  "DisplayName": "string",
+                  "EmailAddress": "string"
+                },
+                "Permission": "string"
+              }
+            ]
+          },
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketAnalyticsConfiguration:
+    description: |-
+      Sets an analytics configuration for the bucket (specified by the analytics configuration ID). You can have up to 1,000 analytics configurations per bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAnalyticsConfiguration.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string",
+          "AnalyticsConfiguration": {
+            "Id": "string",
+            "Filter": {
+              "And": {
+                "Tags": [
+                  {
+                    "Key": "string",
+                    "Value": "string"
+                  }
+                ],
+                "Prefix": "string"
+              },
+              "Tag": {
+                "Key": "string",
+                "Value": "string"
+              },
+              "Prefix": "string"
+            },
+            "StorageClassAnalysis": {
+              "DataExport": {
+                "Destination": {
+                  "S3BucketDestination": {
+                    "Bucket": "string",
+                    "Format": "string",
+                    "Prefix": "string",
+                    "BucketAccountId": "string"
+                  }
+                },
+                "OutputSchemaVersion": "string"
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketCors:
+    description: |-
+      Sets the cors configuration for your bucket. If the configuration exists, Amazon S3 replaces it.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketCors.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ContentMD5": "string",
+          "CORSConfiguration": {
+            "CORSRules": [
+              {
+                "ID": "string",
+                "ExposeHeaders": [
+                  "string"
+                ],
+                "MaxAgeSeconds": 1,
+                "AllowedHeaders": [
+                  "string"
+                ],
+                "AllowedMethods": [
+                  "string"
+                ],
+                "AllowedOrigins": [
+                  "string"
+                ]
+              }
+            ]
+          },
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketEncryption:
+    description: |-
+      This action uses the encryption subresource to configure default encryption and Amazon S3 Bucket Key for an existing bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketEncryption.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ContentMD5": "string",
+          "ExpectedBucketOwner": "string",
+          "ServerSideEncryptionConfiguration": {
+            "Rules": [
+              {
+                "BucketKeyEnabled": false,
+                "ApplyServerSideEncryptionByDefault": {
+                  "SSEAlgorithm": "string",
+                  "KMSMasterKeyID": "string"
+                }
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketIntelligentTieringConfiguration:
+    description: |-
+      Puts a S3 Intelligent-Tiering configuration to the specified bucket. You can have up to 1,000 S3 Intelligent-Tiering configurations per bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Bucket": "string",
+          "IntelligentTieringConfiguration": {
+            "Id": "string",
+            "Filter": {
+              "And": {
+                "Tags": [
+                  {
+                    "Key": "string",
+                    "Value": "string"
+                  }
+                ],
+                "Prefix": "string"
+              },
+              "Tag": {
+                "Key": "string",
+                "Value": "string"
+              },
+              "Prefix": "string"
+            },
+            "Status": "string",
+            "Tierings": [
+              {
+                "Days": 1,
+                "AccessTier": "string"
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketInventoryConfiguration:
+    description: |-
+      This implementation of the PUT action adds an inventory configuration (identified by the inventory ID) to the bucket. You can have up to 1,000 inventory configurations per bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketInventoryConfiguration.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string",
+          "InventoryConfiguration": {
+            "Id": "string",
+            "Filter": {
+              "Prefix": "string"
+            },
+            "Schedule": {
+              "Frequency": "string"
+            },
+            "IsEnabled": false,
+            "Destination": {
+              "S3BucketDestination": {
+                "Bucket": "string",
+                "Format": "string",
+                "Prefix": "string",
+                "AccountId": "string",
+                "Encryption": {
+                  "SSES3": {},
+                  "SSEKMS": {
+                    "KeyId": "string"
+                  }
+                }
+              }
+            },
+            "OptionalFields": [
+              "string"
+            ],
+            "IncludedObjectVersions": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketLifecycle:
+    description: |-
+      Creates a new lifecycle configuration for the bucket or replaces an existing lifecycle configuration. For information about lifecycle configuration, see Object Lifecycle Management in the Amazon S3 User Guide.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycle.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ContentMD5": "string",
+          "ExpectedBucketOwner": "string",
+          "LifecycleConfiguration": {
+            "Rules": [
+              {
+                "ID": "string",
+                "Prefix": "string",
+                "Status": "string",
+                "Expiration": {
+                  "Date": 1481289211.615,
+                  "Days": 1,
+                  "ExpiredObjectDeleteMarker": false
+                },
+                "Transition": {
+                  "Date": 1481289211.615,
+                  "Days": 1,
+                  "StorageClass": "string"
+                },
+                "NoncurrentVersionExpiration": {
+                  "NoncurrentDays": 1
+                },
+                "NoncurrentVersionTransition": {
+                  "StorageClass": "string",
+                  "NoncurrentDays": 1
+                },
+                "AbortIncompleteMultipartUpload": {
+                  "DaysAfterInitiation": 1
+                }
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketLogging:
+    description: |-
+      Set the logging parameters for a bucket and to specify permissions for who can view and modify the logging parameters. All logs are saved to buckets in the same AWS Region as the source bucket. To set the logging status of a bucket, you must be the bucket owner.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ContentMD5": "string",
+          "BucketLoggingStatus": {
+            "LoggingEnabled": {
+              "TargetBucket": "string",
+              "TargetGrants": [
+                {
+                  "Grantee": {
+                    "ID": "string",
+                    "URI": "string",
+                    "Type": "string",
+                    "DisplayName": "string",
+                    "EmailAddress": "string"
+                  },
+                  "Permission": "string"
+                }
+              ],
+              "TargetPrefix": "string"
+            }
+          },
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketMetricsConfiguration:
+    description: |-
+      Sets a metrics configuration (specified by the metrics configuration ID) for the bucket. You can have up to 1,000 metrics configurations per bucket. If you're updating an existing metrics configuration, note that this is a full replacement of the existing metrics configuration. If you don't include the elements you want to keep, they are erased.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketMetricsConfiguration.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string",
+          "MetricsConfiguration": {
+            "Id": "string",
+            "Filter": {
+              "And": {
+                "Tags": [
+                  {
+                    "Key": "string",
+                    "Value": "string"
+                  }
+                ],
+                "Prefix": "string"
+              },
+              "Tag": {
+                "Key": "string",
+                "Value": "string"
+              },
+              "Prefix": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketNotificationConfiguration:
+    description: |-
+      Enables notifications of specified events for a bucket. For more information about event notifications, see Configuring Event Notifications.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotificationConfiguration.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ExpectedBucketOwner": "string",
+          "NotificationConfiguration": {
+            "QueueConfigurations": [
+              {
+                "Id": "string",
+                "Events": [
+                  "string"
+                ],
+                "Filter": {
+                  "Key": {
+                    "FilterRules": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                },
+                "QueueArn": "string"
+              }
+            ],
+            "TopicConfigurations": [
+              {
+                "Id": "string",
+                "Events": [
+                  "string"
+                ],
+                "Filter": {
+                  "Key": {
+                    "FilterRules": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                },
+                "TopicArn": "string"
+              }
+            ],
+            "LambdaFunctionConfigurations": [
+              {
+                "Id": "string",
+                "Events": [
+                  "string"
+                ],
+                "Filter": {
+                  "Key": {
+                    "FilterRules": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                },
+                "LambdaFunctionArn": "string"
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketNotification:
+    description: |-
+      No longer used, see the PutBucketNotificationConfiguration operation.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotification.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ContentMD5": "string",
+          "ExpectedBucketOwner": "string",
+          "NotificationConfiguration": {
+            "QueueConfiguration": {
+              "Id": "string",
+              "Event": "string",
+              "Queue": "string",
+              "Events": [
+                "string"
+              ]
+            },
+            "TopicConfiguration": {
+              "Id": "string",
+              "Event": "string",
+              "Topic": "string",
+              "Events": [
+                "string"
+              ]
+            },
+            "CloudFunctionConfiguration": {
+              "Id": "string",
+              "Event": "string",
+              "Events": [
+                "string"
+              ],
+              "CloudFunction": "string",
+              "InvocationRole": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketOwnershipControls:
+    description: |-
+      Creates or modifies OwnershipControls for an Amazon S3 bucket. To use this operation, you must have the s3:PutBucketOwnershipControls permission. For more information about Amazon S3 permissions, see Specifying Permissions in a Policy.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketOwnershipControls.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ContentMD5": "string",
+          "OwnershipControls": {
+            "Rules": [
+              {
+                "ObjectOwnership": "string"
+              }
+            ]
+          },
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketReplication:
+    description: |-
+      Creates a replication configuration or replaces an existing one. For more information, see Replication in the Amazon S3 User Guide.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketReplication.html
+    example:
+      inputs: [
+        {
+          "Token": "string",
+          "Bucket": "string",
+          "ContentMD5": "string",
+          "ExpectedBucketOwner": "string",
+          "ReplicationConfiguration": {
+            "Role": "string",
+            "Rules": [
+              {
+                "ID": "string",
+                "Filter": {
+                  "And": {
+                    "Tags": [
+                      {
+                        "Key": "string",
+                        "Value": "string"
+                      }
+                    ],
+                    "Prefix": "string"
+                  },
+                  "Tag": {
+                    "Key": "string",
+                    "Value": "string"
+                  },
+                  "Prefix": "string"
+                },
+                "Prefix": "string",
+                "Status": "string",
+                "Priority": 1,
+                "Destination": {
+                  "Bucket": "string",
+                  "Account": "string",
+                  "Metrics": {
+                    "Status": "string",
+                    "EventThreshold": {
+                      "Minutes": 1
+                    }
+                  },
+                  "StorageClass": "string",
+                  "ReplicationTime": {
+                    "Time": {
+                      "Minutes": 1
+                    },
+                    "Status": "string"
+                  },
+                  "EncryptionConfiguration": {
+                    "ReplicaKmsKeyID": "string"
+                  },
+                  "AccessControlTranslation": {
+                    "Owner": "string"
+                  }
+                },
+                "DeleteMarkerReplication": {
+                  "Status": "string"
+                },
+                "SourceSelectionCriteria": {
+                  "ReplicaModifications": {
+                    "Status": "string"
+                  },
+                  "SseKmsEncryptedObjects": {
+                    "Status": "string"
+                  }
+                },
+                "ExistingObjectReplication": {
+                  "Status": "string"
+                }
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketRequestPayment:
+    description: |-
+      Sets the request payment configuration for a bucket. By default, the bucket owner pays for downloads from the bucket. This configuration parameter enables the bucket owner (only) to specify that the person requesting the download will be charged for the download. For more information, see Requester Pays Buckets.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketRequestPayment.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ContentMD5": "string",
+          "ExpectedBucketOwner": "string",
+          "RequestPaymentConfiguration": {
+            "Payer": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketVersioning:
+    description: |-
+      Sets the versioning state of an existing bucket. To set the versioning state, you must be the bucket owner.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html
+    example:
+      inputs: [
+        {
+          "MFA": "string",
+          "Bucket": "string",
+          "ContentMD5": "string",
+          "ExpectedBucketOwner": "string",
+          "VersioningConfiguration": {
+            "Status": "string",
+            "MFADelete": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutBucketWebsite:
+    description: |-
+      Sets the configuration of the website that is specified in the website subresource. To configure a bucket as a website, you can add this subresource on the bucket with website configuration information such as the file name of the index document and any redirect rules. For more information, see Hosting Websites on Amazon S3.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketWebsite.html
+    example:
+      inputs: [
+        {
+          "Bucket": "string",
+          "ContentMD5": "string",
+          "ExpectedBucketOwner": "string",
+          "WebsiteConfiguration": {
+            "RoutingRules": [
+              {
+                "Redirect": {
+                  "HostName": "string",
+                  "Protocol": "string",
+                  "ReplaceKeyWith": "string",
+                  "HttpRedirectCode": "string",
+                  "ReplaceKeyPrefixWith": "string"
+                },
+                "Condition": {
+                  "KeyPrefixEquals": "string",
+                  "HttpErrorCodeReturnedEquals": "string"
+                }
+              }
+            ],
+            "ErrorDocument": {
+              "Key": "string"
+            },
+            "IndexDocument": {
+              "Suffix": "string"
+            },
+            "RedirectAllRequestsTo": {
+              "HostName": "string",
+              "Protocol": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutObjectAcl:
+    description: |-
+      Uses the acl subresource to set the access control list (ACL) permissions for a new or existing object in an S3 bucket. You must have WRITE_ACP permission to set the ACL of an object. For more information, see What permissions can I grant? in the Amazon S3 User Guide.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectAcl.html
+    example:
+      inputs: [
+        {
+          "ACL": "string",
+          "Key": "string",
+          "Bucket": "string",
+          "GrantRead": "string",
+          "VersionId": "string",
+          "ContentMD5": "string",
+          "GrantWrite": "string",
+          "GrantReadACP": "string",
+          "RequestPayer": "string",
+          "GrantWriteACP": "string",
+          "GrantFullControl": "string",
+          "AccessControlPolicy": {
+            "Owner": {
+              "ID": "string",
+              "DisplayName": "string"
+            },
+            "Grants": [
+              {
+                "Grantee": {
+                  "ID": "string",
+                  "URI": "string",
+                  "Type": "string",
+                  "DisplayName": "string",
+                  "EmailAddress": "string"
+                },
+                "Permission": "string"
+              }
+            ]
+          },
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RequestCharged": "string"
+        }
+      ]
+  PutObject:
+    description: |-
+      Adds an object to a bucket. You must have WRITE permissions on a bucket to add an object to it.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html
+    example:
+      inputs: [
+        {
+          "ACL": "string",
+          "Key": "string",
+          "Body": "blob",
+          "Bucket": "string",
+          "Expires": 1481289211.615,
+          "Tagging": "string",
+          "Metadata": {
+            "string": "string"
+          },
+          "GrantRead": "string",
+          "ContentMD5": "string",
+          "ContentType": "string",
+          "SSEKMSKeyId": "string",
+          "CacheControl": "string",
+          "GrantReadACP": "string",
+          "RequestPayer": "string",
+          "StorageClass": "string",
+          "ContentLength": 1,
+          "GrantWriteACP": "string",
+          "ObjectLockMode": "string",
+          "SSECustomerKey": "blob",
+          "ContentEncoding": "string",
+          "ContentLanguage": "string",
+          "BucketKeyEnabled": false,
+          "GrantFullControl": "string",
+          "SSECustomerKeyMD5": "string",
+          "ContentDisposition": "string",
+          "ExpectedBucketOwner": "string",
+          "SSECustomerAlgorithm": "string",
+          "ServerSideEncryption": "string",
+          "SSEKMSEncryptionContext": "string",
+          "WebsiteRedirectLocation": "string",
+          "ObjectLockLegalHoldStatus": "string",
+          "ObjectLockRetainUntilDate": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "VersionId": "string",
+          "Expiration": "string",
+          "SSEKMSKeyId": "string",
+          "RequestCharged": "string",
+          "BucketKeyEnabled": false,
+          "SSECustomerKeyMD5": "string",
+          "SSECustomerAlgorithm": "string",
+          "ServerSideEncryption": "string",
+          "SSEKMSEncryptionContext": "string"
+        }
+      ]
+  PutObjectLegalHold:
+    description: |-
+      Applies a Legal Hold configuration to the specified object. For more information, see Locking Objects.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLegalHold.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Bucket": "string",
+          "LegalHold": {
+            "Status": "string"
+          },
+          "VersionId": "string",
+          "ContentMD5": "string",
+          "RequestPayer": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RequestCharged": "string"
+        }
+      ]
+  PutObjectLockConfiguration:
+    description: |-
+      Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket. For more information, see Locking Objects.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLockConfiguration.html
+    example:
+      inputs: [
+        {
+          "Token": "string",
+          "Bucket": "string",
+          "ContentMD5": "string",
+          "RequestPayer": "string",
+          "ExpectedBucketOwner": "string",
+          "ObjectLockConfiguration": {
+            "Rule": {
+              "DefaultRetention": {
+                "Days": 1,
+                "Mode": "string",
+                "Years": 1
+              }
+            },
+            "ObjectLockEnabled": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "RequestCharged": "string"
+        }
+      ]
+  PutObjectRetention:
+    description: |-
+      Places an Object Retention configuration on an object. For more information, see Locking Objects.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectRetention.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Bucket": "string",
+          "Retention": {
+            "Mode": "string",
+            "RetainUntilDate": 1481289211.615
+          },
+          "VersionId": "string",
+          "ContentMD5": "string",
+          "RequestPayer": "string",
+          "ExpectedBucketOwner": "string",
+          "BypassGovernanceRetention": false
+        }
+      ]
+      outputs: [
+        {
+          "RequestCharged": "string"
+        }
+      ]
+  PutObjectTagging:
+    description: |-
+      Sets the supplied tag-set to an object that already exists in a bucket.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectTagging.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Bucket": "string",
+          "Tagging": {
+            "TagSet": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ]
+          },
+          "VersionId": "string",
+          "ContentMD5": "string",
+          "RequestPayer": "string",
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "VersionId": "string"
+        }
+      ]
+  RestoreObject:
+    description: |-
+      Restores an archived copy of an object back into Amazon S3
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Bucket": "string",
+          "VersionId": "string",
+          "RequestPayer": "string",
+          "RestoreRequest": {
+            "Days": 1,
+            "Tier": "string",
+            "Type": "string",
+            "Description": "string",
+            "OutputLocation": {
+              "S3": {
+                "Prefix": "string",
+                "Tagging": {
+                  "TagSet": [
+                    {
+                      "Key": "string",
+                      "Value": "string"
+                    }
+                  ]
+                },
+                "CannedACL": "string",
+                "BucketName": "string",
+                "Encryption": {
+                  "KMSKeyId": "string",
+                  "KMSContext": "string",
+                  "EncryptionType": "string"
+                },
+                "StorageClass": "string",
+                "UserMetadata": [
+                  {
+                    "Name": "string",
+                    "Value": "string"
+                  }
+                ],
+                "AccessControlList": [
+                  {
+                    "Grantee": {
+                      "ID": "string",
+                      "URI": "string",
+                      "Type": "string",
+                      "DisplayName": "string",
+                      "EmailAddress": "string"
+                    },
+                    "Permission": "string"
+                  }
+                ]
+              }
+            },
+            "SelectParameters": {
+              "Expression": "string",
+              "ExpressionType": "string",
+              "InputSerialization": {
+                "CSV": {
+                  "Comments": "string",
+                  "FieldDelimiter": "string",
+                  "FileHeaderInfo": "string",
+                  "QuoteCharacter": "string",
+                  "RecordDelimiter": "string",
+                  "QuoteEscapeCharacter": "string",
+                  "AllowQuotedRecordDelimiter": false
+                },
+                "JSON": {
+                  "Type": "string"
+                },
+                "Parquet": {},
+                "CompressionType": "string"
+              },
+              "OutputSerialization": {
+                "CSV": {
+                  "QuoteFields": "string",
+                  "FieldDelimiter": "string",
+                  "QuoteCharacter": "string",
+                  "RecordDelimiter": "string",
+                  "QuoteEscapeCharacter": "string"
+                },
+                "JSON": {
+                  "RecordDelimiter": "string"
+                }
+              }
+            },
+            "GlacierJobParameters": {
+              "Tier": "string"
+            }
+          },
+          "ExpectedBucketOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RequestCharged": "string",
+          "RestoreOutputPath": "string"
+        }
+      ]
+  CreateEndpoint:
+    description: |-
+      Amazon S3 on Outposts Access Points simplify managing data access at scale for shared datasets in S3 on Outposts. S3 on Outposts uses endpoints to connect to Outposts buckets so that you can perform actions within your virtual private cloud (VPC). For more information, see Accessing S3 on Outposts using VPC only access points.
+    versions:
+      from: 2017.7.25
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_CreateEndpoint.html
+    example:
+      inputs: [
+        {
+          "SubnetId": "string",
+          "OutpostId": "string",
+          "SecurityGroupId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteEndpoint:
+    description: |-
+      Amazon S3 on Outposts Access Points simplify managing data access at scale for shared datasets in S3 on Outposts. S3 on Outposts uses endpoints to connect to Outposts buckets so that you can perform actions within your virtual private cloud (VPC). For more information, see Accessing S3 on Outposts using VPC only access points.
+    versions:
+      from: 2017.7.25
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_DeleteEndpoint.html
+    example:
+      inputs: [
+        {
+          "OutpostId": "string",
+          "EndpointId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListEndpoints:
+    description: |-
+      Amazon S3 on Outposts Access Points simplify managing data access at scale for shared datasets in S3 on Outposts. S3 on Outposts uses endpoints to connect to Outposts buckets so that you can perform actions within your virtual private cloud (VPC). For more information, see Accessing S3 on Outposts using VPC only access points.
+    versions:
+      from: 2017.7.25
+      to: 2018.8.20
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListEndpoints.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Endpoints": [
+            {
+              "Status": "string",
+              "CidrBlock": "string",
+              "OutpostsId": "string",
+              "EndpointArn": "string",
+              "CreationTime": 1481289211.615,
+              "NetworkInterfaces": [
+                {
+                  "NetworkInterfaceId": "string"
+                }
+              ]
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  SelectObjectContent:
+    description: |-
+      This action filters the contents of an Amazon S3 object based on a simple structured query language (SQL) statement. In the request, along with the SQL expression, you must also specify a data serialization format (JSON, CSV, or Apache Parquet) of the object. Amazon S3 uses this format to parse object data into records, and returns only records that match the specified SQL expression. You must also specify the data serialization format for the response.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_SelectObjectContent.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Bucket": "string",
+          "ScanRange": {
+            "End": 1,
+            "Start": 1
+          },
+          "Expression": "string",
+          "ExpressionType": "string",
+          "SSECustomerKey": "blob",
+          "RequestProgress": {
+            "Enabled": false
+          },
+          "SSECustomerKeyMD5": "string",
+          "InputSerialization": {
+            "CSV": {
+              "Comments": "string",
+              "FieldDelimiter": "string",
+              "FileHeaderInfo": "string",
+              "QuoteCharacter": "string",
+              "RecordDelimiter": "string",
+              "QuoteEscapeCharacter": "string",
+              "AllowQuotedRecordDelimiter": false
+            },
+            "JSON": {
+              "Type": "string"
+            },
+            "Parquet": {},
+            "CompressionType": "string"
+          },
+          "ExpectedBucketOwner": "string",
+          "OutputSerialization": {
+            "CSV": {
+              "QuoteFields": "string",
+              "FieldDelimiter": "string",
+              "QuoteCharacter": "string",
+              "RecordDelimiter": "string",
+              "QuoteEscapeCharacter": "string"
+            },
+            "JSON": {
+              "RecordDelimiter": "string"
+            }
+          },
+          "SSECustomerAlgorithm": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Payload": {
+            "End": {},
+            "Cont": {},
+            "Stats": {
+              "Details": {
+                "BytesScanned": 1,
+                "BytesReturned": 1,
+                "BytesProcessed": 1
+              }
+            },
+            "Records": {
+              "Payload": "blob"
+            },
+            "Progress": {
+              "Details": {
+                "BytesScanned": 1,
+                "BytesReturned": 1,
+                "BytesProcessed": 1
+              }
+            }
+          }
+        }
+      ]
+  UploadPartCopy:
+    description: |-
+      Uploads a part by copying data from an existing object as data source. You specify the data source by adding the request header x-amz-copy-source in your request and a byte range by adding the request header x-amz-copy-source-range in your request.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Bucket": "string",
+          "UploadId": "string",
+          "CopySource": "string",
+          "PartNumber": 1,
+          "RequestPayer": "string",
+          "SSECustomerKey": "blob",
+          "CopySourceRange": "string",
+          "CopySourceIfMatch": "string",
+          "SSECustomerKeyMD5": "string",
+          "ExpectedBucketOwner": "string",
+          "SSECustomerAlgorithm": "string",
+          "CopySourceIfNoneMatch": "string",
+          "CopySourceSSECustomerKey": "blob",
+          "CopySourceIfModifiedSince": 1481289211.615,
+          "ExpectedSourceBucketOwner": "string",
+          "CopySourceIfUnmodifiedSince": 1481289211.615,
+          "CopySourceSSECustomerKeyMD5": "string",
+          "CopySourceSSECustomerAlgorithm": "string"
+        }
+      ]
+      outputs: [
+        {
+          "SSEKMSKeyId": "string",
+          "CopyPartResult": {
+            "ETag": "string",
+            "LastModified": 1481289211.615
+          },
+          "RequestCharged": "string",
+          "BucketKeyEnabled": false,
+          "SSECustomerKeyMD5": "string",
+          "CopySourceVersionId": "string",
+          "SSECustomerAlgorithm": "string",
+          "ServerSideEncryption": "string"
+        }
+      ]
+  UploadPart:
+    description: |-
+      Uploads a part in a multipart upload.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "Body": "blob",
+          "Bucket": "string",
+          "UploadId": "string",
+          "ContentMD5": "string",
+          "PartNumber": 1,
+          "RequestPayer": "string",
+          "ContentLength": 1,
+          "SSECustomerKey": "blob",
+          "SSECustomerKeyMD5": "string",
+          "ExpectedBucketOwner": "string",
+          "SSECustomerAlgorithm": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "SSEKMSKeyId": "string",
+          "RequestCharged": "string",
+          "BucketKeyEnabled": false,
+          "SSECustomerKeyMD5": "string",
+          "SSECustomerAlgorithm": "string",
+          "ServerSideEncryption": "string"
+        }
+      ]
+  WriteGetObjectResponse:
+    description: |-
+      Passes transformed objects to a GetObject operation when using Object Lambda Access Points. For information about Object Lambda Access Points, see Transforming objects with Object Lambda Access Points in the Amazon S3 User Guide.
+    versions:
+      from: 2006.3.1
+    link: https://docs.aws.amazon.com/AmazonS3/latest/API/API_WriteGetObjectResponse.html
+    example:
+      inputs: [
+        {
+          "Body": "blob",
+          "ETag": "string",
+          "Expires": 1481289211.615,
+          "Restore": "string",
+          "Metadata": {
+            "string": "string"
+          },
+          "TagCount": 1,
+          "ErrorCode": "string",
+          "VersionId": "string",
+          "Expiration": "string",
+          "PartsCount": 1,
+          "StatusCode": 1,
+          "ContentType": "string",
+          "MissingMeta": 1,
+          "SSEKMSKeyId": "string",
+          "AcceptRanges": "string",
+          "CacheControl": "string",
+          "ContentRange": "string",
+          "DeleteMarker": false,
+          "ErrorMessage": "string",
+          "LastModified": 1481289211.615,
+          "RequestRoute": "string",
+          "RequestToken": "string",
+          "StorageClass": "string",
+          "ContentLength": 1,
+          "ObjectLockMode": "string",
+          "RequestCharged": "string",
+          "ContentEncoding": "string",
+          "ContentLanguage": "string",
+          "BucketKeyEnabled": false,
+          "ReplicationStatus": "string",
+          "SSECustomerKeyMD5": "string",
+          "ContentDisposition": "string",
+          "SSECustomerAlgorithm": "string",
+          "ServerSideEncryption": "string",
+          "ObjectLockLegalHoldStatus": "string",
+          "ObjectLockRetainUntilDate": 1481289211.615
+        }
+      ]
+      outputs: [
+        {}
+      ]

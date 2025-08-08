@@ -1,0 +1,1830 @@
+Product:
+  name: GCP Filestore
+  versions: [1.0.0]
+  package: google.gcp.filestore
+  description: |-
+    Cloud Filestore
+  link: https://cloud.google.com/filestore
+  contentType: json
+Operations:
+  projects.locations.backups.create:
+    description: |-
+      Creates a backup.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.backups/create
+    example:
+      inputs: [
+        {
+          "id": "Backup",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The resource name of the backup, in the format projects/{project_number}/locations/{location_id}/backups/{backup_id}."
+            },
+            "state": {
+              "enum": [
+                "STATE_UNSPECIFIED",
+                "CREATING",
+                "FINALIZING",
+                "READY",
+                "DELETING"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The backup state.",
+              "enumDescriptions": [
+                "State not set.",
+                "Backup is being created.",
+                "Backup has been taken and the operation is being finalized. At this point, changes to the file share will not be reflected in the backup.",
+                "Backup is available for use.",
+                "Backup is being deleted."
+              ]
+            },
+            "labels": {
+              "type": "object",
+              "description": "Resource labels to represent user provided metadata.",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "capacityGb": {
+              "type": "string",
+              "format": "int64",
+              "readOnly": true,
+              "description": "Output only. Capacity of the source file share when the backup was created."
+            },
+            "createTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The time when the backup was created."
+            },
+            "description": {
+              "type": "string",
+              "description": "A description of the backup with 2048 characters or less. Requests with longer descriptions will be rejected."
+            },
+            "satisfiesPzs": {
+              "type": "boolean",
+              "readOnly": true,
+              "description": "Output only. Reserved for future use."
+            },
+            "storageBytes": {
+              "type": "string",
+              "format": "int64",
+              "readOnly": true,
+              "description": "Output only. The size of the storage used by the backup. As backups share storage, this number is expected to change with backup creation/deletion."
+            },
+            "downloadBytes": {
+              "type": "string",
+              "format": "int64",
+              "readOnly": true,
+              "description": "Output only. Amount of bytes that will be downloaded if the backup is restored. This may be different than storage bytes, since sequential backups of the same disk will share storage."
+            },
+            "sourceInstance": {
+              "type": "string",
+              "description": "The resource name of the source Cloud Filestore instance, in the format projects/{project_number}/locations/{location_id}/instances/{instance_id}, used to create this backup."
+            },
+            "sourceFileShare": {
+              "type": "string",
+              "description": "Name of the file share in the source Cloud Filestore instance that the backup is created from."
+            },
+            "sourceInstanceTier": {
+              "enum": [
+                "TIER_UNSPECIFIED",
+                "STANDARD",
+                "PREMIUM",
+                "BASIC_HDD",
+                "BASIC_SSD",
+                "HIGH_SCALE_SSD"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The service tier of the source Cloud Filestore instance that this backup is created from.",
+              "enumDescriptions": [
+                "Not set.",
+                "STANDARD tier.",
+                "PREMIUM tier.",
+                "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_HDD is an alias for STANDARD Tier, offering economical performance backed by HDD.",
+                "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_SSD is an alias for PREMIUM Tier, and offers improved performance backed by SSD.",
+                "HIGH_SCALE instances offer expanded capacity and performance scaling capabilities."
+              ]
+            }
+          },
+          "description": "A Cloud Filestore backup."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.backups.delete:
+    description: |-
+      Deletes a backup.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.backups/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.backups.get:
+    description: |-
+      Gets the details of a specific backup.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.backups/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  projects.locations.backups.list:
+    description: |-
+      Lists all backups in a project for either a specified location or for all locations.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.backups/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListBackupsResponse",
+          "type": "object",
+          "properties": {
+            "backups": {
+              "type": "array",
+              "items": {
+                "id": "Backup",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. The resource name of the backup, in the format projects/{project_number}/locations/{location_id}/backups/{backup_id}."
+                  },
+                  "state": {
+                    "enum": [
+                      "STATE_UNSPECIFIED",
+                      "CREATING",
+                      "FINALIZING",
+                      "READY",
+                      "DELETING"
+                    ],
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. The backup state.",
+                    "enumDescriptions": [
+                      "State not set.",
+                      "Backup is being created.",
+                      "Backup has been taken and the operation is being finalized. At this point, changes to the file share will not be reflected in the backup.",
+                      "Backup is available for use.",
+                      "Backup is being deleted."
+                    ]
+                  },
+                  "labels": {
+                    "type": "object",
+                    "description": "Resource labels to represent user provided metadata.",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "capacityGb": {
+                    "type": "string",
+                    "format": "int64",
+                    "readOnly": true,
+                    "description": "Output only. Capacity of the source file share when the backup was created."
+                  },
+                  "createTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "readOnly": true,
+                    "description": "Output only. The time when the backup was created."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "A description of the backup with 2048 characters or less. Requests with longer descriptions will be rejected."
+                  },
+                  "satisfiesPzs": {
+                    "type": "boolean",
+                    "readOnly": true,
+                    "description": "Output only. Reserved for future use."
+                  },
+                  "storageBytes": {
+                    "type": "string",
+                    "format": "int64",
+                    "readOnly": true,
+                    "description": "Output only. The size of the storage used by the backup. As backups share storage, this number is expected to change with backup creation/deletion."
+                  },
+                  "downloadBytes": {
+                    "type": "string",
+                    "format": "int64",
+                    "readOnly": true,
+                    "description": "Output only. Amount of bytes that will be downloaded if the backup is restored. This may be different than storage bytes, since sequential backups of the same disk will share storage."
+                  },
+                  "sourceInstance": {
+                    "type": "string",
+                    "description": "The resource name of the source Cloud Filestore instance, in the format projects/{project_number}/locations/{location_id}/instances/{instance_id}, used to create this backup."
+                  },
+                  "sourceFileShare": {
+                    "type": "string",
+                    "description": "Name of the file share in the source Cloud Filestore instance that the backup is created from."
+                  },
+                  "sourceInstanceTier": {
+                    "enum": [
+                      "TIER_UNSPECIFIED",
+                      "STANDARD",
+                      "PREMIUM",
+                      "BASIC_HDD",
+                      "BASIC_SSD",
+                      "HIGH_SCALE_SSD"
+                    ],
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. The service tier of the source Cloud Filestore instance that this backup is created from.",
+                    "enumDescriptions": [
+                      "Not set.",
+                      "STANDARD tier.",
+                      "PREMIUM tier.",
+                      "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_HDD is an alias for STANDARD Tier, offering economical performance backed by HDD.",
+                      "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_SSD is an alias for PREMIUM Tier, and offers improved performance backed by SSD.",
+                      "HIGH_SCALE instances offer expanded capacity and performance scaling capabilities."
+                    ]
+                  }
+                },
+                "description": "A Cloud Filestore backup."
+              },
+              "description": "A list of backups in the project for the specified location. If the {location} value in the request is \"-\", the response contains a list of backups from all locations. If any location is unreachable, the response will only return backups in reachable locations and the \"unreachable\" field will be populated with a list of unreachable locations."
+            },
+            "unreachable": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Locations that could not be reached."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "The token you can use to retrieve the next page of results. Not returned if there are no more results in the list."
+            }
+          },
+          "description": "ListBackupsResponse is the result of ListBackupsRequest."
+        }
+      ]
+  projects.locations.backups.patch:
+    description: |-
+      Updates the settings of a specific backup.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.backups/patch
+    example:
+      inputs: [
+        {
+          "id": "Backup",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The resource name of the backup, in the format projects/{project_number}/locations/{location_id}/backups/{backup_id}."
+            },
+            "state": {
+              "enum": [
+                "STATE_UNSPECIFIED",
+                "CREATING",
+                "FINALIZING",
+                "READY",
+                "DELETING"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The backup state.",
+              "enumDescriptions": [
+                "State not set.",
+                "Backup is being created.",
+                "Backup has been taken and the operation is being finalized. At this point, changes to the file share will not be reflected in the backup.",
+                "Backup is available for use.",
+                "Backup is being deleted."
+              ]
+            },
+            "labels": {
+              "type": "object",
+              "description": "Resource labels to represent user provided metadata.",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "capacityGb": {
+              "type": "string",
+              "format": "int64",
+              "readOnly": true,
+              "description": "Output only. Capacity of the source file share when the backup was created."
+            },
+            "createTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The time when the backup was created."
+            },
+            "description": {
+              "type": "string",
+              "description": "A description of the backup with 2048 characters or less. Requests with longer descriptions will be rejected."
+            },
+            "satisfiesPzs": {
+              "type": "boolean",
+              "readOnly": true,
+              "description": "Output only. Reserved for future use."
+            },
+            "storageBytes": {
+              "type": "string",
+              "format": "int64",
+              "readOnly": true,
+              "description": "Output only. The size of the storage used by the backup. As backups share storage, this number is expected to change with backup creation/deletion."
+            },
+            "downloadBytes": {
+              "type": "string",
+              "format": "int64",
+              "readOnly": true,
+              "description": "Output only. Amount of bytes that will be downloaded if the backup is restored. This may be different than storage bytes, since sequential backups of the same disk will share storage."
+            },
+            "sourceInstance": {
+              "type": "string",
+              "description": "The resource name of the source Cloud Filestore instance, in the format projects/{project_number}/locations/{location_id}/instances/{instance_id}, used to create this backup."
+            },
+            "sourceFileShare": {
+              "type": "string",
+              "description": "Name of the file share in the source Cloud Filestore instance that the backup is created from."
+            },
+            "sourceInstanceTier": {
+              "enum": [
+                "TIER_UNSPECIFIED",
+                "STANDARD",
+                "PREMIUM",
+                "BASIC_HDD",
+                "BASIC_SSD",
+                "HIGH_SCALE_SSD"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The service tier of the source Cloud Filestore instance that this backup is created from.",
+              "enumDescriptions": [
+                "Not set.",
+                "STANDARD tier.",
+                "PREMIUM tier.",
+                "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_HDD is an alias for STANDARD Tier, offering economical performance backed by HDD.",
+                "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_SSD is an alias for PREMIUM Tier, and offers improved performance backed by SSD.",
+                "HIGH_SCALE instances offer expanded capacity and performance scaling capabilities."
+              ]
+            }
+          },
+          "description": "A Cloud Filestore backup."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.get:
+    description: |-
+      Gets information about a location.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Location",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+            },
+            "labels": {
+              "type": "object",
+              "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata. For example the available capacity at the given location.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "locationId": {
+              "type": "string",
+              "description": "The canonical id for this location. For example: `\"us-east1\"`."
+            },
+            "displayName": {
+              "type": "string",
+              "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+            }
+          },
+          "description": "A resource that represents Google Cloud Platform location."
+        }
+      ]
+  projects.locations.instances.create:
+    description: |-
+      Creates an instance. When creating from a backup, the capacity of the new instance needs to be equal to or larger than the capacity of the backup (and also equal to or larger than the minimum capacity of the tier).
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.instances/create
+    example:
+      inputs: [
+        {
+          "id": "Instance",
+          "type": "object",
+          "properties": {
+            "etag": {
+              "type": "string",
+              "description": "Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other."
+            },
+            "name": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The resource name of the instance, in the format projects/{project}/locations/{location}/instances/{instance}."
+            },
+            "tier": {
+              "enum": [
+                "TIER_UNSPECIFIED",
+                "STANDARD",
+                "PREMIUM",
+                "BASIC_HDD",
+                "BASIC_SSD",
+                "HIGH_SCALE_SSD"
+              ],
+              "type": "string",
+              "description": "The service tier of the instance.",
+              "enumDescriptions": [
+                "Not set.",
+                "STANDARD tier.",
+                "PREMIUM tier.",
+                "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_HDD is an alias for STANDARD Tier, offering economical performance backed by HDD.",
+                "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_SSD is an alias for PREMIUM Tier, and offers improved performance backed by SSD.",
+                "HIGH_SCALE instances offer expanded capacity and performance scaling capabilities."
+              ]
+            },
+            "state": {
+              "enum": [
+                "STATE_UNSPECIFIED",
+                "CREATING",
+                "READY",
+                "REPAIRING",
+                "DELETING",
+                "ERROR",
+                "RESTORING"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The instance state.",
+              "enumDescriptions": [
+                "State not set.",
+                "The instance is being created.",
+                "The instance is available for use.",
+                "Work is being done on the instance. You can get further details from the `statusMessage` field of the `Instance` resource.",
+                "The instance is shutting down.",
+                "The instance is experiencing an issue and might be unusable. You can get further details from the `statusMessage` field of the `Instance` resource.",
+                "The instance is restoring a backup to an existing file share and may be unusable during this time."
+              ]
+            },
+            "labels": {
+              "type": "object",
+              "description": "Resource labels to represent user provided metadata.",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "networks": {
+              "type": "array",
+              "items": {
+                "id": "NetworkConfig",
+                "type": "object",
+                "properties": {
+                  "modes": {
+                    "type": "array",
+                    "items": {
+                      "enum": [
+                        "ADDRESS_MODE_UNSPECIFIED",
+                        "MODE_IPV4"
+                      ],
+                      "type": "string",
+                      "enumDescriptions": [
+                        "Internet protocol not set.",
+                        "Use the IPv4 internet protocol."
+                      ]
+                    },
+                    "description": "Internet protocol versions for which the instance has IP addresses assigned. For this version, only MODE_IPV4 is supported."
+                  },
+                  "network": {
+                    "type": "string",
+                    "description": "The name of the Google Compute Engine [VPC network](/compute/docs/networks-and-firewalls#networks) to which the instance is connected."
+                  },
+                  "ipAddresses": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "readOnly": true,
+                    "description": "Output only. IPv4 addresses in the format {octet 1}.{octet 2}.{octet 3}.{octet 4} or IPv6 addresses in the format {block 1}:{block 2}:{block 3}:{block 4}:{block 5}:{block 6}:{block 7}:{block 8}."
+                  },
+                  "reservedIpRange": {
+                    "type": "string",
+                    "description": "A /29 CIDR block in one of the [internal IP address ranges](https://www.arin.net/knowledge/address_filters.html) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29 or 192.168.0.0/29. The range you specify can't overlap with either existing subnets or assigned IP address ranges for other Cloud Filestore instances in the selected VPC network."
+                  }
+                },
+                "description": "Network configuration for the instance."
+              },
+              "description": "VPC networks to which the instance is connected. For this version, only a single network is supported."
+            },
+            "createTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The time when the instance was created."
+            },
+            "fileShares": {
+              "type": "array",
+              "items": {
+                "id": "FileShareConfig",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the file share (must be 16 characters or less)."
+                  },
+                  "capacityGb": {
+                    "type": "string",
+                    "format": "int64",
+                    "description": "File share capacity in gigabytes (GB). Cloud Filestore defines 1 GB as 1024^3 bytes."
+                  },
+                  "sourceBackup": {
+                    "type": "string",
+                    "description": "The resource name of the backup, in the format projects/{project_number}/locations/{location_id}/backups/{backup_id}, that this file share has been restored from."
+                  },
+                  "nfsExportOptions": {
+                    "type": "array",
+                    "items": {
+                      "id": "NfsExportOptions",
+                      "type": "object",
+                      "properties": {
+                        "anonGid": {
+                          "type": "string",
+                          "format": "int64",
+                          "description": "An integer representing the anonymous group id with a default value of 65534. Anon_gid may only be set with squash_mode of ROOT_SQUASH. An error will be returned if this field is specified for other squash_mode settings."
+                        },
+                        "anonUid": {
+                          "type": "string",
+                          "format": "int64",
+                          "description": "An integer representing the anonymous user id with a default value of 65534. Anon_uid may only be set with squash_mode of ROOT_SQUASH. An error will be returned if this field is specified for other squash_mode settings."
+                        },
+                        "ipRanges": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "List of either an IPv4 addresses in the format {octet 1}.{octet 2}.{octet 3}.{octet 4} or CIDR ranges in the format {octet 1}.{octet 2}.{octet 3}.{octet 4}/{mask size} which may mount the file share. Overlapping IP ranges are not allowed, both within and across NfsExportOptions. An error will be returned. The limit is 64 IP ranges/addresses for each FileShareConfig among all NfsExportOptions."
+                        },
+                        "accessMode": {
+                          "enum": [
+                            "ACCESS_MODE_UNSPECIFIED",
+                            "READ_ONLY",
+                            "READ_WRITE"
+                          ],
+                          "type": "string",
+                          "description": "Either READ_ONLY, for allowing only read requests on the exported directory, or READ_WRITE, for allowing both read and write requests. The default is READ_WRITE.",
+                          "enumDescriptions": [
+                            "AccessMode not set.",
+                            "The client can only read the file share.",
+                            "The client can read and write the file share (default)."
+                          ]
+                        },
+                        "squashMode": {
+                          "enum": [
+                            "SQUASH_MODE_UNSPECIFIED",
+                            "NO_ROOT_SQUASH",
+                            "ROOT_SQUASH"
+                          ],
+                          "type": "string",
+                          "description": "Either NO_ROOT_SQUASH, for allowing root access on the exported directory, or ROOT_SQUASH, for not allowing root access. The default is NO_ROOT_SQUASH.",
+                          "enumDescriptions": [
+                            "SquashMode not set.",
+                            "The Root user has root access to the file share (default).",
+                            "The Root user has squashed access to the anonymous uid/gid."
+                          ]
+                        }
+                      },
+                      "description": "NFS export options specifications."
+                    },
+                    "description": "Nfs Export Options. There is a limit of 10 export options per file share."
+                  }
+                },
+                "description": "File share configuration for the instance."
+              },
+              "description": "File system shares on the instance. For this version, only a single file share is supported."
+            },
+            "description": {
+              "type": "string",
+              "description": "The description of the instance (2048 characters or less)."
+            },
+            "satisfiesPzs": {
+              "type": "boolean",
+              "readOnly": true,
+              "description": "Output only. Reserved for future use."
+            },
+            "statusMessage": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Additional information about the instance state, if available."
+            }
+          },
+          "description": "A Cloud Filestore instance."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.instances.delete:
+    description: |-
+      Deletes an instance.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.instances/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.instances.get:
+    description: |-
+      Gets the details of a specific instance.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.instances/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  projects.locations.instances.list:
+    description: |-
+      Lists all instances in a project for either a specified location or for all locations.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.instances/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListInstancesResponse",
+          "type": "object",
+          "properties": {
+            "instances": {
+              "type": "array",
+              "items": {
+                "id": "Instance",
+                "type": "object",
+                "properties": {
+                  "etag": {
+                    "type": "string",
+                    "description": "Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other."
+                  },
+                  "name": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. The resource name of the instance, in the format projects/{project}/locations/{location}/instances/{instance}."
+                  },
+                  "tier": {
+                    "enum": [
+                      "TIER_UNSPECIFIED",
+                      "STANDARD",
+                      "PREMIUM",
+                      "BASIC_HDD",
+                      "BASIC_SSD",
+                      "HIGH_SCALE_SSD"
+                    ],
+                    "type": "string",
+                    "description": "The service tier of the instance.",
+                    "enumDescriptions": [
+                      "Not set.",
+                      "STANDARD tier.",
+                      "PREMIUM tier.",
+                      "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_HDD is an alias for STANDARD Tier, offering economical performance backed by HDD.",
+                      "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_SSD is an alias for PREMIUM Tier, and offers improved performance backed by SSD.",
+                      "HIGH_SCALE instances offer expanded capacity and performance scaling capabilities."
+                    ]
+                  },
+                  "state": {
+                    "enum": [
+                      "STATE_UNSPECIFIED",
+                      "CREATING",
+                      "READY",
+                      "REPAIRING",
+                      "DELETING",
+                      "ERROR",
+                      "RESTORING"
+                    ],
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. The instance state.",
+                    "enumDescriptions": [
+                      "State not set.",
+                      "The instance is being created.",
+                      "The instance is available for use.",
+                      "Work is being done on the instance. You can get further details from the `statusMessage` field of the `Instance` resource.",
+                      "The instance is shutting down.",
+                      "The instance is experiencing an issue and might be unusable. You can get further details from the `statusMessage` field of the `Instance` resource.",
+                      "The instance is restoring a backup to an existing file share and may be unusable during this time."
+                    ]
+                  },
+                  "labels": {
+                    "type": "object",
+                    "description": "Resource labels to represent user provided metadata.",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "networks": {
+                    "type": "array",
+                    "items": {
+                      "id": "NetworkConfig",
+                      "type": "object",
+                      "properties": {
+                        "modes": {
+                          "type": "array",
+                          "items": {
+                            "enum": [
+                              "ADDRESS_MODE_UNSPECIFIED",
+                              "MODE_IPV4"
+                            ],
+                            "type": "string",
+                            "enumDescriptions": [
+                              "Internet protocol not set.",
+                              "Use the IPv4 internet protocol."
+                            ]
+                          },
+                          "description": "Internet protocol versions for which the instance has IP addresses assigned. For this version, only MODE_IPV4 is supported."
+                        },
+                        "network": {
+                          "type": "string",
+                          "description": "The name of the Google Compute Engine [VPC network](/compute/docs/networks-and-firewalls#networks) to which the instance is connected."
+                        },
+                        "ipAddresses": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "readOnly": true,
+                          "description": "Output only. IPv4 addresses in the format {octet 1}.{octet 2}.{octet 3}.{octet 4} or IPv6 addresses in the format {block 1}:{block 2}:{block 3}:{block 4}:{block 5}:{block 6}:{block 7}:{block 8}."
+                        },
+                        "reservedIpRange": {
+                          "type": "string",
+                          "description": "A /29 CIDR block in one of the [internal IP address ranges](https://www.arin.net/knowledge/address_filters.html) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29 or 192.168.0.0/29. The range you specify can't overlap with either existing subnets or assigned IP address ranges for other Cloud Filestore instances in the selected VPC network."
+                        }
+                      },
+                      "description": "Network configuration for the instance."
+                    },
+                    "description": "VPC networks to which the instance is connected. For this version, only a single network is supported."
+                  },
+                  "createTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "readOnly": true,
+                    "description": "Output only. The time when the instance was created."
+                  },
+                  "fileShares": {
+                    "type": "array",
+                    "items": {
+                      "id": "FileShareConfig",
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "The name of the file share (must be 16 characters or less)."
+                        },
+                        "capacityGb": {
+                          "type": "string",
+                          "format": "int64",
+                          "description": "File share capacity in gigabytes (GB). Cloud Filestore defines 1 GB as 1024^3 bytes."
+                        },
+                        "sourceBackup": {
+                          "type": "string",
+                          "description": "The resource name of the backup, in the format projects/{project_number}/locations/{location_id}/backups/{backup_id}, that this file share has been restored from."
+                        },
+                        "nfsExportOptions": {
+                          "type": "array",
+                          "items": {
+                            "id": "NfsExportOptions",
+                            "type": "object",
+                            "properties": {
+                              "anonGid": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "An integer representing the anonymous group id with a default value of 65534. Anon_gid may only be set with squash_mode of ROOT_SQUASH. An error will be returned if this field is specified for other squash_mode settings."
+                              },
+                              "anonUid": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "An integer representing the anonymous user id with a default value of 65534. Anon_uid may only be set with squash_mode of ROOT_SQUASH. An error will be returned if this field is specified for other squash_mode settings."
+                              },
+                              "ipRanges": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "description": "List of either an IPv4 addresses in the format {octet 1}.{octet 2}.{octet 3}.{octet 4} or CIDR ranges in the format {octet 1}.{octet 2}.{octet 3}.{octet 4}/{mask size} which may mount the file share. Overlapping IP ranges are not allowed, both within and across NfsExportOptions. An error will be returned. The limit is 64 IP ranges/addresses for each FileShareConfig among all NfsExportOptions."
+                              },
+                              "accessMode": {
+                                "enum": [
+                                  "ACCESS_MODE_UNSPECIFIED",
+                                  "READ_ONLY",
+                                  "READ_WRITE"
+                                ],
+                                "type": "string",
+                                "description": "Either READ_ONLY, for allowing only read requests on the exported directory, or READ_WRITE, for allowing both read and write requests. The default is READ_WRITE.",
+                                "enumDescriptions": [
+                                  "AccessMode not set.",
+                                  "The client can only read the file share.",
+                                  "The client can read and write the file share (default)."
+                                ]
+                              },
+                              "squashMode": {
+                                "enum": [
+                                  "SQUASH_MODE_UNSPECIFIED",
+                                  "NO_ROOT_SQUASH",
+                                  "ROOT_SQUASH"
+                                ],
+                                "type": "string",
+                                "description": "Either NO_ROOT_SQUASH, for allowing root access on the exported directory, or ROOT_SQUASH, for not allowing root access. The default is NO_ROOT_SQUASH.",
+                                "enumDescriptions": [
+                                  "SquashMode not set.",
+                                  "The Root user has root access to the file share (default).",
+                                  "The Root user has squashed access to the anonymous uid/gid."
+                                ]
+                              }
+                            },
+                            "description": "NFS export options specifications."
+                          },
+                          "description": "Nfs Export Options. There is a limit of 10 export options per file share."
+                        }
+                      },
+                      "description": "File share configuration for the instance."
+                    },
+                    "description": "File system shares on the instance. For this version, only a single file share is supported."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "The description of the instance (2048 characters or less)."
+                  },
+                  "satisfiesPzs": {
+                    "type": "boolean",
+                    "readOnly": true,
+                    "description": "Output only. Reserved for future use."
+                  },
+                  "statusMessage": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. Additional information about the instance state, if available."
+                  }
+                },
+                "description": "A Cloud Filestore instance."
+              },
+              "description": "A list of instances in the project for the specified location. If the {location} value in the request is \"-\", the response contains a list of instances from all locations. If any location is unreachable, the response will only return instances in reachable locations and the \"unreachable\" field will be populated with a list of unreachable locations."
+            },
+            "unreachable": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Locations that could not be reached."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "The token you can use to retrieve the next page of results. Not returned if there are no more results in the list."
+            }
+          },
+          "description": "ListInstancesResponse is the result of ListInstancesRequest."
+        }
+      ]
+  projects.locations.instances.patch:
+    description: |-
+      Updates the settings of a specific instance.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.instances/patch
+    example:
+      inputs: [
+        {
+          "id": "Instance",
+          "type": "object",
+          "properties": {
+            "etag": {
+              "type": "string",
+              "description": "Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other."
+            },
+            "name": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The resource name of the instance, in the format projects/{project}/locations/{location}/instances/{instance}."
+            },
+            "tier": {
+              "enum": [
+                "TIER_UNSPECIFIED",
+                "STANDARD",
+                "PREMIUM",
+                "BASIC_HDD",
+                "BASIC_SSD",
+                "HIGH_SCALE_SSD"
+              ],
+              "type": "string",
+              "description": "The service tier of the instance.",
+              "enumDescriptions": [
+                "Not set.",
+                "STANDARD tier.",
+                "PREMIUM tier.",
+                "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_HDD is an alias for STANDARD Tier, offering economical performance backed by HDD.",
+                "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_SSD is an alias for PREMIUM Tier, and offers improved performance backed by SSD.",
+                "HIGH_SCALE instances offer expanded capacity and performance scaling capabilities."
+              ]
+            },
+            "state": {
+              "enum": [
+                "STATE_UNSPECIFIED",
+                "CREATING",
+                "READY",
+                "REPAIRING",
+                "DELETING",
+                "ERROR",
+                "RESTORING"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The instance state.",
+              "enumDescriptions": [
+                "State not set.",
+                "The instance is being created.",
+                "The instance is available for use.",
+                "Work is being done on the instance. You can get further details from the `statusMessage` field of the `Instance` resource.",
+                "The instance is shutting down.",
+                "The instance is experiencing an issue and might be unusable. You can get further details from the `statusMessage` field of the `Instance` resource.",
+                "The instance is restoring a backup to an existing file share and may be unusable during this time."
+              ]
+            },
+            "labels": {
+              "type": "object",
+              "description": "Resource labels to represent user provided metadata.",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "networks": {
+              "type": "array",
+              "items": {
+                "id": "NetworkConfig",
+                "type": "object",
+                "properties": {
+                  "modes": {
+                    "type": "array",
+                    "items": {
+                      "enum": [
+                        "ADDRESS_MODE_UNSPECIFIED",
+                        "MODE_IPV4"
+                      ],
+                      "type": "string",
+                      "enumDescriptions": [
+                        "Internet protocol not set.",
+                        "Use the IPv4 internet protocol."
+                      ]
+                    },
+                    "description": "Internet protocol versions for which the instance has IP addresses assigned. For this version, only MODE_IPV4 is supported."
+                  },
+                  "network": {
+                    "type": "string",
+                    "description": "The name of the Google Compute Engine [VPC network](/compute/docs/networks-and-firewalls#networks) to which the instance is connected."
+                  },
+                  "ipAddresses": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "readOnly": true,
+                    "description": "Output only. IPv4 addresses in the format {octet 1}.{octet 2}.{octet 3}.{octet 4} or IPv6 addresses in the format {block 1}:{block 2}:{block 3}:{block 4}:{block 5}:{block 6}:{block 7}:{block 8}."
+                  },
+                  "reservedIpRange": {
+                    "type": "string",
+                    "description": "A /29 CIDR block in one of the [internal IP address ranges](https://www.arin.net/knowledge/address_filters.html) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29 or 192.168.0.0/29. The range you specify can't overlap with either existing subnets or assigned IP address ranges for other Cloud Filestore instances in the selected VPC network."
+                  }
+                },
+                "description": "Network configuration for the instance."
+              },
+              "description": "VPC networks to which the instance is connected. For this version, only a single network is supported."
+            },
+            "createTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The time when the instance was created."
+            },
+            "fileShares": {
+              "type": "array",
+              "items": {
+                "id": "FileShareConfig",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the file share (must be 16 characters or less)."
+                  },
+                  "capacityGb": {
+                    "type": "string",
+                    "format": "int64",
+                    "description": "File share capacity in gigabytes (GB). Cloud Filestore defines 1 GB as 1024^3 bytes."
+                  },
+                  "sourceBackup": {
+                    "type": "string",
+                    "description": "The resource name of the backup, in the format projects/{project_number}/locations/{location_id}/backups/{backup_id}, that this file share has been restored from."
+                  },
+                  "nfsExportOptions": {
+                    "type": "array",
+                    "items": {
+                      "id": "NfsExportOptions",
+                      "type": "object",
+                      "properties": {
+                        "anonGid": {
+                          "type": "string",
+                          "format": "int64",
+                          "description": "An integer representing the anonymous group id with a default value of 65534. Anon_gid may only be set with squash_mode of ROOT_SQUASH. An error will be returned if this field is specified for other squash_mode settings."
+                        },
+                        "anonUid": {
+                          "type": "string",
+                          "format": "int64",
+                          "description": "An integer representing the anonymous user id with a default value of 65534. Anon_uid may only be set with squash_mode of ROOT_SQUASH. An error will be returned if this field is specified for other squash_mode settings."
+                        },
+                        "ipRanges": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "List of either an IPv4 addresses in the format {octet 1}.{octet 2}.{octet 3}.{octet 4} or CIDR ranges in the format {octet 1}.{octet 2}.{octet 3}.{octet 4}/{mask size} which may mount the file share. Overlapping IP ranges are not allowed, both within and across NfsExportOptions. An error will be returned. The limit is 64 IP ranges/addresses for each FileShareConfig among all NfsExportOptions."
+                        },
+                        "accessMode": {
+                          "enum": [
+                            "ACCESS_MODE_UNSPECIFIED",
+                            "READ_ONLY",
+                            "READ_WRITE"
+                          ],
+                          "type": "string",
+                          "description": "Either READ_ONLY, for allowing only read requests on the exported directory, or READ_WRITE, for allowing both read and write requests. The default is READ_WRITE.",
+                          "enumDescriptions": [
+                            "AccessMode not set.",
+                            "The client can only read the file share.",
+                            "The client can read and write the file share (default)."
+                          ]
+                        },
+                        "squashMode": {
+                          "enum": [
+                            "SQUASH_MODE_UNSPECIFIED",
+                            "NO_ROOT_SQUASH",
+                            "ROOT_SQUASH"
+                          ],
+                          "type": "string",
+                          "description": "Either NO_ROOT_SQUASH, for allowing root access on the exported directory, or ROOT_SQUASH, for not allowing root access. The default is NO_ROOT_SQUASH.",
+                          "enumDescriptions": [
+                            "SquashMode not set.",
+                            "The Root user has root access to the file share (default).",
+                            "The Root user has squashed access to the anonymous uid/gid."
+                          ]
+                        }
+                      },
+                      "description": "NFS export options specifications."
+                    },
+                    "description": "Nfs Export Options. There is a limit of 10 export options per file share."
+                  }
+                },
+                "description": "File share configuration for the instance."
+              },
+              "description": "File system shares on the instance. For this version, only a single file share is supported."
+            },
+            "description": {
+              "type": "string",
+              "description": "The description of the instance (2048 characters or less)."
+            },
+            "satisfiesPzs": {
+              "type": "boolean",
+              "readOnly": true,
+              "description": "Output only. Reserved for future use."
+            },
+            "statusMessage": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Additional information about the instance state, if available."
+            }
+          },
+          "description": "A Cloud Filestore instance."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.instances.restore:
+    description: |-
+      Restores an existing instance's file share from a backup. The capacity of the instance needs to be equal to or larger than the capacity of the backup (and also equal to or larger than the minimum capacity of the tier).
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.instances/restore
+    example:
+      inputs: [
+        {
+          "id": "RestoreInstanceRequest",
+          "type": "object",
+          "properties": {
+            "fileShare": {
+              "type": "string",
+              "description": "Required. Name of the file share in the Cloud Filestore instance that the backup is being restored to."
+            },
+            "sourceBackup": {
+              "type": "string",
+              "description": "The resource name of the backup, in the format projects/{project_number}/locations/{location_id}/backups/{backup_id}."
+            }
+          },
+          "description": "RestoreInstanceRequest restores an existing instances's file share from a backup."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.list:
+    description: |-
+      Lists information about the supported locations for this service.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListLocationsResponse",
+          "type": "object",
+          "properties": {
+            "locations": {
+              "type": "array",
+              "items": {
+                "id": "Location",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+                  },
+                  "labels": {
+                    "type": "object",
+                    "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Service-specific metadata. For example the available capacity at the given location.",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "locationId": {
+                    "type": "string",
+                    "description": "The canonical id for this location. For example: `\"us-east1\"`."
+                  },
+                  "displayName": {
+                    "type": "string",
+                    "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+                  }
+                },
+                "description": "A resource that represents Google Cloud Platform location."
+              },
+              "description": "A list of locations that matches the specified filter in the request."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "The standard List next-page token."
+            }
+          },
+          "description": "The response message for Locations.ListLocations."
+        }
+      ]
+  projects.locations.operations.cancel:
+    description: |-
+      Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.operations/cancel
+    example:
+      inputs: [
+        {
+          "id": "CancelOperationRequest",
+          "type": "object",
+          "properties": {},
+          "description": "The request message for Operations.CancelOperation."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Empty",
+          "type": "object",
+          "properties": {},
+          "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`."
+        }
+      ]
+  projects.locations.operations.delete:
+    description: |-
+      Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.operations/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Empty",
+          "type": "object",
+          "properties": {},
+          "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`."
+        }
+      ]
+  projects.locations.operations.get:
+    description: |-
+      Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.operations/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.operations.list:
+    description: |-
+      Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/*}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/filestore/docs/reference/rest/v1/projects.locations.operations/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListOperationsResponse",
+          "type": "object",
+          "properties": {
+            "operations": {
+              "type": "array",
+              "items": {
+                "id": "Operation",
+                "type": "object",
+                "properties": {
+                  "done": {
+                    "type": "boolean",
+                    "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+                  },
+                  "error": {
+                    "id": "Status",
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The status code, which should be an enum value of google.rpc.Code."
+                      },
+                      "details": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "any",
+                            "description": "Properties of the object. Contains field @type with type URL."
+                          }
+                        },
+                        "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                      },
+                      "message": {
+                        "type": "string",
+                        "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                      }
+                    },
+                    "description": "The error result of the operation in case of failure or cancellation."
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "response": {
+                    "type": "object",
+                    "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  }
+                },
+                "description": "This resource represents a long-running operation that is the result of a network API call."
+              },
+              "description": "A list of operations that matches the specified filter in the request."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "The standard List next-page token."
+            }
+          },
+          "description": "The response message for Operations.ListOperations."
+        }
+      ]

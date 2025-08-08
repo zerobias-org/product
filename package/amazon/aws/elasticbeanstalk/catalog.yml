@@ -1,0 +1,1831 @@
+Product:
+  name: AWS Elastic Beanstalk
+  versions: [2010.12.1]
+  package: amazon.aws.elasticbeanstalk
+  description: |-
+    AWS Elastic Beanstalk
+  link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/Welcome.html
+  contentType: json
+Operations:
+  AbortEnvironmentUpdate:
+    description: |-
+      Cancels in-progress environment configuration update or application version deployment.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_AbortEnvironmentUpdate.html
+    example:
+      inputs: [
+        {
+          "EnvironmentId": "string",
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ApplyEnvironmentManagedAction:
+    description: |-
+      Applies a scheduled managed action immediately. A managed action can be applied only if its status is Scheduled. Get the status and action ID of a managed action with DescribeEnvironmentManagedActions.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_ApplyEnvironmentManagedAction.html
+    example:
+      inputs: [
+        {
+          "ActionId": "string",
+          "EnvironmentId": "string",
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "ActionId": "string",
+          "ActionType": "string",
+          "ActionDescription": "string"
+        }
+      ]
+  AssociateEnvironmentOperationsRole:
+    description: |-
+      Add or change the operations role used by an environment. After this call is made, Elastic Beanstalk uses the associated operations role for permissions to downstream services during subsequent calls acting on this environment.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_AssociateEnvironmentOperationsRole.html
+    example:
+      inputs: [
+        {
+          "OperationsRole": "string",
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CheckDNSAvailability:
+    description: |-
+      Checks if the specified CNAME is available.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_CheckDNSAvailability.html
+    example:
+      inputs: [
+        {
+          "CNAMEPrefix": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Available": false,
+          "FullyQualifiedCNAME": "string"
+        }
+      ]
+  ComposeEnvironments:
+    description: |-
+      Create or update a group of environments that each run a separate component of a single application. Takes a list of version labels that specify application source bundles for each of the environments to create or update. The name of each environment and other required information must be included in the source bundles in an environment manifest named env.yaml. See Compose Environments for details.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_ComposeEnvironments.html
+    example:
+      inputs: [
+        {
+          "GroupName": "string",
+          "VersionLabels": [
+            "string"
+          ],
+          "ApplicationName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Environments": [
+            {
+              "Tier": {
+                "Name": "string",
+                "Type": "string",
+                "Version": "string"
+              },
+              "CNAME": "string",
+              "Health": "string",
+              "Status": "string",
+              "Resources": {
+                "LoadBalancer": {
+                  "Domain": "string",
+                  "Listeners": [
+                    {
+                      "Port": 1,
+                      "Protocol": "string"
+                    }
+                  ],
+                  "LoadBalancerName": "string"
+                }
+              },
+              "DateCreated": 1481289211.615,
+              "DateUpdated": 1481289211.615,
+              "Description": "string",
+              "EndpointURL": "string",
+              "PlatformArn": "string",
+              "HealthStatus": "string",
+              "TemplateName": "string",
+              "VersionLabel": "string",
+              "EnvironmentId": "string",
+              "EnvironmentArn": "string",
+              "OperationsRole": "string",
+              "ApplicationName": "string",
+              "EnvironmentName": "string",
+              "EnvironmentLinks": [
+                {
+                  "LinkName": "string",
+                  "EnvironmentName": "string"
+                }
+              ],
+              "SolutionStackName": "string",
+              "AbortableOperationInProgress": false
+            }
+          ]
+        }
+      ]
+  CreateApplication:
+    description: |-
+      Creates an application that has one configuration template named default and no application versions.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_CreateApplication.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Description": "string",
+          "ApplicationName": "string",
+          "ResourceLifecycleConfig": {
+            "ServiceRole": "string",
+            "VersionLifecycleConfig": {
+              "MaxAgeRule": {
+                "Enabled": false,
+                "MaxAgeInDays": 1,
+                "DeleteSourceFromS3": false
+              },
+              "MaxCountRule": {
+                "Enabled": false,
+                "MaxCount": 1,
+                "DeleteSourceFromS3": false
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Application": {
+            "Versions": [
+              "string"
+            ],
+            "DateCreated": 1481289211.615,
+            "DateUpdated": 1481289211.615,
+            "Description": "string",
+            "ApplicationArn": "string",
+            "ApplicationName": "string",
+            "ConfigurationTemplates": [
+              "string"
+            ],
+            "ResourceLifecycleConfig": {
+              "ServiceRole": "string",
+              "VersionLifecycleConfig": {
+                "MaxAgeRule": {
+                  "Enabled": false,
+                  "MaxAgeInDays": 1,
+                  "DeleteSourceFromS3": false
+                },
+                "MaxCountRule": {
+                  "Enabled": false,
+                  "MaxCount": 1,
+                  "DeleteSourceFromS3": false
+                }
+              }
+            }
+          }
+        }
+      ]
+  CreateApplicationVersion:
+    description: |-
+      Creates an application version for the specified application.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_CreateApplicationVersion.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Process": false,
+          "Description": "string",
+          "SourceBundle": {
+            "S3Key": "string",
+            "S3Bucket": "string"
+          },
+          "VersionLabel": "string",
+          "ApplicationName": "string",
+          "BuildConfiguration": {
+            "Image": "string",
+            "ComputeType": "string",
+            "ArtifactName": "string",
+            "TimeoutInMinutes": 1,
+            "CodeBuildServiceRole": "string"
+          },
+          "AutoCreateApplication": false,
+          "SourceBuildInformation": {
+            "SourceType": "string",
+            "SourceLocation": "string",
+            "SourceRepository": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ApplicationVersion": {
+            "Status": "string",
+            "BuildArn": "string",
+            "DateCreated": 1481289211.615,
+            "DateUpdated": 1481289211.615,
+            "Description": "string",
+            "SourceBundle": {
+              "S3Key": "string",
+              "S3Bucket": "string"
+            },
+            "VersionLabel": "string",
+            "ApplicationName": "string",
+            "ApplicationVersionArn": "string",
+            "SourceBuildInformation": {
+              "SourceType": "string",
+              "SourceLocation": "string",
+              "SourceRepository": "string"
+            }
+          }
+        }
+      ]
+  CreateConfigurationTemplate:
+    description: |-
+      Creates an AWS Elastic Beanstalk configuration template, associated with a specific Elastic Beanstalk application. You define application configuration settings in a configuration template. You can then use the configuration template to deploy different versions of the application with the same configuration settings.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_CreateConfigurationTemplate.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Description": "string",
+          "PlatformArn": "string",
+          "TemplateName": "string",
+          "EnvironmentId": "string",
+          "OptionSettings": [
+            {
+              "Value": "string",
+              "Namespace": "string",
+              "OptionName": "string",
+              "ResourceName": "string"
+            }
+          ],
+          "ApplicationName": "string",
+          "SolutionStackName": "string",
+          "SourceConfiguration": {
+            "TemplateName": "string",
+            "ApplicationName": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "DateCreated": 1481289211.615,
+          "DateUpdated": 1481289211.615,
+          "Description": "string",
+          "PlatformArn": "string",
+          "TemplateName": "string",
+          "OptionSettings": [
+            {
+              "Value": "string",
+              "Namespace": "string",
+              "OptionName": "string",
+              "ResourceName": "string"
+            }
+          ],
+          "ApplicationName": "string",
+          "EnvironmentName": "string",
+          "DeploymentStatus": "string",
+          "SolutionStackName": "string"
+        }
+      ]
+  CreateEnvironment:
+    description: |-
+      Launches an AWS Elastic Beanstalk environment for the specified application using the specified configuration.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_CreateEnvironment.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Tier": {
+            "Name": "string",
+            "Type": "string",
+            "Version": "string"
+          },
+          "GroupName": "string",
+          "CNAMEPrefix": "string",
+          "Description": "string",
+          "PlatformArn": "string",
+          "TemplateName": "string",
+          "VersionLabel": "string",
+          "OperationsRole": "string",
+          "OptionSettings": [
+            {
+              "Value": "string",
+              "Namespace": "string",
+              "OptionName": "string",
+              "ResourceName": "string"
+            }
+          ],
+          "ApplicationName": "string",
+          "EnvironmentName": "string",
+          "OptionsToRemove": [
+            {
+              "Namespace": "string",
+              "OptionName": "string",
+              "ResourceName": "string"
+            }
+          ],
+          "SolutionStackName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tier": {
+            "Name": "string",
+            "Type": "string",
+            "Version": "string"
+          },
+          "CNAME": "string",
+          "Health": "string",
+          "Status": "string",
+          "Resources": {
+            "LoadBalancer": {
+              "Domain": "string",
+              "Listeners": [
+                {
+                  "Port": 1,
+                  "Protocol": "string"
+                }
+              ],
+              "LoadBalancerName": "string"
+            }
+          },
+          "DateCreated": 1481289211.615,
+          "DateUpdated": 1481289211.615,
+          "Description": "string",
+          "EndpointURL": "string",
+          "PlatformArn": "string",
+          "HealthStatus": "string",
+          "TemplateName": "string",
+          "VersionLabel": "string",
+          "EnvironmentId": "string",
+          "EnvironmentArn": "string",
+          "OperationsRole": "string",
+          "ApplicationName": "string",
+          "EnvironmentName": "string",
+          "EnvironmentLinks": [
+            {
+              "LinkName": "string",
+              "EnvironmentName": "string"
+            }
+          ],
+          "SolutionStackName": "string",
+          "AbortableOperationInProgress": false
+        }
+      ]
+  CreatePlatformVersion:
+    description: |-
+      Create a new version of your custom platform.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_CreatePlatformVersion.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "PlatformName": "string",
+          "OptionSettings": [
+            {
+              "Value": "string",
+              "Namespace": "string",
+              "OptionName": "string",
+              "ResourceName": "string"
+            }
+          ],
+          "EnvironmentName": "string",
+          "PlatformVersion": "string",
+          "PlatformDefinitionBundle": {
+            "S3Key": "string",
+            "S3Bucket": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Builder": {
+            "ARN": "string"
+          },
+          "PlatformSummary": {
+            "PlatformArn": "string",
+            "PlatformOwner": "string",
+            "PlatformStatus": "string",
+            "PlatformVersion": "string",
+            "PlatformCategory": "string",
+            "SupportedTierList": [
+              "string"
+            ],
+            "PlatformBranchName": "string",
+            "SupportedAddonList": [
+              "string"
+            ],
+            "OperatingSystemName": "string",
+            "OperatingSystemVersion": "string",
+            "PlatformLifecycleState": "string",
+            "PlatformBranchLifecycleState": "string"
+          }
+        }
+      ]
+  CreateStorageLocation:
+    description: |-
+      Creates a bucket in Amazon S3 to store application versions, logs, and other files used by Elastic Beanstalk environments. The Elastic Beanstalk console and EB CLI call this API the first time you create an environment in a region. If the storage location already exists, CreateStorageLocation still returns the bucket name but does not create a new bucket.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_CreateStorageLocation.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "S3Bucket": "string"
+        }
+      ]
+  DeleteApplication:
+    description: |-
+      Deletes the specified application along with all associated versions and configurations. The application versions will not be deleted from your Amazon S3 bucket.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DeleteApplication.html
+    example:
+      inputs: [
+        {
+          "ApplicationName": "string",
+          "TerminateEnvByForce": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteApplicationVersion:
+    description: |-
+      Deletes the specified version from the specified application.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DeleteApplicationVersion.html
+    example:
+      inputs: [
+        {
+          "VersionLabel": "string",
+          "ApplicationName": "string",
+          "DeleteSourceBundle": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteConfigurationTemplate:
+    description: |-
+      Deletes the specified configuration template.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DeleteConfigurationTemplate.html
+    example:
+      inputs: [
+        {
+          "TemplateName": "string",
+          "ApplicationName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteEnvironmentConfiguration:
+    description: |-
+      Deletes the draft configuration associated with the running environment.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DeleteEnvironmentConfiguration.html
+    example:
+      inputs: [
+        {
+          "ApplicationName": "string",
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeletePlatformVersion:
+    description: |-
+      Deletes the specified version of a custom platform.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DeletePlatformVersion.html
+    example:
+      inputs: [
+        {
+          "PlatformArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PlatformSummary": {
+            "PlatformArn": "string",
+            "PlatformOwner": "string",
+            "PlatformStatus": "string",
+            "PlatformVersion": "string",
+            "PlatformCategory": "string",
+            "SupportedTierList": [
+              "string"
+            ],
+            "PlatformBranchName": "string",
+            "SupportedAddonList": [
+              "string"
+            ],
+            "OperatingSystemName": "string",
+            "OperatingSystemVersion": "string",
+            "PlatformLifecycleState": "string",
+            "PlatformBranchLifecycleState": "string"
+          }
+        }
+      ]
+  DescribeAccountAttributes:
+    description: |-
+      Returns attributes related to AWS Elastic Beanstalk that are associated with the calling AWS account.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DescribeAccountAttributes.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "ResourceQuotas": {
+            "ApplicationQuota": {
+              "Maximum": 1
+            },
+            "EnvironmentQuota": {
+              "Maximum": 1
+            },
+            "CustomPlatformQuota": {
+              "Maximum": 1
+            },
+            "ApplicationVersionQuota": {
+              "Maximum": 1
+            },
+            "ConfigurationTemplateQuota": {
+              "Maximum": 1
+            }
+          }
+        }
+      ]
+  DescribeApplications:
+    description: |-
+      Returns the descriptions of existing applications.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DescribeApplications.html
+    example:
+      inputs: [
+        {
+          "ApplicationNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Applications": [
+            {
+              "Versions": [
+                "string"
+              ],
+              "DateCreated": 1481289211.615,
+              "DateUpdated": 1481289211.615,
+              "Description": "string",
+              "ApplicationArn": "string",
+              "ApplicationName": "string",
+              "ConfigurationTemplates": [
+                "string"
+              ],
+              "ResourceLifecycleConfig": {
+                "ServiceRole": "string",
+                "VersionLifecycleConfig": {
+                  "MaxAgeRule": {
+                    "Enabled": false,
+                    "MaxAgeInDays": 1,
+                    "DeleteSourceFromS3": false
+                  },
+                  "MaxCountRule": {
+                    "Enabled": false,
+                    "MaxCount": 1,
+                    "DeleteSourceFromS3": false
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+  DescribeApplicationVersions:
+    description: |-
+      Retrieve a list of application versions.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DescribeApplicationVersions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxRecords": 1,
+          "VersionLabels": [
+            "string"
+          ],
+          "ApplicationName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ApplicationVersions": [
+            {
+              "Status": "string",
+              "BuildArn": "string",
+              "DateCreated": 1481289211.615,
+              "DateUpdated": 1481289211.615,
+              "Description": "string",
+              "SourceBundle": {
+                "S3Key": "string",
+                "S3Bucket": "string"
+              },
+              "VersionLabel": "string",
+              "ApplicationName": "string",
+              "ApplicationVersionArn": "string",
+              "SourceBuildInformation": {
+                "SourceType": "string",
+                "SourceLocation": "string",
+                "SourceRepository": "string"
+              }
+            }
+          ]
+        }
+      ]
+  DescribeConfigurationOptions:
+    description: |-
+      Describes the configuration options that are used in a particular configuration template or environment, or that a specified solution stack defines. The description includes the values the options, their default values, and an indication of the required action on a running environment if an option value is changed.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DescribeConfigurationOptions.html
+    example:
+      inputs: [
+        {
+          "Options": [
+            {
+              "Namespace": "string",
+              "OptionName": "string",
+              "ResourceName": "string"
+            }
+          ],
+          "PlatformArn": "string",
+          "TemplateName": "string",
+          "ApplicationName": "string",
+          "EnvironmentName": "string",
+          "SolutionStackName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Options": [
+            {
+              "Name": "string",
+              "Regex": {
+                "Label": "string",
+                "Pattern": "string"
+              },
+              "MaxValue": 1,
+              "MinValue": 1,
+              "MaxLength": 1,
+              "Namespace": "string",
+              "ValueType": "string",
+              "UserDefined": false,
+              "DefaultValue": "string",
+              "ValueOptions": [
+                "string"
+              ],
+              "ChangeSeverity": "string"
+            }
+          ],
+          "PlatformArn": "string",
+          "SolutionStackName": "string"
+        }
+      ]
+  DescribeConfigurationSettings:
+    description: |-
+      Returns a description of the settings for the specified configuration set, that is, either a configuration template or the configuration set associated with a running environment.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DescribeConfigurationSettings.html
+    example:
+      inputs: [
+        {
+          "TemplateName": "string",
+          "ApplicationName": "string",
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ConfigurationSettings": [
+            {
+              "DateCreated": 1481289211.615,
+              "DateUpdated": 1481289211.615,
+              "Description": "string",
+              "PlatformArn": "string",
+              "TemplateName": "string",
+              "OptionSettings": [
+                {
+                  "Value": "string",
+                  "Namespace": "string",
+                  "OptionName": "string",
+                  "ResourceName": "string"
+                }
+              ],
+              "ApplicationName": "string",
+              "EnvironmentName": "string",
+              "DeploymentStatus": "string",
+              "SolutionStackName": "string"
+            }
+          ]
+        }
+      ]
+  DescribeEnvironmentHealth:
+    description: |-
+      Returns information about the overall health of the specified environment. The DescribeEnvironmentHealth operation is only available with AWS Elastic Beanstalk Enhanced Health.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DescribeEnvironmentHealth.html
+    example:
+      inputs: [
+        {
+          "EnvironmentId": "string",
+          "AttributeNames": [
+            "string"
+          ],
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Color": "string",
+          "Causes": [
+            "string"
+          ],
+          "Status": "string",
+          "RefreshedAt": 1481289211.615,
+          "HealthStatus": "string",
+          "EnvironmentName": "string",
+          "InstancesHealth": {
+            "Ok": 1,
+            "Info": 1,
+            "NoData": 1,
+            "Severe": 1,
+            "Pending": 1,
+            "Unknown": 1,
+            "Warning": 1,
+            "Degraded": 1
+          },
+          "ApplicationMetrics": {
+            "Latency": {
+              "P10": 0.1,
+              "P50": 0.1,
+              "P75": 0.1,
+              "P85": 0.1,
+              "P90": 0.1,
+              "P95": 0.1,
+              "P99": 0.1,
+              "P999": 0.1
+            },
+            "Duration": 1,
+            "StatusCodes": {
+              "Status2xx": 1,
+              "Status3xx": 1,
+              "Status4xx": 1,
+              "Status5xx": 1
+            },
+            "RequestCount": 1
+          }
+        }
+      ]
+  DescribeEnvironmentManagedActionHistory:
+    description: |-
+      Lists an environment's completed and failed managed actions.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DescribeEnvironmentManagedActionHistory.html
+    example:
+      inputs: [
+        {
+          "MaxItems": 1,
+          "NextToken": "string",
+          "EnvironmentId": "string",
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ManagedActionHistoryItems": [
+            {
+              "Status": "string",
+              "ActionId": "string",
+              "ActionType": "string",
+              "FailureType": "string",
+              "ExecutedTime": 1481289211.615,
+              "FinishedTime": 1481289211.615,
+              "ActionDescription": "string",
+              "FailureDescription": "string"
+            }
+          ]
+        }
+      ]
+  DescribeEnvironmentManagedActions:
+    description: |-
+      Lists an environment's upcoming and in-progress managed actions.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DescribeEnvironmentManagedActions.html
+    example:
+      inputs: [
+        {
+          "Status": "string",
+          "EnvironmentId": "string",
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ManagedActions": [
+            {
+              "Status": "string",
+              "ActionId": "string",
+              "ActionType": "string",
+              "WindowStartTime": 1481289211.615,
+              "ActionDescription": "string"
+            }
+          ]
+        }
+      ]
+  DescribeEnvironmentResources:
+    description: |-
+      Returns AWS resources for this environment.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DescribeEnvironmentResources.html
+    example:
+      inputs: [
+        {
+          "EnvironmentId": "string",
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EnvironmentResources": {
+            "Queues": [
+              {
+                "URL": "string",
+                "Name": "string"
+              }
+            ],
+            "Triggers": [
+              {
+                "Name": "string"
+              }
+            ],
+            "Instances": [
+              {
+                "Id": "string"
+              }
+            ],
+            "LoadBalancers": [
+              {
+                "Name": "string"
+              }
+            ],
+            "EnvironmentName": "string",
+            "LaunchTemplates": [
+              {
+                "Id": "string"
+              }
+            ],
+            "AutoScalingGroups": [
+              {
+                "Name": "string"
+              }
+            ],
+            "LaunchConfigurations": [
+              {
+                "Name": "string"
+              }
+            ]
+          }
+        }
+      ]
+  DescribeEnvironments:
+    description: |-
+      Returns descriptions for existing environments.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DescribeEnvironments.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxRecords": 1,
+          "VersionLabel": "string",
+          "EnvironmentIds": [
+            "string"
+          ],
+          "IncludeDeleted": false,
+          "ApplicationName": "string",
+          "EnvironmentNames": [
+            "string"
+          ],
+          "IncludedDeletedBackTo": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Environments": [
+            {
+              "Tier": {
+                "Name": "string",
+                "Type": "string",
+                "Version": "string"
+              },
+              "CNAME": "string",
+              "Health": "string",
+              "Status": "string",
+              "Resources": {
+                "LoadBalancer": {
+                  "Domain": "string",
+                  "Listeners": [
+                    {
+                      "Port": 1,
+                      "Protocol": "string"
+                    }
+                  ],
+                  "LoadBalancerName": "string"
+                }
+              },
+              "DateCreated": 1481289211.615,
+              "DateUpdated": 1481289211.615,
+              "Description": "string",
+              "EndpointURL": "string",
+              "PlatformArn": "string",
+              "HealthStatus": "string",
+              "TemplateName": "string",
+              "VersionLabel": "string",
+              "EnvironmentId": "string",
+              "EnvironmentArn": "string",
+              "OperationsRole": "string",
+              "ApplicationName": "string",
+              "EnvironmentName": "string",
+              "EnvironmentLinks": [
+                {
+                  "LinkName": "string",
+                  "EnvironmentName": "string"
+                }
+              ],
+              "SolutionStackName": "string",
+              "AbortableOperationInProgress": false
+            }
+          ]
+        }
+      ]
+  DescribeEvents:
+    description: |-
+      Returns list of event descriptions matching criteria up to the last 6 weeks.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DescribeEvents.html
+    example:
+      inputs: [
+        {
+          "EndTime": 1481289211.615,
+          "Severity": "string",
+          "NextToken": "string",
+          "RequestId": "string",
+          "StartTime": 1481289211.615,
+          "MaxRecords": 1,
+          "PlatformArn": "string",
+          "TemplateName": "string",
+          "VersionLabel": "string",
+          "EnvironmentId": "string",
+          "ApplicationName": "string",
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Events": [
+            {
+              "Message": "string",
+              "Severity": "string",
+              "EventDate": 1481289211.615,
+              "RequestId": "string",
+              "PlatformArn": "string",
+              "TemplateName": "string",
+              "VersionLabel": "string",
+              "ApplicationName": "string",
+              "EnvironmentName": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeInstancesHealth:
+    description: |-
+      Retrieves detailed information about the health of instances in your AWS Elastic Beanstalk. This operation requires enhanced health reporting.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DescribeInstancesHealth.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "EnvironmentId": "string",
+          "AttributeNames": [
+            "string"
+          ],
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "RefreshedAt": 1481289211.615,
+          "InstanceHealthList": [
+            {
+              "Color": "string",
+              "Causes": [
+                "string"
+              ],
+              "System": {
+                "LoadAverage": [
+                  0.1
+                ],
+                "CPUUtilization": {
+                  "IRQ": 0.1,
+                  "Idle": 0.1,
+                  "Nice": 0.1,
+                  "User": 0.1,
+                  "IOWait": 0.1,
+                  "System": 0.1,
+                  "SoftIRQ": 0.1,
+                  "Privileged": 0.1
+                }
+              },
+              "Deployment": {
+                "Status": "string",
+                "DeploymentId": 1,
+                "VersionLabel": "string",
+                "DeploymentTime": 1481289211.615
+              },
+              "InstanceId": "string",
+              "LaunchedAt": 1481289211.615,
+              "HealthStatus": "string",
+              "InstanceType": "string",
+              "AvailabilityZone": "string",
+              "ApplicationMetrics": {
+                "Latency": {
+                  "P10": 0.1,
+                  "P50": 0.1,
+                  "P75": 0.1,
+                  "P85": 0.1,
+                  "P90": 0.1,
+                  "P95": 0.1,
+                  "P99": 0.1,
+                  "P999": 0.1
+                },
+                "Duration": 1,
+                "StatusCodes": {
+                  "Status2xx": 1,
+                  "Status3xx": 1,
+                  "Status4xx": 1,
+                  "Status5xx": 1
+                },
+                "RequestCount": 1
+              }
+            }
+          ]
+        }
+      ]
+  DescribePlatformVersion:
+    description: |-
+      Describes a platform version. Provides full details. Compare to ListPlatformVersions, which provides summary information about a list of platform versions.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DescribePlatformVersion.html
+    example:
+      inputs: [
+        {
+          "PlatformArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PlatformDescription": {
+            "Frameworks": [
+              {
+                "Name": "string",
+                "Version": "string"
+              }
+            ],
+            "Maintainer": "string",
+            "DateCreated": 1481289211.615,
+            "DateUpdated": 1481289211.615,
+            "Description": "string",
+            "PlatformArn": "string",
+            "PlatformName": "string",
+            "CustomAmiList": [
+              {
+                "ImageId": "string",
+                "VirtualizationType": "string"
+              }
+            ],
+            "PlatformOwner": "string",
+            "PlatformStatus": "string",
+            "PlatformVersion": "string",
+            "PlatformCategory": "string",
+            "SolutionStackName": "string",
+            "SupportedTierList": [
+              "string"
+            ],
+            "PlatformBranchName": "string",
+            "SupportedAddonList": [
+              "string"
+            ],
+            "OperatingSystemName": "string",
+            "ProgrammingLanguages": [
+              {
+                "Name": "string",
+                "Version": "string"
+              }
+            ],
+            "OperatingSystemVersion": "string",
+            "PlatformLifecycleState": "string",
+            "PlatformBranchLifecycleState": "string"
+          }
+        }
+      ]
+  DisassociateEnvironmentOperationsRole:
+    description: |-
+      Disassociate the operations role from an environment. After this call is made, Elastic Beanstalk uses the caller's permissions for permissions to downstream services during subsequent calls acting on this environment.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DisassociateEnvironmentOperationsRole.html
+    example:
+      inputs: [
+        {
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListAvailableSolutionStacks:
+    description: |-
+      Returns a list of the available solution stack names, with the public version first and then in reverse chronological order.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_ListAvailableSolutionStacks.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "SolutionStacks": [
+            "string"
+          ],
+          "SolutionStackDetails": [
+            {
+              "SolutionStackName": "string",
+              "PermittedFileTypes": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  ListPlatformBranches:
+    description: |-
+      Lists the platform branches available for your account in an AWS Region. Provides summary information about each platform branch.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_ListPlatformBranches.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Values": [
+                "string"
+              ],
+              "Operator": "string",
+              "Attribute": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxRecords": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "PlatformBranchSummaryList": [
+            {
+              "BranchName": "string",
+              "BranchOrder": 1,
+              "PlatformName": "string",
+              "LifecycleState": "string",
+              "SupportedTierList": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  ListPlatformVersions:
+    description: |-
+      Lists the platform versions available for your account in an AWS Region. Provides summary information about each platform version. Compare to DescribePlatformVersion, which provides full details about a single platform version.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_ListPlatformVersions.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Type": "string",
+              "Values": [
+                "string"
+              ],
+              "Operator": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxRecords": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "PlatformSummaryList": [
+            {
+              "PlatformArn": "string",
+              "PlatformOwner": "string",
+              "PlatformStatus": "string",
+              "PlatformVersion": "string",
+              "PlatformCategory": "string",
+              "SupportedTierList": [
+                "string"
+              ],
+              "PlatformBranchName": "string",
+              "SupportedAddonList": [
+                "string"
+              ],
+              "OperatingSystemName": "string",
+              "OperatingSystemVersion": "string",
+              "PlatformLifecycleState": "string",
+              "PlatformBranchLifecycleState": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Return the tags applied to an AWS Elastic Beanstalk resource. The response contains a list of tag key-value pairs.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResourceArn": "string",
+          "ResourceTags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  RebuildEnvironment:
+    description: |-
+      Deletes and recreates all of the AWS resources (for example:the Auto Scaling group, load balancer, etc.) for a specified environment and forces a restart.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_RebuildEnvironment.html
+    example:
+      inputs: [
+        {
+          "EnvironmentId": "string",
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RequestEnvironmentInfo:
+    description: |-
+      Initiates a request to compile the specified type of information of the deployed environment.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_RequestEnvironmentInfo.html
+    example:
+      inputs: [
+        {
+          "InfoType": "string",
+          "EnvironmentId": "string",
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RestartAppServer:
+    description: |-
+      Causes the environment to restart the application container server running on each Amazon EC2 instance.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_RestartAppServer.html
+    example:
+      inputs: [
+        {
+          "EnvironmentId": "string",
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RetrieveEnvironmentInfo:
+    description: |-
+      Retrieves the compiled information from a RequestEnvironmentInfo request.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_RetrieveEnvironmentInfo.html
+    example:
+      inputs: [
+        {
+          "InfoType": "string",
+          "EnvironmentId": "string",
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EnvironmentInfo": [
+            {
+              "Message": "string",
+              "InfoType": "string",
+              "Ec2InstanceId": "string",
+              "SampleTimestamp": 1481289211.615
+            }
+          ]
+        }
+      ]
+  SwapEnvironmentCNAMEs:
+    description: |-
+      Swaps the CNAMEs of two environments.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_SwapEnvironmentCNAMEs.html
+    example:
+      inputs: [
+        {
+          "SourceEnvironmentId": "string",
+          "SourceEnvironmentName": "string",
+          "DestinationEnvironmentId": "string",
+          "DestinationEnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TerminateEnvironment:
+    description: |-
+      Terminates the specified environment.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_TerminateEnvironment.html
+    example:
+      inputs: [
+        {
+          "EnvironmentId": "string",
+          "ForceTerminate": false,
+          "EnvironmentName": "string",
+          "TerminateResources": false
+        }
+      ]
+      outputs: [
+        {
+          "Tier": {
+            "Name": "string",
+            "Type": "string",
+            "Version": "string"
+          },
+          "CNAME": "string",
+          "Health": "string",
+          "Status": "string",
+          "Resources": {
+            "LoadBalancer": {
+              "Domain": "string",
+              "Listeners": [
+                {
+                  "Port": 1,
+                  "Protocol": "string"
+                }
+              ],
+              "LoadBalancerName": "string"
+            }
+          },
+          "DateCreated": 1481289211.615,
+          "DateUpdated": 1481289211.615,
+          "Description": "string",
+          "EndpointURL": "string",
+          "PlatformArn": "string",
+          "HealthStatus": "string",
+          "TemplateName": "string",
+          "VersionLabel": "string",
+          "EnvironmentId": "string",
+          "EnvironmentArn": "string",
+          "OperationsRole": "string",
+          "ApplicationName": "string",
+          "EnvironmentName": "string",
+          "EnvironmentLinks": [
+            {
+              "LinkName": "string",
+              "EnvironmentName": "string"
+            }
+          ],
+          "SolutionStackName": "string",
+          "AbortableOperationInProgress": false
+        }
+      ]
+  UpdateApplication:
+    description: |-
+      Updates the specified application to have the specified properties.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_UpdateApplication.html
+    example:
+      inputs: [
+        {
+          "Description": "string",
+          "ApplicationName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Application": {
+            "Versions": [
+              "string"
+            ],
+            "DateCreated": 1481289211.615,
+            "DateUpdated": 1481289211.615,
+            "Description": "string",
+            "ApplicationArn": "string",
+            "ApplicationName": "string",
+            "ConfigurationTemplates": [
+              "string"
+            ],
+            "ResourceLifecycleConfig": {
+              "ServiceRole": "string",
+              "VersionLifecycleConfig": {
+                "MaxAgeRule": {
+                  "Enabled": false,
+                  "MaxAgeInDays": 1,
+                  "DeleteSourceFromS3": false
+                },
+                "MaxCountRule": {
+                  "Enabled": false,
+                  "MaxCount": 1,
+                  "DeleteSourceFromS3": false
+                }
+              }
+            }
+          }
+        }
+      ]
+  UpdateApplicationResourceLifecycle:
+    description: |-
+      Modifies lifecycle settings for an application.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_UpdateApplicationResourceLifecycle.html
+    example:
+      inputs: [
+        {
+          "ApplicationName": "string",
+          "ResourceLifecycleConfig": {
+            "ServiceRole": "string",
+            "VersionLifecycleConfig": {
+              "MaxAgeRule": {
+                "Enabled": false,
+                "MaxAgeInDays": 1,
+                "DeleteSourceFromS3": false
+              },
+              "MaxCountRule": {
+                "Enabled": false,
+                "MaxCount": 1,
+                "DeleteSourceFromS3": false
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateApplicationVersion:
+    description: |-
+      Updates the specified application version to have the specified properties.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_UpdateApplicationVersion.html
+    example:
+      inputs: [
+        {
+          "Description": "string",
+          "VersionLabel": "string",
+          "ApplicationName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ApplicationVersion": {
+            "Status": "string",
+            "BuildArn": "string",
+            "DateCreated": 1481289211.615,
+            "DateUpdated": 1481289211.615,
+            "Description": "string",
+            "SourceBundle": {
+              "S3Key": "string",
+              "S3Bucket": "string"
+            },
+            "VersionLabel": "string",
+            "ApplicationName": "string",
+            "ApplicationVersionArn": "string",
+            "SourceBuildInformation": {
+              "SourceType": "string",
+              "SourceLocation": "string",
+              "SourceRepository": "string"
+            }
+          }
+        }
+      ]
+  UpdateConfigurationTemplate:
+    description: |-
+      Updates the specified configuration template to have the specified properties or configuration option values.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_UpdateConfigurationTemplate.html
+    example:
+      inputs: [
+        {
+          "Description": "string",
+          "TemplateName": "string",
+          "OptionSettings": [
+            {
+              "Value": "string",
+              "Namespace": "string",
+              "OptionName": "string",
+              "ResourceName": "string"
+            }
+          ],
+          "ApplicationName": "string",
+          "OptionsToRemove": [
+            {
+              "Namespace": "string",
+              "OptionName": "string",
+              "ResourceName": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "DateCreated": 1481289211.615,
+          "DateUpdated": 1481289211.615,
+          "Description": "string",
+          "PlatformArn": "string",
+          "TemplateName": "string",
+          "OptionSettings": [
+            {
+              "Value": "string",
+              "Namespace": "string",
+              "OptionName": "string",
+              "ResourceName": "string"
+            }
+          ],
+          "ApplicationName": "string",
+          "EnvironmentName": "string",
+          "DeploymentStatus": "string",
+          "SolutionStackName": "string"
+        }
+      ]
+  UpdateEnvironment:
+    description: |-
+      Updates the environment description, deploys a new application version, updates the configuration settings to an entirely new configuration template, or updates select configuration option values in the running environment.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_UpdateEnvironment.html
+    example:
+      inputs: [
+        {
+          "Tier": {
+            "Name": "string",
+            "Type": "string",
+            "Version": "string"
+          },
+          "GroupName": "string",
+          "Description": "string",
+          "PlatformArn": "string",
+          "TemplateName": "string",
+          "VersionLabel": "string",
+          "EnvironmentId": "string",
+          "OptionSettings": [
+            {
+              "Value": "string",
+              "Namespace": "string",
+              "OptionName": "string",
+              "ResourceName": "string"
+            }
+          ],
+          "ApplicationName": "string",
+          "EnvironmentName": "string",
+          "OptionsToRemove": [
+            {
+              "Namespace": "string",
+              "OptionName": "string",
+              "ResourceName": "string"
+            }
+          ],
+          "SolutionStackName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tier": {
+            "Name": "string",
+            "Type": "string",
+            "Version": "string"
+          },
+          "CNAME": "string",
+          "Health": "string",
+          "Status": "string",
+          "Resources": {
+            "LoadBalancer": {
+              "Domain": "string",
+              "Listeners": [
+                {
+                  "Port": 1,
+                  "Protocol": "string"
+                }
+              ],
+              "LoadBalancerName": "string"
+            }
+          },
+          "DateCreated": 1481289211.615,
+          "DateUpdated": 1481289211.615,
+          "Description": "string",
+          "EndpointURL": "string",
+          "PlatformArn": "string",
+          "HealthStatus": "string",
+          "TemplateName": "string",
+          "VersionLabel": "string",
+          "EnvironmentId": "string",
+          "EnvironmentArn": "string",
+          "OperationsRole": "string",
+          "ApplicationName": "string",
+          "EnvironmentName": "string",
+          "EnvironmentLinks": [
+            {
+              "LinkName": "string",
+              "EnvironmentName": "string"
+            }
+          ],
+          "SolutionStackName": "string",
+          "AbortableOperationInProgress": false
+        }
+      ]
+  UpdateTagsForResource:
+    description: |-
+      Update the list of tags applied to an AWS Elastic Beanstalk resource. Two lists can be passed:TagsToAdd for tags to add or update, and TagsToRemove.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_UpdateTagsForResource.html
+    example:
+      inputs: [
+        {
+          "TagsToAdd": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceArn": "string",
+          "TagsToRemove": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ValidateConfigurationSettings:
+    description: |-
+      Takes a set of configuration settings and either a configuration template or environment, and determines whether those values are valid.
+    versions:
+      from: 2010.12.1
+    link: https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_ValidateConfigurationSettings.html
+    example:
+      inputs: [
+        {
+          "TemplateName": "string",
+          "OptionSettings": [
+            {
+              "Value": "string",
+              "Namespace": "string",
+              "OptionName": "string",
+              "ResourceName": "string"
+            }
+          ],
+          "ApplicationName": "string",
+          "EnvironmentName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Messages": [
+            {
+              "Message": "string",
+              "Severity": "string",
+              "Namespace": "string",
+              "OptionName": "string"
+            }
+          ]
+        }
+      ]

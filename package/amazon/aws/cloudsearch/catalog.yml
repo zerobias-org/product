@@ -1,0 +1,1320 @@
+Product:
+  name: Amazon CloudSearch
+  versions: [2013.1.1]
+  package: amazon.aws.cloudsearch
+  description: |-
+    Amazon CloudSearch
+  link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/what-is-cloudsearch.html
+  contentType: json
+Operations:
+  Search:
+    description: |-
+      Retrieves a list of documents that match the specified search criteria. How you specify the search criteria depends on which query parser you use
+    versions:
+      from: 2013.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cloudsearchdomain/search.html
+    example:
+      inputs: [
+        {
+          "expr": "string",
+          "size": 1,
+          "sort": "string",
+          "facet": "string",
+          "query": "string",
+          "start": 1,
+          "stats": "string",
+          "cursor": "string",
+          "return": "string",
+          "partial": false,
+          "highlight": "string",
+          "filterQuery": "string",
+          "queryParser": "string",
+          "queryOptions": "string"
+        }
+      ]
+      outputs: [
+        {
+          "hits": {
+            "hit": [
+              {
+                "id": "string",
+                "exprs": {
+                  "string": "string"
+                },
+                "fields": {
+                  "string": [
+                    "string"
+                  ]
+                },
+                "highlights": {
+                  "string": "string"
+                }
+              }
+            ],
+            "found": 1,
+            "start": 1,
+            "cursor": "string"
+          },
+          "stats": {
+            "string": {
+              "max": "string",
+              "min": "string",
+              "sum": 0.1,
+              "mean": "string",
+              "count": 1,
+              "stddev": 0.1,
+              "missing": 1,
+              "sumOfSquares": 0.1
+            }
+          },
+          "facets": {
+            "string": {
+              "buckets": [
+                {
+                  "count": 1,
+                  "value": "string"
+                }
+              ]
+            }
+          },
+          "status": {
+            "rid": "string",
+            "timems": 1
+          }
+        }
+      ]
+  Suggest:
+    description: |-
+      Retrieves autocomplete suggestions for a partial query string. You can use suggestions enable you to display likely matches before users finish typing. In Amazon CloudSearch, suggestions are based on the contents of a particular text field. When you request suggestions, Amazon CloudSearch finds all of the documents whose values in the suggester field start with the specified query string. The beginning of the field must match the query string to be considered a match.
+    versions:
+      from: 2013.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cloudsearchdomain/suggest.html
+    example:
+      inputs: [
+        {
+          "size": 1,
+          "query": "string",
+          "suggester": "string"
+        }
+      ]
+      outputs: [
+        {
+          "status": {
+            "rid": "string",
+            "timems": 1
+          },
+          "suggest": {
+            "found": 1,
+            "query": "string",
+            "suggestions": [
+              {
+                "id": "string",
+                "score": 1,
+                "suggestion": "string"
+              }
+            ]
+          }
+        }
+      ]
+  UploadDocuments:
+    description: |-
+      Posts a batch of documents to a search domain for indexing. A document batch is a collection of add and delete operations that represent the documents you want to add, update, or delete from your domain. Batches can be described in either JSON or XML. Each item that you want Amazon CloudSearch to return as a search result (such as a product) is represented as a document. Every document has a unique ID and one or more fields that contain the data that you want to search and return in results. Individual documents cannot contain more than 1 MB of data. The entire batch cannot exceed 5 MB. To get the best possible upload performance, group add and delete operations in batches that are close the 5 MB limit. Submitting a large volume of single-document batches can overload a domain’s document service.
+    versions:
+      from: 2013.1.1
+    link: https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cloudsearchdomain/upload-documents.html
+    example:
+      inputs: [
+        {
+          "documents": "blob",
+          "contentType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "adds": 1,
+          "status": "string",
+          "deletes": 1,
+          "warnings": [
+            {
+              "message": "string"
+            }
+          ]
+        }
+      ]
+  BuildSuggesters:
+    description: |-
+      Indexes the search suggestions. For more information, see Configuring Suggesters in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_BuildSuggesters.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FieldNames": [
+            "string"
+          ]
+        }
+      ]
+  CreateDomain:
+    description: |-
+      Creates a new search domain. For more information, see Creating a Search Domain in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_CreateDomain.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DomainStatus": {
+            "ARN": "string",
+            "Limits": {
+              "MaximumPartitionCount": 1,
+              "MaximumReplicationCount": 1
+            },
+            "Created": false,
+            "Deleted": false,
+            "DomainId": "string",
+            "DocService": {
+              "Endpoint": "string"
+            },
+            "DomainName": "string",
+            "Processing": false,
+            "SearchService": {
+              "Endpoint": "string"
+            },
+            "SearchInstanceType": "string",
+            "SearchInstanceCount": 1,
+            "SearchPartitionCount": 1,
+            "RequiresIndexDocuments": false
+          }
+        }
+      ]
+  DefineAnalysisScheme:
+    description: |-
+      Configures an analysis scheme that can be applied to a text or text-array field to define language-specific text processing options. For more information, see Configuring Analysis Schemes in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DefineAnalysisScheme.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string",
+          "AnalysisScheme": {
+            "AnalysisOptions": {
+              "Synonyms": "string",
+              "Stopwords": "string",
+              "StemmingDictionary": "string",
+              "AlgorithmicStemming": "string",
+              "JapaneseTokenizationDictionary": "string"
+            },
+            "AnalysisSchemeName": "string",
+            "AnalysisSchemeLanguage": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "AnalysisScheme": {
+            "Status": {
+              "State": "string",
+              "UpdateDate": 1481289211.615,
+              "CreationDate": 1481289211.615,
+              "UpdateVersion": 1,
+              "PendingDeletion": false
+            },
+            "Options": {
+              "AnalysisOptions": {
+                "Synonyms": "string",
+                "Stopwords": "string",
+                "StemmingDictionary": "string",
+                "AlgorithmicStemming": "string",
+                "JapaneseTokenizationDictionary": "string"
+              },
+              "AnalysisSchemeName": "string",
+              "AnalysisSchemeLanguage": "string"
+            }
+          }
+        }
+      ]
+  DefineExpression:
+    description: |-
+      Configures an Expression for the search domain. Used to create new expressions and modify existing ones. If the expression exists, the new configuration replaces the old one. For more information, see Configuring Expressions in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DefineExpression.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string",
+          "Expression": {
+            "ExpressionName": "string",
+            "ExpressionValue": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Expression": {
+            "Status": {
+              "State": "string",
+              "UpdateDate": 1481289211.615,
+              "CreationDate": 1481289211.615,
+              "UpdateVersion": 1,
+              "PendingDeletion": false
+            },
+            "Options": {
+              "ExpressionName": "string",
+              "ExpressionValue": "string"
+            }
+          }
+        }
+      ]
+  DefineIndexField:
+    description: |-
+      Configures an IndexField for the search domain. Used to create new fields and modify existing ones. You must specify the name of the domain you are configuring and an index field configuration. The index field configuration specifies a unique name, the index field type, and the options you want to configure for the field. The options you can specify depend on the IndexFieldType . If the field exists, the new configuration replaces the old one. For more information, see Configuring Index Fields in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DefineIndexField.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string",
+          "IndexField": {
+            "IntOptions": {
+              "SortEnabled": false,
+              "SourceField": "string",
+              "DefaultValue": 1,
+              "FacetEnabled": false,
+              "ReturnEnabled": false,
+              "SearchEnabled": false
+            },
+            "DateOptions": {
+              "SortEnabled": false,
+              "SourceField": "string",
+              "DefaultValue": "string",
+              "FacetEnabled": false,
+              "ReturnEnabled": false,
+              "SearchEnabled": false
+            },
+            "TextOptions": {
+              "SortEnabled": false,
+              "SourceField": "string",
+              "DefaultValue": "string",
+              "ReturnEnabled": false,
+              "AnalysisScheme": "string",
+              "HighlightEnabled": false
+            },
+            "DoubleOptions": {
+              "SortEnabled": false,
+              "SourceField": "string",
+              "DefaultValue": 0.1,
+              "FacetEnabled": false,
+              "ReturnEnabled": false,
+              "SearchEnabled": false
+            },
+            "LatLonOptions": {
+              "SortEnabled": false,
+              "SourceField": "string",
+              "DefaultValue": "string",
+              "FacetEnabled": false,
+              "ReturnEnabled": false,
+              "SearchEnabled": false
+            },
+            "IndexFieldName": "string",
+            "IndexFieldType": "string",
+            "LiteralOptions": {
+              "SortEnabled": false,
+              "SourceField": "string",
+              "DefaultValue": "string",
+              "FacetEnabled": false,
+              "ReturnEnabled": false,
+              "SearchEnabled": false
+            },
+            "IntArrayOptions": {
+              "DefaultValue": 1,
+              "FacetEnabled": false,
+              "SourceFields": "string",
+              "ReturnEnabled": false,
+              "SearchEnabled": false
+            },
+            "DateArrayOptions": {
+              "DefaultValue": "string",
+              "FacetEnabled": false,
+              "SourceFields": "string",
+              "ReturnEnabled": false,
+              "SearchEnabled": false
+            },
+            "TextArrayOptions": {
+              "DefaultValue": "string",
+              "SourceFields": "string",
+              "ReturnEnabled": false,
+              "AnalysisScheme": "string",
+              "HighlightEnabled": false
+            },
+            "DoubleArrayOptions": {
+              "DefaultValue": 0.1,
+              "FacetEnabled": false,
+              "SourceFields": "string",
+              "ReturnEnabled": false,
+              "SearchEnabled": false
+            },
+            "LiteralArrayOptions": {
+              "DefaultValue": "string",
+              "FacetEnabled": false,
+              "SourceFields": "string",
+              "ReturnEnabled": false,
+              "SearchEnabled": false
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "IndexField": {
+            "Status": {
+              "State": "string",
+              "UpdateDate": 1481289211.615,
+              "CreationDate": 1481289211.615,
+              "UpdateVersion": 1,
+              "PendingDeletion": false
+            },
+            "Options": {
+              "IntOptions": {
+                "SortEnabled": false,
+                "SourceField": "string",
+                "DefaultValue": 1,
+                "FacetEnabled": false,
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              },
+              "DateOptions": {
+                "SortEnabled": false,
+                "SourceField": "string",
+                "DefaultValue": "string",
+                "FacetEnabled": false,
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              },
+              "TextOptions": {
+                "SortEnabled": false,
+                "SourceField": "string",
+                "DefaultValue": "string",
+                "ReturnEnabled": false,
+                "AnalysisScheme": "string",
+                "HighlightEnabled": false
+              },
+              "DoubleOptions": {
+                "SortEnabled": false,
+                "SourceField": "string",
+                "DefaultValue": 0.1,
+                "FacetEnabled": false,
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              },
+              "LatLonOptions": {
+                "SortEnabled": false,
+                "SourceField": "string",
+                "DefaultValue": "string",
+                "FacetEnabled": false,
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              },
+              "IndexFieldName": "string",
+              "IndexFieldType": "string",
+              "LiteralOptions": {
+                "SortEnabled": false,
+                "SourceField": "string",
+                "DefaultValue": "string",
+                "FacetEnabled": false,
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              },
+              "IntArrayOptions": {
+                "DefaultValue": 1,
+                "FacetEnabled": false,
+                "SourceFields": "string",
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              },
+              "DateArrayOptions": {
+                "DefaultValue": "string",
+                "FacetEnabled": false,
+                "SourceFields": "string",
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              },
+              "TextArrayOptions": {
+                "DefaultValue": "string",
+                "SourceFields": "string",
+                "ReturnEnabled": false,
+                "AnalysisScheme": "string",
+                "HighlightEnabled": false
+              },
+              "DoubleArrayOptions": {
+                "DefaultValue": 0.1,
+                "FacetEnabled": false,
+                "SourceFields": "string",
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              },
+              "LiteralArrayOptions": {
+                "DefaultValue": "string",
+                "FacetEnabled": false,
+                "SourceFields": "string",
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              }
+            }
+          }
+        }
+      ]
+  DefineSuggester:
+    description: |-
+      Configures a suggester for a domain. A suggester enables you to display possible matches before users finish typing their queries. When you configure a suggester, you must specify the name of the text field you want to search for possible matches and a unique name for the suggester. For more information, see Getting Search Suggestions in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DefineSuggester.html
+    example:
+      inputs: [
+        {
+          "Suggester": {
+            "SuggesterName": "string",
+            "DocumentSuggesterOptions": {
+              "SourceField": "string",
+              "FuzzyMatching": "string",
+              "SortExpression": "string"
+            }
+          },
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Suggester": {
+            "Status": {
+              "State": "string",
+              "UpdateDate": 1481289211.615,
+              "CreationDate": 1481289211.615,
+              "UpdateVersion": 1,
+              "PendingDeletion": false
+            },
+            "Options": {
+              "SuggesterName": "string",
+              "DocumentSuggesterOptions": {
+                "SourceField": "string",
+                "FuzzyMatching": "string",
+                "SortExpression": "string"
+              }
+            }
+          }
+        }
+      ]
+  DeleteAnalysisScheme:
+    description: |-
+      Deletes an analysis scheme. For more information, see Configuring Analysis Schemes in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DeleteAnalysisScheme.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string",
+          "AnalysisSchemeName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "AnalysisScheme": {
+            "Status": {
+              "State": "string",
+              "UpdateDate": 1481289211.615,
+              "CreationDate": 1481289211.615,
+              "UpdateVersion": 1,
+              "PendingDeletion": false
+            },
+            "Options": {
+              "AnalysisOptions": {
+                "Synonyms": "string",
+                "Stopwords": "string",
+                "StemmingDictionary": "string",
+                "AlgorithmicStemming": "string",
+                "JapaneseTokenizationDictionary": "string"
+              },
+              "AnalysisSchemeName": "string",
+              "AnalysisSchemeLanguage": "string"
+            }
+          }
+        }
+      ]
+  DeleteDomain:
+    description: |-
+      Permanently deletes a search domain and all of its data. Once a domain has been deleted, it cannot be recovered. For more information, see Deleting a Search Domain in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DeleteDomain.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DomainStatus": {
+            "ARN": "string",
+            "Limits": {
+              "MaximumPartitionCount": 1,
+              "MaximumReplicationCount": 1
+            },
+            "Created": false,
+            "Deleted": false,
+            "DomainId": "string",
+            "DocService": {
+              "Endpoint": "string"
+            },
+            "DomainName": "string",
+            "Processing": false,
+            "SearchService": {
+              "Endpoint": "string"
+            },
+            "SearchInstanceType": "string",
+            "SearchInstanceCount": 1,
+            "SearchPartitionCount": 1,
+            "RequiresIndexDocuments": false
+          }
+        }
+      ]
+  DeleteExpression:
+    description: |-
+      Removes an Expression from the search domain. For more information, see Configuring Expressions in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DeleteExpression.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string",
+          "ExpressionName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Expression": {
+            "Status": {
+              "State": "string",
+              "UpdateDate": 1481289211.615,
+              "CreationDate": 1481289211.615,
+              "UpdateVersion": 1,
+              "PendingDeletion": false
+            },
+            "Options": {
+              "ExpressionName": "string",
+              "ExpressionValue": "string"
+            }
+          }
+        }
+      ]
+  DeleteIndexField:
+    description: |-
+      Removes an IndexField from the search domain. For more information, see Configuring Index Fields in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DeleteIndexField.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string",
+          "IndexFieldName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IndexField": {
+            "Status": {
+              "State": "string",
+              "UpdateDate": 1481289211.615,
+              "CreationDate": 1481289211.615,
+              "UpdateVersion": 1,
+              "PendingDeletion": false
+            },
+            "Options": {
+              "IntOptions": {
+                "SortEnabled": false,
+                "SourceField": "string",
+                "DefaultValue": 1,
+                "FacetEnabled": false,
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              },
+              "DateOptions": {
+                "SortEnabled": false,
+                "SourceField": "string",
+                "DefaultValue": "string",
+                "FacetEnabled": false,
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              },
+              "TextOptions": {
+                "SortEnabled": false,
+                "SourceField": "string",
+                "DefaultValue": "string",
+                "ReturnEnabled": false,
+                "AnalysisScheme": "string",
+                "HighlightEnabled": false
+              },
+              "DoubleOptions": {
+                "SortEnabled": false,
+                "SourceField": "string",
+                "DefaultValue": 0.1,
+                "FacetEnabled": false,
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              },
+              "LatLonOptions": {
+                "SortEnabled": false,
+                "SourceField": "string",
+                "DefaultValue": "string",
+                "FacetEnabled": false,
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              },
+              "IndexFieldName": "string",
+              "IndexFieldType": "string",
+              "LiteralOptions": {
+                "SortEnabled": false,
+                "SourceField": "string",
+                "DefaultValue": "string",
+                "FacetEnabled": false,
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              },
+              "IntArrayOptions": {
+                "DefaultValue": 1,
+                "FacetEnabled": false,
+                "SourceFields": "string",
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              },
+              "DateArrayOptions": {
+                "DefaultValue": "string",
+                "FacetEnabled": false,
+                "SourceFields": "string",
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              },
+              "TextArrayOptions": {
+                "DefaultValue": "string",
+                "SourceFields": "string",
+                "ReturnEnabled": false,
+                "AnalysisScheme": "string",
+                "HighlightEnabled": false
+              },
+              "DoubleArrayOptions": {
+                "DefaultValue": 0.1,
+                "FacetEnabled": false,
+                "SourceFields": "string",
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              },
+              "LiteralArrayOptions": {
+                "DefaultValue": "string",
+                "FacetEnabled": false,
+                "SourceFields": "string",
+                "ReturnEnabled": false,
+                "SearchEnabled": false
+              }
+            }
+          }
+        }
+      ]
+  DeleteSuggester:
+    description: |-
+      Deletes a suggester. For more information, see Getting Search Suggestions in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DeleteSuggester.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string",
+          "SuggesterName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Suggester": {
+            "Status": {
+              "State": "string",
+              "UpdateDate": 1481289211.615,
+              "CreationDate": 1481289211.615,
+              "UpdateVersion": 1,
+              "PendingDeletion": false
+            },
+            "Options": {
+              "SuggesterName": "string",
+              "DocumentSuggesterOptions": {
+                "SourceField": "string",
+                "FuzzyMatching": "string",
+                "SortExpression": "string"
+              }
+            }
+          }
+        }
+      ]
+  DescribeAnalysisSchemes:
+    description: |-
+      Gets the analysis schemes configured for a domain. An analysis scheme defines language-specific text processing options for a text field. Can be limited to specific analysis schemes by name. By default, shows all analysis schemes and includes any pending changes to the configuration. Set the Deployed option to true to show the active configuration and exclude pending changes. For more information, see Configuring Analysis Schemes in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DescribeAnalysisSchemes.html
+    example:
+      inputs: [
+        {
+          "Deployed": false,
+          "DomainName": "string",
+          "AnalysisSchemeNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "AnalysisSchemes": [
+            {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "AnalysisOptions": {
+                  "Synonyms": "string",
+                  "Stopwords": "string",
+                  "StemmingDictionary": "string",
+                  "AlgorithmicStemming": "string",
+                  "JapaneseTokenizationDictionary": "string"
+                },
+                "AnalysisSchemeName": "string",
+                "AnalysisSchemeLanguage": "string"
+              }
+            }
+          ]
+        }
+      ]
+  DescribeAvailabilityOptions:
+    description: |-
+      Gets the availability options configured for a domain. By default, shows the configuration with any pending changes. Set the Deployed option to true to show the active configuration and exclude pending changes. For more information, see Configuring Availability Options in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DescribeAvailabilityOptions.html
+    example:
+      inputs: [
+        {
+          "Deployed": false,
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "AvailabilityOptions": {
+            "Status": {
+              "State": "string",
+              "UpdateDate": 1481289211.615,
+              "CreationDate": 1481289211.615,
+              "UpdateVersion": 1,
+              "PendingDeletion": false
+            },
+            "Options": false
+          }
+        }
+      ]
+  DescribeDomainEndpointOptions:
+    description: |-
+      Returns the domain's endpoint options, specifically whether all requests to the domain must arrive over HTTPS. For more information, see Configuring Domain Endpoint Options in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DescribeDomainEndpointOptions.html
+    example:
+      inputs: [
+        {
+          "Deployed": false,
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DomainEndpointOptions": {
+            "Status": {
+              "State": "string",
+              "UpdateDate": 1481289211.615,
+              "CreationDate": 1481289211.615,
+              "UpdateVersion": 1,
+              "PendingDeletion": false
+            },
+            "Options": {
+              "EnforceHTTPS": false,
+              "TLSSecurityPolicy": "string"
+            }
+          }
+        }
+      ]
+  DescribeDomains:
+    description: |-
+      Gets information about the search domains owned by this account. Can be limited to specific domains. Shows all domains by default. To get the number of searchable documents in a domain, use the console or submit a matchall request to your domain's search endpoint:q=matchall&q.parser=structured&size=0. For more information, see Getting Information about a Search Domain in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DescribeDomains.html
+    example:
+      inputs: [
+        {
+          "DomainNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "DomainStatusList": [
+            {
+              "ARN": "string",
+              "Limits": {
+                "MaximumPartitionCount": 1,
+                "MaximumReplicationCount": 1
+              },
+              "Created": false,
+              "Deleted": false,
+              "DomainId": "string",
+              "DocService": {
+                "Endpoint": "string"
+              },
+              "DomainName": "string",
+              "Processing": false,
+              "SearchService": {
+                "Endpoint": "string"
+              },
+              "SearchInstanceType": "string",
+              "SearchInstanceCount": 1,
+              "SearchPartitionCount": 1,
+              "RequiresIndexDocuments": false
+            }
+          ]
+        }
+      ]
+  DescribeExpressions:
+    description: |-
+      Gets the expressions configured for the search domain. Can be limited to specific expressions by name. By default, shows all expressions and includes any pending changes to the configuration. Set the Deployed option to true to show the active configuration and exclude pending changes. For more information, see Configuring Expressions in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DescribeExpressions.html
+    example:
+      inputs: [
+        {
+          "Deployed": false,
+          "DomainName": "string",
+          "ExpressionNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Expressions": [
+            {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "ExpressionName": "string",
+                "ExpressionValue": "string"
+              }
+            }
+          ]
+        }
+      ]
+  DescribeIndexFields:
+    description: |-
+      Gets information about the index fields configured for the search domain. Can be limited to specific fields by name. By default, shows all fields and includes any pending changes to the configuration. Set the Deployed option to true to show the active configuration and exclude pending changes. For more information, see Getting Domain Information in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DescribeIndexFields.html
+    example:
+      inputs: [
+        {
+          "Deployed": false,
+          "DomainName": "string",
+          "FieldNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "IndexFields": [
+            {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "IntOptions": {
+                  "SortEnabled": false,
+                  "SourceField": "string",
+                  "DefaultValue": 1,
+                  "FacetEnabled": false,
+                  "ReturnEnabled": false,
+                  "SearchEnabled": false
+                },
+                "DateOptions": {
+                  "SortEnabled": false,
+                  "SourceField": "string",
+                  "DefaultValue": "string",
+                  "FacetEnabled": false,
+                  "ReturnEnabled": false,
+                  "SearchEnabled": false
+                },
+                "TextOptions": {
+                  "SortEnabled": false,
+                  "SourceField": "string",
+                  "DefaultValue": "string",
+                  "ReturnEnabled": false,
+                  "AnalysisScheme": "string",
+                  "HighlightEnabled": false
+                },
+                "DoubleOptions": {
+                  "SortEnabled": false,
+                  "SourceField": "string",
+                  "DefaultValue": 0.1,
+                  "FacetEnabled": false,
+                  "ReturnEnabled": false,
+                  "SearchEnabled": false
+                },
+                "LatLonOptions": {
+                  "SortEnabled": false,
+                  "SourceField": "string",
+                  "DefaultValue": "string",
+                  "FacetEnabled": false,
+                  "ReturnEnabled": false,
+                  "SearchEnabled": false
+                },
+                "IndexFieldName": "string",
+                "IndexFieldType": "string",
+                "LiteralOptions": {
+                  "SortEnabled": false,
+                  "SourceField": "string",
+                  "DefaultValue": "string",
+                  "FacetEnabled": false,
+                  "ReturnEnabled": false,
+                  "SearchEnabled": false
+                },
+                "IntArrayOptions": {
+                  "DefaultValue": 1,
+                  "FacetEnabled": false,
+                  "SourceFields": "string",
+                  "ReturnEnabled": false,
+                  "SearchEnabled": false
+                },
+                "DateArrayOptions": {
+                  "DefaultValue": "string",
+                  "FacetEnabled": false,
+                  "SourceFields": "string",
+                  "ReturnEnabled": false,
+                  "SearchEnabled": false
+                },
+                "TextArrayOptions": {
+                  "DefaultValue": "string",
+                  "SourceFields": "string",
+                  "ReturnEnabled": false,
+                  "AnalysisScheme": "string",
+                  "HighlightEnabled": false
+                },
+                "DoubleArrayOptions": {
+                  "DefaultValue": 0.1,
+                  "FacetEnabled": false,
+                  "SourceFields": "string",
+                  "ReturnEnabled": false,
+                  "SearchEnabled": false
+                },
+                "LiteralArrayOptions": {
+                  "DefaultValue": "string",
+                  "FacetEnabled": false,
+                  "SourceFields": "string",
+                  "ReturnEnabled": false,
+                  "SearchEnabled": false
+                }
+              }
+            }
+          ]
+        }
+      ]
+  DescribeScalingParameters:
+    description: |-
+      Gets the scaling parameters configured for a domain. A domain's scaling parameters specify the desired search instance type and replication count. For more information, see Configuring Scaling Options in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DescribeScalingParameters.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ScalingParameters": {
+            "Status": {
+              "State": "string",
+              "UpdateDate": 1481289211.615,
+              "CreationDate": 1481289211.615,
+              "UpdateVersion": 1,
+              "PendingDeletion": false
+            },
+            "Options": {
+              "DesiredInstanceType": "string",
+              "DesiredPartitionCount": 1,
+              "DesiredReplicationCount": 1
+            }
+          }
+        }
+      ]
+  DescribeServiceAccessPolicies:
+    description: |-
+      Gets information about the access policies that control access to the domain's document and search endpoints. By default, shows the configuration with any pending changes. Set the Deployed option to true to show the active configuration and exclude pending changes. For more information, see Configuring Access for a Search Domain in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DescribeServiceAccessPolicies.html
+    example:
+      inputs: [
+        {
+          "Deployed": false,
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "AccessPolicies": {
+            "Status": {
+              "State": "string",
+              "UpdateDate": 1481289211.615,
+              "CreationDate": 1481289211.615,
+              "UpdateVersion": 1,
+              "PendingDeletion": false
+            },
+            "Options": "string"
+          }
+        }
+      ]
+  DescribeSuggesters:
+    description: |-
+      Gets the suggesters configured for a domain. A suggester enables you to display possible matches before users finish typing their queries. Can be limited to specific suggesters by name. By default, shows all suggesters and includes any pending changes to the configuration. Set the Deployed option to true to show the active configuration and exclude pending changes. For more information, see Getting Search Suggestions in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_DescribeSuggesters.html
+    example:
+      inputs: [
+        {
+          "Deployed": false,
+          "DomainName": "string",
+          "SuggesterNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Suggesters": [
+            {
+              "Status": {
+                "State": "string",
+                "UpdateDate": 1481289211.615,
+                "CreationDate": 1481289211.615,
+                "UpdateVersion": 1,
+                "PendingDeletion": false
+              },
+              "Options": {
+                "SuggesterName": "string",
+                "DocumentSuggesterOptions": {
+                  "SourceField": "string",
+                  "FuzzyMatching": "string",
+                  "SortExpression": "string"
+                }
+              }
+            }
+          ]
+        }
+      ]
+  IndexDocuments:
+    description: |-
+      Tells the search domain to start indexing its documents using the latest indexing options. This operation must be invoked to activate options whose OptionStatus is RequiresIndexDocuments.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_IndexDocuments.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FieldNames": [
+            "string"
+          ]
+        }
+      ]
+  ListDomainNames:
+    description: |-
+      Lists all search domains owned by an account.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_ListDomainNames.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "DomainNames": {
+            "string": "string"
+          }
+        }
+      ]
+  UpdateAvailabilityOptions:
+    description: |-
+      Configures the availability options for a domain. Enabling the Multi-AZ option expands an Amazon CloudSearch domain to an additional Availability Zone in the same Region to increase fault tolerance in the event of a service disruption. Changes to the Multi-AZ option can take about half an hour to become active. For more information, see Configuring Availability Options in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_UpdateAvailabilityOptions.html
+    example:
+      inputs: [
+        {
+          "MultiAZ": false,
+          "DomainName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "AvailabilityOptions": {
+            "Status": {
+              "State": "string",
+              "UpdateDate": 1481289211.615,
+              "CreationDate": 1481289211.615,
+              "UpdateVersion": 1,
+              "PendingDeletion": false
+            },
+            "Options": false
+          }
+        }
+      ]
+  UpdateDomainEndpointOptions:
+    description: |-
+      Updates the domain's endpoint options, specifically whether all requests to the domain must arrive over HTTPS. For more information, see Configuring Domain Endpoint Options in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_UpdateDomainEndpointOptions.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string",
+          "DomainEndpointOptions": {
+            "EnforceHTTPS": false,
+            "TLSSecurityPolicy": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "DomainEndpointOptions": {
+            "Status": {
+              "State": "string",
+              "UpdateDate": 1481289211.615,
+              "CreationDate": 1481289211.615,
+              "UpdateVersion": 1,
+              "PendingDeletion": false
+            },
+            "Options": {
+              "EnforceHTTPS": false,
+              "TLSSecurityPolicy": "string"
+            }
+          }
+        }
+      ]
+  UpdateScalingParameters:
+    description: |-
+      Configures scaling parameters for a domain. A domain's scaling parameters specify the desired search instance type and replication count. Amazon CloudSearch will still automatically scale your domain based on the volume of data and traffic, but not below the desired instance type and replication count. If the Multi-AZ option is enabled, these values control the resources used per Availability Zone. For more information, see Configuring Scaling Options in the Amazon CloudSearch Developer Guide.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_UpdateScalingParameters.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string",
+          "ScalingParameters": {
+            "DesiredInstanceType": "string",
+            "DesiredPartitionCount": 1,
+            "DesiredReplicationCount": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ScalingParameters": {
+            "Status": {
+              "State": "string",
+              "UpdateDate": 1481289211.615,
+              "CreationDate": 1481289211.615,
+              "UpdateVersion": 1,
+              "PendingDeletion": false
+            },
+            "Options": {
+              "DesiredInstanceType": "string",
+              "DesiredPartitionCount": 1,
+              "DesiredReplicationCount": 1
+            }
+          }
+        }
+      ]
+  UpdateServiceAccessPolicies:
+    description: |-
+      Configures the access rules that control access to the domain's document and search endpoints. For more information, see Configuring Access for an Amazon CloudSearch Domain.
+    versions:
+      from: 2013.1.1
+    link: https://docs.aws.amazon.com/cloudsearch/latest/developerguide/API_UpdateServiceAccessPolicies.html
+    example:
+      inputs: [
+        {
+          "DomainName": "string",
+          "AccessPolicies": "string"
+        }
+      ]
+      outputs: [
+        {
+          "AccessPolicies": {
+            "Status": {
+              "State": "string",
+              "UpdateDate": 1481289211.615,
+              "CreationDate": 1481289211.615,
+              "UpdateVersion": 1,
+              "PendingDeletion": false
+            },
+            "Options": "string"
+          }
+        }
+      ]

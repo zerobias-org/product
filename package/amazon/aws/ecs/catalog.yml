@@ -1,0 +1,5194 @@
+Product:
+  name: Amazon Elastic Container Service
+  versions: [2014.11.13]
+  package: amazon.aws.ecs
+  description: |-
+    Amazon Elastic Container Service
+  link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CreateCapacityProvider:
+    description: |-
+      Creates a new capacity provider. Capacity providers are associated with an Amazon ECS cluster and are used in capacity provider strategies to facilitate cluster auto scaling.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateCapacityProvider.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "autoScalingGroupProvider": {
+            "managedScaling": {
+              "status": "string",
+              "targetCapacity": 1,
+              "instanceWarmupPeriod": 1,
+              "maximumScalingStepSize": 1,
+              "minimumScalingStepSize": 1
+            },
+            "autoScalingGroupArn": "string",
+            "managedTerminationProtection": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "capacityProvider": {
+            "name": "string",
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "status": "string",
+            "updateStatus": "string",
+            "updateStatusReason": "string",
+            "capacityProviderArn": "string",
+            "autoScalingGroupProvider": {
+              "managedScaling": {
+                "status": "string",
+                "targetCapacity": 1,
+                "instanceWarmupPeriod": 1,
+                "maximumScalingStepSize": 1,
+                "minimumScalingStepSize": 1
+              },
+              "autoScalingGroupArn": "string",
+              "managedTerminationProtection": "string"
+            }
+          }
+        }
+      ]
+  CreateCluster:
+    description: |-
+      Creates a new Amazon ECS cluster. By default, your account receives a default cluster when you launch your first container instance. However, you can create your own cluster with a unique name with the CreateCluster action.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateCluster.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "settings": [
+            {
+              "name": "string",
+              "value": "string"
+            }
+          ],
+          "clusterName": "string",
+          "configuration": {
+            "executeCommandConfiguration": {
+              "logging": "string",
+              "kmsKeyId": "string",
+              "logConfiguration": {
+                "s3KeyPrefix": "string",
+                "s3BucketName": "string",
+                "s3EncryptionEnabled": false,
+                "cloudWatchLogGroupName": "string",
+                "cloudWatchEncryptionEnabled": false
+              }
+            }
+          },
+          "capacityProviders": [
+            "string"
+          ],
+          "defaultCapacityProviderStrategy": [
+            {
+              "base": 1,
+              "weight": 1,
+              "capacityProvider": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "cluster": {
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "status": "string",
+            "settings": [
+              {
+                "name": "string",
+                "value": "string"
+              }
+            ],
+            "clusterArn": "string",
+            "statistics": [
+              {
+                "name": "string",
+                "value": "string"
+              }
+            ],
+            "attachments": [
+              {
+                "id": "string",
+                "type": "string",
+                "status": "string",
+                "details": [
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ]
+              }
+            ],
+            "clusterName": "string",
+            "configuration": {
+              "executeCommandConfiguration": {
+                "logging": "string",
+                "kmsKeyId": "string",
+                "logConfiguration": {
+                  "s3KeyPrefix": "string",
+                  "s3BucketName": "string",
+                  "s3EncryptionEnabled": false,
+                  "cloudWatchLogGroupName": "string",
+                  "cloudWatchEncryptionEnabled": false
+                }
+              }
+            },
+            "attachmentsStatus": "string",
+            "capacityProviders": [
+              "string"
+            ],
+            "pendingTasksCount": 1,
+            "runningTasksCount": 1,
+            "activeServicesCount": 1,
+            "defaultCapacityProviderStrategy": [
+              {
+                "base": 1,
+                "weight": 1,
+                "capacityProvider": "string"
+              }
+            ],
+            "registeredContainerInstancesCount": 1
+          }
+        }
+      ]
+  CreateService:
+    description: |-
+      Runs and maintains a desired number of tasks from a specified task definition. If the number of tasks running in a service drops below the desiredCount, Amazon ECS runs another copy of the task in the specified cluster. To update an existing service, see the UpdateService action.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html
+    example:
+      inputs: [
+        {
+          "role": "string",
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "cluster": "string",
+          "launchType": "string",
+          "clientToken": "string",
+          "serviceName": "string",
+          "desiredCount": 1,
+          "loadBalancers": [
+            {
+              "containerName": "string",
+              "containerPort": 1,
+              "targetGroupArn": "string",
+              "loadBalancerName": "string"
+            }
+          ],
+          "propagateTags": "string",
+          "taskDefinition": "string",
+          "platformVersion": "string",
+          "placementStrategy": [
+            {
+              "type": "string",
+              "field": "string"
+            }
+          ],
+          "serviceRegistries": [
+            {
+              "port": 1,
+              "registryArn": "string",
+              "containerName": "string",
+              "containerPort": 1
+            }
+          ],
+          "schedulingStrategy": "string",
+          "deploymentController": {
+            "type": "string"
+          },
+          "enableECSManagedTags": false,
+          "enableExecuteCommand": false,
+          "networkConfiguration": {
+            "awsvpcConfiguration": {
+              "subnets": [
+                "string"
+              ],
+              "assignPublicIp": "string",
+              "securityGroups": [
+                "string"
+              ]
+            }
+          },
+          "placementConstraints": [
+            {
+              "type": "string",
+              "expression": "string"
+            }
+          ],
+          "deploymentConfiguration": {
+            "maximumPercent": 1,
+            "minimumHealthyPercent": 1,
+            "deploymentCircuitBreaker": {
+              "enable": false,
+              "rollback": false
+            }
+          },
+          "capacityProviderStrategy": [
+            {
+              "base": 1,
+              "weight": 1,
+              "capacityProvider": "string"
+            }
+          ],
+          "healthCheckGracePeriodSeconds": 1
+        }
+      ]
+      outputs: [
+        {
+          "service": {
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "events": [
+              {
+                "id": "string",
+                "message": "string",
+                "createdAt": 1481289211.615
+              }
+            ],
+            "status": "string",
+            "roleArn": "string",
+            "taskSets": [
+              {
+                "id": "string",
+                "tags": [
+                  {
+                    "key": "string",
+                    "value": "string"
+                  }
+                ],
+                "scale": {
+                  "unit": "string",
+                  "value": 0.1
+                },
+                "status": "string",
+                "createdAt": 1481289211.615,
+                "startedBy": "string",
+                "updatedAt": 1481289211.615,
+                "clusterArn": "string",
+                "externalId": "string",
+                "launchType": "string",
+                "serviceArn": "string",
+                "taskSetArn": "string",
+                "pendingCount": 1,
+                "runningCount": 1,
+                "loadBalancers": [
+                  {
+                    "containerName": "string",
+                    "containerPort": 1,
+                    "targetGroupArn": "string",
+                    "loadBalancerName": "string"
+                  }
+                ],
+                "taskDefinition": "string",
+                "platformVersion": "string",
+                "stabilityStatus": "string",
+                "serviceRegistries": [
+                  {
+                    "port": 1,
+                    "registryArn": "string",
+                    "containerName": "string",
+                    "containerPort": 1
+                  }
+                ],
+                "stabilityStatusAt": 1481289211.615,
+                "computedDesiredCount": 1,
+                "networkConfiguration": {
+                  "awsvpcConfiguration": {
+                    "subnets": [
+                      "string"
+                    ],
+                    "assignPublicIp": "string",
+                    "securityGroups": [
+                      "string"
+                    ]
+                  }
+                },
+                "capacityProviderStrategy": [
+                  {
+                    "base": 1,
+                    "weight": 1,
+                    "capacityProvider": "string"
+                  }
+                ]
+              }
+            ],
+            "createdAt": 1481289211.615,
+            "createdBy": "string",
+            "clusterArn": "string",
+            "launchType": "string",
+            "serviceArn": "string",
+            "deployments": [
+              {
+                "id": "string",
+                "status": "string",
+                "createdAt": 1481289211.615,
+                "updatedAt": 1481289211.615,
+                "launchType": "string",
+                "failedTasks": 1,
+                "desiredCount": 1,
+                "pendingCount": 1,
+                "rolloutState": "string",
+                "runningCount": 1,
+                "taskDefinition": "string",
+                "platformVersion": "string",
+                "rolloutStateReason": "string",
+                "networkConfiguration": {
+                  "awsvpcConfiguration": {
+                    "subnets": [
+                      "string"
+                    ],
+                    "assignPublicIp": "string",
+                    "securityGroups": [
+                      "string"
+                    ]
+                  }
+                },
+                "capacityProviderStrategy": [
+                  {
+                    "base": 1,
+                    "weight": 1,
+                    "capacityProvider": "string"
+                  }
+                ]
+              }
+            ],
+            "serviceName": "string",
+            "desiredCount": 1,
+            "pendingCount": 1,
+            "runningCount": 1,
+            "loadBalancers": [
+              {
+                "containerName": "string",
+                "containerPort": 1,
+                "targetGroupArn": "string",
+                "loadBalancerName": "string"
+              }
+            ],
+            "propagateTags": "string",
+            "taskDefinition": "string",
+            "platformVersion": "string",
+            "placementStrategy": [
+              {
+                "type": "string",
+                "field": "string"
+              }
+            ],
+            "serviceRegistries": [
+              {
+                "port": 1,
+                "registryArn": "string",
+                "containerName": "string",
+                "containerPort": 1
+              }
+            ],
+            "schedulingStrategy": "string",
+            "deploymentController": {
+              "type": "string"
+            },
+            "enableECSManagedTags": false,
+            "enableExecuteCommand": false,
+            "networkConfiguration": {
+              "awsvpcConfiguration": {
+                "subnets": [
+                  "string"
+                ],
+                "assignPublicIp": "string",
+                "securityGroups": [
+                  "string"
+                ]
+              }
+            },
+            "placementConstraints": [
+              {
+                "type": "string",
+                "expression": "string"
+              }
+            ],
+            "deploymentConfiguration": {
+              "maximumPercent": 1,
+              "minimumHealthyPercent": 1,
+              "deploymentCircuitBreaker": {
+                "enable": false,
+                "rollback": false
+              }
+            },
+            "capacityProviderStrategy": [
+              {
+                "base": 1,
+                "weight": 1,
+                "capacityProvider": "string"
+              }
+            ],
+            "healthCheckGracePeriodSeconds": 1
+          }
+        }
+      ]
+  CreateTaskSet:
+    description: |-
+      Create a task set in the specified cluster and service. This is used when a service uses the EXTERNAL deployment controller type. For more information, see Amazon ECS Deployment Types in the Amazon Elastic Container Service Developer Guide.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateTaskSet.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "scale": {
+            "unit": "string",
+            "value": 0.1
+          },
+          "cluster": "string",
+          "service": "string",
+          "externalId": "string",
+          "launchType": "string",
+          "clientToken": "string",
+          "loadBalancers": [
+            {
+              "containerName": "string",
+              "containerPort": 1,
+              "targetGroupArn": "string",
+              "loadBalancerName": "string"
+            }
+          ],
+          "taskDefinition": "string",
+          "platformVersion": "string",
+          "serviceRegistries": [
+            {
+              "port": 1,
+              "registryArn": "string",
+              "containerName": "string",
+              "containerPort": 1
+            }
+          ],
+          "networkConfiguration": {
+            "awsvpcConfiguration": {
+              "subnets": [
+                "string"
+              ],
+              "assignPublicIp": "string",
+              "securityGroups": [
+                "string"
+              ]
+            }
+          },
+          "capacityProviderStrategy": [
+            {
+              "base": 1,
+              "weight": 1,
+              "capacityProvider": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "taskSet": {
+            "id": "string",
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "scale": {
+              "unit": "string",
+              "value": 0.1
+            },
+            "status": "string",
+            "createdAt": 1481289211.615,
+            "startedBy": "string",
+            "updatedAt": 1481289211.615,
+            "clusterArn": "string",
+            "externalId": "string",
+            "launchType": "string",
+            "serviceArn": "string",
+            "taskSetArn": "string",
+            "pendingCount": 1,
+            "runningCount": 1,
+            "loadBalancers": [
+              {
+                "containerName": "string",
+                "containerPort": 1,
+                "targetGroupArn": "string",
+                "loadBalancerName": "string"
+              }
+            ],
+            "taskDefinition": "string",
+            "platformVersion": "string",
+            "stabilityStatus": "string",
+            "serviceRegistries": [
+              {
+                "port": 1,
+                "registryArn": "string",
+                "containerName": "string",
+                "containerPort": 1
+              }
+            ],
+            "stabilityStatusAt": 1481289211.615,
+            "computedDesiredCount": 1,
+            "networkConfiguration": {
+              "awsvpcConfiguration": {
+                "subnets": [
+                  "string"
+                ],
+                "assignPublicIp": "string",
+                "securityGroups": [
+                  "string"
+                ]
+              }
+            },
+            "capacityProviderStrategy": [
+              {
+                "base": 1,
+                "weight": 1,
+                "capacityProvider": "string"
+              }
+            ]
+          }
+        }
+      ]
+  DeleteAccountSetting:
+    description: |-
+      Disables an account setting for a specified IAM user, IAM role, or the root user for an account.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DeleteAccountSetting.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "principalArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "setting": {
+            "name": "string",
+            "value": "string",
+            "principalArn": "string"
+          }
+        }
+      ]
+  DeleteAttributes:
+    description: |-
+      Deletes one or more custom attributes from an Amazon ECS resource.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DeleteAttributes.html
+    example:
+      inputs: [
+        {
+          "cluster": "string",
+          "attributes": [
+            {
+              "name": "string",
+              "value": "string",
+              "targetId": "string",
+              "targetType": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "attributes": [
+            {
+              "name": "string",
+              "value": "string",
+              "targetId": "string",
+              "targetType": "string"
+            }
+          ]
+        }
+      ]
+  DeleteCapacityProvider:
+    description: |-
+      Deletes the specified capacity provider.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DeleteCapacityProvider.html
+    example:
+      inputs: [
+        {
+          "capacityProvider": "string"
+        }
+      ]
+      outputs: [
+        {
+          "capacityProvider": {
+            "name": "string",
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "status": "string",
+            "updateStatus": "string",
+            "updateStatusReason": "string",
+            "capacityProviderArn": "string",
+            "autoScalingGroupProvider": {
+              "managedScaling": {
+                "status": "string",
+                "targetCapacity": 1,
+                "instanceWarmupPeriod": 1,
+                "maximumScalingStepSize": 1,
+                "minimumScalingStepSize": 1
+              },
+              "autoScalingGroupArn": "string",
+              "managedTerminationProtection": "string"
+            }
+          }
+        }
+      ]
+  DeleteCluster:
+    description: |-
+      Deletes the specified cluster. The cluster will transition to the INACTIVE state. Clusters with an INACTIVE status may remain discoverable in your account for a period of time. However, this behavior is subject to change in the future, so you should not rely on INACTIVE clusters persisting.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DeleteCluster.html
+    example:
+      inputs: [
+        {
+          "cluster": "string"
+        }
+      ]
+      outputs: [
+        {
+          "cluster": {
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "status": "string",
+            "settings": [
+              {
+                "name": "string",
+                "value": "string"
+              }
+            ],
+            "clusterArn": "string",
+            "statistics": [
+              {
+                "name": "string",
+                "value": "string"
+              }
+            ],
+            "attachments": [
+              {
+                "id": "string",
+                "type": "string",
+                "status": "string",
+                "details": [
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ]
+              }
+            ],
+            "clusterName": "string",
+            "configuration": {
+              "executeCommandConfiguration": {
+                "logging": "string",
+                "kmsKeyId": "string",
+                "logConfiguration": {
+                  "s3KeyPrefix": "string",
+                  "s3BucketName": "string",
+                  "s3EncryptionEnabled": false,
+                  "cloudWatchLogGroupName": "string",
+                  "cloudWatchEncryptionEnabled": false
+                }
+              }
+            },
+            "attachmentsStatus": "string",
+            "capacityProviders": [
+              "string"
+            ],
+            "pendingTasksCount": 1,
+            "runningTasksCount": 1,
+            "activeServicesCount": 1,
+            "defaultCapacityProviderStrategy": [
+              {
+                "base": 1,
+                "weight": 1,
+                "capacityProvider": "string"
+              }
+            ],
+            "registeredContainerInstancesCount": 1
+          }
+        }
+      ]
+  DeleteService:
+    description: |-
+      Deletes a specified service within a cluster. You can delete a service if you have no running tasks in it and the desired task count is zero. If the service is actively maintaining tasks, you cannot delete it, and you must update the service to a desired task count of zero. For more information, see UpdateService.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DeleteService.html
+    example:
+      inputs: [
+        {
+          "force": false,
+          "cluster": "string",
+          "service": "string"
+        }
+      ]
+      outputs: [
+        {
+          "service": {
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "events": [
+              {
+                "id": "string",
+                "message": "string",
+                "createdAt": 1481289211.615
+              }
+            ],
+            "status": "string",
+            "roleArn": "string",
+            "taskSets": [
+              {
+                "id": "string",
+                "tags": [
+                  {
+                    "key": "string",
+                    "value": "string"
+                  }
+                ],
+                "scale": {
+                  "unit": "string",
+                  "value": 0.1
+                },
+                "status": "string",
+                "createdAt": 1481289211.615,
+                "startedBy": "string",
+                "updatedAt": 1481289211.615,
+                "clusterArn": "string",
+                "externalId": "string",
+                "launchType": "string",
+                "serviceArn": "string",
+                "taskSetArn": "string",
+                "pendingCount": 1,
+                "runningCount": 1,
+                "loadBalancers": [
+                  {
+                    "containerName": "string",
+                    "containerPort": 1,
+                    "targetGroupArn": "string",
+                    "loadBalancerName": "string"
+                  }
+                ],
+                "taskDefinition": "string",
+                "platformVersion": "string",
+                "stabilityStatus": "string",
+                "serviceRegistries": [
+                  {
+                    "port": 1,
+                    "registryArn": "string",
+                    "containerName": "string",
+                    "containerPort": 1
+                  }
+                ],
+                "stabilityStatusAt": 1481289211.615,
+                "computedDesiredCount": 1,
+                "networkConfiguration": {
+                  "awsvpcConfiguration": {
+                    "subnets": [
+                      "string"
+                    ],
+                    "assignPublicIp": "string",
+                    "securityGroups": [
+                      "string"
+                    ]
+                  }
+                },
+                "capacityProviderStrategy": [
+                  {
+                    "base": 1,
+                    "weight": 1,
+                    "capacityProvider": "string"
+                  }
+                ]
+              }
+            ],
+            "createdAt": 1481289211.615,
+            "createdBy": "string",
+            "clusterArn": "string",
+            "launchType": "string",
+            "serviceArn": "string",
+            "deployments": [
+              {
+                "id": "string",
+                "status": "string",
+                "createdAt": 1481289211.615,
+                "updatedAt": 1481289211.615,
+                "launchType": "string",
+                "failedTasks": 1,
+                "desiredCount": 1,
+                "pendingCount": 1,
+                "rolloutState": "string",
+                "runningCount": 1,
+                "taskDefinition": "string",
+                "platformVersion": "string",
+                "rolloutStateReason": "string",
+                "networkConfiguration": {
+                  "awsvpcConfiguration": {
+                    "subnets": [
+                      "string"
+                    ],
+                    "assignPublicIp": "string",
+                    "securityGroups": [
+                      "string"
+                    ]
+                  }
+                },
+                "capacityProviderStrategy": [
+                  {
+                    "base": 1,
+                    "weight": 1,
+                    "capacityProvider": "string"
+                  }
+                ]
+              }
+            ],
+            "serviceName": "string",
+            "desiredCount": 1,
+            "pendingCount": 1,
+            "runningCount": 1,
+            "loadBalancers": [
+              {
+                "containerName": "string",
+                "containerPort": 1,
+                "targetGroupArn": "string",
+                "loadBalancerName": "string"
+              }
+            ],
+            "propagateTags": "string",
+            "taskDefinition": "string",
+            "platformVersion": "string",
+            "placementStrategy": [
+              {
+                "type": "string",
+                "field": "string"
+              }
+            ],
+            "serviceRegistries": [
+              {
+                "port": 1,
+                "registryArn": "string",
+                "containerName": "string",
+                "containerPort": 1
+              }
+            ],
+            "schedulingStrategy": "string",
+            "deploymentController": {
+              "type": "string"
+            },
+            "enableECSManagedTags": false,
+            "enableExecuteCommand": false,
+            "networkConfiguration": {
+              "awsvpcConfiguration": {
+                "subnets": [
+                  "string"
+                ],
+                "assignPublicIp": "string",
+                "securityGroups": [
+                  "string"
+                ]
+              }
+            },
+            "placementConstraints": [
+              {
+                "type": "string",
+                "expression": "string"
+              }
+            ],
+            "deploymentConfiguration": {
+              "maximumPercent": 1,
+              "minimumHealthyPercent": 1,
+              "deploymentCircuitBreaker": {
+                "enable": false,
+                "rollback": false
+              }
+            },
+            "capacityProviderStrategy": [
+              {
+                "base": 1,
+                "weight": 1,
+                "capacityProvider": "string"
+              }
+            ],
+            "healthCheckGracePeriodSeconds": 1
+          }
+        }
+      ]
+  DeleteTaskSet:
+    description: |-
+      Deletes a specified task set within a service. This is used when a service uses the EXTERNAL deployment controller type. For more information, see Amazon ECS Deployment Types in the Amazon Elastic Container Service Developer Guide.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DeleteTaskSet.html
+    example:
+      inputs: [
+        {
+          "force": false,
+          "cluster": "string",
+          "service": "string",
+          "taskSet": "string"
+        }
+      ]
+      outputs: [
+        {
+          "taskSet": {
+            "id": "string",
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "scale": {
+              "unit": "string",
+              "value": 0.1
+            },
+            "status": "string",
+            "createdAt": 1481289211.615,
+            "startedBy": "string",
+            "updatedAt": 1481289211.615,
+            "clusterArn": "string",
+            "externalId": "string",
+            "launchType": "string",
+            "serviceArn": "string",
+            "taskSetArn": "string",
+            "pendingCount": 1,
+            "runningCount": 1,
+            "loadBalancers": [
+              {
+                "containerName": "string",
+                "containerPort": 1,
+                "targetGroupArn": "string",
+                "loadBalancerName": "string"
+              }
+            ],
+            "taskDefinition": "string",
+            "platformVersion": "string",
+            "stabilityStatus": "string",
+            "serviceRegistries": [
+              {
+                "port": 1,
+                "registryArn": "string",
+                "containerName": "string",
+                "containerPort": 1
+              }
+            ],
+            "stabilityStatusAt": 1481289211.615,
+            "computedDesiredCount": 1,
+            "networkConfiguration": {
+              "awsvpcConfiguration": {
+                "subnets": [
+                  "string"
+                ],
+                "assignPublicIp": "string",
+                "securityGroups": [
+                  "string"
+                ]
+              }
+            },
+            "capacityProviderStrategy": [
+              {
+                "base": 1,
+                "weight": 1,
+                "capacityProvider": "string"
+              }
+            ]
+          }
+        }
+      ]
+  DeregisterContainerInstance:
+    description: |-
+      Deregisters an Amazon ECS container instance from the specified cluster. This instance is no longer available to run tasks.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DeregisterContainerInstance.html
+    example:
+      inputs: [
+        {
+          "force": false,
+          "cluster": "string",
+          "containerInstance": "string"
+        }
+      ]
+      outputs: [
+        {
+          "containerInstance": {
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "status": "string",
+            "version": 1,
+            "attributes": [
+              {
+                "name": "string",
+                "value": "string",
+                "targetId": "string",
+                "targetType": "string"
+              }
+            ],
+            "attachments": [
+              {
+                "id": "string",
+                "type": "string",
+                "status": "string",
+                "details": [
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ]
+              }
+            ],
+            "versionInfo": {
+              "agentHash": "string",
+              "agentVersion": "string",
+              "dockerVersion": "string"
+            },
+            "registeredAt": 1481289211.615,
+            "statusReason": "string",
+            "ec2InstanceId": "string",
+            "agentConnected": false,
+            "agentUpdateStatus": "string",
+            "pendingTasksCount": 1,
+            "runningTasksCount": 1,
+            "remainingResources": [
+              {
+                "name": "string",
+                "type": "string",
+                "longValue": 1,
+                "doubleValue": 0.1,
+                "integerValue": 1,
+                "stringSetValue": [
+                  "string"
+                ]
+              }
+            ],
+            "registeredResources": [
+              {
+                "name": "string",
+                "type": "string",
+                "longValue": 1,
+                "doubleValue": 0.1,
+                "integerValue": 1,
+                "stringSetValue": [
+                  "string"
+                ]
+              }
+            ],
+            "capacityProviderName": "string",
+            "containerInstanceArn": "string"
+          }
+        }
+      ]
+  DeregisterTaskDefinition:
+    description: |-
+      Deregisters the specified task definition by family and revision. Upon deregistration, the task definition is marked as INACTIVE. Existing tasks and services that reference an INACTIVE task definition continue to run without disruption. Existing services that reference an INACTIVE task definition can still scale up or down by modifying the service's desired count.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DeregisterTaskDefinition.html
+    example:
+      inputs: [
+        {
+          "taskDefinition": "string"
+        }
+      ]
+      outputs: [
+        {
+          "taskDefinition": {
+            "cpu": "string",
+            "family": "string",
+            "memory": "string",
+            "status": "string",
+            "ipcMode": "string",
+            "pidMode": "string",
+            "volumes": [
+              {
+                "host": {
+                  "sourcePath": "string"
+                },
+                "name": "string",
+                "efsVolumeConfiguration": {
+                  "fileSystemId": "string",
+                  "rootDirectory": "string",
+                  "transitEncryption": "string",
+                  "authorizationConfig": {
+                    "iam": "string",
+                    "accessPointId": "string"
+                  },
+                  "transitEncryptionPort": 1
+                },
+                "dockerVolumeConfiguration": {
+                  "scope": "string",
+                  "driver": "string",
+                  "labels": {
+                    "string": "string"
+                  },
+                  "driverOpts": {
+                    "string": "string"
+                  },
+                  "autoprovision": false
+                },
+                "fsxWindowsFileServerVolumeConfiguration": {
+                  "fileSystemId": "string",
+                  "rootDirectory": "string",
+                  "authorizationConfig": {
+                    "domain": "string",
+                    "credentialsParameter": "string"
+                  }
+                }
+              }
+            ],
+            "revision": 1,
+            "networkMode": "string",
+            "taskRoleArn": "string",
+            "registeredAt": 1481289211.615,
+            "registeredBy": "string",
+            "deregisteredAt": 1481289211.615,
+            "compatibilities": [
+              "string"
+            ],
+            "executionRoleArn": "string",
+            "taskDefinitionArn": "string",
+            "proxyConfiguration": {
+              "type": "string",
+              "properties": [
+                {
+                  "name": "string",
+                  "value": "string"
+                }
+              ],
+              "containerName": "string"
+            },
+            "requiresAttributes": [
+              {
+                "name": "string",
+                "value": "string",
+                "targetId": "string",
+                "targetType": "string"
+              }
+            ],
+            "containerDefinitions": [
+              {
+                "cpu": 1,
+                "name": "string",
+                "user": "string",
+                "image": "string",
+                "links": [
+                  "string"
+                ],
+                "memory": 1,
+                "command": [
+                  "string"
+                ],
+                "secrets": [
+                  {
+                    "name": "string",
+                    "valueFrom": "string"
+                  }
+                ],
+                "ulimits": [
+                  {
+                    "name": "string",
+                    "hardLimit": 1,
+                    "softLimit": 1
+                  }
+                ],
+                "hostname": "string",
+                "dependsOn": [
+                  {
+                    "condition": "string",
+                    "containerName": "string"
+                  }
+                ],
+                "essential": false,
+                "dnsServers": [
+                  "string"
+                ],
+                "entryPoint": [
+                  "string"
+                ],
+                "extraHosts": [
+                  {
+                    "hostname": "string",
+                    "ipAddress": "string"
+                  }
+                ],
+                "privileged": false,
+                "environment": [
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ],
+                "healthCheck": {
+                  "command": [
+                    "string"
+                  ],
+                  "retries": 1,
+                  "timeout": 1,
+                  "interval": 1,
+                  "startPeriod": 1
+                },
+                "interactive": false,
+                "mountPoints": [
+                  {
+                    "readOnly": false,
+                    "sourceVolume": "string",
+                    "containerPath": "string"
+                  }
+                ],
+                "stopTimeout": 1,
+                "volumesFrom": [
+                  {
+                    "readOnly": false,
+                    "sourceContainer": "string"
+                  }
+                ],
+                "dockerLabels": {
+                  "string": "string"
+                },
+                "portMappings": [
+                  {
+                    "hostPort": 1,
+                    "protocol": "string",
+                    "containerPort": 1
+                  }
+                ],
+                "startTimeout": 1,
+                "pseudoTerminal": false,
+                "systemControls": [
+                  {
+                    "value": "string",
+                    "namespace": "string"
+                  }
+                ],
+                "linuxParameters": {
+                  "tmpfs": [
+                    {
+                      "size": 1,
+                      "mountOptions": [
+                        "string"
+                      ],
+                      "containerPath": "string"
+                    }
+                  ],
+                  "devices": [
+                    {
+                      "hostPath": "string",
+                      "permissions": [
+                        "string"
+                      ],
+                      "containerPath": "string"
+                    }
+                  ],
+                  "maxSwap": 1,
+                  "swappiness": 1,
+                  "capabilities": {
+                    "add": [
+                      "string"
+                    ],
+                    "drop": [
+                      "string"
+                    ]
+                  },
+                  "sharedMemorySize": 1,
+                  "initProcessEnabled": false
+                },
+                "dnsSearchDomains": [
+                  "string"
+                ],
+                "environmentFiles": [
+                  {
+                    "type": "string",
+                    "value": "string"
+                  }
+                ],
+                "logConfiguration": {
+                  "options": {
+                    "string": "string"
+                  },
+                  "logDriver": "string",
+                  "secretOptions": [
+                    {
+                      "name": "string",
+                      "valueFrom": "string"
+                    }
+                  ]
+                },
+                "workingDirectory": "string",
+                "disableNetworking": false,
+                "memoryReservation": 1,
+                "resourceRequirements": [
+                  {
+                    "type": "string",
+                    "value": "string"
+                  }
+                ],
+                "dockerSecurityOptions": [
+                  "string"
+                ],
+                "firelensConfiguration": {
+                  "type": "string",
+                  "options": {
+                    "string": "string"
+                  }
+                },
+                "repositoryCredentials": {
+                  "credentialsParameter": "string"
+                },
+                "readonlyRootFilesystem": false
+              }
+            ],
+            "placementConstraints": [
+              {
+                "type": "string",
+                "expression": "string"
+              }
+            ],
+            "inferenceAccelerators": [
+              {
+                "deviceName": "string",
+                "deviceType": "string"
+              }
+            ],
+            "requiresCompatibilities": [
+              "string"
+            ]
+          }
+        }
+      ]
+  DescribeCapacityProviders:
+    description: |-
+      Describes one or more of your capacity providers.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeCapacityProviders.html
+    example:
+      inputs: [
+        {
+          "include": [
+            "string"
+          ],
+          "nextToken": "string",
+          "maxResults": 1,
+          "capacityProviders": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "failures": [
+            {
+              "arn": "string",
+              "detail": "string",
+              "reason": "string"
+            }
+          ],
+          "nextToken": "string",
+          "capacityProviders": [
+            {
+              "name": "string",
+              "tags": [
+                {
+                  "key": "string",
+                  "value": "string"
+                }
+              ],
+              "status": "string",
+              "updateStatus": "string",
+              "updateStatusReason": "string",
+              "capacityProviderArn": "string",
+              "autoScalingGroupProvider": {
+                "managedScaling": {
+                  "status": "string",
+                  "targetCapacity": 1,
+                  "instanceWarmupPeriod": 1,
+                  "maximumScalingStepSize": 1,
+                  "minimumScalingStepSize": 1
+                },
+                "autoScalingGroupArn": "string",
+                "managedTerminationProtection": "string"
+              }
+            }
+          ]
+        }
+      ]
+  DescribeClusters:
+    description: |-
+      Describes one or more of your clusters.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeClusters.html
+    example:
+      inputs: [
+        {
+          "include": [
+            "string"
+          ],
+          "clusters": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "clusters": [
+            {
+              "tags": [
+                {
+                  "key": "string",
+                  "value": "string"
+                }
+              ],
+              "status": "string",
+              "settings": [
+                {
+                  "name": "string",
+                  "value": "string"
+                }
+              ],
+              "clusterArn": "string",
+              "statistics": [
+                {
+                  "name": "string",
+                  "value": "string"
+                }
+              ],
+              "attachments": [
+                {
+                  "id": "string",
+                  "type": "string",
+                  "status": "string",
+                  "details": [
+                    {
+                      "name": "string",
+                      "value": "string"
+                    }
+                  ]
+                }
+              ],
+              "clusterName": "string",
+              "configuration": {
+                "executeCommandConfiguration": {
+                  "logging": "string",
+                  "kmsKeyId": "string",
+                  "logConfiguration": {
+                    "s3KeyPrefix": "string",
+                    "s3BucketName": "string",
+                    "s3EncryptionEnabled": false,
+                    "cloudWatchLogGroupName": "string",
+                    "cloudWatchEncryptionEnabled": false
+                  }
+                }
+              },
+              "attachmentsStatus": "string",
+              "capacityProviders": [
+                "string"
+              ],
+              "pendingTasksCount": 1,
+              "runningTasksCount": 1,
+              "activeServicesCount": 1,
+              "defaultCapacityProviderStrategy": [
+                {
+                  "base": 1,
+                  "weight": 1,
+                  "capacityProvider": "string"
+                }
+              ],
+              "registeredContainerInstancesCount": 1
+            }
+          ],
+          "failures": [
+            {
+              "arn": "string",
+              "detail": "string",
+              "reason": "string"
+            }
+          ]
+        }
+      ]
+  DescribeContainerInstances:
+    description: |-
+      Describes Amazon Elastic Container Service container instances. Returns metadata about registered and remaining resources on each container instance requested.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeContainerInstances.html
+    example:
+      inputs: [
+        {
+          "cluster": "string",
+          "include": [
+            "string"
+          ],
+          "containerInstances": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "failures": [
+            {
+              "arn": "string",
+              "detail": "string",
+              "reason": "string"
+            }
+          ],
+          "containerInstances": [
+            {
+              "tags": [
+                {
+                  "key": "string",
+                  "value": "string"
+                }
+              ],
+              "status": "string",
+              "version": 1,
+              "attributes": [
+                {
+                  "name": "string",
+                  "value": "string",
+                  "targetId": "string",
+                  "targetType": "string"
+                }
+              ],
+              "attachments": [
+                {
+                  "id": "string",
+                  "type": "string",
+                  "status": "string",
+                  "details": [
+                    {
+                      "name": "string",
+                      "value": "string"
+                    }
+                  ]
+                }
+              ],
+              "versionInfo": {
+                "agentHash": "string",
+                "agentVersion": "string",
+                "dockerVersion": "string"
+              },
+              "registeredAt": 1481289211.615,
+              "statusReason": "string",
+              "ec2InstanceId": "string",
+              "agentConnected": false,
+              "agentUpdateStatus": "string",
+              "pendingTasksCount": 1,
+              "runningTasksCount": 1,
+              "remainingResources": [
+                {
+                  "name": "string",
+                  "type": "string",
+                  "longValue": 1,
+                  "doubleValue": 0.1,
+                  "integerValue": 1,
+                  "stringSetValue": [
+                    "string"
+                  ]
+                }
+              ],
+              "registeredResources": [
+                {
+                  "name": "string",
+                  "type": "string",
+                  "longValue": 1,
+                  "doubleValue": 0.1,
+                  "integerValue": 1,
+                  "stringSetValue": [
+                    "string"
+                  ]
+                }
+              ],
+              "capacityProviderName": "string",
+              "containerInstanceArn": "string"
+            }
+          ]
+        }
+      ]
+  DescribeServices:
+    description: |-
+      Describes the specified services running in your cluster.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeServices.html
+    example:
+      inputs: [
+        {
+          "cluster": "string",
+          "include": [
+            "string"
+          ],
+          "services": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "failures": [
+            {
+              "arn": "string",
+              "detail": "string",
+              "reason": "string"
+            }
+          ],
+          "services": [
+            {
+              "tags": [
+                {
+                  "key": "string",
+                  "value": "string"
+                }
+              ],
+              "events": [
+                {
+                  "id": "string",
+                  "message": "string",
+                  "createdAt": 1481289211.615
+                }
+              ],
+              "status": "string",
+              "roleArn": "string",
+              "taskSets": [
+                {
+                  "id": "string",
+                  "tags": [
+                    {
+                      "key": "string",
+                      "value": "string"
+                    }
+                  ],
+                  "scale": {
+                    "unit": "string",
+                    "value": 0.1
+                  },
+                  "status": "string",
+                  "createdAt": 1481289211.615,
+                  "startedBy": "string",
+                  "updatedAt": 1481289211.615,
+                  "clusterArn": "string",
+                  "externalId": "string",
+                  "launchType": "string",
+                  "serviceArn": "string",
+                  "taskSetArn": "string",
+                  "pendingCount": 1,
+                  "runningCount": 1,
+                  "loadBalancers": [
+                    {
+                      "containerName": "string",
+                      "containerPort": 1,
+                      "targetGroupArn": "string",
+                      "loadBalancerName": "string"
+                    }
+                  ],
+                  "taskDefinition": "string",
+                  "platformVersion": "string",
+                  "stabilityStatus": "string",
+                  "serviceRegistries": [
+                    {
+                      "port": 1,
+                      "registryArn": "string",
+                      "containerName": "string",
+                      "containerPort": 1
+                    }
+                  ],
+                  "stabilityStatusAt": 1481289211.615,
+                  "computedDesiredCount": 1,
+                  "networkConfiguration": {
+                    "awsvpcConfiguration": {
+                      "subnets": [
+                        "string"
+                      ],
+                      "assignPublicIp": "string",
+                      "securityGroups": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "capacityProviderStrategy": [
+                    {
+                      "base": 1,
+                      "weight": 1,
+                      "capacityProvider": "string"
+                    }
+                  ]
+                }
+              ],
+              "createdAt": 1481289211.615,
+              "createdBy": "string",
+              "clusterArn": "string",
+              "launchType": "string",
+              "serviceArn": "string",
+              "deployments": [
+                {
+                  "id": "string",
+                  "status": "string",
+                  "createdAt": 1481289211.615,
+                  "updatedAt": 1481289211.615,
+                  "launchType": "string",
+                  "failedTasks": 1,
+                  "desiredCount": 1,
+                  "pendingCount": 1,
+                  "rolloutState": "string",
+                  "runningCount": 1,
+                  "taskDefinition": "string",
+                  "platformVersion": "string",
+                  "rolloutStateReason": "string",
+                  "networkConfiguration": {
+                    "awsvpcConfiguration": {
+                      "subnets": [
+                        "string"
+                      ],
+                      "assignPublicIp": "string",
+                      "securityGroups": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "capacityProviderStrategy": [
+                    {
+                      "base": 1,
+                      "weight": 1,
+                      "capacityProvider": "string"
+                    }
+                  ]
+                }
+              ],
+              "serviceName": "string",
+              "desiredCount": 1,
+              "pendingCount": 1,
+              "runningCount": 1,
+              "loadBalancers": [
+                {
+                  "containerName": "string",
+                  "containerPort": 1,
+                  "targetGroupArn": "string",
+                  "loadBalancerName": "string"
+                }
+              ],
+              "propagateTags": "string",
+              "taskDefinition": "string",
+              "platformVersion": "string",
+              "placementStrategy": [
+                {
+                  "type": "string",
+                  "field": "string"
+                }
+              ],
+              "serviceRegistries": [
+                {
+                  "port": 1,
+                  "registryArn": "string",
+                  "containerName": "string",
+                  "containerPort": 1
+                }
+              ],
+              "schedulingStrategy": "string",
+              "deploymentController": {
+                "type": "string"
+              },
+              "enableECSManagedTags": false,
+              "enableExecuteCommand": false,
+              "networkConfiguration": {
+                "awsvpcConfiguration": {
+                  "subnets": [
+                    "string"
+                  ],
+                  "assignPublicIp": "string",
+                  "securityGroups": [
+                    "string"
+                  ]
+                }
+              },
+              "placementConstraints": [
+                {
+                  "type": "string",
+                  "expression": "string"
+                }
+              ],
+              "deploymentConfiguration": {
+                "maximumPercent": 1,
+                "minimumHealthyPercent": 1,
+                "deploymentCircuitBreaker": {
+                  "enable": false,
+                  "rollback": false
+                }
+              },
+              "capacityProviderStrategy": [
+                {
+                  "base": 1,
+                  "weight": 1,
+                  "capacityProvider": "string"
+                }
+              ],
+              "healthCheckGracePeriodSeconds": 1
+            }
+          ]
+        }
+      ]
+  DescribeTaskDefinition:
+    description: |-
+      Describes a task definition. You can specify a family and revision to find information about a specific task definition, or you can simply specify the family to find the latest ACTIVE revision in that family.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTaskDefinition.html
+    example:
+      inputs: [
+        {
+          "include": [
+            "string"
+          ],
+          "taskDefinition": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "taskDefinition": {
+            "cpu": "string",
+            "family": "string",
+            "memory": "string",
+            "status": "string",
+            "ipcMode": "string",
+            "pidMode": "string",
+            "volumes": [
+              {
+                "host": {
+                  "sourcePath": "string"
+                },
+                "name": "string",
+                "efsVolumeConfiguration": {
+                  "fileSystemId": "string",
+                  "rootDirectory": "string",
+                  "transitEncryption": "string",
+                  "authorizationConfig": {
+                    "iam": "string",
+                    "accessPointId": "string"
+                  },
+                  "transitEncryptionPort": 1
+                },
+                "dockerVolumeConfiguration": {
+                  "scope": "string",
+                  "driver": "string",
+                  "labels": {
+                    "string": "string"
+                  },
+                  "driverOpts": {
+                    "string": "string"
+                  },
+                  "autoprovision": false
+                },
+                "fsxWindowsFileServerVolumeConfiguration": {
+                  "fileSystemId": "string",
+                  "rootDirectory": "string",
+                  "authorizationConfig": {
+                    "domain": "string",
+                    "credentialsParameter": "string"
+                  }
+                }
+              }
+            ],
+            "revision": 1,
+            "networkMode": "string",
+            "taskRoleArn": "string",
+            "registeredAt": 1481289211.615,
+            "registeredBy": "string",
+            "deregisteredAt": 1481289211.615,
+            "compatibilities": [
+              "string"
+            ],
+            "executionRoleArn": "string",
+            "taskDefinitionArn": "string",
+            "proxyConfiguration": {
+              "type": "string",
+              "properties": [
+                {
+                  "name": "string",
+                  "value": "string"
+                }
+              ],
+              "containerName": "string"
+            },
+            "requiresAttributes": [
+              {
+                "name": "string",
+                "value": "string",
+                "targetId": "string",
+                "targetType": "string"
+              }
+            ],
+            "containerDefinitions": [
+              {
+                "cpu": 1,
+                "name": "string",
+                "user": "string",
+                "image": "string",
+                "links": [
+                  "string"
+                ],
+                "memory": 1,
+                "command": [
+                  "string"
+                ],
+                "secrets": [
+                  {
+                    "name": "string",
+                    "valueFrom": "string"
+                  }
+                ],
+                "ulimits": [
+                  {
+                    "name": "string",
+                    "hardLimit": 1,
+                    "softLimit": 1
+                  }
+                ],
+                "hostname": "string",
+                "dependsOn": [
+                  {
+                    "condition": "string",
+                    "containerName": "string"
+                  }
+                ],
+                "essential": false,
+                "dnsServers": [
+                  "string"
+                ],
+                "entryPoint": [
+                  "string"
+                ],
+                "extraHosts": [
+                  {
+                    "hostname": "string",
+                    "ipAddress": "string"
+                  }
+                ],
+                "privileged": false,
+                "environment": [
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ],
+                "healthCheck": {
+                  "command": [
+                    "string"
+                  ],
+                  "retries": 1,
+                  "timeout": 1,
+                  "interval": 1,
+                  "startPeriod": 1
+                },
+                "interactive": false,
+                "mountPoints": [
+                  {
+                    "readOnly": false,
+                    "sourceVolume": "string",
+                    "containerPath": "string"
+                  }
+                ],
+                "stopTimeout": 1,
+                "volumesFrom": [
+                  {
+                    "readOnly": false,
+                    "sourceContainer": "string"
+                  }
+                ],
+                "dockerLabels": {
+                  "string": "string"
+                },
+                "portMappings": [
+                  {
+                    "hostPort": 1,
+                    "protocol": "string",
+                    "containerPort": 1
+                  }
+                ],
+                "startTimeout": 1,
+                "pseudoTerminal": false,
+                "systemControls": [
+                  {
+                    "value": "string",
+                    "namespace": "string"
+                  }
+                ],
+                "linuxParameters": {
+                  "tmpfs": [
+                    {
+                      "size": 1,
+                      "mountOptions": [
+                        "string"
+                      ],
+                      "containerPath": "string"
+                    }
+                  ],
+                  "devices": [
+                    {
+                      "hostPath": "string",
+                      "permissions": [
+                        "string"
+                      ],
+                      "containerPath": "string"
+                    }
+                  ],
+                  "maxSwap": 1,
+                  "swappiness": 1,
+                  "capabilities": {
+                    "add": [
+                      "string"
+                    ],
+                    "drop": [
+                      "string"
+                    ]
+                  },
+                  "sharedMemorySize": 1,
+                  "initProcessEnabled": false
+                },
+                "dnsSearchDomains": [
+                  "string"
+                ],
+                "environmentFiles": [
+                  {
+                    "type": "string",
+                    "value": "string"
+                  }
+                ],
+                "logConfiguration": {
+                  "options": {
+                    "string": "string"
+                  },
+                  "logDriver": "string",
+                  "secretOptions": [
+                    {
+                      "name": "string",
+                      "valueFrom": "string"
+                    }
+                  ]
+                },
+                "workingDirectory": "string",
+                "disableNetworking": false,
+                "memoryReservation": 1,
+                "resourceRequirements": [
+                  {
+                    "type": "string",
+                    "value": "string"
+                  }
+                ],
+                "dockerSecurityOptions": [
+                  "string"
+                ],
+                "firelensConfiguration": {
+                  "type": "string",
+                  "options": {
+                    "string": "string"
+                  }
+                },
+                "repositoryCredentials": {
+                  "credentialsParameter": "string"
+                },
+                "readonlyRootFilesystem": false
+              }
+            ],
+            "placementConstraints": [
+              {
+                "type": "string",
+                "expression": "string"
+              }
+            ],
+            "inferenceAccelerators": [
+              {
+                "deviceName": "string",
+                "deviceType": "string"
+              }
+            ],
+            "requiresCompatibilities": [
+              "string"
+            ]
+          }
+        }
+      ]
+  DescribeTaskSets:
+    description: |-
+      Describes the task sets in the specified cluster and service. This is used when a service uses the EXTERNAL deployment controller type. For more information, see Amazon ECS Deployment Types in the Amazon Elastic Container Service Developer Guide.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTaskSets.html
+    example:
+      inputs: [
+        {
+          "cluster": "string",
+          "include": [
+            "string"
+          ],
+          "service": "string",
+          "taskSets": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "failures": [
+            {
+              "arn": "string",
+              "detail": "string",
+              "reason": "string"
+            }
+          ],
+          "taskSets": [
+            {
+              "id": "string",
+              "tags": [
+                {
+                  "key": "string",
+                  "value": "string"
+                }
+              ],
+              "scale": {
+                "unit": "string",
+                "value": 0.1
+              },
+              "status": "string",
+              "createdAt": 1481289211.615,
+              "startedBy": "string",
+              "updatedAt": 1481289211.615,
+              "clusterArn": "string",
+              "externalId": "string",
+              "launchType": "string",
+              "serviceArn": "string",
+              "taskSetArn": "string",
+              "pendingCount": 1,
+              "runningCount": 1,
+              "loadBalancers": [
+                {
+                  "containerName": "string",
+                  "containerPort": 1,
+                  "targetGroupArn": "string",
+                  "loadBalancerName": "string"
+                }
+              ],
+              "taskDefinition": "string",
+              "platformVersion": "string",
+              "stabilityStatus": "string",
+              "serviceRegistries": [
+                {
+                  "port": 1,
+                  "registryArn": "string",
+                  "containerName": "string",
+                  "containerPort": 1
+                }
+              ],
+              "stabilityStatusAt": 1481289211.615,
+              "computedDesiredCount": 1,
+              "networkConfiguration": {
+                "awsvpcConfiguration": {
+                  "subnets": [
+                    "string"
+                  ],
+                  "assignPublicIp": "string",
+                  "securityGroups": [
+                    "string"
+                  ]
+                }
+              },
+              "capacityProviderStrategy": [
+                {
+                  "base": 1,
+                  "weight": 1,
+                  "capacityProvider": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  DescribeTasks:
+    description: |-
+      Describes a specified task or tasks.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html
+    example:
+      inputs: [
+        {
+          "tasks": [
+            "string"
+          ],
+          "cluster": "string",
+          "include": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "tasks": [
+            {
+              "cpu": "string",
+              "tags": [
+                {
+                  "key": "string",
+                  "value": "string"
+                }
+              ],
+              "group": "string",
+              "memory": "string",
+              "taskArn": "string",
+              "version": 1,
+              "stopCode": "string",
+              "createdAt": 1481289211.615,
+              "overrides": {
+                "cpu": "string",
+                "memory": "string",
+                "taskRoleArn": "string",
+                "executionRoleArn": "string",
+                "containerOverrides": [
+                  {
+                    "cpu": 1,
+                    "name": "string",
+                    "memory": 1,
+                    "command": [
+                      "string"
+                    ],
+                    "environment": [
+                      {
+                        "name": "string",
+                        "value": "string"
+                      }
+                    ],
+                    "environmentFiles": [
+                      {
+                        "type": "string",
+                        "value": "string"
+                      }
+                    ],
+                    "memoryReservation": 1,
+                    "resourceRequirements": [
+                      {
+                        "type": "string",
+                        "value": "string"
+                      }
+                    ]
+                  }
+                ],
+                "inferenceAcceleratorOverrides": [
+                  {
+                    "deviceName": "string",
+                    "deviceType": "string"
+                  }
+                ]
+              },
+              "startedAt": 1481289211.615,
+              "startedBy": "string",
+              "stoppedAt": 1481289211.615,
+              "attributes": [
+                {
+                  "name": "string",
+                  "value": "string",
+                  "targetId": "string",
+                  "targetType": "string"
+                }
+              ],
+              "clusterArn": "string",
+              "containers": [
+                {
+                  "cpu": "string",
+                  "name": "string",
+                  "image": "string",
+                  "gpuIds": [
+                    "string"
+                  ],
+                  "memory": "string",
+                  "reason": "string",
+                  "taskArn": "string",
+                  "exitCode": 1,
+                  "runtimeId": "string",
+                  "lastStatus": "string",
+                  "imageDigest": "string",
+                  "containerArn": "string",
+                  "healthStatus": "string",
+                  "managedAgents": [
+                    {
+                      "name": "string",
+                      "reason": "string",
+                      "lastStatus": "string",
+                      "lastStartedAt": 1481289211.615
+                    }
+                  ],
+                  "networkBindings": [
+                    {
+                      "bindIP": "string",
+                      "hostPort": 1,
+                      "protocol": "string",
+                      "containerPort": 1
+                    }
+                  ],
+                  "memoryReservation": "string",
+                  "networkInterfaces": [
+                    {
+                      "ipv6Address": "string",
+                      "attachmentId": "string",
+                      "privateIpv4Address": "string"
+                    }
+                  ]
+                }
+              ],
+              "lastStatus": "string",
+              "launchType": "string",
+              "stoppingAt": 1481289211.615,
+              "attachments": [
+                {
+                  "id": "string",
+                  "type": "string",
+                  "status": "string",
+                  "details": [
+                    {
+                      "name": "string",
+                      "value": "string"
+                    }
+                  ]
+                }
+              ],
+              "connectivity": "string",
+              "healthStatus": "string",
+              "desiredStatus": "string",
+              "pullStartedAt": 1481289211.615,
+              "pullStoppedAt": 1481289211.615,
+              "stoppedReason": "string",
+              "connectivityAt": 1481289211.615,
+              "platformVersion": "string",
+              "availabilityZone": "string",
+              "taskDefinitionArn": "string",
+              "executionStoppedAt": 1481289211.615,
+              "capacityProviderName": "string",
+              "containerInstanceArn": "string",
+              "enableExecuteCommand": false,
+              "inferenceAccelerators": [
+                {
+                  "deviceName": "string",
+                  "deviceType": "string"
+                }
+              ]
+            }
+          ],
+          "failures": [
+            {
+              "arn": "string",
+              "detail": "string",
+              "reason": "string"
+            }
+          ]
+        }
+      ]
+  DiscoverPollEndpoint:
+    description: |-
+      Returns an endpoint for the Amazon ECS agent to poll for updates.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DiscoverPollEndpoint.html
+    example:
+      inputs: [
+        {
+          "cluster": "string",
+          "containerInstance": "string"
+        }
+      ]
+      outputs: [
+        {
+          "endpoint": "string",
+          "telemetryEndpoint": "string"
+        }
+      ]
+  ExecuteCommand:
+    description: |-
+      Runs a command remotely on a container within a task.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ExecuteCommand.html
+    example:
+      inputs: [
+        {
+          "task": "string",
+          "cluster": "string",
+          "command": "string",
+          "container": "string",
+          "interactive": false
+        }
+      ]
+      outputs: [
+        {
+          "session": {
+            "sessionId": "string",
+            "streamUrl": "string",
+            "tokenValue": "string"
+          },
+          "taskArn": "string",
+          "clusterArn": "string",
+          "interactive": false,
+          "containerArn": "string",
+          "containerName": "string"
+        }
+      ]
+  ListAccountSettings:
+    description: |-
+      Lists the account settings for a specified principal.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListAccountSettings.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "value": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "principalArn": "string",
+          "effectiveSettings": false
+        }
+      ]
+      outputs: [
+        {
+          "settings": [
+            {
+              "name": "string",
+              "value": "string",
+              "principalArn": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListAttributes:
+    description: |-
+      Lists the attributes for Amazon ECS resources within a specified target type and cluster. When you specify a target type and cluster, ListAttributes returns a list of attribute objects, one for each attribute on each resource. You can filter the list of results to a single attribute name to only return results that have that name. You can also filter the results by attribute name and value, for example, to see which container instances in a cluster are running a Linux AMI (ecs.os-type=linux).
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListAttributes.html
+    example:
+      inputs: [
+        {
+          "cluster": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "targetType": "string",
+          "attributeName": "string",
+          "attributeValue": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "attributes": [
+            {
+              "name": "string",
+              "value": "string",
+              "targetId": "string",
+              "targetType": "string"
+            }
+          ]
+        }
+      ]
+  ListClusters:
+    description: |-
+      Returns a list of existing clusters.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListClusters.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "clusterArns": [
+            "string"
+          ]
+        }
+      ]
+  ListContainerInstances:
+    description: |-
+      Returns a list of container instances in a specified cluster. You can filter the results of a ListContainerInstances operation with cluster query language statements inside the filter parameter. For more information, see Cluster Query Language in the Amazon Elastic Container Service Developer Guide.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListContainerInstances.html
+    example:
+      inputs: [
+        {
+          "filter": "string",
+          "status": "string",
+          "cluster": "string",
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "containerInstanceArns": [
+            "string"
+          ]
+        }
+      ]
+  ListServices:
+    description: |-
+      Lists the services that are running in a specified cluster.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListServices.html
+    example:
+      inputs: [
+        {
+          "cluster": "string",
+          "nextToken": "string",
+          "launchType": "string",
+          "maxResults": 1,
+          "schedulingStrategy": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "serviceArns": [
+            "string"
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      List the tags for an Amazon ECS resource.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ]
+        }
+      ]
+  ListTaskDefinitionFamilies:
+    description: |-
+      Returns a list of task definition families that are registered to your account (which may include task definition families that no longer have any ACTIVE task definition revisions).
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListTaskDefinitionFamilies.html
+    example:
+      inputs: [
+        {
+          "status": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "familyPrefix": "string"
+        }
+      ]
+      outputs: [
+        {
+          "families": [
+            "string"
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListTaskDefinitions:
+    description: |-
+      Returns a list of task definitions that are registered to your account. You can filter the results by family name with the familyPrefix parameter or by status with the status parameter.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListTaskDefinitions.html
+    example:
+      inputs: [
+        {
+          "sort": "string",
+          "status": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "familyPrefix": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "taskDefinitionArns": [
+            "string"
+          ]
+        }
+      ]
+  ListTasks:
+    description: |-
+      Returns a list of tasks for a specified cluster. You can filter the results by family name, by a particular container instance, or by the desired status of the task with the family, containerInstance, and desiredStatus parameters.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ListTasks.html
+    example:
+      inputs: [
+        {
+          "family": "string",
+          "cluster": "string",
+          "nextToken": "string",
+          "startedBy": "string",
+          "launchType": "string",
+          "maxResults": 1,
+          "serviceName": "string",
+          "desiredStatus": "string",
+          "containerInstance": "string"
+        }
+      ]
+      outputs: [
+        {
+          "taskArns": [
+            "string"
+          ],
+          "nextToken": "string"
+        }
+      ]
+  PutAccountSettingDefault:
+    description: |-
+      Modifies an account setting for all IAM users on an account for whom no individual account setting has been specified. Account settings are set on a per-Region basis.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutAccountSettingDefault.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "value": "string"
+        }
+      ]
+      outputs: [
+        {
+          "setting": {
+            "name": "string",
+            "value": "string",
+            "principalArn": "string"
+          }
+        }
+      ]
+  PutAccountSetting:
+    description: |-
+      Modifies an account setting. Account settings are set on a per-Region basis.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutAccountSetting.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "value": "string",
+          "principalArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "setting": {
+            "name": "string",
+            "value": "string",
+            "principalArn": "string"
+          }
+        }
+      ]
+  PutAttributes:
+    description: |-
+      Create or update an attribute on an Amazon ECS resource. If the attribute does not exist, it is created. If the attribute exists, its value is replaced with the specified value. To delete an attribute, use DeleteAttributes. For more information, see Attributes in the Amazon Elastic Container Service Developer Guide.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutAttributes.html
+    example:
+      inputs: [
+        {
+          "cluster": "string",
+          "attributes": [
+            {
+              "name": "string",
+              "value": "string",
+              "targetId": "string",
+              "targetType": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "attributes": [
+            {
+              "name": "string",
+              "value": "string",
+              "targetId": "string",
+              "targetType": "string"
+            }
+          ]
+        }
+      ]
+  PutClusterCapacityProviders:
+    description: |-
+      Modifies the available capacity providers and the default capacity provider strategy for a cluster.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutClusterCapacityProviders.html
+    example:
+      inputs: [
+        {
+          "cluster": "string",
+          "capacityProviders": [
+            "string"
+          ],
+          "defaultCapacityProviderStrategy": [
+            {
+              "base": 1,
+              "weight": 1,
+              "capacityProvider": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "cluster": {
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "status": "string",
+            "settings": [
+              {
+                "name": "string",
+                "value": "string"
+              }
+            ],
+            "clusterArn": "string",
+            "statistics": [
+              {
+                "name": "string",
+                "value": "string"
+              }
+            ],
+            "attachments": [
+              {
+                "id": "string",
+                "type": "string",
+                "status": "string",
+                "details": [
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ]
+              }
+            ],
+            "clusterName": "string",
+            "configuration": {
+              "executeCommandConfiguration": {
+                "logging": "string",
+                "kmsKeyId": "string",
+                "logConfiguration": {
+                  "s3KeyPrefix": "string",
+                  "s3BucketName": "string",
+                  "s3EncryptionEnabled": false,
+                  "cloudWatchLogGroupName": "string",
+                  "cloudWatchEncryptionEnabled": false
+                }
+              }
+            },
+            "attachmentsStatus": "string",
+            "capacityProviders": [
+              "string"
+            ],
+            "pendingTasksCount": 1,
+            "runningTasksCount": 1,
+            "activeServicesCount": 1,
+            "defaultCapacityProviderStrategy": [
+              {
+                "base": 1,
+                "weight": 1,
+                "capacityProvider": "string"
+              }
+            ],
+            "registeredContainerInstancesCount": 1
+          }
+        }
+      ]
+  RegisterContainerInstance:
+    description: |-
+      Registers an EC2 instance into the specified cluster. This instance becomes available to place containers on.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterContainerInstance.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "cluster": "string",
+          "attributes": [
+            {
+              "name": "string",
+              "value": "string",
+              "targetId": "string",
+              "targetType": "string"
+            }
+          ],
+          "versionInfo": {
+            "agentHash": "string",
+            "agentVersion": "string",
+            "dockerVersion": "string"
+          },
+          "totalResources": [
+            {
+              "name": "string",
+              "type": "string",
+              "longValue": 1,
+              "doubleValue": 0.1,
+              "integerValue": 1,
+              "stringSetValue": [
+                "string"
+              ]
+            }
+          ],
+          "platformDevices": [
+            {
+              "id": "string",
+              "type": "string"
+            }
+          ],
+          "containerInstanceArn": "string",
+          "instanceIdentityDocument": "string",
+          "instanceIdentityDocumentSignature": "string"
+        }
+      ]
+      outputs: [
+        {
+          "containerInstance": {
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "status": "string",
+            "version": 1,
+            "attributes": [
+              {
+                "name": "string",
+                "value": "string",
+                "targetId": "string",
+                "targetType": "string"
+              }
+            ],
+            "attachments": [
+              {
+                "id": "string",
+                "type": "string",
+                "status": "string",
+                "details": [
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ]
+              }
+            ],
+            "versionInfo": {
+              "agentHash": "string",
+              "agentVersion": "string",
+              "dockerVersion": "string"
+            },
+            "registeredAt": 1481289211.615,
+            "statusReason": "string",
+            "ec2InstanceId": "string",
+            "agentConnected": false,
+            "agentUpdateStatus": "string",
+            "pendingTasksCount": 1,
+            "runningTasksCount": 1,
+            "remainingResources": [
+              {
+                "name": "string",
+                "type": "string",
+                "longValue": 1,
+                "doubleValue": 0.1,
+                "integerValue": 1,
+                "stringSetValue": [
+                  "string"
+                ]
+              }
+            ],
+            "registeredResources": [
+              {
+                "name": "string",
+                "type": "string",
+                "longValue": 1,
+                "doubleValue": 0.1,
+                "integerValue": 1,
+                "stringSetValue": [
+                  "string"
+                ]
+              }
+            ],
+            "capacityProviderName": "string",
+            "containerInstanceArn": "string"
+          }
+        }
+      ]
+  RegisterTaskDefinition:
+    description: |-
+      Registers a new task definition from the supplied family and containerDefinitions. Optionally, you can add data volumes to your containers with the volumes parameter. For more information about task definition parameters and defaults, see Amazon ECS Task Definitions in the Amazon Elastic Container Service Developer Guide.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html
+    example:
+      inputs: [
+        {
+          "cpu": "string",
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "family": "string",
+          "memory": "string",
+          "ipcMode": "string",
+          "pidMode": "string",
+          "volumes": [
+            {
+              "host": {
+                "sourcePath": "string"
+              },
+              "name": "string",
+              "efsVolumeConfiguration": {
+                "fileSystemId": "string",
+                "rootDirectory": "string",
+                "transitEncryption": "string",
+                "authorizationConfig": {
+                  "iam": "string",
+                  "accessPointId": "string"
+                },
+                "transitEncryptionPort": 1
+              },
+              "dockerVolumeConfiguration": {
+                "scope": "string",
+                "driver": "string",
+                "labels": {
+                  "string": "string"
+                },
+                "driverOpts": {
+                  "string": "string"
+                },
+                "autoprovision": false
+              },
+              "fsxWindowsFileServerVolumeConfiguration": {
+                "fileSystemId": "string",
+                "rootDirectory": "string",
+                "authorizationConfig": {
+                  "domain": "string",
+                  "credentialsParameter": "string"
+                }
+              }
+            }
+          ],
+          "networkMode": "string",
+          "taskRoleArn": "string",
+          "executionRoleArn": "string",
+          "proxyConfiguration": {
+            "type": "string",
+            "properties": [
+              {
+                "name": "string",
+                "value": "string"
+              }
+            ],
+            "containerName": "string"
+          },
+          "containerDefinitions": [
+            {
+              "cpu": 1,
+              "name": "string",
+              "user": "string",
+              "image": "string",
+              "links": [
+                "string"
+              ],
+              "memory": 1,
+              "command": [
+                "string"
+              ],
+              "secrets": [
+                {
+                  "name": "string",
+                  "valueFrom": "string"
+                }
+              ],
+              "ulimits": [
+                {
+                  "name": "string",
+                  "hardLimit": 1,
+                  "softLimit": 1
+                }
+              ],
+              "hostname": "string",
+              "dependsOn": [
+                {
+                  "condition": "string",
+                  "containerName": "string"
+                }
+              ],
+              "essential": false,
+              "dnsServers": [
+                "string"
+              ],
+              "entryPoint": [
+                "string"
+              ],
+              "extraHosts": [
+                {
+                  "hostname": "string",
+                  "ipAddress": "string"
+                }
+              ],
+              "privileged": false,
+              "environment": [
+                {
+                  "name": "string",
+                  "value": "string"
+                }
+              ],
+              "healthCheck": {
+                "command": [
+                  "string"
+                ],
+                "retries": 1,
+                "timeout": 1,
+                "interval": 1,
+                "startPeriod": 1
+              },
+              "interactive": false,
+              "mountPoints": [
+                {
+                  "readOnly": false,
+                  "sourceVolume": "string",
+                  "containerPath": "string"
+                }
+              ],
+              "stopTimeout": 1,
+              "volumesFrom": [
+                {
+                  "readOnly": false,
+                  "sourceContainer": "string"
+                }
+              ],
+              "dockerLabels": {
+                "string": "string"
+              },
+              "portMappings": [
+                {
+                  "hostPort": 1,
+                  "protocol": "string",
+                  "containerPort": 1
+                }
+              ],
+              "startTimeout": 1,
+              "pseudoTerminal": false,
+              "systemControls": [
+                {
+                  "value": "string",
+                  "namespace": "string"
+                }
+              ],
+              "linuxParameters": {
+                "tmpfs": [
+                  {
+                    "size": 1,
+                    "mountOptions": [
+                      "string"
+                    ],
+                    "containerPath": "string"
+                  }
+                ],
+                "devices": [
+                  {
+                    "hostPath": "string",
+                    "permissions": [
+                      "string"
+                    ],
+                    "containerPath": "string"
+                  }
+                ],
+                "maxSwap": 1,
+                "swappiness": 1,
+                "capabilities": {
+                  "add": [
+                    "string"
+                  ],
+                  "drop": [
+                    "string"
+                  ]
+                },
+                "sharedMemorySize": 1,
+                "initProcessEnabled": false
+              },
+              "dnsSearchDomains": [
+                "string"
+              ],
+              "environmentFiles": [
+                {
+                  "type": "string",
+                  "value": "string"
+                }
+              ],
+              "logConfiguration": {
+                "options": {
+                  "string": "string"
+                },
+                "logDriver": "string",
+                "secretOptions": [
+                  {
+                    "name": "string",
+                    "valueFrom": "string"
+                  }
+                ]
+              },
+              "workingDirectory": "string",
+              "disableNetworking": false,
+              "memoryReservation": 1,
+              "resourceRequirements": [
+                {
+                  "type": "string",
+                  "value": "string"
+                }
+              ],
+              "dockerSecurityOptions": [
+                "string"
+              ],
+              "firelensConfiguration": {
+                "type": "string",
+                "options": {
+                  "string": "string"
+                }
+              },
+              "repositoryCredentials": {
+                "credentialsParameter": "string"
+              },
+              "readonlyRootFilesystem": false
+            }
+          ],
+          "placementConstraints": [
+            {
+              "type": "string",
+              "expression": "string"
+            }
+          ],
+          "inferenceAccelerators": [
+            {
+              "deviceName": "string",
+              "deviceType": "string"
+            }
+          ],
+          "requiresCompatibilities": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "taskDefinition": {
+            "cpu": "string",
+            "family": "string",
+            "memory": "string",
+            "status": "string",
+            "ipcMode": "string",
+            "pidMode": "string",
+            "volumes": [
+              {
+                "host": {
+                  "sourcePath": "string"
+                },
+                "name": "string",
+                "efsVolumeConfiguration": {
+                  "fileSystemId": "string",
+                  "rootDirectory": "string",
+                  "transitEncryption": "string",
+                  "authorizationConfig": {
+                    "iam": "string",
+                    "accessPointId": "string"
+                  },
+                  "transitEncryptionPort": 1
+                },
+                "dockerVolumeConfiguration": {
+                  "scope": "string",
+                  "driver": "string",
+                  "labels": {
+                    "string": "string"
+                  },
+                  "driverOpts": {
+                    "string": "string"
+                  },
+                  "autoprovision": false
+                },
+                "fsxWindowsFileServerVolumeConfiguration": {
+                  "fileSystemId": "string",
+                  "rootDirectory": "string",
+                  "authorizationConfig": {
+                    "domain": "string",
+                    "credentialsParameter": "string"
+                  }
+                }
+              }
+            ],
+            "revision": 1,
+            "networkMode": "string",
+            "taskRoleArn": "string",
+            "registeredAt": 1481289211.615,
+            "registeredBy": "string",
+            "deregisteredAt": 1481289211.615,
+            "compatibilities": [
+              "string"
+            ],
+            "executionRoleArn": "string",
+            "taskDefinitionArn": "string",
+            "proxyConfiguration": {
+              "type": "string",
+              "properties": [
+                {
+                  "name": "string",
+                  "value": "string"
+                }
+              ],
+              "containerName": "string"
+            },
+            "requiresAttributes": [
+              {
+                "name": "string",
+                "value": "string",
+                "targetId": "string",
+                "targetType": "string"
+              }
+            ],
+            "containerDefinitions": [
+              {
+                "cpu": 1,
+                "name": "string",
+                "user": "string",
+                "image": "string",
+                "links": [
+                  "string"
+                ],
+                "memory": 1,
+                "command": [
+                  "string"
+                ],
+                "secrets": [
+                  {
+                    "name": "string",
+                    "valueFrom": "string"
+                  }
+                ],
+                "ulimits": [
+                  {
+                    "name": "string",
+                    "hardLimit": 1,
+                    "softLimit": 1
+                  }
+                ],
+                "hostname": "string",
+                "dependsOn": [
+                  {
+                    "condition": "string",
+                    "containerName": "string"
+                  }
+                ],
+                "essential": false,
+                "dnsServers": [
+                  "string"
+                ],
+                "entryPoint": [
+                  "string"
+                ],
+                "extraHosts": [
+                  {
+                    "hostname": "string",
+                    "ipAddress": "string"
+                  }
+                ],
+                "privileged": false,
+                "environment": [
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ],
+                "healthCheck": {
+                  "command": [
+                    "string"
+                  ],
+                  "retries": 1,
+                  "timeout": 1,
+                  "interval": 1,
+                  "startPeriod": 1
+                },
+                "interactive": false,
+                "mountPoints": [
+                  {
+                    "readOnly": false,
+                    "sourceVolume": "string",
+                    "containerPath": "string"
+                  }
+                ],
+                "stopTimeout": 1,
+                "volumesFrom": [
+                  {
+                    "readOnly": false,
+                    "sourceContainer": "string"
+                  }
+                ],
+                "dockerLabels": {
+                  "string": "string"
+                },
+                "portMappings": [
+                  {
+                    "hostPort": 1,
+                    "protocol": "string",
+                    "containerPort": 1
+                  }
+                ],
+                "startTimeout": 1,
+                "pseudoTerminal": false,
+                "systemControls": [
+                  {
+                    "value": "string",
+                    "namespace": "string"
+                  }
+                ],
+                "linuxParameters": {
+                  "tmpfs": [
+                    {
+                      "size": 1,
+                      "mountOptions": [
+                        "string"
+                      ],
+                      "containerPath": "string"
+                    }
+                  ],
+                  "devices": [
+                    {
+                      "hostPath": "string",
+                      "permissions": [
+                        "string"
+                      ],
+                      "containerPath": "string"
+                    }
+                  ],
+                  "maxSwap": 1,
+                  "swappiness": 1,
+                  "capabilities": {
+                    "add": [
+                      "string"
+                    ],
+                    "drop": [
+                      "string"
+                    ]
+                  },
+                  "sharedMemorySize": 1,
+                  "initProcessEnabled": false
+                },
+                "dnsSearchDomains": [
+                  "string"
+                ],
+                "environmentFiles": [
+                  {
+                    "type": "string",
+                    "value": "string"
+                  }
+                ],
+                "logConfiguration": {
+                  "options": {
+                    "string": "string"
+                  },
+                  "logDriver": "string",
+                  "secretOptions": [
+                    {
+                      "name": "string",
+                      "valueFrom": "string"
+                    }
+                  ]
+                },
+                "workingDirectory": "string",
+                "disableNetworking": false,
+                "memoryReservation": 1,
+                "resourceRequirements": [
+                  {
+                    "type": "string",
+                    "value": "string"
+                  }
+                ],
+                "dockerSecurityOptions": [
+                  "string"
+                ],
+                "firelensConfiguration": {
+                  "type": "string",
+                  "options": {
+                    "string": "string"
+                  }
+                },
+                "repositoryCredentials": {
+                  "credentialsParameter": "string"
+                },
+                "readonlyRootFilesystem": false
+              }
+            ],
+            "placementConstraints": [
+              {
+                "type": "string",
+                "expression": "string"
+              }
+            ],
+            "inferenceAccelerators": [
+              {
+                "deviceName": "string",
+                "deviceType": "string"
+              }
+            ],
+            "requiresCompatibilities": [
+              "string"
+            ]
+          }
+        }
+      ]
+  RunTask:
+    description: |-
+      Starts a new task using the specified task definition.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RunTask.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "count": 1,
+          "group": "string",
+          "cluster": "string",
+          "overrides": {
+            "cpu": "string",
+            "memory": "string",
+            "taskRoleArn": "string",
+            "executionRoleArn": "string",
+            "containerOverrides": [
+              {
+                "cpu": 1,
+                "name": "string",
+                "memory": 1,
+                "command": [
+                  "string"
+                ],
+                "environment": [
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ],
+                "environmentFiles": [
+                  {
+                    "type": "string",
+                    "value": "string"
+                  }
+                ],
+                "memoryReservation": 1,
+                "resourceRequirements": [
+                  {
+                    "type": "string",
+                    "value": "string"
+                  }
+                ]
+              }
+            ],
+            "inferenceAcceleratorOverrides": [
+              {
+                "deviceName": "string",
+                "deviceType": "string"
+              }
+            ]
+          },
+          "startedBy": "string",
+          "launchType": "string",
+          "referenceId": "string",
+          "propagateTags": "string",
+          "taskDefinition": "string",
+          "platformVersion": "string",
+          "placementStrategy": [
+            {
+              "type": "string",
+              "field": "string"
+            }
+          ],
+          "enableECSManagedTags": false,
+          "enableExecuteCommand": false,
+          "networkConfiguration": {
+            "awsvpcConfiguration": {
+              "subnets": [
+                "string"
+              ],
+              "assignPublicIp": "string",
+              "securityGroups": [
+                "string"
+              ]
+            }
+          },
+          "placementConstraints": [
+            {
+              "type": "string",
+              "expression": "string"
+            }
+          ],
+          "capacityProviderStrategy": [
+            {
+              "base": 1,
+              "weight": 1,
+              "capacityProvider": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "tasks": [
+            {
+              "cpu": "string",
+              "tags": [
+                {
+                  "key": "string",
+                  "value": "string"
+                }
+              ],
+              "group": "string",
+              "memory": "string",
+              "taskArn": "string",
+              "version": 1,
+              "stopCode": "string",
+              "createdAt": 1481289211.615,
+              "overrides": {
+                "cpu": "string",
+                "memory": "string",
+                "taskRoleArn": "string",
+                "executionRoleArn": "string",
+                "containerOverrides": [
+                  {
+                    "cpu": 1,
+                    "name": "string",
+                    "memory": 1,
+                    "command": [
+                      "string"
+                    ],
+                    "environment": [
+                      {
+                        "name": "string",
+                        "value": "string"
+                      }
+                    ],
+                    "environmentFiles": [
+                      {
+                        "type": "string",
+                        "value": "string"
+                      }
+                    ],
+                    "memoryReservation": 1,
+                    "resourceRequirements": [
+                      {
+                        "type": "string",
+                        "value": "string"
+                      }
+                    ]
+                  }
+                ],
+                "inferenceAcceleratorOverrides": [
+                  {
+                    "deviceName": "string",
+                    "deviceType": "string"
+                  }
+                ]
+              },
+              "startedAt": 1481289211.615,
+              "startedBy": "string",
+              "stoppedAt": 1481289211.615,
+              "attributes": [
+                {
+                  "name": "string",
+                  "value": "string",
+                  "targetId": "string",
+                  "targetType": "string"
+                }
+              ],
+              "clusterArn": "string",
+              "containers": [
+                {
+                  "cpu": "string",
+                  "name": "string",
+                  "image": "string",
+                  "gpuIds": [
+                    "string"
+                  ],
+                  "memory": "string",
+                  "reason": "string",
+                  "taskArn": "string",
+                  "exitCode": 1,
+                  "runtimeId": "string",
+                  "lastStatus": "string",
+                  "imageDigest": "string",
+                  "containerArn": "string",
+                  "healthStatus": "string",
+                  "managedAgents": [
+                    {
+                      "name": "string",
+                      "reason": "string",
+                      "lastStatus": "string",
+                      "lastStartedAt": 1481289211.615
+                    }
+                  ],
+                  "networkBindings": [
+                    {
+                      "bindIP": "string",
+                      "hostPort": 1,
+                      "protocol": "string",
+                      "containerPort": 1
+                    }
+                  ],
+                  "memoryReservation": "string",
+                  "networkInterfaces": [
+                    {
+                      "ipv6Address": "string",
+                      "attachmentId": "string",
+                      "privateIpv4Address": "string"
+                    }
+                  ]
+                }
+              ],
+              "lastStatus": "string",
+              "launchType": "string",
+              "stoppingAt": 1481289211.615,
+              "attachments": [
+                {
+                  "id": "string",
+                  "type": "string",
+                  "status": "string",
+                  "details": [
+                    {
+                      "name": "string",
+                      "value": "string"
+                    }
+                  ]
+                }
+              ],
+              "connectivity": "string",
+              "healthStatus": "string",
+              "desiredStatus": "string",
+              "pullStartedAt": 1481289211.615,
+              "pullStoppedAt": 1481289211.615,
+              "stoppedReason": "string",
+              "connectivityAt": 1481289211.615,
+              "platformVersion": "string",
+              "availabilityZone": "string",
+              "taskDefinitionArn": "string",
+              "executionStoppedAt": 1481289211.615,
+              "capacityProviderName": "string",
+              "containerInstanceArn": "string",
+              "enableExecuteCommand": false,
+              "inferenceAccelerators": [
+                {
+                  "deviceName": "string",
+                  "deviceType": "string"
+                }
+              ]
+            }
+          ],
+          "failures": [
+            {
+              "arn": "string",
+              "detail": "string",
+              "reason": "string"
+            }
+          ]
+        }
+      ]
+  StartTask:
+    description: |-
+      Starts a new task from the specified task definition on the specified container instance or instances.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_StartTask.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "group": "string",
+          "cluster": "string",
+          "overrides": {
+            "cpu": "string",
+            "memory": "string",
+            "taskRoleArn": "string",
+            "executionRoleArn": "string",
+            "containerOverrides": [
+              {
+                "cpu": 1,
+                "name": "string",
+                "memory": 1,
+                "command": [
+                  "string"
+                ],
+                "environment": [
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ],
+                "environmentFiles": [
+                  {
+                    "type": "string",
+                    "value": "string"
+                  }
+                ],
+                "memoryReservation": 1,
+                "resourceRequirements": [
+                  {
+                    "type": "string",
+                    "value": "string"
+                  }
+                ]
+              }
+            ],
+            "inferenceAcceleratorOverrides": [
+              {
+                "deviceName": "string",
+                "deviceType": "string"
+              }
+            ]
+          },
+          "startedBy": "string",
+          "referenceId": "string",
+          "propagateTags": "string",
+          "taskDefinition": "string",
+          "containerInstances": [
+            "string"
+          ],
+          "enableECSManagedTags": false,
+          "enableExecuteCommand": false,
+          "networkConfiguration": {
+            "awsvpcConfiguration": {
+              "subnets": [
+                "string"
+              ],
+              "assignPublicIp": "string",
+              "securityGroups": [
+                "string"
+              ]
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "tasks": [
+            {
+              "cpu": "string",
+              "tags": [
+                {
+                  "key": "string",
+                  "value": "string"
+                }
+              ],
+              "group": "string",
+              "memory": "string",
+              "taskArn": "string",
+              "version": 1,
+              "stopCode": "string",
+              "createdAt": 1481289211.615,
+              "overrides": {
+                "cpu": "string",
+                "memory": "string",
+                "taskRoleArn": "string",
+                "executionRoleArn": "string",
+                "containerOverrides": [
+                  {
+                    "cpu": 1,
+                    "name": "string",
+                    "memory": 1,
+                    "command": [
+                      "string"
+                    ],
+                    "environment": [
+                      {
+                        "name": "string",
+                        "value": "string"
+                      }
+                    ],
+                    "environmentFiles": [
+                      {
+                        "type": "string",
+                        "value": "string"
+                      }
+                    ],
+                    "memoryReservation": 1,
+                    "resourceRequirements": [
+                      {
+                        "type": "string",
+                        "value": "string"
+                      }
+                    ]
+                  }
+                ],
+                "inferenceAcceleratorOverrides": [
+                  {
+                    "deviceName": "string",
+                    "deviceType": "string"
+                  }
+                ]
+              },
+              "startedAt": 1481289211.615,
+              "startedBy": "string",
+              "stoppedAt": 1481289211.615,
+              "attributes": [
+                {
+                  "name": "string",
+                  "value": "string",
+                  "targetId": "string",
+                  "targetType": "string"
+                }
+              ],
+              "clusterArn": "string",
+              "containers": [
+                {
+                  "cpu": "string",
+                  "name": "string",
+                  "image": "string",
+                  "gpuIds": [
+                    "string"
+                  ],
+                  "memory": "string",
+                  "reason": "string",
+                  "taskArn": "string",
+                  "exitCode": 1,
+                  "runtimeId": "string",
+                  "lastStatus": "string",
+                  "imageDigest": "string",
+                  "containerArn": "string",
+                  "healthStatus": "string",
+                  "managedAgents": [
+                    {
+                      "name": "string",
+                      "reason": "string",
+                      "lastStatus": "string",
+                      "lastStartedAt": 1481289211.615
+                    }
+                  ],
+                  "networkBindings": [
+                    {
+                      "bindIP": "string",
+                      "hostPort": 1,
+                      "protocol": "string",
+                      "containerPort": 1
+                    }
+                  ],
+                  "memoryReservation": "string",
+                  "networkInterfaces": [
+                    {
+                      "ipv6Address": "string",
+                      "attachmentId": "string",
+                      "privateIpv4Address": "string"
+                    }
+                  ]
+                }
+              ],
+              "lastStatus": "string",
+              "launchType": "string",
+              "stoppingAt": 1481289211.615,
+              "attachments": [
+                {
+                  "id": "string",
+                  "type": "string",
+                  "status": "string",
+                  "details": [
+                    {
+                      "name": "string",
+                      "value": "string"
+                    }
+                  ]
+                }
+              ],
+              "connectivity": "string",
+              "healthStatus": "string",
+              "desiredStatus": "string",
+              "pullStartedAt": 1481289211.615,
+              "pullStoppedAt": 1481289211.615,
+              "stoppedReason": "string",
+              "connectivityAt": 1481289211.615,
+              "platformVersion": "string",
+              "availabilityZone": "string",
+              "taskDefinitionArn": "string",
+              "executionStoppedAt": 1481289211.615,
+              "capacityProviderName": "string",
+              "containerInstanceArn": "string",
+              "enableExecuteCommand": false,
+              "inferenceAccelerators": [
+                {
+                  "deviceName": "string",
+                  "deviceType": "string"
+                }
+              ]
+            }
+          ],
+          "failures": [
+            {
+              "arn": "string",
+              "detail": "string",
+              "reason": "string"
+            }
+          ]
+        }
+      ]
+  StopTask:
+    description: |-
+      Stops a running task. Any tags associated with the task will be deleted.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_StopTask.html
+    example:
+      inputs: [
+        {
+          "task": "string",
+          "reason": "string",
+          "cluster": "string"
+        }
+      ]
+      outputs: [
+        {
+          "task": {
+            "cpu": "string",
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "group": "string",
+            "memory": "string",
+            "taskArn": "string",
+            "version": 1,
+            "stopCode": "string",
+            "createdAt": 1481289211.615,
+            "overrides": {
+              "cpu": "string",
+              "memory": "string",
+              "taskRoleArn": "string",
+              "executionRoleArn": "string",
+              "containerOverrides": [
+                {
+                  "cpu": 1,
+                  "name": "string",
+                  "memory": 1,
+                  "command": [
+                    "string"
+                  ],
+                  "environment": [
+                    {
+                      "name": "string",
+                      "value": "string"
+                    }
+                  ],
+                  "environmentFiles": [
+                    {
+                      "type": "string",
+                      "value": "string"
+                    }
+                  ],
+                  "memoryReservation": 1,
+                  "resourceRequirements": [
+                    {
+                      "type": "string",
+                      "value": "string"
+                    }
+                  ]
+                }
+              ],
+              "inferenceAcceleratorOverrides": [
+                {
+                  "deviceName": "string",
+                  "deviceType": "string"
+                }
+              ]
+            },
+            "startedAt": 1481289211.615,
+            "startedBy": "string",
+            "stoppedAt": 1481289211.615,
+            "attributes": [
+              {
+                "name": "string",
+                "value": "string",
+                "targetId": "string",
+                "targetType": "string"
+              }
+            ],
+            "clusterArn": "string",
+            "containers": [
+              {
+                "cpu": "string",
+                "name": "string",
+                "image": "string",
+                "gpuIds": [
+                  "string"
+                ],
+                "memory": "string",
+                "reason": "string",
+                "taskArn": "string",
+                "exitCode": 1,
+                "runtimeId": "string",
+                "lastStatus": "string",
+                "imageDigest": "string",
+                "containerArn": "string",
+                "healthStatus": "string",
+                "managedAgents": [
+                  {
+                    "name": "string",
+                    "reason": "string",
+                    "lastStatus": "string",
+                    "lastStartedAt": 1481289211.615
+                  }
+                ],
+                "networkBindings": [
+                  {
+                    "bindIP": "string",
+                    "hostPort": 1,
+                    "protocol": "string",
+                    "containerPort": 1
+                  }
+                ],
+                "memoryReservation": "string",
+                "networkInterfaces": [
+                  {
+                    "ipv6Address": "string",
+                    "attachmentId": "string",
+                    "privateIpv4Address": "string"
+                  }
+                ]
+              }
+            ],
+            "lastStatus": "string",
+            "launchType": "string",
+            "stoppingAt": 1481289211.615,
+            "attachments": [
+              {
+                "id": "string",
+                "type": "string",
+                "status": "string",
+                "details": [
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ]
+              }
+            ],
+            "connectivity": "string",
+            "healthStatus": "string",
+            "desiredStatus": "string",
+            "pullStartedAt": 1481289211.615,
+            "pullStoppedAt": 1481289211.615,
+            "stoppedReason": "string",
+            "connectivityAt": 1481289211.615,
+            "platformVersion": "string",
+            "availabilityZone": "string",
+            "taskDefinitionArn": "string",
+            "executionStoppedAt": 1481289211.615,
+            "capacityProviderName": "string",
+            "containerInstanceArn": "string",
+            "enableExecuteCommand": false,
+            "inferenceAccelerators": [
+              {
+                "deviceName": "string",
+                "deviceType": "string"
+              }
+            ]
+          }
+        }
+      ]
+  SubmitAttachmentStateChanges:
+    description: |-
+      Sent to acknowledge that an attachment changed states.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_SubmitAttachmentStateChanges.html
+    example:
+      inputs: [
+        {
+          "cluster": "string",
+          "attachments": [
+            {
+              "status": "string",
+              "attachmentArn": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "acknowledgment": "string"
+        }
+      ]
+  SubmitContainerStateChange:
+    description: |-
+      Sent to acknowledge that a container changed states.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_SubmitContainerStateChange.html
+    example:
+      inputs: [
+        {
+          "task": "string",
+          "reason": "string",
+          "status": "string",
+          "cluster": "string",
+          "exitCode": 1,
+          "runtimeId": "string",
+          "containerName": "string",
+          "networkBindings": [
+            {
+              "bindIP": "string",
+              "hostPort": 1,
+              "protocol": "string",
+              "containerPort": 1
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "acknowledgment": "string"
+        }
+      ]
+  SubmitTaskStateChange:
+    description: |-
+      Sent to acknowledge that a task changed states.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_SubmitTaskStateChange.html
+    example:
+      inputs: [
+        {
+          "task": "string",
+          "reason": "string",
+          "status": "string",
+          "cluster": "string",
+          "containers": [
+            {
+              "reason": "string",
+              "status": "string",
+              "exitCode": 1,
+              "runtimeId": "string",
+              "imageDigest": "string",
+              "containerName": "string",
+              "networkBindings": [
+                {
+                  "bindIP": "string",
+                  "hostPort": 1,
+                  "protocol": "string",
+                  "containerPort": 1
+                }
+              ]
+            }
+          ],
+          "attachments": [
+            {
+              "status": "string",
+              "attachmentArn": "string"
+            }
+          ],
+          "managedAgents": [
+            {
+              "reason": "string",
+              "status": "string",
+              "containerName": "string",
+              "managedAgentName": "string"
+            }
+          ],
+          "pullStartedAt": 1481289211.615,
+          "pullStoppedAt": 1481289211.615,
+          "executionStoppedAt": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "acknowledgment": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Associates the specified tags to a resource with the specified resourceArn. If existing tags on a resource are not specified in the request parameters, they are not changed. When a resource is deleted, the tags associated with that resource are deleted as well.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Deletes specified tags from a resource.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateCapacityProvider:
+    description: |-
+      Modifies the parameters for a capacity provider.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateCapacityProvider.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "autoScalingGroupProvider": {
+            "managedScaling": {
+              "status": "string",
+              "targetCapacity": 1,
+              "instanceWarmupPeriod": 1,
+              "maximumScalingStepSize": 1,
+              "minimumScalingStepSize": 1
+            },
+            "managedTerminationProtection": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "capacityProvider": {
+            "name": "string",
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "status": "string",
+            "updateStatus": "string",
+            "updateStatusReason": "string",
+            "capacityProviderArn": "string",
+            "autoScalingGroupProvider": {
+              "managedScaling": {
+                "status": "string",
+                "targetCapacity": 1,
+                "instanceWarmupPeriod": 1,
+                "maximumScalingStepSize": 1,
+                "minimumScalingStepSize": 1
+              },
+              "autoScalingGroupArn": "string",
+              "managedTerminationProtection": "string"
+            }
+          }
+        }
+      ]
+  UpdateCluster:
+    description: |-
+      Updates the cluster.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateCluster.html
+    example:
+      inputs: [
+        {
+          "cluster": "string",
+          "settings": [
+            {
+              "name": "string",
+              "value": "string"
+            }
+          ],
+          "configuration": {
+            "executeCommandConfiguration": {
+              "logging": "string",
+              "kmsKeyId": "string",
+              "logConfiguration": {
+                "s3KeyPrefix": "string",
+                "s3BucketName": "string",
+                "s3EncryptionEnabled": false,
+                "cloudWatchLogGroupName": "string",
+                "cloudWatchEncryptionEnabled": false
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "cluster": {
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "status": "string",
+            "settings": [
+              {
+                "name": "string",
+                "value": "string"
+              }
+            ],
+            "clusterArn": "string",
+            "statistics": [
+              {
+                "name": "string",
+                "value": "string"
+              }
+            ],
+            "attachments": [
+              {
+                "id": "string",
+                "type": "string",
+                "status": "string",
+                "details": [
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ]
+              }
+            ],
+            "clusterName": "string",
+            "configuration": {
+              "executeCommandConfiguration": {
+                "logging": "string",
+                "kmsKeyId": "string",
+                "logConfiguration": {
+                  "s3KeyPrefix": "string",
+                  "s3BucketName": "string",
+                  "s3EncryptionEnabled": false,
+                  "cloudWatchLogGroupName": "string",
+                  "cloudWatchEncryptionEnabled": false
+                }
+              }
+            },
+            "attachmentsStatus": "string",
+            "capacityProviders": [
+              "string"
+            ],
+            "pendingTasksCount": 1,
+            "runningTasksCount": 1,
+            "activeServicesCount": 1,
+            "defaultCapacityProviderStrategy": [
+              {
+                "base": 1,
+                "weight": 1,
+                "capacityProvider": "string"
+              }
+            ],
+            "registeredContainerInstancesCount": 1
+          }
+        }
+      ]
+  UpdateClusterSettings:
+    description: |-
+      Modifies the settings to use for a cluster.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateClusterSettings.html
+    example:
+      inputs: [
+        {
+          "cluster": "string",
+          "settings": [
+            {
+              "name": "string",
+              "value": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "cluster": {
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "status": "string",
+            "settings": [
+              {
+                "name": "string",
+                "value": "string"
+              }
+            ],
+            "clusterArn": "string",
+            "statistics": [
+              {
+                "name": "string",
+                "value": "string"
+              }
+            ],
+            "attachments": [
+              {
+                "id": "string",
+                "type": "string",
+                "status": "string",
+                "details": [
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ]
+              }
+            ],
+            "clusterName": "string",
+            "configuration": {
+              "executeCommandConfiguration": {
+                "logging": "string",
+                "kmsKeyId": "string",
+                "logConfiguration": {
+                  "s3KeyPrefix": "string",
+                  "s3BucketName": "string",
+                  "s3EncryptionEnabled": false,
+                  "cloudWatchLogGroupName": "string",
+                  "cloudWatchEncryptionEnabled": false
+                }
+              }
+            },
+            "attachmentsStatus": "string",
+            "capacityProviders": [
+              "string"
+            ],
+            "pendingTasksCount": 1,
+            "runningTasksCount": 1,
+            "activeServicesCount": 1,
+            "defaultCapacityProviderStrategy": [
+              {
+                "base": 1,
+                "weight": 1,
+                "capacityProvider": "string"
+              }
+            ],
+            "registeredContainerInstancesCount": 1
+          }
+        }
+      ]
+  UpdateContainerAgent:
+    description: |-
+      Updates the Amazon ECS container agent on a specified container instance. Updating the Amazon ECS container agent does not interrupt running tasks or services on the container instance. The process for updating the agent differs depending on whether your container instance was launched with the Amazon ECS-optimized AMI or another operating system.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateContainerAgent.html
+    example:
+      inputs: [
+        {
+          "cluster": "string",
+          "containerInstance": "string"
+        }
+      ]
+      outputs: [
+        {
+          "containerInstance": {
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "status": "string",
+            "version": 1,
+            "attributes": [
+              {
+                "name": "string",
+                "value": "string",
+                "targetId": "string",
+                "targetType": "string"
+              }
+            ],
+            "attachments": [
+              {
+                "id": "string",
+                "type": "string",
+                "status": "string",
+                "details": [
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ]
+              }
+            ],
+            "versionInfo": {
+              "agentHash": "string",
+              "agentVersion": "string",
+              "dockerVersion": "string"
+            },
+            "registeredAt": 1481289211.615,
+            "statusReason": "string",
+            "ec2InstanceId": "string",
+            "agentConnected": false,
+            "agentUpdateStatus": "string",
+            "pendingTasksCount": 1,
+            "runningTasksCount": 1,
+            "remainingResources": [
+              {
+                "name": "string",
+                "type": "string",
+                "longValue": 1,
+                "doubleValue": 0.1,
+                "integerValue": 1,
+                "stringSetValue": [
+                  "string"
+                ]
+              }
+            ],
+            "registeredResources": [
+              {
+                "name": "string",
+                "type": "string",
+                "longValue": 1,
+                "doubleValue": 0.1,
+                "integerValue": 1,
+                "stringSetValue": [
+                  "string"
+                ]
+              }
+            ],
+            "capacityProviderName": "string",
+            "containerInstanceArn": "string"
+          }
+        }
+      ]
+  UpdateContainerInstancesState:
+    description: |-
+      Modifies the status of an Amazon ECS container instance.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateContainerInstancesState.html
+    example:
+      inputs: [
+        {
+          "status": "string",
+          "cluster": "string",
+          "containerInstances": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "failures": [
+            {
+              "arn": "string",
+              "detail": "string",
+              "reason": "string"
+            }
+          ],
+          "containerInstances": [
+            {
+              "tags": [
+                {
+                  "key": "string",
+                  "value": "string"
+                }
+              ],
+              "status": "string",
+              "version": 1,
+              "attributes": [
+                {
+                  "name": "string",
+                  "value": "string",
+                  "targetId": "string",
+                  "targetType": "string"
+                }
+              ],
+              "attachments": [
+                {
+                  "id": "string",
+                  "type": "string",
+                  "status": "string",
+                  "details": [
+                    {
+                      "name": "string",
+                      "value": "string"
+                    }
+                  ]
+                }
+              ],
+              "versionInfo": {
+                "agentHash": "string",
+                "agentVersion": "string",
+                "dockerVersion": "string"
+              },
+              "registeredAt": 1481289211.615,
+              "statusReason": "string",
+              "ec2InstanceId": "string",
+              "agentConnected": false,
+              "agentUpdateStatus": "string",
+              "pendingTasksCount": 1,
+              "runningTasksCount": 1,
+              "remainingResources": [
+                {
+                  "name": "string",
+                  "type": "string",
+                  "longValue": 1,
+                  "doubleValue": 0.1,
+                  "integerValue": 1,
+                  "stringSetValue": [
+                    "string"
+                  ]
+                }
+              ],
+              "registeredResources": [
+                {
+                  "name": "string",
+                  "type": "string",
+                  "longValue": 1,
+                  "doubleValue": 0.1,
+                  "integerValue": 1,
+                  "stringSetValue": [
+                    "string"
+                  ]
+                }
+              ],
+              "capacityProviderName": "string",
+              "containerInstanceArn": "string"
+            }
+          ]
+        }
+      ]
+  UpdateService:
+    description: |-
+      Modifies the parameters of a service.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateService.html
+    example:
+      inputs: [
+        {
+          "cluster": "string",
+          "service": "string",
+          "desiredCount": 1,
+          "taskDefinition": "string",
+          "platformVersion": "string",
+          "placementStrategy": [
+            {
+              "type": "string",
+              "field": "string"
+            }
+          ],
+          "forceNewDeployment": false,
+          "enableExecuteCommand": false,
+          "networkConfiguration": {
+            "awsvpcConfiguration": {
+              "subnets": [
+                "string"
+              ],
+              "assignPublicIp": "string",
+              "securityGroups": [
+                "string"
+              ]
+            }
+          },
+          "placementConstraints": [
+            {
+              "type": "string",
+              "expression": "string"
+            }
+          ],
+          "deploymentConfiguration": {
+            "maximumPercent": 1,
+            "minimumHealthyPercent": 1,
+            "deploymentCircuitBreaker": {
+              "enable": false,
+              "rollback": false
+            }
+          },
+          "capacityProviderStrategy": [
+            {
+              "base": 1,
+              "weight": 1,
+              "capacityProvider": "string"
+            }
+          ],
+          "healthCheckGracePeriodSeconds": 1
+        }
+      ]
+      outputs: [
+        {
+          "service": {
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "events": [
+              {
+                "id": "string",
+                "message": "string",
+                "createdAt": 1481289211.615
+              }
+            ],
+            "status": "string",
+            "roleArn": "string",
+            "taskSets": [
+              {
+                "id": "string",
+                "tags": [
+                  {
+                    "key": "string",
+                    "value": "string"
+                  }
+                ],
+                "scale": {
+                  "unit": "string",
+                  "value": 0.1
+                },
+                "status": "string",
+                "createdAt": 1481289211.615,
+                "startedBy": "string",
+                "updatedAt": 1481289211.615,
+                "clusterArn": "string",
+                "externalId": "string",
+                "launchType": "string",
+                "serviceArn": "string",
+                "taskSetArn": "string",
+                "pendingCount": 1,
+                "runningCount": 1,
+                "loadBalancers": [
+                  {
+                    "containerName": "string",
+                    "containerPort": 1,
+                    "targetGroupArn": "string",
+                    "loadBalancerName": "string"
+                  }
+                ],
+                "taskDefinition": "string",
+                "platformVersion": "string",
+                "stabilityStatus": "string",
+                "serviceRegistries": [
+                  {
+                    "port": 1,
+                    "registryArn": "string",
+                    "containerName": "string",
+                    "containerPort": 1
+                  }
+                ],
+                "stabilityStatusAt": 1481289211.615,
+                "computedDesiredCount": 1,
+                "networkConfiguration": {
+                  "awsvpcConfiguration": {
+                    "subnets": [
+                      "string"
+                    ],
+                    "assignPublicIp": "string",
+                    "securityGroups": [
+                      "string"
+                    ]
+                  }
+                },
+                "capacityProviderStrategy": [
+                  {
+                    "base": 1,
+                    "weight": 1,
+                    "capacityProvider": "string"
+                  }
+                ]
+              }
+            ],
+            "createdAt": 1481289211.615,
+            "createdBy": "string",
+            "clusterArn": "string",
+            "launchType": "string",
+            "serviceArn": "string",
+            "deployments": [
+              {
+                "id": "string",
+                "status": "string",
+                "createdAt": 1481289211.615,
+                "updatedAt": 1481289211.615,
+                "launchType": "string",
+                "failedTasks": 1,
+                "desiredCount": 1,
+                "pendingCount": 1,
+                "rolloutState": "string",
+                "runningCount": 1,
+                "taskDefinition": "string",
+                "platformVersion": "string",
+                "rolloutStateReason": "string",
+                "networkConfiguration": {
+                  "awsvpcConfiguration": {
+                    "subnets": [
+                      "string"
+                    ],
+                    "assignPublicIp": "string",
+                    "securityGroups": [
+                      "string"
+                    ]
+                  }
+                },
+                "capacityProviderStrategy": [
+                  {
+                    "base": 1,
+                    "weight": 1,
+                    "capacityProvider": "string"
+                  }
+                ]
+              }
+            ],
+            "serviceName": "string",
+            "desiredCount": 1,
+            "pendingCount": 1,
+            "runningCount": 1,
+            "loadBalancers": [
+              {
+                "containerName": "string",
+                "containerPort": 1,
+                "targetGroupArn": "string",
+                "loadBalancerName": "string"
+              }
+            ],
+            "propagateTags": "string",
+            "taskDefinition": "string",
+            "platformVersion": "string",
+            "placementStrategy": [
+              {
+                "type": "string",
+                "field": "string"
+              }
+            ],
+            "serviceRegistries": [
+              {
+                "port": 1,
+                "registryArn": "string",
+                "containerName": "string",
+                "containerPort": 1
+              }
+            ],
+            "schedulingStrategy": "string",
+            "deploymentController": {
+              "type": "string"
+            },
+            "enableECSManagedTags": false,
+            "enableExecuteCommand": false,
+            "networkConfiguration": {
+              "awsvpcConfiguration": {
+                "subnets": [
+                  "string"
+                ],
+                "assignPublicIp": "string",
+                "securityGroups": [
+                  "string"
+                ]
+              }
+            },
+            "placementConstraints": [
+              {
+                "type": "string",
+                "expression": "string"
+              }
+            ],
+            "deploymentConfiguration": {
+              "maximumPercent": 1,
+              "minimumHealthyPercent": 1,
+              "deploymentCircuitBreaker": {
+                "enable": false,
+                "rollback": false
+              }
+            },
+            "capacityProviderStrategy": [
+              {
+                "base": 1,
+                "weight": 1,
+                "capacityProvider": "string"
+              }
+            ],
+            "healthCheckGracePeriodSeconds": 1
+          }
+        }
+      ]
+  UpdateServicePrimaryTaskSet:
+    description: |-
+      Modifies which task set in a service is the primary task set. Any parameters that are updated on the primary task set in a service will transition to the service. This is used when a service uses the EXTERNAL deployment controller type. For more information, see Amazon ECS Deployment Types in the Amazon Elastic Container Service Developer Guide.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateServicePrimaryTaskSet.html
+    example:
+      inputs: [
+        {
+          "cluster": "string",
+          "service": "string",
+          "primaryTaskSet": "string"
+        }
+      ]
+      outputs: [
+        {
+          "taskSet": {
+            "id": "string",
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "scale": {
+              "unit": "string",
+              "value": 0.1
+            },
+            "status": "string",
+            "createdAt": 1481289211.615,
+            "startedBy": "string",
+            "updatedAt": 1481289211.615,
+            "clusterArn": "string",
+            "externalId": "string",
+            "launchType": "string",
+            "serviceArn": "string",
+            "taskSetArn": "string",
+            "pendingCount": 1,
+            "runningCount": 1,
+            "loadBalancers": [
+              {
+                "containerName": "string",
+                "containerPort": 1,
+                "targetGroupArn": "string",
+                "loadBalancerName": "string"
+              }
+            ],
+            "taskDefinition": "string",
+            "platformVersion": "string",
+            "stabilityStatus": "string",
+            "serviceRegistries": [
+              {
+                "port": 1,
+                "registryArn": "string",
+                "containerName": "string",
+                "containerPort": 1
+              }
+            ],
+            "stabilityStatusAt": 1481289211.615,
+            "computedDesiredCount": 1,
+            "networkConfiguration": {
+              "awsvpcConfiguration": {
+                "subnets": [
+                  "string"
+                ],
+                "assignPublicIp": "string",
+                "securityGroups": [
+                  "string"
+                ]
+              }
+            },
+            "capacityProviderStrategy": [
+              {
+                "base": 1,
+                "weight": 1,
+                "capacityProvider": "string"
+              }
+            ]
+          }
+        }
+      ]
+  UpdateTaskSet:
+    description: |-
+      Modifies a task set. This is used when a service uses the EXTERNAL deployment controller type. For more information, see Amazon ECS Deployment Types in the Amazon Elastic Container Service Developer Guide.
+    versions:
+      from: 2014.11.13
+    link: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateTaskSet.html
+    example:
+      inputs: [
+        {
+          "scale": {
+            "unit": "string",
+            "value": 0.1
+          },
+          "cluster": "string",
+          "service": "string",
+          "taskSet": "string"
+        }
+      ]
+      outputs: [
+        {
+          "taskSet": {
+            "id": "string",
+            "tags": [
+              {
+                "key": "string",
+                "value": "string"
+              }
+            ],
+            "scale": {
+              "unit": "string",
+              "value": 0.1
+            },
+            "status": "string",
+            "createdAt": 1481289211.615,
+            "startedBy": "string",
+            "updatedAt": 1481289211.615,
+            "clusterArn": "string",
+            "externalId": "string",
+            "launchType": "string",
+            "serviceArn": "string",
+            "taskSetArn": "string",
+            "pendingCount": 1,
+            "runningCount": 1,
+            "loadBalancers": [
+              {
+                "containerName": "string",
+                "containerPort": 1,
+                "targetGroupArn": "string",
+                "loadBalancerName": "string"
+              }
+            ],
+            "taskDefinition": "string",
+            "platformVersion": "string",
+            "stabilityStatus": "string",
+            "serviceRegistries": [
+              {
+                "port": 1,
+                "registryArn": "string",
+                "containerName": "string",
+                "containerPort": 1
+              }
+            ],
+            "stabilityStatusAt": 1481289211.615,
+            "computedDesiredCount": 1,
+            "networkConfiguration": {
+              "awsvpcConfiguration": {
+                "subnets": [
+                  "string"
+                ],
+                "assignPublicIp": "string",
+                "securityGroups": [
+                  "string"
+                ]
+              }
+            },
+            "capacityProviderStrategy": [
+              {
+                "base": 1,
+                "weight": 1,
+                "capacityProvider": "string"
+              }
+            ]
+          }
+        }
+      ]

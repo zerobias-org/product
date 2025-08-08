@@ -1,0 +1,203 @@
+Product:
+  name: Azure Managed Identity
+  versions: [2018.11.30]
+  package: microsoft.azure.managedidentity
+  description: |-
+    ManagedIdentity
+  link: https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/
+  contentType: json
+Operations:
+  SystemAssignedIdentities.GetByScope:
+    description: |-
+      Gets the systemAssignedIdentity available under the specified RP scope.
+    versions:
+      from: 2018.11.30
+    link: https://docs.microsoft.com/en-us/rest/api/managedidentity/systemassignedidentities/getbyscope
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/scope",
+          "name": "resourceName",
+          "type": "ResourceProvider",
+          "location": "cus",
+          "properties": {
+            "clientId": "clientGUID",
+            "tenantId": "tenantGUID",
+            "principalId": "identityObjectID",
+            "clientSecretUrl": "https://serviceRoot/scope/credentials?tid=tenantId&oid=principalId&aid=clientId"
+          }
+        }
+      ]
+  UserAssignedIdentities.CreateOrUpdate:
+    description: |-
+      Create or update an identity in the specified subscription and resource group.
+    versions:
+      from: 2018.11.30
+    link: https://docs.microsoft.com/en-us/rest/api/managedidentity/userassignedidentities/createorupdate
+    example:
+      inputs: [
+        {
+          "tags": {
+            "key1": "value1",
+            "key2": "value2"
+          },
+          "location": "eastus"
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/subid/resourcegroups/rgName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identityName",
+          "name": "identityName",
+          "tags": {
+            "key1": "value1",
+            "key2": "value2"
+          },
+          "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+          "location": "eastus",
+          "properties": {
+            "clientId": "clientGUID",
+            "tenantId": "tenantGUID",
+            "principalId": "identityObjectID"
+          }
+        }
+      ]
+  UserAssignedIdentities.Delete:
+    description: |-
+      Deletes the identity.
+    versions:
+      from: 2018.11.30
+    link: https://docs.microsoft.com/en-us/rest/api/managedidentity/userassignedidentities/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  UserAssignedIdentities.Get:
+    description: |-
+      Gets the identity.
+    versions:
+      from: 2018.11.30
+    link: https://docs.microsoft.com/en-us/rest/api/managedidentity/userassignedidentities/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/subid/resourcegroups/rgName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identityName",
+          "name": "identityName",
+          "tags": {
+            "key1": "value1",
+            "key2": "value2"
+          },
+          "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+          "location": "eastus",
+          "properties": {
+            "clientId": "clientGUID",
+            "tenantId": "tenantGUID",
+            "principalId": "identityObjectID"
+          }
+        }
+      ]
+  UserAssignedIdentities.ListByResourceGroup:
+    description: |-
+      Lists all the userAssignedIdentities available under the specified ResourceGroup.
+    versions:
+      from: 2018.11.30
+    link: https://docs.microsoft.com/en-us/rest/api/managedidentity/userassignedidentities/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/subid/resourcegroups/rgName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identityName",
+              "name": "identityName",
+              "tags": {
+                "key1": "value1",
+                "key2": "value2"
+              },
+              "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+              "location": "eastus",
+              "properties": {
+                "clientId": "clientGUID",
+                "tenantId": "tenantGUID",
+                "principalId": "identityObjectID"
+              }
+            }
+          ],
+          "nextLink": "https://serviceRoot/subscriptions/subId/resourcegroups/rgName/providers/Microsoft.ManagedIdentity/userAssignedIdentities?api-version=2018-11-30&$skiptoken=X'12345'"
+        }
+      ]
+  UserAssignedIdentities.ListBySubscription:
+    description: |-
+      Lists all the userAssignedIdentities available under the specified subscription.
+    versions:
+      from: 2018.11.30
+    link: https://docs.microsoft.com/en-us/rest/api/managedidentity/userassignedidentities/listbysubscription
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/subid/resourcegroups/rgName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identityName",
+              "name": "identityName",
+              "tags": {
+                "key1": "value1",
+                "key2": "value2"
+              },
+              "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+              "location": "eastus",
+              "properties": {
+                "clientId": "clientGUID",
+                "tenantId": "tenantGUID",
+                "principalId": "identityObjectID"
+              }
+            }
+          ],
+          "nextLink": "https://serviceRoot/subscriptions/subId/providers/Microsoft.ManagedIdentity/userAssignedIdentities?api-version=2018-11-30&$skiptoken=X'12345'"
+        }
+      ]
+  UserAssignedIdentities.Update:
+    description: |-
+      Update an identity in the specified subscription and resource group.
+    versions:
+      from: 2018.11.30
+    link: https://docs.microsoft.com/en-us/rest/api/managedidentity/userassignedidentities/update
+    example:
+      inputs: [
+        {
+          "tags": {
+            "key1": "value1",
+            "key2": "value2"
+          },
+          "location": "eastus"
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/subid/resourcegroups/rgName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identityName",
+          "name": "identityName",
+          "tags": {
+            "key1": "value1",
+            "key2": "value2"
+          },
+          "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+          "location": "eastus",
+          "properties": {
+            "clientId": "clientGUID",
+            "tenantId": "tenantGUID",
+            "principalId": "identityObjectID"
+          }
+        }
+      ]

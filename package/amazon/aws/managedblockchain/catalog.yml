@@ -1,0 +1,740 @@
+Product:
+  name: Amazon Managed Blockchain
+  versions: [2018.9.24]
+  package: amazon.aws.managedblockchain
+  description: |-
+    Amazon Managed Blockchain
+  link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CreateMember:
+    description: |-
+      Creates a member within a Managed Blockchain network.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_CreateMember.html
+    example:
+      inputs: [
+        {
+          "NetworkId": "string",
+          "InvitationId": "string",
+          "ClientRequestToken": "string",
+          "MemberConfiguration": {
+            "Name": "string",
+            "Tags": {
+              "string": "string"
+            },
+            "Description": "string",
+            "FrameworkConfiguration": {
+              "Fabric": {
+                "AdminPassword": "string",
+                "AdminUsername": "string"
+              }
+            },
+            "LogPublishingConfiguration": {
+              "Fabric": {
+                "CaLogs": {
+                  "Cloudwatch": {
+                    "Enabled": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "MemberId": "string"
+        }
+      ]
+  CreateNetwork:
+    description: |-
+      Creates a new blockchain network using Amazon Managed Blockchain.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_CreateNetwork.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": {
+            "string": "string"
+          },
+          "Framework": "string",
+          "Description": "string",
+          "VotingPolicy": {
+            "ApprovalThresholdPolicy": {
+              "ThresholdComparator": "string",
+              "ThresholdPercentage": 1,
+              "ProposalDurationInHours": 1
+            }
+          },
+          "FrameworkVersion": "string",
+          "ClientRequestToken": "string",
+          "MemberConfiguration": {
+            "Name": "string",
+            "Tags": {
+              "string": "string"
+            },
+            "Description": "string",
+            "FrameworkConfiguration": {
+              "Fabric": {
+                "AdminPassword": "string",
+                "AdminUsername": "string"
+              }
+            },
+            "LogPublishingConfiguration": {
+              "Fabric": {
+                "CaLogs": {
+                  "Cloudwatch": {
+                    "Enabled": false
+                  }
+                }
+              }
+            }
+          },
+          "FrameworkConfiguration": {
+            "Fabric": {
+              "Edition": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "MemberId": "string",
+          "NetworkId": "string"
+        }
+      ]
+  CreateNode:
+    description: |-
+      Creates a node on the specified blockchain network.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_CreateNode.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "MemberId": "string",
+          "NetworkId": "string",
+          "NodeConfiguration": {
+            "StateDB": "string",
+            "InstanceType": "string",
+            "AvailabilityZone": "string",
+            "LogPublishingConfiguration": {
+              "Fabric": {
+                "PeerLogs": {
+                  "Cloudwatch": {
+                    "Enabled": false
+                  }
+                },
+                "ChaincodeLogs": {
+                  "Cloudwatch": {
+                    "Enabled": false
+                  }
+                }
+              }
+            }
+          },
+          "ClientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NodeId": "string"
+        }
+      ]
+  CreateProposal:
+    description: |-
+      Creates a proposal for a change to the network that other members of the network can vote on, for example, a proposal to add a new member to the network. Any member can create a proposal.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_CreateProposal.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "Actions": {
+            "Removals": [
+              {
+                "MemberId": "string"
+              }
+            ],
+            "Invitations": [
+              {
+                "Principal": "string"
+              }
+            ]
+          },
+          "MemberId": "string",
+          "NetworkId": "string",
+          "Description": "string",
+          "ClientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ProposalId": "string"
+        }
+      ]
+  DeleteMember:
+    description: |-
+      Deletes a member. Deleting a member removes the member and all associated resources from the network. DeleteMember can only be called for a specified MemberId if the principal performing the action is associated with the AWS account that owns the member. In all other cases, the DeleteMember action is carried out as the result of an approved proposal to remove a member. If MemberId is the last member in a network specified by the last AWS account, the network is deleted also.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_DeleteMember.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteNode:
+    description: |-
+      Deletes a node that your AWS account owns. All data on the node is lost and cannot be recovered.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_DeleteNode.html
+    example:
+      inputs: [
+        {
+          "NodeId": "string",
+          "MemberId": "string",
+          "NetworkId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetMember:
+    description: |-
+      Returns detailed information about a member.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_GetMember.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Member": {
+            "Id": "string",
+            "Arn": "string",
+            "Name": "string",
+            "Tags": {
+              "string": "string"
+            },
+            "Status": "string",
+            "NetworkId": "string",
+            "Description": "string",
+            "CreationDate": 1481289211.615,
+            "FrameworkAttributes": {
+              "Fabric": {
+                "CaEndpoint": "string",
+                "AdminUsername": "string"
+              }
+            },
+            "LogPublishingConfiguration": {
+              "Fabric": {
+                "CaLogs": {
+                  "Cloudwatch": {
+                    "Enabled": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+  GetNetwork:
+    description: |-
+      Returns detailed information about a network.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_GetNetwork.html
+    example:
+      inputs: [
+        {
+          "NetworkId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Network": {
+            "Id": "string",
+            "Arn": "string",
+            "Name": "string",
+            "Tags": {
+              "string": "string"
+            },
+            "Status": "string",
+            "Framework": "string",
+            "Description": "string",
+            "CreationDate": 1481289211.615,
+            "VotingPolicy": {
+              "ApprovalThresholdPolicy": {
+                "ThresholdComparator": "string",
+                "ThresholdPercentage": 1,
+                "ProposalDurationInHours": 1
+              }
+            },
+            "FrameworkVersion": "string",
+            "FrameworkAttributes": {
+              "Fabric": {
+                "Edition": "string",
+                "OrderingServiceEndpoint": "string"
+              },
+              "Ethereum": {
+                "ChainId": "string"
+              }
+            },
+            "VpcEndpointServiceName": "string"
+          }
+        }
+      ]
+  GetNode:
+    description: |-
+      Returns detailed information about a node.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_GetNode.html
+    example:
+      inputs: [
+        {
+          "NodeId": "string",
+          "MemberId": "string",
+          "NetworkId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Node": {
+            "Id": "string",
+            "Arn": "string",
+            "Tags": {
+              "string": "string"
+            },
+            "Status": "string",
+            "StateDB": "string",
+            "MemberId": "string",
+            "NetworkId": "string",
+            "CreationDate": 1481289211.615,
+            "InstanceType": "string",
+            "AvailabilityZone": "string",
+            "FrameworkAttributes": {
+              "Fabric": {
+                "PeerEndpoint": "string",
+                "PeerEventEndpoint": "string"
+              },
+              "Ethereum": {
+                "HttpEndpoint": "string",
+                "WebSocketEndpoint": "string"
+              }
+            },
+            "LogPublishingConfiguration": {
+              "Fabric": {
+                "PeerLogs": {
+                  "Cloudwatch": {
+                    "Enabled": false
+                  }
+                },
+                "ChaincodeLogs": {
+                  "Cloudwatch": {
+                    "Enabled": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+  GetProposal:
+    description: |-
+      Returns detailed information about a proposal.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_GetProposal.html
+    example:
+      inputs: [
+        {
+          "NetworkId": "string",
+          "ProposalId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Proposal": {
+            "Arn": "string",
+            "Tags": {
+              "string": "string"
+            },
+            "Status": "string",
+            "Actions": {
+              "Removals": [
+                {
+                  "MemberId": "string"
+                }
+              ],
+              "Invitations": [
+                {
+                  "Principal": "string"
+                }
+              ]
+            },
+            "NetworkId": "string",
+            "ProposalId": "string",
+            "Description": "string",
+            "NoVoteCount": 1,
+            "CreationDate": 1481289211.615,
+            "YesVoteCount": 1,
+            "ExpirationDate": 1481289211.615,
+            "ProposedByMemberId": "string",
+            "OutstandingVoteCount": 1,
+            "ProposedByMemberName": "string"
+          }
+        }
+      ]
+  ListInvitations:
+    description: |-
+      Returns a list of all invitations for the current AWS account.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_ListInvitations.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Invitations": [
+            {
+              "Arn": "string",
+              "Status": "string",
+              "CreationDate": 1481289211.615,
+              "InvitationId": "string",
+              "ExpirationDate": 1481289211.615,
+              "NetworkSummary": {
+                "Id": "string",
+                "Arn": "string",
+                "Name": "string",
+                "Status": "string",
+                "Framework": "string",
+                "Description": "string",
+                "CreationDate": 1481289211.615,
+                "FrameworkVersion": "string"
+              }
+            }
+          ]
+        }
+      ]
+  ListMembers:
+    description: |-
+      Returns a list of the members in a network and properties of their configurations.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_ListMembers.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Status": "string",
+          "IsOwned": false,
+          "NetworkId": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Members": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Name": "string",
+              "Status": "string",
+              "IsOwned": false,
+              "Description": "string",
+              "CreationDate": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListNetworks:
+    description: |-
+      Returns information about the networks in which the current AWS account participates.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_ListNetworks.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Status": "string",
+          "Framework": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Networks": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Name": "string",
+              "Status": "string",
+              "Framework": "string",
+              "Description": "string",
+              "CreationDate": 1481289211.615,
+              "FrameworkVersion": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListNodes:
+    description: |-
+      Returns information about the nodes within a network.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_ListNodes.html
+    example:
+      inputs: [
+        {
+          "Status": "string",
+          "MemberId": "string",
+          "NetworkId": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Nodes": [
+            {
+              "Id": "string",
+              "Arn": "string",
+              "Status": "string",
+              "CreationDate": 1481289211.615,
+              "InstanceType": "string",
+              "AvailabilityZone": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListProposals:
+    description: |-
+      Returns a list of proposals for the network.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_ListProposals.html
+    example:
+      inputs: [
+        {
+          "NetworkId": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Proposals": [
+            {
+              "Arn": "string",
+              "Status": "string",
+              "ProposalId": "string",
+              "Description": "string",
+              "CreationDate": 1481289211.615,
+              "ExpirationDate": 1481289211.615,
+              "ProposedByMemberId": "string",
+              "ProposedByMemberName": "string"
+            }
+          ]
+        }
+      ]
+  ListProposalVotes:
+    description: |-
+      Returns the list of votes for a specified proposal, including the value of each vote and the unique identifier of the member that cast the vote.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_ListProposalVotes.html
+    example:
+      inputs: [
+        {
+          "NetworkId": "string",
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ProposalId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ProposalVotes": [
+            {
+              "Vote": "string",
+              "MemberId": "string",
+              "MemberName": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns a list of tags for the specified resource. Each tag consists of a key and optional value.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  RejectInvitation:
+    description: |-
+      Rejects an invitation to join a network. This action can be called by a principal in an AWS account that has received an invitation to create a member and join a network.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_RejectInvitation.html
+    example:
+      inputs: [
+        {
+          "InvitationId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Adds or overwrites the specified tags for the specified Amazon Managed Blockchain resource. Each tag consists of a key and optional value.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes the specified tags from the Amazon Managed Blockchain resource.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateMember:
+    description: |-
+      Updates a member configuration with new parameters.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_UpdateMember.html
+    example:
+      inputs: [
+        {
+          "MemberId": "string",
+          "NetworkId": "string",
+          "LogPublishingConfiguration": {
+            "Fabric": {
+              "CaLogs": {
+                "Cloudwatch": {
+                  "Enabled": false
+                }
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateNode:
+    description: |-
+      Updates a node configuration with new parameters.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_UpdateNode.html
+    example:
+      inputs: [
+        {
+          "NodeId": "string",
+          "MemberId": "string",
+          "NetworkId": "string",
+          "LogPublishingConfiguration": {
+            "Fabric": {
+              "PeerLogs": {
+                "Cloudwatch": {
+                  "Enabled": false
+                }
+              },
+              "ChaincodeLogs": {
+                "Cloudwatch": {
+                  "Enabled": false
+                }
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  VoteOnProposal:
+    description: |-
+      Casts a vote for a specified ProposalId on behalf of a member. The member to vote as, specified by VoterMemberId, must be in the same AWS account as the principal that calls the action.
+    versions:
+      from: 2018.9.24
+    link: https://docs.aws.amazon.com/managed-blockchain/latest/APIReference/API_VoteOnProposal.html
+    example:
+      inputs: [
+        {
+          "Vote": "string",
+          "NetworkId": "string",
+          "ProposalId": "string",
+          "VoterMemberId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

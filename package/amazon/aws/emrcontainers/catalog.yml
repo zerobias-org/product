@@ -1,0 +1,609 @@
+Product:
+  name: Amazon EMR Containers
+  versions: [2020.10.1]
+  package: amazon.aws.emrcontainers
+  description: |-
+    Amazon EMR Containers
+  link: https://docs.aws.amazon.com/emr-on-eks/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CancelJobRun:
+    description: |-
+      Cancels a job run. A job run is a unit of work, such as a Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS.
+    versions:
+      from: 2020.10.1
+    link: https://docs.aws.amazon.com/emr-on-eks/latest/APIReference/API_CancelJobRun.html
+    example:
+      inputs: [
+        {
+          "jobRunId": "string",
+          "virtualClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "id": "string",
+          "virtualClusterId": "string"
+        }
+      ]
+  CreateManagedEndpoint:
+    description: |-
+      Creates a managed endpoint. A managed endpoint is a gateway that connects EMR Studio to Amazon EMR on EKS so that EMR Studio can communicate with your virtual cluster.
+    versions:
+      from: 2020.10.1
+    link: https://docs.aws.amazon.com/emr-on-eks/latest/APIReference/API_CreateManagedEndpoint.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "tags": {
+            "string": "string"
+          },
+          "type": "string",
+          "clientToken": "string",
+          "releaseLabel": "string",
+          "certificateArn": "string",
+          "executionRoleArn": "string",
+          "virtualClusterId": "string",
+          "configurationOverrides": {
+            "monitoringConfiguration": {
+              "persistentAppUI": "string",
+              "s3MonitoringConfiguration": {
+                "logUri": "string"
+              },
+              "cloudWatchMonitoringConfiguration": {
+                "logGroupName": "string",
+                "logStreamNamePrefix": "string"
+              }
+            },
+            "applicationConfiguration": [
+              {
+                "properties": {
+                  "string": "string"
+                },
+                "classification": "string",
+                "configurations": [
+                  "Configuration"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "string",
+          "arn": "string",
+          "name": "string",
+          "virtualClusterId": "string"
+        }
+      ]
+  CreateVirtualCluster:
+    description: |-
+      Creates a virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.
+    versions:
+      from: 2020.10.1
+    link: https://docs.aws.amazon.com/emr-on-eks/latest/APIReference/API_CreateVirtualCluster.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "tags": {
+            "string": "string"
+          },
+          "clientToken": "string",
+          "containerProvider": {
+            "id": "string",
+            "info": {
+              "eksInfo": {
+                "namespace": "string"
+              }
+            },
+            "type": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "string",
+          "arn": "string",
+          "name": "string"
+        }
+      ]
+  DeleteManagedEndpoint:
+    description: |-
+      Deletes a managed endpoint. A managed endpoint is a gateway that connects EMR Studio to Amazon EMR on EKS so that EMR Studio can communicate with your virtual cluster.
+    versions:
+      from: 2020.10.1
+    link: https://docs.aws.amazon.com/emr-on-eks/latest/APIReference/API_DeleteManagedEndpoint.html
+    example:
+      inputs: [
+        {
+          "endpointId": "string",
+          "virtualClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "id": "string",
+          "virtualClusterId": "string"
+        }
+      ]
+  DeleteVirtualCluster:
+    description: |-
+      Deletes a virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.
+    versions:
+      from: 2020.10.1
+    link: https://docs.aws.amazon.com/emr-on-eks/latest/APIReference/API_DeleteVirtualCluster.html
+    example:
+      inputs: [
+        {
+          "virtualClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "id": "string"
+        }
+      ]
+  DescribeJobRun:
+    description: |-
+      Displays detailed information about a job run. A job run is a unit of work, such as a Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS.
+    versions:
+      from: 2020.10.1
+    link: https://docs.aws.amazon.com/emr-on-eks/latest/APIReference/API_DescribeJobRun.html
+    example:
+      inputs: [
+        {
+          "jobRunId": "string",
+          "virtualClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "jobRun": {
+            "id": "string",
+            "arn": "string",
+            "name": "string",
+            "tags": {
+              "string": "string"
+            },
+            "state": "string",
+            "createdAt": "number",
+            "createdBy": "string",
+            "jobDriver": {
+              "sparkSubmitJobDriver": {
+                "entryPoint": "string",
+                "entryPointArguments": [
+                  "string"
+                ],
+                "sparkSubmitParameters": "string"
+              }
+            },
+            "finishedAt": "number",
+            "clientToken": "string",
+            "releaseLabel": "string",
+            "stateDetails": "string",
+            "failureReason": "string",
+            "executionRoleArn": "string",
+            "virtualClusterId": "string",
+            "configurationOverrides": {
+              "monitoringConfiguration": {
+                "persistentAppUI": "string",
+                "s3MonitoringConfiguration": {
+                  "logUri": "string"
+                },
+                "cloudWatchMonitoringConfiguration": {
+                  "logGroupName": "string",
+                  "logStreamNamePrefix": "string"
+                }
+              },
+              "applicationConfiguration": [
+                {
+                  "properties": {
+                    "string": "string"
+                  },
+                  "classification": "string",
+                  "configurations": [
+                    "Configuration"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ]
+  DescribeManagedEndpoint:
+    description: |-
+      Displays detailed information about a managed endpoint. A managed endpoint is a gateway that connects EMR Studio to Amazon EMR on EKS so that EMR Studio can communicate with your virtual cluster.
+    versions:
+      from: 2020.10.1
+    link: https://docs.aws.amazon.com/emr-on-eks/latest/APIReference/API_DescribeManagedEndpoint.html
+    example:
+      inputs: [
+        {
+          "endpointId": "string",
+          "virtualClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "endpoint": {
+            "id": "string",
+            "arn": "string",
+            "name": "string",
+            "tags": {
+              "string": "string"
+            },
+            "type": "string",
+            "state": "string",
+            "createdAt": "number",
+            "serverUrl": "string",
+            "subnetIds": [
+              "string"
+            ],
+            "releaseLabel": "string",
+            "securityGroup": "string",
+            "certificateArn": "string",
+            "executionRoleArn": "string",
+            "virtualClusterId": "string",
+            "configurationOverrides": {
+              "monitoringConfiguration": {
+                "persistentAppUI": "string",
+                "s3MonitoringConfiguration": {
+                  "logUri": "string"
+                },
+                "cloudWatchMonitoringConfiguration": {
+                  "logGroupName": "string",
+                  "logStreamNamePrefix": "string"
+                }
+              },
+              "applicationConfiguration": [
+                {
+                  "properties": {
+                    "string": "string"
+                  },
+                  "classification": "string",
+                  "configurations": [
+                    "Configuration"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ]
+  DescribeVirtualCluster:
+    description: |-
+      Displays detailed information about a specified virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.
+    versions:
+      from: 2020.10.1
+    link: https://docs.aws.amazon.com/emr-on-eks/latest/APIReference/API_DescribeVirtualCluster.html
+    example:
+      inputs: [
+        {
+          "virtualClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "virtualCluster": {
+            "id": "string",
+            "arn": "string",
+            "name": "string",
+            "tags": {
+              "string": "string"
+            },
+            "state": "string",
+            "createdAt": "number",
+            "containerProvider": {
+              "id": "string",
+              "info": {
+                "eksInfo": {
+                  "namespace": "string"
+                }
+              },
+              "type": "string"
+            }
+          }
+        }
+      ]
+  ListJobRuns:
+    description: |-
+      Lists job runs based on a set of parameters. A job run is a unit of work, such as a Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS.
+    versions:
+      from: 2020.10.1
+    link: https://docs.aws.amazon.com/emr-on-eks/latest/APIReference/API_ListJobRuns.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "states": "string",
+          "nextToken": "string",
+          "maxResults": "string",
+          "createdAfter": "string",
+          "createdBefore": "string",
+          "virtualClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "jobRuns": [
+            {
+              "id": "string",
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "state": "string",
+              "createdAt": "number",
+              "createdBy": "string",
+              "jobDriver": {
+                "sparkSubmitJobDriver": {
+                  "entryPoint": "string",
+                  "entryPointArguments": [
+                    "string"
+                  ],
+                  "sparkSubmitParameters": "string"
+                }
+              },
+              "finishedAt": "number",
+              "clientToken": "string",
+              "releaseLabel": "string",
+              "stateDetails": "string",
+              "failureReason": "string",
+              "executionRoleArn": "string",
+              "virtualClusterId": "string",
+              "configurationOverrides": {
+                "monitoringConfiguration": {
+                  "persistentAppUI": "string",
+                  "s3MonitoringConfiguration": {
+                    "logUri": "string"
+                  },
+                  "cloudWatchMonitoringConfiguration": {
+                    "logGroupName": "string",
+                    "logStreamNamePrefix": "string"
+                  }
+                },
+                "applicationConfiguration": [
+                  {
+                    "properties": {
+                      "string": "string"
+                    },
+                    "classification": "string",
+                    "configurations": [
+                      "Configuration"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListManagedEndpoints:
+    description: |-
+      Lists managed endpoints based on a set of parameters. A managed endpoint is a gateway that connects EMR Studio to Amazon EMR on EKS so that EMR Studio can communicate with your virtual cluster.
+    versions:
+      from: 2020.10.1
+    link: https://docs.aws.amazon.com/emr-on-eks/latest/APIReference/API_ListManagedEndpoints.html
+    example:
+      inputs: [
+        {
+          "types": "string",
+          "states": "string",
+          "nextToken": "string",
+          "maxResults": "string",
+          "createdAfter": "string",
+          "createdBefore": "string",
+          "virtualClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "endpoints": [
+            {
+              "id": "string",
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "type": "string",
+              "state": "string",
+              "createdAt": "number",
+              "serverUrl": "string",
+              "subnetIds": [
+                "string"
+              ],
+              "releaseLabel": "string",
+              "securityGroup": "string",
+              "certificateArn": "string",
+              "executionRoleArn": "string",
+              "virtualClusterId": "string",
+              "configurationOverrides": {
+                "monitoringConfiguration": {
+                  "persistentAppUI": "string",
+                  "s3MonitoringConfiguration": {
+                    "logUri": "string"
+                  },
+                  "cloudWatchMonitoringConfiguration": {
+                    "logGroupName": "string",
+                    "logStreamNamePrefix": "string"
+                  }
+                },
+                "applicationConfiguration": [
+                  {
+                    "properties": {
+                      "string": "string"
+                    },
+                    "classification": "string",
+                    "configurations": [
+                      "Configuration"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists the tags assigned to the resources.
+    versions:
+      from: 2020.10.1
+    link: https://docs.aws.amazon.com/emr-on-eks/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": {
+            "string": "string"
+          }
+        }
+      ]
+  ListVirtualClusters:
+    description: |-
+      Lists information about the specified virtual cluster. Virtual cluster is a managed entity on Amazon EMR on EKS. You can create, describe, list and delete virtual clusters. They do not consume any additional resource in your system. A single virtual cluster maps to a single Kubernetes namespace. Given this relationship, you can model virtual clusters the same way you model Kubernetes namespaces to meet your requirements.
+    versions:
+      from: 2020.10.1
+    link: https://docs.aws.amazon.com/emr-on-eks/latest/APIReference/API_ListVirtualClusters.html
+    example:
+      inputs: [
+        {
+          "states": "string",
+          "nextToken": "string",
+          "maxResults": "string",
+          "createdAfter": "string",
+          "createdBefore": "string",
+          "containerProviderId": "string",
+          "containerProviderType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "virtualClusters": [
+            {
+              "id": "string",
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "state": "string",
+              "createdAt": "number",
+              "containerProvider": {
+                "id": "string",
+                "info": {
+                  "eksInfo": {
+                    "namespace": "string"
+                  }
+                },
+                "type": "string"
+              }
+            }
+          ]
+        }
+      ]
+  StartJobRun:
+    description: |-
+      Starts a job run. A job run is a unit of work, such as a Spark jar, PySpark script, or SparkSQL query, that you submit to Amazon EMR on EKS.
+    versions:
+      from: 2020.10.1
+    link: https://docs.aws.amazon.com/emr-on-eks/latest/APIReference/API_StartJobRun.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "tags": {
+            "string": "string"
+          },
+          "jobDriver": {
+            "sparkSubmitJobDriver": {
+              "entryPoint": "string",
+              "entryPointArguments": [
+                "string"
+              ],
+              "sparkSubmitParameters": "string"
+            }
+          },
+          "clientToken": "string",
+          "releaseLabel": "string",
+          "executionRoleArn": "string",
+          "virtualClusterId": "string",
+          "configurationOverrides": {
+            "monitoringConfiguration": {
+              "persistentAppUI": "string",
+              "s3MonitoringConfiguration": {
+                "logUri": "string"
+              },
+              "cloudWatchMonitoringConfiguration": {
+                "logGroupName": "string",
+                "logStreamNamePrefix": "string"
+              }
+            },
+            "applicationConfiguration": [
+              {
+                "properties": {
+                  "string": "string"
+                },
+                "classification": "string",
+                "configurations": [
+                  "Configuration"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "string",
+          "arn": "string",
+          "name": "string",
+          "virtualClusterId": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Assigns tags to resources. A tag is a label that you assign to an AWS resource. Each tag consists of a key and an optional value, both of which you define. Tags enable you to categorize your AWS resources by attributes such as purpose, owner, or environment. When you have many resources of the same type, you can quickly identify a specific resource based on the tags you've assigned to it. For example, you can define a set of tags for your Amazon EMR on EKS clusters to help you track each cluster's owner and stack level. We recommend that you devise a consistent set of tag keys for each resource type. You can then search and filter the resources based on the tags that you add.
+    versions:
+      from: 2020.10.1
+    link: https://docs.aws.amazon.com/emr-on-eks/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes tags from resources.
+    versions:
+      from: 2020.10.1
+    link: https://docs.aws.amazon.com/emr-on-eks/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": "string",
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

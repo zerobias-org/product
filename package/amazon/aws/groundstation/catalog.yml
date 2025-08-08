@@ -1,0 +1,907 @@
+Product:
+  name: AWS Ground Station
+  versions: [2019.5.23]
+  package: amazon.aws.groundstation
+  description: |-
+    AWS Ground Station
+  link: https://docs.aws.amazon.com/ground-station/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CancelContact:
+    description: |-
+      Cancels a contact with a specified contact ID.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_CancelContact.html
+    example:
+      inputs: [
+        {
+          "contactId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateConfig:
+    description: |-
+      Creates a Config with the specified configData parameters.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_CreateConfig.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "tags": {
+            "string": "string"
+          },
+          "configData": {
+            "trackingConfig": {
+              "autotrack": "string"
+            },
+            "uplinkEchoConfig": {
+              "enabled": false,
+              "antennaUplinkConfigArn": "string"
+            },
+            "s3RecordingConfig": {
+              "prefix": "string",
+              "roleArn": "string",
+              "bucketArn": "string"
+            },
+            "antennaUplinkConfig": {
+              "targetEirp": {
+                "units": "string",
+                "value": 0.1
+              },
+              "spectrumConfig": {
+                "polarization": "string",
+                "centerFrequency": {
+                  "units": "string",
+                  "value": 0.1
+                }
+              },
+              "transmitDisabled": false
+            },
+            "antennaDownlinkConfig": {
+              "spectrumConfig": {
+                "bandwidth": {
+                  "units": "string",
+                  "value": 0.1
+                },
+                "polarization": "string",
+                "centerFrequency": {
+                  "units": "string",
+                  "value": 0.1
+                }
+              }
+            },
+            "dataflowEndpointConfig": {
+              "dataflowEndpointName": "string",
+              "dataflowEndpointRegion": "string"
+            },
+            "antennaDownlinkDemodDecodeConfig": {
+              "decodeConfig": {
+                "unvalidatedJSON": "string"
+              },
+              "spectrumConfig": {
+                "bandwidth": {
+                  "units": "string",
+                  "value": 0.1
+                },
+                "polarization": "string",
+                "centerFrequency": {
+                  "units": "string",
+                  "value": 0.1
+                }
+              },
+              "demodulationConfig": {
+                "unvalidatedJSON": "string"
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "configId": "string",
+          "configArn": "string",
+          "configType": "string"
+        }
+      ]
+  CreateDataflowEndpointGroup:
+    description: |-
+      Creates a DataflowEndpoint group containing the specified list of DataflowEndpoint objects.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_CreateDataflowEndpointGroup.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "endpointDetails": [
+            {
+              "endpoint": {
+                "mtu": 1,
+                "name": "string",
+                "status": "string",
+                "address": {
+                  "name": "string",
+                  "port": 1
+                }
+              },
+              "securityDetails": {
+                "roleArn": "string",
+                "subnetIds": [
+                  "string"
+                ],
+                "securityGroupIds": [
+                  "string"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "dataflowEndpointGroupId": "string"
+        }
+      ]
+  CreateMissionProfile:
+    description: |-
+      Creates a mission profile.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_CreateMissionProfile.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "tags": {
+            "string": "string"
+          },
+          "dataflowEdges": [
+            {
+              "0": "string"
+            }
+          ],
+          "trackingConfigArn": "string",
+          "contactPrePassDurationSeconds": 1,
+          "contactPostPassDurationSeconds": 1,
+          "minimumViableContactDurationSeconds": 1
+        }
+      ]
+      outputs: [
+        {
+          "missionProfileId": "string"
+        }
+      ]
+  DeleteConfig:
+    description: |-
+      Deletes a Config.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_DeleteConfig.html
+    example:
+      inputs: [
+        {
+          "configId": "string",
+          "configType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "configId": "string",
+          "configArn": "string",
+          "configType": "string"
+        }
+      ]
+  DeleteDataflowEndpointGroup:
+    description: |-
+      Deletes a dataflow endpoint group.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_DeleteDataflowEndpointGroup.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "dataflowEndpointGroupId": "string"
+        }
+      ]
+  DeleteMissionProfile:
+    description: |-
+      Deletes a mission profile.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_DeleteMissionProfile.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "missionProfileId": "string"
+        }
+      ]
+  DescribeContact:
+    description: |-
+      Describes an existing contact.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_DescribeContact.html
+    example:
+      inputs: [
+        {
+          "contactId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "region": "string",
+          "endTime": 1481289211.615,
+          "contactId": "string",
+          "startTime": 1481289211.615,
+          "dataflowList": [
+            {
+              "source": {
+                "configId": "string",
+                "configType": "string",
+                "configDetails": {
+                  "endpointDetails": {
+                    "endpoint": {
+                      "mtu": 1,
+                      "name": "string",
+                      "status": "string",
+                      "address": {
+                        "name": "string",
+                        "port": 1
+                      }
+                    },
+                    "securityDetails": {
+                      "roleArn": "string",
+                      "subnetIds": [
+                        "string"
+                      ],
+                      "securityGroupIds": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "s3RecordingDetails": {
+                    "bucketArn": "string",
+                    "keyTemplate": "string"
+                  },
+                  "antennaDemodDecodeDetails": {
+                    "outputNode": "string"
+                  }
+                },
+                "dataflowSourceRegion": "string"
+              },
+              "destination": {
+                "configId": "string",
+                "configType": "string",
+                "configDetails": {
+                  "endpointDetails": {
+                    "endpoint": {
+                      "mtu": 1,
+                      "name": "string",
+                      "status": "string",
+                      "address": {
+                        "name": "string",
+                        "port": 1
+                      }
+                    },
+                    "securityDetails": {
+                      "roleArn": "string",
+                      "subnetIds": [
+                        "string"
+                      ],
+                      "securityGroupIds": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "s3RecordingDetails": {
+                    "bucketArn": "string",
+                    "keyTemplate": "string"
+                  },
+                  "antennaDemodDecodeDetails": {
+                    "outputNode": "string"
+                  }
+                },
+                "dataflowDestinationRegion": "string"
+              },
+              "errorMessage": "string"
+            }
+          ],
+          "errorMessage": "string",
+          "satelliteArn": "string",
+          "contactStatus": "string",
+          "groundStation": "string",
+          "postPassEndTime": 1481289211.615,
+          "maximumElevation": {
+            "unit": "string",
+            "value": 0.1
+          },
+          "prePassStartTime": 1481289211.615,
+          "missionProfileArn": "string"
+        }
+      ]
+  GetConfig:
+    description: |-
+      Returns Config information.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_GetConfig.html
+    example:
+      inputs: [
+        {
+          "configId": "string",
+          "configType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "name": "string",
+          "tags": {
+            "string": "string"
+          },
+          "configId": "string",
+          "configArn": "string",
+          "configData": {
+            "trackingConfig": {
+              "autotrack": "string"
+            },
+            "uplinkEchoConfig": {
+              "enabled": false,
+              "antennaUplinkConfigArn": "string"
+            },
+            "s3RecordingConfig": {
+              "prefix": "string",
+              "roleArn": "string",
+              "bucketArn": "string"
+            },
+            "antennaUplinkConfig": {
+              "targetEirp": {
+                "units": "string",
+                "value": 0.1
+              },
+              "spectrumConfig": {
+                "polarization": "string",
+                "centerFrequency": {
+                  "units": "string",
+                  "value": 0.1
+                }
+              },
+              "transmitDisabled": false
+            },
+            "antennaDownlinkConfig": {
+              "spectrumConfig": {
+                "bandwidth": {
+                  "units": "string",
+                  "value": 0.1
+                },
+                "polarization": "string",
+                "centerFrequency": {
+                  "units": "string",
+                  "value": 0.1
+                }
+              }
+            },
+            "dataflowEndpointConfig": {
+              "dataflowEndpointName": "string",
+              "dataflowEndpointRegion": "string"
+            },
+            "antennaDownlinkDemodDecodeConfig": {
+              "decodeConfig": {
+                "unvalidatedJSON": "string"
+              },
+              "spectrumConfig": {
+                "bandwidth": {
+                  "units": "string",
+                  "value": 0.1
+                },
+                "polarization": "string",
+                "centerFrequency": {
+                  "units": "string",
+                  "value": 0.1
+                }
+              },
+              "demodulationConfig": {
+                "unvalidatedJSON": "string"
+              }
+            }
+          },
+          "configType": "string"
+        }
+      ]
+  GetDataflowEndpointGroup:
+    description: |-
+      Returns the dataflow endpoint group.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_GetDataflowEndpointGroup.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "endpointsDetails": [
+            {
+              "endpoint": {
+                "mtu": 1,
+                "name": "string",
+                "status": "string",
+                "address": {
+                  "name": "string",
+                  "port": 1
+                }
+              },
+              "securityDetails": {
+                "roleArn": "string",
+                "subnetIds": [
+                  "string"
+                ],
+                "securityGroupIds": [
+                  "string"
+                ]
+              }
+            }
+          ],
+          "dataflowEndpointGroupId": "string",
+          "dataflowEndpointGroupArn": "string"
+        }
+      ]
+  GetMinuteUsage:
+    description: |-
+      Returns the number of minutes used by account.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_GetMinuteUsage.html
+    example:
+      inputs: [
+        {
+          "year": 1,
+          "month": 1
+        }
+      ]
+      outputs: [
+        {
+          "totalScheduledMinutes": 1,
+          "upcomingMinutesScheduled": 1,
+          "estimatedMinutesRemaining": 1,
+          "isReservedMinutesCustomer": false,
+          "totalReservedMinuteAllocation": 1
+        }
+      ]
+  GetMissionProfile:
+    description: |-
+      Returns a mission profile.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_GetMissionProfile.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "name": "string",
+          "tags": {
+            "string": "string"
+          },
+          "region": "string",
+          "dataflowEdges": [
+            {
+              "0": "string"
+            }
+          ],
+          "missionProfileId": "string",
+          "missionProfileArn": "string",
+          "trackingConfigArn": "string",
+          "contactPrePassDurationSeconds": 1,
+          "contactPostPassDurationSeconds": 1,
+          "minimumViableContactDurationSeconds": 1
+        }
+      ]
+  GetSatellite:
+    description: |-
+      Returns a satellite.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_GetSatellite.html
+    example:
+      inputs: [
+        {
+          "satelliteId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "satelliteId": "string",
+          "satelliteArn": "string",
+          "groundStations": [
+            "string"
+          ],
+          "noradSatelliteID": 1
+        }
+      ]
+  ListConfigs:
+    description: |-
+      Returns a list of Config objects.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_ListConfigs.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "configList": [
+            {
+              "name": "string",
+              "configId": "string",
+              "configArn": "string",
+              "configType": "string"
+            }
+          ]
+        }
+      ]
+  ListContacts:
+    description: |-
+      Returns a list of contacts.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_ListContacts.html
+    example:
+      inputs: [
+        {
+          "endTime": 1481289211.615,
+          "nextToken": "string",
+          "startTime": 1481289211.615,
+          "maxResults": 1,
+          "statusList": [
+            "string"
+          ],
+          "satelliteArn": "string",
+          "groundStation": "string",
+          "missionProfileArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "contactList": [
+            {
+              "tags": {
+                "string": "string"
+              },
+              "region": "string",
+              "endTime": 1481289211.615,
+              "contactId": "string",
+              "startTime": 1481289211.615,
+              "errorMessage": "string",
+              "satelliteArn": "string",
+              "contactStatus": "string",
+              "groundStation": "string",
+              "postPassEndTime": 1481289211.615,
+              "maximumElevation": {
+                "unit": "string",
+                "value": 0.1
+              },
+              "prePassStartTime": 1481289211.615,
+              "missionProfileArn": "string"
+            }
+          ]
+        }
+      ]
+  ListDataflowEndpointGroups:
+    description: |-
+      Returns a list of DataflowEndpoint groups.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_ListDataflowEndpointGroups.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "dataflowEndpointGroupList": [
+            {
+              "dataflowEndpointGroupId": "string",
+              "dataflowEndpointGroupArn": "string"
+            }
+          ]
+        }
+      ]
+  ListGroundStations:
+    description: |-
+      Returns a list of ground stations.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_ListGroundStations.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "satelliteId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "groundStationList": [
+            {
+              "region": "string",
+              "groundStationId": "string",
+              "groundStationName": "string"
+            }
+          ]
+        }
+      ]
+  ListMissionProfiles:
+    description: |-
+      Returns a list of mission profiles.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_ListMissionProfiles.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "missionProfileList": [
+            {
+              "name": "string",
+              "region": "string",
+              "missionProfileId": "string",
+              "missionProfileArn": "string"
+            }
+          ]
+        }
+      ]
+  ListSatellites:
+    description: |-
+      Returns a list of satellites.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_ListSatellites.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "satellites": [
+            {
+              "satelliteId": "string",
+              "satelliteArn": "string",
+              "groundStations": [
+                "string"
+              ],
+              "noradSatelliteID": 1
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns a list of tags for a specified resource.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": {
+            "string": "string"
+          }
+        }
+      ]
+  ReserveContact:
+    description: |-
+      Reserves a contact using specified parameters.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_ReserveContact.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "endTime": 1481289211.615,
+          "startTime": 1481289211.615,
+          "satelliteArn": "string",
+          "groundStation": "string",
+          "missionProfileArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Assigns a tag to a resource.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Deassigns a resource tag.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateConfig:
+    description: |-
+      Updates the Config used when scheduling contacts.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_UpdateConfig.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "configId": "string",
+          "configData": {
+            "trackingConfig": {
+              "autotrack": "string"
+            },
+            "uplinkEchoConfig": {
+              "enabled": false,
+              "antennaUplinkConfigArn": "string"
+            },
+            "s3RecordingConfig": {
+              "prefix": "string",
+              "roleArn": "string",
+              "bucketArn": "string"
+            },
+            "antennaUplinkConfig": {
+              "targetEirp": {
+                "units": "string",
+                "value": 0.1
+              },
+              "spectrumConfig": {
+                "polarization": "string",
+                "centerFrequency": {
+                  "units": "string",
+                  "value": 0.1
+                }
+              },
+              "transmitDisabled": false
+            },
+            "antennaDownlinkConfig": {
+              "spectrumConfig": {
+                "bandwidth": {
+                  "units": "string",
+                  "value": 0.1
+                },
+                "polarization": "string",
+                "centerFrequency": {
+                  "units": "string",
+                  "value": 0.1
+                }
+              }
+            },
+            "dataflowEndpointConfig": {
+              "dataflowEndpointName": "string",
+              "dataflowEndpointRegion": "string"
+            },
+            "antennaDownlinkDemodDecodeConfig": {
+              "decodeConfig": {
+                "unvalidatedJSON": "string"
+              },
+              "spectrumConfig": {
+                "bandwidth": {
+                  "units": "string",
+                  "value": 0.1
+                },
+                "polarization": "string",
+                "centerFrequency": {
+                  "units": "string",
+                  "value": 0.1
+                }
+              },
+              "demodulationConfig": {
+                "unvalidatedJSON": "string"
+              }
+            }
+          },
+          "configType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "configId": "string",
+          "configArn": "string",
+          "configType": "string"
+        }
+      ]
+  UpdateMissionProfile:
+    description: |-
+      Updates a mission profile.
+    versions:
+      from: 2019.5.23
+    link: https://docs.aws.amazon.com/ground-station/latest/APIReference/API_UpdateMissionProfile.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "dataflowEdges": [
+            {
+              "0": "string"
+            }
+          ],
+          "missionProfileId": "string",
+          "trackingConfigArn": "string",
+          "contactPrePassDurationSeconds": 1,
+          "contactPostPassDurationSeconds": 1,
+          "minimumViableContactDurationSeconds": 1
+        }
+      ]
+      outputs: [
+        {
+          "missionProfileId": "string"
+        }
+      ]

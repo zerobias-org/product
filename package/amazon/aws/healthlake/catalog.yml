@@ -1,0 +1,230 @@
+Product:
+  name: Amazon HealthLake
+  versions: [2017.7.1]
+  package: amazon.aws.healthlake
+  description: |-
+    Amazon HealthLake
+  link: https://docs.aws.amazon.com/healthlake/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CreateFHIRDatastore:
+    description: |-
+      Creates a Data Store that can ingest and export FHIR formatted data.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/healthlake/latest/APIReference/API_CreateFHIRDatastore.html
+    example:
+      inputs: [
+        {
+          "ClientToken": "string",
+          "DatastoreName": "string",
+          "PreloadDataConfig": {
+            "PreloadDataType": "string"
+          },
+          "DatastoreTypeVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DatastoreId": "string",
+          "DatastoreArn": "string",
+          "DatastoreStatus": "string",
+          "DatastoreEndpoint": "string"
+        }
+      ]
+  DeleteFHIRDatastore:
+    description: |-
+      Deletes a Data Store.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/healthlake/latest/APIReference/API_DeleteFHIRDatastore.html
+    example:
+      inputs: [
+        {
+          "DatastoreId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DatastoreId": "string",
+          "DatastoreArn": "string",
+          "DatastoreStatus": "string",
+          "DatastoreEndpoint": "string"
+        }
+      ]
+  DescribeFHIRDatastore:
+    description: |-
+      Gets the properties associated with the FHIR Data Store, including the Data Store ID, Data Store ARN, Data Store name, Data Store status, created at, Data Store type version, and Data Store endpoint.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/healthlake/latest/APIReference/API_DescribeFHIRDatastore.html
+    example:
+      inputs: [
+        {
+          "DatastoreId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DatastoreProperties": {
+            "CreatedAt": 1481289211.615,
+            "DatastoreId": "string",
+            "DatastoreArn": "string",
+            "DatastoreName": "string",
+            "DatastoreStatus": "string",
+            "DatastoreEndpoint": "string",
+            "PreloadDataConfig": {
+              "PreloadDataType": "string"
+            },
+            "DatastoreTypeVersion": "string"
+          }
+        }
+      ]
+  DescribeFHIRExportJob:
+    description: |-
+      Displays the properties of a FHIR export job, including the ID, ARN, name, and the status of the job.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/healthlake/latest/APIReference/API_DescribeFHIRExportJob.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "DatastoreId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ExportJobProperties": {
+            "JobId": "string",
+            "EndTime": 1481289211.615,
+            "JobName": "string",
+            "Message": "string",
+            "JobStatus": "string",
+            "SubmitTime": 1481289211.615,
+            "DatastoreId": "string",
+            "OutputDataConfig": {
+              "S3Uri": "string"
+            },
+            "DataAccessRoleArn": "string"
+          }
+        }
+      ]
+  DescribeFHIRImportJob:
+    description: |-
+      Displays the properties of a FHIR import job, including the ID, ARN, name, and the status of the job.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/healthlake/latest/APIReference/API_DescribeFHIRImportJob.html
+    example:
+      inputs: [
+        {
+          "JobId": "string",
+          "DatastoreId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ImportJobProperties": {
+            "JobId": "string",
+            "EndTime": 1481289211.615,
+            "JobName": "string",
+            "Message": "string",
+            "JobStatus": "string",
+            "SubmitTime": 1481289211.615,
+            "DatastoreId": "string",
+            "InputDataConfig": {
+              "S3Uri": "string"
+            },
+            "DataAccessRoleArn": "string"
+          }
+        }
+      ]
+  ListFHIRDatastores:
+    description: |-
+      Lists all FHIR Data Stores that are in the user’s account, regardless of Data Store status.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/healthlake/latest/APIReference/API_ListFHIRDatastores.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "CreatedAfter": 1481289211.615,
+            "CreatedBefore": 1481289211.615,
+            "DatastoreName": "string",
+            "DatastoreStatus": "string"
+          },
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DatastorePropertiesList": [
+            {
+              "CreatedAt": 1481289211.615,
+              "DatastoreId": "string",
+              "DatastoreArn": "string",
+              "DatastoreName": "string",
+              "DatastoreStatus": "string",
+              "DatastoreEndpoint": "string",
+              "PreloadDataConfig": {
+                "PreloadDataType": "string"
+              },
+              "DatastoreTypeVersion": "string"
+            }
+          ]
+        }
+      ]
+  StartFHIRExportJob:
+    description: |-
+      Begins a FHIR export job.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/healthlake/latest/APIReference/API_StartFHIRExportJob.html
+    example:
+      inputs: [
+        {
+          "JobName": "string",
+          "ClientToken": "string",
+          "DatastoreId": "string",
+          "OutputDataConfig": {
+            "S3Uri": "string"
+          },
+          "DataAccessRoleArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "JobId": "string",
+          "JobStatus": "string",
+          "DatastoreId": "string"
+        }
+      ]
+  StartFHIRImportJob:
+    description: |-
+      Begins a FHIR Import job.
+    versions:
+      from: 2017.7.1
+    link: https://docs.aws.amazon.com/healthlake/latest/APIReference/API_StartFHIRImportJob.html
+    example:
+      inputs: [
+        {
+          "JobName": "string",
+          "ClientToken": "string",
+          "DatastoreId": "string",
+          "InputDataConfig": {
+            "S3Uri": "string"
+          },
+          "DataAccessRoleArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "JobId": "string",
+          "JobStatus": "string",
+          "DatastoreId": "string"
+        }
+      ]

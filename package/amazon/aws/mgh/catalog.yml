@@ -1,0 +1,384 @@
+Product:
+  name: AWS Migration Hub
+  versions: [2017.5.31]
+  package: amazon.aws.mgh
+  description: |-
+    AWS Migration Hub
+  link: https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html
+  contentType: json
+Operations:
+  AssociateCreatedArtifact:
+    description: |-
+      Associates a created artifact of an AWS cloud resource, the target receiving the migration, with the migration task performed by a migration tool.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_AssociateCreatedArtifact.html
+    example:
+      inputs: [
+        {
+          "DryRun": false,
+          "CreatedArtifact": {
+            "Name": "string",
+            "Description": "string"
+          },
+          "MigrationTaskName": "string",
+          "ProgressUpdateStream": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  AssociateDiscoveredResource:
+    description: |-
+      Associates a discovered resource ID from Application Discovery Service with a migration task.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_AssociateDiscoveredResource.html
+    example:
+      inputs: [
+        {
+          "DryRun": false,
+          "MigrationTaskName": "string",
+          "DiscoveredResource": {
+            "Description": "string",
+            "ConfigurationId": "string"
+          },
+          "ProgressUpdateStream": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateProgressUpdateStream:
+    description: |-
+      Creates a progress update stream which is an AWS resource used for access control as well as a namespace for migration task names that is implicitly linked to your AWS account. It must uniquely identify the migration tool as it is used for all updates made by the tool; however, it does not need to be unique for each AWS account because it is scoped to the AWS account.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_CreateProgressUpdateStream.html
+    example:
+      inputs: [
+        {
+          "DryRun": false,
+          "ProgressUpdateStreamName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteProgressUpdateStream:
+    description: |-
+      Deletes a progress update stream, including all of its tasks, which was previously created as an AWS resource used for access control.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_DeleteProgressUpdateStream.html
+    example:
+      inputs: [
+        {
+          "DryRun": false,
+          "ProgressUpdateStreamName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeApplicationState:
+    description: |-
+      Gets the migration status of an application.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_DescribeApplicationState.html
+    example:
+      inputs: [
+        {
+          "ApplicationId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LastUpdatedTime": 1481289211.615,
+          "ApplicationStatus": "string"
+        }
+      ]
+  DescribeMigrationTask:
+    description: |-
+      Retrieves a list of all attributes associated with a specific migration task.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_DescribeMigrationTask.html
+    example:
+      inputs: [
+        {
+          "MigrationTaskName": "string",
+          "ProgressUpdateStream": "string"
+        }
+      ]
+      outputs: [
+        {
+          "MigrationTask": {
+            "Task": {
+              "Status": "string",
+              "StatusDetail": "string",
+              "ProgressPercent": 1
+            },
+            "UpdateDateTime": 1481289211.615,
+            "MigrationTaskName": "string",
+            "ProgressUpdateStream": "string",
+            "ResourceAttributeList": [
+              {
+                "Type": "string",
+                "Value": "string"
+              }
+            ]
+          }
+        }
+      ]
+  DisassociateCreatedArtifact:
+    description: |-
+      Disassociates a created artifact of an AWS resource with a migration task performed by a migration tool that was previously associated.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_DisassociateCreatedArtifact.html
+    example:
+      inputs: [
+        {
+          "DryRun": false,
+          "MigrationTaskName": "string",
+          "CreatedArtifactName": "string",
+          "ProgressUpdateStream": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DisassociateDiscoveredResource:
+    description: |-
+      Disassociate an Application Discovery Service discovered resource from a migration task.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_DisassociateDiscoveredResource.html
+    example:
+      inputs: [
+        {
+          "DryRun": false,
+          "ConfigurationId": "string",
+          "MigrationTaskName": "string",
+          "ProgressUpdateStream": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ImportMigrationTask:
+    description: |-
+      Registers a new migration task which represents a server, database, etc., being migrated to AWS by a migration tool.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_ImportMigrationTask.html
+    example:
+      inputs: [
+        {
+          "DryRun": false,
+          "MigrationTaskName": "string",
+          "ProgressUpdateStream": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListApplicationStates:
+    description: |-
+      Lists all the migration statuses for your applications. If you use the optional ApplicationIds parameter, only the migration statuses for those applications will be returned.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_ListApplicationStates.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ApplicationIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ApplicationStateList": [
+            {
+              "ApplicationId": "string",
+              "LastUpdatedTime": 1481289211.615,
+              "ApplicationStatus": "string"
+            }
+          ]
+        }
+      ]
+  ListCreatedArtifacts:
+    description: |-
+      Lists the created artifacts attached to a given migration task in an update stream.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_ListCreatedArtifacts.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "MigrationTaskName": "string",
+          "ProgressUpdateStream": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CreatedArtifactList": [
+            {
+              "Name": "string",
+              "Description": "string"
+            }
+          ]
+        }
+      ]
+  ListDiscoveredResources:
+    description: |-
+      Lists discovered resources associated with the given MigrationTask.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_ListDiscoveredResources.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "MigrationTaskName": "string",
+          "ProgressUpdateStream": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DiscoveredResourceList": [
+            {
+              "Description": "string",
+              "ConfigurationId": "string"
+            }
+          ]
+        }
+      ]
+  ListMigrationTasks:
+    description: |-
+      Lists all, or filtered by resource name, migration tasks associated with the user account making this call.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_ListMigrationTasks.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "MigrationTaskSummaryList": [
+            {
+              "Status": "string",
+              "StatusDetail": "string",
+              "UpdateDateTime": 1481289211.615,
+              "ProgressPercent": 1,
+              "MigrationTaskName": "string",
+              "ProgressUpdateStream": "string"
+            }
+          ]
+        }
+      ]
+  ListProgressUpdateStreams:
+    description: |-
+      Lists progress update streams associated with the user account making this call.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_ListProgressUpdateStreams.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ProgressUpdateStreamSummaryList": [
+            {
+              "ProgressUpdateStreamName": "string"
+            }
+          ]
+        }
+      ]
+  NotifyApplicationState:
+    description: |-
+      Sets the migration state of an application. For a given application identified by the value passed to ApplicationId, its status is set or updated by passing one of three values to Status:NOT_STARTED | IN_PROGRESS | COMPLETED.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_NotifyApplicationState.html
+    example:
+      inputs: [
+        {
+          "DryRun": false,
+          "Status": "string",
+          "ApplicationId": "string",
+          "UpdateDateTime": 1481289211.615
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  NotifyMigrationTaskState:
+    description: |-
+      Notifies Migration Hub of the current status, progress, or other detail regarding a migration task.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_NotifyMigrationTaskState.html
+    example:
+      inputs: [
+        {
+          "Task": {
+            "Status": "string",
+            "StatusDetail": "string",
+            "ProgressPercent": 1
+          },
+          "DryRun": false,
+          "UpdateDateTime": 1481289211.615,
+          "MigrationTaskName": "string",
+          "NextUpdateSeconds": 1,
+          "ProgressUpdateStream": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutResourceAttributes:
+    description: |-
+      Provides identifying details of the resource being migrated so that it can be associated in the Application Discovery Service repository. This association occurs asynchronously after PutResourceAttributes returns.
+    versions:
+      from: 2017.5.31
+    link: https://docs.aws.amazon.com/migrationhub/latest/ug/API_PutResourceAttributes.html
+    example:
+      inputs: [
+        {
+          "DryRun": false,
+          "MigrationTaskName": "string",
+          "ProgressUpdateStream": "string",
+          "ResourceAttributeList": [
+            {
+              "Type": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]

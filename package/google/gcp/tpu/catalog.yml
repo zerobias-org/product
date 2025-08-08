@@ -1,0 +1,1327 @@
+Product:
+  name: GCP TPU
+  versions: [1.0.0]
+  package: google.gcp.tpu
+  description: |-
+    TPU
+  link: https://cloud.google.com/tpu
+  contentType: json
+Operations:
+  projects.locations.acceleratorTypes.get:
+    description: |-
+      Gets AcceleratorType.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.acceleratorTypes/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "AcceleratorType",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The resource name."
+            },
+            "type": {
+              "type": "string",
+              "description": "the accelerator type."
+            }
+          },
+          "description": "A accelerator type that a Node can be configured with."
+        }
+      ]
+  projects.locations.acceleratorTypes.list:
+    description: |-
+      Lists accelerator types supported by this API.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.acceleratorTypes/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListAcceleratorTypesResponse",
+          "type": "object",
+          "properties": {
+            "unreachable": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Locations that could not be reached."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "The next page token or empty if none."
+            },
+            "acceleratorTypes": {
+              "type": "array",
+              "items": {
+                "id": "AcceleratorType",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The resource name."
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "the accelerator type."
+                  }
+                },
+                "description": "A accelerator type that a Node can be configured with."
+              },
+              "description": "The listed nodes."
+            }
+          },
+          "description": "Response for ListAcceleratorTypes."
+        }
+      ]
+  projects.locations.get:
+    description: |-
+      Gets information about a location.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Location",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+            },
+            "labels": {
+              "type": "object",
+              "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata. For example the available capacity at the given location.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "locationId": {
+              "type": "string",
+              "description": "The canonical id for this location. For example: `\"us-east1\"`."
+            },
+            "displayName": {
+              "type": "string",
+              "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+            }
+          },
+          "description": "A resource that represents Google Cloud Platform location."
+        }
+      ]
+  projects.locations.list:
+    description: |-
+      Lists information about the supported locations for this service.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListLocationsResponse",
+          "type": "object",
+          "properties": {
+            "locations": {
+              "type": "array",
+              "items": {
+                "id": "Location",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+                  },
+                  "labels": {
+                    "type": "object",
+                    "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Service-specific metadata. For example the available capacity at the given location.",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "locationId": {
+                    "type": "string",
+                    "description": "The canonical id for this location. For example: `\"us-east1\"`."
+                  },
+                  "displayName": {
+                    "type": "string",
+                    "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+                  }
+                },
+                "description": "A resource that represents Google Cloud Platform location."
+              },
+              "description": "A list of locations that matches the specified filter in the request."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "The standard List next-page token."
+            }
+          },
+          "description": "The response message for Locations.ListLocations."
+        }
+      ]
+  projects.locations.nodes.create:
+    description: |-
+      Creates a node.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.nodes/create
+    example:
+      inputs: [
+        {
+          "id": "Node",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Immutable. The name of the TPU"
+            },
+            "port": {
+              "type": "string",
+              "description": "Output only. DEPRECATED! Use network_endpoints instead. The network port for the TPU Node as visible to Compute Engine instances."
+            },
+            "state": {
+              "enum": [
+                "STATE_UNSPECIFIED",
+                "CREATING",
+                "READY",
+                "RESTARTING",
+                "REIMAGING",
+                "DELETING",
+                "REPAIRING",
+                "STOPPED",
+                "STOPPING",
+                "STARTING",
+                "PREEMPTED",
+                "TERMINATED",
+                "HIDING",
+                "HIDDEN",
+                "UNHIDING"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The current state for the TPU Node.",
+              "enumDescriptions": [
+                "TPU node state is not known/set.",
+                "TPU node is being created.",
+                "TPU node has been created and is fully usable.",
+                "TPU node is restarting.",
+                "TPU node is undergoing reimaging.",
+                "TPU node is being deleted.",
+                "TPU node is being repaired and may be unusable. Details can be found in the `help_description` field.",
+                "TPU node is stopped.",
+                "TPU node is currently stopping.",
+                "TPU node is currently starting.",
+                "TPU node has been preempted. Only applies to Preemptible TPU Nodes.",
+                "TPU node has been terminated due to maintenance or has reached the end of its life cycle (for preemptible nodes).",
+                "TPU node is currently hiding.",
+                "TPU node has been hidden.",
+                "TPU node is currently unhiding."
+              ]
+            },
+            "health": {
+              "enum": [
+                "HEALTH_UNSPECIFIED",
+                "HEALTHY",
+                "DEPRECATED_UNHEALTHY",
+                "TIMEOUT",
+                "UNHEALTHY_TENSORFLOW",
+                "UNHEALTHY_MAINTENANCE"
+              ],
+              "type": "string",
+              "description": "The health status of the TPU node.",
+              "enumDescriptions": [
+                "Health status is unknown: not initialized or failed to retrieve.",
+                "The resource is healthy.",
+                "The resource is unhealthy.",
+                "The resource is unresponsive.",
+                "The in-guest ML stack is unhealthy.",
+                "The node is under maintenance/priority boost caused rescheduling and will resume running once rescheduled."
+              ]
+            },
+            "labels": {
+              "type": "object",
+              "description": "Resource labels to represent user-provided metadata.",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "network": {
+              "type": "string",
+              "description": "The name of a network they wish to peer the TPU node to. It must be a preexisting Compute Engine network inside of the project on which this API has been activated. If none is provided, \"default\" will be used."
+            },
+            "symptoms": {
+              "type": "array",
+              "items": {
+                "id": "Symptom",
+                "type": "object",
+                "properties": {
+                  "details": {
+                    "type": "string",
+                    "description": "Detailed information of the current Symptom."
+                  },
+                  "workerId": {
+                    "type": "string",
+                    "description": "A string used to uniquely distinguish a worker within a TPU node."
+                  },
+                  "createTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "description": "Timestamp when the Symptom is created."
+                  },
+                  "symptomType": {
+                    "enum": [
+                      "SYMPTOM_TYPE_UNSPECIFIED",
+                      "LOW_MEMORY",
+                      "OUT_OF_MEMORY",
+                      "EXECUTE_TIMED_OUT",
+                      "MESH_BUILD_FAIL",
+                      "HBM_OUT_OF_MEMORY",
+                      "PROJECT_ABUSE"
+                    ],
+                    "type": "string",
+                    "description": "Type of the Symptom.",
+                    "enumDescriptions": [
+                      "Unspecified symptom.",
+                      "TPU VM memory is low.",
+                      "TPU runtime is out of memory.",
+                      "TPU runtime execution has timed out.",
+                      "TPU runtime fails to construct a mesh that recognizes each TPU device's neighbors.",
+                      "TPU HBM is out of memory.",
+                      "Abusive behaviors have been identified on the current project."
+                    ]
+                  }
+                },
+                "description": "A Symptom instance."
+              },
+              "readOnly": true,
+              "description": "Output only. The Symptoms that have occurred to the TPU Node."
+            },
+            "cidrBlock": {
+              "type": "string",
+              "description": "The CIDR block that the TPU node will use when selecting an IP address. This CIDR block must be a /29 block; the Compute Engine networks API forbids a smaller block, and using a larger block would be wasteful (a node can only consume one IP address). Errors will occur if the CIDR block has already been used for a currently existing TPU node, the CIDR block conflicts with any subnetworks in the user's provided network, or the provided network is peered with another network that is using that CIDR block."
+            },
+            "ipAddress": {
+              "type": "string",
+              "description": "Output only. DEPRECATED! Use network_endpoints instead. The network address for the TPU Node as visible to Compute Engine instances."
+            },
+            "apiVersion": {
+              "enum": [
+                "API_VERSION_UNSPECIFIED",
+                "V1_ALPHA1",
+                "V1",
+                "V2_ALPHA1"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The API version that created this Node.",
+              "enumDescriptions": [
+                "API version is unknown.",
+                "TPU API V1Alpha1 version.",
+                "TPU API V1 version.",
+                "TPU API V2Alpha1 version."
+              ]
+            },
+            "createTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. The time when the node was created."
+            },
+            "description": {
+              "type": "string",
+              "description": "The user-supplied description of the TPU. Maximum of 512 characters."
+            },
+            "serviceAccount": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The service account used to run the tensor flow services within the node. To share resources, including Google Cloud Storage data, with the Tensorflow job running in the Node, this account must have permissions to that data."
+            },
+            "acceleratorType": {
+              "type": "string",
+              "description": "Required. The type of hardware accelerators associated with this node."
+            },
+            "networkEndpoints": {
+              "type": "array",
+              "items": {
+                "id": "NetworkEndpoint",
+                "type": "object",
+                "properties": {
+                  "port": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The port of this network endpoint."
+                  },
+                  "ipAddress": {
+                    "type": "string",
+                    "description": "The IP address of this network endpoint."
+                  }
+                },
+                "description": "A network endpoint over which a TPU worker can be reached."
+              },
+              "readOnly": true,
+              "description": "Output only. The network endpoints where TPU workers can be accessed and sent work. It is recommended that Tensorflow clients of the node reach out to the 0th entry in this map first."
+            },
+            "schedulingConfig": {
+              "id": "SchedulingConfig",
+              "type": "object",
+              "properties": {
+                "reserved": {
+                  "type": "boolean",
+                  "description": "Whether the node is created under a reservation."
+                },
+                "preemptible": {
+                  "type": "boolean",
+                  "description": "Defines whether the node is preemptible."
+                }
+              },
+              "description": "The scheduling options for this node."
+            },
+            "healthDescription": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. If this field is populated, it contains a description of why the TPU Node is unhealthy."
+            },
+            "tensorflowVersion": {
+              "type": "string",
+              "description": "Required. The version of Tensorflow running in the Node."
+            },
+            "useServiceNetworking": {
+              "type": "boolean",
+              "description": "Whether the VPC peering for the node is set up through Service Networking API. The VPC Peering should be set up before provisioning the node. If this field is set, cidr_block field should not be specified. If the network, that you want to peer the TPU Node to, is Shared VPC networks, the node must be created with this this field enabled."
+            }
+          },
+          "description": "A TPU instance."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.nodes.delete:
+    description: |-
+      Deletes a node.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.nodes/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.nodes.get:
+    description: |-
+      Gets the details of a node.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.nodes/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  projects.locations.nodes.list:
+    description: |-
+      Lists nodes.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.nodes/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListNodesResponse",
+          "type": "object",
+          "properties": {
+            "nodes": {
+              "type": "array",
+              "items": {
+                "id": "Node",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. Immutable. The name of the TPU"
+                  },
+                  "port": {
+                    "type": "string",
+                    "description": "Output only. DEPRECATED! Use network_endpoints instead. The network port for the TPU Node as visible to Compute Engine instances."
+                  },
+                  "state": {
+                    "enum": [
+                      "STATE_UNSPECIFIED",
+                      "CREATING",
+                      "READY",
+                      "RESTARTING",
+                      "REIMAGING",
+                      "DELETING",
+                      "REPAIRING",
+                      "STOPPED",
+                      "STOPPING",
+                      "STARTING",
+                      "PREEMPTED",
+                      "TERMINATED",
+                      "HIDING",
+                      "HIDDEN",
+                      "UNHIDING"
+                    ],
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. The current state for the TPU Node.",
+                    "enumDescriptions": [
+                      "TPU node state is not known/set.",
+                      "TPU node is being created.",
+                      "TPU node has been created and is fully usable.",
+                      "TPU node is restarting.",
+                      "TPU node is undergoing reimaging.",
+                      "TPU node is being deleted.",
+                      "TPU node is being repaired and may be unusable. Details can be found in the `help_description` field.",
+                      "TPU node is stopped.",
+                      "TPU node is currently stopping.",
+                      "TPU node is currently starting.",
+                      "TPU node has been preempted. Only applies to Preemptible TPU Nodes.",
+                      "TPU node has been terminated due to maintenance or has reached the end of its life cycle (for preemptible nodes).",
+                      "TPU node is currently hiding.",
+                      "TPU node has been hidden.",
+                      "TPU node is currently unhiding."
+                    ]
+                  },
+                  "health": {
+                    "enum": [
+                      "HEALTH_UNSPECIFIED",
+                      "HEALTHY",
+                      "DEPRECATED_UNHEALTHY",
+                      "TIMEOUT",
+                      "UNHEALTHY_TENSORFLOW",
+                      "UNHEALTHY_MAINTENANCE"
+                    ],
+                    "type": "string",
+                    "description": "The health status of the TPU node.",
+                    "enumDescriptions": [
+                      "Health status is unknown: not initialized or failed to retrieve.",
+                      "The resource is healthy.",
+                      "The resource is unhealthy.",
+                      "The resource is unresponsive.",
+                      "The in-guest ML stack is unhealthy.",
+                      "The node is under maintenance/priority boost caused rescheduling and will resume running once rescheduled."
+                    ]
+                  },
+                  "labels": {
+                    "type": "object",
+                    "description": "Resource labels to represent user-provided metadata.",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "network": {
+                    "type": "string",
+                    "description": "The name of a network they wish to peer the TPU node to. It must be a preexisting Compute Engine network inside of the project on which this API has been activated. If none is provided, \"default\" will be used."
+                  },
+                  "symptoms": {
+                    "type": "array",
+                    "items": {
+                      "id": "Symptom",
+                      "type": "object",
+                      "properties": {
+                        "details": {
+                          "type": "string",
+                          "description": "Detailed information of the current Symptom."
+                        },
+                        "workerId": {
+                          "type": "string",
+                          "description": "A string used to uniquely distinguish a worker within a TPU node."
+                        },
+                        "createTime": {
+                          "type": "string",
+                          "format": "google-datetime",
+                          "description": "Timestamp when the Symptom is created."
+                        },
+                        "symptomType": {
+                          "enum": [
+                            "SYMPTOM_TYPE_UNSPECIFIED",
+                            "LOW_MEMORY",
+                            "OUT_OF_MEMORY",
+                            "EXECUTE_TIMED_OUT",
+                            "MESH_BUILD_FAIL",
+                            "HBM_OUT_OF_MEMORY",
+                            "PROJECT_ABUSE"
+                          ],
+                          "type": "string",
+                          "description": "Type of the Symptom.",
+                          "enumDescriptions": [
+                            "Unspecified symptom.",
+                            "TPU VM memory is low.",
+                            "TPU runtime is out of memory.",
+                            "TPU runtime execution has timed out.",
+                            "TPU runtime fails to construct a mesh that recognizes each TPU device's neighbors.",
+                            "TPU HBM is out of memory.",
+                            "Abusive behaviors have been identified on the current project."
+                          ]
+                        }
+                      },
+                      "description": "A Symptom instance."
+                    },
+                    "readOnly": true,
+                    "description": "Output only. The Symptoms that have occurred to the TPU Node."
+                  },
+                  "cidrBlock": {
+                    "type": "string",
+                    "description": "The CIDR block that the TPU node will use when selecting an IP address. This CIDR block must be a /29 block; the Compute Engine networks API forbids a smaller block, and using a larger block would be wasteful (a node can only consume one IP address). Errors will occur if the CIDR block has already been used for a currently existing TPU node, the CIDR block conflicts with any subnetworks in the user's provided network, or the provided network is peered with another network that is using that CIDR block."
+                  },
+                  "ipAddress": {
+                    "type": "string",
+                    "description": "Output only. DEPRECATED! Use network_endpoints instead. The network address for the TPU Node as visible to Compute Engine instances."
+                  },
+                  "apiVersion": {
+                    "enum": [
+                      "API_VERSION_UNSPECIFIED",
+                      "V1_ALPHA1",
+                      "V1",
+                      "V2_ALPHA1"
+                    ],
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. The API version that created this Node.",
+                    "enumDescriptions": [
+                      "API version is unknown.",
+                      "TPU API V1Alpha1 version.",
+                      "TPU API V1 version.",
+                      "TPU API V2Alpha1 version."
+                    ]
+                  },
+                  "createTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "readOnly": true,
+                    "description": "Output only. The time when the node was created."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "The user-supplied description of the TPU. Maximum of 512 characters."
+                  },
+                  "serviceAccount": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. The service account used to run the tensor flow services within the node. To share resources, including Google Cloud Storage data, with the Tensorflow job running in the Node, this account must have permissions to that data."
+                  },
+                  "acceleratorType": {
+                    "type": "string",
+                    "description": "Required. The type of hardware accelerators associated with this node."
+                  },
+                  "networkEndpoints": {
+                    "type": "array",
+                    "items": {
+                      "id": "NetworkEndpoint",
+                      "type": "object",
+                      "properties": {
+                        "port": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "The port of this network endpoint."
+                        },
+                        "ipAddress": {
+                          "type": "string",
+                          "description": "The IP address of this network endpoint."
+                        }
+                      },
+                      "description": "A network endpoint over which a TPU worker can be reached."
+                    },
+                    "readOnly": true,
+                    "description": "Output only. The network endpoints where TPU workers can be accessed and sent work. It is recommended that Tensorflow clients of the node reach out to the 0th entry in this map first."
+                  },
+                  "schedulingConfig": {
+                    "id": "SchedulingConfig",
+                    "type": "object",
+                    "properties": {
+                      "reserved": {
+                        "type": "boolean",
+                        "description": "Whether the node is created under a reservation."
+                      },
+                      "preemptible": {
+                        "type": "boolean",
+                        "description": "Defines whether the node is preemptible."
+                      }
+                    },
+                    "description": "The scheduling options for this node."
+                  },
+                  "healthDescription": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. If this field is populated, it contains a description of why the TPU Node is unhealthy."
+                  },
+                  "tensorflowVersion": {
+                    "type": "string",
+                    "description": "Required. The version of Tensorflow running in the Node."
+                  },
+                  "useServiceNetworking": {
+                    "type": "boolean",
+                    "description": "Whether the VPC peering for the node is set up through Service Networking API. The VPC Peering should be set up before provisioning the node. If this field is set, cidr_block field should not be specified. If the network, that you want to peer the TPU Node to, is Shared VPC networks, the node must be created with this this field enabled."
+                  }
+                },
+                "description": "A TPU instance."
+              },
+              "description": "The listed nodes."
+            },
+            "unreachable": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Locations that could not be reached."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "The next page token or empty if none."
+            }
+          },
+          "description": "Response for ListNodes."
+        }
+      ]
+  projects.locations.nodes.reimage:
+    description: |-
+      Reimages a node's OS.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.nodes/reimage
+    example:
+      inputs: [
+        {
+          "id": "ReimageNodeRequest",
+          "type": "object",
+          "properties": {
+            "tensorflowVersion": {
+              "type": "string",
+              "description": "The version for reimage to create."
+            }
+          },
+          "description": "Request for ReimageNode."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.nodes.start:
+    description: |-
+      Starts a node.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.nodes/start
+    example:
+      inputs: [
+        {
+          "id": "StartNodeRequest",
+          "type": "object",
+          "properties": {},
+          "description": "Request for StartNode."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.nodes.stop:
+    description: |-
+      Stops a node.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.nodes/stop
+    example:
+      inputs: [
+        {
+          "id": "StopNodeRequest",
+          "type": "object",
+          "properties": {},
+          "description": "Request for StopNode."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.operations.cancel:
+    description: |-
+      Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.operations/cancel
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Empty",
+          "type": "object",
+          "properties": {},
+          "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`."
+        }
+      ]
+  projects.locations.operations.delete:
+    description: |-
+      Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.operations/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Empty",
+          "type": "object",
+          "properties": {},
+          "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`."
+        }
+      ]
+  projects.locations.operations.get:
+    description: |-
+      Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.operations/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Operation",
+          "type": "object",
+          "properties": {
+            "done": {
+              "type": "boolean",
+              "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            },
+            "name": {
+              "type": "string",
+              "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            },
+            "error": {
+              "id": "Status",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "The status code, which should be an enum value of google.rpc.Code."
+                },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                },
+                "message": {
+                  "type": "string",
+                  "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                }
+              },
+              "description": "The error result of the operation in case of failure or cancellation."
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            },
+            "response": {
+              "type": "object",
+              "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+              "additionalProperties": {
+                "type": "any",
+                "description": "Properties of the object. Contains field @type with type URL."
+              }
+            }
+          },
+          "description": "This resource represents a long-running operation that is the result of a network API call."
+        }
+      ]
+  projects.locations.operations.list:
+    description: |-
+      Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/*}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.operations/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListOperationsResponse",
+          "type": "object",
+          "properties": {
+            "operations": {
+              "type": "array",
+              "items": {
+                "id": "Operation",
+                "type": "object",
+                "properties": {
+                  "done": {
+                    "type": "boolean",
+                    "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+                  },
+                  "error": {
+                    "id": "Status",
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The status code, which should be an enum value of google.rpc.Code."
+                      },
+                      "details": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "any",
+                            "description": "Properties of the object. Contains field @type with type URL."
+                          }
+                        },
+                        "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                      },
+                      "message": {
+                        "type": "string",
+                        "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                      }
+                    },
+                    "description": "The error result of the operation in case of failure or cancellation."
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  },
+                  "response": {
+                    "type": "object",
+                    "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+                    "additionalProperties": {
+                      "type": "any",
+                      "description": "Properties of the object. Contains field @type with type URL."
+                    }
+                  }
+                },
+                "description": "This resource represents a long-running operation that is the result of a network API call."
+              },
+              "description": "A list of operations that matches the specified filter in the request."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "The standard List next-page token."
+            }
+          },
+          "description": "The response message for Operations.ListOperations."
+        }
+      ]
+  projects.locations.tensorflowVersions.get:
+    description: |-
+      Gets TensorFlow Version.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.tensorflowVersions/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "TensorFlowVersion",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The resource name."
+            },
+            "version": {
+              "type": "string",
+              "description": "the tensorflow version."
+            }
+          },
+          "description": "A tensorflow version that a Node can be configured with."
+        }
+      ]
+  projects.locations.tensorflowVersions.list:
+    description: |-
+      List TensorFlow versions supported by this API.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.tensorflowVersions/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListTensorFlowVersionsResponse",
+          "type": "object",
+          "properties": {
+            "unreachable": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Locations that could not be reached."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "The next page token or empty if none."
+            },
+            "tensorflowVersions": {
+              "type": "array",
+              "items": {
+                "id": "TensorFlowVersion",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The resource name."
+                  },
+                  "version": {
+                    "type": "string",
+                    "description": "the tensorflow version."
+                  }
+                },
+                "description": "A tensorflow version that a Node can be configured with."
+              },
+              "description": "The listed nodes."
+            }
+          },
+          "description": "Response for ListTensorFlowVersions."
+        }
+      ]

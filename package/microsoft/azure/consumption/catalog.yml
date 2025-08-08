@@ -1,0 +1,1753 @@
+Product:
+  name: Azure Consumption
+  versions: [2019.10.1]
+  package: microsoft.azure.consumption
+  description: |-
+    Consumption
+  link: https://docs.microsoft.com/en-us/azure/cost-management-billing/
+  contentType: json
+Operations:
+  AggregatedCost.GetByManagementGroup:
+    description: |-
+      Provides the aggregate cost of a management group and all child management groups by current billing period.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/aggregatedcost/getbymanagementgroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/providers/Microsoft.Management/managementGroups/managementGroupForTest/providers/Microsoft.Consumption/aggregatedcostId1",
+          "name": "aggregatedcostId1",
+          "type": "Microsoft.Consumption/aggregatedcost",
+          "properties": {
+            "children": [
+              {
+                "id": "/providers/Microsoft.Management/managementGroups/managementGroupChildForTest/providers/Microsoft.Consumption/aggregatedcostId2",
+                "name": "aggregatedcostId2",
+                "type": "Microsoft.Consumption/aggregatedcost",
+                "properties": {
+                  "children": [],
+                  "currency": "USD",
+                  "usageEnd": "2018-10-31T00:00:00.0000000Z",
+                  "usageStart": "2019-10-01T00:00:00.0000000Z",
+                  "azureCharges": 150,
+                  "marketplaceCharges": 50.786,
+                  "excludedSubscriptions": [],
+                  "includedSubscriptions": [
+                    "c349567d-c83a-48c9-ab0e-578c69dc97a4"
+                  ],
+                  "chargesBilledSeparately": 30.345
+                }
+              }
+            ],
+            "currency": "USD",
+            "usageEnd": "2018-10-31T00:00:00.0000000Z",
+            "usageStart": "2019-10-01T00:00:00.0000000Z",
+            "azureCharges": 250.9876,
+            "marketplaceCharges": 150.786,
+            "excludedSubscriptions": [],
+            "includedSubscriptions": [
+              "1caaa5a3-2b66-438e-8ab4-bce37d518c5d"
+            ],
+            "chargesBilledSeparately": 120.345
+          }
+        }
+      ]
+  AggregatedCost.GetForBillingPeriodByManagementGroup:
+    description: |-
+      Provides the aggregate cost of a management group and all child management groups by specified billing period
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/aggregatedcost/getforbillingperiodbymanagementgroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/providers/Microsoft.Management/managementGroups/managementGroupForTest/providers/Microsoft.Consumption/aggregatedcostId1",
+          "name": "aggregatedcostId1",
+          "type": "Microsoft.Consumption/aggregatedcost",
+          "properties": {
+            "children": [
+              {
+                "id": "/providers/Microsoft.Management/managementGroups/managementGroupChildForTest/providers/Microsoft.Consumption/aggregatedcostId2",
+                "name": "aggregatedcostId2",
+                "type": "Microsoft.Consumption/aggregatedcost",
+                "properties": {
+                  "children": [],
+                  "currency": "USD",
+                  "usageEnd": "2018-07-31T00:00:00.0000000Z",
+                  "usageStart": "2018-07-01T00:00:00.0000000Z",
+                  "azureCharges": 150,
+                  "marketplaceCharges": 50.786,
+                  "chargesBilledSeparately": 30.345
+                }
+              }
+            ],
+            "currency": "USD",
+            "usageEnd": "2018-07-31T00:00:00.0000000Z",
+            "usageStart": "2018-07-01T00:00:00.0000000Z",
+            "azureCharges": 250.9876,
+            "marketplaceCharges": 150.786,
+            "chargesBilledSeparately": 120.345
+          }
+        }
+      ]
+  Balances.GetByBillingAccount:
+    description: |-
+      Gets the balances for a scope by billingAccountId. Balances are available via this API only for May 1, 2014 or later.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/balances/getbybillingaccount
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/providers/Microsoft.Billing/billingAccounts/123456/providers/Microsoft.Billing/billingPeriods/201702/providers/Microsoft.Consumption/balances/balanceId1",
+          "name": "balanceId1",
+          "type": "Microsoft.Consumption/balances",
+          "properties": {
+            "currency": "USD  ",
+            "utilized": 474098.17,
+            "totalUsage": 474098.17,
+            "adjustments": 0,
+            "priceHidden": false,
+            "newPurchases": 0,
+            "totalOverage": 0,
+            "endingBalance": 2922371.02,
+            "serviceOverage": 0,
+            "beginningBalance": 3396469.19,
+            "billingFrequency": "Month",
+            "adjustmentDetails": [
+              {
+                "name": "Promo Credit",
+                "value": 1.1
+              },
+              {
+                "name": "SIE Credit",
+                "value": 1
+              }
+            ],
+            "newPurchasesDetails": [
+              {
+                "name": "Promo Purchase",
+                "value": 1
+              }
+            ],
+            "chargesBilledSeparately": 0,
+            "azureMarketplaceServiceCharges": 609.82
+          }
+        }
+      ]
+  Balances.GetForBillingPeriodByBillingAccount:
+    description: |-
+      Gets the balances for a scope by billing period and billingAccountId. Balances are available via this API only for May 1, 2014 or later.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/balances/getforbillingperiodbybillingaccount
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "providers/Microsoft.Billing/billingAccounts/123456/providers/Microsoft.Billing/billingPeriods/201702/providers/Microsoft.Consumption/balances/balanceId1",
+          "name": "balanceId1",
+          "type": "Microsoft.Consumption/balances",
+          "properties": {
+            "currency": "USD  ",
+            "utilized": 474098.17,
+            "totalUsage": 474098.17,
+            "adjustments": 0,
+            "priceHidden": false,
+            "newPurchases": 0,
+            "totalOverage": 0,
+            "endingBalance": 2922371.02,
+            "serviceOverage": 0,
+            "beginningBalance": 3396469.19,
+            "billingFrequency": "Month",
+            "adjustmentDetails": [
+              {
+                "name": "Promo Credit",
+                "value": 1.1
+              },
+              {
+                "name": "SIE Credit",
+                "value": 1
+              }
+            ],
+            "newPurchasesDetails": [
+              {
+                "name": "Promo Purchase",
+                "value": 1
+              }
+            ],
+            "chargesBilledSeparately": 0,
+            "azureMarketplaceServiceCharges": 609.82
+          }
+        }
+      ]
+  Budgets.CreateOrUpdate:
+    description: |-
+      The operation to create or update a budget. You can optionally provide an eTag if desired as a form of concurrency control. To obtain the latest eTag for a given budget, perform a get operation prior to your put operation.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/budgets/createorupdate
+    example:
+      inputs: [
+        {
+          "eTag": "\"1d34d016a593709\"",
+          "properties": {
+            "amount": 100.65,
+            "filter": {
+              "and": [
+                {
+                  "dimensions": {
+                    "name": "ResourceId",
+                    "values": [
+                      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Compute/virtualMachines/MSVM2",
+                      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Compute/virtualMachines/platformcloudplatformGeneric1"
+                    ],
+                    "operator": "In"
+                  }
+                },
+                {
+                  "tags": {
+                    "name": "category",
+                    "values": [
+                      "Dev",
+                      "Prod"
+                    ],
+                    "operator": "In"
+                  }
+                },
+                {
+                  "tags": {
+                    "name": "department",
+                    "values": [
+                      "engineering",
+                      "sales"
+                    ],
+                    "operator": "In"
+                  }
+                }
+              ]
+            },
+            "category": "Cost",
+            "timeGrain": "Monthly",
+            "timePeriod": {
+              "endDate": "2018-10-31T00:00:00Z",
+              "startDate": "2017-10-01T00:00:00Z"
+            },
+            "notifications": {
+              "Actual_GreaterThan_80_Percent": {
+                "locale": "en-us",
+                "enabled": true,
+                "operator": "GreaterThan",
+                "threshold": 80,
+                "contactRoles": [
+                  "Contributor",
+                  "Reader"
+                ],
+                "contactEmails": [
+                  "johndoe@contoso.com",
+                  "janesmith@contoso.com"
+                ],
+                "contactGroups": [
+                  "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/microsoft.insights/actionGroups/SampleActionGroup"
+                ],
+                "thresholdType": "Actual"
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Consumption/budgets/TestBudget",
+          "eTag": "\"1d34d012214157f\"",
+          "name": "TestBudget",
+          "type": "Microsoft.Consumption/budgets",
+          "properties": {
+            "amount": 100.65,
+            "filter": {
+              "and": [
+                {
+                  "dimensions": {
+                    "name": "ResourceId",
+                    "values": [
+                      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Compute/virtualMachines/MSVM2",
+                      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Compute/virtualMachines/platformcloudplatformGeneric1"
+                    ],
+                    "operator": "In"
+                  }
+                },
+                {
+                  "tags": {
+                    "name": "category",
+                    "values": [
+                      "Dev",
+                      "Prod"
+                    ],
+                    "operator": "In"
+                  }
+                },
+                {
+                  "tags": {
+                    "name": "department",
+                    "values": [
+                      "engineering",
+                      "sales"
+                    ],
+                    "operator": "In"
+                  }
+                }
+              ]
+            },
+            "category": "Cost",
+            "timeGrain": "Monthly",
+            "timePeriod": {
+              "endDate": "2018-10-31T00:00:00Z",
+              "startDate": "2017-10-01T00:00:00Z"
+            },
+            "currentSpend": {
+              "unit": "USD",
+              "amount": 80.89
+            },
+            "notifications": {
+              "Actual_GreaterThan_80_Percent": {
+                "locale": "en-us",
+                "enabled": true,
+                "operator": "GreaterThan",
+                "threshold": 80,
+                "contactRoles": [
+                  "Contributor",
+                  "Reader"
+                ],
+                "contactEmails": [
+                  "johndoe@contoso.com",
+                  "janesmith@contoso.com"
+                ],
+                "contactGroups": [
+                  "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/microsoft.insights/actionGroups/SampleActionGroup"
+                ],
+                "thresholdType": "Actual"
+              }
+            }
+          }
+        }
+      ]
+  Budgets.Delete:
+    description: |-
+      The operation to delete a budget.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/budgets/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Budgets.Get:
+    description: |-
+      Gets the budget for the scope by budget name.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/budgets/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Consumption/budgets/TestBudget",
+          "eTag": "\"1d34d012214157f\"",
+          "name": "TestBudget",
+          "type": "Microsoft.Consumption/budgets",
+          "properties": {
+            "amount": 100.65,
+            "filter": {
+              "and": [
+                {
+                  "dimensions": {
+                    "name": "ResourceId",
+                    "values": [
+                      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Compute/virtualMachines/MSVM2",
+                      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Compute/virtualMachines/platformcloudplatformGeneric1"
+                    ],
+                    "operator": "In"
+                  }
+                },
+                {
+                  "tags": {
+                    "name": "category",
+                    "values": [
+                      "Dev",
+                      "Prod"
+                    ],
+                    "operator": "In"
+                  }
+                },
+                {
+                  "tags": {
+                    "name": "department",
+                    "values": [
+                      "engineering",
+                      "sales"
+                    ],
+                    "operator": "In"
+                  }
+                }
+              ]
+            },
+            "category": "Cost",
+            "timeGrain": "Monthly",
+            "timePeriod": {
+              "endDate": "2018-10-31T00:00:00Z",
+              "startDate": "2017-10-01T00:00:00Z"
+            },
+            "currentSpend": {
+              "unit": "USD",
+              "amount": 80.89
+            },
+            "notifications": {
+              "Actual_GreaterThan_80_Percent": {
+                "enabled": true,
+                "operator": "GreaterThan",
+                "threshold": 80,
+                "contactRoles": [
+                  "Contributor",
+                  "Reader"
+                ],
+                "contactEmails": [
+                  "johndoe@contoso.com",
+                  "janesmith@contoso.com"
+                ],
+                "contactGroups": [
+                  "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/microsoft.insights/actionGroups/SampleActionGroup"
+                ],
+                "thresholdType": "Actual"
+              }
+            }
+          }
+        }
+      ]
+  Budgets.List:
+    description: |-
+      Lists all budgets for the defined scope.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/budgets/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Consumption/budgets/TestBudget",
+              "eTag": "\"1d34d012214157f\"",
+              "name": "TestBudget",
+              "type": "Microsoft.Consumption/budgets",
+              "properties": {
+                "amount": 100.65,
+                "filter": {
+                  "and": [
+                    {
+                      "dimensions": {
+                        "name": "ResourceId",
+                        "values": [
+                          "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Compute/virtualMachines/MSVM2",
+                          "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Compute/virtualMachines/platformcloudplatformGeneric1"
+                        ],
+                        "operator": "In"
+                      }
+                    },
+                    {
+                      "tags": {
+                        "name": "category",
+                        "values": [
+                          "Dev",
+                          "Prod"
+                        ],
+                        "operator": "In"
+                      }
+                    },
+                    {
+                      "tags": {
+                        "name": "department",
+                        "values": [
+                          "engineering",
+                          "sales"
+                        ],
+                        "operator": "In"
+                      }
+                    }
+                  ]
+                },
+                "category": "Cost",
+                "timeGrain": "Monthly",
+                "timePeriod": {
+                  "endDate": "2018-10-31T00:00:00Z",
+                  "startDate": "2017-10-01T00:00:00Z"
+                },
+                "currentSpend": {
+                  "unit": "USD",
+                  "amount": 80.89
+                },
+                "notifications": {
+                  "thresholdType": "Actual",
+                  "Actual_GreaterThan_80_Percent": {
+                    "enabled": true,
+                    "operator": "GreaterThan",
+                    "threshold": 80,
+                    "contactRoles": [
+                      "Contributor",
+                      "Reader"
+                    ],
+                    "contactEmails": [
+                      "johndoe@contoso.com",
+                      "janesmith@contoso.com"
+                    ]
+                  },
+                  "Actual_GreaterThanOrEqualTo_90_Percent": {
+                    "enabled": true,
+                    "operator": "GreaterThanOrEqualTo",
+                    "threshold": 90,
+                    "contactRoles": [
+                      "Contributor",
+                      "Reader"
+                    ],
+                    "contactEmails": [
+                      "johndoe@contoso.com",
+                      "janesmith@contoso.com"
+                    ],
+                    "contactGroups": [
+                      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/microsoft.insights/actionGroups/SampleActionGroup"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "id": "subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Consumption/budgets/TestBudget",
+              "eTag": "\"1d34d012214157f\"",
+              "name": "TestBudget",
+              "type": "Microsoft.Consumption/budgets",
+              "properties": {
+                "amount": 600.65,
+                "filter": {
+                  "and": [
+                    {
+                      "dimensions": {
+                        "name": "ResourceId",
+                        "values": [
+                          "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Compute/virtualMachines/MSVM2",
+                          "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/Microsoft.Compute/virtualMachines/platformcloudplatformGeneric1"
+                        ],
+                        "operator": "In"
+                      }
+                    },
+                    {
+                      "tags": {
+                        "name": "category",
+                        "values": [
+                          "Dev",
+                          "Prod"
+                        ],
+                        "operator": "In"
+                      }
+                    },
+                    {
+                      "tags": {
+                        "name": "department",
+                        "values": [
+                          "engineering",
+                          "sales"
+                        ],
+                        "operator": "In"
+                      }
+                    }
+                  ]
+                },
+                "category": "Cost",
+                "timeGrain": "Monthly",
+                "timePeriod": {
+                  "endDate": "2018-10-31T00:00:00Z",
+                  "startDate": "2017-10-01T00:00:00Z"
+                },
+                "currentSpend": {
+                  "unit": "USD",
+                  "amount": 120.89
+                },
+                "notifications": {
+                  "Actual_GreaterThan_40_Percent": {
+                    "enabled": true,
+                    "operator": "GreaterThan",
+                    "threshold": 40,
+                    "contactRoles": [
+                      "Contributor",
+                      "Reader"
+                    ],
+                    "contactEmails": [
+                      "johndoe@contoso.com",
+                      "janesmith@contoso.com"
+                    ]
+                  },
+                  "Actual_GreaterThanOrEqualTo_60_Percent": {
+                    "enabled": true,
+                    "operator": "GreaterThanOrEqualTo",
+                    "threshold": 60,
+                    "contactRoles": [
+                      "Contributor",
+                      "Reader"
+                    ],
+                    "contactEmails": [
+                      "johndoe@contoso.com",
+                      "janesmith@contoso.com"
+                    ],
+                    "contactGroups": [
+                      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/microsoft.insights/actionGroups/SampleActionGroup"
+                    ],
+                    "thresholdType": "Actual"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+  Charges.List:
+    description: |-
+      Lists the charges based for the defined scope.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/charges/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/providers/Microsoft.Billing/BillingAccounts/1234/departments/42425/providers/Microsoft.Consumption/charges/chargeSummaryId1",
+              "kind": "legacy",
+              "name": "chargeSummaryId1",
+              "type": "Microsoft.Consumption/charges",
+              "properties": {
+                "currency": "USD",
+                "usageEnd": "2018-04-30",
+                "usageStart": "2018-04-01",
+                "azureCharges": 5000,
+                "billingPeriodId": "/providers/Microsoft.Billing/BillingAccounts/1234/providers/Microsoft.Billing/billingPeriods/201804",
+                "marketplaceCharges": 100,
+                "chargesBilledSeparately": 60.9
+              }
+            }
+          ]
+        }
+      ]
+  Credits.Get:
+    description: |-
+      The credit summary by billingAccountId and billingProfileId.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/credits/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/providers/Microsoft.Billing/billingAccounts/1234:5678/customers/2468/providers/Microsoft.Consumption/credits/balanceSummary1",
+          "name": "balanceSummary1",
+          "type": "Microsoft.Consumption/credits/balanceSummary",
+          "properties": {
+            "reseller": {
+              "resellerId": "55258",
+              "resellerDescription": "Reseller"
+            },
+            "expiredCredit": {
+              "value": 0,
+              "currency": "USD"
+            },
+            "balanceSummary": {
+              "currentBalance": {
+                "value": 100,
+                "currency": "USD"
+              },
+              "estimatedBalance": {
+                "value": 600,
+                "currency": "USD"
+              },
+              "currentBalanceInBillingCurrency": {
+                "value": 7342.250000000026,
+                "currency": "",
+                "exchangeRate": 0,
+                "exchangeRateMonth": 202101
+              },
+              "estimatedBalanceInBillingCurrency": {
+                "value": 5486.739600000003,
+                "currency": "",
+                "exchangeRate": 72.34625000000003,
+                "exchangeRateMonth": 202103
+              }
+            },
+            "creditCurrency": "USD",
+            "billingCurrency": "USD",
+            "pendingEligibleCharges": {
+              "value": 0,
+              "currency": "USD"
+            },
+            "pendingCreditAdjustments": {
+              "value": 500,
+              "currency": "USD"
+            }
+          }
+        }
+      ]
+  Events.List:
+    description: |-
+      Lists the events by billingAccountId and billingProfileId for given start and end date.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/events/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/providers/Microsoft.Billing/billingAccounts/1234:5678/customers/4268/providers/Microsoft.Consumption/events/event1",
+              "name": "event1",
+              "type": "Microsoft.Consumption/events",
+              "properties": {
+                "charges": {
+                  "value": -24.16,
+                  "currency": "USD"
+                },
+                "reseller": {
+                  "resellerId": "123558",
+                  "resellerDescription": "Reseller"
+                },
+                "eventType": "PendingCharges",
+                "newCredit": {
+                  "value": 0,
+                  "currency": "USD"
+                },
+                "adjustments": {
+                  "value": 0,
+                  "currency": "USD"
+                },
+                "description": "",
+                "closedBalance": {
+                  "value": 75.84,
+                  "currency": "USD"
+                },
+                "creditExpired": {
+                  "value": 0,
+                  "currency": "USD"
+                },
+                "invoiceNumber": "D9875F908",
+                "creditCurrency": "USD",
+                "billingCurrency": "USD",
+                "transactionDate": "2021-03-09T00:00:00Z",
+                "chargesInBillingCurrency": {
+                  "value": -1747.8854000000008,
+                  "currency": "USD",
+                  "exchangeRate": 72.34625000000003,
+                  "exchangeRateMonth": 202103
+                },
+                "newCreditInBillingCurrency": {
+                  "value": 0,
+                  "currency": "USD",
+                  "exchangeRate": 72.34625000000003,
+                  "exchangeRateMonth": 202103
+                },
+                "adjustmentsInBillingCurrency": {
+                  "value": 0,
+                  "currency": "USD",
+                  "exchangeRate": 72.34625000000003,
+                  "exchangeRateMonth": 202103
+                },
+                "closedBalanceInBillingCurrency": {
+                  "value": 5594.364600000025,
+                  "currency": "USD",
+                  "exchangeRate": 72.34625000000003,
+                  "exchangeRateMonth": 202103
+                },
+                "creditExpiredInBillingCurrency": {
+                  "value": 0,
+                  "currency": "USD",
+                  "exchangeRate": 72.34625000000003,
+                  "exchangeRateMonth": 202103
+                }
+              }
+            },
+            {
+              "id": "/providers/Microsoft.Billing/billingAccounts/1234:5678/customers/4268/providers/Microsoft.Consumption/events/event2",
+              "name": "event2",
+              "type": "Microsoft.Consumption/events",
+              "properties": {
+                "charges": {
+                  "value": -24.16,
+                  "currency": "USD"
+                },
+                "reseller": {
+                  "resellerId": "123558",
+                  "resellerDescription": "Reseller"
+                },
+                "eventType": "PendingCharges",
+                "newCredit": {
+                  "value": 0,
+                  "currency": "USD"
+                },
+                "adjustments": {
+                  "value": 0,
+                  "currency": "USD"
+                },
+                "description": "",
+                "closedBalance": {
+                  "value": 75.84,
+                  "currency": "USD"
+                },
+                "creditExpired": {
+                  "value": 0,
+                  "currency": "USD"
+                },
+                "invoiceNumber": "D9875F908",
+                "creditCurrency": "USD",
+                "billingCurrency": "USD",
+                "transactionDate": "2021-03-09T00:00:00Z",
+                "chargesInBillingCurrency": {
+                  "value": -1747.8854000000008,
+                  "currency": "USD",
+                  "exchangeRate": 72.34625000000003,
+                  "exchangeRateMonth": 202103
+                },
+                "newCreditInBillingCurrency": {
+                  "value": 0,
+                  "currency": "USD",
+                  "exchangeRate": 72.34625000000003,
+                  "exchangeRateMonth": 202103
+                },
+                "adjustmentsInBillingCurrency": {
+                  "value": 0,
+                  "currency": "USD",
+                  "exchangeRate": 72.34625000000003,
+                  "exchangeRateMonth": 202103
+                },
+                "closedBalanceInBillingCurrency": {
+                  "value": 5594.364600000025,
+                  "currency": "USD",
+                  "exchangeRate": 72.34625000000003,
+                  "exchangeRateMonth": 202103
+                },
+                "creditExpiredInBillingCurrency": {
+                  "value": 0,
+                  "currency": "USD",
+                  "exchangeRate": 72.34625000000003,
+                  "exchangeRateMonth": 202103
+                }
+              }
+            }
+          ]
+        }
+      ]
+  Forecasts.List:
+    description: |-
+      Lists the forecast charges for scope defined. Please note that this API is no longer actively under development. We recommend using our new Forecast API moving forward: https://docs.microsoft.com/en-us/rest/api/cost-management/forecast/usage.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/forecasts/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/subid/providers/Microsoft.Consumption/forecasts/forecastId1",
+              "name": "forecastId1",
+              "type": "Microsoft.Consumption/forecasts",
+              "properties": {
+                "grain": "Daily",
+                "charge": 752,
+                "currency": "USD",
+                "usageDate": "2018-04-01",
+                "chargeType": "Actual",
+                "confidenceLevels": null
+              }
+            },
+            {
+              "id": "/subscriptions/subid/providers/Microsoft.Consumption/forecasts/forecastId2",
+              "name": "forecastId2",
+              "type": "Microsoft.Consumption/forecasts",
+              "properties": {
+                "grain": "Daily",
+                "charge": 753.809074,
+                "currency": "USD",
+                "usageDate": "2018-04-02",
+                "chargeType": "Forecast",
+                "confidenceLevels": [
+                  {
+                    "bound": "Upper",
+                    "value": 1165.951737,
+                    "percentage": 95
+                  },
+                  {
+                    "bound": "Lower",
+                    "value": 340.753404,
+                    "percentage": 95
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+  Lots.List:
+    description: |-
+      Lists the lots by billingAccountId and billingProfileId.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/lots/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/providers/Microsoft.Billing/billingAccounts/1234:5678/billingProficustomersles/2468/providers/Microsoft.Consumption/lots/lot1",
+              "name": "lot1",
+              "type": "Microsoft.Consumption/lots",
+              "properties": {
+                "source": "PurchasedCredit",
+                "poNumber": "3524",
+                "startDate": "2019-10-01T00:00:00Z",
+                "closedBalance": {
+                  "value": 60.9,
+                  "currency": "USD"
+                },
+                "expirationDate": "2019-11-01T00:00:00Z",
+                "originalAmount": {
+                  "value": 5000,
+                  "currency": "USD"
+                },
+                "closedBalanceInBillingCurrency": {
+                  "value": 7342.250000000026,
+                  "currency": "",
+                  "exchangeRate": 73.42250000000027,
+                  "exchangeRateMonth": 202101
+                },
+                "originalAmountInBillingCurrency": {
+                  "value": 7342.250000000026,
+                  "currency": "",
+                  "exchangeRate": 73.42250000000027,
+                  "exchangeRateMonth": 202101
+                }
+              }
+            },
+            {
+              "id": "/providers/Microsoft.Billing/billingAccounts/1234:5678/billingProfiles/2468/providers/Microsoft.Consumption/lots/lot2",
+              "name": "lot2",
+              "type": "Microsoft.Consumption/lots",
+              "properties": {
+                "source": "PurchasedCredit",
+                "poNumber": "31224",
+                "startDate": "2019-11-01T00:00:00Z",
+                "closedBalance": {
+                  "value": 80.9,
+                  "currency": "USD"
+                },
+                "expirationDate": "2019-12-31T00:00:00Z",
+                "originalAmount": {
+                  "value": 6000,
+                  "currency": "USD"
+                },
+                "closedBalanceInBillingCurrency": {
+                  "value": 7342.250000000026,
+                  "currency": "",
+                  "exchangeRate": 73.42250000000027,
+                  "exchangeRateMonth": 202101
+                },
+                "originalAmountInBillingCurrency": {
+                  "value": 7342.250000000026,
+                  "currency": "",
+                  "exchangeRate": 73.42250000000027,
+                  "exchangeRateMonth": 202101
+                }
+              }
+            }
+          ]
+        }
+      ]
+  Marketplaces.List:
+    description: |-
+      Lists the marketplaces for a scope at the defined scope. Marketplaces are available via this API only for May 1, 2014 or later.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/marketplaces/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/providers/Microsoft.Billing/billingAccounts/123456/providers/Microsoft.Billing/billingPeriods/201702/providers/Microsoft.Consumption/marketplaces/marketplaceId1",
+              "name": "marketplaceId1",
+              "tags": {
+                "dev": "tools",
+                "env": "newcrp"
+              },
+              "type": "Microsoft.Consumption/marketPlaces",
+              "properties": {
+                "currency": "USD",
+                "planName": "plan1",
+                "usageEnd": "2017-02-13T23:59:59Z",
+                "offerName": "offer1",
+                "costCenter": "Center1",
+                "instanceId": "/subscriptions/subid/resourceGroups/Default-Web-eastasia/providers/Microsoft.Web/sites/shared1",
+                "pretaxCost": 0.67,
+                "usageStart": "2017-02-13T00:00:00Z",
+                "accountName": "Account1",
+                "isEstimated": false,
+                "orderNumber": "00000000-0000-0000-0000-000000000000",
+                "instanceName": "shared1",
+                "resourceRate": 0.24,
+                "publisherName": "xyz",
+                "resourceGroup": "TEST",
+                "unitOfMeasure": "10 Hours",
+                "departmentName": "Department1",
+                "billingPeriodId": "/providers/Microsoft.Billing/billingAccounts/123456/providers/Microsoft.Billing/billingPeriods/201702",
+                "consumedQuantity": 0.00328,
+                "subscriptionGuid": "00000000-0000-0000-0000-000000000000",
+                "subscriptionName": "azure subscription",
+                "isRecurringCharge": false,
+                "additionalProperties": "additionalProperties"
+              }
+            }
+          ]
+        }
+      ]
+  PriceSheet.Get:
+    description: |-
+      Gets the price sheet for a scope by subscriptionId. Price sheet is available via this API only for May 1, 2014 or later.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/pricesheet/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Billing/billingPeriods/201702/providers/Microsoft.Consumption/pricesheets/default",
+          "name": "default",
+          "type": "Microsoft.Consumption/pricesheets",
+          "properties": {
+            "nextLink": "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/microsoft.consumption/pricesheets/default?api-version=2018-01-31&$skiptoken=AQAAAA%3D%3D",
+            "pricesheets": [
+              {
+                "meterId": "00000000-0000-0000-0000-000000000000",
+                "offerId": "OfferId 1",
+                "unitPrice": 0.00328,
+                "partNumber": "XX-11110",
+                "currencyCode": "EUR",
+                "unitOfMeasure": "100 Hours",
+                "billingPeriodId": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Billing/billingPeriods/201702",
+                "includedQuantity": 100
+              }
+            ]
+          }
+        }
+      ]
+  PriceSheet.GetByBillingPeriod:
+    description: |-
+      Get the price sheet for a scope by subscriptionId and billing period. Price sheet is available via this API only for May 1, 2014 or later.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/pricesheet/getbybillingperiod
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Billing/billingPeriods/201702/providers/Microsoft.Consumption/pricesheets/default",
+          "name": "default",
+          "type": "Microsoft.Consumption/pricesheets",
+          "properties": {
+            "nextLink": "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/microsoft.consumption/pricesheets/default?api-version=2018-01-31&$skiptoken=AQAAAA%3D%3D&$expand=properties/pricesheets/meterDetails",
+            "pricesheets": [
+              {
+                "meterId": "00000000-0000-0000-0000-000000000000",
+                "offerId": "OfferId 1",
+                "unitPrice": 0.00328,
+                "partNumber": "XX-11110",
+                "currencyCode": "EUR",
+                "meterDetails": {
+                  "unit": "GB",
+                  "meterName": "Data Transfer Out (GB)",
+                  "meterCategory": "Networking",
+                  "meterLocation": "Zone 2",
+                  "pretaxStandardRate": 0.138,
+                  "totalIncludedQuantity": 0
+                },
+                "unitOfMeasure": "100 Hours",
+                "billingPeriodId": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Billing/billingPeriods/201702",
+                "includedQuantity": 100
+              }
+            ]
+          }
+        }
+      ]
+  ReservationRecommendationDetails.Get:
+    description: |-
+      Details of a reservation recommendation for what-if analysis of reserved instances.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/reservationrecommendationdetails/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "providers/Microsoft.Billing/billingAccounts/00000000/providers/microsoft.consumption/reservationrecommendationdetails",
+          "name": "reservationRecommendationDetails",
+          "type": "Microsoft.Consumption/ReservationRecommendationDetails",
+          "properties": {
+            "scope": "Shared",
+            "usage": {
+              "usageData": [
+                275.95003899999995,
+                275.916705,
+                276,
+                276,
+                275.916725,
+                275.916705,
+                275.98335299999997,
+                276,
+                276,
+                276,
+                276,
+                276,
+                275.98335299999997,
+                276,
+                276,
+                276,
+                276,
+                275.933352
+              ],
+              "usageGrain": "hourly",
+              "lookBackUnitType": "virtualMachine quantity",
+              "lastConsumptionDate": "2020-01-25T21:00:00",
+              "firstConsumptionDate": "2019-11-27T00:00:00"
+            },
+            "savings": {
+              "savingsType": "instance",
+              "unitOfMeasure": "hour",
+              "lookBackPeriod": 60,
+              "calculatedSavings": [
+                {
+                  "savings": 243194.281053024,
+                  "quantity": 220,
+                  "overageCost": 63253.5935111345,
+                  "onDemandCost": 529550.326618951,
+                  "reservationCost": 223102.452054792,
+                  "totalReservationCost": 286356.045565927
+                },
+                {
+                  "savings": 198691.033760586,
+                  "quantity": 179,
+                  "overageCost": 149335.025050147,
+                  "onDemandCost": 529550.32661895,
+                  "reservationCost": 181524.267808217,
+                  "totalReservationCost": 330859.292858364
+                },
+                {
+                  "savings": 174393.984409255,
+                  "quantity": 157,
+                  "overageCost": 195942.319606957,
+                  "onDemandCost": 529550.32661895,
+                  "reservationCost": 159214.022602738,
+                  "totalReservationCost": 355156.342209695
+                },
+                {
+                  "savings": 254176.500223843,
+                  "quantity": 241,
+                  "overageCost": 30975.2311896299,
+                  "onDemandCost": 529550.32661895,
+                  "reservationCost": 244398.595205477,
+                  "totalReservationCost": 275373.826395107
+                }
+              ],
+              "recommendedQuantity": 253,
+              "reservationOrderTerm": "P1Y"
+            },
+            "currency": "USD",
+            "resource": {
+              "region": "eastus",
+              "product": "Standard_DS14_v2",
+              "onDemandRate": 1.482,
+              "resourceType": "virtualmachines",
+              "appliedScopes": [
+                "00000000-0000-0000-0000-00000000",
+                "00000000-0000-0000-0000-00000000"
+              ],
+              "reservationRate": 0.70570776255707
+            },
+            "resourceGroup": null
+          }
+        }
+      ]
+  ReservationRecommendations.List:
+    description: |-
+      List of recommendations for purchasing reserved instances.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/reservationrecommendations/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "billingAccount/123456/providers/Microsoft.Consumption/reservationRecommendations/00000000-0000-0000-0000-000000000000",
+              "sku": "Standard_DS1_v2",
+              "kind": "legacy",
+              "name": "00000000-0000-0000-0000-000000000000",
+              "type": "Microsoft.Consumption/reservationRecommendations",
+              "location": "westus",
+              "properties": {
+                "term": "P1Y",
+                "scope": "Shared",
+                "meterId": "00000000-0000-0000-0000-000000000000",
+                "netSavings": 0.588546019225182,
+                "skuProperties": [
+                  {
+                    "name": "Cores",
+                    "value": "1"
+                  },
+                  {
+                    "name": "Ram",
+                    "value": "1"
+                  }
+                ],
+                "firstUsageDate": "2019-07-07T00:00:00-07:00",
+                "lookBackPeriod": "Last7Days",
+                "normalizedSize": "Standard_DS1_v2",
+                "recommendedQuantity": 1,
+                "instanceFlexibilityGroup": "DSv2 Series",
+                "instanceFlexibilityRatio": 1,
+                "costWithNoReservedInstances": 12.0785105,
+                "recommendedQuantityNormalized": 1,
+                "totalCostWithReservedInstances": 11.4899644807748
+              }
+            },
+            {
+              "id": "billingAccount/123456/providers/Microsoft.Consumption/reservationRecommendations/00000000-0000-0000-0000-000000000000",
+              "sku": "Standard_DS1_v2",
+              "kind": "legacy",
+              "name": "00000000-0000-0000-0000-000000000000",
+              "type": "Microsoft.Consumption/reservationRecommendations",
+              "location": "westus",
+              "properties": {
+                "term": "P1Y",
+                "scope": "Shared",
+                "meterId": "00000000-0000-0000-0000-000000000000",
+                "netSavings": 0.68,
+                "skuProperties": [
+                  {
+                    "name": "SkuDisplayName",
+                    "value": "B"
+                  },
+                  {
+                    "name": "CPU",
+                    "value": "1"
+                  }
+                ],
+                "firstUsageDate": "2019-07-07T00:00:00-07:00",
+                "lookBackPeriod": "Last7Days",
+                "normalizedSize": "Standard_DS1",
+                "recommendedQuantity": 1,
+                "instanceFlexibilityGroup": "DSv2 Series",
+                "instanceFlexibilityRatio": 1,
+                "costWithNoReservedInstances": 10.0785105,
+                "recommendedQuantityNormalized": 1.2,
+                "totalCostWithReservedInstances": 13.48
+              }
+            }
+          ],
+          "nextLink": "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Consumption/reservationRecommendations?api-version=2019-10-01&$skiptoken=AQAAAA%3D%3D&"
+        }
+      ]
+  ReservationsDetails.List:
+    description: |-
+      Lists the reservations details for the defined scope and provided date range.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/reservationsdetails/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/providers/Microsoft.Billing/billingAccounts/12345/providers/Microsoft.Consumption/reservationDetails/reservationDetails_Id1",
+              "name": "reservationDetails_Id1",
+              "tags": null,
+              "type": "Microsoft.Consumption/reservationDetails",
+              "properties": {
+                "skuName": "Standard_D2s_v3",
+                "usageDate": "2017-11-30T00:00:00-08:00",
+                "usedHours": 0.6,
+                "instanceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/sqlh1/providers/microsoft.compute/virtualmachines/sqlh1",
+                "reservationId": "00000000-0000-0000-0000-000000000000",
+                "reservedHours": 48,
+                "reservationOrderId": "00000000-0000-0000-0000-000000000000",
+                "totalReservedQuantity": 0,
+                "instanceFlexibilityGroup": "DSv3 Series",
+                "instanceFlexibilityRatio": "1"
+              }
+            }
+          ]
+        }
+      ]
+  ReservationsDetails.ListByReservationOrder:
+    description: |-
+      Lists the reservations details for provided date range.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/reservationsdetails/listbyreservationorder
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "providers/Microsoft.Capacity/reservationOrders/00000000-0000-0000-0000-000000000000/reservations/00000000-0000-0000-0000-000000000000/providers/Microsoft.Consumption/reservationDetails/20171129",
+              "name": "00000000-0000-0000-0000-000000000000_00000000-0000-0000-0000-000000000000_20171129",
+              "tags": {
+                "dev": "tools",
+                "env": "newcrp"
+              },
+              "type": "Microsoft.Consumption/reservationDetails",
+              "properties": {
+                "skuName": "Standard_D2_v2",
+                "usageDate": "2017-11-29T00:00:00Z",
+                "usedHours": 24,
+                "instanceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/wvn-sql/providers/microsoft.compute/virtualmachines/abc-sql2014sp33",
+                "reservationId": "00000000-0000-0000-0000-000000000000",
+                "reservedHours": 24,
+                "reservationOrderId": "00000000-0000-0000-0000-000000000000",
+                "totalReservedQuantity": 1,
+                "instanceFlexibilityGroup": "DSv2 Series",
+                "instanceFlexibilityRatio": "0.25"
+              }
+            }
+          ]
+        }
+      ]
+  ReservationsDetails.ListByReservationOrderAndReservation:
+    description: |-
+      Lists the reservations details for provided date range.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/reservationsdetails/listbyreservationorderandreservation
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "providers/Microsoft.Capacity/reservationOrders/00000000-0000-0000-0000-000000000000/reservations/00000000-0000-0000-0000-000000000000/providers/Microsoft.Consumption/reservationDetails/20171129",
+              "name": "00000000-0000-0000-0000-000000000000_00000000-0000-0000-0000-000000000000_20171129",
+              "tags": {
+                "dev": "tools",
+                "env": "newcrp"
+              },
+              "type": "Microsoft.Consumption/reservationDetails",
+              "properties": {
+                "kind": "Reservation",
+                "skuName": "Standard_D2_v2",
+                "usageDate": "2017-11-29T00:00:00Z",
+                "usedHours": 24,
+                "instanceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/wvn-sql/providers/microsoft.compute/virtualmachines/wvn-sql2014sp33",
+                "reservationId": "00000000-0000-0000-0000-000000000000",
+                "reservedHours": 24,
+                "reservationOrderId": "00000000-0000-0000-0000-000000000000",
+                "totalReservedQuantity": 1,
+                "instanceFlexibilityGroup": "D2v2 Series",
+                "instanceFlexibilityRatio": "1"
+              }
+            }
+          ]
+        }
+      ]
+  ReservationsSummaries.List:
+    description: |-
+      Lists the reservations summaries for the defined scope daily or monthly grain.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/reservationssummaries/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/providers/Microsoft.Billing/billingAccounts/12345/providers/Microsoft.Consumption/reservationSummaries/reservationSummaries_Id1",
+              "name": "reservationSummaries_Id1",
+              "tags": null,
+              "type": "Microsoft.Consumption/reservationSummaries",
+              "properties": {
+                "skuName": "Standard_B1s",
+                "usageDate": "2018-09-01T00:00:00-07:00",
+                "usedHours": 0,
+                "reservationId": "00000000-0000-0000-0000-000000000000",
+                "reservedHours": 720,
+                "reservationOrderId": "00000000-0000-0000-0000-000000000000",
+                "avgUtilizationPercentage": 0,
+                "maxUtilizationPercentage": 0,
+                "minUtilizationPercentage": 0
+              }
+            }
+          ]
+        }
+      ]
+  ReservationsSummaries.ListByReservationOrder:
+    description: |-
+      Lists the reservations summaries for daily or monthly grain.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/reservationssummaries/listbyreservationorder
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "providers/Microsoft.Capacity/reservationOrders/00000000-0000-0000-0000-000000000000/reservations/00000000-0000-0000-0000-000000000000/providers/Microsoft.Consumption/reservationSummaries/20171001",
+              "name": "00000000-0000-0000-0000-000000000000_00000000-0000-0000-0000-000000000000_20171001",
+              "tags": {
+                "dev": "tools",
+                "env": "newcrp"
+              },
+              "type": "Microsoft.Consumption/reservationSummaries",
+              "properties": {
+                "kind": "Reservation",
+                "skuName": "Standard_D8s_v3",
+                "usageDate": "2017-10-01T00:00:00Z",
+                "usedHours": 0,
+                "usedQuantity": 0,
+                "reservationId": "00000000-0000-0000-0000-000000000000",
+                "reservedHours": 0,
+                "purchasedQuantity": 0,
+                "remainingQuantity": 0,
+                "reservationOrderId": "00000000-0000-0000-0000-000000000000",
+                "utilizedPercentage": 0,
+                "totalReservedQuantity": 155,
+                "avgUtilizationPercentage": 0,
+                "maxUtilizationPercentage": 0,
+                "minUtilizationPercentage": 0
+              }
+            }
+          ]
+        }
+      ]
+  ReservationsSummaries.ListByReservationOrderAndReservation:
+    description: |-
+      Lists the reservations summaries for daily or monthly grain.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/reservationssummaries/listbyreservationorderandreservation
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "providers/Microsoft.Capacity/reservationOrders/00000000-0000-0000-0000-000000000000/reservations/00000000-0000-0000-0000-000000000000/providers/Microsoft.Consumption/reservationSummaries/20171001",
+              "name": "00000000-0000-0000-0000-000000000000_00000000-0000-0000-0000-000000000000_20171001",
+              "tags": {
+                "dev": "tools",
+                "env": "newcrp"
+              },
+              "type": "Microsoft.Consumption/reservationSummaries",
+              "properties": {
+                "kind": "Reservation",
+                "skuName": "Standard_D8s_v3",
+                "usageDate": "2017-10-01T00:00:00Z",
+                "usedHours": 0,
+                "usedQuantity": 0,
+                "reservationId": "00000000-0000-0000-0000-000000000000",
+                "reservedHours": 0,
+                "purchasedQuantity": 0,
+                "remainingQuantity": 0,
+                "reservationOrderId": "00000000-0000-0000-0000-000000000000",
+                "utilizedPercentage": 0,
+                "totalReservedQuantity": 155,
+                "avgUtilizationPercentage": 0,
+                "maxUtilizationPercentage": 0,
+                "minUtilizationPercentage": 0
+              }
+            }
+          ]
+        }
+      ]
+  ReservationTransactions.List:
+    description: |-
+      List of transactions for reserved instances on billing account scope
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/reservationtransactions/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/billingAccounts/123456/providers/Microsoft.Consumption/reservationtransactions/201909091919",
+              "name": "201909091919",
+              "tags": [],
+              "type": "Microsoft.Consumption/reservationTransactions",
+              "properties": {
+                "term": "P1Y",
+                "amount": -21,
+                "region": "westus",
+                "currency": "USD",
+                "quantity": 1,
+                "eventDate": "2019-09-09T19:19:04Z",
+                "eventType": "Cancel",
+                "armSkuName": "Standard_DS1_v2",
+                "costCenter": "",
+                "accountName": "Microsoft Infrastructure",
+                "description": "Standard_DS1_v2 westus 1 Year",
+                "departmentName": "Unassigned",
+                "billingFrequency": "recurring",
+                "accountOwnerEmail": "admin@microsoft.com",
+                "currentEnrollment": "123456",
+                "reservationOrderId": "00000000-0000-0000-0000-000000000000",
+                "purchasingEnrollment": "123456",
+                "reservationOrderName": "Transaction-DS1_v2",
+                "purchasingSubscriptionGuid": "11111111-1111-1111-1111-11111111111",
+                "purchasingSubscriptionName": "Infrastructure Subscription"
+              }
+            },
+            {
+              "id": "/billingAccounts/123456/providers/Microsoft.Consumption/reservationtransactions/201909091919",
+              "name": "201909091919",
+              "tags": [],
+              "type": "Microsoft.Consumption/reservationTransactions",
+              "properties": {
+                "term": "P1Y",
+                "amount": 21,
+                "region": "westus",
+                "currency": "USD",
+                "quantity": 1,
+                "eventDate": "2019-09-09T19:19:04Z",
+                "eventType": "Purchase",
+                "armSkuName": "Standard_DS1_v2",
+                "costCenter": "",
+                "accountName": "Microsoft Infrastructure",
+                "description": "Standard_DS1_v2 westus 1 Year",
+                "departmentName": "Unassigned",
+                "billingFrequency": "recurring",
+                "accountOwnerEmail": "admin@microsoft.com",
+                "currentEnrollment": "123456",
+                "reservationOrderId": "00000000-0000-0000-0000-000000000000",
+                "purchasingEnrollment": "123456",
+                "reservationOrderName": "Transaction-DS1_v2",
+                "purchasingSubscriptionGuid": "11111111-1111-1111-1111-11111111111",
+                "purchasingSubscriptionName": "Infrastructure Subscription"
+              }
+            }
+          ]
+        }
+      ]
+  ReservationTransactions.ListByBillingProfile:
+    description: |-
+      List of transactions for reserved instances on billing account scope
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/reservationtransactions/listbybillingprofile
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/providers/Microsoft.Billing/billingAccounts/fcebaabc-fced-4284-a83d-79f83dee183c:45796ba8-988f-45ad-bea9-7b71fc6c7513_2018-09-30/billingProfiles/Z76D-SGAF-BG7-TGB/providers/Microsoft.Consumption/reservationTransactions",
+              "name": "a838a8c3-a408-49e1-ac90-42cb95bff9b2",
+              "type": "Microsoft.Consumption/reservationTransactions",
+              "properties": {
+                "term": "P3Y",
+                "amount": 1.44,
+                "region": "eastus",
+                "invoice": "T000456437",
+                "currency": "USD",
+                "quantity": 1,
+                "eventDate": "2020-04-25T21:21:38Z",
+                "eventType": "Purchase",
+                "invoiceId": "/providers/Microsoft.Billing/billingAccounts/fcebaabc-fced-4284-a83d-79f83dee183c:45796ba8-988f-45ad-bea9-7b71fc6c7513_2018-09-30/billingProfiles/Z76D-SGAF-BG7-TGB/invoices/T000456437",
+                "armSkuName": "Standard_B1ls",
+                "description": "Reserved VM Instance, Standard_B1ls, US East, 3 Years",
+                "billingFrequency": "Recurring",
+                "billingProfileId": "/providers/Microsoft.Billing/billingAccounts/fcebaabc-fced-4284-a83d-79f83dee183c:45796ba8-988f-45ad-bea9-7b71fc6c7513_2018-09-30/billingProfiles/Z76D-SGAF-BG7-TGB",
+                "invoiceSectionId": "/providers/Microsoft.Billing/billingAccounts/fcebaabc-fced-4284-a83d-79f83dee183c:45796ba8-988f-45ad-bea9-7b71fc6c7513_2018-09-30/invoiceSections/QBTB-EYAK-PJA-TGB",
+                "billingProfileName": "IT Department*",
+                "invoiceSectionName": "IT Department",
+                "reservationOrderId": "a838a8c3-a408-49e1-ac90-42cb95bff9b2",
+                "reservationOrderName": "VM_RI_03-25-2020_14-18",
+                "purchasingSubscriptionGuid": "d924ad15-4a3d-4047-971d-c8b1b300a97b",
+                "purchasingSubscriptionName": "contoso"
+              }
+            }
+          ]
+        }
+      ]
+  Tags.Get:
+    description: |-
+      Get all available tag keys for the defined scope
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/tags/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "providers/Microsoft.CostManagement/billingAccounts/{billingaccount-id}/providers/Microsoft.Consumption/tags/tags1",
+          "eTag": "\"1d34d012214157f\"",
+          "name": "tags1",
+          "type": "Microsoft.Consumption/tags",
+          "properties": {
+            "tags": [
+              {
+                "key": "Department"
+              },
+              {
+                "key": "CostCenter"
+              },
+              {
+                "key": "Portal"
+              },
+              {
+                "key": "OrgName"
+              },
+              {
+                "key": "Namespace"
+              },
+              {
+                "key": "resourceType"
+              },
+              {
+                "key": "Subsystem"
+              },
+              {
+                "key": "Environment"
+              },
+              {
+                "key": "clusterName"
+              }
+            ],
+            "nextLink": "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/{billingaccount-id}/providers/Microsoft.Consumption/tags/?$expand=properties/tags/value&api-version=2019-10-01&startDate=2020-12-01&endDate=2020-12-31&$top=1000&$skiptoken=AwAAAA%3D%3D",
+            "previousLink": "https://management.azure.com/providers/Microsoft.Billing/billingAccounts/{billingaccount-id}/providers/Microsoft.Consumption/tags/?$expand=properties/tags/value&api-version=2019-10-01&startDate=2020-12-01&endDate=2020-12-31&$top=1000&$skiptoken=AQAAAA%3D%3D"
+          }
+        }
+      ]
+  UsageDetails.List:
+    description: |-
+      Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014 or later.
+    versions:
+      from: 2019.10.1
+    link: https://docs.microsoft.com/en-us/rest/api/consumption/usagedetails/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/providers/Microsoft.Billing/BillingAccounts/1234/providers/Microsoft.Billing/billingPeriods/201903/providers/Microsoft.Consumption/usageDetails/usageDetails_Id1",
+              "kind": "legacy",
+              "name": "usageDetails_Id1",
+              "tags": {
+                "dev": "tools",
+                "env": "newcrp"
+              },
+              "type": "Microsoft.Consumption/usageDetails",
+              "properties": {
+                "cost": 0.000295194820065,
+                "date": "2019-03-30T00:00:00.0000000Z",
+                "meterId": "00000000-0000-0000-0000-000000000000",
+                "offerId": "Offer Id 1",
+                "product": "Product Name 1",
+                "quantity": 0.7329,
+                "unitPrice": 4.38,
+                "chargeType": "Usage",
+                "costCenter": "DEV",
+                "partNumber": "Part Number 1",
+                "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/Resource Group 1/providers/Microsoft.Storage/storageAccounts/Resource Name 1",
+                "accountName": "Account Name 1",
+                "meterDetails": null,
+                "resourceName": "Resource Name 1",
+                "resourceGroup": "Resource Group 1",
+                "effectivePrice": 0.000402776395232,
+                "invoiceSection": "Invoice Section 1",
+                "subscriptionId": "00000000-0000-0000-0000-000000000000",
+                "billingCurrency": "CAD",
+                "consumedService": "Microsoft.Storage",
+                "billingAccountId": "xxxxxxxx",
+                "billingProfileId": "xxxxxxxx",
+                "resourceLocation": "USEast",
+                "subscriptionName": "Subscription Name 1",
+                "billingAccountName": "Account Name 1",
+                "billingProfileName": "Account Name 1",
+                "billingPeriodEndDate": "2019-03-31T00:00:00.0000000Z",
+                "isAzureCreditEligible": false,
+                "billingPeriodStartDate": "2019-03-01T00:00:00.0000000Z"
+              }
+            }
+          ]
+        }
+      ]
