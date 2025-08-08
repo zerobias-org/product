@@ -1,0 +1,2823 @@
+Product:
+  name: Azure Data Lake Analytics
+  versions: [2016.11.1]
+  package: microsoft.azure.datalakeanalytics
+  description: |-
+    DataLakeAnalytics
+  link: https://docs.microsoft.com/en-us/azure/data-lake-analytics/
+  contentType: json
+Operations:
+  Accounts.CheckNameAvailability:
+    description: |-
+      Checks whether the specified account name is available or taken.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/accounts/checknameavailability
+    example:
+      inputs: [
+        {
+          "name": "contosoadla",
+          "type": "Microsoft.DataLakeAnalytics/accounts"
+        }
+      ]
+      outputs: [
+        {
+          "reason": "AlreadyExists",
+          "message": "An account named 'abc' already exists.",
+          "nameAvailable": false
+        }
+      ]
+  Accounts.Create:
+    description: |-
+      Creates the specified Data Lake Analytics account. This supplies the user with computation services for Data Lake Analytics workloads.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/accounts/create
+    example:
+      inputs: [
+        {
+          "tags": {
+            "test_key": "test_value"
+          },
+          "location": "eastus2",
+          "properties": {
+            "newTier": "Consumption",
+            "maxJobCount": 3,
+            "firewallRules": [
+              {
+                "name": "test_rule",
+                "properties": {
+                  "endIpAddress": "2.2.2.2",
+                  "startIpAddress": "1.1.1.1"
+                }
+              }
+            ],
+            "firewallState": "Enabled",
+            "computePolicies": [
+              {
+                "name": "test_policy",
+                "properties": {
+                  "objectId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+                  "objectType": "User",
+                  "minPriorityPerJob": 1,
+                  "maxDegreeOfParallelismPerJob": 1
+                }
+              }
+            ],
+            "storageAccounts": [
+              {
+                "name": "test_storage",
+                "properties": {
+                  "suffix": "test_suffix",
+                  "accessKey": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab346"
+                }
+              }
+            ],
+            "minPriorityPerJob": 1,
+            "queryStoreRetention": 30,
+            "dataLakeStoreAccounts": [
+              {
+                "name": "test_adls",
+                "properties": {
+                  "suffix": "test_suffix"
+                }
+              }
+            ],
+            "firewallAllowAzureIps": "Enabled",
+            "maxDegreeOfParallelism": 30,
+            "defaultDataLakeStoreAccount": "test_adls",
+            "maxDegreeOfParallelismPerJob": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rgaba12041/providers/Microsoft.DataLakeAnalytics/accounts/testaba15818",
+          "name": "test_account",
+          "type": "Microsoft.DataLakeAnalytics/accounts",
+          "properties": {
+            "state": "Active",
+            "newTier": "Consumption",
+            "endpoint": "test_endpoint",
+            "accountId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+            "currentTier": "Consumption",
+            "maxJobCount": 3,
+            "creationTime": "2017-04-14T13:21:56.6819037-07:00",
+            "firewallRules": [
+              {
+                "id": "test_firewall_id",
+                "name": "test_rule",
+                "type": "test_type",
+                "properties": {
+                  "endIpAddress": "2.2.2.2",
+                  "startIpAddress": "1.1.1.1"
+                }
+              }
+            ],
+            "firewallState": "Enabled",
+            "computePolicies": [
+              {
+                "id": "test_policy_id",
+                "name": "test_policy",
+                "type": "test_type",
+                "properties": {
+                  "objectId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+                  "objectType": "User",
+                  "minPriorityPerJob": 1,
+                  "maxDegreeOfParallelismPerJob": 1
+                }
+              }
+            ],
+            "storageAccounts": [
+              {
+                "id": "test_storage_id",
+                "name": "test_storage",
+                "type": "test_type",
+                "properties": {
+                  "suffix": "test_suffix"
+                }
+              }
+            ],
+            "lastModifiedTime": "2017-04-14T13:21:56.6819037-07:00",
+            "minPriorityPerJob": 1,
+            "provisioningState": "Succeeded",
+            "systemMaxJobCount": 1,
+            "queryStoreRetention": 30,
+            "dataLakeStoreAccounts": [
+              {
+                "id": "test_adls_id",
+                "name": "test_adls",
+                "type": "test_type",
+                "properties": {
+                  "suffix": "test_suffix"
+                }
+              }
+            ],
+            "firewallAllowAzureIps": "Enabled",
+            "maxDegreeOfParallelism": 30,
+            "defaultDataLakeStoreAccount": "test_adls",
+            "maxDegreeOfParallelismPerJob": 1,
+            "systemMaxDegreeOfParallelism": 1
+          }
+        }
+      ]
+  Accounts.Delete:
+    description: |-
+      Begins the delete process for the Data Lake Analytics account object specified by the account name.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/accounts/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Accounts.Get:
+    description: |-
+      Gets details of the specified Data Lake Analytics account.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/accounts/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rgaba12041/providers/Microsoft.DataLakeAnalytics/accounts/testaba15818",
+          "name": "test_account",
+          "type": "Microsoft.DataLakeAnalytics/accounts",
+          "properties": {
+            "state": "Active",
+            "newTier": "Consumption",
+            "endpoint": "test_endpoint",
+            "accountId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+            "currentTier": "Consumption",
+            "maxJobCount": 3,
+            "creationTime": "2017-04-14T13:21:56.6819037-07:00",
+            "firewallRules": [
+              {
+                "id": "test_firewall_id",
+                "name": "test_rule",
+                "type": "test_type",
+                "properties": {
+                  "endIpAddress": "2.2.2.2",
+                  "startIpAddress": "1.1.1.1"
+                }
+              }
+            ],
+            "firewallState": "Enabled",
+            "computePolicies": [
+              {
+                "id": "test_policy_id",
+                "name": "test_policy",
+                "type": "test_type",
+                "properties": {
+                  "objectId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+                  "objectType": "User",
+                  "minPriorityPerJob": 1,
+                  "maxDegreeOfParallelismPerJob": 1
+                }
+              }
+            ],
+            "storageAccounts": [
+              {
+                "id": "test_storage_id",
+                "name": "test_storage",
+                "type": "test_type",
+                "properties": {
+                  "suffix": "test_suffix"
+                }
+              }
+            ],
+            "lastModifiedTime": "2017-04-14T13:21:56.6819037-07:00",
+            "minPriorityPerJob": 1,
+            "provisioningState": "Succeeded",
+            "systemMaxJobCount": 1,
+            "queryStoreRetention": 30,
+            "dataLakeStoreAccounts": [
+              {
+                "id": "test_adls_id",
+                "name": "test_adls",
+                "type": "test_type",
+                "properties": {
+                  "suffix": "test_suffix"
+                }
+              }
+            ],
+            "firewallAllowAzureIps": "Enabled",
+            "maxDegreeOfParallelism": 30,
+            "defaultDataLakeStoreAccount": "test_adls",
+            "publicDataLakeStoreAccounts": [
+              {
+                "id": "test_adls_id",
+                "name": "test_adls",
+                "type": "test_type",
+                "properties": {
+                  "suffix": "test_suffix"
+                }
+              }
+            ],
+            "maxDegreeOfParallelismPerJob": 1,
+            "systemMaxDegreeOfParallelism": 1
+          }
+        }
+      ]
+  Accounts.List:
+    description: |-
+      Gets the first page of Data Lake Analytics accounts, if any, within the current subscription. This includes a link to the next page, if any.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/accounts/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "name": "test_account",
+              "type": "test_type",
+              "properties": {
+                "state": "Active",
+                "endpoint": "test_endpoint",
+                "accountId": "94f4bf5d-78a9-4c31-8aa7-b34d07bad898",
+                "creationTime": "2017-04-14T13:21:56.6819037-07:00",
+                "lastModifiedTime": "2017-04-14T13:21:56.6819037-07:00",
+                "provisioningState": "Succeeded"
+              }
+            }
+          ],
+          "nextLink": "https://management.azure.com/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/contosorg/providers/Microsoft.DataLakeAnalytics/accounts/contosoadla/jobPolicies?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Accounts.ListByResourceGroup:
+    description: |-
+      Gets the first page of Data Lake Analytics accounts, if any, within a specific resource group. This includes a link to the next page, if any.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/accounts/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "name": "test_account",
+              "type": "test_type",
+              "properties": {
+                "state": "Active",
+                "endpoint": "test_endpoint",
+                "accountId": "94f4bf5d-78a9-4c31-8aa7-b34d07bad898",
+                "creationTime": "2017-04-14T13:21:56.6819037-07:00",
+                "lastModifiedTime": "2017-04-14T13:21:56.6819037-07:00",
+                "provisioningState": "Succeeded"
+              }
+            }
+          ],
+          "nextLink": "https://management.azure.com/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/contosorg/providers/Microsoft.DataLakeAnalytics/accounts/contosoadla/jobPolicies?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Accounts.Update:
+    description: |-
+      Updates the Data Lake Analytics account object specified by the accountName with the contents of the account object.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/accounts/update
+    example:
+      inputs: [
+        {
+          "tags": {
+            "test_key": "test_value"
+          },
+          "properties": {
+            "newTier": "Consumption",
+            "maxJobCount": 1,
+            "firewallRules": [
+              {
+                "name": "test_rule",
+                "properties": {
+                  "endIpAddress": "2.2.2.2",
+                  "startIpAddress": "1.1.1.1"
+                }
+              }
+            ],
+            "firewallState": "Enabled",
+            "computePolicies": [
+              {
+                "name": "test_policy",
+                "properties": {
+                  "objectId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+                  "objectType": "User",
+                  "minPriorityPerJob": 1,
+                  "maxDegreeOfParallelismPerJob": 1
+                }
+              }
+            ],
+            "minPriorityPerJob": 1,
+            "queryStoreRetention": 1,
+            "firewallAllowAzureIps": "Enabled",
+            "maxDegreeOfParallelism": 1,
+            "maxDegreeOfParallelismPerJob": 1
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rgaba12041/providers/Microsoft.DataLakeAnalytics/accounts/testaba15818",
+          "name": "test_account",
+          "type": "Microsoft.DataLakeAnalytics/accounts",
+          "properties": {
+            "state": "Active",
+            "newTier": "Consumption",
+            "endpoint": "test_endpoint",
+            "accountId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+            "currentTier": "Consumption",
+            "maxJobCount": 3,
+            "creationTime": "2017-04-14T13:21:56.6819037-07:00",
+            "firewallRules": [
+              {
+                "id": "test_firewall_id",
+                "name": "test_rule",
+                "type": "test_type",
+                "properties": {
+                  "endIpAddress": "2.2.2.2",
+                  "startIpAddress": "1.1.1.1"
+                }
+              }
+            ],
+            "firewallState": "Enabled",
+            "computePolicies": [
+              {
+                "id": "test_policy_id",
+                "name": "test_policy",
+                "type": "test_type",
+                "properties": {
+                  "objectId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+                  "objectType": "User",
+                  "minPriorityPerJob": 1,
+                  "maxDegreeOfParallelismPerJob": 1
+                }
+              }
+            ],
+            "storageAccounts": [
+              {
+                "id": "test_storage_id",
+                "name": "test_storage",
+                "type": "test_type",
+                "properties": {
+                  "suffix": "test_suffix"
+                }
+              }
+            ],
+            "lastModifiedTime": "2017-04-14T13:21:56.6819037-07:00",
+            "minPriorityPerJob": 1,
+            "provisioningState": "Succeeded",
+            "systemMaxJobCount": 1,
+            "queryStoreRetention": 30,
+            "dataLakeStoreAccounts": [
+              {
+                "id": "test_adls_id",
+                "name": "test_adls",
+                "type": "test_type",
+                "properties": {
+                  "suffix": "test_suffix"
+                }
+              }
+            ],
+            "firewallAllowAzureIps": "Enabled",
+            "maxDegreeOfParallelism": 30,
+            "defaultDataLakeStoreAccount": "test_adls",
+            "maxDegreeOfParallelismPerJob": 1,
+            "systemMaxDegreeOfParallelism": 1
+          }
+        }
+      ]
+  Catalog.CreateCredential:
+    description: |-
+      Creates the specified credential for use with external data sources in the specified database.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/createcredential
+    example:
+      inputs: [
+        {
+          "uri": "test_host:8000",
+          "userId": "test_user_id",
+          "password": "test_password"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Catalog.CreateSecret:
+    description: |-
+      Creates the specified secret for use with external data sources in the specified database. This is deprecated and will be removed in the next release. Please use CreateCredential instead.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/createsecret
+    example:
+      inputs: [
+        {
+          "uri": "test_host:8000",
+          "password": "test_password"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Catalog.DeleteAllSecrets:
+    description: |-
+      Deletes all secrets in the specified database. This is deprecated and will be removed in the next release. In the future, please only drop individual credentials using DeleteCredential
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/deleteallsecrets
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Catalog.DeleteCredential:
+    description: |-
+      Deletes the specified credential in the specified database
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/deletecredential
+    example:
+      inputs: [
+        {
+          "password": "test_password"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Catalog.DeleteSecret:
+    description: |-
+      Deletes the specified secret in the specified database. This is deprecated and will be removed in the next release. Please use DeleteCredential instead.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/deletesecret
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Catalog.GetAssembly:
+    description: |-
+      Retrieves the specified assembly from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/getassembly
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "files": [
+            {
+              "type": "Assembly",
+              "contentPath": "test_content_path",
+              "originalPath": "test_original_path"
+            }
+          ],
+          "clrName": "test_clr_name",
+          "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "isVisible": false,
+          "assemblyName": "test_assembly_name",
+          "databaseName": "master",
+          "dependencies": [
+            {
+              "entityId": {
+                "name": {
+                  "server": "test_server",
+                  "firstPart": "test_first_part",
+                  "thirdPart": "test_third_part",
+                  "secondPart": "test_second_part"
+                },
+                "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345"
+              }
+            }
+          ],
+          "isUserDefined": false,
+          "computeAccountName": "contosoadla"
+        }
+      ]
+  Catalog.GetCredential:
+    description: |-
+      Retrieves the specified credential from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/getcredential
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "credentialName": "test_credential_name",
+          "computeAccountName": "contosoadla"
+        }
+      ]
+  Catalog.GetDatabase:
+    description: |-
+      Retrieves the specified database from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/getdatabase
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "databaseName": "master",
+          "computeAccountName": "contosoadla"
+        }
+      ]
+  Catalog.GetExternalDataSource:
+    description: |-
+      Retrieves the specified external data source from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/getexternaldatasource
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "provider": "test_provider",
+          "databaseName": "master",
+          "pushdownTypes": [
+            "test_pushdown_type"
+          ],
+          "providerString": "test_provider_string",
+          "computeAccountName": "contosoadla",
+          "externalDataSourceName": "test_external_data_source_name"
+        }
+      ]
+  Catalog.GetPackage:
+    description: |-
+      Retrieves the specified package from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/getpackage
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "definition": "test_definition",
+          "schemaName": "dbo",
+          "packageName": "test_package_name",
+          "databaseName": "master",
+          "computeAccountName": "contosoadla"
+        }
+      ]
+  Catalog.GetProcedure:
+    description: |-
+      Retrieves the specified procedure from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/getprocedure
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "procName": "test_proc_name",
+          "definition": "test_definition",
+          "schemaName": "dbo",
+          "databaseName": "master",
+          "computeAccountName": "contosoadla"
+        }
+      ]
+  Catalog.GetSchema:
+    description: |-
+      Retrieves the specified schema from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/getschema
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "schemaName": "dbo",
+          "databaseName": "master",
+          "computeAccountName": "contosoadla"
+        }
+      ]
+  Catalog.GetSecret:
+    description: |-
+      Gets the specified secret in the specified database. This is deprecated and will be removed in the next release. Please use GetCredential instead.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/getsecret
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "uri": "test_host:8000",
+          "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "password": "test_password",
+          "secretName": "test_secret_name",
+          "creationTime": "2017-04-14T13:21:56.6819037-07:00",
+          "databaseName": "master",
+          "computeAccountName": "contosoadla"
+        }
+      ]
+  Catalog.GetTable:
+    description: |-
+      Retrieves the specified table from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/gettable
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "indexList": [
+            {
+              "name": "test_index_name",
+              "columns": [
+                "test_column"
+              ],
+              "indexId": 1,
+              "isUnique": false,
+              "indexKeys": [
+                {
+                  "name": "test_index_key",
+                  "descending": false
+                }
+              ],
+              "streamNames": [
+                "test_stream_name"
+              ],
+              "isColumnstore": false,
+              "distributionInfo": {
+                "keys": [
+                  {
+                    "name": "test_key",
+                    "descending": false
+                  }
+                ],
+                "type": 1,
+                "count": 1,
+                "dynamicCount": 1
+              },
+              "partitionKeyList": [
+                "test_partition_key"
+              ],
+              "partitionFunction": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab346"
+            }
+          ],
+          "tableName": "test_table_name",
+          "columnList": [
+            {
+              "name": "test_column_name",
+              "type": "test_type"
+            }
+          ],
+          "schemaName": "dbo",
+          "databaseName": "master",
+          "externalTable": {
+            "tableName": "test_table_name",
+            "dataSource": {
+              "name": {
+                "server": "test_server",
+                "firstPart": "test_first_part",
+                "thirdPart": "test_third_part",
+                "secondPart": "test_second_part"
+              },
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345"
+            }
+          },
+          "distributionInfo": {
+            "keys": [
+              {
+                "name": "test_key",
+                "descending": false
+              }
+            ],
+            "type": 1,
+            "count": 1,
+            "dynamicCount": 1
+          },
+          "partitionKeyList": [
+            "test_partition_key"
+          ],
+          "computeAccountName": "contosoadla"
+        }
+      ]
+  Catalog.GetTablePartition:
+    description: |-
+      Retrieves the specified table partition from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/gettablepartition
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "label": [
+            "test_label_1",
+            "test_label_2"
+          ],
+          "indexId": 1,
+          "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "createDate": "2017-04-14T13:21:56.6819037-07:00",
+          "parentName": "test_parent_name",
+          "schemaName": "dbo",
+          "databaseName": "master",
+          "partitionName": "test_partition_name",
+          "computeAccountName": "contosoadla"
+        }
+      ]
+  Catalog.GetTableStatistic:
+    description: |-
+      Retrieves the specified table statistics from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/gettablestatistic
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "colNames": [
+            "test_column_name_1",
+            "test_column_name_2"
+          ],
+          "hasFilter": false,
+          "tableName": "test_table_name",
+          "createTime": "2017-04-14T13:21:56.6819037-07:00",
+          "schemaName": "dbo",
+          "updateTime": "2017-04-14T13:21:56.6819037-07:00",
+          "databaseName": "master",
+          "statDataPath": "test_stat_data_path",
+          "userStatName": "test_user_stat_name",
+          "isAutoCreated": false,
+          "isUserCreated": false,
+          "statisticsName": "test_statistics_name",
+          "filterDefinition": "test_filter_definition",
+          "computeAccountName": "contosoadla"
+        }
+      ]
+  Catalog.GetTableType:
+    description: |-
+      Retrieves the specified table type from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/gettabletype
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "columns": [
+            {
+              "name": "test_column_name",
+              "type": "test_column_type"
+            }
+          ],
+          "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "schemaId": 3,
+          "typeName": "test_type_name",
+          "cSharpName": "test_csharp_name",
+          "isNullable": false,
+          "schemaName": "dbo",
+          "typeFamily": "test_type_family",
+          "userTypeId": 2,
+          "isTableType": false,
+          "principalId": 4,
+          "databaseName": "master",
+          "systemTypeId": 1,
+          "isComplexType": false,
+          "isUserDefined": false,
+          "fullCSharpName": "test_full_csharp_name",
+          "isAssemblyType": false,
+          "computeAccountName": "contosoadla"
+        }
+      ]
+  Catalog.GetTableValuedFunction:
+    description: |-
+      Retrieves the specified table valued function from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/gettablevaluedfunction
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "tvfName": "test_tvf_name",
+          "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "definition": "test_definition",
+          "schemaName": "dbo",
+          "databaseName": "master",
+          "computeAccountName": "contosoadla"
+        }
+      ]
+  Catalog.GetView:
+    description: |-
+      Retrieves the specified view from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/getview
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "viewName": "test_view_name",
+          "definition": "test_definition",
+          "schemaName": "dbo",
+          "databaseName": "master",
+          "computeAccountName": "contosoadla"
+        }
+      ]
+  Catalog.GrantAcl:
+    description: |-
+      Grants an access control list (ACL) entry to the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/grantacl
+    example:
+      inputs: [
+        {
+          "aceType": "User",
+          "permission": "Use",
+          "principalId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Catalog.GrantAclToDatabase:
+    description: |-
+      Grants an access control list (ACL) entry to the database from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/grantacltodatabase
+    example:
+      inputs: [
+        {
+          "aceType": "User",
+          "permission": "Use",
+          "principalId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Catalog.ListAcls:
+    description: |-
+      Retrieves the list of access control list (ACL) entries for the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listacls
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "aceType": "User",
+              "permission": "Use",
+              "principalId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListAclsByDatabase:
+    description: |-
+      Retrieves the list of access control list (ACL) entries for the database from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listaclsbydatabase
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "aceType": "User",
+              "permission": "Use",
+              "principalId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListAssemblies:
+    description: |-
+      Retrieves the list of assemblies from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listassemblies
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "clrName": "test_clr_name",
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "databaseName": "master",
+              "assemblyClrName": "test_assembly_clr_name",
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListCredentials:
+    description: |-
+      Retrieves the list of credentials from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listcredentials
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "credentialName": "test_credential_name",
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListDatabases:
+    description: |-
+      Retrieves the list of databases from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listdatabases
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "databaseName": "master",
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListExternalDataSources:
+    description: |-
+      Retrieves the list of external data sources from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listexternaldatasources
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "provider": "test_provider",
+              "databaseName": "master",
+              "pushdownTypes": [
+                "test_pushdown_type"
+              ],
+              "providerString": "test_provider_string",
+              "computeAccountName": "contosoadla",
+              "externalDataSourceName": "test_external_data_source_name"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListPackages:
+    description: |-
+      Retrieves the list of packages from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listpackages
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "definition": "test_definition",
+              "schemaName": "dbo",
+              "packageName": "test_package_name",
+              "databaseName": "master",
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListProcedures:
+    description: |-
+      Retrieves the list of procedures from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listprocedures
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "procName": "test_proc_name",
+              "definition": "test_definition",
+              "schemaName": "dbo",
+              "databaseName": "master",
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListSchemas:
+    description: |-
+      Retrieves the list of schemas from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listschemas
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "schemaName": "dbo",
+              "databaseName": "master",
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListTableFragments:
+    description: |-
+      Retrieves the list of table fragments from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listtablefragments
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "size": 33786,
+              "indexId": 1,
+              "parentId": "9d2d7abd-c641-4ddb-88ab-90cafdfe1c1b",
+              "rowCount": 1,
+              "createDate": "2017-10-11T06:38:31.567-07:00",
+              "fragmentId": "797d2643-eed9-4900-8090-0f8ddd9e8ba7",
+              "streamPath": "catalog/database/86bf2a20-b511-48c8-91c5-1f73c4c0ec74/schema/b83d3be1-9e11-40b7-85f9-ad823efe2414/table/1e666ab1-d6f0-4990-8180-1a6160caf405/91193f18-06dd-47a2-96fa-2cca3b4777e1.ss"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/tables/test_table_name/tablefragments?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListTablePartitions:
+    description: |-
+      Retrieves the list of table partitions from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listtablepartitions
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "label": [
+                "test_label_1",
+                "test_label_2"
+              ],
+              "indexId": 1,
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "createDate": "2017-04-14T13:21:56.6819037-07:00",
+              "parentName": "test_parent_name",
+              "schemaName": "dbo",
+              "databaseName": "master",
+              "partitionName": "test_partition_name",
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListTables:
+    description: |-
+      Retrieves the list of tables from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listtables
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "indexList": [
+                {
+                  "name": "test_index_name",
+                  "columns": [
+                    "test_column"
+                  ],
+                  "indexId": 1,
+                  "isUnique": false,
+                  "indexKeys": [
+                    {
+                      "name": "test_index_key",
+                      "descending": false
+                    }
+                  ],
+                  "streamNames": [
+                    "test_stream_name"
+                  ],
+                  "isColumnstore": false,
+                  "distributionInfo": {
+                    "keys": [
+                      {
+                        "name": "test_key",
+                        "descending": false
+                      }
+                    ],
+                    "type": 1,
+                    "count": 1,
+                    "dynamicCount": 1
+                  },
+                  "partitionKeyList": [
+                    "test_partition_key"
+                  ],
+                  "partitionFunction": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab346"
+                }
+              ],
+              "tableName": "test_table_name",
+              "columnList": [
+                {
+                  "name": "test_column_name",
+                  "type": "test_type"
+                }
+              ],
+              "schemaName": "dbo",
+              "databaseName": "master",
+              "externalTable": {
+                "tableName": "test_table_name",
+                "dataSource": {
+                  "name": {
+                    "server": "test_server",
+                    "firstPart": "test_first_part",
+                    "thirdPart": "test_third_part",
+                    "secondPart": "test_second_part"
+                  },
+                  "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345"
+                }
+              },
+              "distributionInfo": {
+                "keys": [
+                  {
+                    "name": "test_key",
+                    "descending": false
+                  }
+                ],
+                "type": 1,
+                "count": 1,
+                "dynamicCount": 1
+              },
+              "partitionKeyList": [
+                "test_partition_key"
+              ],
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListTablesByDatabase:
+    description: |-
+      Retrieves the list of all tables in a database from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listtablesbydatabase
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "indexList": [
+                {
+                  "name": "test_index_name",
+                  "columns": [
+                    "test_column"
+                  ],
+                  "indexId": 1,
+                  "isUnique": false,
+                  "indexKeys": [
+                    {
+                      "name": "test_index_key",
+                      "descending": false
+                    }
+                  ],
+                  "streamNames": [
+                    "test_stream_name"
+                  ],
+                  "isColumnstore": false,
+                  "distributionInfo": {
+                    "keys": [
+                      {
+                        "name": "test_key",
+                        "descending": false
+                      }
+                    ],
+                    "type": 1,
+                    "count": 1,
+                    "dynamicCount": 1
+                  },
+                  "partitionKeyList": [
+                    "test_partition_key"
+                  ],
+                  "partitionFunction": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab346"
+                }
+              ],
+              "tableName": "test_table_name",
+              "columnList": [
+                {
+                  "name": "test_column_name",
+                  "type": "test_type"
+                }
+              ],
+              "schemaName": "dbo",
+              "databaseName": "master",
+              "externalTable": {
+                "tableName": "test_table_name",
+                "dataSource": {
+                  "name": {
+                    "server": "test_server",
+                    "firstPart": "test_first_part",
+                    "thirdPart": "test_third_part",
+                    "secondPart": "test_second_part"
+                  },
+                  "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345"
+                }
+              },
+              "distributionInfo": {
+                "keys": [
+                  {
+                    "name": "test_key",
+                    "descending": false
+                  }
+                ],
+                "type": 1,
+                "count": 1,
+                "dynamicCount": 1
+              },
+              "partitionKeyList": [
+                "test_partition_key"
+              ],
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListTableStatistics:
+    description: |-
+      Retrieves the list of table statistics from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listtablestatistics
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "colNames": [
+                "test_column_name_1",
+                "test_column_name_2"
+              ],
+              "hasFilter": false,
+              "tableName": "test_table_name",
+              "createTime": "2017-04-14T13:21:56.6819037-07:00",
+              "schemaName": "dbo",
+              "updateTime": "2017-04-14T13:21:56.6819037-07:00",
+              "databaseName": "master",
+              "statDataPath": "test_stat_data_path",
+              "userStatName": "test_user_stat_name",
+              "isAutoCreated": false,
+              "isUserCreated": false,
+              "statisticsName": "test_statistics_name",
+              "filterDefinition": "test_filter_definition",
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListTableStatisticsByDatabase:
+    description: |-
+      Retrieves the list of all statistics in a database from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listtablestatisticsbydatabase
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "colNames": [
+                "test_column_name_1",
+                "test_column_name_2"
+              ],
+              "hasFilter": false,
+              "tableName": "test_table_name",
+              "createTime": "2017-04-14T13:21:56.6819037-07:00",
+              "schemaName": "dbo",
+              "updateTime": "2017-04-14T13:21:56.6819037-07:00",
+              "databaseName": "master",
+              "statDataPath": "test_stat_data_path",
+              "userStatName": "test_user_stat_name",
+              "isAutoCreated": false,
+              "isUserCreated": false,
+              "statisticsName": "test_statistics_name",
+              "filterDefinition": "test_filter_definition",
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListTableStatisticsByDatabaseAndSchema:
+    description: |-
+      Retrieves the list of all table statistics within the specified schema from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listtablestatisticsbydatabaseandschema
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "colNames": [
+                "test_column_name_1",
+                "test_column_name_2"
+              ],
+              "hasFilter": false,
+              "tableName": "test_table_name",
+              "createTime": "2017-04-14T13:21:56.6819037-07:00",
+              "schemaName": "dbo",
+              "updateTime": "2017-04-14T13:21:56.6819037-07:00",
+              "databaseName": "master",
+              "statDataPath": "test_stat_data_path",
+              "userStatName": "test_user_stat_name",
+              "isAutoCreated": false,
+              "isUserCreated": false,
+              "statisticsName": "test_statistics_name",
+              "filterDefinition": "test_filter_definition",
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListTableTypes:
+    description: |-
+      Retrieves the list of table types from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listtabletypes
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "columns": [
+                {
+                  "name": "test_column_name",
+                  "type": "test_column_type"
+                }
+              ],
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "schemaId": 3,
+              "typeName": "test_type_name",
+              "cSharpName": "test_csharp_name",
+              "isNullable": false,
+              "schemaName": "dbo",
+              "typeFamily": "test_type_family",
+              "userTypeId": 2,
+              "isTableType": false,
+              "principalId": 4,
+              "databaseName": "master",
+              "systemTypeId": 1,
+              "isComplexType": false,
+              "isUserDefined": false,
+              "fullCSharpName": "test_full_csharp_name",
+              "isAssemblyType": false,
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListTableValuedFunctions:
+    description: |-
+      Retrieves the list of table valued functions from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listtablevaluedfunctions
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "tvfName": "test_tvf_name",
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "definition": "test_definition",
+              "schemaName": "dbo",
+              "databaseName": "master",
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListTableValuedFunctionsByDatabase:
+    description: |-
+      Retrieves the list of all table valued functions in a database from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listtablevaluedfunctionsbydatabase
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "tvfName": "test_tvf_name",
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "definition": "test_definition",
+              "schemaName": "dbo",
+              "databaseName": "master",
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListTypes:
+    description: |-
+      Retrieves the list of types within the specified database and schema from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listtypes
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "schemaId": 3,
+              "typeName": "test_type_name",
+              "cSharpName": "test_csharp_name",
+              "isNullable": false,
+              "schemaName": "dbo",
+              "typeFamily": "test_type_family",
+              "userTypeId": 2,
+              "isTableType": false,
+              "principalId": 4,
+              "databaseName": "master",
+              "systemTypeId": 1,
+              "isComplexType": false,
+              "isUserDefined": false,
+              "fullCSharpName": "test_full_csharp_name",
+              "isAssemblyType": false,
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListViews:
+    description: |-
+      Retrieves the list of views from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listviews
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "viewName": "test_view_name",
+              "definition": "test_definition",
+              "schemaName": "dbo",
+              "databaseName": "master",
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.ListViewsByDatabase:
+    description: |-
+      Retrieves the list of all views in a database from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/listviewsbydatabase
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "version": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "viewName": "test_view_name",
+              "definition": "test_definition",
+              "schemaName": "dbo",
+              "databaseName": "master",
+              "computeAccountName": "contosoadla"
+            }
+          ],
+          "nextLink": "https://contosoadla.datalakeanalytics.net/catalog/usql/databases/master/schema/dbo/statistics?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  Catalog.PreviewTable:
+    description: |-
+      Retrieves a preview set of rows in given table.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/previewtable
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "rows": [
+            [
+              "value_a",
+              "value_b"
+            ]
+          ],
+          "schema": [
+            {
+              "name": "test_column_name",
+              "type": "test_data_type"
+            }
+          ],
+          "truncated": false,
+          "totalRowCount": 1,
+          "totalColumnCount": 2
+        }
+      ]
+  Catalog.PreviewTablePartition:
+    description: |-
+      Retrieves a preview set of rows in given partition.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/previewtablepartition
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "rows": [
+            [
+              "value_a",
+              "value_b"
+            ]
+          ],
+          "schema": [
+            {
+              "name": "test_column_name",
+              "type": "test_data_type"
+            }
+          ],
+          "truncated": false,
+          "totalRowCount": 1,
+          "totalColumnCount": 2
+        }
+      ]
+  Catalog.RevokeAcl:
+    description: |-
+      Revokes an access control list (ACL) entry from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/revokeacl
+    example:
+      inputs: [
+        {
+          "aceType": "User",
+          "principalId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Catalog.RevokeAclFromDatabase:
+    description: |-
+      Revokes an access control list (ACL) entry for the database from the Data Lake Analytics catalog.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/revokeaclfromdatabase
+    example:
+      inputs: [
+        {
+          "aceType": "User",
+          "principalId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Catalog.UpdateCredential:
+    description: |-
+      Modifies the specified credential for use with external data sources in the specified database
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/updatecredential
+    example:
+      inputs: [
+        {
+          "uri": "test_host:8000",
+          "userId": "test_user_id",
+          "password": "test_password",
+          "newPassword": "test_new_password"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Catalog.UpdateSecret:
+    description: |-
+      Modifies the specified secret for use with external data sources in the specified database. This is deprecated and will be removed in the next release. Please use UpdateCredential instead.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/catalog/updatesecret
+    example:
+      inputs: [
+        {
+          "uri": "test_host:8000",
+          "password": "test_password"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ComputePolicies.CreateOrUpdate:
+    description: |-
+      Creates or updates the specified compute policy. During update, the compute policy with the specified name will be replaced with this new compute policy. An account supports, at most, 50 policies
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/computepolicies/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "objectId": "776b9091-8916-4638-87f7-9c989a38da98",
+            "objectType": "User",
+            "minPriorityPerJob": 30,
+            "maxDegreeOfParallelismPerJob": 10
+          }
+        }
+      ]
+      outputs: [
+        {
+          "name": "test_policy",
+          "properties": {
+            "objectId": "776b9091-8916-4638-87f7-9c989a38da98",
+            "objectType": "User",
+            "minPriorityPerJob": 30,
+            "maxDegreeOfParallelismPerJob": 10
+          }
+        }
+      ]
+  ComputePolicies.Delete:
+    description: |-
+      Deletes the specified compute policy from the specified Data Lake Analytics account
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/computepolicies/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  ComputePolicies.Get:
+    description: |-
+      Gets the specified Data Lake Analytics compute policy.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/computepolicies/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "name": "test_policy",
+          "properties": {
+            "objectId": "776b9091-8916-4638-87f7-9c989a38da98",
+            "objectType": "User",
+            "minPriorityPerJob": 30,
+            "maxDegreeOfParallelismPerJob": 10
+          }
+        }
+      ]
+  ComputePolicies.ListByAccount:
+    description: |-
+      Lists the Data Lake Analytics compute policies within the specified Data Lake Analytics account. An account supports, at most, 50 policies
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/computepolicies/listbyaccount
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "name": "test_policy",
+              "properties": {
+                "objectId": "776b9091-8916-4638-87f7-9c989a38da98",
+                "objectType": "User",
+                "minPriorityPerJob": 30,
+                "maxDegreeOfParallelismPerJob": 10
+              }
+            },
+            {
+              "name": "test_policy1",
+              "properties": {
+                "objectId": "776b9091-8916-4638-87f7-9c989a38da99",
+                "objectType": "Group",
+                "minPriorityPerJob": 15,
+                "maxDegreeOfParallelismPerJob": 5
+              }
+            },
+            {
+              "name": "test_policy2",
+              "properties": {
+                "objectId": "776b9091-8916-4638-87f7-9c989a38da97",
+                "objectType": "ServicePrincipal",
+                "minPriorityPerJob": 60,
+                "maxDegreeOfParallelismPerJob": 20
+              }
+            }
+          ],
+          "nextLink": "https://management.azure.com/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/contosorg/providers/Microsoft.DataLakeAnalytics/accounts/contosoadla/jobPolicies?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  ComputePolicies.Update:
+    description: |-
+      Updates the specified compute policy.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/computepolicies/update
+    example:
+      inputs: [
+        {
+          "properties": {
+            "minPriorityPerJob": 31,
+            "maxDegreeOfParallelismPerJob": 11
+          }
+        }
+      ]
+      outputs: [
+        {
+          "name": "test_policy",
+          "properties": {
+            "objectId": "776b9091-8916-4638-87f7-9c989a38da98",
+            "objectType": "User",
+            "minPriorityPerJob": 31,
+            "maxDegreeOfParallelismPerJob": 11
+          }
+        }
+      ]
+  DataLakeStoreAccounts.Add:
+    description: |-
+      Updates the specified Data Lake Analytics account to include the additional Data Lake Store account.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/datalakestoreaccounts/add
+    example:
+      inputs: [
+        {
+          "properties": {
+            "suffix": "test_suffix"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DataLakeStoreAccounts.Delete:
+    description: |-
+      Updates the Data Lake Analytics account specified to remove the specified Data Lake Store account.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/datalakestoreaccounts/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DataLakeStoreAccounts.Get:
+    description: |-
+      Gets the specified Data Lake Store account details in the specified Data Lake Analytics account.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/datalakestoreaccounts/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "name": "test_adls",
+          "type": "test_type",
+          "properties": {
+            "suffix": "test_suffix"
+          }
+        }
+      ]
+  DataLakeStoreAccounts.ListByAccount:
+    description: |-
+      Gets the first page of Data Lake Store accounts linked to the specified Data Lake Analytics account. The response includes a link to the next page, if any.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/datalakestoreaccounts/listbyaccount
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "name": "test_adls",
+              "type": "test_type",
+              "properties": {
+                "suffix": "test_suffix"
+              }
+            }
+          ],
+          "nextLink": "https://management.azure.com/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/contosorg/providers/Microsoft.DataLakeAnalytics/accounts/contosoadla/jobPolicies?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  FirewallRules.CreateOrUpdate:
+    description: |-
+      Creates or updates the specified firewall rule. During update, the firewall rule with the specified name will be replaced with this new firewall rule.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/firewallrules/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "endIpAddress": "2.2.2.2",
+            "startIpAddress": "1.1.1.1"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "name": "test_rule",
+          "type": "test_type",
+          "properties": {
+            "endIpAddress": "2.2.2.2",
+            "startIpAddress": "1.1.1.1"
+          }
+        }
+      ]
+  FirewallRules.Delete:
+    description: |-
+      Deletes the specified firewall rule from the specified Data Lake Analytics account
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/firewallrules/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  FirewallRules.Get:
+    description: |-
+      Gets the specified Data Lake Analytics firewall rule.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/firewallrules/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "name": "test_rule",
+          "type": "test_type",
+          "properties": {
+            "endIpAddress": "2.2.2.2",
+            "startIpAddress": "1.1.1.1"
+          }
+        }
+      ]
+  FirewallRules.ListByAccount:
+    description: |-
+      Lists the Data Lake Analytics firewall rules within the specified Data Lake Analytics account.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/firewallrules/listbyaccount
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "name": "test_rule",
+              "type": "test_type",
+              "properties": {
+                "endIpAddress": "2.2.2.2",
+                "startIpAddress": "1.1.1.1"
+              }
+            }
+          ],
+          "nextLink": "https://management.azure.com/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/contosorg/providers/Microsoft.DataLakeAnalytics/accounts/contosoadla/jobPolicies?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  FirewallRules.Update:
+    description: |-
+      Updates the specified firewall rule.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/firewallrules/update
+    example:
+      inputs: [
+        {
+          "properties": {
+            "endIpAddress": "2.2.2.2",
+            "startIpAddress": "1.1.1.1"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "name": "test_rule",
+          "type": "test_type",
+          "properties": {
+            "endIpAddress": "2.2.2.2",
+            "startIpAddress": "1.1.1.1"
+          }
+        }
+      ]
+  Job.Build:
+    description: |-
+      Builds (compiles) the specified job in the specified Data Lake Analytics account for job correctness and validation.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/job/build
+    example:
+      inputs: [
+        {
+          "name": "test_name",
+          "type": "USql",
+          "properties": {
+            "type": "USql",
+            "script": "test_script",
+            "runtimeVersion": "test_runtime_version"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "name": "test_name",
+          "type": "USql",
+          "jobId": "076713da-9018-41ae-a3bd-9eab14e54d09",
+          "state": "Accepted",
+          "result": "Succeeded",
+          "endTime": "2017-04-18T11:16:49.0748958-07:00",
+          "related": {
+            "runId": "67034c12-b250-468e-992d-39fb978bde2c",
+            "pipelineId": "076713da-9018-41ae-a3bd-9eab14e54d09",
+            "pipelineUri": "https://account123.contosopipelineservice.com/076713da-9018-41ae-a3bd-9eab14e54d09",
+            "pipelineName": "test_pipeline_name",
+            "recurrenceId": "67034c12-b250-468e-992d-39fb978bde2d",
+            "recurrenceName": "test_recurrence_name"
+          },
+          "priority": 1,
+          "logFolder": "adl://contosoadla.azuredatalakestore.net/system/jobservice/jobs/Usql/2016/03/13/17/18/5fe51957-93bc-4de0-8ddc-c5a4753b068b/logs/",
+          "startTime": "2017-04-18T11:16:49.0748958-07:00",
+          "submitter": "test_submitter",
+          "properties": {
+            "type": "USql",
+            "script": "test_script",
+            "runtimeVersion": "test_runtime_version"
+          },
+          "submitTime": "2017-04-18T11:16:49.0748958-07:00",
+          "errorMessage": [
+            {
+              "source": "SYSTEM",
+              "details": "test_details",
+              "errorId": "test_error_id",
+              "message": "test_message",
+              "filePath": "adl://contosoadla.azuredatalakestore.net/system/jobservice/jobs/Usql/2016/03/13/17/18/5fe51957-93bc-4de0-8ddc-c5a4753b068b/test_file.txt",
+              "helpLink": "https://azure.microsoft.com/en-us/blog/introducing-azure-data-lake/",
+              "severity": "Warning",
+              "endOffset": 1,
+              "innerError": {
+                "source": "SYSTEM",
+                "details": "test_details",
+                "errorId": "test_error_id",
+                "message": "test_message",
+                "helpLink": "https://azure.microsoft.com/en-us/blog/introducing-azure-data-lake/",
+                "severity": "Warning",
+                "component": "test_component",
+                "resolution": "test_resolution",
+                "description": "test_description",
+                "diagnosticCode": 1,
+                "internalDiagnostics": "test_internal_diagnostics"
+              },
+              "lineNumber": 1,
+              "resolution": "test_resolution",
+              "description": "test_description",
+              "startOffset": 1,
+              "internalDiagnostics": "test_internal_diagnostics"
+            }
+          ],
+          "logFilePatterns": [
+            "test_log_file_pattern_1",
+            "test_log_file_pattern_2"
+          ],
+          "stateAuditRecords": [
+            {
+              "details": "test_details",
+              "newState": "test_new_state",
+              "timeStamp": "2017-04-18T11:16:49.0748958-07:00",
+              "requestedByUser": "test_requested_by_user"
+            }
+          ],
+          "degreeOfParallelism": 1
+        }
+      ]
+  Job.Cancel:
+    description: |-
+      Cancels the running job specified by the job ID.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/job/cancel
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Job.Create:
+    description: |-
+      Submits a job to the specified Data Lake Analytics account.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/job/create
+    example:
+      inputs: [
+        {
+          "name": "test_name",
+          "type": "USql",
+          "related": {
+            "runId": "67034c12-b250-468e-992d-39fb978bde2c",
+            "pipelineId": "076713da-9018-41ae-a3bd-9eab14e54d09",
+            "pipelineUri": "https://account123.contosopipelineservice.com/076713da-9018-41ae-a3bd-9eab14e54d09",
+            "pipelineName": "test_pipeline_name",
+            "recurrenceId": "67034c12-b250-468e-992d-39fb978bde2d",
+            "recurrenceName": "test_recurrence_name"
+          },
+          "priority": 1,
+          "properties": {
+            "type": "USql",
+            "script": "test_script",
+            "runtimeVersion": "test_runtime_version"
+          },
+          "logFilePatterns": [
+            "test_log_file_pattern_1",
+            "test_log_file_pattern_2"
+          ],
+          "degreeOfParallelism": 1
+        }
+      ]
+      outputs: [
+        {
+          "name": "test_name",
+          "type": "USql",
+          "jobId": "076713da-9018-41ae-a3bd-9eab14e54d09",
+          "state": "Accepted",
+          "result": "Succeeded",
+          "endTime": "2017-04-18T11:16:49.0748958-07:00",
+          "related": {
+            "runId": "67034c12-b250-468e-992d-39fb978bde2c",
+            "pipelineId": "076713da-9018-41ae-a3bd-9eab14e54d09",
+            "pipelineUri": "https://account123.contosopipelineservice.com/076713da-9018-41ae-a3bd-9eab14e54d09",
+            "pipelineName": "test_pipeline_name",
+            "recurrenceId": "67034c12-b250-468e-992d-39fb978bde2d",
+            "recurrenceName": "test_recurrence_name"
+          },
+          "priority": 1,
+          "logFolder": "adl://contosoadla.azuredatalakestore.net/system/jobservice/jobs/Usql/2016/03/13/17/18/5fe51957-93bc-4de0-8ddc-c5a4753b068b/logs/",
+          "startTime": "2017-04-18T11:16:49.0748958-07:00",
+          "submitter": "test_submitter",
+          "properties": {
+            "type": "USql",
+            "script": "test_script",
+            "runtimeVersion": "test_runtime_version"
+          },
+          "submitTime": "2017-04-18T11:16:49.0748958-07:00",
+          "errorMessage": [
+            {
+              "source": "SYSTEM",
+              "details": "test_details",
+              "errorId": "test_error_id",
+              "message": "test_message",
+              "filePath": "adl://contosoadla.azuredatalakestore.net/system/jobservice/jobs/Usql/2016/03/13/17/18/5fe51957-93bc-4de0-8ddc-c5a4753b068b/test_file.txt",
+              "helpLink": "https://azure.microsoft.com/en-us/blog/introducing-azure-data-lake/",
+              "severity": "Warning",
+              "endOffset": 1,
+              "innerError": {
+                "source": "SYSTEM",
+                "details": "test_details",
+                "errorId": "test_error_id",
+                "message": "test_message",
+                "helpLink": "https://azure.microsoft.com/en-us/blog/introducing-azure-data-lake/",
+                "severity": "Warning",
+                "component": "test_component",
+                "resolution": "test_resolution",
+                "description": "test_description",
+                "diagnosticCode": 1,
+                "internalDiagnostics": "test_internal_diagnostics"
+              },
+              "lineNumber": 1,
+              "resolution": "test_resolution",
+              "description": "test_description",
+              "startOffset": 1,
+              "internalDiagnostics": "test_internal_diagnostics"
+            }
+          ],
+          "logFilePatterns": [
+            "test_log_file_pattern_1",
+            "test_log_file_pattern_2"
+          ],
+          "stateAuditRecords": [
+            {
+              "details": "test_details",
+              "newState": "test_new_state",
+              "timeStamp": "2017-04-18T11:16:49.0748958-07:00",
+              "requestedByUser": "test_requested_by_user"
+            }
+          ],
+          "degreeOfParallelism": 1
+        }
+      ]
+  Job.Get:
+    description: |-
+      Gets the job information for the specified job ID.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/job/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "name": "test_name",
+          "type": "USql",
+          "jobId": "076713da-9018-41ae-a3bd-9eab14e54d09",
+          "state": "Accepted",
+          "result": "Succeeded",
+          "endTime": "2017-04-18T11:16:49.0748958-07:00",
+          "related": {
+            "runId": "67034c12-b250-468e-992d-39fb978bde2c",
+            "pipelineId": "076713da-9018-41ae-a3bd-9eab14e54d09",
+            "pipelineUri": "https://account123.contosopipelineservice.com/076713da-9018-41ae-a3bd-9eab14e54d09",
+            "pipelineName": "test_pipeline_name",
+            "recurrenceId": "67034c12-b250-468e-992d-39fb978bde2d",
+            "recurrenceName": "test_recurrence_name"
+          },
+          "priority": 1,
+          "logFolder": "adl://contosoadla.azuredatalakestore.net/system/jobservice/jobs/Usql/2016/03/13/17/18/5fe51957-93bc-4de0-8ddc-c5a4753b068b/logs/",
+          "startTime": "2017-04-18T11:16:49.0748958-07:00",
+          "submitter": "test_submitter",
+          "properties": {
+            "type": "USql",
+            "script": "test_script",
+            "runtimeVersion": "test_runtime_version"
+          },
+          "submitTime": "2017-04-18T11:16:49.0748958-07:00",
+          "errorMessage": [
+            {
+              "source": "SYSTEM",
+              "details": "test_details",
+              "errorId": "test_error_id",
+              "message": "test_message",
+              "filePath": "adl://contosoadla.azuredatalakestore.net/system/jobservice/jobs/Usql/2016/03/13/17/18/5fe51957-93bc-4de0-8ddc-c5a4753b068b/test_file.txt",
+              "helpLink": "https://azure.microsoft.com/en-us/blog/introducing-azure-data-lake/",
+              "severity": "Warning",
+              "endOffset": 1,
+              "innerError": {
+                "source": "SYSTEM",
+                "details": "test_details",
+                "errorId": "test_error_id",
+                "message": "test_message",
+                "helpLink": "https://azure.microsoft.com/en-us/blog/introducing-azure-data-lake/",
+                "severity": "Warning",
+                "component": "test_component",
+                "resolution": "test_resolution",
+                "description": "test_description",
+                "diagnosticCode": 1,
+                "internalDiagnostics": "test_internal_diagnostics"
+              },
+              "lineNumber": 1,
+              "resolution": "test_resolution",
+              "description": "test_description",
+              "startOffset": 1,
+              "internalDiagnostics": "test_internal_diagnostics"
+            }
+          ],
+          "logFilePatterns": [
+            "test_log_file_pattern_1",
+            "test_log_file_pattern_2"
+          ],
+          "stateAuditRecords": [
+            {
+              "details": "test_details",
+              "newState": "test_new_state",
+              "timeStamp": "2017-04-18T11:16:49.0748958-07:00",
+              "requestedByUser": "test_requested_by_user"
+            }
+          ],
+          "degreeOfParallelism": 1
+        }
+      ]
+  Job.GetDebugDataPath:
+    description: |-
+      Gets the job debug data information specified by the job ID.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/job/getdebugdatapath
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "jobId": "076713da-9018-41ae-a3bd-9eab14e54d09",
+          "paths": [
+            "test_path_1",
+            "test_path_2"
+          ],
+          "command": "test_command"
+        }
+      ]
+  Job.GetStatistics:
+    description: |-
+      Gets statistics of the specified job.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/job/getstatistics
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "stages": [
+            {
+              "dataRead": 1,
+              "stageName": "test_stage_name",
+              "dataToRead": 1,
+              "totalCount": 1,
+              "dataWritten": 1,
+              "failedCount": 1,
+              "runningCount": 1,
+              "totalProgress": 1,
+              "scheduledCount": 1,
+              "succeededCount": 1,
+              "revocationCount": 1,
+              "tempDataWritten": 1,
+              "totalFailedTime": "PT0S",
+              "dataReadCrossPod": 1,
+              "dataReadIntraPod": 1,
+              "readFailureCount": 1,
+              "maxVertexDataRead": 1,
+              "minVertexDataRead": 1,
+              "totalSucceededTime": "PT0S",
+              "duplicateDiscardCount": 1
+            }
+          ],
+          "finalizingTimeUtc": "2017-04-18T11:16:49.0748958-07:00",
+          "lastUpdateTimeUtc": "2017-04-18T11:16:49.0748958-07:00"
+        }
+      ]
+  Job.List:
+    description: |-
+      Lists the jobs, if any, associated with the specified Data Lake Analytics account. The response includes a link to the next page of results, if any.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/job/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "name": "test_name",
+              "type": "USql",
+              "jobId": "076713da-9018-41ae-a3bd-9eab14e54d09",
+              "state": "Accepted",
+              "result": "Succeeded",
+              "endTime": "2017-04-18T11:16:49.0748958-07:00",
+              "related": {
+                "runId": "67034c12-b250-468e-992d-39fb978bde2c",
+                "pipelineId": "076713da-9018-41ae-a3bd-9eab14e54d09",
+                "pipelineUri": "https://account123.contosopipelineservice.com/076713da-9018-41ae-a3bd-9eab14e54d09",
+                "pipelineName": "test_pipeline_name",
+                "recurrenceId": "67034c12-b250-468e-992d-39fb978bde2d",
+                "recurrenceName": "test_recurrence_name"
+              },
+              "priority": 1,
+              "logFolder": "adl://contosoadla.azuredatalakestore.net/system/jobservice/jobs/Usql/2016/03/13/17/18/5fe51957-93bc-4de0-8ddc-c5a4753b068b/logs/",
+              "startTime": "2017-04-18T11:16:49.0748958-07:00",
+              "submitter": "test_submitter",
+              "submitTime": "2017-04-18T11:16:49.0748958-07:00",
+              "logFilePatterns": [
+                "test_log_file_pattern_1",
+                "test_log_file_pattern_2"
+              ],
+              "degreeOfParallelism": 1
+            }
+          ],
+          "nextLink": "https://account123.contosopipelineservice.com/076713da-9018-41ae-a3bd-9eab14e54d09"
+        }
+      ]
+  Locations.GetCapability:
+    description: |-
+      Gets subscription-level properties and limits for Data Lake Analytics specified by resource location.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/locations/getcapability
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "state": "Registered",
+          "accountCount": 100,
+          "migrationState": false,
+          "subscriptionId": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "maxAccountCount": 150
+        }
+      ]
+  Pipeline.Get:
+    description: |-
+      Gets the Pipeline information for the specified pipeline ID.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/pipeline/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "runs": [
+            {
+              "runId": "67034c12-b250-468e-992d-39fb978bde2c",
+              "lastSubmitTime": "2017-04-18T11:16:49.0748958-07:00"
+            }
+          ],
+          "pipelineId": "076713da-9018-41ae-a3bd-9eab14e54d09",
+          "pipelineUri": "https://account123.contosopipelineservice.com/076713da-9018-41ae-a3bd-9eab14e54d09",
+          "recurrences": [
+            "2ba01f6c-562d-4246-90ff-0b8c2d10e346",
+            "da8dc3de-2fd8-4641-8968-40dbbf11e95f"
+          ],
+          "pipelineName": "test_pipeline_name",
+          "auHoursFailed": 1,
+          "numJobsFailed": 1,
+          "lastSubmitTime": "2017-04-18T11:16:49.0748958-07:00",
+          "auHoursCanceled": 1,
+          "numJobsCanceled": 1,
+          "auHoursSucceeded": 1,
+          "numJobsSucceeded": 1
+        }
+      ]
+  Pipeline.List:
+    description: |-
+      Lists all pipelines.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/pipeline/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "runs": [
+                {
+                  "runId": "67034c12-b250-468e-992d-39fb978bde2c",
+                  "lastSubmitTime": "2017-04-18T11:16:49.0748958-07:00"
+                }
+              ],
+              "pipelineId": "076713da-9018-41ae-a3bd-9eab14e54d09",
+              "pipelineUri": "https://account123.contosopipelineservice.com/076713da-9018-41ae-a3bd-9eab14e54d09",
+              "recurrences": [
+                "2ba01f6c-562d-4246-90ff-0b8c2d10e346",
+                "da8dc3de-2fd8-4641-8968-40dbbf11e95f"
+              ],
+              "pipelineName": "test_pipeline_name",
+              "auHoursFailed": 1,
+              "numJobsFailed": 1,
+              "lastSubmitTime": "2017-04-18T11:16:49.0748958-07:00",
+              "auHoursCanceled": 1,
+              "numJobsCanceled": 1,
+              "auHoursSucceeded": 1,
+              "numJobsSucceeded": 1
+            }
+          ],
+          "nextLink": "https://account123.contosopipelineservice.com/076713da-9018-41ae-a3bd-9eab14e54d09"
+        }
+      ]
+  Recurrence.Get:
+    description: |-
+      Gets the recurrence information for the specified recurrence ID.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/recurrence/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "recurrenceId": "076713da-9018-41ae-a3bd-9eab14e54d09",
+          "auHoursFailed": 1,
+          "numJobsFailed": 1,
+          "lastSubmitTime": "2017-04-18T11:16:49.0748958-07:00",
+          "recurrenceName": "test_recurrence_name",
+          "auHoursCanceled": 1,
+          "numJobsCanceled": 1,
+          "auHoursSucceeded": 1,
+          "numJobsSucceeded": 1
+        }
+      ]
+  Recurrence.List:
+    description: |-
+      Lists all recurrences.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/recurrence/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "recurrenceId": "076713da-9018-41ae-a3bd-9eab14e54d09",
+              "auHoursFailed": 1,
+              "numJobsFailed": 1,
+              "lastSubmitTime": "2017-04-18T11:16:49.0748958-07:00",
+              "recurrenceName": "test_recurrence_name",
+              "auHoursCanceled": 1,
+              "numJobsCanceled": 1,
+              "auHoursSucceeded": 1,
+              "numJobsSucceeded": 1
+            }
+          ],
+          "nextLink": "https://account123.contosopipelineservice.com/076713da-9018-41ae-a3bd-9eab14e54d09"
+        }
+      ]
+  StorageAccounts.Add:
+    description: |-
+      Updates the specified Data Lake Analytics account to add an Azure Storage account.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/storageaccounts/add
+    example:
+      inputs: [
+        {
+          "properties": {
+            "suffix": "test_suffix",
+            "accessKey": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab346"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StorageAccounts.Delete:
+    description: |-
+      Updates the specified Data Lake Analytics account to remove an Azure Storage account.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/storageaccounts/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  StorageAccounts.Get:
+    description: |-
+      Gets the specified Azure Storage account linked to the given Data Lake Analytics account.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/storageaccounts/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "name": "test_storage",
+          "type": "test_type",
+          "properties": {
+            "suffix": "test_suffix"
+          }
+        }
+      ]
+  StorageAccounts.GetStorageContainer:
+    description: |-
+      Gets the specified Azure Storage container associated with the given Data Lake Analytics and Azure Storage accounts.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/storageaccounts/getstoragecontainer
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+          "name": "test_storage",
+          "type": "test_type",
+          "properties": {
+            "lastModifiedTime": "2017-04-14T13:21:56.6819037-07:00"
+          }
+        }
+      ]
+  StorageAccounts.ListByAccount:
+    description: |-
+      Gets the first page of Azure Storage accounts, if any, linked to the specified Data Lake Analytics account. The response includes a link to the next page, if any.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/storageaccounts/listbyaccount
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "name": "test_storage",
+              "type": "test_type",
+              "properties": {
+                "suffix": "test_suffix"
+              }
+            }
+          ],
+          "nextLink": "https://management.azure.com/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/contosorg/providers/Microsoft.DataLakeAnalytics/accounts/contosoadla/jobPolicies?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  StorageAccounts.ListSasTokens:
+    description: |-
+      Gets the SAS token associated with the specified Data Lake Analytics and Azure Storage account and container combination.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/storageaccounts/listsastokens
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "accessToken": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab346"
+            }
+          ],
+          "nextLink": "https://management.azure.com/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/contosorg/providers/Microsoft.DataLakeAnalytics/accounts/contosoadla/jobPolicies?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  StorageAccounts.ListStorageContainers:
+    description: |-
+      Lists the Azure Storage containers, if any, associated with the specified Data Lake Analytics and Azure Storage account combination. The response includes a link to the next page of results, if any.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/storageaccounts/liststoragecontainers
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345",
+              "name": "test_storage",
+              "type": "test_type",
+              "properties": {
+                "lastModifiedTime": "2017-04-14T13:21:56.6819037-07:00"
+              }
+            }
+          ],
+          "nextLink": "https://management.azure.com/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/contosorg/providers/Microsoft.DataLakeAnalytics/accounts/contosoadla/jobPolicies?api-version=2016-11-01&%24skiptoken=<token>"
+        }
+      ]
+  StorageAccounts.Update:
+    description: |-
+      Updates the Data Lake Analytics account to replace Azure Storage blob account details, such as the access key and/or suffix.
+    versions:
+      from: 2016.11.1
+    link: https://docs.microsoft.com/en-us/rest/api/datalakeanalytics/storageaccounts/update
+    example:
+      inputs: [
+        {
+          "properties": {
+            "suffix": "test_suffix",
+            "accessKey": "34adfa4f-cedf-4dc0-ba29-b6d1a69ab346"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]

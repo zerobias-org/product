@@ -1,0 +1,1420 @@
+Product:
+  name: Azure Storage Cache
+  versions: [2021.3.1]
+  package: microsoft.azure.storagecache
+  description: |-
+    Storagecache
+  link: https://docs.microsoft.com/en-us/rest/api/storagecache/
+  contentType: json
+Operations:
+  AscOperations.Get:
+    description: |-
+      Gets the status of an asynchronous operation for the Azure HPC Cache
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/ascoperations/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/id/locations/westus/ascOperations/testoperationid",
+          "name": "testoperationid",
+          "status": "Succeeded",
+          "endTime": "2021-03-01T16:13:13.933Z",
+          "startTime": "2021-03-01T13:13:13.933Z"
+        }
+      ]
+  Caches.CreateOrUpdate:
+    description: |-
+      Create or update a Cache.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/caches/createorupdate
+    example:
+      inputs: [
+        {
+          "sku": {
+            "name": "Standard_2G"
+          },
+          "tags": {
+            "Dept": "Contoso"
+          },
+          "location": "westus",
+          "properties": {
+            "subnet": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Network/virtualNetworks/scvnet/subnets/sub1",
+            "cacheSizeGB": 3072,
+            "securitySettings": {
+              "accessPolicies": [
+                {
+                  "name": "default",
+                  "accessRules": [
+                    {
+                      "suid": false,
+                      "scope": "default",
+                      "access": "rw",
+                      "rootSquash": false,
+                      "submountAccess": true
+                    }
+                  ]
+                }
+              ]
+            },
+            "encryptionSettings": {
+              "keyEncryptionKey": {
+                "keyUrl": "https://keyvault-cmk.vault.azure.net/keys/key2047/test",
+                "sourceVault": {
+                  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.KeyVault/vaults/keyvault-cmk"
+                }
+              }
+            },
+            "directoryServicesSettings": {
+              "activeDirectory": {
+                "domainName": "contosoAd.contoso.local",
+                "credentials": {
+                  "password": "<password>",
+                  "username": "consotoAdmin"
+                },
+                "cacheNetBiosName": "contosoSmb",
+                "domainNetBiosName": "contosoAd",
+                "primaryDnsIpAddress": "192.0.2.10",
+                "secondaryDnsIpAddress": "192.0.2.11"
+              },
+              "usernameDownload": {
+                "ldapBaseDN": "dc=contosoad,dc=contoso,dc=local",
+                "ldapServer": "192.0.2.12",
+                "credentials": {
+                  "bindDn": "cn=ldapadmin,dc=contosoad,dc=contoso,dc=local",
+                  "bindPassword": "<bindPassword>"
+                },
+                "extendedGroups": true,
+                "usernameSource": "LDAP"
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.StorageCache/caches/sc1",
+          "sku": {
+            "name": "Standard_2G"
+          },
+          "name": "sc1",
+          "tags": {
+            "Dept": "Contoso"
+          },
+          "type": "Microsoft.StorageCache/Cache",
+          "location": "westus",
+          "properties": {
+            "health": {
+              "state": "Transitioning",
+              "conditions": [
+                {
+                  "message": "Cannot contact DNS server",
+                  "timestamp": "2021-04-21T18:25:43.511Z"
+                }
+              ],
+              "statusDescription": "Cache is being created."
+            },
+            "subnet": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Network/virtualNetworks/scvnet/subnets/sub1",
+            "cacheSizeGB": 3072,
+            "upgradeStatus": {
+              "lastFirmwareUpdate": "2019-01-21T18:25:43.511Z",
+              "firmwareUpdateStatus": "available",
+              "currentFirmwareVersion": "5.3.23",
+              "firmwareUpdateDeadline": "2019-04-21T18:25:43.511Z",
+              "pendingFirmwareVersion": "5.3.24"
+            },
+            "mountAddresses": [
+              "192.168.1.1",
+              "192.168.1.2"
+            ],
+            "networkSettings": {
+              "mtu": 1500,
+              "ntpServer": "time.contoso.com",
+              "dnsServers": [
+                "10.1.22.33",
+                "10.1.12.33"
+              ],
+              "dnsSearchDomain": "contoso.com"
+            },
+            "securitySettings": {
+              "accessPolicies": [
+                {
+                  "name": "default",
+                  "accessRules": [
+                    {
+                      "suid": false,
+                      "scope": "default",
+                      "access": "rw",
+                      "rootSquash": false,
+                      "submountAccess": true
+                    }
+                  ]
+                }
+              ]
+            },
+            "provisioningState": "Succeeded",
+            "encryptionSettings": {
+              "keyEncryptionKey": {
+                "keyUrl": "https://keyvault-cmk.vault.azure.net/keys/key2048/test",
+                "sourceVault": {
+                  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.KeyVault/vaults/keyvault-cmk"
+                }
+              }
+            },
+            "directoryServicesSettings": {
+              "activeDirectory": {
+                "domainName": "contosoAd.contoso.local",
+                "domainJoined": "No",
+                "cacheNetBiosName": "contosoSmb",
+                "domainNetBiosName": "contosoAd",
+                "primaryDnsIpAddress": "192.0.2.10",
+                "secondaryDnsIpAddress": "192.0.2.11"
+              },
+              "usernameDownload": {
+                "ldapBaseDN": "dc=contosoad,dc=contoso,dc=local",
+                "ldapServer": "192.0.2.12",
+                "userFileURI": "",
+                "groupFileURI": "",
+                "extendedGroups": true,
+                "usernameSource": "LDAP",
+                "caCertificateURI": "",
+                "usernameDownloaded": "No",
+                "encryptLdapConnection": false,
+                "autoDownloadCertificate": false,
+                "requireValidCertificate": false
+              }
+            }
+          },
+          "systemData": {
+            "createdAt": "2020-01-01T17:18:19.1234567Z",
+            "createdBy": "user1",
+            "createdByType": "User",
+            "lastModifiedAt": "2020-01-02T17:18:19.1234567Z",
+            "lastModifiedBy": "user2",
+            "lastModifiedByType": "User"
+          }
+        }
+      ]
+  Caches.DebugInfo:
+    description: |-
+      Tells a Cache to write generate debug info for support to process.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/caches/debuginfo
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Caches.Delete:
+    description: |-
+      Schedules a Cache for deletion.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/caches/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Caches.Flush:
+    description: |-
+      Tells a Cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors returned until the flush is complete.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/caches/flush
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Caches.Get:
+    description: |-
+      Returns a Cache.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/caches/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.StorageCache/caches/sc1",
+          "sku": {
+            "name": "Standard_2G"
+          },
+          "name": "sc1",
+          "tags": {
+            "Dept": "Contoso"
+          },
+          "type": "Microsoft.StorageCache/Cache",
+          "location": "westus",
+          "properties": {
+            "health": {
+              "state": "Transitioning",
+              "conditions": [
+                {
+                  "message": "Cannot contact DNS server",
+                  "timestamp": "2021-04-21T18:25:43.511Z"
+                }
+              ],
+              "statusDescription": "Cache is being created."
+            },
+            "subnet": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Network/virtualNetworks/scvnet/subnets/sub1",
+            "cacheSizeGB": 3072,
+            "upgradeStatus": {
+              "lastFirmwareUpdate": "2019-01-21T18:25:43.511Z",
+              "firmwareUpdateStatus": "available",
+              "currentFirmwareVersion": "V5.1.12",
+              "firmwareUpdateDeadline": "2019-04-21T18:25:43.511Z",
+              "pendingFirmwareVersion": "V5.1.15"
+            },
+            "mountAddresses": [
+              "192.168.1.1",
+              "192.168.1.2"
+            ],
+            "networkSettings": {
+              "mtu": 1500,
+              "ntpServer": "time.contoso.com",
+              "dnsServers": [
+                "10.1.22.33",
+                "10.1.12.33"
+              ],
+              "dnsSearchDomain": "contoso.com"
+            },
+            "securitySettings": {
+              "accessPolicies": [
+                {
+                  "name": "default",
+                  "accessRules": [
+                    {
+                      "suid": false,
+                      "scope": "default",
+                      "access": "rw",
+                      "rootSquash": false,
+                      "submountAccess": true
+                    }
+                  ]
+                }
+              ]
+            },
+            "provisioningState": "Succeeded",
+            "encryptionSettings": {
+              "keyEncryptionKey": {
+                "keyUrl": "https://keyvault-cmk.vault.azure.net/keys/key2048/test",
+                "sourceVault": {
+                  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.KeyVault/vaults/keyvault-cmk"
+                }
+              }
+            },
+            "directoryServicesSettings": {
+              "activeDirectory": {
+                "domainName": "contosoAd.contoso.local",
+                "domainJoined": "Yes",
+                "cacheNetBiosName": "contosoSmb",
+                "domainNetBiosName": "contosoAd",
+                "primaryDnsIpAddress": "192.0.2.10",
+                "secondaryDnsIpAddress": "192.0.2.11"
+              },
+              "usernameDownload": {
+                "ldapBaseDN": "dc=contosoad,dc=contoso,dc=local",
+                "ldapServer": "192.0.2.12",
+                "userFileURI": "",
+                "groupFileURI": "",
+                "extendedGroups": true,
+                "usernameSource": "LDAP",
+                "caCertificateURI": "",
+                "usernameDownloaded": "Yes",
+                "encryptLdapConnection": false,
+                "autoDownloadCertificate": false,
+                "requireValidCertificate": false
+              }
+            }
+          },
+          "systemData": {
+            "createdAt": "2020-01-01T17:18:19.1234567Z",
+            "createdBy": "user1",
+            "createdByType": "User",
+            "lastModifiedAt": "2020-01-02T17:18:19.1234567Z",
+            "lastModifiedBy": "user2",
+            "lastModifiedByType": "User"
+          }
+        }
+      ]
+  Caches.List:
+    description: |-
+      Returns all Caches the user has access to under a subscription.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/caches/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.StorageCache/caches/sc1",
+              "sku": {
+                "name": "Standard_2G"
+              },
+              "name": "sc1",
+              "tags": {
+                "Dept": "Contoso"
+              },
+              "type": "Microsoft.StorageCache/Cache",
+              "location": "westus",
+              "properties": {
+                "health": {
+                  "state": "Transitioning",
+                  "conditions": [
+                    {
+                      "message": "Cannot contact DNS server",
+                      "timestamp": "2021-04-21T18:25:43.511Z"
+                    }
+                  ],
+                  "statusDescription": "Cache is being created."
+                },
+                "subnet": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Network/virtualNetworks/scvnet/subnets/sub1",
+                "cacheSizeGB": 3072,
+                "upgradeStatus": {
+                  "lastFirmwareUpdate": "2019-01-21T18:25:43.511Z",
+                  "firmwareUpdateStatus": "available",
+                  "currentFirmwareVersion": "V5.1.12",
+                  "firmwareUpdateDeadline": "2019-04-21T18:25:43.511Z",
+                  "pendingFirmwareVersion": "V5.1.15"
+                },
+                "mountAddresses": [
+                  "192.168.1.1",
+                  "192.168.1.2"
+                ],
+                "networkSettings": {
+                  "mtu": 1500,
+                  "ntpServer": "time.contoso.com",
+                  "dnsServers": [
+                    "10.1.22.33",
+                    "10.1.12.33"
+                  ],
+                  "dnsSearchDomain": "contoso.com"
+                },
+                "securitySettings": {
+                  "accessPolicies": [
+                    {
+                      "name": "default",
+                      "accessRules": [
+                        {
+                          "suid": false,
+                          "scope": "default",
+                          "access": "rw",
+                          "rootSquash": false,
+                          "submountAccess": true
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "provisioningState": "Succeeded",
+                "encryptionSettings": {
+                  "keyEncryptionKey": {
+                    "keyUrl": "https://keyvault-cmk.vault.azure.net/keys/key2048/test",
+                    "sourceVault": {
+                      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.KeyVault/vaults/keyvault-cmk"
+                    }
+                  }
+                },
+                "directoryServicesSettings": {
+                  "activeDirectory": {
+                    "domainName": "contosoAd.contoso.local",
+                    "domainJoined": "Yes",
+                    "cacheNetBiosName": "contosoSmb",
+                    "domainNetBiosName": "contosoAd",
+                    "primaryDnsIpAddress": "192.0.2.10",
+                    "secondaryDnsIpAddress": "192.0.2.11"
+                  },
+                  "usernameDownload": {
+                    "ldapBaseDN": "dc=contosoad,dc=contoso,dc=local",
+                    "ldapServer": "192.0.2.12",
+                    "userFileURI": "",
+                    "groupFileURI": "",
+                    "extendedGroups": true,
+                    "usernameSource": "LDAP",
+                    "caCertificateURI": "",
+                    "usernameDownloaded": "Yes",
+                    "encryptLdapConnection": false,
+                    "autoDownloadCertificate": false,
+                    "requireValidCertificate": false
+                  }
+                }
+              },
+              "systemData": {
+                "createdAt": "2020-01-01T17:18:19.1234567Z",
+                "createdBy": "user1",
+                "createdByType": "User",
+                "lastModifiedAt": "2020-01-02T17:18:19.1234567Z",
+                "lastModifiedBy": "user2",
+                "lastModifiedByType": "User"
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.StorageCache/caches/sc2",
+              "sku": {
+                "name": "Standard_2G"
+              },
+              "name": "sc2",
+              "tags": {
+                "Dept": "Contoso"
+              },
+              "type": "Microsoft.StorageCache/Cache",
+              "location": "westus",
+              "properties": {
+                "health": {
+                  "state": "Transitioning",
+                  "conditions": [
+                    {
+                      "message": "Cannot contact DNS server",
+                      "timestamp": "2021-04-21T18:25:43.511Z"
+                    }
+                  ],
+                  "statusDescription": "Cache is being created."
+                },
+                "subnet": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Network/virtualNetworks/scvnet/subnets/sub2",
+                "cacheSizeGB": 3072,
+                "upgradeStatus": {
+                  "lastFirmwareUpdate": "2019-01-21T18:25:43.511Z",
+                  "firmwareUpdateStatus": "available",
+                  "currentFirmwareVersion": "V5.1.12",
+                  "firmwareUpdateDeadline": "2019-04-21T18:25:43.511Z",
+                  "pendingFirmwareVersion": "V5.1.15"
+                },
+                "mountAddresses": [
+                  "192.168.1.1",
+                  "192.168.1.2"
+                ],
+                "networkSettings": {
+                  "mtu": 1500,
+                  "ntpServer": "time.contoso.com",
+                  "dnsServers": [
+                    "10.1.22.33",
+                    "10.1.12.33"
+                  ],
+                  "dnsSearchDomain": "contoso.com"
+                },
+                "securitySettings": {
+                  "accessPolicies": [
+                    {
+                      "name": "default",
+                      "accessRules": [
+                        {
+                          "suid": false,
+                          "scope": "default",
+                          "access": "rw",
+                          "rootSquash": false,
+                          "submountAccess": true
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "provisioningState": "Updating",
+                "encryptionSettings": {
+                  "keyEncryptionKey": {
+                    "keyUrl": "https://keyvault-cmk.vault.azure.net/keys/key2048/test",
+                    "sourceVault": {
+                      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.KeyVault/vaults/keyvault-cmk"
+                    }
+                  }
+                },
+                "directoryServicesSettings": {
+                  "activeDirectory": {
+                    "domainName": "contosoAd.contoso.local",
+                    "domainJoined": "Yes",
+                    "cacheNetBiosName": "contosoSmb",
+                    "domainNetBiosName": "contosoAd",
+                    "primaryDnsIpAddress": "192.0.2.10",
+                    "secondaryDnsIpAddress": "192.0.2.11"
+                  },
+                  "usernameDownload": {
+                    "ldapBaseDN": "",
+                    "ldapServer": "",
+                    "userFileURI": "",
+                    "groupFileURI": "",
+                    "extendedGroups": true,
+                    "usernameSource": "AD",
+                    "caCertificateURI": "",
+                    "usernameDownloaded": "Yes",
+                    "encryptLdapConnection": false,
+                    "autoDownloadCertificate": false,
+                    "requireValidCertificate": false
+                  }
+                }
+              },
+              "systemData": {
+                "createdAt": "2020-01-01T17:18:19.1234567Z",
+                "createdBy": "user1",
+                "createdByType": "User",
+                "lastModifiedAt": "2020-01-02T17:18:19.1234567Z",
+                "lastModifiedBy": "user2",
+                "lastModifiedByType": "User"
+              }
+            }
+          ]
+        }
+      ]
+  Caches.ListByResourceGroup:
+    description: |-
+      Returns all Caches the user has access to under a resource group.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/caches/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.StorageCache/caches/sc1",
+              "sku": {
+                "name": "Standard_2G"
+              },
+              "name": "sc1",
+              "tags": {
+                "Dept": "Contoso"
+              },
+              "type": "Microsoft.StorageCache/Cache",
+              "location": "westus",
+              "properties": {
+                "health": {
+                  "state": "Transitioning",
+                  "conditions": [
+                    {
+                      "message": "Cannot contact DNS server",
+                      "timestamp": "2021-04-21T18:25:43.511Z"
+                    }
+                  ],
+                  "statusDescription": "Cache is being created."
+                },
+                "subnet": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Network/virtualNetworks/scvnet/subnets/sub1",
+                "cacheSizeGB": 3072,
+                "upgradeStatus": {
+                  "lastFirmwareUpdate": "2019-01-21T18:25:43.511Z",
+                  "firmwareUpdateStatus": "available",
+                  "currentFirmwareVersion": "V5.1.12",
+                  "firmwareUpdateDeadline": "2019-04-21T18:25:43.511Z",
+                  "pendingFirmwareVersion": "V5.1.15"
+                },
+                "mountAddresses": [
+                  "192.168.1.1",
+                  "192.168.1.2"
+                ],
+                "networkSettings": {
+                  "mtu": 1500,
+                  "ntpServer": "time.contoso.com",
+                  "dnsServers": [
+                    "10.1.22.33",
+                    "10.1.12.33"
+                  ],
+                  "dnsSearchDomain": "contoso.com"
+                },
+                "securitySettings": {
+                  "accessPolicies": [
+                    {
+                      "name": "default",
+                      "accessRules": [
+                        {
+                          "suid": false,
+                          "scope": "default",
+                          "access": "rw",
+                          "rootSquash": false,
+                          "submountAccess": true
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "provisioningState": "Succeeded",
+                "encryptionSettings": {
+                  "keyEncryptionKey": {
+                    "keyUrl": "https://keyvault-cmk.vault.azure.net/keys/key2048/test",
+                    "sourceVault": {
+                      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.KeyVault/vaults/keyvault-cmk"
+                    }
+                  }
+                },
+                "directoryServicesSettings": {
+                  "activeDirectory": {
+                    "domainName": "contosoAd.contoso.local",
+                    "domainJoined": "Yes",
+                    "cacheNetBiosName": "contosoSmb",
+                    "domainNetBiosName": "contosoAd",
+                    "primaryDnsIpAddress": "192.0.2.10",
+                    "secondaryDnsIpAddress": "192.0.2.11"
+                  },
+                  "usernameDownload": {
+                    "ldapBaseDN": "dc=contosoad,dc=contoso,dc=local",
+                    "ldapServer": "192.0.2.12",
+                    "userFileURI": "",
+                    "groupFileURI": "",
+                    "extendedGroups": true,
+                    "usernameSource": "LDAP",
+                    "caCertificateURI": "",
+                    "usernameDownloaded": "Yes",
+                    "encryptLdapConnection": false,
+                    "autoDownloadCertificate": false,
+                    "requireValidCertificate": false
+                  }
+                }
+              },
+              "systemData": {
+                "createdAt": "2020-01-01T17:18:19.1234567Z",
+                "createdBy": "user1",
+                "createdByType": "User",
+                "lastModifiedAt": "2020-01-02T17:18:19.1234567Z",
+                "lastModifiedBy": "user2",
+                "lastModifiedByType": "User"
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.StorageCache/caches/sc2",
+              "sku": {
+                "name": "Standard_2G"
+              },
+              "name": "sc2",
+              "tags": {
+                "Dept": "Contoso"
+              },
+              "type": "Microsoft.StorageCache/Cache",
+              "location": "westus",
+              "properties": {
+                "health": {
+                  "state": "Transitioning",
+                  "conditions": [
+                    {
+                      "message": "Cannot contact DNS server",
+                      "timestamp": "2021-04-21T18:25:43.511Z"
+                    }
+                  ],
+                  "statusDescription": "Cache is being created."
+                },
+                "subnet": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Network/virtualNetworks/scvnet/subnets/sub2",
+                "cacheSizeGB": 3072,
+                "upgradeStatus": {
+                  "lastFirmwareUpdate": "2019-01-21T18:25:43.511Z",
+                  "firmwareUpdateStatus": "available",
+                  "currentFirmwareVersion": "V5.1.12",
+                  "firmwareUpdateDeadline": "2019-04-21T18:25:43.511Z",
+                  "pendingFirmwareVersion": "V5.1.15"
+                },
+                "mountAddresses": [
+                  "192.168.1.1",
+                  "192.168.1.2"
+                ],
+                "networkSettings": {
+                  "mtu": 1500,
+                  "ntpServer": "time.contoso.com",
+                  "dnsServers": [
+                    "10.1.22.33",
+                    "10.1.12.33"
+                  ],
+                  "dnsSearchDomain": "contoso.com"
+                },
+                "securitySettings": {
+                  "accessPolicies": [
+                    {
+                      "name": "default",
+                      "accessRules": [
+                        {
+                          "suid": false,
+                          "scope": "default",
+                          "access": "rw",
+                          "rootSquash": false,
+                          "submountAccess": true
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "provisioningState": "Updating",
+                "encryptionSettings": {
+                  "keyEncryptionKey": {
+                    "keyUrl": "https://keyvault-cmk.vault.azure.net/keys/key2048/test",
+                    "sourceVault": {
+                      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.KeyVault/vaults/keyvault-cmk"
+                    }
+                  }
+                },
+                "directoryServicesSettings": {
+                  "activeDirectory": {
+                    "domainName": "contosoAd.contoso.local",
+                    "domainJoined": "Yes",
+                    "cacheNetBiosName": "contosoSmb",
+                    "domainNetBiosName": "contosoAd",
+                    "primaryDnsIpAddress": "192.0.2.10",
+                    "secondaryDnsIpAddress": "192.0.2.11"
+                  },
+                  "usernameDownload": {
+                    "ldapBaseDN": "",
+                    "ldapServer": "",
+                    "userFileURI": "",
+                    "groupFileURI": "",
+                    "extendedGroups": true,
+                    "usernameSource": "AD",
+                    "caCertificateURI": "",
+                    "usernameDownloaded": "Yes",
+                    "encryptLdapConnection": false,
+                    "autoDownloadCertificate": false,
+                    "requireValidCertificate": false
+                  }
+                }
+              },
+              "systemData": {
+                "createdAt": "2020-01-01T17:18:19.1234567Z",
+                "createdBy": "user1",
+                "createdByType": "User",
+                "lastModifiedAt": "2020-01-02T17:18:19.1234567Z",
+                "lastModifiedBy": "user2",
+                "lastModifiedByType": "User"
+              }
+            }
+          ]
+        }
+      ]
+  Caches.Start:
+    description: |-
+      Tells a Stopped state Cache to transition to Active state.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/caches/start
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Caches.Stop:
+    description: |-
+      Tells an Active Cache to transition to Stopped state.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/caches/stop
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Caches.Update:
+    description: |-
+      Update a Cache instance.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/caches/update
+    example:
+      inputs: [
+        {
+          "sku": {
+            "name": "Standard_2G"
+          },
+          "tags": {
+            "Dept": "Contoso"
+          },
+          "location": "westus",
+          "properties": {
+            "subnet": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Network/virtualNetworks/scvnet/subnets/sub1",
+            "cacheSizeGB": 3072,
+            "networkSettings": {
+              "mtu": 1500,
+              "ntpServer": "time.contoso.com",
+              "dnsServers": [
+                "10.1.22.33",
+                "10.1.12.33"
+              ],
+              "dnsSearchDomain": "contoso.com"
+            },
+            "securitySettings": {
+              "accessPolicies": [
+                {
+                  "name": "default",
+                  "accessRules": [
+                    {
+                      "suid": false,
+                      "scope": "default",
+                      "access": "rw",
+                      "rootSquash": false,
+                      "submountAccess": true
+                    }
+                  ]
+                },
+                {
+                  "name": "restrictive",
+                  "accessRules": [
+                    {
+                      "suid": true,
+                      "scope": "host",
+                      "access": "rw",
+                      "filter": "10.99.3.145",
+                      "rootSquash": false,
+                      "submountAccess": true
+                    },
+                    {
+                      "suid": true,
+                      "scope": "network",
+                      "access": "rw",
+                      "filter": "10.99.1.0/24",
+                      "rootSquash": false,
+                      "submountAccess": true
+                    },
+                    {
+                      "suid": false,
+                      "scope": "default",
+                      "access": "no",
+                      "rootSquash": true,
+                      "anonymousGID": "65534",
+                      "anonymousUID": "65534",
+                      "submountAccess": true
+                    }
+                  ]
+                }
+              ]
+            },
+            "directoryServicesSettings": {
+              "activeDirectory": {
+                "domainName": "contosoAd.contoso.local",
+                "cacheNetBiosName": "contosoSmb",
+                "domainNetBiosName": "contosoAd",
+                "primaryDnsIpAddress": "192.0.2.10",
+                "secondaryDnsIpAddress": "192.0.2.11"
+              },
+              "usernameDownload": {
+                "extendedGroups": true,
+                "usernameSource": "AD"
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.StorageCache/caches/sc1",
+          "sku": {
+            "name": "Standard_2G"
+          },
+          "name": "sc1",
+          "tags": {
+            "Dept": "Contoso"
+          },
+          "type": "Microsoft.StorageCache/Cache",
+          "location": "westus",
+          "properties": {
+            "health": {
+              "state": "Transitioning",
+              "conditions": [
+                {
+                  "message": "Cannot contact DNS server",
+                  "timestamp": "2021-04-21T18:25:43.511Z"
+                }
+              ],
+              "statusDescription": "Cache is being created."
+            },
+            "subnet": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Network/virtualNetworks/scvnet/subnets/sub1",
+            "cacheSizeGB": 3072,
+            "upgradeStatus": {
+              "lastFirmwareUpdate": "2019-01-21T18:25:43.511Z",
+              "firmwareUpdateStatus": "available",
+              "currentFirmwareVersion": "V5.1.12",
+              "firmwareUpdateDeadline": "2019-04-21T18:25:43.511Z",
+              "pendingFirmwareVersion": "V5.1.15"
+            },
+            "mountAddresses": [
+              "192.168.1.1",
+              "192.168.1.2"
+            ],
+            "networkSettings": {
+              "mtu": 1500,
+              "ntpServer": "time.contoso.com",
+              "dnsServers": [
+                "10.1.22.33",
+                "10.1.12.33"
+              ],
+              "dnsSearchDomain": "contoso.com"
+            },
+            "securitySettings": {
+              "accessPolicies": [
+                {
+                  "name": "default",
+                  "accessRules": [
+                    {
+                      "suid": false,
+                      "scope": "default",
+                      "access": "rw",
+                      "rootSquash": false,
+                      "submountAccess": true
+                    }
+                  ]
+                },
+                {
+                  "name": "restrictive",
+                  "accessRules": [
+                    {
+                      "suid": true,
+                      "scope": "host",
+                      "access": "rw",
+                      "filter": "10.99.3.145",
+                      "rootSquash": false,
+                      "submountAccess": true
+                    },
+                    {
+                      "suid": true,
+                      "scope": "network",
+                      "access": "rw",
+                      "filter": "10.99.1.0/24",
+                      "rootSquash": false,
+                      "submountAccess": true
+                    },
+                    {
+                      "suid": false,
+                      "scope": "default",
+                      "access": "no",
+                      "rootSquash": true,
+                      "anonymousGID": "65534",
+                      "anonymousUID": "65534",
+                      "submountAccess": true
+                    }
+                  ]
+                }
+              ]
+            },
+            "provisioningState": "Updating",
+            "directoryServicesSettings": {
+              "activeDirectory": {
+                "domainName": "contosoAd.contoso.local",
+                "domainJoined": "Yes",
+                "cacheNetBiosName": "contosoSmb",
+                "domainNetBiosName": "contosoAd",
+                "primaryDnsIpAddress": "192.0.2.10",
+                "secondaryDnsIpAddress": "192.0.2.11"
+              },
+              "usernameDownload": {
+                "ldapBaseDN": "",
+                "ldapServer": "",
+                "userFileURI": "",
+                "groupFileURI": "",
+                "extendedGroups": true,
+                "usernameSource": "AD",
+                "caCertificateURI": "",
+                "usernameDownloaded": "Yes",
+                "encryptLdapConnection": false,
+                "autoDownloadCertificate": false,
+                "requireValidCertificate": false
+              }
+            }
+          },
+          "systemData": {
+            "createdAt": "2020-01-01T17:18:19.1234567Z",
+            "createdBy": "user1",
+            "createdByType": "User",
+            "lastModifiedAt": "2020-01-02T17:18:19.1234567Z",
+            "lastModifiedBy": "user2",
+            "lastModifiedByType": "User"
+          }
+        }
+      ]
+  Caches.UpgradeFirmware:
+    description: |-
+      Upgrade a Cache's firmware if a new version is available. Otherwise, this operation has no effect.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/caches/upgradefirmware
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Skus.List:
+    description: |-
+      Get the list of StorageCache.Cache SKUs available to this subscription.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/skus/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "name": "Standard_2G",
+              "locations": [
+                "eastus"
+              ],
+              "capabilities": [
+                {
+                  "name": "throughput GB/s",
+                  "value": "2"
+                },
+                {
+                  "name": "cache sizes(GB)",
+                  "value": "3072,6144,12288"
+                }
+              ],
+              "locationInfo": [
+                {
+                  "zones": [],
+                  "location": "eastus"
+                }
+              ],
+              "resourceType": "caches",
+              "restrictions": []
+            },
+            {
+              "name": "Standard_4G",
+              "locations": [
+                "eastus"
+              ],
+              "capabilities": [
+                {
+                  "name": "throughput GB/s",
+                  "value": "4"
+                },
+                {
+                  "name": "cache sizes(GB)",
+                  "value": "6144,12288,24576"
+                }
+              ],
+              "locationInfo": [
+                {
+                  "zones": [],
+                  "location": "eastus"
+                }
+              ],
+              "resourceType": "caches",
+              "restrictions": []
+            },
+            {
+              "name": "Standard_8G",
+              "locations": [
+                "eastus"
+              ],
+              "capabilities": [
+                {
+                  "name": "throughput GB/s",
+                  "value": "8"
+                },
+                {
+                  "name": "cache sizes(GB)",
+                  "value": "12288,24576,49152"
+                }
+              ],
+              "locationInfo": [
+                {
+                  "zones": [],
+                  "location": "eastus"
+                }
+              ],
+              "resourceType": "caches",
+              "restrictions": []
+            }
+          ]
+        }
+      ]
+  StorageTargets.CreateOrUpdate:
+    description: |-
+      Create or update a Storage Target. This operation is allowed at any time, but if the Cache is down or unhealthy, the actual creation/modification of the Storage Target may be delayed until the Cache is healthy again.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/storagetargets/createorupdate
+    example:
+      inputs: [
+        {
+          "properties": {
+            "nfs3": {
+              "target": "10.0.44.44",
+              "usageModel": "READ_HEAVY_INFREQ"
+            },
+            "junctions": [
+              {
+                "nfsExport": "exp1",
+                "targetPath": "/path/on/exp1",
+                "namespacePath": "/path/on/cache",
+                "nfsAccessPolicy": "default"
+              },
+              {
+                "nfsExport": "exp2",
+                "targetPath": "/path2/on/exp2",
+                "namespacePath": "/path2/on/cache",
+                "nfsAccessPolicy": "rootSquash"
+              }
+            ],
+            "targetType": "nfs3"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.StorageCache/caches/sc1/storagetargets/st1",
+          "name": "st1",
+          "type": "Microsoft.StorageCache/Cache/StorageTarget",
+          "properties": {
+            "nfs3": {
+              "target": "10.0.44.44",
+              "usageModel": "READ_HEAVY_INFREQ"
+            },
+            "junctions": [
+              {
+                "nfsExport": "exp1",
+                "targetPath": "/path/on/exp1",
+                "namespacePath": "/path/on/cache",
+                "nfsAccessPolicy": "default"
+              },
+              {
+                "nfsExport": "exp2",
+                "targetPath": "/path2/on/exp2",
+                "namespacePath": "/path2/on/cache",
+                "nfsAccessPolicy": "rootSquash"
+              }
+            ],
+            "targetType": "nfs3"
+          },
+          "systemData": {
+            "createdAt": "2020-01-01T17:18:19.1234567Z",
+            "createdBy": "user1",
+            "createdByType": "User",
+            "lastModifiedAt": "2020-01-02T17:18:19.1234567Z",
+            "lastModifiedBy": "user2",
+            "lastModifiedByType": "User"
+          }
+        }
+      ]
+  StorageTargets.Delete:
+    description: |-
+      Removes a Storage Target from a Cache. This operation is allowed at any time, but if the Cache is down or unhealthy, the actual removal of the Storage Target may be delayed until the Cache is healthy again. Note that if the Cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be deleted.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/storagetargets/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  StorageTargets.DnsRefresh:
+    description: |-
+      Tells a storage target to refresh its DNS information.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/storagetargets/dnsrefresh
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  StorageTargets.Get:
+    description: |-
+      Returns a Storage Target from a Cache.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/storagetargets/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.StorageCache/caches/sc1/storagetargets/st1",
+          "name": "st1",
+          "type": "Microsoft.StorageCache/Cache/StorageTarget",
+          "properties": {
+            "nfs3": {
+              "target": "10.0.44.44",
+              "usageModel": "READ_HEAVY_FREQ"
+            },
+            "junctions": [
+              {
+                "nfsExport": "exp1",
+                "targetPath": "/path/on/exp1",
+                "namespacePath": "/path/on/cache",
+                "nfsAccessPolicy": "default"
+              },
+              {
+                "nfsExport": "exp2",
+                "targetPath": "/path2/on/exp2",
+                "namespacePath": "/path2/on/cache",
+                "nfsAccessPolicy": "default"
+              }
+            ],
+            "targetType": "nfs3"
+          },
+          "systemData": {
+            "createdAt": "2020-01-01T17:18:19.1234567Z",
+            "createdBy": "user1",
+            "createdByType": "User",
+            "lastModifiedAt": "2020-01-02T17:18:19.1234567Z",
+            "lastModifiedBy": "user2",
+            "lastModifiedByType": "User"
+          }
+        }
+      ]
+  StorageTargets.ListByCache:
+    description: |-
+      Returns a list of Storage Targets for the specified Cache.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/storagetargets/listbycache
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.StorageCache/caches/sc1/storagetargets/st1",
+              "name": "st1",
+              "type": "Microsoft.StorageCache/Cache/StorageTarget",
+              "properties": {
+                "nfs3": {
+                  "target": "10.0.44.44",
+                  "usageModel": "READ_HEAVY_FREQ"
+                },
+                "junctions": [
+                  {
+                    "nfsExport": "exp1",
+                    "targetPath": "/path/on/exp1",
+                    "namespacePath": "/path/on/cache",
+                    "nfsAccessPolicy": "default"
+                  },
+                  {
+                    "nfsExport": "exp2",
+                    "targetPath": "/path2/on/exp2",
+                    "namespacePath": "/path2/on/cache",
+                    "nfsAccessPolicy": "default"
+                  }
+                ],
+                "targetType": "nfs3"
+              },
+              "systemData": {
+                "createdAt": "2020-01-01T17:18:19.1234567Z",
+                "createdBy": "user1",
+                "createdByType": "User",
+                "lastModifiedAt": "2020-01-02T17:18:19.1234567Z",
+                "lastModifiedBy": "user2",
+                "lastModifiedByType": "User"
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.StorageCache/caches/sc1/storagetargets/st2",
+              "name": "st2",
+              "type": "Microsoft.StorageCache/Cache/StorageTarget",
+              "properties": {
+                "clfs": {
+                  "target": "https://contoso123.blob.core.windows.net/contoso123"
+                },
+                "junctions": [
+                  {
+                    "targetPath": "/",
+                    "namespacePath": "/some/crazy/place/on/cache",
+                    "nfsAccessPolicy": "default"
+                  }
+                ],
+                "targetType": "clfs"
+              },
+              "systemData": {
+                "createdAt": "2020-01-01T17:18:19.1234567Z",
+                "createdBy": "user1",
+                "createdByType": "User",
+                "lastModifiedAt": "2020-01-02T17:18:19.1234567Z",
+                "lastModifiedBy": "user2",
+                "lastModifiedByType": "User"
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.StorageCache/caches/sc1/storagetargets/st3",
+              "name": "st3",
+              "type": "Microsoft.StorageCache/Cache/StorageTarget",
+              "properties": {
+                "unknown": {
+                  "attributes": {
+                    "foo": "bar",
+                    "foo2": "test"
+                  }
+                },
+                "junctions": [
+                  {
+                    "nfsExport": "",
+                    "targetPath": "/",
+                    "namespacePath": "/some/crazier/place/on/cache",
+                    "nfsAccessPolicy": "default"
+                  }
+                ],
+                "targetType": "unknown"
+              },
+              "systemData": {
+                "createdAt": "2020-01-01T17:18:19.1234567Z",
+                "createdBy": "user1",
+                "createdByType": "User",
+                "lastModifiedAt": "2020-01-02T17:18:19.1234567Z",
+                "lastModifiedBy": "user2",
+                "lastModifiedByType": "User"
+              }
+            }
+          ]
+        }
+      ]
+  UsageModels.List:
+    description: |-
+      Get the list of Cache Usage Models available to this subscription.
+    versions:
+      from: 2021.3.1
+    link: https://docs.microsoft.com/en-us/rest/api/storagecache/usagemodels/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "display": {
+                "description": "Read heavy, infrequent changes"
+              },
+              "modelName": "READ_HEAVY_INFREQ",
+              "targetType": "nfs3"
+            },
+            {
+              "display": {
+                "description": "Clients write directly to storage"
+              },
+              "modelName": "WRITE_AROUND",
+              "targetType": "nfs3"
+            },
+            {
+              "display": {
+                "description": "Write workload > 15%"
+              },
+              "modelName": "WRITE_WORKLOAD_15",
+              "targetType": "nfs3"
+            }
+          ]
+        }
+      ]

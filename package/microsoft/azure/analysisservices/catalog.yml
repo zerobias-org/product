@@ -1,0 +1,490 @@
+Product:
+  name: Azure Analysis Services
+  versions: [2017.8.1]
+  package: microsoft.azure.analysisservices
+  description: |-
+    AnalysisServices
+  link: https://docs.microsoft.com/en-us/azure/analysis-services/
+  contentType: json
+Operations:
+  Servers.CheckNameAvailability:
+    description: |-
+      Check the name availability in the target location.
+    versions:
+      from: 2017.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/analysisservices/servers/checknameavailability
+    example:
+      inputs: [
+        {
+          "name": "azsdktest",
+          "type": "Microsoft.AnalysisServices/servers"
+        }
+      ]
+      outputs: [
+        {
+          "nameAvailable": true
+        }
+      ]
+  Servers.Create:
+    description: |-
+      Provisions the specified Analysis Services server based on the configuration specified in the request.
+    versions:
+      from: 2017.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/analysisservices/servers/create
+    example:
+      inputs: [
+        {
+          "sku": {
+            "name": "S1",
+            "tier": "Standard",
+            "capacity": 1
+          },
+          "tags": {
+            "testKey": "testValue"
+          },
+          "location": "West US",
+          "properties": {
+            "asAdministrators": {
+              "members": [
+                "azsdktest@microsoft.com",
+                "azsdktest2@microsoft.com"
+              ]
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/613192d7-503f-477a-9cfe-4efc3ee2bd60/resourceGroups/TestRG/providers/Microsoft.AnalysisServices/servers/azsdktest",
+          "sku": {
+            "name": "S1",
+            "tier": "Standard",
+            "capacity": 1
+          },
+          "name": "azsdktest",
+          "tags": {
+            "testKey": "testValue"
+          },
+          "location": "West US",
+          "properties": {
+            "state": "Provisioning",
+            "serverFullName": "asazure://nightly1.asazure-int.windows.net/azsdktest",
+            "asAdministrators": {
+              "members": [
+                "azsdktest@microsoft.com",
+                "azsdktest2@microsoft.com"
+              ]
+            },
+            "provisioningState": "Provisioning"
+          }
+        }
+      ]
+  Servers.Delete:
+    description: |-
+      Deletes the specified Analysis Services server.
+    versions:
+      from: 2017.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/analysisservices/servers/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Servers.DissociateGateway:
+    description: |-
+      Dissociates a Unified Gateway associated with the server.
+    versions:
+      from: 2017.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/analysisservices/servers/dissociategateway
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Servers.GetDetails:
+    description: |-
+      Gets details about the specified Analysis Services server.
+    versions:
+      from: 2017.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/analysisservices/servers/getdetails
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/613192d7-503f-477a-9cfe-4efc3ee2bd60/resourceGroups/TestRG/providers/Microsoft.AnalysisServices/servers/azsdktest",
+          "sku": {
+            "name": "S1",
+            "tier": "Standard",
+            "capacity": 1
+          },
+          "name": "azsdktest",
+          "tags": {
+            "testKey": "testValue"
+          },
+          "location": "West US",
+          "properties": {
+            "state": "Provisioning",
+            "serverFullName": "asazure://nightly1.asazure-int.windows.net/azsdktest",
+            "asAdministrators": {
+              "members": [
+                "azsdktest@microsoft.com"
+              ]
+            },
+            "provisioningState": "Provisioning"
+          }
+        }
+      ]
+  Servers.List:
+    description: |-
+      Lists all the Analysis Services servers for the given subscription.
+    versions:
+      from: 2017.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/analysisservices/servers/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/613192d7-503f-477a-9cfe-4efc3ee2bd60/resourceGroups/TestRG/providers/Microsoft.AnalysisServices/servers/azsdktest",
+              "sku": {
+                "name": "S1",
+                "tier": "Standard",
+                "capacity": 1
+              },
+              "name": "azsdktest",
+              "tags": {
+                "testKey": "testValue"
+              },
+              "location": "West US",
+              "properties": {
+                "state": "Provisioning",
+                "serverFullName": "asazure://nightly1.asazure-int.windows.net/azsdktest",
+                "asAdministrators": {
+                  "members": [
+                    "azsdktest@microsoft.com"
+                  ]
+                },
+                "provisioningState": "Provisioning"
+              }
+            },
+            {
+              "id": "/subscriptions/613192d7-503f-477a-9cfe-4efc3ee2bd60/resourceGroups/TestRG2/providers/Microsoft.AnalysisServices/servers/azsdktest",
+              "sku": {
+                "name": "S0",
+                "tier": "Standard",
+                "capacity": 1
+              },
+              "name": "azsdktest2",
+              "tags": {
+                "testKey": "testValue"
+              },
+              "location": "West US",
+              "properties": {
+                "state": "Provisioning",
+                "serverFullName": "asazure://nightly1.asazure-int.windows.net/azsdktest",
+                "asAdministrators": {
+                  "members": [
+                    "azsdktest@microsoft.com"
+                  ]
+                },
+                "provisioningState": "Provisioning"
+              }
+            }
+          ]
+        }
+      ]
+  Servers.ListByResourceGroup:
+    description: |-
+      Gets all the Analysis Services servers for the given resource group.
+    versions:
+      from: 2017.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/analysisservices/servers/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/613192d7-503f-477a-9cfe-4efc3ee2bd60/resourceGroups/TestRG/providers/Microsoft.AnalysisServices/servers/azsdktest",
+              "sku": {
+                "name": "S1",
+                "tier": "Standard",
+                "capacity": 1
+              },
+              "name": "azsdktest",
+              "tags": {
+                "testKey": "testValue"
+              },
+              "location": "West US",
+              "properties": {
+                "state": "Provisioning",
+                "serverFullName": "asazure://nightly1.asazure-int.windows.net/azsdktest",
+                "asAdministrators": {
+                  "members": [
+                    "azsdktest@microsoft.com"
+                  ]
+                },
+                "provisioningState": "Provisioning"
+              }
+            },
+            {
+              "id": "/subscriptions/613192d7-503f-477a-9cfe-4efc3ee2bd60/resourceGroups/TestRG/providers/Microsoft.AnalysisServices/servers/azsdktest",
+              "sku": {
+                "name": "S0",
+                "tier": "Standard",
+                "capacity": 1
+              },
+              "name": "azsdktest2",
+              "tags": {
+                "testKey": "testValue"
+              },
+              "location": "West US",
+              "properties": {
+                "state": "Provisioning",
+                "serverFullName": "asazure://nightly1.asazure-int.windows.net/azsdktest",
+                "asAdministrators": {
+                  "members": [
+                    "azsdktest@microsoft.com"
+                  ]
+                },
+                "provisioningState": "Provisioning"
+              }
+            }
+          ]
+        }
+      ]
+  Servers.ListGatewayStatus:
+    description: |-
+      Return the gateway status of the specified Analysis Services server instance.
+    versions:
+      from: 2017.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/analysisservices/servers/listgatewaystatus
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "status": 0
+        }
+      ]
+  Servers.ListOperationResults:
+    description: |-
+      List the result of the specified operation.
+    versions:
+      from: 2017.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/analysisservices/servers/listoperationresults
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Servers.ListOperationStatuses:
+    description: |-
+      List the status of operation.
+    versions:
+      from: 2017.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/analysisservices/servers/listoperationstatuses
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/id/locations/westus/operationstatuses/testoperationid",
+          "name": "testoperationid",
+          "status": "Succeeded",
+          "endTime": "2017-01-01T16:13:13.933Z",
+          "startTime": "2017-01-01T13:13:13.933Z"
+        }
+      ]
+  Servers.ListSkusForExisting:
+    description: |-
+      Lists eligible SKUs for an Analysis Services resource.
+    versions:
+      from: 2017.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/analysisservices/servers/listskusforexisting
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "sku": {
+                "name": "B1",
+                "tier": "Basic"
+              }
+            },
+            {
+              "sku": {
+                "name": "B2",
+                "tier": "Basic"
+              }
+            },
+            {
+              "sku": {
+                "name": "S0",
+                "tier": "Standard"
+              }
+            },
+            {
+              "sku": {
+                "name": "S1",
+                "tier": "Standard"
+              }
+            },
+            {
+              "sku": {
+                "name": "S2",
+                "tier": "Standard"
+              }
+            },
+            {
+              "sku": {
+                "name": "S3",
+                "tier": "Standard"
+              }
+            },
+            {
+              "sku": {
+                "name": "S4",
+                "tier": "Standard"
+              }
+            }
+          ]
+        }
+      ]
+  Servers.ListSkusForNew:
+    description: |-
+      Lists eligible SKUs for Analysis Services resource provider.
+    versions:
+      from: 2017.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/analysisservices/servers/listskusfornew
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "name": "B1"
+            },
+            {
+              "name": "B2"
+            },
+            {
+              "name": "D1"
+            },
+            {
+              "name": "S0"
+            },
+            {
+              "name": "S1"
+            },
+            {
+              "name": "S2"
+            },
+            {
+              "name": "S3"
+            },
+            {
+              "name": "S4"
+            }
+          ]
+        }
+      ]
+  Servers.Resume:
+    description: |-
+      Resumes operation of the specified Analysis Services server instance.
+    versions:
+      from: 2017.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/analysisservices/servers/resume
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Servers.Suspend:
+    description: |-
+      Suspends operation of the specified Analysis Services server instance.
+    versions:
+      from: 2017.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/analysisservices/servers/suspend
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Servers.Update:
+    description: |-
+      Updates the current state of the specified Analysis Services server.
+    versions:
+      from: 2017.8.1
+    link: https://docs.microsoft.com/en-us/rest/api/analysisservices/servers/update
+    example:
+      inputs: [
+        {
+          "sku": {
+            "name": "S1",
+            "tier": "Standard",
+            "capacity": 1
+          },
+          "tags": {
+            "testKey": "testValue"
+          },
+          "properties": {
+            "asAdministrators": {
+              "members": [
+                "azsdktest@microsoft.com",
+                "azsdktest2@microsoft.com"
+              ]
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/613192d7-503f-477a-9cfe-4efc3ee2bd60/resourceGroups/TestRG/providers/Microsoft.AnalysisServices/servers/azsdktest",
+          "sku": {
+            "name": "S1",
+            "tier": "Standard",
+            "capacity": 1
+          },
+          "name": "azsdktest",
+          "tags": {
+            "testKey": "testValue"
+          },
+          "location": "West US",
+          "properties": {
+            "state": "Provisioning",
+            "serverFullName": "asazure://nightly1.asazure-int.windows.net/azsdktest",
+            "asAdministrators": {
+              "members": [
+                "azsdktest@microsoft.com",
+                "azsdktest2@microsoft.com"
+              ]
+            },
+            "provisioningState": "Provisioning"
+          }
+        }
+      ]
