@@ -3,7 +3,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import yaml from 'yaml';
 import { UUID, URL } from '@auditmation/types-core-js';
-import { VspStatusEnum } from '@auditmation/module-auditmation-auditmation-portal';
+import { VspStatusEnum, FactoryTypeEnum, HostingTypeEnum } from '@auditmation/module-auditmation-auditmation-portal';
 
 const productTypes: Record<string, number> = {};
 
@@ -117,6 +117,32 @@ async function processIndexYml(indexFile: Record<string, any>): Promise<{ code: 
     }
   }
 
+  check = indexFile.factoryTypes !== undefined && indexFile.factoryTypes !== null ? indexFile.factoryTypes : [];
+  if (!Array.isArray(check)) {
+    throw new Error(`factoryTypes must be an array.`);
+  }
+
+  for (const factoryType of check) {
+    try {
+      check = FactoryTypeEnum.from(factoryType);
+    } catch (error: any) {
+      throw new Error(`factoryType ${factoryType} not valid.`);
+    }
+  }
+
+  check = indexFile.hostingTypes !== undefined && indexFile.hostingTypes !== null ? indexFile.hostingTypes : [];
+  if (!Array.isArray(check)) {
+    throw new Error(`hostingTypes must be an array.`);
+  }
+
+  for (const hostingType of check) {
+    try {
+      check = HostingTypeEnum.from(hostingType);
+    } catch (error: any) {
+      throw new Error(`hostingType ${hostingType} not valid.`);
+    }
+  }
+
   const parentType = indexFile.parentType !== undefined && indexFile.parentType !== null ? indexFile.parentType
     : new Error('parentType not found in index.yml');
 
@@ -148,20 +174,6 @@ async function processArtifact(directory: string) {
     throw new Error(`Path given is not found or not a directory: ${directory}`);
   }
 
-  const checkIndexYml = await fs.lstat(path.join(directory, 'index.yml'))
-    .catch(() => undefined);
-
-  if (!checkIndexYml || !checkIndexYml.isFile()) {
-    throw new Error(`index.yml file not found or not file in directory: ${directory}`);
-  }
-
-  const indexYml = await readAndParseFile('index.yml', path.join(directory, 'index.yml'));
-  if (!indexYml) {
-    throw new Error('Unable to parse index.yml');
-  }
-
-  const { code, vendor, suite } = await processIndexYml(indexYml);
-  console.log('Validated index.yml');
   const checkPackageJson = await fs.lstat(path.join(directory, 'package.json'))
     .catch(() => undefined);
 
@@ -173,6 +185,31 @@ async function processArtifact(directory: string) {
   if (!packageJson) {
     throw new Error('Unable to parse package.json');
   }
+  
+  if (packageJson.auditmation && typeof packageJson.auditmation === 'object' && packageJson.auditmation.deprecated) {
+    console.log('This artifact is deprecated according to the package.json.');
+    return;
+  }
+
+  const checkIndexYml = await fs.lstat(path.join(directory, 'index.yml'))
+    .catch(() => undefined);
+
+  if (!checkIndexYml || !checkIndexYml.isFile()) {
+    throw new Error(`index.yml file not found or not file in directory: ${directory}`);
+  }
+
+  const indexYml = await readAndParseFile('index.yml', path.join(directory, 'index.yml'));
+  if (!indexYml) {
+    throw new Error('Unable to parse index.yml');
+  }
+  
+  if (indexYml.deprecate) {
+    console.log('This artifact is deprecated due to index.yml.');
+    return;
+  }
+
+  const { code, vendor, suite } = await processIndexYml(indexYml);
+  console.log('Validated index.yml');
 
   processPackageJson(packageJson, code, vendor, suite);
   console.log('Validated package.json');
