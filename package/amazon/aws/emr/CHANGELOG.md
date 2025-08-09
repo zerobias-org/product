@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.6](https://github.com/zerobias-org/product/compare/@zerobias-org/product-amazon-aws-emr@1.1.6-rc.1...@zerobias-org/product-amazon-aws-emr@1.1.6) (2025-08-09)
+
+**Note:** Version bump only for package @zerobias-org/product-amazon-aws-emr
+
+
+
+
+
 ## [1.1.6-rc.1](https://github.com/zerobias-org/product/compare/@zerobias-org/product-amazon-aws-emr@1.1.6-rc.0...@zerobias-org/product-amazon-aws-emr@1.1.6-rc.1) (2025-08-08)
 
 **Note:** Version bump only for package @zerobias-org/product-amazon-aws-emr
