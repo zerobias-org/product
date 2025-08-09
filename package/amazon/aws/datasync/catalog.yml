@@ -1,0 +1,996 @@
+Product:
+  name: AWS DataSync
+  versions: [2018.11.9]
+  package: amazon.aws.datasync
+  description: |-
+    AWS DataSync
+  link: https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html
+  contentType: json
+Operations:
+  CancelTaskExecution:
+    description: |-
+      Cancels execution of a task.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_CancelTaskExecution.html
+    example:
+      inputs: [
+        {
+          "TaskExecutionArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateAgent:
+    description: |-
+      Activates an AWS DataSync agent that you have deployed on your host. The activation process associates your agent with your account. In the activation process, you specify information such as the AWS Region that you want to activate the agent in. You activate the agent in the AWS Region where your target locations (in Amazon S3 or Amazon EFS) reside. Your tasks are created in this AWS Region.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateAgent.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "AgentName": "string",
+          "SubnetArns": [
+            "string"
+          ],
+          "ActivationKey": "string",
+          "VpcEndpointId": "string",
+          "SecurityGroupArns": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "AgentArn": "string"
+        }
+      ]
+  CreateLocationEfs:
+    description: |-
+      Creates an endpoint for an Amazon EFS file system.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateLocationEfs.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Ec2Config": {
+            "SubnetArn": "string",
+            "SecurityGroupArns": [
+              "string"
+            ]
+          },
+          "Subdirectory": "string",
+          "EfsFilesystemArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LocationArn": "string"
+        }
+      ]
+  CreateLocationFsxWindows:
+    description: |-
+      Creates an endpoint for an Amazon FSx for Windows File Server file system.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateLocationFsxWindows.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "User": "string",
+          "Domain": "string",
+          "Password": "string",
+          "Subdirectory": "string",
+          "FsxFilesystemArn": "string",
+          "SecurityGroupArns": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "LocationArn": "string"
+        }
+      ]
+  CreateLocationNfs:
+    description: |-
+      Defines a file system on a Network File System (NFS) server that can be read from or written to.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateLocationNfs.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "MountOptions": {
+            "Version": "string"
+          },
+          "OnPremConfig": {
+            "AgentArns": [
+              "string"
+            ]
+          },
+          "Subdirectory": "string",
+          "ServerHostname": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LocationArn": "string"
+        }
+      ]
+  CreateLocationObjectStorage:
+    description: |-
+      Creates an endpoint for a self-managed object storage bucket. For more information about self-managed object storage locations, see Creating a location for object storage.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateLocationObjectStorage.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "AccessKey": "string",
+          "AgentArns": [
+            "string"
+          ],
+          "SecretKey": "string",
+          "BucketName": "string",
+          "ServerPort": 1,
+          "Subdirectory": "string",
+          "ServerHostname": "string",
+          "ServerProtocol": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LocationArn": "string"
+        }
+      ]
+  CreateLocationS3:
+    description: |-
+      Creates an endpoint for an Amazon S3 bucket.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateLocationS3.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "S3Config": {
+            "BucketAccessRoleArn": "string"
+          },
+          "AgentArns": [
+            "string"
+          ],
+          "S3BucketArn": "string",
+          "Subdirectory": "string",
+          "S3StorageClass": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LocationArn": "string"
+        }
+      ]
+  CreateLocationSmb:
+    description: |-
+      Defines a file system on a Server Message Block (SMB) server that can be read from or written to.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateLocationSmb.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "User": "string",
+          "Domain": "string",
+          "Password": "string",
+          "AgentArns": [
+            "string"
+          ],
+          "MountOptions": {
+            "Version": "string"
+          },
+          "Subdirectory": "string",
+          "ServerHostname": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LocationArn": "string"
+        }
+      ]
+  CreateTask:
+    description: |-
+      Creates a task.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateTask.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Options": {
+            "Gid": "string",
+            "Uid": "string",
+            "Atime": "string",
+            "Mtime": "string",
+            "LogLevel": "string",
+            "VerifyMode": "string",
+            "TaskQueueing": "string",
+            "TransferMode": "string",
+            "OverwriteMode": "string",
+            "BytesPerSecond": 1,
+            "PreserveDevices": "string",
+            "PosixPermissions": "string",
+            "PreserveDeletedFiles": "string"
+          },
+          "Excludes": [
+            {
+              "Value": "string",
+              "FilterType": "string"
+            }
+          ],
+          "Schedule": {
+            "ScheduleExpression": "string"
+          },
+          "SourceLocationArn": "string",
+          "CloudWatchLogGroupArn": "string",
+          "DestinationLocationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TaskArn": "string"
+        }
+      ]
+  DeleteAgent:
+    description: |-
+      Deletes an agent. To specify which agent to delete, use the Amazon Resource Name (ARN) of the agent in your request. The operation disassociates the agent from your AWS account. However, it doesn't delete the agent virtual machine (VM) from your on-premises environment.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_DeleteAgent.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteLocation:
+    description: |-
+      Deletes the configuration of a location used by AWS DataSync.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_DeleteLocation.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteTask:
+    description: |-
+      Deletes a task.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_DeleteTask.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeAgent:
+    description: |-
+      Returns metadata such as the name, the network interfaces, and the status (that is, whether the agent is running or not) for an agent. To specify which agent to describe, use the Amazon Resource Name (ARN) of the agent in your request.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_DescribeAgent.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Status": "string",
+          "AgentArn": "string",
+          "CreationTime": 1481289211.615,
+          "EndpointType": "string",
+          "PrivateLinkConfig": {
+            "SubnetArns": [
+              "string"
+            ],
+            "VpcEndpointId": "string",
+            "SecurityGroupArns": [
+              "string"
+            ],
+            "PrivateLinkEndpoint": "string"
+          },
+          "LastConnectionTime": 1481289211.615
+        }
+      ]
+  DescribeLocationEfs:
+    description: |-
+      Returns metadata, such as the path information about an Amazon EFS location.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_DescribeLocationEfs.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Ec2Config": {
+            "SubnetArn": "string",
+            "SecurityGroupArns": [
+              "string"
+            ]
+          },
+          "LocationArn": "string",
+          "LocationUri": "string",
+          "CreationTime": 1481289211.615
+        }
+      ]
+  DescribeLocationFsxWindows:
+    description: |-
+      Returns metadata, such as the path information about an Amazon FSx for Windows File Server location.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_DescribeLocationFsxWindows.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "User": "string",
+          "Domain": "string",
+          "LocationArn": "string",
+          "LocationUri": "string",
+          "CreationTime": 1481289211.615,
+          "SecurityGroupArns": [
+            "string"
+          ]
+        }
+      ]
+  DescribeLocationNfs:
+    description: |-
+      Returns metadata, such as the path information, about an NFS location.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_DescribeLocationNfs.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "LocationArn": "string",
+          "LocationUri": "string",
+          "CreationTime": 1481289211.615,
+          "MountOptions": {
+            "Version": "string"
+          },
+          "OnPremConfig": {
+            "AgentArns": [
+              "string"
+            ]
+          }
+        }
+      ]
+  DescribeLocationObjectStorage:
+    description: |-
+      Returns metadata about a self-managed object storage server location. For more information about self-managed object storage locations, see Creating a location for object storage.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_DescribeLocationObjectStorage.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "AccessKey": "string",
+          "AgentArns": [
+            "string"
+          ],
+          "ServerPort": 1,
+          "LocationArn": "string",
+          "LocationUri": "string",
+          "CreationTime": 1481289211.615,
+          "ServerProtocol": "string"
+        }
+      ]
+  DescribeLocationS3:
+    description: |-
+      Returns metadata, such as bucket name, about an Amazon S3 bucket location.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_DescribeLocationS3.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "S3Config": {
+            "BucketAccessRoleArn": "string"
+          },
+          "AgentArns": [
+            "string"
+          ],
+          "LocationArn": "string",
+          "LocationUri": "string",
+          "CreationTime": 1481289211.615,
+          "S3StorageClass": "string"
+        }
+      ]
+  DescribeLocationSmb:
+    description: |-
+      Returns metadata, such as the path and user information about an SMB location.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_DescribeLocationSmb.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "User": "string",
+          "Domain": "string",
+          "AgentArns": [
+            "string"
+          ],
+          "LocationArn": "string",
+          "LocationUri": "string",
+          "CreationTime": 1481289211.615,
+          "MountOptions": {
+            "Version": "string"
+          }
+        }
+      ]
+  DescribeTaskExecution:
+    description: |-
+      Returns detailed metadata about a task that is being executed.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_DescribeTaskExecution.html
+    example:
+      inputs: [
+        {
+          "TaskExecutionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Result": {
+            "ErrorCode": "string",
+            "ErrorDetail": "string",
+            "VerifyStatus": "string",
+            "PrepareStatus": "string",
+            "TotalDuration": 1,
+            "TransferStatus": "string",
+            "VerifyDuration": 1,
+            "PrepareDuration": 1,
+            "TransferDuration": 1
+          },
+          "Status": "string",
+          "Options": {
+            "Gid": "string",
+            "Uid": "string",
+            "Atime": "string",
+            "Mtime": "string",
+            "LogLevel": "string",
+            "VerifyMode": "string",
+            "TaskQueueing": "string",
+            "TransferMode": "string",
+            "OverwriteMode": "string",
+            "BytesPerSecond": 1,
+            "PreserveDevices": "string",
+            "PosixPermissions": "string",
+            "PreserveDeletedFiles": "string"
+          },
+          "Excludes": [
+            {
+              "Value": "string",
+              "FilterType": "string"
+            }
+          ],
+          "Includes": [
+            {
+              "Value": "string",
+              "FilterType": "string"
+            }
+          ],
+          "StartTime": 1481289211.615,
+          "BytesWritten": 1,
+          "BytesTransferred": 1,
+          "FilesTransferred": 1,
+          "TaskExecutionArn": "string",
+          "EstimatedBytesToTransfer": 1,
+          "EstimatedFilesToTransfer": 1
+        }
+      ]
+  DescribeTask:
+    description: |-
+      Returns metadata about a task.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_DescribeTask.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Status": "string",
+          "Options": {
+            "Gid": "string",
+            "Uid": "string",
+            "Atime": "string",
+            "Mtime": "string",
+            "LogLevel": "string",
+            "VerifyMode": "string",
+            "TaskQueueing": "string",
+            "TransferMode": "string",
+            "OverwriteMode": "string",
+            "BytesPerSecond": 1,
+            "PreserveDevices": "string",
+            "PosixPermissions": "string",
+            "PreserveDeletedFiles": "string"
+          },
+          "TaskArn": "string",
+          "Excludes": [
+            {
+              "Value": "string",
+              "FilterType": "string"
+            }
+          ],
+          "Schedule": {
+            "ScheduleExpression": "string"
+          },
+          "ErrorCode": "string",
+          "ErrorDetail": "string",
+          "CreationTime": 1481289211.615,
+          "SourceLocationArn": "string",
+          "CloudWatchLogGroupArn": "string",
+          "DestinationLocationArn": "string",
+          "CurrentTaskExecutionArn": "string",
+          "SourceNetworkInterfaceArns": [
+            "string"
+          ],
+          "DestinationNetworkInterfaceArns": [
+            "string"
+          ]
+        }
+      ]
+  ListAgents:
+    description: |-
+      Returns a list of agents owned by an AWS account in the AWS Region specified in the request. The returned list is ordered by agent Amazon Resource Name (ARN).
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_ListAgents.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Agents": [
+            {
+              "Name": "string",
+              "Status": "string",
+              "AgentArn": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListLocations:
+    description: |-
+      Returns a list of source and destination locations.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_ListLocations.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ],
+              "Operator": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Locations": [
+            {
+              "LocationArn": "string",
+              "LocationUri": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns all the tags associated with a specified resource.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListTaskExecutions:
+    description: |-
+      Returns a list of executed tasks.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_ListTaskExecutions.html
+    example:
+      inputs: [
+        {
+          "TaskArn": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "TaskExecutions": [
+            {
+              "Status": "string",
+              "TaskExecutionArn": "string"
+            }
+          ]
+        }
+      ]
+  ListTasks:
+    description: |-
+      Returns a list of all the tasks.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_ListTasks.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ],
+              "Operator": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Tasks": [
+            {
+              "Name": "string",
+              "Status": "string",
+              "TaskArn": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  StartTaskExecution:
+    description: |-
+      Starts a specific invocation of a task. A TaskExecution value represents an individual run of a task. Each task can have at most one TaskExecution at a time.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html
+    example:
+      inputs: [
+        {
+          "TaskArn": "string",
+          "Includes": [
+            {
+              "Value": "string",
+              "FilterType": "string"
+            }
+          ],
+          "OverrideOptions": {
+            "Gid": "string",
+            "Uid": "string",
+            "Atime": "string",
+            "Mtime": "string",
+            "LogLevel": "string",
+            "VerifyMode": "string",
+            "TaskQueueing": "string",
+            "TransferMode": "string",
+            "OverwriteMode": "string",
+            "BytesPerSecond": 1,
+            "PreserveDevices": "string",
+            "PosixPermissions": "string",
+            "PreserveDeletedFiles": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Applies a key-value pair to an AWS resource.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes a tag from an AWS resource.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "Keys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateAgent:
+    description: |-
+      Updates the name of an agent.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_UpdateAgent.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "AgentArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateLocationNfs:
+    description: |-
+      Updates some of the parameters of a previously created location for Network File System (NFS) access. For information about creating an NFS location, see Creating a location for NFS.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_UpdateLocationNfs.html
+    example:
+      inputs: [
+        {
+          "LocationArn": "string",
+          "MountOptions": {
+            "Version": "string"
+          },
+          "OnPremConfig": {
+            "AgentArns": [
+              "string"
+            ]
+          },
+          "Subdirectory": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateLocationObjectStorage:
+    description: |-
+      Updates some of the parameters of a previously created location for self-managed object storage server access. For information about creating a self-managed object storage location, see Creating a location for object storage.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_UpdateLocationObjectStorage.html
+    example:
+      inputs: [
+        {
+          "AccessKey": "string",
+          "AgentArns": [
+            "string"
+          ],
+          "SecretKey": "string",
+          "ServerPort": 1,
+          "LocationArn": "string",
+          "Subdirectory": "string",
+          "ServerProtocol": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateLocationSmb:
+    description: |-
+      Updates some of the parameters of a previously created location for Server Message Block (SMB) file system access. For information about creating an SMB location, see Creating a location for SMB.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_UpdateLocationSmb.html
+    example:
+      inputs: [
+        {
+          "User": "string",
+          "Domain": "string",
+          "Password": "string",
+          "AgentArns": [
+            "string"
+          ],
+          "LocationArn": "string",
+          "MountOptions": {
+            "Version": "string"
+          },
+          "Subdirectory": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateTaskExecution:
+    description: |-
+      Updates execution of a task.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_UpdateTaskExecution.html
+    example:
+      inputs: [
+        {
+          "Options": {
+            "Gid": "string",
+            "Uid": "string",
+            "Atime": "string",
+            "Mtime": "string",
+            "LogLevel": "string",
+            "VerifyMode": "string",
+            "TaskQueueing": "string",
+            "TransferMode": "string",
+            "OverwriteMode": "string",
+            "BytesPerSecond": 1,
+            "PreserveDevices": "string",
+            "PosixPermissions": "string",
+            "PreserveDeletedFiles": "string"
+          },
+          "TaskExecutionArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateTask:
+    description: |-
+      Updates the metadata associated with a task.
+    versions:
+      from: 2018.11.9
+    link: https://docs.aws.amazon.com/datasync/latest/userguide/API_UpdateTask.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Options": {
+            "Gid": "string",
+            "Uid": "string",
+            "Atime": "string",
+            "Mtime": "string",
+            "LogLevel": "string",
+            "VerifyMode": "string",
+            "TaskQueueing": "string",
+            "TransferMode": "string",
+            "OverwriteMode": "string",
+            "BytesPerSecond": 1,
+            "PreserveDevices": "string",
+            "PosixPermissions": "string",
+            "PreserveDeletedFiles": "string"
+          },
+          "TaskArn": "string",
+          "Excludes": [
+            {
+              "Value": "string",
+              "FilterType": "string"
+            }
+          ],
+          "Schedule": {
+            "ScheduleExpression": "string"
+          },
+          "CloudWatchLogGroupArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

@@ -1,0 +1,911 @@
+Product:
+  name: Azure Cognitive Services Text Analytics
+  versions: [3.0.0,3.1.0-preview4]
+  package: microsoft.azure.cognitiveservicestextanalytics
+  description: |-
+    CognitiveServicesTextAnalytics
+  link: https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/
+  contentType: json
+Operations:
+  Analyze.Analyze:
+    description: |-
+      Submit analysis job
+    versions:
+      from: 3.1.0-preview4
+      to: 3.1.0-preview4
+    link: https://docs.microsoft.com/en-us/rest/api/cognitiveservices-textanalytics/3.1preview4/analyze/analyze
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "error": {
+            "code": "InvalidRequest",
+            "message": "Invalid Request.",
+            "innererror": {
+              "code": "MissingInputRecords",
+              "message": "Missing input records."
+            }
+          }
+        }
+      ]
+  AnalyzeStatus.AnalyzeStatus:
+    description: |-
+      Get analysis status and results
+    versions:
+      from: 3.1.0-preview4
+      to: 3.1.0-preview4
+    link: https://docs.microsoft.com/en-us/rest/api/cognitiveservices-textanalytics/3.1preview4/analyzestatus/analyzestatus
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "jobId": "c0f2a446-05d9-48fc-ba8f-3ef4af8d0b18",
+          "tasks": {
+            "total": 2,
+            "failed": 0,
+            "completed": 2,
+            "inProgress": 0,
+            "entityRecognitionTasks": [
+              {
+                "name": "Recognize Entities (2020-04-01)",
+                "status": "succeeded",
+                "results": {
+                  "errors": [],
+                  "documents": [
+                    {
+                      "id": "1",
+                      "entities": [
+                        {
+                          "text": "trip",
+                          "length": 4,
+                          "offset": 18,
+                          "category": "Event",
+                          "confidenceScore": 0.61
+                        },
+                        {
+                          "text": "Seattle",
+                          "length": 7,
+                          "offset": 26,
+                          "category": "Location",
+                          "subcategory": "GPE",
+                          "confidenceScore": 0.82
+                        },
+                        {
+                          "text": "last week",
+                          "length": 9,
+                          "offset": 34,
+                          "category": "DateTime",
+                          "subcategory": "DateRange",
+                          "confidenceScore": 0.8
+                        }
+                      ],
+                      "warnings": []
+                    },
+                    {
+                      "id": "2",
+                      "entities": [
+                        {
+                          "text": "NYC",
+                          "length": 3,
+                          "offset": 14,
+                          "category": "Location",
+                          "subcategory": "GPE",
+                          "confidenceScore": 0.52
+                        },
+                        {
+                          "text": "tomorrow",
+                          "length": 8,
+                          "offset": 18,
+                          "category": "DateTime",
+                          "subcategory": "Date",
+                          "confidenceScore": 0.8
+                        }
+                      ],
+                      "warnings": []
+                    }
+                  ],
+                  "modelVersion": "2020-04-01"
+                },
+                "lastUpdateDateTime": "2020-10-01T15:01:03Z"
+              }
+            ]
+          },
+          "status": "succeeded",
+          "displayName": "Extracting Location & US Region",
+          "createdDateTime": "2020-10-01T15:00:45Z",
+          "expirationDateTime": "2020-10-03T15:01:03Z",
+          "lastUpdateDateTime": "2020-10-01T15:01:03Z"
+        }
+      ]
+  CancelHealthJob.CancelHealthJob:
+    description: |-
+      Cancel healthcare prediction job
+    versions:
+      from: 3.1.0-preview4
+      to: 3.1.0-preview4
+    link: https://docs.microsoft.com/en-us/rest/api/cognitiveservices-textanalytics/3.1preview4/cancelhealthjob/cancelhealthjob
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "error": {
+            "code": "NotFound",
+            "message": "Not Found",
+            "innererror": {
+              "code": "JobIdNotFound",
+              "message": "Job ID not found."
+            }
+          }
+        }
+      ]
+  EntitiesLinking.EntitiesLinking:
+    description: |-
+      Linked entities from a well known knowledge base
+    versions:
+      from: 3.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/cognitiveservices-textanalytics/3.1preview4/entitieslinking/entitieslinking
+    example:
+      inputs: [
+        {
+          "documents": [
+            {
+              "id": "1",
+              "text": "Microsoft was founded by Bill Gates and Paul Allen.",
+              "language": "en"
+            },
+            {
+              "id": "2",
+              "text": "Pike place market is my favorite Seattle attraction.",
+              "language": "en"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "errors": [],
+          "documents": [
+            {
+              "id": "1",
+              "entities": [
+                {
+                  "id": "Bill Gates",
+                  "url": "https://en.wikipedia.org/wiki/Bill_Gates",
+                  "name": "Bill Gates",
+                  "matches": [
+                    {
+                      "text": "Bill Gates",
+                      "length": 10,
+                      "offset": 25,
+                      "confidenceScore": 0.52
+                    }
+                  ],
+                  "language": "en",
+                  "dataSource": "Wikipedia"
+                },
+                {
+                  "id": "Paul Allen",
+                  "url": "https://en.wikipedia.org/wiki/Paul_Allen",
+                  "name": "Paul Allen",
+                  "matches": [
+                    {
+                      "text": "Paul Allen",
+                      "length": 10,
+                      "offset": 40,
+                      "confidenceScore": 0.54
+                    }
+                  ],
+                  "language": "en",
+                  "dataSource": "Wikipedia"
+                },
+                {
+                  "id": "Microsoft",
+                  "url": "https://en.wikipedia.org/wiki/Microsoft",
+                  "name": "Microsoft",
+                  "matches": [
+                    {
+                      "text": "Microsoft",
+                      "length": 9,
+                      "offset": 0,
+                      "confidenceScore": 0.49
+                    }
+                  ],
+                  "language": "en",
+                  "dataSource": "Wikipedia"
+                }
+              ],
+              "warnings": []
+            },
+            {
+              "id": "2",
+              "entities": [
+                {
+                  "id": "Pike Place Market",
+                  "url": "https://en.wikipedia.org/wiki/Pike_Place_Market",
+                  "name": "Pike Place Market",
+                  "matches": [
+                    {
+                      "text": "Pike place market",
+                      "length": 17,
+                      "offset": 0,
+                      "confidenceScore": 0.86
+                    }
+                  ],
+                  "language": "en",
+                  "dataSource": "Wikipedia"
+                },
+                {
+                  "id": "Seattle",
+                  "url": "https://en.wikipedia.org/wiki/Seattle",
+                  "name": "Seattle",
+                  "matches": [
+                    {
+                      "text": "Seattle",
+                      "length": 7,
+                      "offset": 33,
+                      "confidenceScore": 0.27
+                    }
+                  ],
+                  "language": "en",
+                  "dataSource": "Wikipedia"
+                }
+              ],
+              "warnings": []
+            }
+          ],
+          "modelVersion": "2020-02-01"
+        }
+      ]
+  EntitiesRecognitionGeneral.EntitiesRecognitionGeneral:
+    description: |-
+      Named Entity Recognition
+    versions:
+      from: 3.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/cognitiveservices-textanalytics/3.1preview4/entitiesrecognitiongeneral/entitiesrecognitiongeneral
+    example:
+      inputs: [
+        {
+          "documents": [
+            {
+              "id": "1",
+              "text": "Microsoft was founded by Bill Gates and Paul Allen.",
+              "language": "en"
+            },
+            {
+              "id": "2",
+              "text": "Pike place market is my favorite Seattle attraction.",
+              "language": "en"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "errors": [],
+          "documents": [
+            {
+              "id": "1",
+              "entities": [
+                {
+                  "text": "Microsoft",
+                  "length": 9,
+                  "offset": 0,
+                  "category": "Organization",
+                  "confidenceScore": 0.84
+                },
+                {
+                  "text": "Bill Gates",
+                  "length": 10,
+                  "offset": 25,
+                  "category": "Person",
+                  "confidenceScore": 0.85
+                },
+                {
+                  "text": "Paul Allen",
+                  "length": 10,
+                  "offset": 40,
+                  "category": "Person",
+                  "confidenceScore": 0.9
+                }
+              ],
+              "warnings": []
+            },
+            {
+              "id": "2",
+              "entities": [
+                {
+                  "text": "Seattle",
+                  "length": 7,
+                  "offset": 33,
+                  "category": "Location",
+                  "subcategory": "GPE",
+                  "confidenceScore": 0.55
+                }
+              ],
+              "warnings": []
+            }
+          ],
+          "modelVersion": "2020-04-01"
+        }
+      ]
+  EntitiesRecognitionPii.EntitiesRecognitionPii:
+    description: |-
+      Entities containing personal information
+    versions:
+      from: 3.1.0-preview4
+      to: 3.1.0-preview4
+    link: https://docs.microsoft.com/en-us/rest/api/cognitiveservices-textanalytics/3.1preview4/entitiesrecognitionpii/entitiesrecognitionpii
+    example:
+      inputs: [
+        {
+          "documents": [
+            {
+              "id": "1",
+              "text": "My SSN is 859-98-0987",
+              "language": "en"
+            },
+            {
+              "id": "2",
+              "text": "Your ABA number - 111000025 - is the first 9 digits in the lower left hand corner of your personal check.",
+              "language": "en"
+            },
+            {
+              "id": "3",
+              "text": "Is 998.214.865-68 your Brazilian CPF number?",
+              "language": "en"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "errors": [],
+          "documents": [
+            {
+              "id": "1",
+              "entities": [
+                {
+                  "text": "859-98-0987",
+                  "length": 11,
+                  "offset": 28,
+                  "category": "U.S. Social Security Number (SSN)",
+                  "confidenceScore": 0.65
+                }
+              ],
+              "warnings": [],
+              "redactedText": "My SSN is ***********"
+            },
+            {
+              "id": "2",
+              "entities": [
+                {
+                  "text": "111000025",
+                  "length": 9,
+                  "offset": 18,
+                  "category": "ABA Routing Number",
+                  "confidenceScore": 0.75
+                }
+              ],
+              "warnings": [],
+              "redactedText": "Your ABA number - ********* - is the first 9 digits in the lower left hand corner of your personal check."
+            },
+            {
+              "id": "3",
+              "entities": [
+                {
+                  "text": "998.214.865-68",
+                  "length": 14,
+                  "offset": 3,
+                  "category": "Brazil CPF Number",
+                  "confidenceScore": 0.85
+                }
+              ],
+              "warnings": [],
+              "redactedText": "Is ************** your Brazilian CPF number?"
+            }
+          ],
+          "modelVersion": "2019-10-01"
+        }
+      ]
+  Health.Health:
+    description: |-
+      Submit healthcare analysis job
+    versions:
+      from: 3.1.0-preview4
+      to: 3.1.0-preview4
+    link: https://docs.microsoft.com/en-us/rest/api/cognitiveservices-textanalytics/3.1preview4/health/health
+    example:
+      inputs: [
+        {
+          "documents": [
+            {
+              "id": "1",
+              "text": "Subject is taking 100mg of ibuprofen twice daily.",
+              "language": "en"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "error": {
+            "code": "InvalidRequest",
+            "message": "Invalid Request.",
+            "innererror": {
+              "code": "MissingInputRecords",
+              "message": "Missing input records."
+            }
+          }
+        }
+      ]
+  HealthStatus.HealthStatus:
+    description: |-
+      Get healthcare analysis job status and results
+    versions:
+      from: 3.1.0-preview4
+      to: 3.1.0-preview4
+    link: https://docs.microsoft.com/en-us/rest/api/cognitiveservices-textanalytics/3.1preview4/healthstatus/healthstatus
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "jobId": "c0f2a446-05d9-48fc-ba8f-3ef4af8d0b18",
+          "status": "succeeded",
+          "results": {
+            "errors": [],
+            "documents": [
+              {
+                "id": "1",
+                "entities": [
+                  {
+                    "text": "100mg",
+                    "length": 5,
+                    "offset": 18,
+                    "category": "Dosage",
+                    "confidenceScore": 0.99
+                  },
+                  {
+                    "text": "ibuprofen",
+                    "links": [
+                      {
+                        "id": "C0020740",
+                        "dataSource": "UMLS"
+                      },
+                      {
+                        "id": "0000019879",
+                        "dataSource": "AOD"
+                      },
+                      {
+                        "id": "M01AE01",
+                        "dataSource": "ATC"
+                      },
+                      {
+                        "id": "0046165",
+                        "dataSource": "CCPSS"
+                      },
+                      {
+                        "id": "0000006519",
+                        "dataSource": "CHV"
+                      },
+                      {
+                        "id": "2270-2077",
+                        "dataSource": "CSP"
+                      },
+                      {
+                        "id": "DB01050",
+                        "dataSource": "DRUGBANK"
+                      },
+                      {
+                        "id": "1611",
+                        "dataSource": "GS"
+                      },
+                      {
+                        "id": "sh97005926",
+                        "dataSource": "LCH_NW"
+                      },
+                      {
+                        "id": "LP16165-0",
+                        "dataSource": "LNC"
+                      },
+                      {
+                        "id": "40458",
+                        "dataSource": "MEDCIN"
+                      },
+                      {
+                        "id": "d00015",
+                        "dataSource": "MMSL"
+                      },
+                      {
+                        "id": "D007052",
+                        "dataSource": "MSH"
+                      },
+                      {
+                        "id": "WK2XYI10QM",
+                        "dataSource": "MTHSPL"
+                      },
+                      {
+                        "id": "C561",
+                        "dataSource": "NCI"
+                      },
+                      {
+                        "id": "C561",
+                        "dataSource": "NCI_CTRP"
+                      },
+                      {
+                        "id": "00803",
+                        "dataSource": "NCI_DCP"
+                      },
+                      {
+                        "id": "NSC0256857",
+                        "dataSource": "NCI_DTP"
+                      },
+                      {
+                        "id": "WK2XYI10QM",
+                        "dataSource": "NCI_FDA"
+                      },
+                      {
+                        "id": "CDR0000613511",
+                        "dataSource": "NCI_NCI-GLOSS"
+                      },
+                      {
+                        "id": "002377",
+                        "dataSource": "NDDF"
+                      },
+                      {
+                        "id": "CDR0000040475",
+                        "dataSource": "PDQ"
+                      },
+                      {
+                        "id": "x02MO",
+                        "dataSource": "RCD"
+                      },
+                      {
+                        "id": "5640",
+                        "dataSource": "RXNORM"
+                      },
+                      {
+                        "id": "E-7772",
+                        "dataSource": "SNM"
+                      },
+                      {
+                        "id": "C-603C0",
+                        "dataSource": "SNMI"
+                      },
+                      {
+                        "id": "387207008",
+                        "dataSource": "SNOMEDCT_US"
+                      },
+                      {
+                        "id": "m39860",
+                        "dataSource": "USP"
+                      },
+                      {
+                        "id": "MTHU000060",
+                        "dataSource": "USPMG"
+                      },
+                      {
+                        "id": "4017840",
+                        "dataSource": "VANDF"
+                      }
+                    ],
+                    "length": 9,
+                    "offset": 27,
+                    "category": "MedicationName",
+                    "assertion": {
+                      "certainty": "positive"
+                    },
+                    "confidenceScore": 1
+                  },
+                  {
+                    "text": "twice daily",
+                    "length": 11,
+                    "offset": 37,
+                    "category": "Frequency",
+                    "confidenceScore": 1
+                  }
+                ],
+                "warnings": [],
+                "relations": [
+                  {
+                    "entities": [
+                      {
+                        "ref": "#/documents/0/entities/0",
+                        "role": "Attribute"
+                      },
+                      {
+                        "ref": "#/documents/0/entities/1",
+                        "role": "Entity"
+                      }
+                    ],
+                    "relationType": "DosageOfMedication"
+                  },
+                  {
+                    "entities": [
+                      {
+                        "ref": "#/documents/0/entities/2",
+                        "role": "Attribute"
+                      },
+                      {
+                        "ref": "#/documents/0/entities/1",
+                        "role": "Entity"
+                      }
+                    ],
+                    "relationType": "FrequencyOfMedication"
+                  }
+                ]
+              }
+            ],
+            "modelVersion": "2020-05-08"
+          },
+          "createdDateTime": "2020-10-01T15:01:03Z",
+          "expirationDateTime": "2020-10-03T15:01:03Z",
+          "lastUpdateDateTime": "2020-10-01T15:01:03Z"
+        }
+      ]
+  KeyPhrases.KeyPhrases:
+    description: |-
+      Key Phrases
+    versions:
+      from: 3.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/cognitiveservices-textanalytics/3.1preview4/keyphrases/keyphrases
+    example:
+      inputs: [
+        {
+          "documents": [
+            {
+              "id": "1",
+              "text": "Microsoft was founded by Bill Gates and Paul Allen.",
+              "language": "en"
+            },
+            {
+              "id": "2",
+              "text": "Text Analytics is one of the Azure Cognitive Services.",
+              "language": "en"
+            },
+            {
+              "id": "3",
+              "text": "My cat might need to see a veterinarian.",
+              "language": "en"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "errors": [],
+          "documents": [
+            {
+              "id": "1",
+              "warnings": [],
+              "keyPhrases": [
+                "Bill Gates",
+                "Paul Allen",
+                "Microsoft"
+              ]
+            },
+            {
+              "id": "2",
+              "warnings": [],
+              "keyPhrases": [
+                "Azure Cognitive Services",
+                "Text Analytics"
+              ]
+            },
+            {
+              "id": "3",
+              "warnings": [],
+              "keyPhrases": [
+                "cat",
+                "veterinarian"
+              ]
+            }
+          ],
+          "modelVersion": "2019-10-01"
+        }
+      ]
+  Languages.Languages:
+    description: |-
+      Detect Language
+    versions:
+      from: 3.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/cognitiveservices-textanalytics/3.1preview4/languages/languages
+    example:
+      inputs: [
+        {
+          "documents": [
+            {
+              "id": "1",
+              "text": "Hello world"
+            },
+            {
+              "id": "2",
+              "text": "Bonjour tout le monde"
+            },
+            {
+              "id": "3",
+              "text": "Hola mundo"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "errors": [],
+          "documents": [
+            {
+              "id": "1",
+              "warnings": [],
+              "detectedLanguage": {
+                "name": "English",
+                "iso6391Name": "en",
+                "confidenceScore": 1
+              }
+            },
+            {
+              "id": "2",
+              "warnings": [],
+              "detectedLanguage": {
+                "name": "French",
+                "iso6391Name": "fr",
+                "confidenceScore": 1
+              }
+            },
+            {
+              "id": "3",
+              "warnings": [],
+              "detectedLanguage": {
+                "name": "Spanish",
+                "iso6391Name": "es",
+                "confidenceScore": 1
+              }
+            }
+          ],
+          "modelVersion": "2020-04-01"
+        }
+      ]
+  Sentiment.Sentiment:
+    description: |-
+      Sentiment
+    versions:
+      from: 3.0.0
+    link: https://docs.microsoft.com/en-us/rest/api/cognitiveservices-textanalytics/3.1preview4/sentiment/sentiment
+    example:
+      inputs: [
+        {
+          "documents": [
+            {
+              "id": "1",
+              "text": "Great atmosphere. Close to plenty of restaurants, hotels, and transit! Staff are friendly and helpful.",
+              "language": "en"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "errors": [],
+          "documents": [
+            {
+              "id": "1",
+              "warnings": [],
+              "sentences": [
+                {
+                  "text": "Great atmosphere.",
+                  "length": 17,
+                  "offset": 0,
+                  "targets": [
+                    {
+                      "text": "atmosphere",
+                      "length": 10,
+                      "offset": 6,
+                      "relations": [
+                        {
+                          "ref": "#/documents/0/sentences/0/assessments/0",
+                          "relationType": "assessment"
+                        }
+                      ],
+                      "sentiment": "positive",
+                      "confidenceScores": {
+                        "negative": 0,
+                        "positive": 1
+                      }
+                    }
+                  ],
+                  "sentiment": "positive",
+                  "assessments": [
+                    {
+                      "text": "great",
+                      "length": 5,
+                      "offset": 0,
+                      "isNegated": false,
+                      "sentiment": "positive",
+                      "confidenceScores": {
+                        "negative": 0,
+                        "positive": 1
+                      }
+                    }
+                  ],
+                  "confidenceScores": {
+                    "neutral": 0,
+                    "negative": 0,
+                    "positive": 1
+                  }
+                },
+                {
+                  "text": "Close to plenty of restaurants, hotels, and transit!",
+                  "length": 52,
+                  "offset": 18,
+                  "targets": [
+                    {
+                      "text": "restaurants",
+                      "length": 11,
+                      "offset": 37,
+                      "relations": [
+                        {
+                          "ref": "#/documents/0/sentences/1/assessments/0",
+                          "relationType": "assessment"
+                        }
+                      ],
+                      "sentiment": "positive",
+                      "confidenceScores": {
+                        "negative": 0.01,
+                        "positive": 0.99
+                      }
+                    },
+                    {
+                      "text": "hotels",
+                      "length": 6,
+                      "offset": 50,
+                      "relations": [
+                        {
+                          "ref": "#/documents/0/sentences/1/assessments/0",
+                          "relationType": "assessment"
+                        }
+                      ],
+                      "sentiment": "positive",
+                      "confidenceScores": {
+                        "negative": 0.01,
+                        "positive": 0.99
+                      }
+                    }
+                  ],
+                  "sentiment": "neutral",
+                  "assessments": [
+                    {
+                      "text": "Close to plenty",
+                      "length": 15,
+                      "offset": 18,
+                      "isNegated": false,
+                      "sentiment": "positive",
+                      "confidenceScores": {
+                        "negative": 0.01,
+                        "positive": 0.99
+                      }
+                    }
+                  ],
+                  "confidenceScores": {
+                    "neutral": 0.86,
+                    "negative": 0.01,
+                    "positive": 0.13
+                  }
+                }
+              ],
+              "sentiment": "positive",
+              "confidenceScores": {
+                "neutral": 0,
+                "negative": 0,
+                "positive": 1
+              }
+            }
+          ],
+          "modelVersion": "2020-04-01"
+        }
+      ]

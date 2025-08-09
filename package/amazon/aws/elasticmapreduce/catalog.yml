@@ -1,0 +1,2074 @@
+Product:
+  name: Amazon Elastic MapReduce
+  versions: [2009.3.31]
+  package: amazon.aws.elasticmapreduce
+  description: |-
+    Amazon Elastic MapReduce
+  link: https://docs.aws.amazon.com/emr/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AddInstanceFleet:
+    description: |-
+      Adds an instance fleet to a running cluster.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_AddInstanceFleet.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string",
+          "InstanceFleet": {
+            "Name": "string",
+            "InstanceFleetType": "string",
+            "TargetSpotCapacity": "number",
+            "InstanceTypeConfigs": [
+              {
+                "BidPrice": "string",
+                "InstanceType": "string",
+                "Configurations": [
+                  {
+                    "Properties": {
+                      "string": "string"
+                    },
+                    "Classification": "string",
+                    "Configurations": [
+                      "Configuration"
+                    ]
+                  }
+                ],
+                "EbsConfiguration": {
+                  "EbsOptimized": "boolean",
+                  "EbsBlockDeviceConfigs": [
+                    {
+                      "VolumesPerInstance": "number",
+                      "VolumeSpecification": {
+                        "Iops": "number",
+                        "SizeInGB": "number",
+                        "VolumeType": "string"
+                      }
+                    }
+                  ]
+                },
+                "WeightedCapacity": "number",
+                "BidPriceAsPercentageOfOnDemandPrice": "number"
+              }
+            ],
+            "LaunchSpecifications": {
+              "SpotSpecification": {
+                "TimeoutAction": "string",
+                "AllocationStrategy": "string",
+                "BlockDurationMinutes": "number",
+                "TimeoutDurationMinutes": "number"
+              },
+              "OnDemandSpecification": {
+                "AllocationStrategy": "string",
+                "CapacityReservationOptions": {
+                  "UsageStrategy": "string",
+                  "CapacityReservationPreference": "string",
+                  "CapacityReservationResourceGroupArn": "string"
+                }
+              }
+            },
+            "TargetOnDemandCapacity": "number"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ClusterId": "string",
+          "ClusterArn": "string",
+          "InstanceFleetId": "string"
+        }
+      ]
+  AddInstanceGroups:
+    description: |-
+      Adds one or more instance groups to a running cluster.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_AddInstanceGroups.html
+    example:
+      inputs: [
+        {
+          "JobFlowId": "string",
+          "InstanceGroups": [
+            {
+              "Name": "string",
+              "Market": "string",
+              "BidPrice": "string",
+              "InstanceRole": "string",
+              "InstanceType": "string",
+              "InstanceCount": "number",
+              "Configurations": [
+                {
+                  "Properties": {
+                    "string": "string"
+                  },
+                  "Classification": "string",
+                  "Configurations": [
+                    "Configuration"
+                  ]
+                }
+              ],
+              "EbsConfiguration": {
+                "EbsOptimized": "boolean",
+                "EbsBlockDeviceConfigs": [
+                  {
+                    "VolumesPerInstance": "number",
+                    "VolumeSpecification": {
+                      "Iops": "number",
+                      "SizeInGB": "number",
+                      "VolumeType": "string"
+                    }
+                  }
+                ]
+              },
+              "AutoScalingPolicy": {
+                "Rules": [
+                  {
+                    "Name": "string",
+                    "Action": {
+                      "Market": "string",
+                      "SimpleScalingPolicyConfiguration": {
+                        "CoolDown": "number",
+                        "AdjustmentType": "string",
+                        "ScalingAdjustment": "number"
+                      }
+                    },
+                    "Trigger": {
+                      "CloudWatchAlarmDefinition": {
+                        "Unit": "string",
+                        "Period": "number",
+                        "Namespace": "string",
+                        "Statistic": "string",
+                        "Threshold": "number",
+                        "Dimensions": [
+                          {
+                            "Key": "string",
+                            "Value": "string"
+                          }
+                        ],
+                        "MetricName": "string",
+                        "EvaluationPeriods": "number",
+                        "ComparisonOperator": "string"
+                      }
+                    },
+                    "Description": "string"
+                  }
+                ],
+                "Constraints": {
+                  "MaxCapacity": "number",
+                  "MinCapacity": "number"
+                }
+              }
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "JobFlowId": "string",
+          "ClusterArn": "string",
+          "InstanceGroupIds": [
+            "string"
+          ]
+        }
+      ]
+  AddJobFlowSteps:
+    description: |-
+      AddJobFlowSteps adds new steps to a running cluster. A maximum of 256 steps are allowed in each job flow.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_AddJobFlowSteps.html
+    example:
+      inputs: [
+        {
+          "Steps": [
+            {
+              "Name": "string",
+              "HadoopJarStep": {
+                "Jar": "string",
+                "Args": [
+                  "string"
+                ],
+                "MainClass": "string",
+                "Properties": [
+                  {
+                    "Key": "string",
+                    "Value": "string"
+                  }
+                ]
+              },
+              "ActionOnFailure": "string"
+            }
+          ],
+          "JobFlowId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "StepIds": [
+            "string"
+          ]
+        }
+      ]
+  AddTags:
+    description: |-
+      Adds tags to an Amazon EMR resource. Tags make it easier to associate clusters in various ways, such as grouping clusters to track your Amazon EMR resource allocation costs. For more information, see Tag Clusters.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_AddTags.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CancelSteps:
+    description: |-
+      Cancels a pending step or steps in a running cluster. Available only in Amazon EMR versions 4.8.0 and later, excluding version 5.0.0. A maximum of 256 steps are allowed in each CancelSteps request. CancelSteps is idempotent but asynchronous; it does not guarantee that a step will be canceled, even if the request is successfully submitted. You can only cancel steps that are in a PENDING state.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_CancelSteps.html
+    example:
+      inputs: [
+        {
+          "StepIds": [
+            "string"
+          ],
+          "ClusterId": "string",
+          "StepCancellationOption": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CancelStepsInfoList": [
+            {
+              "Reason": "string",
+              "Status": "string",
+              "StepId": "string"
+            }
+          ]
+        }
+      ]
+  CreateSecurityConfiguration:
+    description: |-
+      Creates a security configuration, which is stored in the service and can be specified when a cluster is created.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_CreateSecurityConfiguration.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "SecurityConfiguration": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "CreationDateTime": "number"
+        }
+      ]
+  CreateStudio:
+    description: |-
+      Creates a new Amazon EMR Studio.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_CreateStudio.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "VpcId": "string",
+          "AuthMode": "string",
+          "UserRole": "string",
+          "SubnetIds": [
+            "string"
+          ],
+          "Description": "string",
+          "ServiceRole": "string",
+          "DefaultS3Location": "string",
+          "EngineSecurityGroupId": "string",
+          "WorkspaceSecurityGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Url": "string",
+          "StudioId": "string"
+        }
+      ]
+  CreateStudioSessionMapping:
+    description: |-
+      Maps a user or group to the Amazon EMR Studio specified by StudioId, and applies a session policy to refine Studio permissions for that user or group.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_CreateStudioSessionMapping.html
+    example:
+      inputs: [
+        {
+          "StudioId": "string",
+          "IdentityId": "string",
+          "IdentityName": "string",
+          "IdentityType": "string",
+          "SessionPolicyArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteSecurityConfiguration:
+    description: |-
+      Deletes a security configuration.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_DeleteSecurityConfiguration.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteStudio:
+    description: |-
+      Removes an Amazon EMR Studio from the Studio metadata store.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_DeleteStudio.html
+    example:
+      inputs: [
+        {
+          "StudioId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteStudioSessionMapping:
+    description: |-
+      Removes a user or group from an Amazon EMR Studio.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_DeleteStudioSessionMapping.html
+    example:
+      inputs: [
+        {
+          "StudioId": "string",
+          "IdentityId": "string",
+          "IdentityName": "string",
+          "IdentityType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeCluster:
+    description: |-
+      Provides cluster-level details including status, hardware and software configuration, VPC settings, and so on.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_DescribeCluster.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Cluster": {
+            "Id": "string",
+            "Name": "string",
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "LogUri": "string",
+            "Status": {
+              "State": "string",
+              "Timeline": {
+                "EndDateTime": "number",
+                "ReadyDateTime": "number",
+                "CreationDateTime": "number"
+              },
+              "StateChangeReason": {
+                "Code": "string",
+                "Message": "string"
+              }
+            },
+            "ClusterArn": "string",
+            "OutpostArn": "string",
+            "CustomAmiId": "string",
+            "ServiceRole": "string",
+            "Applications": [
+              {
+                "Args": [
+                  "string"
+                ],
+                "Name": "string",
+                "Version": "string",
+                "AdditionalInfo": {
+                  "string": "string"
+                }
+              }
+            ],
+            "ReleaseLabel": "string",
+            "AutoTerminate": "boolean",
+            "Configurations": [
+              {
+                "Properties": {
+                  "string": "string"
+                },
+                "Classification": "string",
+                "Configurations": [
+                  "Configuration"
+                ]
+              }
+            ],
+            "AutoScalingRole": "string",
+            "PlacementGroups": [
+              {
+                "InstanceRole": "string",
+                "PlacementStrategy": "string"
+              }
+            ],
+            "EbsRootVolumeSize": "number",
+            "RepoUpgradeOnBoot": "string",
+            "RunningAmiVersion": "string",
+            "ScaleDownBehavior": "string",
+            "VisibleToAllUsers": "boolean",
+            "KerberosAttributes": {
+              "Realm": "string",
+              "ADDomainJoinUser": "string",
+              "KdcAdminPassword": "string",
+              "ADDomainJoinPassword": "string",
+              "CrossRealmTrustPrincipalPassword": "string"
+            },
+            "MasterPublicDnsName": "string",
+            "RequestedAmiVersion": "string",
+            "StepConcurrencyLevel": "number",
+            "TerminationProtected": "boolean",
+            "Ec2InstanceAttributes": {
+              "Ec2KeyName": "string",
+              "Ec2SubnetId": "string",
+              "IamInstanceProfile": "string",
+              "Ec2AvailabilityZone": "string",
+              "RequestedEc2SubnetIds": [
+                "string"
+              ],
+              "ServiceAccessSecurityGroup": "string",
+              "EmrManagedSlaveSecurityGroup": "string",
+              "AdditionalSlaveSecurityGroups": [
+                "string"
+              ],
+              "EmrManagedMasterSecurityGroup": "string",
+              "RequestedEc2AvailabilityZones": [
+                "string"
+              ],
+              "AdditionalMasterSecurityGroups": [
+                "string"
+              ]
+            },
+            "LogEncryptionKmsKeyId": "string",
+            "SecurityConfiguration": "string",
+            "InstanceCollectionType": "string",
+            "NormalizedInstanceHours": "number"
+          }
+        }
+      ]
+  DescribeJobFlows:
+    description: |-
+      This API is no longer supported and will eventually be removed. We recommend you use ListClusters, DescribeCluster, ListSteps, ListInstanceGroups and ListBootstrapActions instead.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_DescribeJobFlows.html
+    example:
+      inputs: [
+        {
+          "JobFlowIds": [
+            "string"
+          ],
+          "CreatedAfter": "number",
+          "CreatedBefore": "number",
+          "JobFlowStates": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "JobFlows": [
+            {
+              "Name": "string",
+              "Steps": [
+                {
+                  "StepConfig": {
+                    "Name": "string",
+                    "HadoopJarStep": {
+                      "Jar": "string",
+                      "Args": [
+                        "string"
+                      ],
+                      "MainClass": "string",
+                      "Properties": [
+                        {
+                          "Key": "string",
+                          "Value": "string"
+                        }
+                      ]
+                    },
+                    "ActionOnFailure": "string"
+                  },
+                  "ExecutionStatusDetail": {
+                    "State": "string",
+                    "EndDateTime": "number",
+                    "StartDateTime": "number",
+                    "CreationDateTime": "number",
+                    "LastStateChangeReason": "string"
+                  }
+                }
+              ],
+              "LogUri": "string",
+              "Instances": {
+                "Placement": {
+                  "AvailabilityZone": "string",
+                  "AvailabilityZones": [
+                    "string"
+                  ]
+                },
+                "Ec2KeyName": "string",
+                "Ec2SubnetId": "string",
+                "HadoopVersion": "string",
+                "InstanceCount": "number",
+                "InstanceGroups": [
+                  {
+                    "Name": "string",
+                    "State": "string",
+                    "Market": "string",
+                    "BidPrice": "string",
+                    "EndDateTime": "number",
+                    "InstanceRole": "string",
+                    "InstanceType": "string",
+                    "ReadyDateTime": "number",
+                    "StartDateTime": "number",
+                    "InstanceGroupId": "string",
+                    "CreationDateTime": "number",
+                    "InstanceRequestCount": "number",
+                    "InstanceRunningCount": "number",
+                    "LastStateChangeReason": "string"
+                  }
+                ],
+                "MasterInstanceId": "string",
+                "SlaveInstanceType": "string",
+                "MasterInstanceType": "string",
+                "MasterPublicDnsName": "string",
+                "TerminationProtected": "boolean",
+                "NormalizedInstanceHours": "number",
+                "KeepJobFlowAliveWhenNoSteps": "boolean"
+              },
+              "JobFlowId": "string",
+              "AmiVersion": "string",
+              "JobFlowRole": "string",
+              "ServiceRole": "string",
+              "AutoScalingRole": "string",
+              "BootstrapActions": [
+                {
+                  "BootstrapActionConfig": {
+                    "Name": "string",
+                    "ScriptBootstrapAction": {
+                      "Args": [
+                        "string"
+                      ],
+                      "Path": "string"
+                    }
+                  }
+                }
+              ],
+              "ScaleDownBehavior": "string",
+              "SupportedProducts": [
+                "string"
+              ],
+              "VisibleToAllUsers": "boolean",
+              "ExecutionStatusDetail": {
+                "State": "string",
+                "EndDateTime": "number",
+                "ReadyDateTime": "number",
+                "StartDateTime": "number",
+                "CreationDateTime": "number",
+                "LastStateChangeReason": "string"
+              },
+              "LogEncryptionKmsKeyId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeNotebookExecution:
+    description: |-
+      Provides details of a notebook execution.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_DescribeNotebookExecution.html
+    example:
+      inputs: [
+        {
+          "NotebookExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NotebookExecution": {
+            "Arn": "string",
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "Status": "string",
+            "EndTime": "number",
+            "EditorId": "string",
+            "StartTime": "number",
+            "NotebookParams": "string",
+            "ExecutionEngine": {
+              "Id": "string",
+              "Type": "string",
+              "MasterInstanceSecurityGroupId": "string"
+            },
+            "OutputNotebookURI": "string",
+            "NotebookExecutionId": "string",
+            "LastStateChangeReason": "string",
+            "NotebookExecutionName": "string",
+            "NotebookInstanceSecurityGroupId": "string"
+          }
+        }
+      ]
+  DescribeSecurityConfiguration:
+    description: |-
+      Provides the details of a security configuration by returning the configuration JSON.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_DescribeSecurityConfiguration.html
+    example:
+      inputs: [
+        {
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "CreationDateTime": "number",
+          "SecurityConfiguration": "string"
+        }
+      ]
+  DescribeStep:
+    description: |-
+      Provides more detail about the cluster step.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_DescribeStep.html
+    example:
+      inputs: [
+        {
+          "StepId": "string",
+          "ClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Step": {
+            "Id": "string",
+            "Name": "string",
+            "Config": {
+              "Jar": "string",
+              "Args": [
+                "string"
+              ],
+              "MainClass": "string",
+              "Properties": {
+                "string": "string"
+              }
+            },
+            "Status": {
+              "State": "string",
+              "Timeline": {
+                "EndDateTime": "number",
+                "StartDateTime": "number",
+                "CreationDateTime": "number"
+              },
+              "FailureDetails": {
+                "Reason": "string",
+                "LogFile": "string",
+                "Message": "string"
+              },
+              "StateChangeReason": {
+                "Code": "string",
+                "Message": "string"
+              }
+            },
+            "ActionOnFailure": "string"
+          }
+        }
+      ]
+  DescribeStudio:
+    description: |-
+      Returns details for the specified Amazon EMR Studio including ID, Name, VPC, Studio access URL, and so on.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_DescribeStudio.html
+    example:
+      inputs: [
+        {
+          "StudioId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Studio": {
+            "Url": "string",
+            "Name": "string",
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "VpcId": "string",
+            "AuthMode": "string",
+            "StudioId": "string",
+            "UserRole": "string",
+            "StudioArn": "string",
+            "SubnetIds": [
+              "string"
+            ],
+            "Description": "string",
+            "ServiceRole": "string",
+            "CreationTime": "number",
+            "DefaultS3Location": "string",
+            "EngineSecurityGroupId": "string",
+            "WorkspaceSecurityGroupId": "string"
+          }
+        }
+      ]
+  GetBlockPublicAccessConfiguration:
+    description: |-
+      Returns the Amazon EMR block public access configuration for your AWS account in the current Region. For more information see Configure Block Public Access for Amazon EMR in the Amazon EMR Management Guide.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_GetBlockPublicAccessConfiguration.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "BlockPublicAccessConfiguration": {
+            "BlockPublicSecurityGroupRules": "boolean",
+            "PermittedPublicSecurityGroupRuleRanges": [
+              {
+                "MaxRange": "number",
+                "MinRange": "number"
+              }
+            ]
+          },
+          "BlockPublicAccessConfigurationMetadata": {
+            "CreatedByArn": "string",
+            "CreationDateTime": "number"
+          }
+        }
+      ]
+  GetManagedScalingPolicy:
+    description: |-
+      Fetches the attached managed scaling policy for an Amazon EMR cluster.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_GetManagedScalingPolicy.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ManagedScalingPolicy": {
+            "ComputeLimits": {
+              "UnitType": "string",
+              "MaximumCapacityUnits": "number",
+              "MinimumCapacityUnits": "number",
+              "MaximumCoreCapacityUnits": "number",
+              "MaximumOnDemandCapacityUnits": "number"
+            }
+          }
+        }
+      ]
+  GetStudioSessionMapping:
+    description: |-
+      Fetches mapping details for the specified Amazon EMR Studio and identity (user or group).
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_GetStudioSessionMapping.html
+    example:
+      inputs: [
+        {
+          "StudioId": "string",
+          "IdentityId": "string",
+          "IdentityName": "string",
+          "IdentityType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "SessionMapping": {
+            "StudioId": "string",
+            "IdentityId": "string",
+            "CreationTime": "number",
+            "IdentityName": "string",
+            "IdentityType": "string",
+            "LastModifiedTime": "number",
+            "SessionPolicyArn": "string"
+          }
+        }
+      ]
+  ListBootstrapActions:
+    description: |-
+      Provides information about the bootstrap actions associated with a cluster.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_ListBootstrapActions.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "ClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "BootstrapActions": [
+            {
+              "Args": [
+                "string"
+              ],
+              "Name": "string",
+              "ScriptPath": "string"
+            }
+          ]
+        }
+      ]
+  ListClusters:
+    description: |-
+      Provides the status of all clusters visible to this AWS account. Allows you to filter the list of clusters based on certain criteria; for example, filtering by cluster creation date and time or by status. This call returns a maximum of 50 clusters in unsorted order per call, but returns a marker to track the paging of the cluster list across multiple ListClusters calls.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_ListClusters.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "CreatedAfter": "number",
+          "ClusterStates": [
+            "string"
+          ],
+          "CreatedBefore": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "Clusters": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Status": {
+                "State": "string",
+                "Timeline": {
+                  "EndDateTime": "number",
+                  "ReadyDateTime": "number",
+                  "CreationDateTime": "number"
+                },
+                "StateChangeReason": {
+                  "Code": "string",
+                  "Message": "string"
+                }
+              },
+              "ClusterArn": "string",
+              "OutpostArn": "string",
+              "NormalizedInstanceHours": "number"
+            }
+          ]
+        }
+      ]
+  ListInstanceFleets:
+    description: |-
+      Lists all available details about the instance fleets in a cluster.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_ListInstanceFleets.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "ClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "InstanceFleets": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Status": {
+                "State": "string",
+                "Timeline": {
+                  "EndDateTime": "number",
+                  "ReadyDateTime": "number",
+                  "CreationDateTime": "number"
+                },
+                "StateChangeReason": {
+                  "Code": "string",
+                  "Message": "string"
+                }
+              },
+              "InstanceFleetType": "string",
+              "TargetSpotCapacity": "number",
+              "LaunchSpecifications": {
+                "SpotSpecification": {
+                  "TimeoutAction": "string",
+                  "AllocationStrategy": "string",
+                  "BlockDurationMinutes": "number",
+                  "TimeoutDurationMinutes": "number"
+                },
+                "OnDemandSpecification": {
+                  "AllocationStrategy": "string",
+                  "CapacityReservationOptions": {
+                    "UsageStrategy": "string",
+                    "CapacityReservationPreference": "string",
+                    "CapacityReservationResourceGroupArn": "string"
+                  }
+                }
+              },
+              "TargetOnDemandCapacity": "number",
+              "ProvisionedSpotCapacity": "number",
+              "InstanceTypeSpecifications": [
+                {
+                  "BidPrice": "string",
+                  "EbsOptimized": "boolean",
+                  "InstanceType": "string",
+                  "Configurations": [
+                    {
+                      "Properties": {
+                        "string": "string"
+                      },
+                      "Classification": "string",
+                      "Configurations": [
+                        "Configuration"
+                      ]
+                    }
+                  ],
+                  "EbsBlockDevices": [
+                    {
+                      "Device": "string",
+                      "VolumeSpecification": {
+                        "Iops": "number",
+                        "SizeInGB": "number",
+                        "VolumeType": "string"
+                      }
+                    }
+                  ],
+                  "WeightedCapacity": "number",
+                  "BidPriceAsPercentageOfOnDemandPrice": "number"
+                }
+              ],
+              "ProvisionedOnDemandCapacity": "number"
+            }
+          ]
+        }
+      ]
+  ListInstanceGroups:
+    description: |-
+      Provides all available details about the instance groups in a cluster.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_ListInstanceGroups.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "ClusterId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "InstanceGroups": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Market": "string",
+              "Status": {
+                "State": "string",
+                "Timeline": {
+                  "EndDateTime": "number",
+                  "ReadyDateTime": "number",
+                  "CreationDateTime": "number"
+                },
+                "StateChangeReason": {
+                  "Code": "string",
+                  "Message": "string"
+                }
+              },
+              "BidPrice": "string",
+              "EbsOptimized": "boolean",
+              "InstanceType": "string",
+              "ShrinkPolicy": {
+                "DecommissionTimeout": "number",
+                "InstanceResizePolicy": {
+                  "InstancesToProtect": [
+                    "string"
+                  ],
+                  "InstancesToTerminate": [
+                    "string"
+                  ],
+                  "InstanceTerminationTimeout": "number"
+                }
+              },
+              "Configurations": [
+                {
+                  "Properties": {
+                    "string": "string"
+                  },
+                  "Classification": "string",
+                  "Configurations": [
+                    "Configuration"
+                  ]
+                }
+              ],
+              "EbsBlockDevices": [
+                {
+                  "Device": "string",
+                  "VolumeSpecification": {
+                    "Iops": "number",
+                    "SizeInGB": "number",
+                    "VolumeType": "string"
+                  }
+                }
+              ],
+              "AutoScalingPolicy": {
+                "Rules": [
+                  {
+                    "Name": "string",
+                    "Action": {
+                      "Market": "string",
+                      "SimpleScalingPolicyConfiguration": {
+                        "CoolDown": "number",
+                        "AdjustmentType": "string",
+                        "ScalingAdjustment": "number"
+                      }
+                    },
+                    "Trigger": {
+                      "CloudWatchAlarmDefinition": {
+                        "Unit": "string",
+                        "Period": "number",
+                        "Namespace": "string",
+                        "Statistic": "string",
+                        "Threshold": "number",
+                        "Dimensions": [
+                          {
+                            "Key": "string",
+                            "Value": "string"
+                          }
+                        ],
+                        "MetricName": "string",
+                        "EvaluationPeriods": "number",
+                        "ComparisonOperator": "string"
+                      }
+                    },
+                    "Description": "string"
+                  }
+                ],
+                "Status": {
+                  "State": "string",
+                  "StateChangeReason": {
+                    "Code": "string",
+                    "Message": "string"
+                  }
+                },
+                "Constraints": {
+                  "MaxCapacity": "number",
+                  "MinCapacity": "number"
+                }
+              },
+              "InstanceGroupType": "string",
+              "RunningInstanceCount": "number",
+              "ConfigurationsVersion": "number",
+              "RequestedInstanceCount": "number",
+              "LastSuccessfullyAppliedConfigurations": [
+                {
+                  "Properties": {
+                    "string": "string"
+                  },
+                  "Classification": "string",
+                  "Configurations": [
+                    "Configuration"
+                  ]
+                }
+              ],
+              "LastSuccessfullyAppliedConfigurationsVersion": "number"
+            }
+          ]
+        }
+      ]
+  ListInstances:
+    description: |-
+      Provides information for all active EC2 instances and EC2 instances terminated in the last 30 days, up to a maximum of 2,000. EC2 instances in any of the following states are considered active:AWAITING_FULFILLMENT, PROVISIONING, BOOTSTRAPPING, RUNNING.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_ListInstances.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "ClusterId": "string",
+          "InstanceStates": [
+            "string"
+          ],
+          "InstanceFleetId": "string",
+          "InstanceGroupId": "string",
+          "InstanceFleetType": "string",
+          "InstanceGroupTypes": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "Instances": [
+            {
+              "Id": "string",
+              "Market": "string",
+              "Status": {
+                "State": "string",
+                "Timeline": {
+                  "EndDateTime": "number",
+                  "ReadyDateTime": "number",
+                  "CreationDateTime": "number"
+                },
+                "StateChangeReason": {
+                  "Code": "string",
+                  "Message": "string"
+                }
+              },
+              "EbsVolumes": [
+                {
+                  "Device": "string",
+                  "VolumeId": "string"
+                }
+              ],
+              "InstanceType": "string",
+              "Ec2InstanceId": "string",
+              "PublicDnsName": "string",
+              "PrivateDnsName": "string",
+              "InstanceFleetId": "string",
+              "InstanceGroupId": "string",
+              "PublicIpAddress": "string",
+              "PrivateIpAddress": "string"
+            }
+          ]
+        }
+      ]
+  ListNotebookExecutions:
+    description: |-
+      Provides summaries of all notebook executions. You can filter the list based on multiple criteria such as status, time range, and editor id. Returns a maximum of 50 notebook executions and a marker to track the paging of a longer notebook execution list across multiple ListNotebookExecution calls.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_ListNotebookExecutions.html
+    example:
+      inputs: [
+        {
+          "To": "number",
+          "From": "number",
+          "Marker": "string",
+          "Status": "string",
+          "EditorId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "NotebookExecutions": [
+            {
+              "Status": "string",
+              "EndTime": "number",
+              "EditorId": "string",
+              "StartTime": "number",
+              "NotebookExecutionId": "string",
+              "NotebookExecutionName": "string"
+            }
+          ]
+        }
+      ]
+  ListSecurityConfigurations:
+    description: |-
+      Lists all the security configurations visible to this account, providing their creation dates and times, and their names. This call returns a maximum of 50 clusters per call, but returns a marker to track the paging of the cluster list across multiple ListSecurityConfigurations calls.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_ListSecurityConfigurations.html
+    example:
+      inputs: [
+        {
+          "Marker": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "SecurityConfigurations": [
+            {
+              "Name": "string",
+              "CreationDateTime": "number"
+            }
+          ]
+        }
+      ]
+  ListSteps:
+    description: |-
+      Provides a list of steps for the cluster in reverse order unless you specify stepIds with the request or filter by StepStates. You can specify a maximum of 10 stepIDs. The AWS CLI automatically paginates results to return a list greater than 50 steps. To return more than 50 steps using the AWS CLI, specify a Marker, which is a pagination token that indicates the next set of steps to retrieve.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_ListSteps.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "StepIds": [
+            "string"
+          ],
+          "ClusterId": "string",
+          "StepStates": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Steps": [
+            {
+              "Id": "string",
+              "Name": "string",
+              "Config": {
+                "Jar": "string",
+                "Args": [
+                  "string"
+                ],
+                "MainClass": "string",
+                "Properties": {
+                  "string": "string"
+                }
+              },
+              "Status": {
+                "State": "string",
+                "Timeline": {
+                  "EndDateTime": "number",
+                  "StartDateTime": "number",
+                  "CreationDateTime": "number"
+                },
+                "FailureDetails": {
+                  "Reason": "string",
+                  "LogFile": "string",
+                  "Message": "string"
+                },
+                "StateChangeReason": {
+                  "Code": "string",
+                  "Message": "string"
+                }
+              },
+              "ActionOnFailure": "string"
+            }
+          ],
+          "Marker": "string"
+        }
+      ]
+  ListStudioSessionMappings:
+    description: |-
+      Returns a list of all user or group session mappings for the Amazon EMR Studio specified by StudioId.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_ListStudioSessionMappings.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "StudioId": "string",
+          "IdentityType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "SessionMappings": [
+            {
+              "StudioId": "string",
+              "IdentityId": "string",
+              "CreationTime": "number",
+              "IdentityName": "string",
+              "IdentityType": "string",
+              "SessionPolicyArn": "string"
+            }
+          ]
+        }
+      ]
+  ListStudios:
+    description: |-
+      Returns a list of all Amazon EMR Studios associated with the AWS account. The list includes details such as ID, Studio Access URL, and creation time for each Studio.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_ListStudios.html
+    example:
+      inputs: [
+        {
+          "Marker": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Marker": "string",
+          "Studios": [
+            {
+              "Url": "string",
+              "Name": "string",
+              "VpcId": "string",
+              "StudioId": "string",
+              "Description": "string",
+              "CreationTime": "number"
+            }
+          ]
+        }
+      ]
+  ModifyCluster:
+    description: |-
+      Modifies the number of steps that can be executed concurrently for the cluster specified using ClusterID.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_ModifyCluster.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string",
+          "StepConcurrencyLevel": "number"
+        }
+      ]
+      outputs: [
+        {
+          "StepConcurrencyLevel": "number"
+        }
+      ]
+  ModifyInstanceFleet:
+    description: |-
+      Modifies the target On-Demand and target Spot capacities for the instance fleet with the specified InstanceFleetID within the cluster specified using ClusterID. The call either succeeds or fails atomically.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_ModifyInstanceFleet.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string",
+          "InstanceFleet": {
+            "InstanceFleetId": "string",
+            "TargetSpotCapacity": "number",
+            "TargetOnDemandCapacity": "number"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ModifyInstanceGroups:
+    description: |-
+      ModifyInstanceGroups modifies the number of nodes and configuration settings of an instance group. The input parameters include the new target instance count for the group and the instance group ID. The call will either succeed or fail atomically.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_ModifyInstanceGroups.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string",
+          "InstanceGroups": [
+            {
+              "ShrinkPolicy": {
+                "DecommissionTimeout": "number",
+                "InstanceResizePolicy": {
+                  "InstancesToProtect": [
+                    "string"
+                  ],
+                  "InstancesToTerminate": [
+                    "string"
+                  ],
+                  "InstanceTerminationTimeout": "number"
+                }
+              },
+              "InstanceCount": "number",
+              "Configurations": [
+                {
+                  "Properties": {
+                    "string": "string"
+                  },
+                  "Classification": "string",
+                  "Configurations": [
+                    "Configuration"
+                  ]
+                }
+              ],
+              "InstanceGroupId": "string",
+              "EC2InstanceIdsToTerminate": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutAutoScalingPolicy:
+    description: |-
+      Creates or updates an automatic scaling policy for a core instance group or task instance group in an Amazon EMR cluster. The automatic scaling policy defines how an instance group dynamically adds and terminates EC2 instances in response to the value of a CloudWatch metric.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_PutAutoScalingPolicy.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string",
+          "InstanceGroupId": "string",
+          "AutoScalingPolicy": {
+            "Rules": [
+              {
+                "Name": "string",
+                "Action": {
+                  "Market": "string",
+                  "SimpleScalingPolicyConfiguration": {
+                    "CoolDown": "number",
+                    "AdjustmentType": "string",
+                    "ScalingAdjustment": "number"
+                  }
+                },
+                "Trigger": {
+                  "CloudWatchAlarmDefinition": {
+                    "Unit": "string",
+                    "Period": "number",
+                    "Namespace": "string",
+                    "Statistic": "string",
+                    "Threshold": "number",
+                    "Dimensions": [
+                      {
+                        "Key": "string",
+                        "Value": "string"
+                      }
+                    ],
+                    "MetricName": "string",
+                    "EvaluationPeriods": "number",
+                    "ComparisonOperator": "string"
+                  }
+                },
+                "Description": "string"
+              }
+            ],
+            "Constraints": {
+              "MaxCapacity": "number",
+              "MinCapacity": "number"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ClusterId": "string",
+          "ClusterArn": "string",
+          "InstanceGroupId": "string",
+          "AutoScalingPolicy": {
+            "Rules": [
+              {
+                "Name": "string",
+                "Action": {
+                  "Market": "string",
+                  "SimpleScalingPolicyConfiguration": {
+                    "CoolDown": "number",
+                    "AdjustmentType": "string",
+                    "ScalingAdjustment": "number"
+                  }
+                },
+                "Trigger": {
+                  "CloudWatchAlarmDefinition": {
+                    "Unit": "string",
+                    "Period": "number",
+                    "Namespace": "string",
+                    "Statistic": "string",
+                    "Threshold": "number",
+                    "Dimensions": [
+                      {
+                        "Key": "string",
+                        "Value": "string"
+                      }
+                    ],
+                    "MetricName": "string",
+                    "EvaluationPeriods": "number",
+                    "ComparisonOperator": "string"
+                  }
+                },
+                "Description": "string"
+              }
+            ],
+            "Status": {
+              "State": "string",
+              "StateChangeReason": {
+                "Code": "string",
+                "Message": "string"
+              }
+            },
+            "Constraints": {
+              "MaxCapacity": "number",
+              "MinCapacity": "number"
+            }
+          }
+        }
+      ]
+  PutBlockPublicAccessConfiguration:
+    description: |-
+      Creates or updates an Amazon EMR block public access configuration for your AWS account in the current Region. For more information see Configure Block Public Access for Amazon EMR in the Amazon EMR Management Guide.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_PutBlockPublicAccessConfiguration.html
+    example:
+      inputs: [
+        {
+          "BlockPublicAccessConfiguration": {
+            "BlockPublicSecurityGroupRules": "boolean",
+            "PermittedPublicSecurityGroupRuleRanges": [
+              {
+                "MaxRange": "number",
+                "MinRange": "number"
+              }
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutManagedScalingPolicy:
+    description: |-
+      Creates or updates a managed scaling policy for an Amazon EMR cluster. The managed scaling policy defines the limits for resources, such as EC2 instances that can be added or terminated from a cluster. The policy only applies to the core and task nodes. The master node cannot be scaled after initial configuration.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_PutManagedScalingPolicy.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string",
+          "ManagedScalingPolicy": {
+            "ComputeLimits": {
+              "UnitType": "string",
+              "MaximumCapacityUnits": "number",
+              "MinimumCapacityUnits": "number",
+              "MaximumCoreCapacityUnits": "number",
+              "MaximumOnDemandCapacityUnits": "number"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RemoveAutoScalingPolicy:
+    description: |-
+      Removes an automatic scaling policy from a specified instance group within an EMR cluster.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_RemoveAutoScalingPolicy.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string",
+          "InstanceGroupId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RemoveManagedScalingPolicy:
+    description: |-
+      Removes a managed scaling policy from a specified EMR cluster.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_RemoveManagedScalingPolicy.html
+    example:
+      inputs: [
+        {
+          "ClusterId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RemoveTags:
+    description: |-
+      Removes tags from an Amazon EMR resource. Tags make it easier to associate clusters in various ways, such as grouping clusters to track your Amazon EMR resource allocation costs. For more information, see Tag Clusters.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_RemoveTags.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RunJobFlow:
+    description: |-
+      RunJobFlow creates and starts running a new cluster (job flow). The cluster runs the steps specified. After the steps complete, the cluster stops and the HDFS partition is lost. To prevent loss of data, configure the last step of the job flow to store results in Amazon S3. If the JobFlowInstancesConfig KeepJobFlowAliveWhenNoSteps parameter is set to TRUE, the cluster transitions to the WAITING state rather than shutting down after the steps have completed.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_RunJobFlow.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Steps": [
+            {
+              "Name": "string",
+              "HadoopJarStep": {
+                "Jar": "string",
+                "Args": [
+                  "string"
+                ],
+                "MainClass": "string",
+                "Properties": [
+                  {
+                    "Key": "string",
+                    "Value": "string"
+                  }
+                ]
+              },
+              "ActionOnFailure": "string"
+            }
+          ],
+          "LogUri": "string",
+          "Instances": {
+            "Placement": {
+              "AvailabilityZone": "string",
+              "AvailabilityZones": [
+                "string"
+              ]
+            },
+            "Ec2KeyName": "string",
+            "Ec2SubnetId": "string",
+            "Ec2SubnetIds": [
+              "string"
+            ],
+            "HadoopVersion": "string",
+            "InstanceCount": "number",
+            "InstanceFleets": [
+              {
+                "Name": "string",
+                "InstanceFleetType": "string",
+                "TargetSpotCapacity": "number",
+                "InstanceTypeConfigs": [
+                  {
+                    "BidPrice": "string",
+                    "InstanceType": "string",
+                    "Configurations": [
+                      {
+                        "Properties": {
+                          "string": "string"
+                        },
+                        "Classification": "string",
+                        "Configurations": [
+                          "Configuration"
+                        ]
+                      }
+                    ],
+                    "EbsConfiguration": {
+                      "EbsOptimized": "boolean",
+                      "EbsBlockDeviceConfigs": [
+                        {
+                          "VolumesPerInstance": "number",
+                          "VolumeSpecification": {
+                            "Iops": "number",
+                            "SizeInGB": "number",
+                            "VolumeType": "string"
+                          }
+                        }
+                      ]
+                    },
+                    "WeightedCapacity": "number",
+                    "BidPriceAsPercentageOfOnDemandPrice": "number"
+                  }
+                ],
+                "LaunchSpecifications": {
+                  "SpotSpecification": {
+                    "TimeoutAction": "string",
+                    "AllocationStrategy": "string",
+                    "BlockDurationMinutes": "number",
+                    "TimeoutDurationMinutes": "number"
+                  },
+                  "OnDemandSpecification": {
+                    "AllocationStrategy": "string",
+                    "CapacityReservationOptions": {
+                      "UsageStrategy": "string",
+                      "CapacityReservationPreference": "string",
+                      "CapacityReservationResourceGroupArn": "string"
+                    }
+                  }
+                },
+                "TargetOnDemandCapacity": "number"
+              }
+            ],
+            "InstanceGroups": [
+              {
+                "Name": "string",
+                "Market": "string",
+                "BidPrice": "string",
+                "InstanceRole": "string",
+                "InstanceType": "string",
+                "InstanceCount": "number",
+                "Configurations": [
+                  {
+                    "Properties": {
+                      "string": "string"
+                    },
+                    "Classification": "string",
+                    "Configurations": [
+                      "Configuration"
+                    ]
+                  }
+                ],
+                "EbsConfiguration": {
+                  "EbsOptimized": "boolean",
+                  "EbsBlockDeviceConfigs": [
+                    {
+                      "VolumesPerInstance": "number",
+                      "VolumeSpecification": {
+                        "Iops": "number",
+                        "SizeInGB": "number",
+                        "VolumeType": "string"
+                      }
+                    }
+                  ]
+                },
+                "AutoScalingPolicy": {
+                  "Rules": [
+                    {
+                      "Name": "string",
+                      "Action": {
+                        "Market": "string",
+                        "SimpleScalingPolicyConfiguration": {
+                          "CoolDown": "number",
+                          "AdjustmentType": "string",
+                          "ScalingAdjustment": "number"
+                        }
+                      },
+                      "Trigger": {
+                        "CloudWatchAlarmDefinition": {
+                          "Unit": "string",
+                          "Period": "number",
+                          "Namespace": "string",
+                          "Statistic": "string",
+                          "Threshold": "number",
+                          "Dimensions": [
+                            {
+                              "Key": "string",
+                              "Value": "string"
+                            }
+                          ],
+                          "MetricName": "string",
+                          "EvaluationPeriods": "number",
+                          "ComparisonOperator": "string"
+                        }
+                      },
+                      "Description": "string"
+                    }
+                  ],
+                  "Constraints": {
+                    "MaxCapacity": "number",
+                    "MinCapacity": "number"
+                  }
+                }
+              }
+            ],
+            "SlaveInstanceType": "string",
+            "MasterInstanceType": "string",
+            "TerminationProtected": "boolean",
+            "ServiceAccessSecurityGroup": "string",
+            "KeepJobFlowAliveWhenNoSteps": "boolean",
+            "EmrManagedSlaveSecurityGroup": "string",
+            "AdditionalSlaveSecurityGroups": [
+              "string"
+            ],
+            "EmrManagedMasterSecurityGroup": "string",
+            "AdditionalMasterSecurityGroups": [
+              "string"
+            ]
+          },
+          "AmiVersion": "string",
+          "CustomAmiId": "string",
+          "JobFlowRole": "string",
+          "ServiceRole": "string",
+          "Applications": [
+            {
+              "Args": [
+                "string"
+              ],
+              "Name": "string",
+              "Version": "string",
+              "AdditionalInfo": {
+                "string": "string"
+              }
+            }
+          ],
+          "ReleaseLabel": "string",
+          "AdditionalInfo": "string",
+          "Configurations": [
+            {
+              "Properties": {
+                "string": "string"
+              },
+              "Classification": "string",
+              "Configurations": [
+                "Configuration"
+              ]
+            }
+          ],
+          "AutoScalingRole": "string",
+          "BootstrapActions": [
+            {
+              "Name": "string",
+              "ScriptBootstrapAction": {
+                "Args": [
+                  "string"
+                ],
+                "Path": "string"
+              }
+            }
+          ],
+          "EbsRootVolumeSize": "number",
+          "RepoUpgradeOnBoot": "string",
+          "ScaleDownBehavior": "string",
+          "SupportedProducts": [
+            "string"
+          ],
+          "VisibleToAllUsers": "boolean",
+          "KerberosAttributes": {
+            "Realm": "string",
+            "ADDomainJoinUser": "string",
+            "KdcAdminPassword": "string",
+            "ADDomainJoinPassword": "string",
+            "CrossRealmTrustPrincipalPassword": "string"
+          },
+          "ManagedScalingPolicy": {
+            "ComputeLimits": {
+              "UnitType": "string",
+              "MaximumCapacityUnits": "number",
+              "MinimumCapacityUnits": "number",
+              "MaximumCoreCapacityUnits": "number",
+              "MaximumOnDemandCapacityUnits": "number"
+            }
+          },
+          "NewSupportedProducts": [
+            {
+              "Args": [
+                "string"
+              ],
+              "Name": "string"
+            }
+          ],
+          "StepConcurrencyLevel": "number",
+          "LogEncryptionKmsKeyId": "string",
+          "PlacementGroupConfigs": [
+            {
+              "InstanceRole": "string",
+              "PlacementStrategy": "string"
+            }
+          ],
+          "SecurityConfiguration": "string"
+        }
+      ]
+      outputs: [
+        {
+          "JobFlowId": "string",
+          "ClusterArn": "string"
+        }
+      ]
+  SetTerminationProtection:
+    description: |-
+      SetTerminationProtection locks a cluster (job flow) so the EC2 instances in the cluster cannot be terminated by user intervention, an API call, or in the event of a job-flow error. The cluster still terminates upon successful completion of the job flow. Calling SetTerminationProtection on a cluster is similar to calling the Amazon EC2 DisableAPITermination API on all EC2 instances in a cluster.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_SetTerminationProtection.html
+    example:
+      inputs: [
+        {
+          "JobFlowIds": [
+            "string"
+          ],
+          "TerminationProtected": "boolean"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  SetVisibleToAllUsers:
+    description: |-
+      Sets the Cluster:VisibleToAllUsers value for an EMR cluster. When true, IAM principals in the AWS account can perform EMR cluster actions that their IAM policies allow. When false, only the IAM principal that created the cluster and the AWS account root user can perform EMR actions on the cluster, regardless of IAM permissions policies attached to other IAM principals.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_SetVisibleToAllUsers.html
+    example:
+      inputs: [
+        {
+          "JobFlowIds": [
+            "string"
+          ],
+          "VisibleToAllUsers": "boolean"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartNotebookExecution:
+    description: |-
+      Starts a notebook execution.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_StartNotebookExecution.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "EditorId": "string",
+          "ServiceRole": "string",
+          "RelativePath": "string",
+          "NotebookParams": "string",
+          "ExecutionEngine": {
+            "Id": "string",
+            "Type": "string",
+            "MasterInstanceSecurityGroupId": "string"
+          },
+          "NotebookExecutionName": "string",
+          "NotebookInstanceSecurityGroupId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StopNotebookExecution:
+    description: |-
+      Stops a notebook execution.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_StopNotebookExecution.html
+    example:
+      inputs: [
+        {
+          "NotebookExecutionId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TerminateJobFlows:
+    description: |-
+      TerminateJobFlows shuts a list of clusters (job flows) down. When a job flow is shut down, any step not yet completed is canceled and the EC2 instances on which the cluster is running are stopped. Any log files not already saved are uploaded to Amazon S3 if a LogUri was specified when the cluster was created.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_TerminateJobFlows.html
+    example:
+      inputs: [
+        {
+          "JobFlowIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateStudio:
+    description: |-
+      Updates an Amazon EMR Studio configuration, including attributes such as name, description, and subnets.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_UpdateStudio.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "StudioId": "string",
+          "SubnetIds": [
+            "string"
+          ],
+          "Description": "string",
+          "DefaultS3Location": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateStudioSessionMapping:
+    description: |-
+      Updates the session policy attached to the user or group for the specified Amazon EMR Studio.
+    versions:
+      from: 2009.3.31
+    link: https://docs.aws.amazon.com/emr/latest/APIReference/API_UpdateStudioSessionMapping.html
+    example:
+      inputs: [
+        {
+          "StudioId": "string",
+          "IdentityId": "string",
+          "IdentityName": "string",
+          "IdentityType": "string",
+          "SessionPolicyArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

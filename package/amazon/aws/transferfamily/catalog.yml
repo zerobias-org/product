@@ -1,0 +1,569 @@
+Product:
+  name: AWS Transfer Family
+  versions: [2018.11.5]
+  package: amazon.aws.transferfamily
+  description: |-
+    AWS Transfer Family
+  link: https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html
+  contentType: json
+Operations:
+  CreateServer:
+    description: |-
+      Instantiates an autoscaling virtual server based on the selected file transfer protocol in AWS. When you make updates to your file transfer protocol-enabled server or when you work with users, use the service-generated ServerId property that is assigned to the newly created server.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_CreateServer.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Domain": "string",
+          "HostKey": "string",
+          "Protocols": [
+            "string"
+          ],
+          "Certificate": "string",
+          "LoggingRole": "string",
+          "EndpointType": "string",
+          "EndpointDetails": {
+            "VpcId": "string",
+            "SubnetIds": [
+              "string"
+            ],
+            "VpcEndpointId": "string",
+            "SecurityGroupIds": [
+              "string"
+            ],
+            "AddressAllocationIds": [
+              "string"
+            ]
+          },
+          "SecurityPolicyName": "string",
+          "IdentityProviderType": "string",
+          "IdentityProviderDetails": {
+            "Url": "string",
+            "InvocationRole": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ServerId": "string"
+        }
+      ]
+  CreateUser:
+    description: |-
+      Creates a user and associates them with an existing file transfer protocol-enabled server. You can only create and associate users with servers that have the IdentityProviderType set to SERVICE_MANAGED. Using parameters for CreateUser, you can specify the user name, set the home directory, store the user's public key, and assign the user's AWS Identity and Access Management (IAM) role. You can also optionally add a scope-down policy, and assign metadata with tags that can be used to group and search for users.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_CreateUser.html
+    example:
+      inputs: [
+        {
+          "Role": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Policy": "string",
+          "ServerId": "string",
+          "UserName": "string",
+          "PosixProfile": {
+            "Gid": 1,
+            "Uid": 1,
+            "SecondaryGids": [
+              1
+            ]
+          },
+          "HomeDirectory": "string",
+          "SshPublicKeyBody": "string",
+          "HomeDirectoryType": "string",
+          "HomeDirectoryMappings": [
+            {
+              "Entry": "string",
+              "Target": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ServerId": "string",
+          "UserName": "string"
+        }
+      ]
+  DeleteServer:
+    description: |-
+      Deletes the file transfer protocol-enabled server that you specify.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_DeleteServer.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteSshPublicKey:
+    description: |-
+      Deletes a user's Secure Shell (SSH) public key.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_DeleteSshPublicKey.html
+    example:
+      inputs: [
+        {
+          "ServerId": "string",
+          "UserName": "string",
+          "SshPublicKeyId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteUser:
+    description: |-
+      Deletes the user belonging to a file transfer protocol-enabled server you specify.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_DeleteUser.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeSecurityPolicy:
+    description: |-
+      Describes the security policy that is attached to your file transfer protocol-enabled server. The response contains a description of the security policy's properties. For more information about security policies, see Working with security policies.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_DescribeSecurityPolicy.html
+    example:
+      inputs: [
+        {
+          "SecurityPolicyName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "SecurityPolicy": {
+            "Fips": false,
+            "SshKexs": [
+              "string"
+            ],
+            "SshMacs": [
+              "string"
+            ],
+            "SshCiphers": [
+              "string"
+            ],
+            "TlsCiphers": [
+              "string"
+            ],
+            "SecurityPolicyName": "string"
+          }
+        }
+      ]
+  DescribeServer:
+    description: |-
+      Describes a file transfer protocol-enabled server that you specify by passing the ServerId parameter.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_DescribeServer.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Server": {
+            "Arn": "string",
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "State": "string",
+            "Domain": "string",
+            "ServerId": "string",
+            "Protocols": [
+              "string"
+            ],
+            "UserCount": 1,
+            "Certificate": "string",
+            "LoggingRole": "string",
+            "EndpointType": "string",
+            "EndpointDetails": {
+              "VpcId": "string",
+              "SubnetIds": [
+                "string"
+              ],
+              "VpcEndpointId": "string",
+              "SecurityGroupIds": [
+                "string"
+              ],
+              "AddressAllocationIds": [
+                "string"
+              ]
+            },
+            "HostKeyFingerprint": "string",
+            "SecurityPolicyName": "string",
+            "IdentityProviderType": "string",
+            "IdentityProviderDetails": {
+              "Url": "string",
+              "InvocationRole": "string"
+            }
+          }
+        }
+      ]
+  DescribeUser:
+    description: |-
+      Describes the user assigned to the specific file transfer protocol-enabled server, as identified by its ServerId property.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_DescribeUser.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "User": {
+            "Arn": "string",
+            "Role": "string",
+            "Tags": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "Policy": "string",
+            "UserName": "string",
+            "PosixProfile": {
+              "Gid": 1,
+              "Uid": 1,
+              "SecondaryGids": [
+                1
+              ]
+            },
+            "HomeDirectory": "string",
+            "SshPublicKeys": [
+              {
+                "DateImported": 1481289211.615,
+                "SshPublicKeyId": "string",
+                "SshPublicKeyBody": "string"
+              }
+            ],
+            "HomeDirectoryType": "string",
+            "HomeDirectoryMappings": [
+              {
+                "Entry": "string",
+                "Target": "string"
+              }
+            ]
+          },
+          "ServerId": "string"
+        }
+      ]
+  ImportSshPublicKey:
+    description: |-
+      Adds a Secure Shell (SSH) public key to a user account identified by a UserName value assigned to the specific file transfer protocol-enabled server, identified by ServerId.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_ImportSshPublicKey.html
+    example:
+      inputs: [
+        {
+          "ServerId": "string",
+          "UserName": "string",
+          "SshPublicKeyBody": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListSecurityPolicies:
+    description: |-
+      Lists the security policies that are attached to your file transfer protocol-enabled servers.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_ListSecurityPolicies.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "SecurityPolicyNames": [
+            "string"
+          ]
+        }
+      ]
+  ListServers:
+    description: |-
+      Lists the file transfer protocol-enabled servers that are associated with your AWS account.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_ListServers.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Servers": [
+            {
+              "Arn": "string",
+              "State": "string",
+              "Domain": "string",
+              "ServerId": "string",
+              "UserCount": 1,
+              "LoggingRole": "string",
+              "EndpointType": "string",
+              "IdentityProviderType": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists all of the tags associated with the Amazon Resource Number (ARN) you specify. The resource can be a user, server, or role.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "Arn": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Arn": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListUsers:
+    description: |-
+      Lists the users for a file transfer protocol-enabled server that you specify by passing the ServerId parameter.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_ListUsers.html
+    example:
+      inputs: [
+        {
+          "ServerId": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Users": [
+            {
+              "Arn": "string",
+              "Role": "string",
+              "UserName": "string",
+              "HomeDirectory": "string",
+              "HomeDirectoryType": "string",
+              "SshPublicKeyCount": 1
+            }
+          ],
+          "ServerId": "string",
+          "NextToken": "string"
+        }
+      ]
+  StartServer:
+    description: |-
+      Changes the state of a file transfer protocol-enabled server from OFFLINE to ONLINE. It has no impact on a server that is already ONLINE. An ONLINE server can accept and process file transfer jobs.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_StartServer.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  StopServer:
+    description: |-
+      Changes the state of a file transfer protocol-enabled server from ONLINE to OFFLINE. An OFFLINE server cannot accept and process file transfer jobs. Information tied to your server, such as server and user properties, are not affected by stopping your server.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_StopServer.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Attaches a key-value pair to a resource, as identified by its Amazon Resource Name (ARN). Resources are users, servers, roles, and other entities.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Arn": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TestIdentityProvider:
+    description: |-
+      If the IdentityProviderType of a file transfer protocol-enabled server is API_Gateway, tests whether your API Gateway is set up successfully. We highly recommend that you call this operation to test your authentication method as soon as you create your server. By doing so, you can troubleshoot issues with the API Gateway integration to ensure that your users can successfully use the service.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_TestIdentityProvider.html
+    example:
+      inputs: [
+        {
+          "ServerId": "string",
+          "SourceIp": "string",
+          "UserName": "string",
+          "UserPassword": "string",
+          "ServerProtocol": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Url": "string",
+          "Message": "string",
+          "Response": "string",
+          "StatusCode": 1
+        }
+      ]
+  UntagResource:
+    description: |-
+      Detaches a key-value pair from a resource, as identified by its Amazon Resource Name (ARN). Resources are users, servers, roles, and other entities.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "Arn": "string",
+          "TagKeys": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateServer:
+    description: |-
+      Updates the file transfer protocol-enabled server's properties after that server has been created.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_UpdateServer.html
+    example:
+      inputs: [
+        {
+          "HostKey": "string",
+          "ServerId": "string",
+          "Protocols": [
+            "string"
+          ],
+          "Certificate": "string",
+          "LoggingRole": "string",
+          "EndpointType": "string",
+          "EndpointDetails": {
+            "VpcId": "string",
+            "SubnetIds": [
+              "string"
+            ],
+            "VpcEndpointId": "string",
+            "SecurityGroupIds": [
+              "string"
+            ],
+            "AddressAllocationIds": [
+              "string"
+            ]
+          },
+          "SecurityPolicyName": "string",
+          "IdentityProviderDetails": {
+            "Url": "string",
+            "InvocationRole": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ServerId": "string"
+        }
+      ]
+  UpdateUser:
+    description: |-
+      Assigns new properties to a user. Parameters you pass modify any or all of the following:the home directory, role, and policy for the UserName and ServerId you specify.
+    versions:
+      from: 2018.11.5
+    link: https://docs.aws.amazon.com/transfer/latest/userguide/API_UpdateUser.html
+    example:
+      inputs: [
+        {
+          "Role": "string",
+          "Policy": "string",
+          "ServerId": "string",
+          "UserName": "string",
+          "PosixProfile": {
+            "Gid": 1,
+            "Uid": 1,
+            "SecondaryGids": [
+              1
+            ]
+          },
+          "HomeDirectory": "string",
+          "HomeDirectoryType": "string",
+          "HomeDirectoryMappings": [
+            {
+              "Entry": "string",
+              "Target": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ServerId": "string",
+          "UserName": "string"
+        }
+      ]

@@ -1,0 +1,4660 @@
+Product:
+  name: AWS WAF
+  versions: [2019.7.29]
+  package: amazon.aws.waf
+  description: |-
+    AWS Web Application Firewall (WAF)
+  link: https://docs.aws.amazon.com/waf/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AssociateWebACL:
+    description: |-
+      Associates a Web ACL with a regional application resource, to protect the resource. A regional application can be an Application Load Balancer (ALB), an API Gateway REST API, or an AppSync GraphQL API.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_AssociateWebACL.html
+    example:
+      inputs: [
+        {
+          "WebACLArn": "string",
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CheckCapacity:
+    description: |-
+      Returns the web ACL capacity unit (WCU) requirements for a specified scope and set of rules. You can use this to check the capacity requirements for the rules you want to use in a RuleGroup or WebACL.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_CheckCapacity.html
+    example:
+      inputs: [
+        {
+          "Rules": [
+            {
+              "Name": "string",
+              "Action": {
+                "Allow": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                },
+                "Block": {
+                  "CustomResponse": {
+                    "ResponseCode": "number",
+                    "ResponseHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ],
+                    "CustomResponseBodyKey": "string"
+                  }
+                },
+                "Count": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                }
+              },
+              "Priority": "number",
+              "Statement": {
+                "OrStatement": {
+                  "Statements": [
+                    "Statement"
+                  ]
+                },
+                "AndStatement": {
+                  "Statements": [
+                    "Statement"
+                  ]
+                },
+                "NotStatement": {
+                  "Statement": "Statement"
+                },
+                "GeoMatchStatement": {
+                  "CountryCodes": [
+                    "string"
+                  ],
+                  "ForwardedIPConfig": {
+                    "HeaderName": "string",
+                    "FallbackBehavior": "string"
+                  }
+                },
+                "XssMatchStatement": {
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                },
+                "ByteMatchStatement": {
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "SearchString": "blob",
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ],
+                  "PositionalConstraint": "string"
+                },
+                "RateBasedStatement": {
+                  "Limit": "number",
+                  "AggregateKeyType": "string",
+                  "ForwardedIPConfig": {
+                    "HeaderName": "string",
+                    "FallbackBehavior": "string"
+                  },
+                  "ScopeDownStatement": "Statement"
+                },
+                "SqliMatchStatement": {
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                },
+                "LabelMatchStatement": {
+                  "Key": "string",
+                  "Scope": "string"
+                },
+                "IPSetReferenceStatement": {
+                  "ARN": "string",
+                  "IPSetForwardedIPConfig": {
+                    "Position": "string",
+                    "HeaderName": "string",
+                    "FallbackBehavior": "string"
+                  }
+                },
+                "SizeConstraintStatement": {
+                  "Size": "number",
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "ComparisonOperator": "string",
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                },
+                "ManagedRuleGroupStatement": {
+                  "Name": "string",
+                  "VendorName": "string",
+                  "ExcludedRules": [
+                    {
+                      "Name": "string"
+                    }
+                  ],
+                  "ScopeDownStatement": "Statement"
+                },
+                "RuleGroupReferenceStatement": {
+                  "ARN": "string",
+                  "ExcludedRules": [
+                    {
+                      "Name": "string"
+                    }
+                  ]
+                },
+                "RegexPatternSetReferenceStatement": {
+                  "ARN": "string",
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                }
+              },
+              "RuleLabels": [
+                {
+                  "Name": "string"
+                }
+              ],
+              "OverrideAction": {
+                "None": {},
+                "Count": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                }
+              },
+              "VisibilityConfig": {
+                "MetricName": "string",
+                "SampledRequestsEnabled": "boolean",
+                "CloudWatchMetricsEnabled": "boolean"
+              }
+            }
+          ],
+          "Scope": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Capacity": "number"
+        }
+      ]
+  CreateIPSet:
+    description: |-
+      Creates an IPSet, which you use to identify web requests that originate from specific IP addresses or ranges of IP addresses. For example, if you're receiving a lot of requests from a ranges of IP addresses, you can configure AWS WAF to block them using an IPSet that lists those IP addresses.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_CreateIPSet.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Scope": "string",
+          "Addresses": [
+            "string"
+          ],
+          "Description": "string",
+          "IPAddressVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Summary": {
+            "Id": "string",
+            "ARN": "string",
+            "Name": "string",
+            "LockToken": "string",
+            "Description": "string"
+          }
+        }
+      ]
+  CreateRegexPatternSet:
+    description: |-
+      Creates a RegexPatternSet, which you reference in a RegexPatternSetReferenceStatement, to have AWS WAF inspect a web request component for the specified patterns.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_CreateRegexPatternSet.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Scope": "string",
+          "Description": "string",
+          "RegularExpressionList": [
+            {
+              "RegexString": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Summary": {
+            "Id": "string",
+            "ARN": "string",
+            "Name": "string",
+            "LockToken": "string",
+            "Description": "string"
+          }
+        }
+      ]
+  CreateRuleGroup:
+    description: |-
+      Creates a RuleGroup per the specifications provided.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_CreateRuleGroup.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Rules": [
+            {
+              "Name": "string",
+              "Action": {
+                "Allow": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                },
+                "Block": {
+                  "CustomResponse": {
+                    "ResponseCode": "number",
+                    "ResponseHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ],
+                    "CustomResponseBodyKey": "string"
+                  }
+                },
+                "Count": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                }
+              },
+              "Priority": "number",
+              "Statement": {
+                "OrStatement": {
+                  "Statements": [
+                    "Statement"
+                  ]
+                },
+                "AndStatement": {
+                  "Statements": [
+                    "Statement"
+                  ]
+                },
+                "NotStatement": {
+                  "Statement": "Statement"
+                },
+                "GeoMatchStatement": {
+                  "CountryCodes": [
+                    "string"
+                  ],
+                  "ForwardedIPConfig": {
+                    "HeaderName": "string",
+                    "FallbackBehavior": "string"
+                  }
+                },
+                "XssMatchStatement": {
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                },
+                "ByteMatchStatement": {
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "SearchString": "blob",
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ],
+                  "PositionalConstraint": "string"
+                },
+                "RateBasedStatement": {
+                  "Limit": "number",
+                  "AggregateKeyType": "string",
+                  "ForwardedIPConfig": {
+                    "HeaderName": "string",
+                    "FallbackBehavior": "string"
+                  },
+                  "ScopeDownStatement": "Statement"
+                },
+                "SqliMatchStatement": {
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                },
+                "LabelMatchStatement": {
+                  "Key": "string",
+                  "Scope": "string"
+                },
+                "IPSetReferenceStatement": {
+                  "ARN": "string",
+                  "IPSetForwardedIPConfig": {
+                    "Position": "string",
+                    "HeaderName": "string",
+                    "FallbackBehavior": "string"
+                  }
+                },
+                "SizeConstraintStatement": {
+                  "Size": "number",
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "ComparisonOperator": "string",
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                },
+                "ManagedRuleGroupStatement": {
+                  "Name": "string",
+                  "VendorName": "string",
+                  "ExcludedRules": [
+                    {
+                      "Name": "string"
+                    }
+                  ],
+                  "ScopeDownStatement": "Statement"
+                },
+                "RuleGroupReferenceStatement": {
+                  "ARN": "string",
+                  "ExcludedRules": [
+                    {
+                      "Name": "string"
+                    }
+                  ]
+                },
+                "RegexPatternSetReferenceStatement": {
+                  "ARN": "string",
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                }
+              },
+              "RuleLabels": [
+                {
+                  "Name": "string"
+                }
+              ],
+              "OverrideAction": {
+                "None": {},
+                "Count": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                }
+              },
+              "VisibilityConfig": {
+                "MetricName": "string",
+                "SampledRequestsEnabled": "boolean",
+                "CloudWatchMetricsEnabled": "boolean"
+              }
+            }
+          ],
+          "Scope": "string",
+          "Capacity": "number",
+          "Description": "string",
+          "VisibilityConfig": {
+            "MetricName": "string",
+            "SampledRequestsEnabled": "boolean",
+            "CloudWatchMetricsEnabled": "boolean"
+          },
+          "CustomResponseBodies": {
+            "string": {
+              "Content": "string",
+              "ContentType": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Summary": {
+            "Id": "string",
+            "ARN": "string",
+            "Name": "string",
+            "LockToken": "string",
+            "Description": "string"
+          }
+        }
+      ]
+  CreateWebACL:
+    description: |-
+      Creates a WebACL per the specifications provided.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_CreateWebACL.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Rules": [
+            {
+              "Name": "string",
+              "Action": {
+                "Allow": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                },
+                "Block": {
+                  "CustomResponse": {
+                    "ResponseCode": "number",
+                    "ResponseHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ],
+                    "CustomResponseBodyKey": "string"
+                  }
+                },
+                "Count": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                }
+              },
+              "Priority": "number",
+              "Statement": {
+                "OrStatement": {
+                  "Statements": [
+                    "Statement"
+                  ]
+                },
+                "AndStatement": {
+                  "Statements": [
+                    "Statement"
+                  ]
+                },
+                "NotStatement": {
+                  "Statement": "Statement"
+                },
+                "GeoMatchStatement": {
+                  "CountryCodes": [
+                    "string"
+                  ],
+                  "ForwardedIPConfig": {
+                    "HeaderName": "string",
+                    "FallbackBehavior": "string"
+                  }
+                },
+                "XssMatchStatement": {
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                },
+                "ByteMatchStatement": {
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "SearchString": "blob",
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ],
+                  "PositionalConstraint": "string"
+                },
+                "RateBasedStatement": {
+                  "Limit": "number",
+                  "AggregateKeyType": "string",
+                  "ForwardedIPConfig": {
+                    "HeaderName": "string",
+                    "FallbackBehavior": "string"
+                  },
+                  "ScopeDownStatement": "Statement"
+                },
+                "SqliMatchStatement": {
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                },
+                "LabelMatchStatement": {
+                  "Key": "string",
+                  "Scope": "string"
+                },
+                "IPSetReferenceStatement": {
+                  "ARN": "string",
+                  "IPSetForwardedIPConfig": {
+                    "Position": "string",
+                    "HeaderName": "string",
+                    "FallbackBehavior": "string"
+                  }
+                },
+                "SizeConstraintStatement": {
+                  "Size": "number",
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "ComparisonOperator": "string",
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                },
+                "ManagedRuleGroupStatement": {
+                  "Name": "string",
+                  "VendorName": "string",
+                  "ExcludedRules": [
+                    {
+                      "Name": "string"
+                    }
+                  ],
+                  "ScopeDownStatement": "Statement"
+                },
+                "RuleGroupReferenceStatement": {
+                  "ARN": "string",
+                  "ExcludedRules": [
+                    {
+                      "Name": "string"
+                    }
+                  ]
+                },
+                "RegexPatternSetReferenceStatement": {
+                  "ARN": "string",
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                }
+              },
+              "RuleLabels": [
+                {
+                  "Name": "string"
+                }
+              ],
+              "OverrideAction": {
+                "None": {},
+                "Count": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                }
+              },
+              "VisibilityConfig": {
+                "MetricName": "string",
+                "SampledRequestsEnabled": "boolean",
+                "CloudWatchMetricsEnabled": "boolean"
+              }
+            }
+          ],
+          "Scope": "string",
+          "Description": "string",
+          "DefaultAction": {
+            "Allow": {
+              "CustomRequestHandling": {
+                "InsertHeaders": [
+                  {
+                    "Name": "string",
+                    "Value": "string"
+                  }
+                ]
+              }
+            },
+            "Block": {
+              "CustomResponse": {
+                "ResponseCode": "number",
+                "ResponseHeaders": [
+                  {
+                    "Name": "string",
+                    "Value": "string"
+                  }
+                ],
+                "CustomResponseBodyKey": "string"
+              }
+            }
+          },
+          "VisibilityConfig": {
+            "MetricName": "string",
+            "SampledRequestsEnabled": "boolean",
+            "CloudWatchMetricsEnabled": "boolean"
+          },
+          "CustomResponseBodies": {
+            "string": {
+              "Content": "string",
+              "ContentType": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Summary": {
+            "Id": "string",
+            "ARN": "string",
+            "Name": "string",
+            "LockToken": "string",
+            "Description": "string"
+          }
+        }
+      ]
+  DeleteFirewallManagerRuleGroups:
+    description: |-
+      Deletes all rule groups that are managed by AWS Firewall Manager for the specified web ACL.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_DeleteFirewallManagerRuleGroups.html
+    example:
+      inputs: [
+        {
+          "WebACLArn": "string",
+          "WebACLLockToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextWebACLLockToken": "string"
+        }
+      ]
+  DeleteIPSet:
+    description: |-
+      Deletes the specified IPSet.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_DeleteIPSet.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Scope": "string",
+          "LockToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteLoggingConfiguration:
+    description: |-
+      Deletes the LoggingConfiguration from the specified web ACL.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_DeleteLoggingConfiguration.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeletePermissionPolicy:
+    description: |-
+      Permanently deletes an IAM policy from the specified rule group.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_DeletePermissionPolicy.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteRegexPatternSet:
+    description: |-
+      Deletes the specified RegexPatternSet.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_DeleteRegexPatternSet.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Scope": "string",
+          "LockToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteRuleGroup:
+    description: |-
+      Deletes the specified RuleGroup.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_DeleteRuleGroup.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Scope": "string",
+          "LockToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteWebACL:
+    description: |-
+      Deletes the specified WebACL.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_DeleteWebACL.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Scope": "string",
+          "LockToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeManagedRuleGroup:
+    description: |-
+      Provides high-level information for a managed rule group, including descriptions of the rules.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_DescribeManagedRuleGroup.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Scope": "string",
+          "VendorName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Rules": [
+            {
+              "Name": "string",
+              "Action": {
+                "Allow": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                },
+                "Block": {
+                  "CustomResponse": {
+                    "ResponseCode": "number",
+                    "ResponseHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ],
+                    "CustomResponseBodyKey": "string"
+                  }
+                },
+                "Count": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ],
+          "Capacity": "number",
+          "ConsumedLabels": [
+            {
+              "Name": "string"
+            }
+          ],
+          "LabelNamespace": "string",
+          "AvailableLabels": [
+            {
+              "Name": "string"
+            }
+          ]
+        }
+      ]
+  DisassociateWebACL:
+    description: |-
+      Disassociates a Web ACL from a regional application resource. A regional application can be an Application Load Balancer (ALB), an API Gateway REST API, or an AppSync GraphQL API.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_DisassociateWebACL.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetIPSet:
+    description: |-
+      Retrieves the specified IPSet.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_GetIPSet.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Scope": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IPSet": {
+            "Id": "string",
+            "ARN": "string",
+            "Name": "string",
+            "Addresses": [
+              "string"
+            ],
+            "Description": "string",
+            "IPAddressVersion": "string"
+          },
+          "LockToken": "string"
+        }
+      ]
+  GetLoggingConfiguration:
+    description: |-
+      Returns the LoggingConfiguration for the specified web ACL.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_GetLoggingConfiguration.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LoggingConfiguration": {
+            "ResourceArn": "string",
+            "LoggingFilter": {
+              "Filters": [
+                {
+                  "Behavior": "string",
+                  "Conditions": [
+                    {
+                      "ActionCondition": {
+                        "Action": "string"
+                      },
+                      "LabelNameCondition": {
+                        "LabelName": "string"
+                      }
+                    }
+                  ],
+                  "Requirement": "string"
+                }
+              ],
+              "DefaultBehavior": "string"
+            },
+            "RedactedFields": [
+              {
+                "Body": {},
+                "Method": {},
+                "UriPath": {},
+                "JsonBody": {
+                  "MatchScope": "string",
+                  "MatchPattern": {
+                    "All": {},
+                    "IncludedPaths": [
+                      "string"
+                    ]
+                  },
+                  "InvalidFallbackBehavior": "string"
+                },
+                "QueryString": {},
+                "SingleHeader": {
+                  "Name": "string"
+                },
+                "AllQueryArguments": {},
+                "SingleQueryArgument": {
+                  "Name": "string"
+                }
+              }
+            ],
+            "LogDestinationConfigs": [
+              "string"
+            ],
+            "ManagedByFirewallManager": "boolean"
+          }
+        }
+      ]
+  GetPermissionPolicy:
+    description: |-
+      Returns the IAM policy that is attached to the specified rule group.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_GetPermissionPolicy.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Policy": "string"
+        }
+      ]
+  GetRateBasedStatementManagedKeys:
+    description: |-
+      Retrieves the keys that are currently blocked by a rate-based rule. The maximum number of managed keys that can be blocked for a single rate-based rule is 10,000. If more than 10,000 addresses exceed the rate limit, those with the highest rates are blocked.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_GetRateBasedStatementManagedKeys.html
+    example:
+      inputs: [
+        {
+          "Scope": "string",
+          "RuleName": "string",
+          "WebACLId": "string",
+          "WebACLName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ManagedKeysIPV4": {
+            "Addresses": [
+              "string"
+            ],
+            "IPAddressVersion": "string"
+          },
+          "ManagedKeysIPV6": {
+            "Addresses": [
+              "string"
+            ],
+            "IPAddressVersion": "string"
+          }
+        }
+      ]
+  GetRegexPatternSet:
+    description: |-
+      Retrieves the specified RegexPatternSet.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_GetRegexPatternSet.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Scope": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LockToken": "string",
+          "RegexPatternSet": {
+            "Id": "string",
+            "ARN": "string",
+            "Name": "string",
+            "Description": "string",
+            "RegularExpressionList": [
+              {
+                "RegexString": "string"
+              }
+            ]
+          }
+        }
+      ]
+  GetRuleGroup:
+    description: |-
+      Retrieves the specified RuleGroup.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_GetRuleGroup.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Scope": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LockToken": "string",
+          "RuleGroup": {
+            "Id": "string",
+            "ARN": "string",
+            "Name": "string",
+            "Rules": [
+              {
+                "Name": "string",
+                "Action": {
+                  "Allow": {
+                    "CustomRequestHandling": {
+                      "InsertHeaders": [
+                        {
+                          "Name": "string",
+                          "Value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "Block": {
+                    "CustomResponse": {
+                      "ResponseCode": "number",
+                      "ResponseHeaders": [
+                        {
+                          "Name": "string",
+                          "Value": "string"
+                        }
+                      ],
+                      "CustomResponseBodyKey": "string"
+                    }
+                  },
+                  "Count": {
+                    "CustomRequestHandling": {
+                      "InsertHeaders": [
+                        {
+                          "Name": "string",
+                          "Value": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "Priority": "number",
+                "Statement": {
+                  "OrStatement": {
+                    "Statements": [
+                      "Statement"
+                    ]
+                  },
+                  "AndStatement": {
+                    "Statements": [
+                      "Statement"
+                    ]
+                  },
+                  "NotStatement": {
+                    "Statement": "Statement"
+                  },
+                  "GeoMatchStatement": {
+                    "CountryCodes": [
+                      "string"
+                    ],
+                    "ForwardedIPConfig": {
+                      "HeaderName": "string",
+                      "FallbackBehavior": "string"
+                    }
+                  },
+                  "XssMatchStatement": {
+                    "FieldToMatch": {
+                      "Body": {},
+                      "Method": {},
+                      "UriPath": {},
+                      "JsonBody": {
+                        "MatchScope": "string",
+                        "MatchPattern": {
+                          "All": {},
+                          "IncludedPaths": [
+                            "string"
+                          ]
+                        },
+                        "InvalidFallbackBehavior": "string"
+                      },
+                      "QueryString": {},
+                      "SingleHeader": {
+                        "Name": "string"
+                      },
+                      "AllQueryArguments": {},
+                      "SingleQueryArgument": {
+                        "Name": "string"
+                      }
+                    },
+                    "TextTransformations": [
+                      {
+                        "Type": "string",
+                        "Priority": "number"
+                      }
+                    ]
+                  },
+                  "ByteMatchStatement": {
+                    "FieldToMatch": {
+                      "Body": {},
+                      "Method": {},
+                      "UriPath": {},
+                      "JsonBody": {
+                        "MatchScope": "string",
+                        "MatchPattern": {
+                          "All": {},
+                          "IncludedPaths": [
+                            "string"
+                          ]
+                        },
+                        "InvalidFallbackBehavior": "string"
+                      },
+                      "QueryString": {},
+                      "SingleHeader": {
+                        "Name": "string"
+                      },
+                      "AllQueryArguments": {},
+                      "SingleQueryArgument": {
+                        "Name": "string"
+                      }
+                    },
+                    "SearchString": "blob",
+                    "TextTransformations": [
+                      {
+                        "Type": "string",
+                        "Priority": "number"
+                      }
+                    ],
+                    "PositionalConstraint": "string"
+                  },
+                  "RateBasedStatement": {
+                    "Limit": "number",
+                    "AggregateKeyType": "string",
+                    "ForwardedIPConfig": {
+                      "HeaderName": "string",
+                      "FallbackBehavior": "string"
+                    },
+                    "ScopeDownStatement": "Statement"
+                  },
+                  "SqliMatchStatement": {
+                    "FieldToMatch": {
+                      "Body": {},
+                      "Method": {},
+                      "UriPath": {},
+                      "JsonBody": {
+                        "MatchScope": "string",
+                        "MatchPattern": {
+                          "All": {},
+                          "IncludedPaths": [
+                            "string"
+                          ]
+                        },
+                        "InvalidFallbackBehavior": "string"
+                      },
+                      "QueryString": {},
+                      "SingleHeader": {
+                        "Name": "string"
+                      },
+                      "AllQueryArguments": {},
+                      "SingleQueryArgument": {
+                        "Name": "string"
+                      }
+                    },
+                    "TextTransformations": [
+                      {
+                        "Type": "string",
+                        "Priority": "number"
+                      }
+                    ]
+                  },
+                  "LabelMatchStatement": {
+                    "Key": "string",
+                    "Scope": "string"
+                  },
+                  "IPSetReferenceStatement": {
+                    "ARN": "string",
+                    "IPSetForwardedIPConfig": {
+                      "Position": "string",
+                      "HeaderName": "string",
+                      "FallbackBehavior": "string"
+                    }
+                  },
+                  "SizeConstraintStatement": {
+                    "Size": "number",
+                    "FieldToMatch": {
+                      "Body": {},
+                      "Method": {},
+                      "UriPath": {},
+                      "JsonBody": {
+                        "MatchScope": "string",
+                        "MatchPattern": {
+                          "All": {},
+                          "IncludedPaths": [
+                            "string"
+                          ]
+                        },
+                        "InvalidFallbackBehavior": "string"
+                      },
+                      "QueryString": {},
+                      "SingleHeader": {
+                        "Name": "string"
+                      },
+                      "AllQueryArguments": {},
+                      "SingleQueryArgument": {
+                        "Name": "string"
+                      }
+                    },
+                    "ComparisonOperator": "string",
+                    "TextTransformations": [
+                      {
+                        "Type": "string",
+                        "Priority": "number"
+                      }
+                    ]
+                  },
+                  "ManagedRuleGroupStatement": {
+                    "Name": "string",
+                    "VendorName": "string",
+                    "ExcludedRules": [
+                      {
+                        "Name": "string"
+                      }
+                    ],
+                    "ScopeDownStatement": "Statement"
+                  },
+                  "RuleGroupReferenceStatement": {
+                    "ARN": "string",
+                    "ExcludedRules": [
+                      {
+                        "Name": "string"
+                      }
+                    ]
+                  },
+                  "RegexPatternSetReferenceStatement": {
+                    "ARN": "string",
+                    "FieldToMatch": {
+                      "Body": {},
+                      "Method": {},
+                      "UriPath": {},
+                      "JsonBody": {
+                        "MatchScope": "string",
+                        "MatchPattern": {
+                          "All": {},
+                          "IncludedPaths": [
+                            "string"
+                          ]
+                        },
+                        "InvalidFallbackBehavior": "string"
+                      },
+                      "QueryString": {},
+                      "SingleHeader": {
+                        "Name": "string"
+                      },
+                      "AllQueryArguments": {},
+                      "SingleQueryArgument": {
+                        "Name": "string"
+                      }
+                    },
+                    "TextTransformations": [
+                      {
+                        "Type": "string",
+                        "Priority": "number"
+                      }
+                    ]
+                  }
+                },
+                "RuleLabels": [
+                  {
+                    "Name": "string"
+                  }
+                ],
+                "OverrideAction": {
+                  "None": {},
+                  "Count": {
+                    "CustomRequestHandling": {
+                      "InsertHeaders": [
+                        {
+                          "Name": "string",
+                          "Value": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "VisibilityConfig": {
+                  "MetricName": "string",
+                  "SampledRequestsEnabled": "boolean",
+                  "CloudWatchMetricsEnabled": "boolean"
+                }
+              }
+            ],
+            "Capacity": "number",
+            "Description": "string",
+            "ConsumedLabels": [
+              {
+                "Name": "string"
+              }
+            ],
+            "LabelNamespace": "string",
+            "AvailableLabels": [
+              {
+                "Name": "string"
+              }
+            ],
+            "VisibilityConfig": {
+              "MetricName": "string",
+              "SampledRequestsEnabled": "boolean",
+              "CloudWatchMetricsEnabled": "boolean"
+            },
+            "CustomResponseBodies": {
+              "string": {
+                "Content": "string",
+                "ContentType": "string"
+              }
+            }
+          }
+        }
+      ]
+  GetSampledRequests:
+    description: |-
+      Gets detailed information about a specified number of requests--a sample--that AWS WAF randomly selects from among the first 5,000 requests that your AWS resource received during a time range that you choose. You can specify a sample size of up to 500 requests, and you can specify any time range in the previous three hours.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_GetSampledRequests.html
+    example:
+      inputs: [
+        {
+          "Scope": "string",
+          "MaxItems": "number",
+          "WebAclArn": "string",
+          "TimeWindow": {
+            "EndTime": "number",
+            "StartTime": "number"
+          },
+          "RuleMetricName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TimeWindow": {
+            "EndTime": "number",
+            "StartTime": "number"
+          },
+          "PopulationSize": "number",
+          "SampledRequests": [
+            {
+              "Action": "string",
+              "Labels": [
+                {
+                  "Name": "string"
+                }
+              ],
+              "Weight": "number",
+              "Request": {
+                "URI": "string",
+                "Method": "string",
+                "Country": "string",
+                "Headers": [
+                  {
+                    "Name": "string",
+                    "Value": "string"
+                  }
+                ],
+                "ClientIP": "string",
+                "HTTPVersion": "string"
+              },
+              "Timestamp": "number",
+              "ResponseCodeSent": "number",
+              "RequestHeadersInserted": [
+                {
+                  "Name": "string",
+                  "Value": "string"
+                }
+              ],
+              "RuleNameWithinRuleGroup": "string"
+            }
+          ]
+        }
+      ]
+  GetWebACLForResource:
+    description: |-
+      Retrieves the WebACL for the specified resource.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_GetWebACLForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "WebACL": {
+            "Id": "string",
+            "ARN": "string",
+            "Name": "string",
+            "Rules": [
+              {
+                "Name": "string",
+                "Action": {
+                  "Allow": {
+                    "CustomRequestHandling": {
+                      "InsertHeaders": [
+                        {
+                          "Name": "string",
+                          "Value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "Block": {
+                    "CustomResponse": {
+                      "ResponseCode": "number",
+                      "ResponseHeaders": [
+                        {
+                          "Name": "string",
+                          "Value": "string"
+                        }
+                      ],
+                      "CustomResponseBodyKey": "string"
+                    }
+                  },
+                  "Count": {
+                    "CustomRequestHandling": {
+                      "InsertHeaders": [
+                        {
+                          "Name": "string",
+                          "Value": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "Priority": "number",
+                "Statement": {
+                  "OrStatement": {
+                    "Statements": [
+                      "Statement"
+                    ]
+                  },
+                  "AndStatement": {
+                    "Statements": [
+                      "Statement"
+                    ]
+                  },
+                  "NotStatement": {
+                    "Statement": "Statement"
+                  },
+                  "GeoMatchStatement": {
+                    "CountryCodes": [
+                      "string"
+                    ],
+                    "ForwardedIPConfig": {
+                      "HeaderName": "string",
+                      "FallbackBehavior": "string"
+                    }
+                  },
+                  "XssMatchStatement": {
+                    "FieldToMatch": {
+                      "Body": {},
+                      "Method": {},
+                      "UriPath": {},
+                      "JsonBody": {
+                        "MatchScope": "string",
+                        "MatchPattern": {
+                          "All": {},
+                          "IncludedPaths": [
+                            "string"
+                          ]
+                        },
+                        "InvalidFallbackBehavior": "string"
+                      },
+                      "QueryString": {},
+                      "SingleHeader": {
+                        "Name": "string"
+                      },
+                      "AllQueryArguments": {},
+                      "SingleQueryArgument": {
+                        "Name": "string"
+                      }
+                    },
+                    "TextTransformations": [
+                      {
+                        "Type": "string",
+                        "Priority": "number"
+                      }
+                    ]
+                  },
+                  "ByteMatchStatement": {
+                    "FieldToMatch": {
+                      "Body": {},
+                      "Method": {},
+                      "UriPath": {},
+                      "JsonBody": {
+                        "MatchScope": "string",
+                        "MatchPattern": {
+                          "All": {},
+                          "IncludedPaths": [
+                            "string"
+                          ]
+                        },
+                        "InvalidFallbackBehavior": "string"
+                      },
+                      "QueryString": {},
+                      "SingleHeader": {
+                        "Name": "string"
+                      },
+                      "AllQueryArguments": {},
+                      "SingleQueryArgument": {
+                        "Name": "string"
+                      }
+                    },
+                    "SearchString": "blob",
+                    "TextTransformations": [
+                      {
+                        "Type": "string",
+                        "Priority": "number"
+                      }
+                    ],
+                    "PositionalConstraint": "string"
+                  },
+                  "RateBasedStatement": {
+                    "Limit": "number",
+                    "AggregateKeyType": "string",
+                    "ForwardedIPConfig": {
+                      "HeaderName": "string",
+                      "FallbackBehavior": "string"
+                    },
+                    "ScopeDownStatement": "Statement"
+                  },
+                  "SqliMatchStatement": {
+                    "FieldToMatch": {
+                      "Body": {},
+                      "Method": {},
+                      "UriPath": {},
+                      "JsonBody": {
+                        "MatchScope": "string",
+                        "MatchPattern": {
+                          "All": {},
+                          "IncludedPaths": [
+                            "string"
+                          ]
+                        },
+                        "InvalidFallbackBehavior": "string"
+                      },
+                      "QueryString": {},
+                      "SingleHeader": {
+                        "Name": "string"
+                      },
+                      "AllQueryArguments": {},
+                      "SingleQueryArgument": {
+                        "Name": "string"
+                      }
+                    },
+                    "TextTransformations": [
+                      {
+                        "Type": "string",
+                        "Priority": "number"
+                      }
+                    ]
+                  },
+                  "LabelMatchStatement": {
+                    "Key": "string",
+                    "Scope": "string"
+                  },
+                  "IPSetReferenceStatement": {
+                    "ARN": "string",
+                    "IPSetForwardedIPConfig": {
+                      "Position": "string",
+                      "HeaderName": "string",
+                      "FallbackBehavior": "string"
+                    }
+                  },
+                  "SizeConstraintStatement": {
+                    "Size": "number",
+                    "FieldToMatch": {
+                      "Body": {},
+                      "Method": {},
+                      "UriPath": {},
+                      "JsonBody": {
+                        "MatchScope": "string",
+                        "MatchPattern": {
+                          "All": {},
+                          "IncludedPaths": [
+                            "string"
+                          ]
+                        },
+                        "InvalidFallbackBehavior": "string"
+                      },
+                      "QueryString": {},
+                      "SingleHeader": {
+                        "Name": "string"
+                      },
+                      "AllQueryArguments": {},
+                      "SingleQueryArgument": {
+                        "Name": "string"
+                      }
+                    },
+                    "ComparisonOperator": "string",
+                    "TextTransformations": [
+                      {
+                        "Type": "string",
+                        "Priority": "number"
+                      }
+                    ]
+                  },
+                  "ManagedRuleGroupStatement": {
+                    "Name": "string",
+                    "VendorName": "string",
+                    "ExcludedRules": [
+                      {
+                        "Name": "string"
+                      }
+                    ],
+                    "ScopeDownStatement": "Statement"
+                  },
+                  "RuleGroupReferenceStatement": {
+                    "ARN": "string",
+                    "ExcludedRules": [
+                      {
+                        "Name": "string"
+                      }
+                    ]
+                  },
+                  "RegexPatternSetReferenceStatement": {
+                    "ARN": "string",
+                    "FieldToMatch": {
+                      "Body": {},
+                      "Method": {},
+                      "UriPath": {},
+                      "JsonBody": {
+                        "MatchScope": "string",
+                        "MatchPattern": {
+                          "All": {},
+                          "IncludedPaths": [
+                            "string"
+                          ]
+                        },
+                        "InvalidFallbackBehavior": "string"
+                      },
+                      "QueryString": {},
+                      "SingleHeader": {
+                        "Name": "string"
+                      },
+                      "AllQueryArguments": {},
+                      "SingleQueryArgument": {
+                        "Name": "string"
+                      }
+                    },
+                    "TextTransformations": [
+                      {
+                        "Type": "string",
+                        "Priority": "number"
+                      }
+                    ]
+                  }
+                },
+                "RuleLabels": [
+                  {
+                    "Name": "string"
+                  }
+                ],
+                "OverrideAction": {
+                  "None": {},
+                  "Count": {
+                    "CustomRequestHandling": {
+                      "InsertHeaders": [
+                        {
+                          "Name": "string",
+                          "Value": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "VisibilityConfig": {
+                  "MetricName": "string",
+                  "SampledRequestsEnabled": "boolean",
+                  "CloudWatchMetricsEnabled": "boolean"
+                }
+              }
+            ],
+            "Capacity": "number",
+            "Description": "string",
+            "DefaultAction": {
+              "Allow": {
+                "CustomRequestHandling": {
+                  "InsertHeaders": [
+                    {
+                      "Name": "string",
+                      "Value": "string"
+                    }
+                  ]
+                }
+              },
+              "Block": {
+                "CustomResponse": {
+                  "ResponseCode": "number",
+                  "ResponseHeaders": [
+                    {
+                      "Name": "string",
+                      "Value": "string"
+                    }
+                  ],
+                  "CustomResponseBodyKey": "string"
+                }
+              }
+            },
+            "LabelNamespace": "string",
+            "VisibilityConfig": {
+              "MetricName": "string",
+              "SampledRequestsEnabled": "boolean",
+              "CloudWatchMetricsEnabled": "boolean"
+            },
+            "CustomResponseBodies": {
+              "string": {
+                "Content": "string",
+                "ContentType": "string"
+              }
+            },
+            "ManagedByFirewallManager": "boolean",
+            "PreProcessFirewallManagerRuleGroups": [
+              {
+                "Name": "string",
+                "Priority": "number",
+                "OverrideAction": {
+                  "None": {},
+                  "Count": {
+                    "CustomRequestHandling": {
+                      "InsertHeaders": [
+                        {
+                          "Name": "string",
+                          "Value": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "VisibilityConfig": {
+                  "MetricName": "string",
+                  "SampledRequestsEnabled": "boolean",
+                  "CloudWatchMetricsEnabled": "boolean"
+                },
+                "FirewallManagerStatement": {
+                  "ManagedRuleGroupStatement": {
+                    "Name": "string",
+                    "VendorName": "string",
+                    "ExcludedRules": [
+                      {
+                        "Name": "string"
+                      }
+                    ],
+                    "ScopeDownStatement": {
+                      "OrStatement": {
+                        "Statements": [
+                          "Statement"
+                        ]
+                      },
+                      "AndStatement": {
+                        "Statements": [
+                          "Statement"
+                        ]
+                      },
+                      "NotStatement": {
+                        "Statement": "Statement"
+                      },
+                      "GeoMatchStatement": {
+                        "CountryCodes": [
+                          "string"
+                        ],
+                        "ForwardedIPConfig": {
+                          "HeaderName": "string",
+                          "FallbackBehavior": "string"
+                        }
+                      },
+                      "XssMatchStatement": {
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ]
+                      },
+                      "ByteMatchStatement": {
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "SearchString": "blob",
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ],
+                        "PositionalConstraint": "string"
+                      },
+                      "RateBasedStatement": {
+                        "Limit": "number",
+                        "AggregateKeyType": "string",
+                        "ForwardedIPConfig": {
+                          "HeaderName": "string",
+                          "FallbackBehavior": "string"
+                        },
+                        "ScopeDownStatement": "Statement"
+                      },
+                      "SqliMatchStatement": {
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ]
+                      },
+                      "LabelMatchStatement": {
+                        "Key": "string",
+                        "Scope": "string"
+                      },
+                      "IPSetReferenceStatement": {
+                        "ARN": "string",
+                        "IPSetForwardedIPConfig": {
+                          "Position": "string",
+                          "HeaderName": "string",
+                          "FallbackBehavior": "string"
+                        }
+                      },
+                      "SizeConstraintStatement": {
+                        "Size": "number",
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "ComparisonOperator": "string",
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ]
+                      },
+                      "ManagedRuleGroupStatement": "ManagedRuleGroupStatement",
+                      "RuleGroupReferenceStatement": {
+                        "ARN": "string",
+                        "ExcludedRules": [
+                          {
+                            "Name": "string"
+                          }
+                        ]
+                      },
+                      "RegexPatternSetReferenceStatement": {
+                        "ARN": "string",
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RuleGroupReferenceStatement": {
+                    "ARN": "string",
+                    "ExcludedRules": [
+                      {
+                        "Name": "string"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "PostProcessFirewallManagerRuleGroups": [
+              {
+                "Name": "string",
+                "Priority": "number",
+                "OverrideAction": {
+                  "None": {},
+                  "Count": {
+                    "CustomRequestHandling": {
+                      "InsertHeaders": [
+                        {
+                          "Name": "string",
+                          "Value": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "VisibilityConfig": {
+                  "MetricName": "string",
+                  "SampledRequestsEnabled": "boolean",
+                  "CloudWatchMetricsEnabled": "boolean"
+                },
+                "FirewallManagerStatement": {
+                  "ManagedRuleGroupStatement": {
+                    "Name": "string",
+                    "VendorName": "string",
+                    "ExcludedRules": [
+                      {
+                        "Name": "string"
+                      }
+                    ],
+                    "ScopeDownStatement": {
+                      "OrStatement": {
+                        "Statements": [
+                          "Statement"
+                        ]
+                      },
+                      "AndStatement": {
+                        "Statements": [
+                          "Statement"
+                        ]
+                      },
+                      "NotStatement": {
+                        "Statement": "Statement"
+                      },
+                      "GeoMatchStatement": {
+                        "CountryCodes": [
+                          "string"
+                        ],
+                        "ForwardedIPConfig": {
+                          "HeaderName": "string",
+                          "FallbackBehavior": "string"
+                        }
+                      },
+                      "XssMatchStatement": {
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ]
+                      },
+                      "ByteMatchStatement": {
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "SearchString": "blob",
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ],
+                        "PositionalConstraint": "string"
+                      },
+                      "RateBasedStatement": {
+                        "Limit": "number",
+                        "AggregateKeyType": "string",
+                        "ForwardedIPConfig": {
+                          "HeaderName": "string",
+                          "FallbackBehavior": "string"
+                        },
+                        "ScopeDownStatement": "Statement"
+                      },
+                      "SqliMatchStatement": {
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ]
+                      },
+                      "LabelMatchStatement": {
+                        "Key": "string",
+                        "Scope": "string"
+                      },
+                      "IPSetReferenceStatement": {
+                        "ARN": "string",
+                        "IPSetForwardedIPConfig": {
+                          "Position": "string",
+                          "HeaderName": "string",
+                          "FallbackBehavior": "string"
+                        }
+                      },
+                      "SizeConstraintStatement": {
+                        "Size": "number",
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "ComparisonOperator": "string",
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ]
+                      },
+                      "ManagedRuleGroupStatement": "ManagedRuleGroupStatement",
+                      "RuleGroupReferenceStatement": {
+                        "ARN": "string",
+                        "ExcludedRules": [
+                          {
+                            "Name": "string"
+                          }
+                        ]
+                      },
+                      "RegexPatternSetReferenceStatement": {
+                        "ARN": "string",
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RuleGroupReferenceStatement": {
+                    "ARN": "string",
+                    "ExcludedRules": [
+                      {
+                        "Name": "string"
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+  GetWebACL:
+    description: |-
+      Retrieves the specified WebACL.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_GetWebACL.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Scope": "string"
+        }
+      ]
+      outputs: [
+        {
+          "WebACL": {
+            "Id": "string",
+            "ARN": "string",
+            "Name": "string",
+            "Rules": [
+              {
+                "Name": "string",
+                "Action": {
+                  "Allow": {
+                    "CustomRequestHandling": {
+                      "InsertHeaders": [
+                        {
+                          "Name": "string",
+                          "Value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "Block": {
+                    "CustomResponse": {
+                      "ResponseCode": "number",
+                      "ResponseHeaders": [
+                        {
+                          "Name": "string",
+                          "Value": "string"
+                        }
+                      ],
+                      "CustomResponseBodyKey": "string"
+                    }
+                  },
+                  "Count": {
+                    "CustomRequestHandling": {
+                      "InsertHeaders": [
+                        {
+                          "Name": "string",
+                          "Value": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "Priority": "number",
+                "Statement": {
+                  "OrStatement": {
+                    "Statements": [
+                      "Statement"
+                    ]
+                  },
+                  "AndStatement": {
+                    "Statements": [
+                      "Statement"
+                    ]
+                  },
+                  "NotStatement": {
+                    "Statement": "Statement"
+                  },
+                  "GeoMatchStatement": {
+                    "CountryCodes": [
+                      "string"
+                    ],
+                    "ForwardedIPConfig": {
+                      "HeaderName": "string",
+                      "FallbackBehavior": "string"
+                    }
+                  },
+                  "XssMatchStatement": {
+                    "FieldToMatch": {
+                      "Body": {},
+                      "Method": {},
+                      "UriPath": {},
+                      "JsonBody": {
+                        "MatchScope": "string",
+                        "MatchPattern": {
+                          "All": {},
+                          "IncludedPaths": [
+                            "string"
+                          ]
+                        },
+                        "InvalidFallbackBehavior": "string"
+                      },
+                      "QueryString": {},
+                      "SingleHeader": {
+                        "Name": "string"
+                      },
+                      "AllQueryArguments": {},
+                      "SingleQueryArgument": {
+                        "Name": "string"
+                      }
+                    },
+                    "TextTransformations": [
+                      {
+                        "Type": "string",
+                        "Priority": "number"
+                      }
+                    ]
+                  },
+                  "ByteMatchStatement": {
+                    "FieldToMatch": {
+                      "Body": {},
+                      "Method": {},
+                      "UriPath": {},
+                      "JsonBody": {
+                        "MatchScope": "string",
+                        "MatchPattern": {
+                          "All": {},
+                          "IncludedPaths": [
+                            "string"
+                          ]
+                        },
+                        "InvalidFallbackBehavior": "string"
+                      },
+                      "QueryString": {},
+                      "SingleHeader": {
+                        "Name": "string"
+                      },
+                      "AllQueryArguments": {},
+                      "SingleQueryArgument": {
+                        "Name": "string"
+                      }
+                    },
+                    "SearchString": "blob",
+                    "TextTransformations": [
+                      {
+                        "Type": "string",
+                        "Priority": "number"
+                      }
+                    ],
+                    "PositionalConstraint": "string"
+                  },
+                  "RateBasedStatement": {
+                    "Limit": "number",
+                    "AggregateKeyType": "string",
+                    "ForwardedIPConfig": {
+                      "HeaderName": "string",
+                      "FallbackBehavior": "string"
+                    },
+                    "ScopeDownStatement": "Statement"
+                  },
+                  "SqliMatchStatement": {
+                    "FieldToMatch": {
+                      "Body": {},
+                      "Method": {},
+                      "UriPath": {},
+                      "JsonBody": {
+                        "MatchScope": "string",
+                        "MatchPattern": {
+                          "All": {},
+                          "IncludedPaths": [
+                            "string"
+                          ]
+                        },
+                        "InvalidFallbackBehavior": "string"
+                      },
+                      "QueryString": {},
+                      "SingleHeader": {
+                        "Name": "string"
+                      },
+                      "AllQueryArguments": {},
+                      "SingleQueryArgument": {
+                        "Name": "string"
+                      }
+                    },
+                    "TextTransformations": [
+                      {
+                        "Type": "string",
+                        "Priority": "number"
+                      }
+                    ]
+                  },
+                  "LabelMatchStatement": {
+                    "Key": "string",
+                    "Scope": "string"
+                  },
+                  "IPSetReferenceStatement": {
+                    "ARN": "string",
+                    "IPSetForwardedIPConfig": {
+                      "Position": "string",
+                      "HeaderName": "string",
+                      "FallbackBehavior": "string"
+                    }
+                  },
+                  "SizeConstraintStatement": {
+                    "Size": "number",
+                    "FieldToMatch": {
+                      "Body": {},
+                      "Method": {},
+                      "UriPath": {},
+                      "JsonBody": {
+                        "MatchScope": "string",
+                        "MatchPattern": {
+                          "All": {},
+                          "IncludedPaths": [
+                            "string"
+                          ]
+                        },
+                        "InvalidFallbackBehavior": "string"
+                      },
+                      "QueryString": {},
+                      "SingleHeader": {
+                        "Name": "string"
+                      },
+                      "AllQueryArguments": {},
+                      "SingleQueryArgument": {
+                        "Name": "string"
+                      }
+                    },
+                    "ComparisonOperator": "string",
+                    "TextTransformations": [
+                      {
+                        "Type": "string",
+                        "Priority": "number"
+                      }
+                    ]
+                  },
+                  "ManagedRuleGroupStatement": {
+                    "Name": "string",
+                    "VendorName": "string",
+                    "ExcludedRules": [
+                      {
+                        "Name": "string"
+                      }
+                    ],
+                    "ScopeDownStatement": "Statement"
+                  },
+                  "RuleGroupReferenceStatement": {
+                    "ARN": "string",
+                    "ExcludedRules": [
+                      {
+                        "Name": "string"
+                      }
+                    ]
+                  },
+                  "RegexPatternSetReferenceStatement": {
+                    "ARN": "string",
+                    "FieldToMatch": {
+                      "Body": {},
+                      "Method": {},
+                      "UriPath": {},
+                      "JsonBody": {
+                        "MatchScope": "string",
+                        "MatchPattern": {
+                          "All": {},
+                          "IncludedPaths": [
+                            "string"
+                          ]
+                        },
+                        "InvalidFallbackBehavior": "string"
+                      },
+                      "QueryString": {},
+                      "SingleHeader": {
+                        "Name": "string"
+                      },
+                      "AllQueryArguments": {},
+                      "SingleQueryArgument": {
+                        "Name": "string"
+                      }
+                    },
+                    "TextTransformations": [
+                      {
+                        "Type": "string",
+                        "Priority": "number"
+                      }
+                    ]
+                  }
+                },
+                "RuleLabels": [
+                  {
+                    "Name": "string"
+                  }
+                ],
+                "OverrideAction": {
+                  "None": {},
+                  "Count": {
+                    "CustomRequestHandling": {
+                      "InsertHeaders": [
+                        {
+                          "Name": "string",
+                          "Value": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "VisibilityConfig": {
+                  "MetricName": "string",
+                  "SampledRequestsEnabled": "boolean",
+                  "CloudWatchMetricsEnabled": "boolean"
+                }
+              }
+            ],
+            "Capacity": "number",
+            "Description": "string",
+            "DefaultAction": {
+              "Allow": {
+                "CustomRequestHandling": {
+                  "InsertHeaders": [
+                    {
+                      "Name": "string",
+                      "Value": "string"
+                    }
+                  ]
+                }
+              },
+              "Block": {
+                "CustomResponse": {
+                  "ResponseCode": "number",
+                  "ResponseHeaders": [
+                    {
+                      "Name": "string",
+                      "Value": "string"
+                    }
+                  ],
+                  "CustomResponseBodyKey": "string"
+                }
+              }
+            },
+            "LabelNamespace": "string",
+            "VisibilityConfig": {
+              "MetricName": "string",
+              "SampledRequestsEnabled": "boolean",
+              "CloudWatchMetricsEnabled": "boolean"
+            },
+            "CustomResponseBodies": {
+              "string": {
+                "Content": "string",
+                "ContentType": "string"
+              }
+            },
+            "ManagedByFirewallManager": "boolean",
+            "PreProcessFirewallManagerRuleGroups": [
+              {
+                "Name": "string",
+                "Priority": "number",
+                "OverrideAction": {
+                  "None": {},
+                  "Count": {
+                    "CustomRequestHandling": {
+                      "InsertHeaders": [
+                        {
+                          "Name": "string",
+                          "Value": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "VisibilityConfig": {
+                  "MetricName": "string",
+                  "SampledRequestsEnabled": "boolean",
+                  "CloudWatchMetricsEnabled": "boolean"
+                },
+                "FirewallManagerStatement": {
+                  "ManagedRuleGroupStatement": {
+                    "Name": "string",
+                    "VendorName": "string",
+                    "ExcludedRules": [
+                      {
+                        "Name": "string"
+                      }
+                    ],
+                    "ScopeDownStatement": {
+                      "OrStatement": {
+                        "Statements": [
+                          "Statement"
+                        ]
+                      },
+                      "AndStatement": {
+                        "Statements": [
+                          "Statement"
+                        ]
+                      },
+                      "NotStatement": {
+                        "Statement": "Statement"
+                      },
+                      "GeoMatchStatement": {
+                        "CountryCodes": [
+                          "string"
+                        ],
+                        "ForwardedIPConfig": {
+                          "HeaderName": "string",
+                          "FallbackBehavior": "string"
+                        }
+                      },
+                      "XssMatchStatement": {
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ]
+                      },
+                      "ByteMatchStatement": {
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "SearchString": "blob",
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ],
+                        "PositionalConstraint": "string"
+                      },
+                      "RateBasedStatement": {
+                        "Limit": "number",
+                        "AggregateKeyType": "string",
+                        "ForwardedIPConfig": {
+                          "HeaderName": "string",
+                          "FallbackBehavior": "string"
+                        },
+                        "ScopeDownStatement": "Statement"
+                      },
+                      "SqliMatchStatement": {
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ]
+                      },
+                      "LabelMatchStatement": {
+                        "Key": "string",
+                        "Scope": "string"
+                      },
+                      "IPSetReferenceStatement": {
+                        "ARN": "string",
+                        "IPSetForwardedIPConfig": {
+                          "Position": "string",
+                          "HeaderName": "string",
+                          "FallbackBehavior": "string"
+                        }
+                      },
+                      "SizeConstraintStatement": {
+                        "Size": "number",
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "ComparisonOperator": "string",
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ]
+                      },
+                      "ManagedRuleGroupStatement": "ManagedRuleGroupStatement",
+                      "RuleGroupReferenceStatement": {
+                        "ARN": "string",
+                        "ExcludedRules": [
+                          {
+                            "Name": "string"
+                          }
+                        ]
+                      },
+                      "RegexPatternSetReferenceStatement": {
+                        "ARN": "string",
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RuleGroupReferenceStatement": {
+                    "ARN": "string",
+                    "ExcludedRules": [
+                      {
+                        "Name": "string"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "PostProcessFirewallManagerRuleGroups": [
+              {
+                "Name": "string",
+                "Priority": "number",
+                "OverrideAction": {
+                  "None": {},
+                  "Count": {
+                    "CustomRequestHandling": {
+                      "InsertHeaders": [
+                        {
+                          "Name": "string",
+                          "Value": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "VisibilityConfig": {
+                  "MetricName": "string",
+                  "SampledRequestsEnabled": "boolean",
+                  "CloudWatchMetricsEnabled": "boolean"
+                },
+                "FirewallManagerStatement": {
+                  "ManagedRuleGroupStatement": {
+                    "Name": "string",
+                    "VendorName": "string",
+                    "ExcludedRules": [
+                      {
+                        "Name": "string"
+                      }
+                    ],
+                    "ScopeDownStatement": {
+                      "OrStatement": {
+                        "Statements": [
+                          "Statement"
+                        ]
+                      },
+                      "AndStatement": {
+                        "Statements": [
+                          "Statement"
+                        ]
+                      },
+                      "NotStatement": {
+                        "Statement": "Statement"
+                      },
+                      "GeoMatchStatement": {
+                        "CountryCodes": [
+                          "string"
+                        ],
+                        "ForwardedIPConfig": {
+                          "HeaderName": "string",
+                          "FallbackBehavior": "string"
+                        }
+                      },
+                      "XssMatchStatement": {
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ]
+                      },
+                      "ByteMatchStatement": {
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "SearchString": "blob",
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ],
+                        "PositionalConstraint": "string"
+                      },
+                      "RateBasedStatement": {
+                        "Limit": "number",
+                        "AggregateKeyType": "string",
+                        "ForwardedIPConfig": {
+                          "HeaderName": "string",
+                          "FallbackBehavior": "string"
+                        },
+                        "ScopeDownStatement": "Statement"
+                      },
+                      "SqliMatchStatement": {
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ]
+                      },
+                      "LabelMatchStatement": {
+                        "Key": "string",
+                        "Scope": "string"
+                      },
+                      "IPSetReferenceStatement": {
+                        "ARN": "string",
+                        "IPSetForwardedIPConfig": {
+                          "Position": "string",
+                          "HeaderName": "string",
+                          "FallbackBehavior": "string"
+                        }
+                      },
+                      "SizeConstraintStatement": {
+                        "Size": "number",
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "ComparisonOperator": "string",
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ]
+                      },
+                      "ManagedRuleGroupStatement": "ManagedRuleGroupStatement",
+                      "RuleGroupReferenceStatement": {
+                        "ARN": "string",
+                        "ExcludedRules": [
+                          {
+                            "Name": "string"
+                          }
+                        ]
+                      },
+                      "RegexPatternSetReferenceStatement": {
+                        "ARN": "string",
+                        "FieldToMatch": {
+                          "Body": {},
+                          "Method": {},
+                          "UriPath": {},
+                          "JsonBody": {
+                            "MatchScope": "string",
+                            "MatchPattern": {
+                              "All": {},
+                              "IncludedPaths": [
+                                "string"
+                              ]
+                            },
+                            "InvalidFallbackBehavior": "string"
+                          },
+                          "QueryString": {},
+                          "SingleHeader": {
+                            "Name": "string"
+                          },
+                          "AllQueryArguments": {},
+                          "SingleQueryArgument": {
+                            "Name": "string"
+                          }
+                        },
+                        "TextTransformations": [
+                          {
+                            "Type": "string",
+                            "Priority": "number"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "RuleGroupReferenceStatement": {
+                    "ARN": "string",
+                    "ExcludedRules": [
+                      {
+                        "Name": "string"
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "LockToken": "string"
+        }
+      ]
+  ListAvailableManagedRuleGroups:
+    description: |-
+      Retrieves an array of managed rule groups that are available for you to use. This list includes all AWS Managed Rules rule groups and the AWS Marketplace managed rule groups that you're subscribed to.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_ListAvailableManagedRuleGroups.html
+    example:
+      inputs: [
+        {
+          "Limit": "number",
+          "Scope": "string",
+          "NextMarker": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextMarker": "string",
+          "ManagedRuleGroups": [
+            {
+              "Name": "string",
+              "VendorName": "string",
+              "Description": "string"
+            }
+          ]
+        }
+      ]
+  ListIPSets:
+    description: |-
+      Retrieves an array of IPSetSummary objects for the IP sets that you manage.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_ListIPSets.html
+    example:
+      inputs: [
+        {
+          "Limit": "number",
+          "Scope": "string",
+          "NextMarker": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IPSets": [
+            {
+              "Id": "string",
+              "ARN": "string",
+              "Name": "string",
+              "LockToken": "string",
+              "Description": "string"
+            }
+          ],
+          "NextMarker": "string"
+        }
+      ]
+  ListLoggingConfigurations:
+    description: |-
+      Retrieves an array of your LoggingConfiguration objects.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_ListLoggingConfigurations.html
+    example:
+      inputs: [
+        {
+          "Limit": "number",
+          "Scope": "string",
+          "NextMarker": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextMarker": "string",
+          "LoggingConfigurations": [
+            {
+              "ResourceArn": "string",
+              "LoggingFilter": {
+                "Filters": [
+                  {
+                    "Behavior": "string",
+                    "Conditions": [
+                      {
+                        "ActionCondition": {
+                          "Action": "string"
+                        },
+                        "LabelNameCondition": {
+                          "LabelName": "string"
+                        }
+                      }
+                    ],
+                    "Requirement": "string"
+                  }
+                ],
+                "DefaultBehavior": "string"
+              },
+              "RedactedFields": [
+                {
+                  "Body": {},
+                  "Method": {},
+                  "UriPath": {},
+                  "JsonBody": {
+                    "MatchScope": "string",
+                    "MatchPattern": {
+                      "All": {},
+                      "IncludedPaths": [
+                        "string"
+                      ]
+                    },
+                    "InvalidFallbackBehavior": "string"
+                  },
+                  "QueryString": {},
+                  "SingleHeader": {
+                    "Name": "string"
+                  },
+                  "AllQueryArguments": {},
+                  "SingleQueryArgument": {
+                    "Name": "string"
+                  }
+                }
+              ],
+              "LogDestinationConfigs": [
+                "string"
+              ],
+              "ManagedByFirewallManager": "boolean"
+            }
+          ]
+        }
+      ]
+  ListRegexPatternSets:
+    description: |-
+      Retrieves an array of RegexPatternSetSummary objects for the regex pattern sets that you manage.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_ListRegexPatternSets.html
+    example:
+      inputs: [
+        {
+          "Limit": "number",
+          "Scope": "string",
+          "NextMarker": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextMarker": "string",
+          "RegexPatternSets": [
+            {
+              "Id": "string",
+              "ARN": "string",
+              "Name": "string",
+              "LockToken": "string",
+              "Description": "string"
+            }
+          ]
+        }
+      ]
+  ListResourcesForWebACL:
+    description: |-
+      Retrieves an array of the Amazon Resource Names (ARNs) for the regional resources that are associated with the specified web ACL. If you want the list of AWS CloudFront resources, use the AWS CloudFront call ListDistributionsByWebACLId.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_ListResourcesForWebACL.html
+    example:
+      inputs: [
+        {
+          "WebACLArn": "string",
+          "ResourceType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListRuleGroups:
+    description: |-
+      Retrieves an array of RuleGroupSummary objects for the rule groups that you manage.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_ListRuleGroups.html
+    example:
+      inputs: [
+        {
+          "Limit": "number",
+          "Scope": "string",
+          "NextMarker": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextMarker": "string",
+          "RuleGroups": [
+            {
+              "Id": "string",
+              "ARN": "string",
+              "Name": "string",
+              "LockToken": "string",
+              "Description": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Retrieves the TagInfoForResource for the specified resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to "customer" and the value to the customer name or ID. You can specify one or more tags to add to each AWS resource, up to 50 tags for a resource.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "Limit": "number",
+          "NextMarker": "string",
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextMarker": "string",
+          "TagInfoForResource": {
+            "TagList": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ],
+            "ResourceARN": "string"
+          }
+        }
+      ]
+  ListWebACLs:
+    description: |-
+      Retrieves an array of WebACLSummary objects for the web ACLs that you manage.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_ListWebACLs.html
+    example:
+      inputs: [
+        {
+          "Limit": "number",
+          "Scope": "string",
+          "NextMarker": "string"
+        }
+      ]
+      outputs: [
+        {
+          "WebACLs": [
+            {
+              "Id": "string",
+              "ARN": "string",
+              "Name": "string",
+              "LockToken": "string",
+              "Description": "string"
+            }
+          ],
+          "NextMarker": "string"
+        }
+      ]
+  PutLoggingConfiguration:
+    description: |-
+      Enables the specified LoggingConfiguration, to start logging from a web ACL, according to the configuration provided.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_PutLoggingConfiguration.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "LoggingConfiguration": {
+            "ResourceArn": "string",
+            "LoggingFilter": {
+              "Filters": [
+                {
+                  "Behavior": "string",
+                  "Conditions": [
+                    {
+                      "ActionCondition": {
+                        "Action": "string"
+                      },
+                      "LabelNameCondition": {
+                        "LabelName": "string"
+                      }
+                    }
+                  ],
+                  "Requirement": "string"
+                }
+              ],
+              "DefaultBehavior": "string"
+            },
+            "RedactedFields": [
+              {
+                "Body": {},
+                "Method": {},
+                "UriPath": {},
+                "JsonBody": {
+                  "MatchScope": "string",
+                  "MatchPattern": {
+                    "All": {},
+                    "IncludedPaths": [
+                      "string"
+                    ]
+                  },
+                  "InvalidFallbackBehavior": "string"
+                },
+                "QueryString": {},
+                "SingleHeader": {
+                  "Name": "string"
+                },
+                "AllQueryArguments": {},
+                "SingleQueryArgument": {
+                  "Name": "string"
+                }
+              }
+            ],
+            "LogDestinationConfigs": [
+              "string"
+            ],
+            "ManagedByFirewallManager": "boolean"
+          }
+        }
+      ]
+  PutPermissionPolicy:
+    description: |-
+      Attaches an IAM policy to the specified resource. Use this to share a rule group across accounts.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_PutPermissionPolicy.html
+    example:
+      inputs: [
+        {
+          "Policy": "string",
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Associates tags with the specified AWS resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to "customer" and the value to the customer name or ID. You can specify one or more tags to add to each AWS resource, up to 50 tags for a resource.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Disassociates tags from an AWS resource. Tags are key:value pairs that you can associate with AWS resources. For example, the tag key might be "customer" and the tag value might be "companyA." You can specify one or more tags to add to each container. You can add up to 50 tags to each AWS resource.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceARN": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateIPSet:
+    description: |-
+      Updates the specified IPSet.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_UpdateIPSet.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Scope": "string",
+          "Addresses": [
+            "string"
+          ],
+          "LockToken": "string",
+          "Description": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextLockToken": "string"
+        }
+      ]
+  UpdateRegexPatternSet:
+    description: |-
+      Updates the specified RegexPatternSet.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_UpdateRegexPatternSet.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Scope": "string",
+          "LockToken": "string",
+          "Description": "string",
+          "RegularExpressionList": [
+            {
+              "RegexString": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextLockToken": "string"
+        }
+      ]
+  UpdateRuleGroup:
+    description: |-
+      Updates the specified RuleGroup.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_UpdateRuleGroup.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Rules": [
+            {
+              "Name": "string",
+              "Action": {
+                "Allow": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                },
+                "Block": {
+                  "CustomResponse": {
+                    "ResponseCode": "number",
+                    "ResponseHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ],
+                    "CustomResponseBodyKey": "string"
+                  }
+                },
+                "Count": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                }
+              },
+              "Priority": "number",
+              "Statement": {
+                "OrStatement": {
+                  "Statements": [
+                    "Statement"
+                  ]
+                },
+                "AndStatement": {
+                  "Statements": [
+                    "Statement"
+                  ]
+                },
+                "NotStatement": {
+                  "Statement": "Statement"
+                },
+                "GeoMatchStatement": {
+                  "CountryCodes": [
+                    "string"
+                  ],
+                  "ForwardedIPConfig": {
+                    "HeaderName": "string",
+                    "FallbackBehavior": "string"
+                  }
+                },
+                "XssMatchStatement": {
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                },
+                "ByteMatchStatement": {
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "SearchString": "blob",
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ],
+                  "PositionalConstraint": "string"
+                },
+                "RateBasedStatement": {
+                  "Limit": "number",
+                  "AggregateKeyType": "string",
+                  "ForwardedIPConfig": {
+                    "HeaderName": "string",
+                    "FallbackBehavior": "string"
+                  },
+                  "ScopeDownStatement": "Statement"
+                },
+                "SqliMatchStatement": {
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                },
+                "LabelMatchStatement": {
+                  "Key": "string",
+                  "Scope": "string"
+                },
+                "IPSetReferenceStatement": {
+                  "ARN": "string",
+                  "IPSetForwardedIPConfig": {
+                    "Position": "string",
+                    "HeaderName": "string",
+                    "FallbackBehavior": "string"
+                  }
+                },
+                "SizeConstraintStatement": {
+                  "Size": "number",
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "ComparisonOperator": "string",
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                },
+                "ManagedRuleGroupStatement": {
+                  "Name": "string",
+                  "VendorName": "string",
+                  "ExcludedRules": [
+                    {
+                      "Name": "string"
+                    }
+                  ],
+                  "ScopeDownStatement": "Statement"
+                },
+                "RuleGroupReferenceStatement": {
+                  "ARN": "string",
+                  "ExcludedRules": [
+                    {
+                      "Name": "string"
+                    }
+                  ]
+                },
+                "RegexPatternSetReferenceStatement": {
+                  "ARN": "string",
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                }
+              },
+              "RuleLabels": [
+                {
+                  "Name": "string"
+                }
+              ],
+              "OverrideAction": {
+                "None": {},
+                "Count": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                }
+              },
+              "VisibilityConfig": {
+                "MetricName": "string",
+                "SampledRequestsEnabled": "boolean",
+                "CloudWatchMetricsEnabled": "boolean"
+              }
+            }
+          ],
+          "Scope": "string",
+          "LockToken": "string",
+          "Description": "string",
+          "VisibilityConfig": {
+            "MetricName": "string",
+            "SampledRequestsEnabled": "boolean",
+            "CloudWatchMetricsEnabled": "boolean"
+          },
+          "CustomResponseBodies": {
+            "string": {
+              "Content": "string",
+              "ContentType": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "NextLockToken": "string"
+        }
+      ]
+  UpdateWebACL:
+    description: |-
+      Updates the specified WebACL.
+    versions:
+      from: 2019.7.29
+    link: https://docs.aws.amazon.com/waf/latest/APIReference/API_UpdateWebACL.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "Name": "string",
+          "Rules": [
+            {
+              "Name": "string",
+              "Action": {
+                "Allow": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                },
+                "Block": {
+                  "CustomResponse": {
+                    "ResponseCode": "number",
+                    "ResponseHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ],
+                    "CustomResponseBodyKey": "string"
+                  }
+                },
+                "Count": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                }
+              },
+              "Priority": "number",
+              "Statement": {
+                "OrStatement": {
+                  "Statements": [
+                    "Statement"
+                  ]
+                },
+                "AndStatement": {
+                  "Statements": [
+                    "Statement"
+                  ]
+                },
+                "NotStatement": {
+                  "Statement": "Statement"
+                },
+                "GeoMatchStatement": {
+                  "CountryCodes": [
+                    "string"
+                  ],
+                  "ForwardedIPConfig": {
+                    "HeaderName": "string",
+                    "FallbackBehavior": "string"
+                  }
+                },
+                "XssMatchStatement": {
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                },
+                "ByteMatchStatement": {
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "SearchString": "blob",
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ],
+                  "PositionalConstraint": "string"
+                },
+                "RateBasedStatement": {
+                  "Limit": "number",
+                  "AggregateKeyType": "string",
+                  "ForwardedIPConfig": {
+                    "HeaderName": "string",
+                    "FallbackBehavior": "string"
+                  },
+                  "ScopeDownStatement": "Statement"
+                },
+                "SqliMatchStatement": {
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                },
+                "LabelMatchStatement": {
+                  "Key": "string",
+                  "Scope": "string"
+                },
+                "IPSetReferenceStatement": {
+                  "ARN": "string",
+                  "IPSetForwardedIPConfig": {
+                    "Position": "string",
+                    "HeaderName": "string",
+                    "FallbackBehavior": "string"
+                  }
+                },
+                "SizeConstraintStatement": {
+                  "Size": "number",
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "ComparisonOperator": "string",
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                },
+                "ManagedRuleGroupStatement": {
+                  "Name": "string",
+                  "VendorName": "string",
+                  "ExcludedRules": [
+                    {
+                      "Name": "string"
+                    }
+                  ],
+                  "ScopeDownStatement": "Statement"
+                },
+                "RuleGroupReferenceStatement": {
+                  "ARN": "string",
+                  "ExcludedRules": [
+                    {
+                      "Name": "string"
+                    }
+                  ]
+                },
+                "RegexPatternSetReferenceStatement": {
+                  "ARN": "string",
+                  "FieldToMatch": {
+                    "Body": {},
+                    "Method": {},
+                    "UriPath": {},
+                    "JsonBody": {
+                      "MatchScope": "string",
+                      "MatchPattern": {
+                        "All": {},
+                        "IncludedPaths": [
+                          "string"
+                        ]
+                      },
+                      "InvalidFallbackBehavior": "string"
+                    },
+                    "QueryString": {},
+                    "SingleHeader": {
+                      "Name": "string"
+                    },
+                    "AllQueryArguments": {},
+                    "SingleQueryArgument": {
+                      "Name": "string"
+                    }
+                  },
+                  "TextTransformations": [
+                    {
+                      "Type": "string",
+                      "Priority": "number"
+                    }
+                  ]
+                }
+              },
+              "RuleLabels": [
+                {
+                  "Name": "string"
+                }
+              ],
+              "OverrideAction": {
+                "None": {},
+                "Count": {
+                  "CustomRequestHandling": {
+                    "InsertHeaders": [
+                      {
+                        "Name": "string",
+                        "Value": "string"
+                      }
+                    ]
+                  }
+                }
+              },
+              "VisibilityConfig": {
+                "MetricName": "string",
+                "SampledRequestsEnabled": "boolean",
+                "CloudWatchMetricsEnabled": "boolean"
+              }
+            }
+          ],
+          "Scope": "string",
+          "LockToken": "string",
+          "Description": "string",
+          "DefaultAction": {
+            "Allow": {
+              "CustomRequestHandling": {
+                "InsertHeaders": [
+                  {
+                    "Name": "string",
+                    "Value": "string"
+                  }
+                ]
+              }
+            },
+            "Block": {
+              "CustomResponse": {
+                "ResponseCode": "number",
+                "ResponseHeaders": [
+                  {
+                    "Name": "string",
+                    "Value": "string"
+                  }
+                ],
+                "CustomResponseBodyKey": "string"
+              }
+            }
+          },
+          "VisibilityConfig": {
+            "MetricName": "string",
+            "SampledRequestsEnabled": "boolean",
+            "CloudWatchMetricsEnabled": "boolean"
+          },
+          "CustomResponseBodies": {
+            "string": {
+              "Content": "string",
+              "ContentType": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "NextLockToken": "string"
+        }
+      ]

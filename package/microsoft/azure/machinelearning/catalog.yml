@@ -1,0 +1,1319 @@
+Product:
+  name: Azure Machine Learning
+  versions: [2019.5.1]
+  package: microsoft.azure.machinelearning
+  description: |-
+    MachineLearning
+  link: https://docs.microsoft.com/en-us/azure/machine-learning/
+  contentType: json
+Operations:
+  WorkspacesAndComputes.MachineLearningCompute.CreateOrUpdate:
+    description: |-
+      Creates or updates compute. This call will overwrite a compute if it exists. This is a nonrecoverable operation. If your intent is to create a new compute, do a GET first to verify that it does not exist yet.
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/machinelearningcompute/createorupdate
+    example:
+      inputs: [
+        {
+          "location": "eastus",
+          "properties": {
+            "properties": {
+              "vmSize": "STANDARD_NC6",
+              "vmPriority": "Dedicated",
+              "scaleSettings": {
+                "maxNodeCount": 1,
+                "minNodeCount": 0,
+                "nodeIdleTimeBeforeScaleDown": "PT5M"
+              }
+            },
+            "computeType": "AmlCompute"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/testrg123/providers/Microsoft.MachineLearningServices/workspaces/workspaces123/computes/compute123",
+          "name": "compute123",
+          "type": "Microsoft.MachineLearningServices/workspaces/computes",
+          "location": "eastus",
+          "properties": {
+            "computeType": "AmlCompute",
+            "provisioningState": "Creating"
+          }
+        }
+      ]
+  WorkspacesAndComputes.MachineLearningCompute.Delete:
+    description: |-
+      Deletes specified Machine Learning compute.
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/machinelearningcompute/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  WorkspacesAndComputes.MachineLearningCompute.Get:
+    description: |-
+      Gets compute definition by its name. Any secrets (storage keys, service credentials, etc) are not returned - use 'keys' nested resource to get them.
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/machinelearningcompute/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/testrg123/providers/Microsoft.MachineLearningServices/workspaces/workspaces123/computes/compute123",
+          "name": "compute123",
+          "type": "Microsoft.MachineLearningServices/workspaces/computes",
+          "location": "eastus",
+          "properties": {
+            "resourceId": "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourcegroups/testrg123/providers/Microsoft.ContainerService/managedClusters/compute123-56826-c9b00420020b2",
+            "computeType": "AKS",
+            "description": "some compute",
+            "provisioningState": "Succeeded"
+          }
+        }
+      ]
+  WorkspacesAndComputes.MachineLearningCompute.ListByWorkspace:
+    description: |-
+      Gets computes in specified workspace.
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/machinelearningcompute/listbyworkspace
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/testrg123/providers/Microsoft.MachineLearningServices/workspaces/workspaces123/computes/compute123",
+              "name": "compute123",
+              "type": "Microsoft.MachineLearningServices/workspaces/computes",
+              "location": "eastus",
+              "properties": {
+                "resourceId": "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourcegroups/testrg123/providers/Microsoft.ContainerService/managedClusters/compute123-56826-c9b00420020b2",
+                "computeType": "AKS",
+                "description": "some compute",
+                "provisioningState": "Succeeded"
+              }
+            },
+            {
+              "id": "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/testrg123/providers/Microsoft.MachineLearningServices/workspaces/workspaces123/computes/compute1234",
+              "name": "compute1234",
+              "type": "Microsoft.MachineLearningServices/workspaces/computes",
+              "location": "eastus",
+              "properties": {
+                "resourceId": "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourcegroups/testrg123/providers/Microsoft.ContainerService/managedClusters/compute1234-56826-c9b00420020b2",
+                "computeType": "AKS",
+                "description": "some compute",
+                "provisioningState": "Succeeded"
+              }
+            }
+          ],
+          "nextLink": "nextLink"
+        }
+      ]
+  WorkspacesAndComputes.MachineLearningCompute.ListKeys:
+    description: |-
+      Gets secrets related to Machine Learning compute (storage keys, service credentials, etc).
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/machinelearningcompute/listkeys
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "computeType": "AKS",
+          "userKubeConfig": "user kube config...",
+          "adminKubeConfig": "admin kube config...",
+          "imagePullSecretName": "the image pull secret name"
+        }
+      ]
+  WorkspacesAndComputes.MachineLearningCompute.ListNodes:
+    description: |-
+      Get the details (e.g IP address, port etc) of all the compute nodes in the compute.
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/machinelearningcompute/listnodes
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "nodes": [
+            {
+              "port": 50000,
+              "nodeId": "tvm-3601533753_1-20170719t162906z",
+              "ipAddress": "13.84.190.124"
+            },
+            {
+              "port": 50001,
+              "nodeId": "tvm-3601533753_2-20170719t162906z",
+              "ipAddress": "13.84.190.124"
+            }
+          ],
+          "nextLink": "nextLink",
+          "computeType": "AmlCompute"
+        }
+      ]
+  WorkspacesAndComputes.MachineLearningCompute.Update:
+    description: |-
+      Updates properties of a compute. This call will overwrite a compute if it exists. This is a nonrecoverable operation.
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/machinelearningcompute/update
+    example:
+      inputs: [
+        {
+          "properties": {
+            "scaleSettings": {
+              "maxNodeCount": 4,
+              "minNodeCount": 4,
+              "nodeIdleTimeBeforeScaleDown": "PT5M"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/testrg123/providers/Microsoft.MachineLearningServices/workspaces/workspaces123/computes/compute123",
+          "name": "compute123",
+          "type": "Microsoft.MachineLearningServices/workspaces/computes",
+          "location": "eastus2",
+          "properties": {
+            "computeType": "AmlCompute",
+            "description": "some compute",
+            "provisioningState": "Updating"
+          }
+        }
+      ]
+  WorkspacesAndComputes.Usages.List:
+    description: |-
+      Gets the current usage information as well as limits for AML resources for given subscription and location.
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/usages/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages",
+              "name": {
+                "value": "Clusters",
+                "localizedValue": "Clusters"
+              },
+              "type": "Microsoft.MachineLearningServices/totalCores/usages",
+              "unit": "Count",
+              "limit": 100,
+              "currentValue": 7
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages",
+              "name": {
+                "value": "Total Cluster Dedicated Regional vCPUs",
+                "localizedValue": "Total Cluster Dedicated Regional vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/dedicatedCores/usages",
+              "unit": "Count",
+              "limit": 24,
+              "currentValue": 14
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_D_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard D Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard D Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": 48,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_DSv2_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard DSv2 Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard DSv2 Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": 24,
+              "currentValue": 2
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.MachineLearningServices/workspaces/demo_workspace1/usages/Standard_DSv2_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard DSv2 Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard DSv2 Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/workspaces/usages",
+              "unit": "Count",
+              "limit": 24,
+              "currentValue": 2
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.MachineLearningServices/workspaces/demo_workspace1/computes/demo_cluster1_dsv2/usages/Standard_DSv2_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard DSv2 Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard DSv2 Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/workspaces/computes/usages",
+              "unit": "Count",
+              "limit": 24,
+              "currentValue": 2
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.MachineLearningServices/workspaces/demo_workspace1/computes/demo_cluster2_dsv2/usages/Standard_DSv2_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard DSv2 Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard DSv2 Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/workspaces/computes/usages",
+              "unit": "Count",
+              "limit": 24,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_Dv2_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard Dv2 Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard Dv2 Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": 24,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_FSv2_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard FSv2 Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard FSv2 Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": 24,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_NC_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard NC Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard NC Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": 24,
+              "currentValue": 12
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.MachineLearningServices/workspaces/demo_workspace1/usages/Standard_NC_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard NC Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard NC Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/workspace/usages",
+              "unit": "Count",
+              "limit": 24,
+              "currentValue": 6
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.MachineLearningServices/workspaces/demo_workspace1/computes/demo_cluster1_nc/usages/Standard_NC_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard NC Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard NC Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/workspace/computes/usages",
+              "unit": "Count",
+              "limit": 24,
+              "currentValue": 6
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.MachineLearningServices/workspaces/demo_workspace2/usages/Standard_NC_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard NC Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard NC Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/workspaces/usages",
+              "unit": "Count",
+              "limit": 24,
+              "currentValue": 6
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.MachineLearningServices/workspaces/demo_workspace2/computes/demo_cluser1_nc/usages/Standard_NC_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard NC Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard NC Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/workspaces/computes/usages",
+              "unit": "Count",
+              "limit": 24,
+              "currentValue": 6
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_NCv2_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard NCv2 Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard NCv2 Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": 0,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_NCv3_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard NCv3 Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard NCv3 Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": 0,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_ND_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard ND Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard ND Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": 0,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_NDv2_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard NDv2 Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard NDv2 Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": 0,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_NV_Family_Cluster_Dedicated_vCPUs",
+              "name": {
+                "value": "Standard NV Family Cluster Dedicated vCPUs",
+                "localizedValue": "Standard NV Family Cluster Dedicated vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": 24,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages",
+              "name": {
+                "value": "Total Cluster LowPriority Regional vCPUs",
+                "localizedValue": "Total Cluster LowPriority Regional vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/lowPriorityCores/usages",
+              "unit": "Count",
+              "limit": 50,
+              "currentValue": 18
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_D_Family_Cluster_LowPriority_vCPUs",
+              "name": {
+                "value": "Standard D Family Cluster LowPriority vCPUs",
+                "localizedValue": "Standard D Family Cluster LowPriority vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": -1,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_DSv2_Family_Cluster_LowPriority_vCPUs",
+              "name": {
+                "value": "Standard DSv2 Family Cluster LowPriority vCPUs",
+                "localizedValue": "Standard DSv2 Family Cluster LowPriority vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": -1,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_Dv2_Family_Cluster_LowPriority_vCPUs",
+              "name": {
+                "value": "Standard Dv2 Family Cluster LowPriority vCPUs",
+                "localizedValue": "Standard Dv2 Family Cluster LowPriority vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": -1,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_FSv2_Family_Cluster_LowPriority_vCPUs",
+              "name": {
+                "value": "Standard FSv2 Family Cluster LowPriority vCPUs",
+                "localizedValue": "Standard FSv2 Family Cluster LowPriority vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": -1,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_NC_Family_Cluster_LowPriority_vCPUs",
+              "name": {
+                "value": "Standard NC Family Cluster LowPriority vCPUs",
+                "localizedValue": "Standard NC Family Cluster LowPriority vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": -1,
+              "currentValue": 18
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.MachineLearningServices/workspaces/demo_workspace1/usages/Standard_NC_Family_Cluster_LowPriority_vCPUs",
+              "name": {
+                "value": "Standard NC Family Cluster LowPriority vCPUs",
+                "localizedValue": "Standard NC Family Cluster LowPriority vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/workspace/usages",
+              "unit": "Count",
+              "limit": -1,
+              "currentValue": 6
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.MachineLearningServices/workspaces/demo_workspace1/computes/demo_cluster1_lowPriority_nc/usages/Standard_NC_Family_Cluster_LowPriority_vCPUs",
+              "name": {
+                "value": "Standard NC Family Cluster LowPriority vCPUs",
+                "localizedValue": "Standard NC Family Cluster LowPriority vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/workspace/computes/usages",
+              "unit": "Count",
+              "limit": -1,
+              "currentValue": 6
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.MachineLearningServices/workspaces/demo_workspace2/usages/Standard_NC_Family_Cluster_LowPriority_vCPUs",
+              "name": {
+                "value": "Standard NC Family Cluster LowPriority vCPUs",
+                "localizedValue": "Standard NC Family Cluster LowPriority vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/workspace/usages",
+              "unit": "Count",
+              "limit": -1,
+              "currentValue": 12
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.MachineLearningServices/workspaces/demo_workspace2/computes/demo_cluster2_lowPriority_nc/usages/Standard_NC_Family_Cluster_LowPriority_vCPUs",
+              "name": {
+                "value": "Standard NC Family Cluster LowPriority vCPUs",
+                "localizedValue": "Standard NC Family Cluster LowPriority vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/workspace/computes/usages",
+              "unit": "Count",
+              "limit": -1,
+              "currentValue": 6
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/Microsoft.MachineLearningServices/workspaces/demo_workspace2/computes/demo_cluster3_lowPriority_nc/usages/Standard_NC_Family_Cluster_LowPriority_vCPUs",
+              "name": {
+                "value": "Standard NC Family Cluster LowPriority vCPUs",
+                "localizedValue": "Standard NC Family Cluster LowPriority vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/workspace/computes/usages",
+              "unit": "Count",
+              "limit": -1,
+              "currentValue": 6
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_NCv2_Family_Cluster_LowPriority_vCPUs",
+              "name": {
+                "value": "Standard NCv2 Family Cluster LowPriority vCPUs",
+                "localizedValue": "Standard NCv2 Family Cluster LowPriority vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": -1,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_NCv3_Family_Cluster_LowPriority_vCPUs",
+              "name": {
+                "value": "Standard NCv3 Family Cluster LowPriority vCPUs",
+                "localizedValue": "Standard NCv3 Family Cluster LowPriority vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": -1,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_ND_Family_Cluster_LowPriority_vCPUs",
+              "name": {
+                "value": "Standard ND Family Cluster LowPriority vCPUs",
+                "localizedValue": "Standard ND Family Cluster LowPriority vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": -1,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_NDv2_Family_Cluster_LowPriority_vCPUs",
+              "name": {
+                "value": "Standard NDv2 Family Cluster LowPriority vCPUs",
+                "localizedValue": "Standard NDv2 Family Cluster LowPriority vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": -1,
+              "currentValue": 0
+            },
+            {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/usages/Standard_NV_Family_Cluster_LowPriority_vCPUs",
+              "name": {
+                "value": "Standard NV Family Cluster LowPriority vCPUs",
+                "localizedValue": "Standard NV Family Cluster LowPriority vCPUs"
+              },
+              "type": "Microsoft.MachineLearningServices/vmFamily/usages",
+              "unit": "Count",
+              "limit": -1,
+              "currentValue": 0
+            }
+          ]
+        }
+      ]
+  WorkspacesAndComputes.VirtualMachineSizes.List:
+    description: |-
+      Returns supported VM Sizes in a location
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/virtualmachinesizes/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "amlCompute": [
+            {
+              "name": "Standard_F2s_v2",
+              "vCPUs": 2,
+              "family": "standardFSv2Family",
+              "memoryGB": 4,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 16384
+            },
+            {
+              "name": "Standard_F4s_v2",
+              "vCPUs": 4,
+              "family": "standardFSv2Family",
+              "memoryGB": 8,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 32768
+            },
+            {
+              "name": "Standard_F8s_v2",
+              "vCPUs": 8,
+              "family": "standardFSv2Family",
+              "memoryGB": 16,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 65536
+            },
+            {
+              "name": "Standard_F16s_v2",
+              "vCPUs": 16,
+              "family": "standardFSv2Family",
+              "memoryGB": 32,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 131072
+            },
+            {
+              "name": "Standard_F32s_v2",
+              "vCPUs": 32,
+              "family": "standardFSv2Family",
+              "memoryGB": 64,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 262144
+            },
+            {
+              "name": "Standard_F64s_v2",
+              "vCPUs": 64,
+              "family": "standardFSv2Family",
+              "memoryGB": 128,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 524288
+            },
+            {
+              "name": "Standard_F72s_v2",
+              "vCPUs": 72,
+              "family": "standardFSv2Family",
+              "memoryGB": 144,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 589824
+            },
+            {
+              "name": "Standard_D1_v2",
+              "vCPUs": 1,
+              "family": "standardDv2Family",
+              "memoryGB": 3.5,
+              "premiumIO": false,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 51200
+            },
+            {
+              "name": "Standard_D2_v2",
+              "vCPUs": 2,
+              "family": "standardDv2Family",
+              "memoryGB": 7,
+              "premiumIO": false,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 102400
+            },
+            {
+              "name": "Standard_D3_v2",
+              "vCPUs": 4,
+              "family": "standardDv2Family",
+              "memoryGB": 14,
+              "premiumIO": false,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 204800
+            },
+            {
+              "name": "Standard_D4_v2",
+              "vCPUs": 8,
+              "family": "standardDv2Family",
+              "memoryGB": 28,
+              "premiumIO": false,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 409600
+            },
+            {
+              "name": "Standard_D11_v2",
+              "vCPUs": 2,
+              "family": "standardDv2Family",
+              "memoryGB": 14,
+              "premiumIO": false,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 102400
+            },
+            {
+              "name": "Standard_D12_v2",
+              "vCPUs": 4,
+              "family": "standardDv2Family",
+              "memoryGB": 28,
+              "premiumIO": false,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 204800
+            },
+            {
+              "name": "Standard_D13_v2",
+              "vCPUs": 8,
+              "family": "standardDv2Family",
+              "memoryGB": 56,
+              "premiumIO": false,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 409600
+            },
+            {
+              "name": "Standard_D14_v2",
+              "vCPUs": 16,
+              "family": "standardDv2Family",
+              "memoryGB": 112,
+              "premiumIO": false,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 819200
+            },
+            {
+              "name": "Standard_DS1_v2",
+              "vCPUs": 1,
+              "family": "standardDSv2Family",
+              "memoryGB": 3.5,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 7168
+            },
+            {
+              "name": "Standard_DS2_v2",
+              "vCPUs": 2,
+              "family": "standardDSv2Family",
+              "memoryGB": 7,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 14336
+            },
+            {
+              "name": "Standard_DS3_v2",
+              "vCPUs": 4,
+              "family": "standardDSv2Family",
+              "memoryGB": 14,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 28672
+            },
+            {
+              "name": "Standard_DS4_v2",
+              "vCPUs": 8,
+              "family": "standardDSv2Family",
+              "memoryGB": 28,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 57344
+            },
+            {
+              "name": "Standard_DS5_v2",
+              "vCPUs": 16,
+              "family": "standardDSv2Family",
+              "memoryGB": 56,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 114688
+            },
+            {
+              "name": "Standard_DS11_v2",
+              "vCPUs": 2,
+              "family": "standardDSv2Family",
+              "memoryGB": 14,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 28672
+            },
+            {
+              "name": "Standard_DS12_v2",
+              "vCPUs": 4,
+              "family": "standardDSv2Family",
+              "memoryGB": 28,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 57344
+            },
+            {
+              "name": "Standard_DS13_v2",
+              "vCPUs": 8,
+              "family": "standardDSv2Family",
+              "memoryGB": 56,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 114688
+            },
+            {
+              "name": "Standard_DS14_v2",
+              "vCPUs": 16,
+              "family": "standardDSv2Family",
+              "memoryGB": 112,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 229376
+            },
+            {
+              "name": "Standard_DS15_v2",
+              "vCPUs": 20,
+              "family": "standardDSv2Family",
+              "memoryGB": 140,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 286720
+            },
+            {
+              "name": "Standard_NC6s_v2",
+              "vCPUs": 6,
+              "family": "standardNCSv2Family",
+              "memoryGB": 112,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 344064
+            },
+            {
+              "name": "Standard_NC12s_v2",
+              "vCPUs": 12,
+              "family": "standardNCSv2Family",
+              "memoryGB": 224,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 688128
+            },
+            {
+              "name": "Standard_NC24rs_v2",
+              "vCPUs": 24,
+              "family": "standardNCSv2Family",
+              "memoryGB": 448,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 1376256
+            },
+            {
+              "name": "Standard_NC24s_v2",
+              "vCPUs": 24,
+              "family": "standardNCSv2Family",
+              "memoryGB": 448,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 1376256
+            },
+            {
+              "name": "Standard_NC6s_v3",
+              "vCPUs": 6,
+              "family": "standardNCSv3Family",
+              "memoryGB": 112,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 344064
+            },
+            {
+              "name": "Standard_NC12s_v3",
+              "vCPUs": 12,
+              "family": "standardNCSv3Family",
+              "memoryGB": 224,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 688128
+            },
+            {
+              "name": "Standard_NC24rs_v3",
+              "vCPUs": 24,
+              "family": "standardNCSv3Family",
+              "memoryGB": 448,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 1376256
+            },
+            {
+              "name": "Standard_NC24s_v3",
+              "vCPUs": 24,
+              "family": "standardNCSv3Family",
+              "memoryGB": 448,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 1376256
+            },
+            {
+              "name": "Standard_NC6",
+              "vCPUs": 6,
+              "family": "standardNCFamily",
+              "memoryGB": 56,
+              "premiumIO": false,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 389120
+            },
+            {
+              "name": "Standard_NC12",
+              "vCPUs": 12,
+              "family": "standardNCFamily",
+              "memoryGB": 112,
+              "premiumIO": false,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 696320
+            },
+            {
+              "name": "Standard_NC24",
+              "vCPUs": 24,
+              "family": "standardNCFamily",
+              "memoryGB": 224,
+              "premiumIO": false,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 1474560
+            },
+            {
+              "name": "Standard_NC24r",
+              "vCPUs": 24,
+              "family": "standardNCFamily",
+              "memoryGB": 224,
+              "premiumIO": false,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 1474560
+            },
+            {
+              "name": "Standard_NV6",
+              "vCPUs": 6,
+              "family": "standardNVFamily",
+              "memoryGB": 56,
+              "premiumIO": false,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 389120
+            },
+            {
+              "name": "Standard_NV12",
+              "vCPUs": 12,
+              "family": "standardNVFamily",
+              "memoryGB": 112,
+              "premiumIO": false,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 696320
+            },
+            {
+              "name": "Standard_NV24",
+              "vCPUs": 24,
+              "family": "standardNVFamily",
+              "memoryGB": 224,
+              "premiumIO": false,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 1474560
+            },
+            {
+              "name": "Standard_ND6s",
+              "vCPUs": 6,
+              "family": "standardNDSFamily",
+              "memoryGB": 112,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 344064
+            },
+            {
+              "name": "Standard_ND12s",
+              "vCPUs": 12,
+              "family": "standardNDSFamily",
+              "memoryGB": 224,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 688128
+            },
+            {
+              "name": "Standard_ND24rs",
+              "vCPUs": 24,
+              "family": "standardNDSFamily",
+              "memoryGB": 448,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 1376256
+            },
+            {
+              "name": "Standard_ND24s",
+              "vCPUs": 24,
+              "family": "standardNDSFamily",
+              "memoryGB": 448,
+              "premiumIO": true,
+              "osVhdSizeMB": 1047552,
+              "lowPriorityCapable": true,
+              "maxResourceVolumeMB": 1376256
+            }
+          ]
+        }
+      ]
+  WorkspacesAndComputes.Workspaces.CreateOrUpdate:
+    description: |-
+      Creates or updates a workspace with the specified parameters.
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/workspaces/createorupdate
+    example:
+      inputs: [
+        {
+          "identity": {
+            "type": "SystemAssigned"
+          },
+          "location": "eastus2euap",
+          "properties": {
+            "keyVault": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.KeyVault/vaults/testkv",
+            "description": "test description",
+            "friendlyName": "HelloName",
+            "storageAccount": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/accountcrud-1234/providers/Microsoft.Storage/storageAccounts/testStorageAccount",
+            "containerRegistry": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.ContainerRegistry/registries/testRegistry",
+            "applicationInsights": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/microsoft.insights/components/testinsights"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.MachineLearningServices/workspaces/testworkspace",
+          "name": "testworkspace",
+          "type": "Microsoft.MachineLearningServices/workspaces",
+          "identity": {
+            "type": "SystemAssigned",
+            "tenantId": "00000000-1111-2222-3333-444444444444",
+            "principalId": "00000000-1111-2222-3333-444444444444"
+          },
+          "location": "eastus2euap",
+          "properties": {
+            "keyVault": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.KeyVault/vaults/testkv",
+            "description": "test description",
+            "creationTime": "2017-03-01T23:14:37.0707808Z",
+            "discoveryUrl": "http://example.com",
+            "friendlyName": "HelloName",
+            "storageAccount": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/accountcrud-1234/providers/Microsoft.Storage/storageAccounts/testStorageAccount",
+            "containerRegistry": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.ContainerRegistry/registries/testRegistry",
+            "applicationInsights": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/microsoft.insights/components/testinsights"
+          }
+        }
+      ]
+  WorkspacesAndComputes.Workspaces.Delete:
+    description: |-
+      Deletes a machine learning workspace.
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/workspaces/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  WorkspacesAndComputes.Workspaces.Get:
+    description: |-
+      Gets the properties of the specified machine learning workspace.
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/workspaces/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.MachineLearningServices/workspaces/testworkspace",
+          "name": "testworkspace",
+          "type": "Microsoft.MachineLearningServices/workspaces",
+          "location": "eastus2euap",
+          "properties": {
+            "keyVault": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.KeyVault/vaults/testkv",
+            "description": "test description",
+            "creationTime": "2017-03-01T23:14:37.0707808Z",
+            "discoveryUrl": "http://example.com",
+            "friendlyName": "HelloName",
+            "storageAccount": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/accountcrud-1234/providers/Microsoft.Storage/storageAccounts/testStorageAccount",
+            "containerRegistry": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.ContainerRegistry/registries/testRegistry",
+            "applicationInsights": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/microsoft.insights/components/testinsights"
+          }
+        }
+      ]
+  WorkspacesAndComputes.Workspaces.ListByResourceGroup:
+    description: |-
+      Lists all the available machine learning workspaces under the specified resource group.
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/workspaces/listbyresourcegroup
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.MachineLearningServices/workspaces/testworkspace",
+              "name": "testworkspace",
+              "type": "Microsoft.MachineLearningServices/workspaces",
+              "location": "eastus2euap",
+              "properties": {
+                "keyVault": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.KeyVault/vaults/testkv",
+                "description": "test description",
+                "creationTime": "2017-03-01T23:14:37.0707808Z",
+                "discoveryUrl": "http://example.com",
+                "friendlyName": "HelloName",
+                "storageAccount": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/accountcrud-1234/providers/Microsoft.Storage/storageAccounts/testStorageAccount",
+                "containerRegistry": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.ContainerRegistry/registries/testRegistry",
+                "applicationInsights": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/microsoft.insights/components/testinsights"
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.MachineLearningServices/workspaces/testworkspace1",
+              "name": "testworkspace1",
+              "type": "Microsoft.MachineLearningServices/workspaces",
+              "location": "eastus2euap",
+              "properties": {
+                "keyVault": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.KeyVault/vaults/testkvNew",
+                "description": "test description",
+                "creationTime": "2017-03-01T23:14:37.0707808Z",
+                "discoveryUrl": "http://example.com",
+                "friendlyName": "HelloName 1",
+                "storageAccount": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/accountcrud-1234/providers/Microsoft.Storage/storageAccounts/testStorageAccountOld",
+                "containerRegistry": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.ContainerRegistry/registries/testRegistryNew",
+                "applicationInsights": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/microsoft.insights/components/testinsights"
+              }
+            }
+          ],
+          "nextLink": "nextLink"
+        }
+      ]
+  WorkspacesAndComputes.Workspaces.ListBySubscription:
+    description: |-
+      Lists all the available machine learning workspaces under the specified subscription.
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/workspaces/listbysubscription
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.MachineLearningServices/workspaces/testworkspace",
+              "name": "testworkspace",
+              "type": "Microsoft.MachineLearningServices/workspaces",
+              "location": "eastus2euap",
+              "properties": {
+                "keyVault": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.KeyVault/vaults/testkv",
+                "description": "test description",
+                "creationTime": "2017-03-01T23:14:37.0707808Z",
+                "discoveryUrl": "http://example.com",
+                "friendlyName": "HelloName",
+                "storageAccount": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/accountcrud-1234/providers/Microsoft.Storage/storageAccounts/testStorageAccount",
+                "containerRegistry": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.ContainerRegistry/registries/testRegistry",
+                "applicationInsights": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/microsoft.insights/components/testinsights"
+              }
+            },
+            {
+              "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-5678/providers/Microsoft.MachineLearningServices/workspaces/testworkspace",
+              "name": "testworkspace",
+              "type": "Microsoft.MachineLearningServices/workspaces",
+              "location": "eastus2euap",
+              "properties": {
+                "keyVault": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.KeyVault/vaults/testkvNew",
+                "description": "test description",
+                "creationTime": "2017-03-01T23:14:37.0707808Z",
+                "discoveryUrl": "http://example.com",
+                "friendlyName": "HelloName",
+                "storageAccount": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/accountcrud-1234/providers/Microsoft.Storage/storageAccounts/testStorageAccountOld",
+                "containerRegistry": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.ContainerRegistry/registries/testRegistryNew",
+                "applicationInsights": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/microsoft.insights/components/testinsights"
+              }
+            }
+          ],
+          "nextLink": "nextLink"
+        }
+      ]
+  WorkspacesAndComputes.Workspaces.ListKeys:
+    description: |-
+      Lists all the keys associated with this workspace. This includes keys for the storage account, app insights and password for container registry
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/workspaces/listkeys
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "userStorageKey": "<userStorageKey>",
+          "userStorageResourceId": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/ragargeastus2euap/providers/Microsoft.Storage/storageAccounts/testdemoworkazashomr",
+          "containerRegistryCredentials": {
+            "location": null,
+            "username": "testdemoworkjmjmeykp",
+            "passwords": [
+              {
+                "name": "password",
+                "value": "<value>"
+              },
+              {
+                "name": "password2",
+                "value": "0KARRQoQHSUq1yViPWg7YFernOS=Ic/t"
+              }
+            ]
+          },
+          "appInsightsInstrumentationKey": null
+        }
+      ]
+  WorkspacesAndComputes.Workspaces.ResyncKeys:
+    description: |-
+      Resync all the keys associated with this workspace. This includes keys for the storage account, app insights and password for container registry
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/workspaces/resynckeys
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  WorkspacesAndComputes.Workspaces.Update:
+    description: |-
+      Updates a machine learning workspace with the specified parameters.
+    versions:
+      from: 2019.5.1
+    link: https://docs.microsoft.com/en-us/rest/api/azureml/workspacesandcomputes/workspaces/update
+    example:
+      inputs: [
+        {
+          "properties": {
+            "description": "new description",
+            "friendlyName": "New friendly name"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.MachineLearningServices/workspaces/testworkspace",
+          "name": "testworkspace",
+          "type": "Microsoft.MachineLearningServices/workspaces",
+          "location": "eastus2euap",
+          "properties": {
+            "keyVault": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.KeyVault/vaults/testkv",
+            "description": "new description",
+            "creationTime": "2017-03-01T23:14:37.0707808Z",
+            "discoveryUrl": "http://example.com",
+            "friendlyName": "New friendly name",
+            "storageAccount": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/accountcrud-1234/providers/Microsoft.Storage/storageAccounts/testStorageAccount",
+            "containerRegistry": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.ContainerRegistry/registries/testRegistry",
+            "applicationInsights": "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/microsoft.insights/components/testinsights"
+          }
+        }
+      ]

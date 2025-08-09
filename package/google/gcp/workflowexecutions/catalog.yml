@@ -1,0 +1,561 @@
+Product:
+  name: GCP Workflow Executions
+  versions: [1.0.0]
+  package: google.gcp.workflowexecutions
+  description: |-
+    Workflow Executions
+  link: https://cloud.google.com/workflows
+  contentType: json
+Operations:
+  projects.locations.workflows.executions.cancel:
+    description: |-
+      Cancels an execution of the given name.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/executions/rest/v1/projects.locations.workflows.executions/cancel
+    example:
+      inputs: [
+        {
+          "id": "CancelExecutionRequest",
+          "type": "object",
+          "properties": {},
+          "description": "Request for the CancelExecution method."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Execution",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The resource name of the execution. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}"
+            },
+            "error": {
+              "id": "Error",
+              "type": "object",
+              "readOnly": true,
+              "properties": {
+                "context": {
+                  "type": "string",
+                  "description": "Human readable stack trace string."
+                },
+                "payload": {
+                  "type": "string",
+                  "description": "Error message and data returned represented as a JSON string."
+                },
+                "stackTrace": {
+                  "id": "StackTrace",
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "id": "StackTraceElement",
+                        "type": "object",
+                        "properties": {
+                          "step": {
+                            "type": "string",
+                            "description": "The step the error occurred at."
+                          },
+                          "routine": {
+                            "type": "string",
+                            "description": "The routine where the error occurred."
+                          },
+                          "position": {
+                            "id": "Position",
+                            "type": "object",
+                            "properties": {
+                              "line": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The source code line number the current instruction was generated from."
+                              },
+                              "column": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The source code column position (of the line) the current instruction was generated from."
+                              },
+                              "length": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The length in bytes of text in this character group, e.g. digits of a number, string length, or AST (abstract syntax tree) node."
+                              }
+                            },
+                            "description": "The source position information of the stacktrace element."
+                          }
+                        },
+                        "description": "A single stack element (frame) where an error occurred."
+                      },
+                      "description": "An array of Stack elements."
+                    }
+                  },
+                  "description": "Stack trace with detailed information of where error was generated."
+                }
+              },
+              "description": "Output only. The error which caused the execution to finish prematurely. The value is only present if the execution's state is `FAILED` or `CANCELLED`."
+            },
+            "state": {
+              "enum": [
+                "STATE_UNSPECIFIED",
+                "ACTIVE",
+                "SUCCEEDED",
+                "FAILED",
+                "CANCELLED"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Current state of the execution.",
+              "enumDescriptions": [
+                "Invalid state.",
+                "The execution is in progress.",
+                "The execution finished successfully.",
+                "The execution failed with an error.",
+                "The execution was stopped intentionally."
+              ]
+            },
+            "result": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Output of the execution represented as a JSON string. The value can only be present if the execution's state is `SUCCEEDED`."
+            },
+            "endTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. Marks the end of execution, successful or not."
+            },
+            "argument": {
+              "type": "string",
+              "description": "Input parameters of the execution represented as a JSON string. The size limit is 32KB. *Note*: If you are using the REST API directly to run your workflow, you must escape any JSON string value of `argument`. Example: `'{\"argument\":\"{\\\"firstName\\\":\\\"FIRST\\\",\\\"lastName\\\":\\\"LAST\\\"}\"}'`"
+            },
+            "startTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. Marks the beginning of execution."
+            },
+            "workflowRevisionId": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Revision of the workflow this execution is using."
+            }
+          },
+          "description": "A running instance of a [Workflow](/workflows/docs/reference/rest/v1/projects.locations.workflows)."
+        }
+      ]
+  projects.locations.workflows.executions.create:
+    description: |-
+      Creates a new execution using the latest revision of the given workflow.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/executions/rest/v1/projects.locations.workflows.executions/create
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Execution",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The resource name of the execution. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}"
+            },
+            "error": {
+              "id": "Error",
+              "type": "object",
+              "readOnly": true,
+              "properties": {
+                "context": {
+                  "type": "string",
+                  "description": "Human readable stack trace string."
+                },
+                "payload": {
+                  "type": "string",
+                  "description": "Error message and data returned represented as a JSON string."
+                },
+                "stackTrace": {
+                  "id": "StackTrace",
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "id": "StackTraceElement",
+                        "type": "object",
+                        "properties": {
+                          "step": {
+                            "type": "string",
+                            "description": "The step the error occurred at."
+                          },
+                          "routine": {
+                            "type": "string",
+                            "description": "The routine where the error occurred."
+                          },
+                          "position": {
+                            "id": "Position",
+                            "type": "object",
+                            "properties": {
+                              "line": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The source code line number the current instruction was generated from."
+                              },
+                              "column": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The source code column position (of the line) the current instruction was generated from."
+                              },
+                              "length": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The length in bytes of text in this character group, e.g. digits of a number, string length, or AST (abstract syntax tree) node."
+                              }
+                            },
+                            "description": "The source position information of the stacktrace element."
+                          }
+                        },
+                        "description": "A single stack element (frame) where an error occurred."
+                      },
+                      "description": "An array of Stack elements."
+                    }
+                  },
+                  "description": "Stack trace with detailed information of where error was generated."
+                }
+              },
+              "description": "Output only. The error which caused the execution to finish prematurely. The value is only present if the execution's state is `FAILED` or `CANCELLED`."
+            },
+            "state": {
+              "enum": [
+                "STATE_UNSPECIFIED",
+                "ACTIVE",
+                "SUCCEEDED",
+                "FAILED",
+                "CANCELLED"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Current state of the execution.",
+              "enumDescriptions": [
+                "Invalid state.",
+                "The execution is in progress.",
+                "The execution finished successfully.",
+                "The execution failed with an error.",
+                "The execution was stopped intentionally."
+              ]
+            },
+            "result": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Output of the execution represented as a JSON string. The value can only be present if the execution's state is `SUCCEEDED`."
+            },
+            "endTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. Marks the end of execution, successful or not."
+            },
+            "argument": {
+              "type": "string",
+              "description": "Input parameters of the execution represented as a JSON string. The size limit is 32KB. *Note*: If you are using the REST API directly to run your workflow, you must escape any JSON string value of `argument`. Example: `'{\"argument\":\"{\\\"firstName\\\":\\\"FIRST\\\",\\\"lastName\\\":\\\"LAST\\\"}\"}'`"
+            },
+            "startTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. Marks the beginning of execution."
+            },
+            "workflowRevisionId": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Revision of the workflow this execution is using."
+            }
+          },
+          "description": "A running instance of a [Workflow](/workflows/docs/reference/rest/v1/projects.locations.workflows)."
+        }
+      ]
+  projects.locations.workflows.executions.get:
+    description: |-
+      Returns an execution of the given name.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/executions/rest/v1/projects.locations.workflows.executions/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Execution",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The resource name of the execution. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}"
+            },
+            "error": {
+              "id": "Error",
+              "type": "object",
+              "readOnly": true,
+              "properties": {
+                "context": {
+                  "type": "string",
+                  "description": "Human readable stack trace string."
+                },
+                "payload": {
+                  "type": "string",
+                  "description": "Error message and data returned represented as a JSON string."
+                },
+                "stackTrace": {
+                  "id": "StackTrace",
+                  "type": "object",
+                  "properties": {
+                    "elements": {
+                      "type": "array",
+                      "items": {
+                        "id": "StackTraceElement",
+                        "type": "object",
+                        "properties": {
+                          "step": {
+                            "type": "string",
+                            "description": "The step the error occurred at."
+                          },
+                          "routine": {
+                            "type": "string",
+                            "description": "The routine where the error occurred."
+                          },
+                          "position": {
+                            "id": "Position",
+                            "type": "object",
+                            "properties": {
+                              "line": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The source code line number the current instruction was generated from."
+                              },
+                              "column": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The source code column position (of the line) the current instruction was generated from."
+                              },
+                              "length": {
+                                "type": "string",
+                                "format": "int64",
+                                "description": "The length in bytes of text in this character group, e.g. digits of a number, string length, or AST (abstract syntax tree) node."
+                              }
+                            },
+                            "description": "The source position information of the stacktrace element."
+                          }
+                        },
+                        "description": "A single stack element (frame) where an error occurred."
+                      },
+                      "description": "An array of Stack elements."
+                    }
+                  },
+                  "description": "Stack trace with detailed information of where error was generated."
+                }
+              },
+              "description": "Output only. The error which caused the execution to finish prematurely. The value is only present if the execution's state is `FAILED` or `CANCELLED`."
+            },
+            "state": {
+              "enum": [
+                "STATE_UNSPECIFIED",
+                "ACTIVE",
+                "SUCCEEDED",
+                "FAILED",
+                "CANCELLED"
+              ],
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Current state of the execution.",
+              "enumDescriptions": [
+                "Invalid state.",
+                "The execution is in progress.",
+                "The execution finished successfully.",
+                "The execution failed with an error.",
+                "The execution was stopped intentionally."
+              ]
+            },
+            "result": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Output of the execution represented as a JSON string. The value can only be present if the execution's state is `SUCCEEDED`."
+            },
+            "endTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. Marks the end of execution, successful or not."
+            },
+            "argument": {
+              "type": "string",
+              "description": "Input parameters of the execution represented as a JSON string. The size limit is 32KB. *Note*: If you are using the REST API directly to run your workflow, you must escape any JSON string value of `argument`. Example: `'{\"argument\":\"{\\\"firstName\\\":\\\"FIRST\\\",\\\"lastName\\\":\\\"LAST\\\"}\"}'`"
+            },
+            "startTime": {
+              "type": "string",
+              "format": "google-datetime",
+              "readOnly": true,
+              "description": "Output only. Marks the beginning of execution."
+            },
+            "workflowRevisionId": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Revision of the workflow this execution is using."
+            }
+          },
+          "description": "A running instance of a [Workflow](/workflows/docs/reference/rest/v1/projects.locations.workflows)."
+        }
+      ]
+  projects.locations.workflows.executions.list:
+    description: |-
+      Returns a list of executions which belong to the workflow with the given name. The method returns executions of all workflow revisions. Returned executions are ordered by their start time (newest first).
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/workflows/docs/reference/executions/rest/v1/projects.locations.workflows.executions/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListExecutionsResponse",
+          "type": "object",
+          "properties": {
+            "executions": {
+              "type": "array",
+              "items": {
+                "id": "Execution",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. The resource name of the execution. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}"
+                  },
+                  "error": {
+                    "id": "Error",
+                    "type": "object",
+                    "readOnly": true,
+                    "properties": {
+                      "context": {
+                        "type": "string",
+                        "description": "Human readable stack trace string."
+                      },
+                      "payload": {
+                        "type": "string",
+                        "description": "Error message and data returned represented as a JSON string."
+                      },
+                      "stackTrace": {
+                        "id": "StackTrace",
+                        "type": "object",
+                        "properties": {
+                          "elements": {
+                            "type": "array",
+                            "items": {
+                              "id": "StackTraceElement",
+                              "type": "object",
+                              "properties": {
+                                "step": {
+                                  "type": "string",
+                                  "description": "The step the error occurred at."
+                                },
+                                "routine": {
+                                  "type": "string",
+                                  "description": "The routine where the error occurred."
+                                },
+                                "position": {
+                                  "id": "Position",
+                                  "type": "object",
+                                  "properties": {
+                                    "line": {
+                                      "type": "string",
+                                      "format": "int64",
+                                      "description": "The source code line number the current instruction was generated from."
+                                    },
+                                    "column": {
+                                      "type": "string",
+                                      "format": "int64",
+                                      "description": "The source code column position (of the line) the current instruction was generated from."
+                                    },
+                                    "length": {
+                                      "type": "string",
+                                      "format": "int64",
+                                      "description": "The length in bytes of text in this character group, e.g. digits of a number, string length, or AST (abstract syntax tree) node."
+                                    }
+                                  },
+                                  "description": "The source position information of the stacktrace element."
+                                }
+                              },
+                              "description": "A single stack element (frame) where an error occurred."
+                            },
+                            "description": "An array of Stack elements."
+                          }
+                        },
+                        "description": "Stack trace with detailed information of where error was generated."
+                      }
+                    },
+                    "description": "Output only. The error which caused the execution to finish prematurely. The value is only present if the execution's state is `FAILED` or `CANCELLED`."
+                  },
+                  "state": {
+                    "enum": [
+                      "STATE_UNSPECIFIED",
+                      "ACTIVE",
+                      "SUCCEEDED",
+                      "FAILED",
+                      "CANCELLED"
+                    ],
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. Current state of the execution.",
+                    "enumDescriptions": [
+                      "Invalid state.",
+                      "The execution is in progress.",
+                      "The execution finished successfully.",
+                      "The execution failed with an error.",
+                      "The execution was stopped intentionally."
+                    ]
+                  },
+                  "result": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. Output of the execution represented as a JSON string. The value can only be present if the execution's state is `SUCCEEDED`."
+                  },
+                  "endTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "readOnly": true,
+                    "description": "Output only. Marks the end of execution, successful or not."
+                  },
+                  "argument": {
+                    "type": "string",
+                    "description": "Input parameters of the execution represented as a JSON string. The size limit is 32KB. *Note*: If you are using the REST API directly to run your workflow, you must escape any JSON string value of `argument`. Example: `'{\"argument\":\"{\\\"firstName\\\":\\\"FIRST\\\",\\\"lastName\\\":\\\"LAST\\\"}\"}'`"
+                  },
+                  "startTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "readOnly": true,
+                    "description": "Output only. Marks the beginning of execution."
+                  },
+                  "workflowRevisionId": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. Revision of the workflow this execution is using."
+                  }
+                },
+                "description": "A running instance of a [Workflow](/workflows/docs/reference/rest/v1/projects.locations.workflows)."
+              },
+              "description": "The executions which match the request."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+            }
+          },
+          "description": "Response for the ListExecutions method."
+        }
+      ]

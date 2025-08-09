@@ -1,0 +1,6133 @@
+Product:
+  name: Amazon CloudFront
+  versions: [2020.5.31]
+  package: amazon.aws.cloudfront
+  description: |-
+    Amazon CloudFront
+  link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CreateCachePolicy:
+    description: |-
+      Creates a cache policy.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateCachePolicy.html
+    example:
+      inputs: [
+        {
+          "CachePolicyConfig": {
+            "Name": "string",
+            "MaxTTL": 1,
+            "MinTTL": 1,
+            "Comment": "string",
+            "DefaultTTL": 1,
+            "ParametersInCacheKeyAndForwardedToOrigin": {
+              "CookiesConfig": {
+                "Cookies": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "CookieBehavior": "string"
+              },
+              "HeadersConfig": {
+                "Headers": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "HeaderBehavior": "string"
+              },
+              "QueryStringsConfig": {
+                "QueryStrings": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "QueryStringBehavior": "string"
+              },
+              "EnableAcceptEncodingGzip": false,
+              "EnableAcceptEncodingBrotli": false
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "Location": "string",
+          "CachePolicy": {
+            "Id": "string",
+            "LastModifiedTime": 1481289211.615,
+            "CachePolicyConfig": {
+              "Name": "string",
+              "MaxTTL": 1,
+              "MinTTL": 1,
+              "Comment": "string",
+              "DefaultTTL": 1,
+              "ParametersInCacheKeyAndForwardedToOrigin": {
+                "CookiesConfig": {
+                  "Cookies": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "CookieBehavior": "string"
+                },
+                "HeadersConfig": {
+                  "Headers": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "HeaderBehavior": "string"
+                },
+                "QueryStringsConfig": {
+                  "QueryStrings": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "QueryStringBehavior": "string"
+                },
+                "EnableAcceptEncodingGzip": false,
+                "EnableAcceptEncodingBrotli": false
+              }
+            }
+          }
+        }
+      ]
+  CreateCloudFrontOriginAccessIdentity:
+    description: |-
+      Creates a new origin access identity. If you're using Amazon S3 for your origin, you can use an origin access identity to require users to access your content using a CloudFront URL instead of the Amazon S3 URL. For more information about how to use origin access identities, see Serving Private Content through CloudFront in the Amazon CloudFront Developer Guide.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateCloudFrontOriginAccessIdentity.html
+    example:
+      inputs: [
+        {
+          "CloudFrontOriginAccessIdentityConfig": {
+            "Comment": "string",
+            "CallerReference": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "Location": "string",
+          "CloudFrontOriginAccessIdentity": {
+            "Id": "string",
+            "S3CanonicalUserId": "string",
+            "CloudFrontOriginAccessIdentityConfig": {
+              "Comment": "string",
+              "CallerReference": "string"
+            }
+          }
+        }
+      ]
+  CreateDistribution:
+    description: |-
+      Creates a new web distribution. You create a CloudFront distribution to tell CloudFront where you want content to be delivered from, and the details about how to track and manage content delivery. Send a POST request to the /CloudFront API version/distribution/distribution ID resource.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateDistribution.html
+    example:
+      inputs: [
+        {
+          "DistributionConfig": {
+            "Aliases": {
+              "Items": [
+                "string"
+              ],
+              "Quantity": 1
+            },
+            "Comment": "string",
+            "Enabled": false,
+            "Logging": {
+              "Bucket": "string",
+              "Prefix": "string",
+              "Enabled": false,
+              "IncludeCookies": false
+            },
+            "Origins": {
+              "Items": [
+                {
+                  "Id": "string",
+                  "DomainName": "string",
+                  "OriginPath": "string",
+                  "OriginShield": {
+                    "Enabled": false,
+                    "OriginShieldRegion": "string"
+                  },
+                  "CustomHeaders": {
+                    "Items": [
+                      {
+                        "HeaderName": "string",
+                        "HeaderValue": "string"
+                      }
+                    ],
+                    "Quantity": 1
+                  },
+                  "S3OriginConfig": {
+                    "OriginAccessIdentity": "string"
+                  },
+                  "ConnectionTimeout": 1,
+                  "ConnectionAttempts": 1,
+                  "CustomOriginConfig": {
+                    "HTTPPort": 1,
+                    "HTTPSPort": 1,
+                    "OriginReadTimeout": 1,
+                    "OriginSslProtocols": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    },
+                    "OriginProtocolPolicy": "string",
+                    "OriginKeepaliveTimeout": 1
+                  }
+                }
+              ],
+              "Quantity": 1
+            },
+            "WebACLId": "string",
+            "PriceClass": "string",
+            "HttpVersion": "string",
+            "OriginGroups": {
+              "Items": [
+                {
+                  "Id": "string",
+                  "Members": {
+                    "Items": [
+                      {
+                        "OriginId": "string"
+                      }
+                    ],
+                    "Quantity": 1
+                  },
+                  "FailoverCriteria": {
+                    "StatusCodes": {
+                      "Items": [
+                        1
+                      ],
+                      "Quantity": 1
+                    }
+                  }
+                }
+              ],
+              "Quantity": 1
+            },
+            "Restrictions": {
+              "GeoRestriction": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1,
+                "RestrictionType": "string"
+              }
+            },
+            "IsIPV6Enabled": false,
+            "CacheBehaviors": {
+              "Items": [
+                {
+                  "MaxTTL": 1,
+                  "MinTTL": 1,
+                  "Compress": false,
+                  "DefaultTTL": 1,
+                  "PathPattern": "string",
+                  "CachePolicyId": "string",
+                  "AllowedMethods": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1,
+                    "CachedMethods": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "TargetOriginId": "string",
+                  "TrustedSigners": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Enabled": false,
+                    "Quantity": 1
+                  },
+                  "ForwardedValues": {
+                    "Cookies": {
+                      "Forward": "string",
+                      "WhitelistedNames": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    },
+                    "Headers": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    },
+                    "QueryString": false,
+                    "QueryStringCacheKeys": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "SmoothStreaming": false,
+                  "TrustedKeyGroups": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Enabled": false,
+                    "Quantity": 1
+                  },
+                  "RealtimeLogConfigArn": "string",
+                  "ViewerProtocolPolicy": "string",
+                  "OriginRequestPolicyId": "string",
+                  "FieldLevelEncryptionId": "string",
+                  "LambdaFunctionAssociations": {
+                    "Items": [
+                      {
+                        "EventType": "string",
+                        "IncludeBody": false,
+                        "LambdaFunctionARN": "string"
+                      }
+                    ],
+                    "Quantity": 1
+                  }
+                }
+              ],
+              "Quantity": 1
+            },
+            "CallerReference": "string",
+            "DefaultRootObject": "string",
+            "ViewerCertificate": {
+              "Certificate": "string",
+              "IAMCertificateId": "string",
+              "SSLSupportMethod": "string",
+              "ACMCertificateArn": "string",
+              "CertificateSource": "string",
+              "MinimumProtocolVersion": "string",
+              "CloudFrontDefaultCertificate": false
+            },
+            "CustomErrorResponses": {
+              "Items": [
+                {
+                  "ErrorCode": 1,
+                  "ResponseCode": "string",
+                  "ResponsePagePath": "string",
+                  "ErrorCachingMinTTL": 1
+                }
+              ],
+              "Quantity": 1
+            },
+            "DefaultCacheBehavior": {
+              "MaxTTL": 1,
+              "MinTTL": 1,
+              "Compress": false,
+              "DefaultTTL": 1,
+              "CachePolicyId": "string",
+              "AllowedMethods": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1,
+                "CachedMethods": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                }
+              },
+              "TargetOriginId": "string",
+              "TrustedSigners": {
+                "Items": [
+                  "string"
+                ],
+                "Enabled": false,
+                "Quantity": 1
+              },
+              "ForwardedValues": {
+                "Cookies": {
+                  "Forward": "string",
+                  "WhitelistedNames": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                },
+                "Headers": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "QueryString": false,
+                "QueryStringCacheKeys": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                }
+              },
+              "SmoothStreaming": false,
+              "TrustedKeyGroups": {
+                "Items": [
+                  "string"
+                ],
+                "Enabled": false,
+                "Quantity": 1
+              },
+              "RealtimeLogConfigArn": "string",
+              "ViewerProtocolPolicy": "string",
+              "OriginRequestPolicyId": "string",
+              "FieldLevelEncryptionId": "string",
+              "LambdaFunctionAssociations": {
+                "Items": [
+                  {
+                    "EventType": "string",
+                    "IncludeBody": false,
+                    "LambdaFunctionARN": "string"
+                  }
+                ],
+                "Quantity": 1
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "Location": "string",
+          "Distribution": {
+            "Id": "string",
+            "ARN": "string",
+            "Status": "string",
+            "DomainName": "string",
+            "LastModifiedTime": 1481289211.615,
+            "AliasICPRecordals": [
+              {
+                "CNAME": "string",
+                "ICPRecordalStatus": "string"
+              }
+            ],
+            "DistributionConfig": {
+              "Aliases": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "Comment": "string",
+              "Enabled": false,
+              "Logging": {
+                "Bucket": "string",
+                "Prefix": "string",
+                "Enabled": false,
+                "IncludeCookies": false
+              },
+              "Origins": {
+                "Items": [
+                  {
+                    "Id": "string",
+                    "DomainName": "string",
+                    "OriginPath": "string",
+                    "OriginShield": {
+                      "Enabled": false,
+                      "OriginShieldRegion": "string"
+                    },
+                    "CustomHeaders": {
+                      "Items": [
+                        {
+                          "HeaderName": "string",
+                          "HeaderValue": "string"
+                        }
+                      ],
+                      "Quantity": 1
+                    },
+                    "S3OriginConfig": {
+                      "OriginAccessIdentity": "string"
+                    },
+                    "ConnectionTimeout": 1,
+                    "ConnectionAttempts": 1,
+                    "CustomOriginConfig": {
+                      "HTTPPort": 1,
+                      "HTTPSPort": 1,
+                      "OriginReadTimeout": 1,
+                      "OriginSslProtocols": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      },
+                      "OriginProtocolPolicy": "string",
+                      "OriginKeepaliveTimeout": 1
+                    }
+                  }
+                ],
+                "Quantity": 1
+              },
+              "WebACLId": "string",
+              "PriceClass": "string",
+              "HttpVersion": "string",
+              "OriginGroups": {
+                "Items": [
+                  {
+                    "Id": "string",
+                    "Members": {
+                      "Items": [
+                        {
+                          "OriginId": "string"
+                        }
+                      ],
+                      "Quantity": 1
+                    },
+                    "FailoverCriteria": {
+                      "StatusCodes": {
+                        "Items": [
+                          1
+                        ],
+                        "Quantity": 1
+                      }
+                    }
+                  }
+                ],
+                "Quantity": 1
+              },
+              "Restrictions": {
+                "GeoRestriction": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1,
+                  "RestrictionType": "string"
+                }
+              },
+              "IsIPV6Enabled": false,
+              "CacheBehaviors": {
+                "Items": [
+                  {
+                    "MaxTTL": 1,
+                    "MinTTL": 1,
+                    "Compress": false,
+                    "DefaultTTL": 1,
+                    "PathPattern": "string",
+                    "CachePolicyId": "string",
+                    "AllowedMethods": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1,
+                      "CachedMethods": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    },
+                    "TargetOriginId": "string",
+                    "TrustedSigners": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Enabled": false,
+                      "Quantity": 1
+                    },
+                    "ForwardedValues": {
+                      "Cookies": {
+                        "Forward": "string",
+                        "WhitelistedNames": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        }
+                      },
+                      "Headers": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      },
+                      "QueryString": false,
+                      "QueryStringCacheKeys": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    },
+                    "SmoothStreaming": false,
+                    "TrustedKeyGroups": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Enabled": false,
+                      "Quantity": 1
+                    },
+                    "RealtimeLogConfigArn": "string",
+                    "ViewerProtocolPolicy": "string",
+                    "OriginRequestPolicyId": "string",
+                    "FieldLevelEncryptionId": "string",
+                    "LambdaFunctionAssociations": {
+                      "Items": [
+                        {
+                          "EventType": "string",
+                          "IncludeBody": false,
+                          "LambdaFunctionARN": "string"
+                        }
+                      ],
+                      "Quantity": 1
+                    }
+                  }
+                ],
+                "Quantity": 1
+              },
+              "CallerReference": "string",
+              "DefaultRootObject": "string",
+              "ViewerCertificate": {
+                "Certificate": "string",
+                "IAMCertificateId": "string",
+                "SSLSupportMethod": "string",
+                "ACMCertificateArn": "string",
+                "CertificateSource": "string",
+                "MinimumProtocolVersion": "string",
+                "CloudFrontDefaultCertificate": false
+              },
+              "CustomErrorResponses": {
+                "Items": [
+                  {
+                    "ErrorCode": 1,
+                    "ResponseCode": "string",
+                    "ResponsePagePath": "string",
+                    "ErrorCachingMinTTL": 1
+                  }
+                ],
+                "Quantity": 1
+              },
+              "DefaultCacheBehavior": {
+                "MaxTTL": 1,
+                "MinTTL": 1,
+                "Compress": false,
+                "DefaultTTL": 1,
+                "CachePolicyId": "string",
+                "AllowedMethods": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1,
+                  "CachedMethods": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                },
+                "TargetOriginId": "string",
+                "TrustedSigners": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Enabled": false,
+                  "Quantity": 1
+                },
+                "ForwardedValues": {
+                  "Cookies": {
+                    "Forward": "string",
+                    "WhitelistedNames": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "Headers": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "QueryString": false,
+                  "QueryStringCacheKeys": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                },
+                "SmoothStreaming": false,
+                "TrustedKeyGroups": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Enabled": false,
+                  "Quantity": 1
+                },
+                "RealtimeLogConfigArn": "string",
+                "ViewerProtocolPolicy": "string",
+                "OriginRequestPolicyId": "string",
+                "FieldLevelEncryptionId": "string",
+                "LambdaFunctionAssociations": {
+                  "Items": [
+                    {
+                      "EventType": "string",
+                      "IncludeBody": false,
+                      "LambdaFunctionARN": "string"
+                    }
+                  ],
+                  "Quantity": 1
+                }
+              }
+            },
+            "ActiveTrustedSigners": {
+              "Items": [
+                {
+                  "KeyPairIds": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "AwsAccountNumber": "string"
+                }
+              ],
+              "Enabled": false,
+              "Quantity": 1
+            },
+            "ActiveTrustedKeyGroups": {
+              "Items": [
+                {
+                  "KeyGroupId": "string",
+                  "KeyPairIds": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                }
+              ],
+              "Enabled": false,
+              "Quantity": 1
+            },
+            "InProgressInvalidationBatches": 1
+          }
+        }
+      ]
+  CreateDistributionWithTags:
+    description: |-
+      Create a new distribution with tags.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateDistributionWithTags.html
+    example:
+      inputs: [
+        {
+          "DistributionConfigWithTags": {
+            "Tags": {
+              "Items": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ]
+            },
+            "DistributionConfig": {
+              "Aliases": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "Comment": "string",
+              "Enabled": false,
+              "Logging": {
+                "Bucket": "string",
+                "Prefix": "string",
+                "Enabled": false,
+                "IncludeCookies": false
+              },
+              "Origins": {
+                "Items": [
+                  {
+                    "Id": "string",
+                    "DomainName": "string",
+                    "OriginPath": "string",
+                    "OriginShield": {
+                      "Enabled": false,
+                      "OriginShieldRegion": "string"
+                    },
+                    "CustomHeaders": {
+                      "Items": [
+                        {
+                          "HeaderName": "string",
+                          "HeaderValue": "string"
+                        }
+                      ],
+                      "Quantity": 1
+                    },
+                    "S3OriginConfig": {
+                      "OriginAccessIdentity": "string"
+                    },
+                    "ConnectionTimeout": 1,
+                    "ConnectionAttempts": 1,
+                    "CustomOriginConfig": {
+                      "HTTPPort": 1,
+                      "HTTPSPort": 1,
+                      "OriginReadTimeout": 1,
+                      "OriginSslProtocols": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      },
+                      "OriginProtocolPolicy": "string",
+                      "OriginKeepaliveTimeout": 1
+                    }
+                  }
+                ],
+                "Quantity": 1
+              },
+              "WebACLId": "string",
+              "PriceClass": "string",
+              "HttpVersion": "string",
+              "OriginGroups": {
+                "Items": [
+                  {
+                    "Id": "string",
+                    "Members": {
+                      "Items": [
+                        {
+                          "OriginId": "string"
+                        }
+                      ],
+                      "Quantity": 1
+                    },
+                    "FailoverCriteria": {
+                      "StatusCodes": {
+                        "Items": [
+                          1
+                        ],
+                        "Quantity": 1
+                      }
+                    }
+                  }
+                ],
+                "Quantity": 1
+              },
+              "Restrictions": {
+                "GeoRestriction": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1,
+                  "RestrictionType": "string"
+                }
+              },
+              "IsIPV6Enabled": false,
+              "CacheBehaviors": {
+                "Items": [
+                  {
+                    "MaxTTL": 1,
+                    "MinTTL": 1,
+                    "Compress": false,
+                    "DefaultTTL": 1,
+                    "PathPattern": "string",
+                    "CachePolicyId": "string",
+                    "AllowedMethods": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1,
+                      "CachedMethods": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    },
+                    "TargetOriginId": "string",
+                    "TrustedSigners": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Enabled": false,
+                      "Quantity": 1
+                    },
+                    "ForwardedValues": {
+                      "Cookies": {
+                        "Forward": "string",
+                        "WhitelistedNames": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        }
+                      },
+                      "Headers": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      },
+                      "QueryString": false,
+                      "QueryStringCacheKeys": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    },
+                    "SmoothStreaming": false,
+                    "TrustedKeyGroups": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Enabled": false,
+                      "Quantity": 1
+                    },
+                    "RealtimeLogConfigArn": "string",
+                    "ViewerProtocolPolicy": "string",
+                    "OriginRequestPolicyId": "string",
+                    "FieldLevelEncryptionId": "string",
+                    "LambdaFunctionAssociations": {
+                      "Items": [
+                        {
+                          "EventType": "string",
+                          "IncludeBody": false,
+                          "LambdaFunctionARN": "string"
+                        }
+                      ],
+                      "Quantity": 1
+                    }
+                  }
+                ],
+                "Quantity": 1
+              },
+              "CallerReference": "string",
+              "DefaultRootObject": "string",
+              "ViewerCertificate": {
+                "Certificate": "string",
+                "IAMCertificateId": "string",
+                "SSLSupportMethod": "string",
+                "ACMCertificateArn": "string",
+                "CertificateSource": "string",
+                "MinimumProtocolVersion": "string",
+                "CloudFrontDefaultCertificate": false
+              },
+              "CustomErrorResponses": {
+                "Items": [
+                  {
+                    "ErrorCode": 1,
+                    "ResponseCode": "string",
+                    "ResponsePagePath": "string",
+                    "ErrorCachingMinTTL": 1
+                  }
+                ],
+                "Quantity": 1
+              },
+              "DefaultCacheBehavior": {
+                "MaxTTL": 1,
+                "MinTTL": 1,
+                "Compress": false,
+                "DefaultTTL": 1,
+                "CachePolicyId": "string",
+                "AllowedMethods": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1,
+                  "CachedMethods": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                },
+                "TargetOriginId": "string",
+                "TrustedSigners": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Enabled": false,
+                  "Quantity": 1
+                },
+                "ForwardedValues": {
+                  "Cookies": {
+                    "Forward": "string",
+                    "WhitelistedNames": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "Headers": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "QueryString": false,
+                  "QueryStringCacheKeys": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                },
+                "SmoothStreaming": false,
+                "TrustedKeyGroups": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Enabled": false,
+                  "Quantity": 1
+                },
+                "RealtimeLogConfigArn": "string",
+                "ViewerProtocolPolicy": "string",
+                "OriginRequestPolicyId": "string",
+                "FieldLevelEncryptionId": "string",
+                "LambdaFunctionAssociations": {
+                  "Items": [
+                    {
+                      "EventType": "string",
+                      "IncludeBody": false,
+                      "LambdaFunctionARN": "string"
+                    }
+                  ],
+                  "Quantity": 1
+                }
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "Location": "string",
+          "Distribution": {
+            "Id": "string",
+            "ARN": "string",
+            "Status": "string",
+            "DomainName": "string",
+            "LastModifiedTime": 1481289211.615,
+            "AliasICPRecordals": [
+              {
+                "CNAME": "string",
+                "ICPRecordalStatus": "string"
+              }
+            ],
+            "DistributionConfig": {
+              "Aliases": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "Comment": "string",
+              "Enabled": false,
+              "Logging": {
+                "Bucket": "string",
+                "Prefix": "string",
+                "Enabled": false,
+                "IncludeCookies": false
+              },
+              "Origins": {
+                "Items": [
+                  {
+                    "Id": "string",
+                    "DomainName": "string",
+                    "OriginPath": "string",
+                    "OriginShield": {
+                      "Enabled": false,
+                      "OriginShieldRegion": "string"
+                    },
+                    "CustomHeaders": {
+                      "Items": [
+                        {
+                          "HeaderName": "string",
+                          "HeaderValue": "string"
+                        }
+                      ],
+                      "Quantity": 1
+                    },
+                    "S3OriginConfig": {
+                      "OriginAccessIdentity": "string"
+                    },
+                    "ConnectionTimeout": 1,
+                    "ConnectionAttempts": 1,
+                    "CustomOriginConfig": {
+                      "HTTPPort": 1,
+                      "HTTPSPort": 1,
+                      "OriginReadTimeout": 1,
+                      "OriginSslProtocols": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      },
+                      "OriginProtocolPolicy": "string",
+                      "OriginKeepaliveTimeout": 1
+                    }
+                  }
+                ],
+                "Quantity": 1
+              },
+              "WebACLId": "string",
+              "PriceClass": "string",
+              "HttpVersion": "string",
+              "OriginGroups": {
+                "Items": [
+                  {
+                    "Id": "string",
+                    "Members": {
+                      "Items": [
+                        {
+                          "OriginId": "string"
+                        }
+                      ],
+                      "Quantity": 1
+                    },
+                    "FailoverCriteria": {
+                      "StatusCodes": {
+                        "Items": [
+                          1
+                        ],
+                        "Quantity": 1
+                      }
+                    }
+                  }
+                ],
+                "Quantity": 1
+              },
+              "Restrictions": {
+                "GeoRestriction": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1,
+                  "RestrictionType": "string"
+                }
+              },
+              "IsIPV6Enabled": false,
+              "CacheBehaviors": {
+                "Items": [
+                  {
+                    "MaxTTL": 1,
+                    "MinTTL": 1,
+                    "Compress": false,
+                    "DefaultTTL": 1,
+                    "PathPattern": "string",
+                    "CachePolicyId": "string",
+                    "AllowedMethods": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1,
+                      "CachedMethods": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    },
+                    "TargetOriginId": "string",
+                    "TrustedSigners": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Enabled": false,
+                      "Quantity": 1
+                    },
+                    "ForwardedValues": {
+                      "Cookies": {
+                        "Forward": "string",
+                        "WhitelistedNames": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        }
+                      },
+                      "Headers": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      },
+                      "QueryString": false,
+                      "QueryStringCacheKeys": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    },
+                    "SmoothStreaming": false,
+                    "TrustedKeyGroups": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Enabled": false,
+                      "Quantity": 1
+                    },
+                    "RealtimeLogConfigArn": "string",
+                    "ViewerProtocolPolicy": "string",
+                    "OriginRequestPolicyId": "string",
+                    "FieldLevelEncryptionId": "string",
+                    "LambdaFunctionAssociations": {
+                      "Items": [
+                        {
+                          "EventType": "string",
+                          "IncludeBody": false,
+                          "LambdaFunctionARN": "string"
+                        }
+                      ],
+                      "Quantity": 1
+                    }
+                  }
+                ],
+                "Quantity": 1
+              },
+              "CallerReference": "string",
+              "DefaultRootObject": "string",
+              "ViewerCertificate": {
+                "Certificate": "string",
+                "IAMCertificateId": "string",
+                "SSLSupportMethod": "string",
+                "ACMCertificateArn": "string",
+                "CertificateSource": "string",
+                "MinimumProtocolVersion": "string",
+                "CloudFrontDefaultCertificate": false
+              },
+              "CustomErrorResponses": {
+                "Items": [
+                  {
+                    "ErrorCode": 1,
+                    "ResponseCode": "string",
+                    "ResponsePagePath": "string",
+                    "ErrorCachingMinTTL": 1
+                  }
+                ],
+                "Quantity": 1
+              },
+              "DefaultCacheBehavior": {
+                "MaxTTL": 1,
+                "MinTTL": 1,
+                "Compress": false,
+                "DefaultTTL": 1,
+                "CachePolicyId": "string",
+                "AllowedMethods": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1,
+                  "CachedMethods": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                },
+                "TargetOriginId": "string",
+                "TrustedSigners": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Enabled": false,
+                  "Quantity": 1
+                },
+                "ForwardedValues": {
+                  "Cookies": {
+                    "Forward": "string",
+                    "WhitelistedNames": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "Headers": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "QueryString": false,
+                  "QueryStringCacheKeys": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                },
+                "SmoothStreaming": false,
+                "TrustedKeyGroups": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Enabled": false,
+                  "Quantity": 1
+                },
+                "RealtimeLogConfigArn": "string",
+                "ViewerProtocolPolicy": "string",
+                "OriginRequestPolicyId": "string",
+                "FieldLevelEncryptionId": "string",
+                "LambdaFunctionAssociations": {
+                  "Items": [
+                    {
+                      "EventType": "string",
+                      "IncludeBody": false,
+                      "LambdaFunctionARN": "string"
+                    }
+                  ],
+                  "Quantity": 1
+                }
+              }
+            },
+            "ActiveTrustedSigners": {
+              "Items": [
+                {
+                  "KeyPairIds": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "AwsAccountNumber": "string"
+                }
+              ],
+              "Enabled": false,
+              "Quantity": 1
+            },
+            "ActiveTrustedKeyGroups": {
+              "Items": [
+                {
+                  "KeyGroupId": "string",
+                  "KeyPairIds": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                }
+              ],
+              "Enabled": false,
+              "Quantity": 1
+            },
+            "InProgressInvalidationBatches": 1
+          }
+        }
+      ]
+  CreateFieldLevelEncryptionConfig:
+    description: |-
+      Create a new field-level encryption configuration.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateFieldLevelEncryptionConfig.html
+    example:
+      inputs: [
+        {
+          "FieldLevelEncryptionConfig": {
+            "Comment": "string",
+            "CallerReference": "string",
+            "QueryArgProfileConfig": {
+              "QueryArgProfiles": {
+                "Items": [
+                  {
+                    "QueryArg": "string",
+                    "ProfileId": "string"
+                  }
+                ],
+                "Quantity": 1
+              },
+              "ForwardWhenQueryArgProfileIsUnknown": false
+            },
+            "ContentTypeProfileConfig": {
+              "ContentTypeProfiles": {
+                "Items": [
+                  {
+                    "Format": "string",
+                    "ProfileId": "string",
+                    "ContentType": "string"
+                  }
+                ],
+                "Quantity": 1
+              },
+              "ForwardWhenContentTypeIsUnknown": false
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "Location": "string",
+          "FieldLevelEncryption": {
+            "Id": "string",
+            "LastModifiedTime": 1481289211.615,
+            "FieldLevelEncryptionConfig": {
+              "Comment": "string",
+              "CallerReference": "string",
+              "QueryArgProfileConfig": {
+                "QueryArgProfiles": {
+                  "Items": [
+                    {
+                      "QueryArg": "string",
+                      "ProfileId": "string"
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "ForwardWhenQueryArgProfileIsUnknown": false
+              },
+              "ContentTypeProfileConfig": {
+                "ContentTypeProfiles": {
+                  "Items": [
+                    {
+                      "Format": "string",
+                      "ProfileId": "string",
+                      "ContentType": "string"
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "ForwardWhenContentTypeIsUnknown": false
+              }
+            }
+          }
+        }
+      ]
+  CreateFieldLevelEncryptionProfile:
+    description: |-
+      Create a field-level encryption profile.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateFieldLevelEncryptionProfile.html
+    example:
+      inputs: [
+        {
+          "FieldLevelEncryptionProfileConfig": {
+            "Name": "string",
+            "Comment": "string",
+            "CallerReference": "string",
+            "EncryptionEntities": {
+              "Items": [
+                {
+                  "ProviderId": "string",
+                  "PublicKeyId": "string",
+                  "FieldPatterns": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                }
+              ],
+              "Quantity": 1
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "Location": "string",
+          "FieldLevelEncryptionProfile": {
+            "Id": "string",
+            "LastModifiedTime": 1481289211.615,
+            "FieldLevelEncryptionProfileConfig": {
+              "Name": "string",
+              "Comment": "string",
+              "CallerReference": "string",
+              "EncryptionEntities": {
+                "Items": [
+                  {
+                    "ProviderId": "string",
+                    "PublicKeyId": "string",
+                    "FieldPatterns": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  }
+                ],
+                "Quantity": 1
+              }
+            }
+          }
+        }
+      ]
+  CreateInvalidation:
+    description: |-
+      Create a new invalidation.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateInvalidation.html
+    example:
+      inputs: [
+        {
+          "DistributionId": "string",
+          "InvalidationBatch": {
+            "Paths": {
+              "Items": [
+                "string"
+              ],
+              "Quantity": 1
+            },
+            "CallerReference": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Location": "string",
+          "Invalidation": {
+            "Id": "string",
+            "Status": "string",
+            "CreateTime": 1481289211.615,
+            "InvalidationBatch": {
+              "Paths": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "CallerReference": "string"
+            }
+          }
+        }
+      ]
+  CreateKeyGroup:
+    description: |-
+      Creates a key group that you can use with CloudFront signed URLs and signed cookies.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateKeyGroup.html
+    example:
+      inputs: [
+        {
+          "KeyGroupConfig": {
+            "Name": "string",
+            "Items": [
+              "string"
+            ],
+            "Comment": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "KeyGroup": {
+            "Id": "string",
+            "KeyGroupConfig": {
+              "Name": "string",
+              "Items": [
+                "string"
+              ],
+              "Comment": "string"
+            },
+            "LastModifiedTime": 1481289211.615
+          },
+          "Location": "string"
+        }
+      ]
+  CreateMonitoringSubscription:
+    description: |-
+      Enables additional CloudWatch metrics for the specified CloudFront distribution. The additional metrics incur an additional cost.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateMonitoringSubscription.html
+    example:
+      inputs: [
+        {
+          "DistributionId": "string",
+          "MonitoringSubscription": {
+            "RealtimeMetricsSubscriptionConfig": {
+              "RealtimeMetricsSubscriptionStatus": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "MonitoringSubscription": {
+            "RealtimeMetricsSubscriptionConfig": {
+              "RealtimeMetricsSubscriptionStatus": "string"
+            }
+          }
+        }
+      ]
+  CreateOriginRequestPolicy:
+    description: |-
+      Creates an origin request policy.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateOriginRequestPolicy.html
+    example:
+      inputs: [
+        {
+          "OriginRequestPolicyConfig": {
+            "Name": "string",
+            "Comment": "string",
+            "CookiesConfig": {
+              "Cookies": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "CookieBehavior": "string"
+            },
+            "HeadersConfig": {
+              "Headers": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "HeaderBehavior": "string"
+            },
+            "QueryStringsConfig": {
+              "QueryStrings": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "QueryStringBehavior": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "Location": "string",
+          "OriginRequestPolicy": {
+            "Id": "string",
+            "LastModifiedTime": 1481289211.615,
+            "OriginRequestPolicyConfig": {
+              "Name": "string",
+              "Comment": "string",
+              "CookiesConfig": {
+                "Cookies": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "CookieBehavior": "string"
+              },
+              "HeadersConfig": {
+                "Headers": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "HeaderBehavior": "string"
+              },
+              "QueryStringsConfig": {
+                "QueryStrings": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "QueryStringBehavior": "string"
+              }
+            }
+          }
+        }
+      ]
+  CreatePublicKey:
+    description: |-
+      Uploads a public key to CloudFront that you can use with signed URLs and signed cookies, or with field-level encryption.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreatePublicKey.html
+    example:
+      inputs: [
+        {
+          "PublicKeyConfig": {
+            "Name": "string",
+            "Comment": "string",
+            "EncodedKey": "string",
+            "CallerReference": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "Location": "string",
+          "PublicKey": {
+            "Id": "string",
+            "CreatedTime": 1481289211.615,
+            "PublicKeyConfig": {
+              "Name": "string",
+              "Comment": "string",
+              "EncodedKey": "string",
+              "CallerReference": "string"
+            }
+          }
+        }
+      ]
+  CreateRealtimeLogConfig:
+    description: |-
+      Creates a real-time log configuration.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateRealtimeLogConfig.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Fields": [
+            "string"
+          ],
+          "EndPoints": [
+            {
+              "StreamType": "string",
+              "KinesisStreamConfig": {
+                "RoleARN": "string",
+                "StreamARN": "string"
+              }
+            }
+          ],
+          "SamplingRate": 1
+        }
+      ]
+      outputs: [
+        {
+          "RealtimeLogConfig": {
+            "ARN": "string",
+            "Name": "string",
+            "Fields": [
+              "string"
+            ],
+            "EndPoints": [
+              {
+                "StreamType": "string",
+                "KinesisStreamConfig": {
+                  "RoleARN": "string",
+                  "StreamARN": "string"
+                }
+              }
+            ],
+            "SamplingRate": 1
+          }
+        }
+      ]
+  CreateStreamingDistribution:
+    description: |-
+      This API is deprecated. Amazon CloudFront is deprecating real-time messaging protocol (RTMP) distributions on December 31, 2020. For more information, read the announcement on the Amazon CloudFront discussion forum.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateStreamingDistribution.html
+    example:
+      inputs: [
+        {
+          "StreamingDistributionConfig": {
+            "Aliases": {
+              "Items": [
+                "string"
+              ],
+              "Quantity": 1
+            },
+            "Comment": "string",
+            "Enabled": false,
+            "Logging": {
+              "Bucket": "string",
+              "Prefix": "string",
+              "Enabled": false
+            },
+            "S3Origin": {
+              "DomainName": "string",
+              "OriginAccessIdentity": "string"
+            },
+            "PriceClass": "string",
+            "TrustedSigners": {
+              "Items": [
+                "string"
+              ],
+              "Enabled": false,
+              "Quantity": 1
+            },
+            "CallerReference": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "Location": "string",
+          "StreamingDistribution": {
+            "Id": "string",
+            "ARN": "string",
+            "Status": "string",
+            "DomainName": "string",
+            "LastModifiedTime": 1481289211.615,
+            "ActiveTrustedSigners": {
+              "Items": [
+                {
+                  "KeyPairIds": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "AwsAccountNumber": "string"
+                }
+              ],
+              "Enabled": false,
+              "Quantity": 1
+            },
+            "StreamingDistributionConfig": {
+              "Aliases": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "Comment": "string",
+              "Enabled": false,
+              "Logging": {
+                "Bucket": "string",
+                "Prefix": "string",
+                "Enabled": false
+              },
+              "S3Origin": {
+                "DomainName": "string",
+                "OriginAccessIdentity": "string"
+              },
+              "PriceClass": "string",
+              "TrustedSigners": {
+                "Items": [
+                  "string"
+                ],
+                "Enabled": false,
+                "Quantity": 1
+              },
+              "CallerReference": "string"
+            }
+          }
+        }
+      ]
+  CreateStreamingDistributionWithTags:
+    description: |-
+      This API is deprecated. Amazon CloudFront is deprecating real-time messaging protocol (RTMP) distributions on December 31, 2020. For more information, read the announcement on the Amazon CloudFront discussion forum.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateStreamingDistributionWithTags.html
+    example:
+      inputs: [
+        {
+          "StreamingDistributionConfigWithTags": {
+            "Tags": {
+              "Items": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ]
+            },
+            "StreamingDistributionConfig": {
+              "Aliases": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "Comment": "string",
+              "Enabled": false,
+              "Logging": {
+                "Bucket": "string",
+                "Prefix": "string",
+                "Enabled": false
+              },
+              "S3Origin": {
+                "DomainName": "string",
+                "OriginAccessIdentity": "string"
+              },
+              "PriceClass": "string",
+              "TrustedSigners": {
+                "Items": [
+                  "string"
+                ],
+                "Enabled": false,
+                "Quantity": 1
+              },
+              "CallerReference": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "Location": "string",
+          "StreamingDistribution": {
+            "Id": "string",
+            "ARN": "string",
+            "Status": "string",
+            "DomainName": "string",
+            "LastModifiedTime": 1481289211.615,
+            "ActiveTrustedSigners": {
+              "Items": [
+                {
+                  "KeyPairIds": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "AwsAccountNumber": "string"
+                }
+              ],
+              "Enabled": false,
+              "Quantity": 1
+            },
+            "StreamingDistributionConfig": {
+              "Aliases": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "Comment": "string",
+              "Enabled": false,
+              "Logging": {
+                "Bucket": "string",
+                "Prefix": "string",
+                "Enabled": false
+              },
+              "S3Origin": {
+                "DomainName": "string",
+                "OriginAccessIdentity": "string"
+              },
+              "PriceClass": "string",
+              "TrustedSigners": {
+                "Items": [
+                  "string"
+                ],
+                "Enabled": false,
+                "Quantity": 1
+              },
+              "CallerReference": "string"
+            }
+          }
+        }
+      ]
+  DeleteCachePolicy:
+    description: |-
+      Deletes a cache policy.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DeleteCachePolicy.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteCloudFrontOriginAccessIdentity:
+    description: |-
+      Delete an origin access identity.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DeleteCloudFrontOriginAccessIdentity.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDistribution:
+    description: |-
+      Delete a distribution.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DeleteDistribution.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteFieldLevelEncryptionConfig:
+    description: |-
+      Remove a field-level encryption configuration.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DeleteFieldLevelEncryptionConfig.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteFieldLevelEncryptionProfile:
+    description: |-
+      Remove a field-level encryption profile.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DeleteFieldLevelEncryptionProfile.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteKeyGroup:
+    description: |-
+      Deletes a key group.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DeleteKeyGroup.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteMonitoringSubscription:
+    description: |-
+      Disables additional CloudWatch metrics for the specified CloudFront distribution.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DeleteMonitoringSubscription.html
+    example:
+      inputs: [
+        {
+          "DistributionId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteOriginRequestPolicy:
+    description: |-
+      Deletes an origin request policy.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DeleteOriginRequestPolicy.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeletePublicKey:
+    description: |-
+      Remove a public key you previously added to CloudFront.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DeletePublicKey.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteRealtimeLogConfig:
+    description: |-
+      Deletes a real-time log configuration.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DeleteRealtimeLogConfig.html
+    example:
+      inputs: [
+        {
+          "ARN": "string",
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteStreamingDistribution:
+    description: |-
+      Delete a streaming distribution. To delete an RTMP distribution using the CloudFront API, perform the following steps.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DeleteStreamingDistribution.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetCachePolicyConfig:
+    description: |-
+      Gets a cache policy configuration.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetCachePolicyConfig.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "CachePolicyConfig": {
+            "Name": "string",
+            "MaxTTL": 1,
+            "MinTTL": 1,
+            "Comment": "string",
+            "DefaultTTL": 1,
+            "ParametersInCacheKeyAndForwardedToOrigin": {
+              "CookiesConfig": {
+                "Cookies": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "CookieBehavior": "string"
+              },
+              "HeadersConfig": {
+                "Headers": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "HeaderBehavior": "string"
+              },
+              "QueryStringsConfig": {
+                "QueryStrings": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "QueryStringBehavior": "string"
+              },
+              "EnableAcceptEncodingGzip": false,
+              "EnableAcceptEncodingBrotli": false
+            }
+          }
+        }
+      ]
+  GetCachePolicy:
+    description: |-
+      Gets a cache policy.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetCachePolicy.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "CachePolicy": {
+            "Id": "string",
+            "LastModifiedTime": 1481289211.615,
+            "CachePolicyConfig": {
+              "Name": "string",
+              "MaxTTL": 1,
+              "MinTTL": 1,
+              "Comment": "string",
+              "DefaultTTL": 1,
+              "ParametersInCacheKeyAndForwardedToOrigin": {
+                "CookiesConfig": {
+                  "Cookies": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "CookieBehavior": "string"
+                },
+                "HeadersConfig": {
+                  "Headers": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "HeaderBehavior": "string"
+                },
+                "QueryStringsConfig": {
+                  "QueryStrings": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "QueryStringBehavior": "string"
+                },
+                "EnableAcceptEncodingGzip": false,
+                "EnableAcceptEncodingBrotli": false
+              }
+            }
+          }
+        }
+      ]
+  GetCloudFrontOriginAccessIdentityConfig:
+    description: |-
+      Get the configuration information about an origin access identity.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetCloudFrontOriginAccessIdentityConfig.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "CloudFrontOriginAccessIdentityConfig": {
+            "Comment": "string",
+            "CallerReference": "string"
+          }
+        }
+      ]
+  GetCloudFrontOriginAccessIdentity:
+    description: |-
+      Get the information about an origin access identity.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetCloudFrontOriginAccessIdentity.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "CloudFrontOriginAccessIdentity": {
+            "Id": "string",
+            "S3CanonicalUserId": "string",
+            "CloudFrontOriginAccessIdentityConfig": {
+              "Comment": "string",
+              "CallerReference": "string"
+            }
+          }
+        }
+      ]
+  GetDistributionConfig:
+    description: |-
+      Get the configuration information about a distribution.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetDistributionConfig.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "DistributionConfig": {
+            "Aliases": {
+              "Items": [
+                "string"
+              ],
+              "Quantity": 1
+            },
+            "Comment": "string",
+            "Enabled": false,
+            "Logging": {
+              "Bucket": "string",
+              "Prefix": "string",
+              "Enabled": false,
+              "IncludeCookies": false
+            },
+            "Origins": {
+              "Items": [
+                {
+                  "Id": "string",
+                  "DomainName": "string",
+                  "OriginPath": "string",
+                  "OriginShield": {
+                    "Enabled": false,
+                    "OriginShieldRegion": "string"
+                  },
+                  "CustomHeaders": {
+                    "Items": [
+                      {
+                        "HeaderName": "string",
+                        "HeaderValue": "string"
+                      }
+                    ],
+                    "Quantity": 1
+                  },
+                  "S3OriginConfig": {
+                    "OriginAccessIdentity": "string"
+                  },
+                  "ConnectionTimeout": 1,
+                  "ConnectionAttempts": 1,
+                  "CustomOriginConfig": {
+                    "HTTPPort": 1,
+                    "HTTPSPort": 1,
+                    "OriginReadTimeout": 1,
+                    "OriginSslProtocols": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    },
+                    "OriginProtocolPolicy": "string",
+                    "OriginKeepaliveTimeout": 1
+                  }
+                }
+              ],
+              "Quantity": 1
+            },
+            "WebACLId": "string",
+            "PriceClass": "string",
+            "HttpVersion": "string",
+            "OriginGroups": {
+              "Items": [
+                {
+                  "Id": "string",
+                  "Members": {
+                    "Items": [
+                      {
+                        "OriginId": "string"
+                      }
+                    ],
+                    "Quantity": 1
+                  },
+                  "FailoverCriteria": {
+                    "StatusCodes": {
+                      "Items": [
+                        1
+                      ],
+                      "Quantity": 1
+                    }
+                  }
+                }
+              ],
+              "Quantity": 1
+            },
+            "Restrictions": {
+              "GeoRestriction": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1,
+                "RestrictionType": "string"
+              }
+            },
+            "IsIPV6Enabled": false,
+            "CacheBehaviors": {
+              "Items": [
+                {
+                  "MaxTTL": 1,
+                  "MinTTL": 1,
+                  "Compress": false,
+                  "DefaultTTL": 1,
+                  "PathPattern": "string",
+                  "CachePolicyId": "string",
+                  "AllowedMethods": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1,
+                    "CachedMethods": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "TargetOriginId": "string",
+                  "TrustedSigners": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Enabled": false,
+                    "Quantity": 1
+                  },
+                  "ForwardedValues": {
+                    "Cookies": {
+                      "Forward": "string",
+                      "WhitelistedNames": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    },
+                    "Headers": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    },
+                    "QueryString": false,
+                    "QueryStringCacheKeys": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "SmoothStreaming": false,
+                  "TrustedKeyGroups": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Enabled": false,
+                    "Quantity": 1
+                  },
+                  "RealtimeLogConfigArn": "string",
+                  "ViewerProtocolPolicy": "string",
+                  "OriginRequestPolicyId": "string",
+                  "FieldLevelEncryptionId": "string",
+                  "LambdaFunctionAssociations": {
+                    "Items": [
+                      {
+                        "EventType": "string",
+                        "IncludeBody": false,
+                        "LambdaFunctionARN": "string"
+                      }
+                    ],
+                    "Quantity": 1
+                  }
+                }
+              ],
+              "Quantity": 1
+            },
+            "CallerReference": "string",
+            "DefaultRootObject": "string",
+            "ViewerCertificate": {
+              "Certificate": "string",
+              "IAMCertificateId": "string",
+              "SSLSupportMethod": "string",
+              "ACMCertificateArn": "string",
+              "CertificateSource": "string",
+              "MinimumProtocolVersion": "string",
+              "CloudFrontDefaultCertificate": false
+            },
+            "CustomErrorResponses": {
+              "Items": [
+                {
+                  "ErrorCode": 1,
+                  "ResponseCode": "string",
+                  "ResponsePagePath": "string",
+                  "ErrorCachingMinTTL": 1
+                }
+              ],
+              "Quantity": 1
+            },
+            "DefaultCacheBehavior": {
+              "MaxTTL": 1,
+              "MinTTL": 1,
+              "Compress": false,
+              "DefaultTTL": 1,
+              "CachePolicyId": "string",
+              "AllowedMethods": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1,
+                "CachedMethods": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                }
+              },
+              "TargetOriginId": "string",
+              "TrustedSigners": {
+                "Items": [
+                  "string"
+                ],
+                "Enabled": false,
+                "Quantity": 1
+              },
+              "ForwardedValues": {
+                "Cookies": {
+                  "Forward": "string",
+                  "WhitelistedNames": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                },
+                "Headers": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "QueryString": false,
+                "QueryStringCacheKeys": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                }
+              },
+              "SmoothStreaming": false,
+              "TrustedKeyGroups": {
+                "Items": [
+                  "string"
+                ],
+                "Enabled": false,
+                "Quantity": 1
+              },
+              "RealtimeLogConfigArn": "string",
+              "ViewerProtocolPolicy": "string",
+              "OriginRequestPolicyId": "string",
+              "FieldLevelEncryptionId": "string",
+              "LambdaFunctionAssociations": {
+                "Items": [
+                  {
+                    "EventType": "string",
+                    "IncludeBody": false,
+                    "LambdaFunctionARN": "string"
+                  }
+                ],
+                "Quantity": 1
+              }
+            }
+          }
+        }
+      ]
+  GetDistribution:
+    description: |-
+      Get the information about a distribution.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetDistribution.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "Distribution": {
+            "Id": "string",
+            "ARN": "string",
+            "Status": "string",
+            "DomainName": "string",
+            "LastModifiedTime": 1481289211.615,
+            "AliasICPRecordals": [
+              {
+                "CNAME": "string",
+                "ICPRecordalStatus": "string"
+              }
+            ],
+            "DistributionConfig": {
+              "Aliases": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "Comment": "string",
+              "Enabled": false,
+              "Logging": {
+                "Bucket": "string",
+                "Prefix": "string",
+                "Enabled": false,
+                "IncludeCookies": false
+              },
+              "Origins": {
+                "Items": [
+                  {
+                    "Id": "string",
+                    "DomainName": "string",
+                    "OriginPath": "string",
+                    "OriginShield": {
+                      "Enabled": false,
+                      "OriginShieldRegion": "string"
+                    },
+                    "CustomHeaders": {
+                      "Items": [
+                        {
+                          "HeaderName": "string",
+                          "HeaderValue": "string"
+                        }
+                      ],
+                      "Quantity": 1
+                    },
+                    "S3OriginConfig": {
+                      "OriginAccessIdentity": "string"
+                    },
+                    "ConnectionTimeout": 1,
+                    "ConnectionAttempts": 1,
+                    "CustomOriginConfig": {
+                      "HTTPPort": 1,
+                      "HTTPSPort": 1,
+                      "OriginReadTimeout": 1,
+                      "OriginSslProtocols": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      },
+                      "OriginProtocolPolicy": "string",
+                      "OriginKeepaliveTimeout": 1
+                    }
+                  }
+                ],
+                "Quantity": 1
+              },
+              "WebACLId": "string",
+              "PriceClass": "string",
+              "HttpVersion": "string",
+              "OriginGroups": {
+                "Items": [
+                  {
+                    "Id": "string",
+                    "Members": {
+                      "Items": [
+                        {
+                          "OriginId": "string"
+                        }
+                      ],
+                      "Quantity": 1
+                    },
+                    "FailoverCriteria": {
+                      "StatusCodes": {
+                        "Items": [
+                          1
+                        ],
+                        "Quantity": 1
+                      }
+                    }
+                  }
+                ],
+                "Quantity": 1
+              },
+              "Restrictions": {
+                "GeoRestriction": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1,
+                  "RestrictionType": "string"
+                }
+              },
+              "IsIPV6Enabled": false,
+              "CacheBehaviors": {
+                "Items": [
+                  {
+                    "MaxTTL": 1,
+                    "MinTTL": 1,
+                    "Compress": false,
+                    "DefaultTTL": 1,
+                    "PathPattern": "string",
+                    "CachePolicyId": "string",
+                    "AllowedMethods": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1,
+                      "CachedMethods": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    },
+                    "TargetOriginId": "string",
+                    "TrustedSigners": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Enabled": false,
+                      "Quantity": 1
+                    },
+                    "ForwardedValues": {
+                      "Cookies": {
+                        "Forward": "string",
+                        "WhitelistedNames": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        }
+                      },
+                      "Headers": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      },
+                      "QueryString": false,
+                      "QueryStringCacheKeys": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    },
+                    "SmoothStreaming": false,
+                    "TrustedKeyGroups": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Enabled": false,
+                      "Quantity": 1
+                    },
+                    "RealtimeLogConfigArn": "string",
+                    "ViewerProtocolPolicy": "string",
+                    "OriginRequestPolicyId": "string",
+                    "FieldLevelEncryptionId": "string",
+                    "LambdaFunctionAssociations": {
+                      "Items": [
+                        {
+                          "EventType": "string",
+                          "IncludeBody": false,
+                          "LambdaFunctionARN": "string"
+                        }
+                      ],
+                      "Quantity": 1
+                    }
+                  }
+                ],
+                "Quantity": 1
+              },
+              "CallerReference": "string",
+              "DefaultRootObject": "string",
+              "ViewerCertificate": {
+                "Certificate": "string",
+                "IAMCertificateId": "string",
+                "SSLSupportMethod": "string",
+                "ACMCertificateArn": "string",
+                "CertificateSource": "string",
+                "MinimumProtocolVersion": "string",
+                "CloudFrontDefaultCertificate": false
+              },
+              "CustomErrorResponses": {
+                "Items": [
+                  {
+                    "ErrorCode": 1,
+                    "ResponseCode": "string",
+                    "ResponsePagePath": "string",
+                    "ErrorCachingMinTTL": 1
+                  }
+                ],
+                "Quantity": 1
+              },
+              "DefaultCacheBehavior": {
+                "MaxTTL": 1,
+                "MinTTL": 1,
+                "Compress": false,
+                "DefaultTTL": 1,
+                "CachePolicyId": "string",
+                "AllowedMethods": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1,
+                  "CachedMethods": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                },
+                "TargetOriginId": "string",
+                "TrustedSigners": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Enabled": false,
+                  "Quantity": 1
+                },
+                "ForwardedValues": {
+                  "Cookies": {
+                    "Forward": "string",
+                    "WhitelistedNames": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "Headers": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "QueryString": false,
+                  "QueryStringCacheKeys": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                },
+                "SmoothStreaming": false,
+                "TrustedKeyGroups": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Enabled": false,
+                  "Quantity": 1
+                },
+                "RealtimeLogConfigArn": "string",
+                "ViewerProtocolPolicy": "string",
+                "OriginRequestPolicyId": "string",
+                "FieldLevelEncryptionId": "string",
+                "LambdaFunctionAssociations": {
+                  "Items": [
+                    {
+                      "EventType": "string",
+                      "IncludeBody": false,
+                      "LambdaFunctionARN": "string"
+                    }
+                  ],
+                  "Quantity": 1
+                }
+              }
+            },
+            "ActiveTrustedSigners": {
+              "Items": [
+                {
+                  "KeyPairIds": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "AwsAccountNumber": "string"
+                }
+              ],
+              "Enabled": false,
+              "Quantity": 1
+            },
+            "ActiveTrustedKeyGroups": {
+              "Items": [
+                {
+                  "KeyGroupId": "string",
+                  "KeyPairIds": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                }
+              ],
+              "Enabled": false,
+              "Quantity": 1
+            },
+            "InProgressInvalidationBatches": 1
+          }
+        }
+      ]
+  GetFieldLevelEncryptionConfig:
+    description: |-
+      Get the field-level encryption configuration information.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetFieldLevelEncryptionConfig.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "FieldLevelEncryptionConfig": {
+            "Comment": "string",
+            "CallerReference": "string",
+            "QueryArgProfileConfig": {
+              "QueryArgProfiles": {
+                "Items": [
+                  {
+                    "QueryArg": "string",
+                    "ProfileId": "string"
+                  }
+                ],
+                "Quantity": 1
+              },
+              "ForwardWhenQueryArgProfileIsUnknown": false
+            },
+            "ContentTypeProfileConfig": {
+              "ContentTypeProfiles": {
+                "Items": [
+                  {
+                    "Format": "string",
+                    "ProfileId": "string",
+                    "ContentType": "string"
+                  }
+                ],
+                "Quantity": 1
+              },
+              "ForwardWhenContentTypeIsUnknown": false
+            }
+          }
+        }
+      ]
+  GetFieldLevelEncryption:
+    description: |-
+      Get the field-level encryption configuration information.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetFieldLevelEncryption.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "FieldLevelEncryption": {
+            "Id": "string",
+            "LastModifiedTime": 1481289211.615,
+            "FieldLevelEncryptionConfig": {
+              "Comment": "string",
+              "CallerReference": "string",
+              "QueryArgProfileConfig": {
+                "QueryArgProfiles": {
+                  "Items": [
+                    {
+                      "QueryArg": "string",
+                      "ProfileId": "string"
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "ForwardWhenQueryArgProfileIsUnknown": false
+              },
+              "ContentTypeProfileConfig": {
+                "ContentTypeProfiles": {
+                  "Items": [
+                    {
+                      "Format": "string",
+                      "ProfileId": "string",
+                      "ContentType": "string"
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "ForwardWhenContentTypeIsUnknown": false
+              }
+            }
+          }
+        }
+      ]
+  GetFieldLevelEncryptionProfileConfig:
+    description: |-
+      Get the field-level encryption profile configuration information.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetFieldLevelEncryptionProfileConfig.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "FieldLevelEncryptionProfileConfig": {
+            "Name": "string",
+            "Comment": "string",
+            "CallerReference": "string",
+            "EncryptionEntities": {
+              "Items": [
+                {
+                  "ProviderId": "string",
+                  "PublicKeyId": "string",
+                  "FieldPatterns": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                }
+              ],
+              "Quantity": 1
+            }
+          }
+        }
+      ]
+  GetFieldLevelEncryptionProfile:
+    description: |-
+      Get the field-level encryption profile information.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetFieldLevelEncryptionProfile.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "FieldLevelEncryptionProfile": {
+            "Id": "string",
+            "LastModifiedTime": 1481289211.615,
+            "FieldLevelEncryptionProfileConfig": {
+              "Name": "string",
+              "Comment": "string",
+              "CallerReference": "string",
+              "EncryptionEntities": {
+                "Items": [
+                  {
+                    "ProviderId": "string",
+                    "PublicKeyId": "string",
+                    "FieldPatterns": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  }
+                ],
+                "Quantity": 1
+              }
+            }
+          }
+        }
+      ]
+  GetInvalidation:
+    description: |-
+      Get the information about an invalidation.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetInvalidation.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "DistributionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Invalidation": {
+            "Id": "string",
+            "Status": "string",
+            "CreateTime": 1481289211.615,
+            "InvalidationBatch": {
+              "Paths": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "CallerReference": "string"
+            }
+          }
+        }
+      ]
+  GetKeyGroupConfig:
+    description: |-
+      Gets a key group configuration.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetKeyGroupConfig.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "KeyGroupConfig": {
+            "Name": "string",
+            "Items": [
+              "string"
+            ],
+            "Comment": "string"
+          }
+        }
+      ]
+  GetKeyGroup:
+    description: |-
+      Gets a key group, including the date and time when the key group was last modified.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetKeyGroup.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "KeyGroup": {
+            "Id": "string",
+            "KeyGroupConfig": {
+              "Name": "string",
+              "Items": [
+                "string"
+              ],
+              "Comment": "string"
+            },
+            "LastModifiedTime": 1481289211.615
+          }
+        }
+      ]
+  GetMonitoringSubscription:
+    description: |-
+      Gets information about whether additional CloudWatch metrics are enabled for the specified CloudFront distribution.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetMonitoringSubscription.html
+    example:
+      inputs: [
+        {
+          "DistributionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "MonitoringSubscription": {
+            "RealtimeMetricsSubscriptionConfig": {
+              "RealtimeMetricsSubscriptionStatus": "string"
+            }
+          }
+        }
+      ]
+  GetOriginRequestPolicyConfig:
+    description: |-
+      Gets an origin request policy configuration.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetOriginRequestPolicyConfig.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "OriginRequestPolicyConfig": {
+            "Name": "string",
+            "Comment": "string",
+            "CookiesConfig": {
+              "Cookies": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "CookieBehavior": "string"
+            },
+            "HeadersConfig": {
+              "Headers": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "HeaderBehavior": "string"
+            },
+            "QueryStringsConfig": {
+              "QueryStrings": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "QueryStringBehavior": "string"
+            }
+          }
+        }
+      ]
+  GetOriginRequestPolicy:
+    description: |-
+      Gets an origin request policy.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetOriginRequestPolicy.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "OriginRequestPolicy": {
+            "Id": "string",
+            "LastModifiedTime": 1481289211.615,
+            "OriginRequestPolicyConfig": {
+              "Name": "string",
+              "Comment": "string",
+              "CookiesConfig": {
+                "Cookies": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "CookieBehavior": "string"
+              },
+              "HeadersConfig": {
+                "Headers": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "HeaderBehavior": "string"
+              },
+              "QueryStringsConfig": {
+                "QueryStrings": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "QueryStringBehavior": "string"
+              }
+            }
+          }
+        }
+      ]
+  GetPublicKeyConfig:
+    description: |-
+      Gets a public key configuration.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetPublicKeyConfig.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "PublicKeyConfig": {
+            "Name": "string",
+            "Comment": "string",
+            "EncodedKey": "string",
+            "CallerReference": "string"
+          }
+        }
+      ]
+  GetPublicKey:
+    description: |-
+      Gets a public key.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetPublicKey.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "PublicKey": {
+            "Id": "string",
+            "CreatedTime": 1481289211.615,
+            "PublicKeyConfig": {
+              "Name": "string",
+              "Comment": "string",
+              "EncodedKey": "string",
+              "CallerReference": "string"
+            }
+          }
+        }
+      ]
+  GetRealtimeLogConfig:
+    description: |-
+      Gets a real-time log configuration.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetRealtimeLogConfig.html
+    example:
+      inputs: [
+        {
+          "ARN": "string",
+          "Name": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RealtimeLogConfig": {
+            "ARN": "string",
+            "Name": "string",
+            "Fields": [
+              "string"
+            ],
+            "EndPoints": [
+              {
+                "StreamType": "string",
+                "KinesisStreamConfig": {
+                  "RoleARN": "string",
+                  "StreamARN": "string"
+                }
+              }
+            ],
+            "SamplingRate": 1
+          }
+        }
+      ]
+  GetStreamingDistributionConfig:
+    description: |-
+      Get the configuration information about a streaming distribution.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetStreamingDistributionConfig.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "StreamingDistributionConfig": {
+            "Aliases": {
+              "Items": [
+                "string"
+              ],
+              "Quantity": 1
+            },
+            "Comment": "string",
+            "Enabled": false,
+            "Logging": {
+              "Bucket": "string",
+              "Prefix": "string",
+              "Enabled": false
+            },
+            "S3Origin": {
+              "DomainName": "string",
+              "OriginAccessIdentity": "string"
+            },
+            "PriceClass": "string",
+            "TrustedSigners": {
+              "Items": [
+                "string"
+              ],
+              "Enabled": false,
+              "Quantity": 1
+            },
+            "CallerReference": "string"
+          }
+        }
+      ]
+  GetStreamingDistribution:
+    description: |-
+      Gets information about a specified RTMP distribution, including the distribution configuration.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetStreamingDistribution.html
+    example:
+      inputs: [
+        {
+          "Id": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "StreamingDistribution": {
+            "Id": "string",
+            "ARN": "string",
+            "Status": "string",
+            "DomainName": "string",
+            "LastModifiedTime": 1481289211.615,
+            "ActiveTrustedSigners": {
+              "Items": [
+                {
+                  "KeyPairIds": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "AwsAccountNumber": "string"
+                }
+              ],
+              "Enabled": false,
+              "Quantity": 1
+            },
+            "StreamingDistributionConfig": {
+              "Aliases": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "Comment": "string",
+              "Enabled": false,
+              "Logging": {
+                "Bucket": "string",
+                "Prefix": "string",
+                "Enabled": false
+              },
+              "S3Origin": {
+                "DomainName": "string",
+                "OriginAccessIdentity": "string"
+              },
+              "PriceClass": "string",
+              "TrustedSigners": {
+                "Items": [
+                  "string"
+                ],
+                "Enabled": false,
+                "Quantity": 1
+              },
+              "CallerReference": "string"
+            }
+          }
+        }
+      ]
+  ListCachePolicies:
+    description: |-
+      Gets a list of cache policies.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListCachePolicies.html
+    example:
+      inputs: [
+        {
+          "Type": "string",
+          "Marker": "string",
+          "MaxItems": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CachePolicyList": {
+            "Items": [
+              {
+                "Type": "string",
+                "CachePolicy": {
+                  "Id": "string",
+                  "LastModifiedTime": 1481289211.615,
+                  "CachePolicyConfig": {
+                    "Name": "string",
+                    "MaxTTL": 1,
+                    "MinTTL": 1,
+                    "Comment": "string",
+                    "DefaultTTL": 1,
+                    "ParametersInCacheKeyAndForwardedToOrigin": {
+                      "CookiesConfig": {
+                        "Cookies": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        },
+                        "CookieBehavior": "string"
+                      },
+                      "HeadersConfig": {
+                        "Headers": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        },
+                        "HeaderBehavior": "string"
+                      },
+                      "QueryStringsConfig": {
+                        "QueryStrings": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        },
+                        "QueryStringBehavior": "string"
+                      },
+                      "EnableAcceptEncodingGzip": false,
+                      "EnableAcceptEncodingBrotli": false
+                    }
+                  }
+                }
+              }
+            ],
+            "MaxItems": 1,
+            "Quantity": 1,
+            "NextMarker": "string"
+          }
+        }
+      ]
+  ListCloudFrontOriginAccessIdentities:
+    description: |-
+      Lists origin access identities.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListCloudFrontOriginAccessIdentities.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CloudFrontOriginAccessIdentityList": {
+            "Items": [
+              {
+                "Id": "string",
+                "Comment": "string",
+                "S3CanonicalUserId": "string"
+              }
+            ],
+            "Marker": "string",
+            "MaxItems": 1,
+            "Quantity": 1,
+            "NextMarker": "string",
+            "IsTruncated": false
+          }
+        }
+      ]
+  ListDistributionsByCachePolicyId:
+    description: |-
+      Gets a list of distribution IDs for distributions that have a cache behavior that’s associated with the specified cache policy.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListDistributionsByCachePolicyId.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": "string",
+          "CachePolicyId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DistributionIdList": {
+            "Items": [
+              "string"
+            ],
+            "Marker": "string",
+            "MaxItems": 1,
+            "Quantity": 1,
+            "NextMarker": "string",
+            "IsTruncated": false
+          }
+        }
+      ]
+  ListDistributionsByKeyGroup:
+    description: |-
+      Gets a list of distribution IDs for distributions that have a cache behavior that references the specified key group.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListDistributionsByKeyGroup.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": "string",
+          "KeyGroupId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DistributionIdList": {
+            "Items": [
+              "string"
+            ],
+            "Marker": "string",
+            "MaxItems": 1,
+            "Quantity": 1,
+            "NextMarker": "string",
+            "IsTruncated": false
+          }
+        }
+      ]
+  ListDistributionsByOriginRequestPolicyId:
+    description: |-
+      Gets a list of distribution IDs for distributions that have a cache behavior that’s associated with the specified origin request policy.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListDistributionsByOriginRequestPolicyId.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": "string",
+          "OriginRequestPolicyId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DistributionIdList": {
+            "Items": [
+              "string"
+            ],
+            "Marker": "string",
+            "MaxItems": 1,
+            "Quantity": 1,
+            "NextMarker": "string",
+            "IsTruncated": false
+          }
+        }
+      ]
+  ListDistributionsByRealtimeLogConfig:
+    description: |-
+      Gets a list of distributions that have a cache behavior that’s associated with the specified real-time log configuration.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListDistributionsByRealtimeLogConfig.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": "string",
+          "RealtimeLogConfigArn": "string",
+          "RealtimeLogConfigName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DistributionList": {
+            "Items": [
+              {
+                "Id": "string",
+                "ARN": "string",
+                "Status": "string",
+                "Aliases": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "Comment": "string",
+                "Enabled": false,
+                "Origins": {
+                  "Items": [
+                    {
+                      "Id": "string",
+                      "DomainName": "string",
+                      "OriginPath": "string",
+                      "OriginShield": {
+                        "Enabled": false,
+                        "OriginShieldRegion": "string"
+                      },
+                      "CustomHeaders": {
+                        "Items": [
+                          {
+                            "HeaderName": "string",
+                            "HeaderValue": "string"
+                          }
+                        ],
+                        "Quantity": 1
+                      },
+                      "S3OriginConfig": {
+                        "OriginAccessIdentity": "string"
+                      },
+                      "ConnectionTimeout": 1,
+                      "ConnectionAttempts": 1,
+                      "CustomOriginConfig": {
+                        "HTTPPort": 1,
+                        "HTTPSPort": 1,
+                        "OriginReadTimeout": 1,
+                        "OriginSslProtocols": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        },
+                        "OriginProtocolPolicy": "string",
+                        "OriginKeepaliveTimeout": 1
+                      }
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "WebACLId": "string",
+                "DomainName": "string",
+                "PriceClass": "string",
+                "HttpVersion": "string",
+                "OriginGroups": {
+                  "Items": [
+                    {
+                      "Id": "string",
+                      "Members": {
+                        "Items": [
+                          {
+                            "OriginId": "string"
+                          }
+                        ],
+                        "Quantity": 1
+                      },
+                      "FailoverCriteria": {
+                        "StatusCodes": {
+                          "Items": [
+                            1
+                          ],
+                          "Quantity": 1
+                        }
+                      }
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "Restrictions": {
+                  "GeoRestriction": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1,
+                    "RestrictionType": "string"
+                  }
+                },
+                "IsIPV6Enabled": false,
+                "CacheBehaviors": {
+                  "Items": [
+                    {
+                      "MaxTTL": 1,
+                      "MinTTL": 1,
+                      "Compress": false,
+                      "DefaultTTL": 1,
+                      "PathPattern": "string",
+                      "CachePolicyId": "string",
+                      "AllowedMethods": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1,
+                        "CachedMethods": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        }
+                      },
+                      "TargetOriginId": "string",
+                      "TrustedSigners": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Enabled": false,
+                        "Quantity": 1
+                      },
+                      "ForwardedValues": {
+                        "Cookies": {
+                          "Forward": "string",
+                          "WhitelistedNames": {
+                            "Items": [
+                              "string"
+                            ],
+                            "Quantity": 1
+                          }
+                        },
+                        "Headers": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        },
+                        "QueryString": false,
+                        "QueryStringCacheKeys": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        }
+                      },
+                      "SmoothStreaming": false,
+                      "TrustedKeyGroups": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Enabled": false,
+                        "Quantity": 1
+                      },
+                      "RealtimeLogConfigArn": "string",
+                      "ViewerProtocolPolicy": "string",
+                      "OriginRequestPolicyId": "string",
+                      "FieldLevelEncryptionId": "string",
+                      "LambdaFunctionAssociations": {
+                        "Items": [
+                          {
+                            "EventType": "string",
+                            "IncludeBody": false,
+                            "LambdaFunctionARN": "string"
+                          }
+                        ],
+                        "Quantity": 1
+                      }
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "LastModifiedTime": 1481289211.615,
+                "AliasICPRecordals": [
+                  {
+                    "CNAME": "string",
+                    "ICPRecordalStatus": "string"
+                  }
+                ],
+                "ViewerCertificate": {
+                  "Certificate": "string",
+                  "IAMCertificateId": "string",
+                  "SSLSupportMethod": "string",
+                  "ACMCertificateArn": "string",
+                  "CertificateSource": "string",
+                  "MinimumProtocolVersion": "string",
+                  "CloudFrontDefaultCertificate": false
+                },
+                "CustomErrorResponses": {
+                  "Items": [
+                    {
+                      "ErrorCode": 1,
+                      "ResponseCode": "string",
+                      "ResponsePagePath": "string",
+                      "ErrorCachingMinTTL": 1
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "DefaultCacheBehavior": {
+                  "MaxTTL": 1,
+                  "MinTTL": 1,
+                  "Compress": false,
+                  "DefaultTTL": 1,
+                  "CachePolicyId": "string",
+                  "AllowedMethods": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1,
+                    "CachedMethods": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "TargetOriginId": "string",
+                  "TrustedSigners": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Enabled": false,
+                    "Quantity": 1
+                  },
+                  "ForwardedValues": {
+                    "Cookies": {
+                      "Forward": "string",
+                      "WhitelistedNames": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    },
+                    "Headers": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    },
+                    "QueryString": false,
+                    "QueryStringCacheKeys": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "SmoothStreaming": false,
+                  "TrustedKeyGroups": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Enabled": false,
+                    "Quantity": 1
+                  },
+                  "RealtimeLogConfigArn": "string",
+                  "ViewerProtocolPolicy": "string",
+                  "OriginRequestPolicyId": "string",
+                  "FieldLevelEncryptionId": "string",
+                  "LambdaFunctionAssociations": {
+                    "Items": [
+                      {
+                        "EventType": "string",
+                        "IncludeBody": false,
+                        "LambdaFunctionARN": "string"
+                      }
+                    ],
+                    "Quantity": 1
+                  }
+                }
+              }
+            ],
+            "Marker": "string",
+            "MaxItems": 1,
+            "Quantity": 1,
+            "NextMarker": "string",
+            "IsTruncated": false
+          }
+        }
+      ]
+  ListDistributionsByWebACLId:
+    description: |-
+      List the distributions that are associated with a specified AWS WAF web ACL.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListDistributionsByWebACLId.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": "string",
+          "WebACLId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DistributionList": {
+            "Items": [
+              {
+                "Id": "string",
+                "ARN": "string",
+                "Status": "string",
+                "Aliases": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "Comment": "string",
+                "Enabled": false,
+                "Origins": {
+                  "Items": [
+                    {
+                      "Id": "string",
+                      "DomainName": "string",
+                      "OriginPath": "string",
+                      "OriginShield": {
+                        "Enabled": false,
+                        "OriginShieldRegion": "string"
+                      },
+                      "CustomHeaders": {
+                        "Items": [
+                          {
+                            "HeaderName": "string",
+                            "HeaderValue": "string"
+                          }
+                        ],
+                        "Quantity": 1
+                      },
+                      "S3OriginConfig": {
+                        "OriginAccessIdentity": "string"
+                      },
+                      "ConnectionTimeout": 1,
+                      "ConnectionAttempts": 1,
+                      "CustomOriginConfig": {
+                        "HTTPPort": 1,
+                        "HTTPSPort": 1,
+                        "OriginReadTimeout": 1,
+                        "OriginSslProtocols": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        },
+                        "OriginProtocolPolicy": "string",
+                        "OriginKeepaliveTimeout": 1
+                      }
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "WebACLId": "string",
+                "DomainName": "string",
+                "PriceClass": "string",
+                "HttpVersion": "string",
+                "OriginGroups": {
+                  "Items": [
+                    {
+                      "Id": "string",
+                      "Members": {
+                        "Items": [
+                          {
+                            "OriginId": "string"
+                          }
+                        ],
+                        "Quantity": 1
+                      },
+                      "FailoverCriteria": {
+                        "StatusCodes": {
+                          "Items": [
+                            1
+                          ],
+                          "Quantity": 1
+                        }
+                      }
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "Restrictions": {
+                  "GeoRestriction": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1,
+                    "RestrictionType": "string"
+                  }
+                },
+                "IsIPV6Enabled": false,
+                "CacheBehaviors": {
+                  "Items": [
+                    {
+                      "MaxTTL": 1,
+                      "MinTTL": 1,
+                      "Compress": false,
+                      "DefaultTTL": 1,
+                      "PathPattern": "string",
+                      "CachePolicyId": "string",
+                      "AllowedMethods": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1,
+                        "CachedMethods": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        }
+                      },
+                      "TargetOriginId": "string",
+                      "TrustedSigners": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Enabled": false,
+                        "Quantity": 1
+                      },
+                      "ForwardedValues": {
+                        "Cookies": {
+                          "Forward": "string",
+                          "WhitelistedNames": {
+                            "Items": [
+                              "string"
+                            ],
+                            "Quantity": 1
+                          }
+                        },
+                        "Headers": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        },
+                        "QueryString": false,
+                        "QueryStringCacheKeys": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        }
+                      },
+                      "SmoothStreaming": false,
+                      "TrustedKeyGroups": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Enabled": false,
+                        "Quantity": 1
+                      },
+                      "RealtimeLogConfigArn": "string",
+                      "ViewerProtocolPolicy": "string",
+                      "OriginRequestPolicyId": "string",
+                      "FieldLevelEncryptionId": "string",
+                      "LambdaFunctionAssociations": {
+                        "Items": [
+                          {
+                            "EventType": "string",
+                            "IncludeBody": false,
+                            "LambdaFunctionARN": "string"
+                          }
+                        ],
+                        "Quantity": 1
+                      }
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "LastModifiedTime": 1481289211.615,
+                "AliasICPRecordals": [
+                  {
+                    "CNAME": "string",
+                    "ICPRecordalStatus": "string"
+                  }
+                ],
+                "ViewerCertificate": {
+                  "Certificate": "string",
+                  "IAMCertificateId": "string",
+                  "SSLSupportMethod": "string",
+                  "ACMCertificateArn": "string",
+                  "CertificateSource": "string",
+                  "MinimumProtocolVersion": "string",
+                  "CloudFrontDefaultCertificate": false
+                },
+                "CustomErrorResponses": {
+                  "Items": [
+                    {
+                      "ErrorCode": 1,
+                      "ResponseCode": "string",
+                      "ResponsePagePath": "string",
+                      "ErrorCachingMinTTL": 1
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "DefaultCacheBehavior": {
+                  "MaxTTL": 1,
+                  "MinTTL": 1,
+                  "Compress": false,
+                  "DefaultTTL": 1,
+                  "CachePolicyId": "string",
+                  "AllowedMethods": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1,
+                    "CachedMethods": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "TargetOriginId": "string",
+                  "TrustedSigners": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Enabled": false,
+                    "Quantity": 1
+                  },
+                  "ForwardedValues": {
+                    "Cookies": {
+                      "Forward": "string",
+                      "WhitelistedNames": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    },
+                    "Headers": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    },
+                    "QueryString": false,
+                    "QueryStringCacheKeys": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "SmoothStreaming": false,
+                  "TrustedKeyGroups": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Enabled": false,
+                    "Quantity": 1
+                  },
+                  "RealtimeLogConfigArn": "string",
+                  "ViewerProtocolPolicy": "string",
+                  "OriginRequestPolicyId": "string",
+                  "FieldLevelEncryptionId": "string",
+                  "LambdaFunctionAssociations": {
+                    "Items": [
+                      {
+                        "EventType": "string",
+                        "IncludeBody": false,
+                        "LambdaFunctionARN": "string"
+                      }
+                    ],
+                    "Quantity": 1
+                  }
+                }
+              }
+            ],
+            "Marker": "string",
+            "MaxItems": 1,
+            "Quantity": 1,
+            "NextMarker": "string",
+            "IsTruncated": false
+          }
+        }
+      ]
+  ListDistributions:
+    description: |-
+      List CloudFront distributions.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListDistributions.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DistributionList": {
+            "Items": [
+              {
+                "Id": "string",
+                "ARN": "string",
+                "Status": "string",
+                "Aliases": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "Comment": "string",
+                "Enabled": false,
+                "Origins": {
+                  "Items": [
+                    {
+                      "Id": "string",
+                      "DomainName": "string",
+                      "OriginPath": "string",
+                      "OriginShield": {
+                        "Enabled": false,
+                        "OriginShieldRegion": "string"
+                      },
+                      "CustomHeaders": {
+                        "Items": [
+                          {
+                            "HeaderName": "string",
+                            "HeaderValue": "string"
+                          }
+                        ],
+                        "Quantity": 1
+                      },
+                      "S3OriginConfig": {
+                        "OriginAccessIdentity": "string"
+                      },
+                      "ConnectionTimeout": 1,
+                      "ConnectionAttempts": 1,
+                      "CustomOriginConfig": {
+                        "HTTPPort": 1,
+                        "HTTPSPort": 1,
+                        "OriginReadTimeout": 1,
+                        "OriginSslProtocols": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        },
+                        "OriginProtocolPolicy": "string",
+                        "OriginKeepaliveTimeout": 1
+                      }
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "WebACLId": "string",
+                "DomainName": "string",
+                "PriceClass": "string",
+                "HttpVersion": "string",
+                "OriginGroups": {
+                  "Items": [
+                    {
+                      "Id": "string",
+                      "Members": {
+                        "Items": [
+                          {
+                            "OriginId": "string"
+                          }
+                        ],
+                        "Quantity": 1
+                      },
+                      "FailoverCriteria": {
+                        "StatusCodes": {
+                          "Items": [
+                            1
+                          ],
+                          "Quantity": 1
+                        }
+                      }
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "Restrictions": {
+                  "GeoRestriction": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1,
+                    "RestrictionType": "string"
+                  }
+                },
+                "IsIPV6Enabled": false,
+                "CacheBehaviors": {
+                  "Items": [
+                    {
+                      "MaxTTL": 1,
+                      "MinTTL": 1,
+                      "Compress": false,
+                      "DefaultTTL": 1,
+                      "PathPattern": "string",
+                      "CachePolicyId": "string",
+                      "AllowedMethods": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1,
+                        "CachedMethods": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        }
+                      },
+                      "TargetOriginId": "string",
+                      "TrustedSigners": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Enabled": false,
+                        "Quantity": 1
+                      },
+                      "ForwardedValues": {
+                        "Cookies": {
+                          "Forward": "string",
+                          "WhitelistedNames": {
+                            "Items": [
+                              "string"
+                            ],
+                            "Quantity": 1
+                          }
+                        },
+                        "Headers": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        },
+                        "QueryString": false,
+                        "QueryStringCacheKeys": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        }
+                      },
+                      "SmoothStreaming": false,
+                      "TrustedKeyGroups": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Enabled": false,
+                        "Quantity": 1
+                      },
+                      "RealtimeLogConfigArn": "string",
+                      "ViewerProtocolPolicy": "string",
+                      "OriginRequestPolicyId": "string",
+                      "FieldLevelEncryptionId": "string",
+                      "LambdaFunctionAssociations": {
+                        "Items": [
+                          {
+                            "EventType": "string",
+                            "IncludeBody": false,
+                            "LambdaFunctionARN": "string"
+                          }
+                        ],
+                        "Quantity": 1
+                      }
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "LastModifiedTime": 1481289211.615,
+                "AliasICPRecordals": [
+                  {
+                    "CNAME": "string",
+                    "ICPRecordalStatus": "string"
+                  }
+                ],
+                "ViewerCertificate": {
+                  "Certificate": "string",
+                  "IAMCertificateId": "string",
+                  "SSLSupportMethod": "string",
+                  "ACMCertificateArn": "string",
+                  "CertificateSource": "string",
+                  "MinimumProtocolVersion": "string",
+                  "CloudFrontDefaultCertificate": false
+                },
+                "CustomErrorResponses": {
+                  "Items": [
+                    {
+                      "ErrorCode": 1,
+                      "ResponseCode": "string",
+                      "ResponsePagePath": "string",
+                      "ErrorCachingMinTTL": 1
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "DefaultCacheBehavior": {
+                  "MaxTTL": 1,
+                  "MinTTL": 1,
+                  "Compress": false,
+                  "DefaultTTL": 1,
+                  "CachePolicyId": "string",
+                  "AllowedMethods": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1,
+                    "CachedMethods": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "TargetOriginId": "string",
+                  "TrustedSigners": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Enabled": false,
+                    "Quantity": 1
+                  },
+                  "ForwardedValues": {
+                    "Cookies": {
+                      "Forward": "string",
+                      "WhitelistedNames": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    },
+                    "Headers": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    },
+                    "QueryString": false,
+                    "QueryStringCacheKeys": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "SmoothStreaming": false,
+                  "TrustedKeyGroups": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Enabled": false,
+                    "Quantity": 1
+                  },
+                  "RealtimeLogConfigArn": "string",
+                  "ViewerProtocolPolicy": "string",
+                  "OriginRequestPolicyId": "string",
+                  "FieldLevelEncryptionId": "string",
+                  "LambdaFunctionAssociations": {
+                    "Items": [
+                      {
+                        "EventType": "string",
+                        "IncludeBody": false,
+                        "LambdaFunctionARN": "string"
+                      }
+                    ],
+                    "Quantity": 1
+                  }
+                }
+              }
+            ],
+            "Marker": "string",
+            "MaxItems": 1,
+            "Quantity": 1,
+            "NextMarker": "string",
+            "IsTruncated": false
+          }
+        }
+      ]
+  ListFieldLevelEncryptionConfigs:
+    description: |-
+      List all field-level encryption configurations that have been created in CloudFront for this account.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListFieldLevelEncryptionConfigs.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FieldLevelEncryptionList": {
+            "Items": [
+              {
+                "Id": "string",
+                "Comment": "string",
+                "LastModifiedTime": 1481289211.615,
+                "QueryArgProfileConfig": {
+                  "QueryArgProfiles": {
+                    "Items": [
+                      {
+                        "QueryArg": "string",
+                        "ProfileId": "string"
+                      }
+                    ],
+                    "Quantity": 1
+                  },
+                  "ForwardWhenQueryArgProfileIsUnknown": false
+                },
+                "ContentTypeProfileConfig": {
+                  "ContentTypeProfiles": {
+                    "Items": [
+                      {
+                        "Format": "string",
+                        "ProfileId": "string",
+                        "ContentType": "string"
+                      }
+                    ],
+                    "Quantity": 1
+                  },
+                  "ForwardWhenContentTypeIsUnknown": false
+                }
+              }
+            ],
+            "MaxItems": 1,
+            "Quantity": 1,
+            "NextMarker": "string"
+          }
+        }
+      ]
+  ListFieldLevelEncryptionProfiles:
+    description: |-
+      Request a list of field-level encryption profiles that have been created in CloudFront for this account.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListFieldLevelEncryptionProfiles.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": "string"
+        }
+      ]
+      outputs: [
+        {
+          "FieldLevelEncryptionProfileList": {
+            "Items": [
+              {
+                "Id": "string",
+                "Name": "string",
+                "Comment": "string",
+                "LastModifiedTime": 1481289211.615,
+                "EncryptionEntities": {
+                  "Items": [
+                    {
+                      "ProviderId": "string",
+                      "PublicKeyId": "string",
+                      "FieldPatterns": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    }
+                  ],
+                  "Quantity": 1
+                }
+              }
+            ],
+            "MaxItems": 1,
+            "Quantity": 1,
+            "NextMarker": "string"
+          }
+        }
+      ]
+  ListInvalidations:
+    description: |-
+      Lists invalidation batches.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListInvalidations.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": "string",
+          "DistributionId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "InvalidationList": {
+            "Items": [
+              {
+                "Id": "string",
+                "Status": "string",
+                "CreateTime": 1481289211.615
+              }
+            ],
+            "Marker": "string",
+            "MaxItems": 1,
+            "Quantity": 1,
+            "NextMarker": "string",
+            "IsTruncated": false
+          }
+        }
+      ]
+  ListKeyGroups:
+    description: |-
+      Gets a list of key groups.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListKeyGroups.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": "string"
+        }
+      ]
+      outputs: [
+        {
+          "KeyGroupList": {
+            "Items": [
+              {
+                "KeyGroup": {
+                  "Id": "string",
+                  "KeyGroupConfig": {
+                    "Name": "string",
+                    "Items": [
+                      "string"
+                    ],
+                    "Comment": "string"
+                  },
+                  "LastModifiedTime": 1481289211.615
+                }
+              }
+            ],
+            "MaxItems": 1,
+            "Quantity": 1,
+            "NextMarker": "string"
+          }
+        }
+      ]
+  ListOriginRequestPolicies:
+    description: |-
+      Gets a list of origin request policies.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListOriginRequestPolicies.html
+    example:
+      inputs: [
+        {
+          "Type": "string",
+          "Marker": "string",
+          "MaxItems": "string"
+        }
+      ]
+      outputs: [
+        {
+          "OriginRequestPolicyList": {
+            "Items": [
+              {
+                "Type": "string",
+                "OriginRequestPolicy": {
+                  "Id": "string",
+                  "LastModifiedTime": 1481289211.615,
+                  "OriginRequestPolicyConfig": {
+                    "Name": "string",
+                    "Comment": "string",
+                    "CookiesConfig": {
+                      "Cookies": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      },
+                      "CookieBehavior": "string"
+                    },
+                    "HeadersConfig": {
+                      "Headers": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      },
+                      "HeaderBehavior": "string"
+                    },
+                    "QueryStringsConfig": {
+                      "QueryStrings": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      },
+                      "QueryStringBehavior": "string"
+                    }
+                  }
+                }
+              }
+            ],
+            "MaxItems": 1,
+            "Quantity": 1,
+            "NextMarker": "string"
+          }
+        }
+      ]
+  ListPublicKeys:
+    description: |-
+      List all public keys that have been added to CloudFront for this account.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListPublicKeys.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PublicKeyList": {
+            "Items": [
+              {
+                "Id": "string",
+                "Name": "string",
+                "Comment": "string",
+                "EncodedKey": "string",
+                "CreatedTime": 1481289211.615
+              }
+            ],
+            "MaxItems": 1,
+            "Quantity": 1,
+            "NextMarker": "string"
+          }
+        }
+      ]
+  ListRealtimeLogConfigs:
+    description: |-
+      Gets a list of real-time log configurations.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListRealtimeLogConfigs.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RealtimeLogConfigs": {
+            "Items": [
+              {
+                "ARN": "string",
+                "Name": "string",
+                "Fields": [
+                  "string"
+                ],
+                "EndPoints": [
+                  {
+                    "StreamType": "string",
+                    "KinesisStreamConfig": {
+                      "RoleARN": "string",
+                      "StreamARN": "string"
+                    }
+                  }
+                ],
+                "SamplingRate": 1
+              }
+            ],
+            "Marker": "string",
+            "MaxItems": 1,
+            "NextMarker": "string",
+            "IsTruncated": false
+          }
+        }
+      ]
+  ListStreamingDistributions:
+    description: |-
+      List streaming distributions.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListStreamingDistributions.html
+    example:
+      inputs: [
+        {
+          "Marker": "string",
+          "MaxItems": "string"
+        }
+      ]
+      outputs: [
+        {
+          "StreamingDistributionList": {
+            "Items": [
+              {
+                "Id": "string",
+                "ARN": "string",
+                "Status": "string",
+                "Aliases": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "Comment": "string",
+                "Enabled": false,
+                "S3Origin": {
+                  "DomainName": "string",
+                  "OriginAccessIdentity": "string"
+                },
+                "DomainName": "string",
+                "PriceClass": "string",
+                "TrustedSigners": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Enabled": false,
+                  "Quantity": 1
+                },
+                "LastModifiedTime": 1481289211.615
+              }
+            ],
+            "Marker": "string",
+            "MaxItems": 1,
+            "Quantity": 1,
+            "NextMarker": "string",
+            "IsTruncated": false
+          }
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      List tags for a CloudFront resource.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "Resource": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "Items": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ]
+          }
+        }
+      ]
+  TagResource:
+    description: |-
+      Add tags to a CloudFront resource.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "Items": [
+              {
+                "Key": "string",
+                "Value": "string"
+              }
+            ]
+          },
+          "Resource": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Remove tags from a CloudFront resource.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": {
+            "Items": [
+              "string"
+            ]
+          },
+          "Resource": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateCachePolicy:
+    description: |-
+      Updates a cache policy configuration.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateCachePolicy.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string",
+          "CachePolicyConfig": {
+            "Name": "string",
+            "MaxTTL": 1,
+            "MinTTL": 1,
+            "Comment": "string",
+            "DefaultTTL": 1,
+            "ParametersInCacheKeyAndForwardedToOrigin": {
+              "CookiesConfig": {
+                "Cookies": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "CookieBehavior": "string"
+              },
+              "HeadersConfig": {
+                "Headers": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "HeaderBehavior": "string"
+              },
+              "QueryStringsConfig": {
+                "QueryStrings": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "QueryStringBehavior": "string"
+              },
+              "EnableAcceptEncodingGzip": false,
+              "EnableAcceptEncodingBrotli": false
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "CachePolicy": {
+            "Id": "string",
+            "LastModifiedTime": 1481289211.615,
+            "CachePolicyConfig": {
+              "Name": "string",
+              "MaxTTL": 1,
+              "MinTTL": 1,
+              "Comment": "string",
+              "DefaultTTL": 1,
+              "ParametersInCacheKeyAndForwardedToOrigin": {
+                "CookiesConfig": {
+                  "Cookies": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "CookieBehavior": "string"
+                },
+                "HeadersConfig": {
+                  "Headers": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "HeaderBehavior": "string"
+                },
+                "QueryStringsConfig": {
+                  "QueryStrings": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "QueryStringBehavior": "string"
+                },
+                "EnableAcceptEncodingGzip": false,
+                "EnableAcceptEncodingBrotli": false
+              }
+            }
+          }
+        }
+      ]
+  UpdateCloudFrontOriginAccessIdentity:
+    description: |-
+      Update an origin access identity.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateCloudFrontOriginAccessIdentity.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string",
+          "CloudFrontOriginAccessIdentityConfig": {
+            "Comment": "string",
+            "CallerReference": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "CloudFrontOriginAccessIdentity": {
+            "Id": "string",
+            "S3CanonicalUserId": "string",
+            "CloudFrontOriginAccessIdentityConfig": {
+              "Comment": "string",
+              "CallerReference": "string"
+            }
+          }
+        }
+      ]
+  UpdateDistribution:
+    description: |-
+      Updates the configuration for a web distribution.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string",
+          "DistributionConfig": {
+            "Aliases": {
+              "Items": [
+                "string"
+              ],
+              "Quantity": 1
+            },
+            "Comment": "string",
+            "Enabled": false,
+            "Logging": {
+              "Bucket": "string",
+              "Prefix": "string",
+              "Enabled": false,
+              "IncludeCookies": false
+            },
+            "Origins": {
+              "Items": [
+                {
+                  "Id": "string",
+                  "DomainName": "string",
+                  "OriginPath": "string",
+                  "OriginShield": {
+                    "Enabled": false,
+                    "OriginShieldRegion": "string"
+                  },
+                  "CustomHeaders": {
+                    "Items": [
+                      {
+                        "HeaderName": "string",
+                        "HeaderValue": "string"
+                      }
+                    ],
+                    "Quantity": 1
+                  },
+                  "S3OriginConfig": {
+                    "OriginAccessIdentity": "string"
+                  },
+                  "ConnectionTimeout": 1,
+                  "ConnectionAttempts": 1,
+                  "CustomOriginConfig": {
+                    "HTTPPort": 1,
+                    "HTTPSPort": 1,
+                    "OriginReadTimeout": 1,
+                    "OriginSslProtocols": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    },
+                    "OriginProtocolPolicy": "string",
+                    "OriginKeepaliveTimeout": 1
+                  }
+                }
+              ],
+              "Quantity": 1
+            },
+            "WebACLId": "string",
+            "PriceClass": "string",
+            "HttpVersion": "string",
+            "OriginGroups": {
+              "Items": [
+                {
+                  "Id": "string",
+                  "Members": {
+                    "Items": [
+                      {
+                        "OriginId": "string"
+                      }
+                    ],
+                    "Quantity": 1
+                  },
+                  "FailoverCriteria": {
+                    "StatusCodes": {
+                      "Items": [
+                        1
+                      ],
+                      "Quantity": 1
+                    }
+                  }
+                }
+              ],
+              "Quantity": 1
+            },
+            "Restrictions": {
+              "GeoRestriction": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1,
+                "RestrictionType": "string"
+              }
+            },
+            "IsIPV6Enabled": false,
+            "CacheBehaviors": {
+              "Items": [
+                {
+                  "MaxTTL": 1,
+                  "MinTTL": 1,
+                  "Compress": false,
+                  "DefaultTTL": 1,
+                  "PathPattern": "string",
+                  "CachePolicyId": "string",
+                  "AllowedMethods": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1,
+                    "CachedMethods": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "TargetOriginId": "string",
+                  "TrustedSigners": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Enabled": false,
+                    "Quantity": 1
+                  },
+                  "ForwardedValues": {
+                    "Cookies": {
+                      "Forward": "string",
+                      "WhitelistedNames": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    },
+                    "Headers": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    },
+                    "QueryString": false,
+                    "QueryStringCacheKeys": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "SmoothStreaming": false,
+                  "TrustedKeyGroups": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Enabled": false,
+                    "Quantity": 1
+                  },
+                  "RealtimeLogConfigArn": "string",
+                  "ViewerProtocolPolicy": "string",
+                  "OriginRequestPolicyId": "string",
+                  "FieldLevelEncryptionId": "string",
+                  "LambdaFunctionAssociations": {
+                    "Items": [
+                      {
+                        "EventType": "string",
+                        "IncludeBody": false,
+                        "LambdaFunctionARN": "string"
+                      }
+                    ],
+                    "Quantity": 1
+                  }
+                }
+              ],
+              "Quantity": 1
+            },
+            "CallerReference": "string",
+            "DefaultRootObject": "string",
+            "ViewerCertificate": {
+              "Certificate": "string",
+              "IAMCertificateId": "string",
+              "SSLSupportMethod": "string",
+              "ACMCertificateArn": "string",
+              "CertificateSource": "string",
+              "MinimumProtocolVersion": "string",
+              "CloudFrontDefaultCertificate": false
+            },
+            "CustomErrorResponses": {
+              "Items": [
+                {
+                  "ErrorCode": 1,
+                  "ResponseCode": "string",
+                  "ResponsePagePath": "string",
+                  "ErrorCachingMinTTL": 1
+                }
+              ],
+              "Quantity": 1
+            },
+            "DefaultCacheBehavior": {
+              "MaxTTL": 1,
+              "MinTTL": 1,
+              "Compress": false,
+              "DefaultTTL": 1,
+              "CachePolicyId": "string",
+              "AllowedMethods": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1,
+                "CachedMethods": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                }
+              },
+              "TargetOriginId": "string",
+              "TrustedSigners": {
+                "Items": [
+                  "string"
+                ],
+                "Enabled": false,
+                "Quantity": 1
+              },
+              "ForwardedValues": {
+                "Cookies": {
+                  "Forward": "string",
+                  "WhitelistedNames": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                },
+                "Headers": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "QueryString": false,
+                "QueryStringCacheKeys": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                }
+              },
+              "SmoothStreaming": false,
+              "TrustedKeyGroups": {
+                "Items": [
+                  "string"
+                ],
+                "Enabled": false,
+                "Quantity": 1
+              },
+              "RealtimeLogConfigArn": "string",
+              "ViewerProtocolPolicy": "string",
+              "OriginRequestPolicyId": "string",
+              "FieldLevelEncryptionId": "string",
+              "LambdaFunctionAssociations": {
+                "Items": [
+                  {
+                    "EventType": "string",
+                    "IncludeBody": false,
+                    "LambdaFunctionARN": "string"
+                  }
+                ],
+                "Quantity": 1
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "Distribution": {
+            "Id": "string",
+            "ARN": "string",
+            "Status": "string",
+            "DomainName": "string",
+            "LastModifiedTime": 1481289211.615,
+            "AliasICPRecordals": [
+              {
+                "CNAME": "string",
+                "ICPRecordalStatus": "string"
+              }
+            ],
+            "DistributionConfig": {
+              "Aliases": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "Comment": "string",
+              "Enabled": false,
+              "Logging": {
+                "Bucket": "string",
+                "Prefix": "string",
+                "Enabled": false,
+                "IncludeCookies": false
+              },
+              "Origins": {
+                "Items": [
+                  {
+                    "Id": "string",
+                    "DomainName": "string",
+                    "OriginPath": "string",
+                    "OriginShield": {
+                      "Enabled": false,
+                      "OriginShieldRegion": "string"
+                    },
+                    "CustomHeaders": {
+                      "Items": [
+                        {
+                          "HeaderName": "string",
+                          "HeaderValue": "string"
+                        }
+                      ],
+                      "Quantity": 1
+                    },
+                    "S3OriginConfig": {
+                      "OriginAccessIdentity": "string"
+                    },
+                    "ConnectionTimeout": 1,
+                    "ConnectionAttempts": 1,
+                    "CustomOriginConfig": {
+                      "HTTPPort": 1,
+                      "HTTPSPort": 1,
+                      "OriginReadTimeout": 1,
+                      "OriginSslProtocols": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      },
+                      "OriginProtocolPolicy": "string",
+                      "OriginKeepaliveTimeout": 1
+                    }
+                  }
+                ],
+                "Quantity": 1
+              },
+              "WebACLId": "string",
+              "PriceClass": "string",
+              "HttpVersion": "string",
+              "OriginGroups": {
+                "Items": [
+                  {
+                    "Id": "string",
+                    "Members": {
+                      "Items": [
+                        {
+                          "OriginId": "string"
+                        }
+                      ],
+                      "Quantity": 1
+                    },
+                    "FailoverCriteria": {
+                      "StatusCodes": {
+                        "Items": [
+                          1
+                        ],
+                        "Quantity": 1
+                      }
+                    }
+                  }
+                ],
+                "Quantity": 1
+              },
+              "Restrictions": {
+                "GeoRestriction": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1,
+                  "RestrictionType": "string"
+                }
+              },
+              "IsIPV6Enabled": false,
+              "CacheBehaviors": {
+                "Items": [
+                  {
+                    "MaxTTL": 1,
+                    "MinTTL": 1,
+                    "Compress": false,
+                    "DefaultTTL": 1,
+                    "PathPattern": "string",
+                    "CachePolicyId": "string",
+                    "AllowedMethods": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1,
+                      "CachedMethods": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    },
+                    "TargetOriginId": "string",
+                    "TrustedSigners": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Enabled": false,
+                      "Quantity": 1
+                    },
+                    "ForwardedValues": {
+                      "Cookies": {
+                        "Forward": "string",
+                        "WhitelistedNames": {
+                          "Items": [
+                            "string"
+                          ],
+                          "Quantity": 1
+                        }
+                      },
+                      "Headers": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      },
+                      "QueryString": false,
+                      "QueryStringCacheKeys": {
+                        "Items": [
+                          "string"
+                        ],
+                        "Quantity": 1
+                      }
+                    },
+                    "SmoothStreaming": false,
+                    "TrustedKeyGroups": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Enabled": false,
+                      "Quantity": 1
+                    },
+                    "RealtimeLogConfigArn": "string",
+                    "ViewerProtocolPolicy": "string",
+                    "OriginRequestPolicyId": "string",
+                    "FieldLevelEncryptionId": "string",
+                    "LambdaFunctionAssociations": {
+                      "Items": [
+                        {
+                          "EventType": "string",
+                          "IncludeBody": false,
+                          "LambdaFunctionARN": "string"
+                        }
+                      ],
+                      "Quantity": 1
+                    }
+                  }
+                ],
+                "Quantity": 1
+              },
+              "CallerReference": "string",
+              "DefaultRootObject": "string",
+              "ViewerCertificate": {
+                "Certificate": "string",
+                "IAMCertificateId": "string",
+                "SSLSupportMethod": "string",
+                "ACMCertificateArn": "string",
+                "CertificateSource": "string",
+                "MinimumProtocolVersion": "string",
+                "CloudFrontDefaultCertificate": false
+              },
+              "CustomErrorResponses": {
+                "Items": [
+                  {
+                    "ErrorCode": 1,
+                    "ResponseCode": "string",
+                    "ResponsePagePath": "string",
+                    "ErrorCachingMinTTL": 1
+                  }
+                ],
+                "Quantity": 1
+              },
+              "DefaultCacheBehavior": {
+                "MaxTTL": 1,
+                "MinTTL": 1,
+                "Compress": false,
+                "DefaultTTL": 1,
+                "CachePolicyId": "string",
+                "AllowedMethods": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1,
+                  "CachedMethods": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                },
+                "TargetOriginId": "string",
+                "TrustedSigners": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Enabled": false,
+                  "Quantity": 1
+                },
+                "ForwardedValues": {
+                  "Cookies": {
+                    "Forward": "string",
+                    "WhitelistedNames": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  },
+                  "Headers": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "QueryString": false,
+                  "QueryStringCacheKeys": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                },
+                "SmoothStreaming": false,
+                "TrustedKeyGroups": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Enabled": false,
+                  "Quantity": 1
+                },
+                "RealtimeLogConfigArn": "string",
+                "ViewerProtocolPolicy": "string",
+                "OriginRequestPolicyId": "string",
+                "FieldLevelEncryptionId": "string",
+                "LambdaFunctionAssociations": {
+                  "Items": [
+                    {
+                      "EventType": "string",
+                      "IncludeBody": false,
+                      "LambdaFunctionARN": "string"
+                    }
+                  ],
+                  "Quantity": 1
+                }
+              }
+            },
+            "ActiveTrustedSigners": {
+              "Items": [
+                {
+                  "KeyPairIds": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "AwsAccountNumber": "string"
+                }
+              ],
+              "Enabled": false,
+              "Quantity": 1
+            },
+            "ActiveTrustedKeyGroups": {
+              "Items": [
+                {
+                  "KeyGroupId": "string",
+                  "KeyPairIds": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                }
+              ],
+              "Enabled": false,
+              "Quantity": 1
+            },
+            "InProgressInvalidationBatches": 1
+          }
+        }
+      ]
+  UpdateFieldLevelEncryptionConfig:
+    description: |-
+      Update a field-level encryption configuration.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateFieldLevelEncryptionConfig.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string",
+          "FieldLevelEncryptionConfig": {
+            "Comment": "string",
+            "CallerReference": "string",
+            "QueryArgProfileConfig": {
+              "QueryArgProfiles": {
+                "Items": [
+                  {
+                    "QueryArg": "string",
+                    "ProfileId": "string"
+                  }
+                ],
+                "Quantity": 1
+              },
+              "ForwardWhenQueryArgProfileIsUnknown": false
+            },
+            "ContentTypeProfileConfig": {
+              "ContentTypeProfiles": {
+                "Items": [
+                  {
+                    "Format": "string",
+                    "ProfileId": "string",
+                    "ContentType": "string"
+                  }
+                ],
+                "Quantity": 1
+              },
+              "ForwardWhenContentTypeIsUnknown": false
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "FieldLevelEncryption": {
+            "Id": "string",
+            "LastModifiedTime": 1481289211.615,
+            "FieldLevelEncryptionConfig": {
+              "Comment": "string",
+              "CallerReference": "string",
+              "QueryArgProfileConfig": {
+                "QueryArgProfiles": {
+                  "Items": [
+                    {
+                      "QueryArg": "string",
+                      "ProfileId": "string"
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "ForwardWhenQueryArgProfileIsUnknown": false
+              },
+              "ContentTypeProfileConfig": {
+                "ContentTypeProfiles": {
+                  "Items": [
+                    {
+                      "Format": "string",
+                      "ProfileId": "string",
+                      "ContentType": "string"
+                    }
+                  ],
+                  "Quantity": 1
+                },
+                "ForwardWhenContentTypeIsUnknown": false
+              }
+            }
+          }
+        }
+      ]
+  UpdateFieldLevelEncryptionProfile:
+    description: |-
+      Update a field-level encryption profile.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateFieldLevelEncryptionProfile.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string",
+          "FieldLevelEncryptionProfileConfig": {
+            "Name": "string",
+            "Comment": "string",
+            "CallerReference": "string",
+            "EncryptionEntities": {
+              "Items": [
+                {
+                  "ProviderId": "string",
+                  "PublicKeyId": "string",
+                  "FieldPatterns": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  }
+                }
+              ],
+              "Quantity": 1
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "FieldLevelEncryptionProfile": {
+            "Id": "string",
+            "LastModifiedTime": 1481289211.615,
+            "FieldLevelEncryptionProfileConfig": {
+              "Name": "string",
+              "Comment": "string",
+              "CallerReference": "string",
+              "EncryptionEntities": {
+                "Items": [
+                  {
+                    "ProviderId": "string",
+                    "PublicKeyId": "string",
+                    "FieldPatterns": {
+                      "Items": [
+                        "string"
+                      ],
+                      "Quantity": 1
+                    }
+                  }
+                ],
+                "Quantity": 1
+              }
+            }
+          }
+        }
+      ]
+  UpdateKeyGroup:
+    description: |-
+      Updates a key group.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateKeyGroup.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string",
+          "KeyGroupConfig": {
+            "Name": "string",
+            "Items": [
+              "string"
+            ],
+            "Comment": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "KeyGroup": {
+            "Id": "string",
+            "KeyGroupConfig": {
+              "Name": "string",
+              "Items": [
+                "string"
+              ],
+              "Comment": "string"
+            },
+            "LastModifiedTime": 1481289211.615
+          }
+        }
+      ]
+  UpdateOriginRequestPolicy:
+    description: |-
+      Updates an origin request policy configuration.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateOriginRequestPolicy.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string",
+          "OriginRequestPolicyConfig": {
+            "Name": "string",
+            "Comment": "string",
+            "CookiesConfig": {
+              "Cookies": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "CookieBehavior": "string"
+            },
+            "HeadersConfig": {
+              "Headers": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "HeaderBehavior": "string"
+            },
+            "QueryStringsConfig": {
+              "QueryStrings": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "QueryStringBehavior": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "OriginRequestPolicy": {
+            "Id": "string",
+            "LastModifiedTime": 1481289211.615,
+            "OriginRequestPolicyConfig": {
+              "Name": "string",
+              "Comment": "string",
+              "CookiesConfig": {
+                "Cookies": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "CookieBehavior": "string"
+              },
+              "HeadersConfig": {
+                "Headers": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "HeaderBehavior": "string"
+              },
+              "QueryStringsConfig": {
+                "QueryStrings": {
+                  "Items": [
+                    "string"
+                  ],
+                  "Quantity": 1
+                },
+                "QueryStringBehavior": "string"
+              }
+            }
+          }
+        }
+      ]
+  UpdatePublicKey:
+    description: |-
+      Update public key information. Note that the only value you can change is the comment.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdatePublicKey.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string",
+          "PublicKeyConfig": {
+            "Name": "string",
+            "Comment": "string",
+            "EncodedKey": "string",
+            "CallerReference": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "PublicKey": {
+            "Id": "string",
+            "CreatedTime": 1481289211.615,
+            "PublicKeyConfig": {
+              "Name": "string",
+              "Comment": "string",
+              "EncodedKey": "string",
+              "CallerReference": "string"
+            }
+          }
+        }
+      ]
+  UpdateRealtimeLogConfig:
+    description: |-
+      Updates a real-time log configuration.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateRealtimeLogConfig.html
+    example:
+      inputs: [
+        {
+          "ARN": "string",
+          "Name": "string",
+          "Fields": [
+            "string"
+          ],
+          "EndPoints": [
+            {
+              "StreamType": "string",
+              "KinesisStreamConfig": {
+                "RoleARN": "string",
+                "StreamARN": "string"
+              }
+            }
+          ],
+          "SamplingRate": 1
+        }
+      ]
+      outputs: [
+        {
+          "RealtimeLogConfig": {
+            "ARN": "string",
+            "Name": "string",
+            "Fields": [
+              "string"
+            ],
+            "EndPoints": [
+              {
+                "StreamType": "string",
+                "KinesisStreamConfig": {
+                  "RoleARN": "string",
+                  "StreamARN": "string"
+                }
+              }
+            ],
+            "SamplingRate": 1
+          }
+        }
+      ]
+  UpdateStreamingDistribution:
+    description: |-
+      Update a streaming distribution.
+    versions:
+      from: 2020.5.31
+    link: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateStreamingDistribution.html
+    example:
+      inputs: [
+        {
+          "Id": "string",
+          "IfMatch": "string",
+          "StreamingDistributionConfig": {
+            "Aliases": {
+              "Items": [
+                "string"
+              ],
+              "Quantity": 1
+            },
+            "Comment": "string",
+            "Enabled": false,
+            "Logging": {
+              "Bucket": "string",
+              "Prefix": "string",
+              "Enabled": false
+            },
+            "S3Origin": {
+              "DomainName": "string",
+              "OriginAccessIdentity": "string"
+            },
+            "PriceClass": "string",
+            "TrustedSigners": {
+              "Items": [
+                "string"
+              ],
+              "Enabled": false,
+              "Quantity": 1
+            },
+            "CallerReference": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ETag": "string",
+          "StreamingDistribution": {
+            "Id": "string",
+            "ARN": "string",
+            "Status": "string",
+            "DomainName": "string",
+            "LastModifiedTime": 1481289211.615,
+            "ActiveTrustedSigners": {
+              "Items": [
+                {
+                  "KeyPairIds": {
+                    "Items": [
+                      "string"
+                    ],
+                    "Quantity": 1
+                  },
+                  "AwsAccountNumber": "string"
+                }
+              ],
+              "Enabled": false,
+              "Quantity": 1
+            },
+            "StreamingDistributionConfig": {
+              "Aliases": {
+                "Items": [
+                  "string"
+                ],
+                "Quantity": 1
+              },
+              "Comment": "string",
+              "Enabled": false,
+              "Logging": {
+                "Bucket": "string",
+                "Prefix": "string",
+                "Enabled": false
+              },
+              "S3Origin": {
+                "DomainName": "string",
+                "OriginAccessIdentity": "string"
+              },
+              "PriceClass": "string",
+              "TrustedSigners": {
+                "Items": [
+                  "string"
+                ],
+                "Enabled": false,
+                "Quantity": 1
+              },
+              "CallerReference": "string"
+            }
+          }
+        }
+      ]

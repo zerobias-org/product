@@ -1,0 +1,3619 @@
+Product:
+  name: AWS Cost Explorer Service
+  versions: [2016.10.20,2017.1.6,2017.10.25]
+  package: amazon.aws.costexplorerservice
+  description: |-
+    AWS Cost Explorer Service
+  link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CreateBudgetAction:
+    description: |-
+      Creates a budget action.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_CreateBudgetAction.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "ActionType": "string",
+          "BudgetName": "string",
+          "Definition": {
+            "IamActionDefinition": {
+              "Roles": [
+                "string"
+              ],
+              "Users": [
+                "string"
+              ],
+              "Groups": [
+                "string"
+              ],
+              "PolicyArn": "string"
+            },
+            "ScpActionDefinition": {
+              "PolicyId": "string",
+              "TargetIds": [
+                "string"
+              ]
+            },
+            "SsmActionDefinition": {
+              "Region": "string",
+              "InstanceIds": [
+                "string"
+              ],
+              "ActionSubType": "string"
+            }
+          },
+          "Subscribers": [
+            {
+              "Address": "string",
+              "SubscriptionType": "string"
+            }
+          ],
+          "ApprovalModel": "string",
+          "ActionThreshold": {
+            "ActionThresholdType": "string",
+            "ActionThresholdValue": 0.1
+          },
+          "ExecutionRoleArn": "string",
+          "NotificationType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ActionId": "string",
+          "AccountId": "string",
+          "BudgetName": "string"
+        }
+      ]
+  CreateBudget:
+    description: |-
+      Creates a budget and, if included, notifications and subscribers.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_CreateBudget.html
+    example:
+      inputs: [
+        {
+          "Budget": {
+            "TimeUnit": "string",
+            "CostTypes": {
+              "IncludeTax": false,
+              "UseBlended": false,
+              "UseAmortized": false,
+              "IncludeCredit": false,
+              "IncludeRefund": false,
+              "IncludeSupport": false,
+              "IncludeUpfront": false,
+              "IncludeDiscount": false,
+              "IncludeRecurring": false,
+              "IncludeSubscription": false,
+              "IncludeOtherSubscription": false
+            },
+            "BudgetName": "string",
+            "BudgetType": "string",
+            "TimePeriod": {
+              "End": 1481289211.615,
+              "Start": 1481289211.615
+            },
+            "BudgetLimit": {
+              "Unit": "string",
+              "Amount": "string"
+            },
+            "CostFilters": {
+              "string": [
+                "string"
+              ]
+            },
+            "CalculatedSpend": {
+              "ActualSpend": {
+                "Unit": "string",
+                "Amount": "string"
+              },
+              "ForecastedSpend": {
+                "Unit": "string",
+                "Amount": "string"
+              }
+            },
+            "LastUpdatedTime": 1481289211.615,
+            "PlannedBudgetLimits": {
+              "string": {
+                "Unit": "string",
+                "Amount": "string"
+              }
+            }
+          },
+          "AccountId": "string",
+          "NotificationsWithSubscribers": [
+            {
+              "Subscribers": [
+                {
+                  "Address": "string",
+                  "SubscriptionType": "string"
+                }
+              ],
+              "Notification": {
+                "Threshold": 0.1,
+                "ThresholdType": "string",
+                "NotificationType": "string",
+                "NotificationState": "string",
+                "ComparisonOperator": "string"
+              }
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateNotification:
+    description: |-
+      Creates a notification. You must create the budget before you create the associated notification.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_CreateNotification.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "BudgetName": "string",
+          "Subscribers": [
+            {
+              "Address": "string",
+              "SubscriptionType": "string"
+            }
+          ],
+          "Notification": {
+            "Threshold": 0.1,
+            "ThresholdType": "string",
+            "NotificationType": "string",
+            "NotificationState": "string",
+            "ComparisonOperator": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateSubscriber:
+    description: |-
+      Creates a subscriber. You must create the associated budget and notification before you create the subscriber.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_CreateSubscriber.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "BudgetName": "string",
+          "Subscriber": {
+            "Address": "string",
+            "SubscriptionType": "string"
+          },
+          "Notification": {
+            "Threshold": 0.1,
+            "ThresholdType": "string",
+            "NotificationType": "string",
+            "NotificationState": "string",
+            "ComparisonOperator": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteBudgetAction:
+    description: |-
+      Deletes a budget action.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DeleteBudgetAction.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Action": {
+            "Status": "string",
+            "ActionId": "string",
+            "ActionType": "string",
+            "BudgetName": "string",
+            "Definition": {
+              "IamActionDefinition": {
+                "Roles": [
+                  "string"
+                ],
+                "Users": [
+                  "string"
+                ],
+                "Groups": [
+                  "string"
+                ],
+                "PolicyArn": "string"
+              },
+              "ScpActionDefinition": {
+                "PolicyId": "string",
+                "TargetIds": [
+                  "string"
+                ]
+              },
+              "SsmActionDefinition": {
+                "Region": "string",
+                "InstanceIds": [
+                  "string"
+                ],
+                "ActionSubType": "string"
+              }
+            },
+            "Subscribers": [
+              {
+                "Address": "string",
+                "SubscriptionType": "string"
+              }
+            ],
+            "ApprovalModel": "string",
+            "ActionThreshold": {
+              "ActionThresholdType": "string",
+              "ActionThresholdValue": 0.1
+            },
+            "ExecutionRoleArn": "string",
+            "NotificationType": "string"
+          },
+          "AccountId": "string",
+          "BudgetName": "string"
+        }
+      ]
+  DeleteBudget:
+    description: |-
+      Deletes a budget. You can delete your budget at any time.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DeleteBudget.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "BudgetName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteNotification:
+    description: |-
+      Deletes a notification.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DeleteNotification.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "BudgetName": "string",
+          "Notification": {
+            "Threshold": 0.1,
+            "ThresholdType": "string",
+            "NotificationType": "string",
+            "NotificationState": "string",
+            "ComparisonOperator": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteSubscriber:
+    description: |-
+      Deletes a subscriber.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DeleteSubscriber.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "BudgetName": "string",
+          "Subscriber": {
+            "Address": "string",
+            "SubscriptionType": "string"
+          },
+          "Notification": {
+            "Threshold": 0.1,
+            "ThresholdType": "string",
+            "NotificationType": "string",
+            "NotificationState": "string",
+            "ComparisonOperator": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeBudgetActionHistories:
+    description: |-
+      Describes a budget action history detail.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DescribeBudgetActionHistories.html
+    example:
+      inputs: [
+        {
+          "ActionId": "string",
+          "AccountId": "string",
+          "NextToken": "string",
+          "BudgetName": "string",
+          "MaxResults": 1,
+          "TimePeriod": {
+            "End": 1481289211.615,
+            "Start": 1481289211.615
+          }
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ActionHistories": [
+            {
+              "Status": "string",
+              "EventType": "string",
+              "Timestamp": 1481289211.615,
+              "ActionHistoryDetails": {
+                "Action": {
+                  "Status": "string",
+                  "ActionId": "string",
+                  "ActionType": "string",
+                  "BudgetName": "string",
+                  "Definition": {
+                    "IamActionDefinition": {
+                      "Roles": [
+                        "string"
+                      ],
+                      "Users": [
+                        "string"
+                      ],
+                      "Groups": [
+                        "string"
+                      ],
+                      "PolicyArn": "string"
+                    },
+                    "ScpActionDefinition": {
+                      "PolicyId": "string",
+                      "TargetIds": [
+                        "string"
+                      ]
+                    },
+                    "SsmActionDefinition": {
+                      "Region": "string",
+                      "InstanceIds": [
+                        "string"
+                      ],
+                      "ActionSubType": "string"
+                    }
+                  },
+                  "Subscribers": [
+                    {
+                      "Address": "string",
+                      "SubscriptionType": "string"
+                    }
+                  ],
+                  "ApprovalModel": "string",
+                  "ActionThreshold": {
+                    "ActionThresholdType": "string",
+                    "ActionThresholdValue": 0.1
+                  },
+                  "ExecutionRoleArn": "string",
+                  "NotificationType": "string"
+                },
+                "Message": "string"
+              }
+            }
+          ]
+        }
+      ]
+  DescribeBudgetAction:
+    description: |-
+      Describes a budget action detail.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DescribeBudgetAction.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Action": {
+            "Status": "string",
+            "ActionId": "string",
+            "ActionType": "string",
+            "BudgetName": "string",
+            "Definition": {
+              "IamActionDefinition": {
+                "Roles": [
+                  "string"
+                ],
+                "Users": [
+                  "string"
+                ],
+                "Groups": [
+                  "string"
+                ],
+                "PolicyArn": "string"
+              },
+              "ScpActionDefinition": {
+                "PolicyId": "string",
+                "TargetIds": [
+                  "string"
+                ]
+              },
+              "SsmActionDefinition": {
+                "Region": "string",
+                "InstanceIds": [
+                  "string"
+                ],
+                "ActionSubType": "string"
+              }
+            },
+            "Subscribers": [
+              {
+                "Address": "string",
+                "SubscriptionType": "string"
+              }
+            ],
+            "ApprovalModel": "string",
+            "ActionThreshold": {
+              "ActionThresholdType": "string",
+              "ActionThresholdValue": 0.1
+            },
+            "ExecutionRoleArn": "string",
+            "NotificationType": "string"
+          },
+          "AccountId": "string",
+          "BudgetName": "string"
+        }
+      ]
+  DescribeBudgetActionsForAccount:
+    description: |-
+      Describes all of the budget actions for an account.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DescribeBudgetActionsForAccount.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Actions": [
+            {
+              "Status": "string",
+              "ActionId": "string",
+              "ActionType": "string",
+              "BudgetName": "string",
+              "Definition": {
+                "IamActionDefinition": {
+                  "Roles": [
+                    "string"
+                  ],
+                  "Users": [
+                    "string"
+                  ],
+                  "Groups": [
+                    "string"
+                  ],
+                  "PolicyArn": "string"
+                },
+                "ScpActionDefinition": {
+                  "PolicyId": "string",
+                  "TargetIds": [
+                    "string"
+                  ]
+                },
+                "SsmActionDefinition": {
+                  "Region": "string",
+                  "InstanceIds": [
+                    "string"
+                  ],
+                  "ActionSubType": "string"
+                }
+              },
+              "Subscribers": [
+                {
+                  "Address": "string",
+                  "SubscriptionType": "string"
+                }
+              ],
+              "ApprovalModel": "string",
+              "ActionThreshold": {
+                "ActionThresholdType": "string",
+                "ActionThresholdValue": 0.1
+              },
+              "ExecutionRoleArn": "string",
+              "NotificationType": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeBudgetActionsForBudget:
+    description: |-
+      Describes all of the budget actions for a budget.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DescribeBudgetActionsForBudget.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "NextToken": "string",
+          "BudgetName": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Actions": [
+            {
+              "Status": "string",
+              "ActionId": "string",
+              "ActionType": "string",
+              "BudgetName": "string",
+              "Definition": {
+                "IamActionDefinition": {
+                  "Roles": [
+                    "string"
+                  ],
+                  "Users": [
+                    "string"
+                  ],
+                  "Groups": [
+                    "string"
+                  ],
+                  "PolicyArn": "string"
+                },
+                "ScpActionDefinition": {
+                  "PolicyId": "string",
+                  "TargetIds": [
+                    "string"
+                  ]
+                },
+                "SsmActionDefinition": {
+                  "Region": "string",
+                  "InstanceIds": [
+                    "string"
+                  ],
+                  "ActionSubType": "string"
+                }
+              },
+              "Subscribers": [
+                {
+                  "Address": "string",
+                  "SubscriptionType": "string"
+                }
+              ],
+              "ApprovalModel": "string",
+              "ActionThreshold": {
+                "ActionThresholdType": "string",
+                "ActionThresholdValue": 0.1
+              },
+              "ExecutionRoleArn": "string",
+              "NotificationType": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeBudget:
+    description: |-
+      Describes a budget.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DescribeBudget.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "BudgetName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Budget": {
+            "TimeUnit": "string",
+            "CostTypes": {
+              "IncludeTax": false,
+              "UseBlended": false,
+              "UseAmortized": false,
+              "IncludeCredit": false,
+              "IncludeRefund": false,
+              "IncludeSupport": false,
+              "IncludeUpfront": false,
+              "IncludeDiscount": false,
+              "IncludeRecurring": false,
+              "IncludeSubscription": false,
+              "IncludeOtherSubscription": false
+            },
+            "BudgetName": "string",
+            "BudgetType": "string",
+            "TimePeriod": {
+              "End": 1481289211.615,
+              "Start": 1481289211.615
+            },
+            "BudgetLimit": {
+              "Unit": "string",
+              "Amount": "string"
+            },
+            "CostFilters": {
+              "string": [
+                "string"
+              ]
+            },
+            "CalculatedSpend": {
+              "ActualSpend": {
+                "Unit": "string",
+                "Amount": "string"
+              },
+              "ForecastedSpend": {
+                "Unit": "string",
+                "Amount": "string"
+              }
+            },
+            "LastUpdatedTime": 1481289211.615,
+            "PlannedBudgetLimits": {
+              "string": {
+                "Unit": "string",
+                "Amount": "string"
+              }
+            }
+          }
+        }
+      ]
+  DescribeBudgetPerformanceHistory:
+    description: |-
+      Describes the history for DAILY, MONTHLY, and QUARTERLY budgets. Budget history isn't available for ANNUAL budgets.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DescribeBudgetPerformanceHistory.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "NextToken": "string",
+          "BudgetName": "string",
+          "MaxResults": 1,
+          "TimePeriod": {
+            "End": 1481289211.615,
+            "Start": 1481289211.615
+          }
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "BudgetPerformanceHistory": {
+            "TimeUnit": "string",
+            "CostTypes": {
+              "IncludeTax": false,
+              "UseBlended": false,
+              "UseAmortized": false,
+              "IncludeCredit": false,
+              "IncludeRefund": false,
+              "IncludeSupport": false,
+              "IncludeUpfront": false,
+              "IncludeDiscount": false,
+              "IncludeRecurring": false,
+              "IncludeSubscription": false,
+              "IncludeOtherSubscription": false
+            },
+            "BudgetName": "string",
+            "BudgetType": "string",
+            "CostFilters": {
+              "string": [
+                "string"
+              ]
+            },
+            "BudgetedAndActualAmountsList": [
+              {
+                "TimePeriod": {
+                  "End": 1481289211.615,
+                  "Start": 1481289211.615
+                },
+                "ActualAmount": {
+                  "Unit": "string",
+                  "Amount": "string"
+                },
+                "BudgetedAmount": {
+                  "Unit": "string",
+                  "Amount": "string"
+                }
+              }
+            ]
+          }
+        }
+      ]
+  DescribeBudgets:
+    description: |-
+      Lists the budgets that are associated with an account.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DescribeBudgets.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Budgets": [
+            {
+              "TimeUnit": "string",
+              "CostTypes": {
+                "IncludeTax": false,
+                "UseBlended": false,
+                "UseAmortized": false,
+                "IncludeCredit": false,
+                "IncludeRefund": false,
+                "IncludeSupport": false,
+                "IncludeUpfront": false,
+                "IncludeDiscount": false,
+                "IncludeRecurring": false,
+                "IncludeSubscription": false,
+                "IncludeOtherSubscription": false
+              },
+              "BudgetName": "string",
+              "BudgetType": "string",
+              "TimePeriod": {
+                "End": 1481289211.615,
+                "Start": 1481289211.615
+              },
+              "BudgetLimit": {
+                "Unit": "string",
+                "Amount": "string"
+              },
+              "CostFilters": {
+                "string": [
+                  "string"
+                ]
+              },
+              "CalculatedSpend": {
+                "ActualSpend": {
+                  "Unit": "string",
+                  "Amount": "string"
+                },
+                "ForecastedSpend": {
+                  "Unit": "string",
+                  "Amount": "string"
+                }
+              },
+              "LastUpdatedTime": 1481289211.615,
+              "PlannedBudgetLimits": {
+                "string": {
+                  "Unit": "string",
+                  "Amount": "string"
+                }
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DescribeNotificationsForBudget:
+    description: |-
+      Lists the notifications that are associated with a budget.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DescribeNotificationsForBudget.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "NextToken": "string",
+          "BudgetName": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Notifications": [
+            {
+              "Threshold": 0.1,
+              "ThresholdType": "string",
+              "NotificationType": "string",
+              "NotificationState": "string",
+              "ComparisonOperator": "string"
+            }
+          ]
+        }
+      ]
+  DescribeSubscribersForNotification:
+    description: |-
+      Lists the subscribers that are associated with a notification.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DescribeSubscribersForNotification.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "NextToken": "string",
+          "BudgetName": "string",
+          "MaxResults": 1,
+          "Notification": {
+            "Threshold": 0.1,
+            "ThresholdType": "string",
+            "NotificationType": "string",
+            "NotificationState": "string",
+            "ComparisonOperator": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Subscribers": [
+            {
+              "Address": "string",
+              "SubscriptionType": "string"
+            }
+          ]
+        }
+      ]
+  ExecuteBudgetAction:
+    description: |-
+      Executes a budget action.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_ExecuteBudgetAction.html
+    example:
+      inputs: [
+        {
+          "ActionId": "string",
+          "AccountId": "string",
+          "BudgetName": "string",
+          "ExecutionType": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateBudgetAction:
+    description: |-
+      Updates a budget action.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_UpdateBudgetAction.html
+    example:
+      inputs: [
+        {
+          "ActionId": "string",
+          "AccountId": "string",
+          "BudgetName": "string",
+          "Definition": {
+            "IamActionDefinition": {
+              "Roles": [
+                "string"
+              ],
+              "Users": [
+                "string"
+              ],
+              "Groups": [
+                "string"
+              ],
+              "PolicyArn": "string"
+            },
+            "ScpActionDefinition": {
+              "PolicyId": "string",
+              "TargetIds": [
+                "string"
+              ]
+            },
+            "SsmActionDefinition": {
+              "Region": "string",
+              "InstanceIds": [
+                "string"
+              ],
+              "ActionSubType": "string"
+            }
+          },
+          "Subscribers": [
+            {
+              "Address": "string",
+              "SubscriptionType": "string"
+            }
+          ],
+          "ApprovalModel": "string",
+          "ActionThreshold": {
+            "ActionThresholdType": "string",
+            "ActionThresholdValue": 0.1
+          },
+          "ExecutionRoleArn": "string",
+          "NotificationType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "AccountId": "string",
+          "NewAction": {
+            "Status": "string",
+            "ActionId": "string",
+            "ActionType": "string",
+            "BudgetName": "string",
+            "Definition": {
+              "IamActionDefinition": {
+                "Roles": [
+                  "string"
+                ],
+                "Users": [
+                  "string"
+                ],
+                "Groups": [
+                  "string"
+                ],
+                "PolicyArn": "string"
+              },
+              "ScpActionDefinition": {
+                "PolicyId": "string",
+                "TargetIds": [
+                  "string"
+                ]
+              },
+              "SsmActionDefinition": {
+                "Region": "string",
+                "InstanceIds": [
+                  "string"
+                ],
+                "ActionSubType": "string"
+              }
+            },
+            "Subscribers": [
+              {
+                "Address": "string",
+                "SubscriptionType": "string"
+              }
+            ],
+            "ApprovalModel": "string",
+            "ActionThreshold": {
+              "ActionThresholdType": "string",
+              "ActionThresholdValue": 0.1
+            },
+            "ExecutionRoleArn": "string",
+            "NotificationType": "string"
+          },
+          "OldAction": {
+            "Status": "string",
+            "ActionId": "string",
+            "ActionType": "string",
+            "BudgetName": "string",
+            "Definition": {
+              "IamActionDefinition": {
+                "Roles": [
+                  "string"
+                ],
+                "Users": [
+                  "string"
+                ],
+                "Groups": [
+                  "string"
+                ],
+                "PolicyArn": "string"
+              },
+              "ScpActionDefinition": {
+                "PolicyId": "string",
+                "TargetIds": [
+                  "string"
+                ]
+              },
+              "SsmActionDefinition": {
+                "Region": "string",
+                "InstanceIds": [
+                  "string"
+                ],
+                "ActionSubType": "string"
+              }
+            },
+            "Subscribers": [
+              {
+                "Address": "string",
+                "SubscriptionType": "string"
+              }
+            ],
+            "ApprovalModel": "string",
+            "ActionThreshold": {
+              "ActionThresholdType": "string",
+              "ActionThresholdValue": 0.1
+            },
+            "ExecutionRoleArn": "string",
+            "NotificationType": "string"
+          },
+          "BudgetName": "string"
+        }
+      ]
+  UpdateBudget:
+    description: |-
+      Updates a budget. You can change every part of a budget except for the budgetName and the calculatedSpend. When you modify a budget, the calculatedSpend drops to zero until AWS has new usage data to use for forecasting.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_UpdateBudget.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "NewBudget": {
+            "TimeUnit": "string",
+            "CostTypes": {
+              "IncludeTax": false,
+              "UseBlended": false,
+              "UseAmortized": false,
+              "IncludeCredit": false,
+              "IncludeRefund": false,
+              "IncludeSupport": false,
+              "IncludeUpfront": false,
+              "IncludeDiscount": false,
+              "IncludeRecurring": false,
+              "IncludeSubscription": false,
+              "IncludeOtherSubscription": false
+            },
+            "BudgetName": "string",
+            "BudgetType": "string",
+            "TimePeriod": {
+              "End": 1481289211.615,
+              "Start": 1481289211.615
+            },
+            "BudgetLimit": {
+              "Unit": "string",
+              "Amount": "string"
+            },
+            "CostFilters": {
+              "string": [
+                "string"
+              ]
+            },
+            "CalculatedSpend": {
+              "ActualSpend": {
+                "Unit": "string",
+                "Amount": "string"
+              },
+              "ForecastedSpend": {
+                "Unit": "string",
+                "Amount": "string"
+              }
+            },
+            "LastUpdatedTime": 1481289211.615,
+            "PlannedBudgetLimits": {
+              "string": {
+                "Unit": "string",
+                "Amount": "string"
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateNotification:
+    description: |-
+      Updates a notification.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_UpdateNotification.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "BudgetName": "string",
+          "NewNotification": {
+            "Threshold": 0.1,
+            "ThresholdType": "string",
+            "NotificationType": "string",
+            "NotificationState": "string",
+            "ComparisonOperator": "string"
+          },
+          "OldNotification": {
+            "Threshold": 0.1,
+            "ThresholdType": "string",
+            "NotificationType": "string",
+            "NotificationState": "string",
+            "ComparisonOperator": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateSubscriber:
+    description: |-
+      Updates a subscriber.
+    versions:
+      from: 2016.10.20
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_UpdateSubscriber.html
+    example:
+      inputs: [
+        {
+          "AccountId": "string",
+          "BudgetName": "string",
+          "Notification": {
+            "Threshold": 0.1,
+            "ThresholdType": "string",
+            "NotificationType": "string",
+            "NotificationState": "string",
+            "ComparisonOperator": "string"
+          },
+          "NewSubscriber": {
+            "Address": "string",
+            "SubscriptionType": "string"
+          },
+          "OldSubscriber": {
+            "Address": "string",
+            "SubscriptionType": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateAnomalyMonitor:
+    description: |-
+      Creates a new cost anomaly detection monitor with the requested type and monitor specification.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CreateAnomalyMonitor.html
+    example:
+      inputs: [
+        {
+          "AnomalyMonitor": {
+            "MonitorArn": "string",
+            "MonitorName": "string",
+            "MonitorType": "string",
+            "CreationDate": "string",
+            "LastUpdatedDate": "string",
+            "MonitorDimension": "string",
+            "LastEvaluatedDate": "string",
+            "MonitorSpecification": {
+              "Or": [
+                "Expression"
+              ],
+              "And": [
+                "Expression"
+              ],
+              "Not": "Expression",
+              "Tags": {
+                "Key": "string",
+                "Values": [
+                  "string"
+                ],
+                "MatchOptions": [
+                  "string"
+                ]
+              },
+              "Dimensions": {
+                "Key": "string",
+                "Values": [
+                  "string"
+                ],
+                "MatchOptions": [
+                  "string"
+                ]
+              },
+              "CostCategories": {
+                "Key": "string",
+                "Values": [
+                  "string"
+                ],
+                "MatchOptions": [
+                  "string"
+                ]
+              }
+            },
+            "DimensionalValueCount": "number"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "MonitorArn": "string"
+        }
+      ]
+  CreateAnomalySubscription:
+    description: |-
+      Adds a subscription to a cost anomaly detection monitor. You can use each subscription to define subscribers with email or SNS notifications. Email subscribers can set a dollar threshold and a time frequency for receiving notifications.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CreateAnomalySubscription.html
+    example:
+      inputs: [
+        {
+          "AnomalySubscription": {
+            "AccountId": "string",
+            "Frequency": "string",
+            "Threshold": "number",
+            "Subscribers": [
+              {
+                "Type": "string",
+                "Status": "string",
+                "Address": "string"
+              }
+            ],
+            "MonitorArnList": [
+              "string"
+            ],
+            "SubscriptionArn": "string",
+            "SubscriptionName": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "SubscriptionArn": "string"
+        }
+      ]
+  CreateCostCategoryDefinition:
+    description: |-
+      Creates a new Cost Category with the requested name and rules.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CreateCostCategoryDefinition.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Rules": [
+            {
+              "Rule": {
+                "Or": [
+                  "Expression"
+                ],
+                "And": [
+                  "Expression"
+                ],
+                "Not": "Expression",
+                "Tags": {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ],
+                  "MatchOptions": [
+                    "string"
+                  ]
+                },
+                "Dimensions": {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ],
+                  "MatchOptions": [
+                    "string"
+                  ]
+                },
+                "CostCategories": {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ],
+                  "MatchOptions": [
+                    "string"
+                  ]
+                }
+              },
+              "Type": "string",
+              "Value": "string",
+              "InheritedValue": {
+                "DimensionKey": "string",
+                "DimensionName": "string"
+              }
+            }
+          ],
+          "RuleVersion": "string",
+          "DefaultValue": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EffectiveStart": "string",
+          "CostCategoryArn": "string"
+        }
+      ]
+  DeleteReportDefinition:
+    description: |-
+      Deletes the specified report.
+    versions:
+      from: 2017.1.6
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_cur_DeleteReportDefinition.html
+    example:
+      inputs: [
+        {
+          "ReportName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ResponseMessage": "string"
+        }
+      ]
+  DescribeReportDefinitions:
+    description: |-
+      Lists the AWS Cost and Usage reports available to this account.
+    versions:
+      from: 2017.1.6
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_cur_DescribeReportDefinitions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ReportDefinitions": [
+            {
+              "Format": "string",
+              "S3Bucket": "string",
+              "S3Prefix": "string",
+              "S3Region": "string",
+              "TimeUnit": "string",
+              "ReportName": "string",
+              "Compression": "string",
+              "BillingViewArn": "string",
+              "ReportVersioning": "string",
+              "AdditionalArtifacts": [
+                "string"
+              ],
+              "RefreshClosedReports": false,
+              "AdditionalSchemaElements": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  ModifyReportDefinition:
+    description: |-
+      Allows you to programatically update your report preferences.
+    versions:
+      from: 2017.1.6
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_cur_ModifyReportDefinition.html
+    example:
+      inputs: [
+        {
+          "ReportName": "string",
+          "ReportDefinition": {
+            "Format": "string",
+            "S3Bucket": "string",
+            "S3Prefix": "string",
+            "S3Region": "string",
+            "TimeUnit": "string",
+            "ReportName": "string",
+            "Compression": "string",
+            "BillingViewArn": "string",
+            "ReportVersioning": "string",
+            "AdditionalArtifacts": [
+              "string"
+            ],
+            "RefreshClosedReports": false,
+            "AdditionalSchemaElements": [
+              "string"
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutReportDefinition:
+    description: |-
+      Creates a new report using the description that you provide.
+    versions:
+      from: 2017.1.6
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_cur_PutReportDefinition.html
+    example:
+      inputs: [
+        {
+          "ReportDefinition": {
+            "Format": "string",
+            "S3Bucket": "string",
+            "S3Prefix": "string",
+            "S3Region": "string",
+            "TimeUnit": "string",
+            "ReportName": "string",
+            "Compression": "string",
+            "BillingViewArn": "string",
+            "ReportVersioning": "string",
+            "AdditionalArtifacts": [
+              "string"
+            ],
+            "RefreshClosedReports": false,
+            "AdditionalSchemaElements": [
+              "string"
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteAnomalyMonitor:
+    description: |-
+      Deletes a cost anomaly monitor.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_DeleteAnomalyMonitor.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteAnomalySubscription:
+    description: |-
+      Deletes a cost anomaly subscription.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_DeleteAnomalySubscription.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteCostCategoryDefinition:
+    description: |-
+      Deletes a Cost Category. Expenses from this month going forward will no longer be categorized with this Cost Category.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_DeleteCostCategoryDefinition.html
+    example:
+      inputs: [
+        {
+          "CostCategoryArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EffectiveEnd": "string",
+          "CostCategoryArn": "string"
+        }
+      ]
+  DescribeCostCategoryDefinition:
+    description: |-
+      Returns the name, ARN, rules, definition, and effective dates of a Cost Category that's defined in the account.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_DescribeCostCategoryDefinition.html
+    example:
+      inputs: [
+        {
+          "EffectiveOn": "string",
+          "CostCategoryArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CostCategory": {
+            "Name": "string",
+            "Rules": [
+              {
+                "Rule": {
+                  "Or": [
+                    "Expression"
+                  ],
+                  "And": [
+                    "Expression"
+                  ],
+                  "Not": "Expression",
+                  "Tags": {
+                    "Key": "string",
+                    "Values": [
+                      "string"
+                    ],
+                    "MatchOptions": [
+                      "string"
+                    ]
+                  },
+                  "Dimensions": {
+                    "Key": "string",
+                    "Values": [
+                      "string"
+                    ],
+                    "MatchOptions": [
+                      "string"
+                    ]
+                  },
+                  "CostCategories": {
+                    "Key": "string",
+                    "Values": [
+                      "string"
+                    ],
+                    "MatchOptions": [
+                      "string"
+                    ]
+                  }
+                },
+                "Type": "string",
+                "Value": "string",
+                "InheritedValue": {
+                  "DimensionKey": "string",
+                  "DimensionName": "string"
+                }
+              }
+            ],
+            "RuleVersion": "string",
+            "DefaultValue": "string",
+            "EffectiveEnd": "string",
+            "EffectiveStart": "string",
+            "CostCategoryArn": "string",
+            "ProcessingStatus": [
+              {
+                "Status": "string",
+                "Component": "string"
+              }
+            ]
+          }
+        }
+      ]
+  GetAnomalies:
+    description: |-
+      Retrieves all of the cost anomalies detected on your account, during the time period specified by the DateInterval object.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetAnomalies.html
+    example:
+      inputs: [
+        {
+          "Feedback": "string",
+          "MaxResults": "number",
+          "MonitorArn": "string",
+          "TotalImpact": {
+            "EndValue": "number",
+            "StartValue": "number",
+            "NumericOperator": "string"
+          },
+          "DateInterval": {
+            "EndDate": "string",
+            "StartDate": "string"
+          },
+          "NextPageToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Anomalies": [
+            {
+              "Impact": {
+                "MaxImpact": "number",
+                "TotalImpact": "number"
+              },
+              "Feedback": "string",
+              "AnomalyId": "string",
+              "MonitorArn": "string",
+              "RootCauses": [
+                {
+                  "Region": "string",
+                  "Service": "string",
+                  "UsageType": "string",
+                  "LinkedAccount": "string"
+                }
+              ],
+              "AnomalyScore": {
+                "MaxScore": "number",
+                "CurrentScore": "number"
+              },
+              "AnomalyEndDate": "string",
+              "DimensionValue": "string",
+              "AnomalyStartDate": "string"
+            }
+          ],
+          "NextPageToken": "string"
+        }
+      ]
+  GetAnomalyMonitors:
+    description: |-
+      Retrieves the cost anomaly monitor definitions for your account. You can filter using a list of cost anomaly monitor Amazon Resource Names (ARNs).
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetAnomalyMonitors.html
+    example:
+      inputs: [
+        {
+          "MaxResults": "number",
+          "NextPageToken": "string",
+          "MonitorArnList": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextPageToken": "string",
+          "AnomalyMonitors": [
+            {
+              "MonitorArn": "string",
+              "MonitorName": "string",
+              "MonitorType": "string",
+              "CreationDate": "string",
+              "LastUpdatedDate": "string",
+              "MonitorDimension": "string",
+              "LastEvaluatedDate": "string",
+              "MonitorSpecification": {
+                "Or": [
+                  "Expression"
+                ],
+                "And": [
+                  "Expression"
+                ],
+                "Not": "Expression",
+                "Tags": {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ],
+                  "MatchOptions": [
+                    "string"
+                  ]
+                },
+                "Dimensions": {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ],
+                  "MatchOptions": [
+                    "string"
+                  ]
+                },
+                "CostCategories": {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ],
+                  "MatchOptions": [
+                    "string"
+                  ]
+                }
+              },
+              "DimensionalValueCount": "number"
+            }
+          ]
+        }
+      ]
+  GetAnomalySubscriptions:
+    description: |-
+      Retrieves the cost anomaly subscription objects for your account. You can filter using a list of cost anomaly monitor Amazon Resource Names (ARNs).
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetAnomalySubscriptions.html
+    example:
+      inputs: [
+        {
+          "MaxResults": "number",
+          "MonitorArn": "string",
+          "NextPageToken": "string",
+          "SubscriptionArnList": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextPageToken": "string",
+          "AnomalySubscriptions": [
+            {
+              "AccountId": "string",
+              "Frequency": "string",
+              "Threshold": "number",
+              "Subscribers": [
+                {
+                  "Type": "string",
+                  "Status": "string",
+                  "Address": "string"
+                }
+              ],
+              "MonitorArnList": [
+                "string"
+              ],
+              "SubscriptionArn": "string",
+              "SubscriptionName": "string"
+            }
+          ]
+        }
+      ]
+  GetCostAndUsage:
+    description: |-
+      Retrieves cost and usage metrics for your account. You can specify which cost and usage-related metric, such as BlendedCosts or UsageQuantity, that you want the request to return. You can also filter and group your data by various dimensions, such as SERVICE or AZ, in a specific time range. For a complete list of valid dimensions, see the GetDimensionValues operation. Management account in an organization in AWS Organizations have access to all member accounts.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetCostAndUsage.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "Or": [
+              "Expression"
+            ],
+            "And": [
+              "Expression"
+            ],
+            "Not": "Expression",
+            "Tags": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "Dimensions": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "CostCategories": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            }
+          },
+          "GroupBy": [
+            {
+              "Key": "string",
+              "Type": "string"
+            }
+          ],
+          "Metrics": [
+            "string"
+          ],
+          "TimePeriod": {
+            "End": "string",
+            "Start": "string"
+          },
+          "Granularity": "string",
+          "NextPageToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextPageToken": "string",
+          "ResultsByTime": [
+            {
+              "Total": {
+                "string": {
+                  "Unit": "string",
+                  "Amount": "string"
+                }
+              },
+              "Groups": [
+                {
+                  "Keys": [
+                    "string"
+                  ],
+                  "Metrics": {
+                    "string": {
+                      "Unit": "string",
+                      "Amount": "string"
+                    }
+                  }
+                }
+              ],
+              "Estimated": "boolean",
+              "TimePeriod": {
+                "End": "string",
+                "Start": "string"
+              }
+            }
+          ],
+          "GroupDefinitions": [
+            {
+              "Key": "string",
+              "Type": "string"
+            }
+          ],
+          "DimensionValueAttributes": [
+            {
+              "Value": "string",
+              "Attributes": {
+                "string": "string"
+              }
+            }
+          ]
+        }
+      ]
+  GetCostAndUsageWithResources:
+    description: |-
+      Retrieves cost and usage metrics with resources for your account. You can specify which cost and usage-related metric, such as BlendedCosts or UsageQuantity, that you want the request to return. You can also filter and group your data by various dimensions, such as SERVICE or AZ, in a specific time range. For a complete list of valid dimensions, see the GetDimensionValues operation. Management account in an organization in AWS Organizations have access to all member accounts. This API is currently available for the Amazon Elastic Compute Cloud – Compute service only.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetCostAndUsageWithResources.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "Or": [
+              "Expression"
+            ],
+            "And": [
+              "Expression"
+            ],
+            "Not": "Expression",
+            "Tags": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "Dimensions": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "CostCategories": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            }
+          },
+          "GroupBy": [
+            {
+              "Key": "string",
+              "Type": "string"
+            }
+          ],
+          "Metrics": [
+            "string"
+          ],
+          "TimePeriod": {
+            "End": "string",
+            "Start": "string"
+          },
+          "Granularity": "string",
+          "NextPageToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextPageToken": "string",
+          "ResultsByTime": [
+            {
+              "Total": {
+                "string": {
+                  "Unit": "string",
+                  "Amount": "string"
+                }
+              },
+              "Groups": [
+                {
+                  "Keys": [
+                    "string"
+                  ],
+                  "Metrics": {
+                    "string": {
+                      "Unit": "string",
+                      "Amount": "string"
+                    }
+                  }
+                }
+              ],
+              "Estimated": "boolean",
+              "TimePeriod": {
+                "End": "string",
+                "Start": "string"
+              }
+            }
+          ],
+          "GroupDefinitions": [
+            {
+              "Key": "string",
+              "Type": "string"
+            }
+          ],
+          "DimensionValueAttributes": [
+            {
+              "Value": "string",
+              "Attributes": {
+                "string": "string"
+              }
+            }
+          ]
+        }
+      ]
+  GetCostCategories:
+    description: |-
+      Retrieves an array of Cost Category names and values incurred cost.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetCostCategories.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "Or": [
+              "Expression"
+            ],
+            "And": [
+              "Expression"
+            ],
+            "Not": "Expression",
+            "Tags": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "Dimensions": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "CostCategories": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            }
+          },
+          "SortBy": [
+            {
+              "Key": "string",
+              "SortOrder": "string"
+            }
+          ],
+          "MaxResults": "number",
+          "TimePeriod": {
+            "End": "string",
+            "Start": "string"
+          },
+          "SearchString": "string",
+          "NextPageToken": "string",
+          "CostCategoryName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TotalSize": "number",
+          "ReturnSize": "number",
+          "NextPageToken": "string",
+          "CostCategoryNames": [
+            "string"
+          ],
+          "CostCategoryValues": [
+            "string"
+          ]
+        }
+      ]
+  GetCostForecast:
+    description: |-
+      Retrieves a forecast for how much Amazon Web Services predicts that you will spend over the forecast time period that you select, based on your past costs.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetCostForecast.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "Or": [
+              "Expression"
+            ],
+            "And": [
+              "Expression"
+            ],
+            "Not": "Expression",
+            "Tags": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "Dimensions": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "CostCategories": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            }
+          },
+          "Metric": "string",
+          "TimePeriod": {
+            "End": "string",
+            "Start": "string"
+          },
+          "Granularity": "string",
+          "PredictionIntervalLevel": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Total": {
+            "Unit": "string",
+            "Amount": "string"
+          },
+          "ForecastResultsByTime": [
+            {
+              "MeanValue": "string",
+              "TimePeriod": {
+                "End": "string",
+                "Start": "string"
+              },
+              "PredictionIntervalLowerBound": "string",
+              "PredictionIntervalUpperBound": "string"
+            }
+          ]
+        }
+      ]
+  GetDimensionValues:
+    description: |-
+      Retrieves all available filter values for a specified filter over a period of time. You can search the dimension values for an arbitrary string.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "Or": [
+              "Expression"
+            ],
+            "And": [
+              "Expression"
+            ],
+            "Not": "Expression",
+            "Tags": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "Dimensions": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "CostCategories": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            }
+          },
+          "SortBy": [
+            {
+              "Key": "string",
+              "SortOrder": "string"
+            }
+          ],
+          "Context": "string",
+          "Dimension": "string",
+          "MaxResults": "number",
+          "TimePeriod": {
+            "End": "string",
+            "Start": "string"
+          },
+          "SearchString": "string",
+          "NextPageToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TotalSize": "number",
+          "ReturnSize": "number",
+          "NextPageToken": "string",
+          "DimensionValues": [
+            {
+              "Value": "string",
+              "Attributes": {
+                "string": "string"
+              }
+            }
+          ]
+        }
+      ]
+  GetReservationCoverage:
+    description: |-
+      Retrieves the reservation coverage for your account. This enables you to see how much of your Amazon Elastic Compute Cloud, Amazon ElastiCache, Amazon Relational Database Service, or Amazon Redshift usage is covered by a reservation. An organization's management account can see the coverage of the associated member accounts. This supports dimensions, Cost Categories, and nested expressions.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetReservationCoverage.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "Or": [
+              "Expression"
+            ],
+            "And": [
+              "Expression"
+            ],
+            "Not": "Expression",
+            "Tags": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "Dimensions": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "CostCategories": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            }
+          },
+          "SortBy": {
+            "Key": "string",
+            "SortOrder": "string"
+          },
+          "GroupBy": [
+            {
+              "Key": "string",
+              "Type": "string"
+            }
+          ],
+          "Metrics": [
+            "string"
+          ],
+          "MaxResults": "number",
+          "TimePeriod": {
+            "End": "string",
+            "Start": "string"
+          },
+          "Granularity": "string",
+          "NextPageToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Total": {
+            "CoverageCost": {
+              "OnDemandCost": "string"
+            },
+            "CoverageHours": {
+              "OnDemandHours": "string",
+              "ReservedHours": "string",
+              "TotalRunningHours": "string",
+              "CoverageHoursPercentage": "string"
+            },
+            "CoverageNormalizedUnits": {
+              "OnDemandNormalizedUnits": "string",
+              "ReservedNormalizedUnits": "string",
+              "TotalRunningNormalizedUnits": "string",
+              "CoverageNormalizedUnitsPercentage": "string"
+            }
+          },
+          "NextPageToken": "string",
+          "CoveragesByTime": [
+            {
+              "Total": {
+                "CoverageCost": {
+                  "OnDemandCost": "string"
+                },
+                "CoverageHours": {
+                  "OnDemandHours": "string",
+                  "ReservedHours": "string",
+                  "TotalRunningHours": "string",
+                  "CoverageHoursPercentage": "string"
+                },
+                "CoverageNormalizedUnits": {
+                  "OnDemandNormalizedUnits": "string",
+                  "ReservedNormalizedUnits": "string",
+                  "TotalRunningNormalizedUnits": "string",
+                  "CoverageNormalizedUnitsPercentage": "string"
+                }
+              },
+              "Groups": [
+                {
+                  "Coverage": {
+                    "CoverageCost": {
+                      "OnDemandCost": "string"
+                    },
+                    "CoverageHours": {
+                      "OnDemandHours": "string",
+                      "ReservedHours": "string",
+                      "TotalRunningHours": "string",
+                      "CoverageHoursPercentage": "string"
+                    },
+                    "CoverageNormalizedUnits": {
+                      "OnDemandNormalizedUnits": "string",
+                      "ReservedNormalizedUnits": "string",
+                      "TotalRunningNormalizedUnits": "string",
+                      "CoverageNormalizedUnitsPercentage": "string"
+                    }
+                  },
+                  "Attributes": {
+                    "string": "string"
+                  }
+                }
+              ],
+              "TimePeriod": {
+                "End": "string",
+                "Start": "string"
+              }
+            }
+          ]
+        }
+      ]
+  GetReservationPurchaseRecommendation:
+    description: |-
+      Gets recommendations for which reservations to purchase. These recommendations could help you reduce your costs. Reservations provide a discounted hourly rate (up to 75%) compared to On-Demand pricing.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetReservationPurchaseRecommendation.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "Or": [
+              "Expression"
+            ],
+            "And": [
+              "Expression"
+            ],
+            "Not": "Expression",
+            "Tags": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "Dimensions": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "CostCategories": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            }
+          },
+          "Service": "string",
+          "PageSize": "number",
+          "AccountId": "string",
+          "TermInYears": "string",
+          "AccountScope": "string",
+          "NextPageToken": "string",
+          "PaymentOption": "string",
+          "LookbackPeriodInDays": "string",
+          "ServiceSpecification": {
+            "EC2Specification": {
+              "OfferingClass": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Metadata": {
+            "RecommendationId": "string",
+            "GenerationTimestamp": "string"
+          },
+          "NextPageToken": "string",
+          "Recommendations": [
+            {
+              "TermInYears": "string",
+              "AccountScope": "string",
+              "PaymentOption": "string",
+              "LookbackPeriodInDays": "string",
+              "ServiceSpecification": {
+                "EC2Specification": {
+                  "OfferingClass": "string"
+                }
+              },
+              "RecommendationDetails": [
+                {
+                  "AccountId": "string",
+                  "UpfrontCost": "string",
+                  "CurrencyCode": "string",
+                  "InstanceDetails": {
+                    "ESInstanceDetails": {
+                      "Region": "string",
+                      "InstanceSize": "string",
+                      "InstanceClass": "string",
+                      "SizeFlexEligible": "boolean",
+                      "CurrentGeneration": "boolean"
+                    },
+                    "EC2InstanceDetails": {
+                      "Family": "string",
+                      "Region": "string",
+                      "Tenancy": "string",
+                      "Platform": "string",
+                      "InstanceType": "string",
+                      "AvailabilityZone": "string",
+                      "SizeFlexEligible": "boolean",
+                      "CurrentGeneration": "boolean"
+                    },
+                    "RDSInstanceDetails": {
+                      "Family": "string",
+                      "Region": "string",
+                      "InstanceType": "string",
+                      "LicenseModel": "string",
+                      "DatabaseEngine": "string",
+                      "DatabaseEdition": "string",
+                      "DeploymentOption": "string",
+                      "SizeFlexEligible": "boolean",
+                      "CurrentGeneration": "boolean"
+                    },
+                    "RedshiftInstanceDetails": {
+                      "Family": "string",
+                      "Region": "string",
+                      "NodeType": "string",
+                      "SizeFlexEligible": "boolean",
+                      "CurrentGeneration": "boolean"
+                    },
+                    "ElastiCacheInstanceDetails": {
+                      "Family": "string",
+                      "Region": "string",
+                      "NodeType": "string",
+                      "SizeFlexEligible": "boolean",
+                      "CurrentGeneration": "boolean",
+                      "ProductDescription": "string"
+                    }
+                  },
+                  "AverageUtilization": "string",
+                  "EstimatedBreakEvenInMonths": "string",
+                  "EstimatedMonthlyOnDemandCost": "string",
+                  "RecurringStandardMonthlyCost": "string",
+                  "EstimatedMonthlySavingsAmount": "string",
+                  "AverageNormalizedUnitsUsedPerHour": "string",
+                  "EstimatedMonthlySavingsPercentage": "string",
+                  "MaximumNormalizedUnitsUsedPerHour": "string",
+                  "MinimumNormalizedUnitsUsedPerHour": "string",
+                  "AverageNumberOfInstancesUsedPerHour": "string",
+                  "MaximumNumberOfInstancesUsedPerHour": "string",
+                  "MinimumNumberOfInstancesUsedPerHour": "string",
+                  "RecommendedNormalizedUnitsToPurchase": "string",
+                  "RecommendedNumberOfInstancesToPurchase": "string",
+                  "EstimatedReservationCostForLookbackPeriod": "string"
+                }
+              ],
+              "RecommendationSummary": {
+                "CurrencyCode": "string",
+                "TotalEstimatedMonthlySavingsAmount": "string",
+                "TotalEstimatedMonthlySavingsPercentage": "string"
+              }
+            }
+          ]
+        }
+      ]
+  GetReservationUtilization:
+    description: |-
+      Retrieves the reservation utilization for your account. Management account in an organization have access to member accounts. You can filter data by dimensions in a time period. You can use GetDimensionValues to determine the possible dimension values. Currently, you can group only by SUBSCRIPTION_ID.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetReservationUtilization.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "Or": [
+              "Expression"
+            ],
+            "And": [
+              "Expression"
+            ],
+            "Not": "Expression",
+            "Tags": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "Dimensions": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "CostCategories": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            }
+          },
+          "SortBy": {
+            "Key": "string",
+            "SortOrder": "string"
+          },
+          "GroupBy": [
+            {
+              "Key": "string",
+              "Type": "string"
+            }
+          ],
+          "MaxResults": "number",
+          "TimePeriod": {
+            "End": "string",
+            "Start": "string"
+          },
+          "Granularity": "string",
+          "NextPageToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Total": {
+            "UnusedHours": "string",
+            "UnusedUnits": "string",
+            "NetRISavings": "string",
+            "PurchasedHours": "string",
+            "PurchasedUnits": "string",
+            "RealizedSavings": "string",
+            "TotalActualHours": "string",
+            "TotalActualUnits": "string",
+            "TotalAmortizedFee": "string",
+            "UnrealizedSavings": "string",
+            "AmortizedUpfrontFee": "string",
+            "RICostForUnusedHours": "string",
+            "AmortizedRecurringFee": "string",
+            "UtilizationPercentage": "string",
+            "TotalPotentialRISavings": "string",
+            "OnDemandCostOfRIHoursUsed": "string",
+            "UtilizationPercentageInUnits": "string"
+          },
+          "NextPageToken": "string",
+          "UtilizationsByTime": [
+            {
+              "Total": {
+                "UnusedHours": "string",
+                "UnusedUnits": "string",
+                "NetRISavings": "string",
+                "PurchasedHours": "string",
+                "PurchasedUnits": "string",
+                "RealizedSavings": "string",
+                "TotalActualHours": "string",
+                "TotalActualUnits": "string",
+                "TotalAmortizedFee": "string",
+                "UnrealizedSavings": "string",
+                "AmortizedUpfrontFee": "string",
+                "RICostForUnusedHours": "string",
+                "AmortizedRecurringFee": "string",
+                "UtilizationPercentage": "string",
+                "TotalPotentialRISavings": "string",
+                "OnDemandCostOfRIHoursUsed": "string",
+                "UtilizationPercentageInUnits": "string"
+              },
+              "Groups": [
+                {
+                  "Key": "string",
+                  "Value": "string",
+                  "Attributes": {
+                    "string": "string"
+                  },
+                  "Utilization": {
+                    "UnusedHours": "string",
+                    "UnusedUnits": "string",
+                    "NetRISavings": "string",
+                    "PurchasedHours": "string",
+                    "PurchasedUnits": "string",
+                    "RealizedSavings": "string",
+                    "TotalActualHours": "string",
+                    "TotalActualUnits": "string",
+                    "TotalAmortizedFee": "string",
+                    "UnrealizedSavings": "string",
+                    "AmortizedUpfrontFee": "string",
+                    "RICostForUnusedHours": "string",
+                    "AmortizedRecurringFee": "string",
+                    "UtilizationPercentage": "string",
+                    "TotalPotentialRISavings": "string",
+                    "OnDemandCostOfRIHoursUsed": "string",
+                    "UtilizationPercentageInUnits": "string"
+                  }
+                }
+              ],
+              "TimePeriod": {
+                "End": "string",
+                "Start": "string"
+              }
+            }
+          ]
+        }
+      ]
+  GetRightsizingRecommendation:
+    description: |-
+      Creates recommendations that help you save cost by identifying idle and underutilized Amazon EC2 instances.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetRightsizingRecommendation.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "Or": [
+              "Expression"
+            ],
+            "And": [
+              "Expression"
+            ],
+            "Not": "Expression",
+            "Tags": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "Dimensions": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "CostCategories": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            }
+          },
+          "Service": "string",
+          "PageSize": "number",
+          "Configuration": {
+            "BenefitsConsidered": "boolean",
+            "RecommendationTarget": "string"
+          },
+          "NextPageToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Summary": {
+            "SavingsPercentage": "string",
+            "SavingsCurrencyCode": "string",
+            "TotalRecommendationCount": "string",
+            "EstimatedTotalMonthlySavingsAmount": "string"
+          },
+          "Metadata": {
+            "RecommendationId": "string",
+            "AdditionalMetadata": "string",
+            "GenerationTimestamp": "string",
+            "LookbackPeriodInDays": "string"
+          },
+          "Configuration": {
+            "BenefitsConsidered": "boolean",
+            "RecommendationTarget": "string"
+          },
+          "NextPageToken": "string",
+          "RightsizingRecommendations": [
+            {
+              "AccountId": "string",
+              "CurrentInstance": {
+                "Tags": [
+                  {
+                    "Key": "string",
+                    "Values": [
+                      "string"
+                    ],
+                    "MatchOptions": [
+                      "string"
+                    ]
+                  }
+                ],
+                "ResourceId": "string",
+                "MonthlyCost": "string",
+                "CurrencyCode": "string",
+                "InstanceName": "string",
+                "ResourceDetails": {
+                  "EC2ResourceDetails": {
+                    "Sku": "string",
+                    "Vcpu": "string",
+                    "Memory": "string",
+                    "Region": "string",
+                    "Storage": "string",
+                    "Platform": "string",
+                    "InstanceType": "string",
+                    "HourlyOnDemandRate": "string",
+                    "NetworkPerformance": "string"
+                  }
+                },
+                "ResourceUtilization": {
+                  "EC2ResourceUtilization": {
+                    "EBSResourceUtilization": {
+                      "EbsReadOpsPerSecond": "string",
+                      "EbsWriteOpsPerSecond": "string",
+                      "EbsReadBytesPerSecond": "string",
+                      "EbsWriteBytesPerSecond": "string"
+                    },
+                    "MaxCpuUtilizationPercentage": "string",
+                    "MaxMemoryUtilizationPercentage": "string",
+                    "MaxStorageUtilizationPercentage": "string"
+                  }
+                },
+                "OnDemandHoursInLookbackPeriod": "string",
+                "TotalRunningHoursInLookbackPeriod": "string",
+                "ReservationCoveredHoursInLookbackPeriod": "string",
+                "SavingsPlansCoveredHoursInLookbackPeriod": "string"
+              },
+              "RightsizingType": "string",
+              "ModifyRecommendationDetail": {
+                "TargetInstances": [
+                  {
+                    "CurrencyCode": "string",
+                    "ResourceDetails": {
+                      "EC2ResourceDetails": {
+                        "Sku": "string",
+                        "Vcpu": "string",
+                        "Memory": "string",
+                        "Region": "string",
+                        "Storage": "string",
+                        "Platform": "string",
+                        "InstanceType": "string",
+                        "HourlyOnDemandRate": "string",
+                        "NetworkPerformance": "string"
+                      }
+                    },
+                    "EstimatedMonthlyCost": "string",
+                    "DefaultTargetInstance": "boolean",
+                    "EstimatedMonthlySavings": "string",
+                    "ExpectedResourceUtilization": {
+                      "EC2ResourceUtilization": {
+                        "EBSResourceUtilization": {
+                          "EbsReadOpsPerSecond": "string",
+                          "EbsWriteOpsPerSecond": "string",
+                          "EbsReadBytesPerSecond": "string",
+                          "EbsWriteBytesPerSecond": "string"
+                        },
+                        "MaxCpuUtilizationPercentage": "string",
+                        "MaxMemoryUtilizationPercentage": "string",
+                        "MaxStorageUtilizationPercentage": "string"
+                      }
+                    }
+                  }
+                ]
+              },
+              "TerminateRecommendationDetail": {
+                "CurrencyCode": "string",
+                "EstimatedMonthlySavings": "string"
+              }
+            }
+          ]
+        }
+      ]
+  GetSavingsPlansCoverage:
+    description: |-
+      Retrieves the Savings Plans covered for your account. This enables you to see how much of your cost is covered by a Savings Plan. An organization’s management account can see the coverage of the associated member accounts. This supports dimensions, Cost Categories, and nested expressions.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetSavingsPlansCoverage.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "Or": [
+              "Expression"
+            ],
+            "And": [
+              "Expression"
+            ],
+            "Not": "Expression",
+            "Tags": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "Dimensions": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "CostCategories": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            }
+          },
+          "SortBy": {
+            "Key": "string",
+            "SortOrder": "string"
+          },
+          "GroupBy": [
+            {
+              "Key": "string",
+              "Type": "string"
+            }
+          ],
+          "Metrics": [
+            "string"
+          ],
+          "NextToken": "string",
+          "MaxResults": "number",
+          "TimePeriod": {
+            "End": "string",
+            "Start": "string"
+          },
+          "Granularity": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "SavingsPlansCoverages": [
+            {
+              "Coverage": {
+                "TotalCost": "string",
+                "OnDemandCost": "string",
+                "CoveragePercentage": "string",
+                "SpendCoveredBySavingsPlans": "string"
+              },
+              "Attributes": {
+                "string": "string"
+              },
+              "TimePeriod": {
+                "End": "string",
+                "Start": "string"
+              }
+            }
+          ]
+        }
+      ]
+  GetSavingsPlansPurchaseRecommendation:
+    description: |-
+      Retrieves your request parameters, Savings Plan Recommendations Summary and Details.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetSavingsPlansPurchaseRecommendation.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "Or": [
+              "Expression"
+            ],
+            "And": [
+              "Expression"
+            ],
+            "Not": "Expression",
+            "Tags": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "Dimensions": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "CostCategories": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            }
+          },
+          "PageSize": "number",
+          "TermInYears": "string",
+          "AccountScope": "string",
+          "NextPageToken": "string",
+          "PaymentOption": "string",
+          "SavingsPlansType": "string",
+          "LookbackPeriodInDays": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Metadata": {
+            "RecommendationId": "string",
+            "AdditionalMetadata": "string",
+            "GenerationTimestamp": "string"
+          },
+          "NextPageToken": "string",
+          "SavingsPlansPurchaseRecommendation": {
+            "TermInYears": "string",
+            "AccountScope": "string",
+            "PaymentOption": "string",
+            "SavingsPlansType": "string",
+            "LookbackPeriodInDays": "string",
+            "SavingsPlansPurchaseRecommendationDetails": [
+              {
+                "AccountId": "string",
+                "UpfrontCost": "string",
+                "CurrencyCode": "string",
+                "EstimatedROI": "string",
+                "EstimatedSPCost": "string",
+                "SavingsPlansDetails": {
+                  "Region": "string",
+                  "OfferingId": "string",
+                  "InstanceFamily": "string"
+                },
+                "EstimatedOnDemandCost": "string",
+                "EstimatedSavingsAmount": "string",
+                "EstimatedSavingsPercentage": "string",
+                "HourlyCommitmentToPurchase": "string",
+                "EstimatedAverageUtilization": "string",
+                "EstimatedMonthlySavingsAmount": "string",
+                "CurrentAverageHourlyOnDemandSpend": "string",
+                "CurrentMaximumHourlyOnDemandSpend": "string",
+                "CurrentMinimumHourlyOnDemandSpend": "string",
+                "EstimatedOnDemandCostWithCurrentCommitment": "string"
+              }
+            ],
+            "SavingsPlansPurchaseRecommendationSummary": {
+              "CurrencyCode": "string",
+              "EstimatedROI": "string",
+              "EstimatedTotalCost": "string",
+              "CurrentOnDemandSpend": "string",
+              "EstimatedSavingsAmount": "string",
+              "TotalRecommendationCount": "string",
+              "DailyCommitmentToPurchase": "string",
+              "EstimatedSavingsPercentage": "string",
+              "HourlyCommitmentToPurchase": "string",
+              "EstimatedMonthlySavingsAmount": "string",
+              "EstimatedOnDemandCostWithCurrentCommitment": "string"
+            }
+          }
+        }
+      ]
+  GetSavingsPlansUtilizationDetails:
+    description: |-
+      Retrieves attribute data along with aggregate utilization and savings data for a given time period. This doesn't support granular or grouped data (daily/monthly) in response. You can't retrieve data by dates in a single response similar to GetSavingsPlanUtilization, but you have the option to make multiple calls to GetSavingsPlanUtilizationDetails by providing individual dates. You can use GetDimensionValues in SAVINGS_PLANS to determine the possible dimension values.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetSavingsPlansUtilizationDetails.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "Or": [
+              "Expression"
+            ],
+            "And": [
+              "Expression"
+            ],
+            "Not": "Expression",
+            "Tags": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "Dimensions": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "CostCategories": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            }
+          },
+          "SortBy": {
+            "Key": "string",
+            "SortOrder": "string"
+          },
+          "DataType": [
+            "string"
+          ],
+          "NextToken": "string",
+          "MaxResults": "number",
+          "TimePeriod": {
+            "End": "string",
+            "Start": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Total": {
+            "Savings": {
+              "NetSavings": "string",
+              "OnDemandCostEquivalent": "string"
+            },
+            "Utilization": {
+              "UsedCommitment": "string",
+              "TotalCommitment": "string",
+              "UnusedCommitment": "string",
+              "UtilizationPercentage": "string"
+            },
+            "AmortizedCommitment": {
+              "TotalAmortizedCommitment": "string",
+              "AmortizedUpfrontCommitment": "string",
+              "AmortizedRecurringCommitment": "string"
+            }
+          },
+          "NextToken": "string",
+          "TimePeriod": {
+            "End": "string",
+            "Start": "string"
+          },
+          "SavingsPlansUtilizationDetails": [
+            {
+              "Savings": {
+                "NetSavings": "string",
+                "OnDemandCostEquivalent": "string"
+              },
+              "Attributes": {
+                "string": "string"
+              },
+              "Utilization": {
+                "UsedCommitment": "string",
+                "TotalCommitment": "string",
+                "UnusedCommitment": "string",
+                "UtilizationPercentage": "string"
+              },
+              "SavingsPlanArn": "string",
+              "AmortizedCommitment": {
+                "TotalAmortizedCommitment": "string",
+                "AmortizedUpfrontCommitment": "string",
+                "AmortizedRecurringCommitment": "string"
+              }
+            }
+          ]
+        }
+      ]
+  GetSavingsPlansUtilization:
+    description: |-
+      Retrieves the Savings Plans utilization for your account across date ranges with daily or monthly granularity. Management account in an organization have access to member accounts. You can use GetDimensionValues in SAVINGS_PLANS to determine the possible dimension values.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetSavingsPlansUtilization.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "Or": [
+              "Expression"
+            ],
+            "And": [
+              "Expression"
+            ],
+            "Not": "Expression",
+            "Tags": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "Dimensions": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "CostCategories": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            }
+          },
+          "SortBy": {
+            "Key": "string",
+            "SortOrder": "string"
+          },
+          "TimePeriod": {
+            "End": "string",
+            "Start": "string"
+          },
+          "Granularity": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Total": {
+            "Savings": {
+              "NetSavings": "string",
+              "OnDemandCostEquivalent": "string"
+            },
+            "Utilization": {
+              "UsedCommitment": "string",
+              "TotalCommitment": "string",
+              "UnusedCommitment": "string",
+              "UtilizationPercentage": "string"
+            },
+            "AmortizedCommitment": {
+              "TotalAmortizedCommitment": "string",
+              "AmortizedUpfrontCommitment": "string",
+              "AmortizedRecurringCommitment": "string"
+            }
+          },
+          "SavingsPlansUtilizationsByTime": [
+            {
+              "Savings": {
+                "NetSavings": "string",
+                "OnDemandCostEquivalent": "string"
+              },
+              "TimePeriod": {
+                "End": "string",
+                "Start": "string"
+              },
+              "Utilization": {
+                "UsedCommitment": "string",
+                "TotalCommitment": "string",
+                "UnusedCommitment": "string",
+                "UtilizationPercentage": "string"
+              },
+              "AmortizedCommitment": {
+                "TotalAmortizedCommitment": "string",
+                "AmortizedUpfrontCommitment": "string",
+                "AmortizedRecurringCommitment": "string"
+              }
+            }
+          ]
+        }
+      ]
+  GetTags:
+    description: |-
+      Queries for available tag keys and tag values for a specified period. You can search the tag values for an arbitrary string.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetTags.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "Or": [
+              "Expression"
+            ],
+            "And": [
+              "Expression"
+            ],
+            "Not": "Expression",
+            "Tags": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "Dimensions": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "CostCategories": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            }
+          },
+          "SortBy": [
+            {
+              "Key": "string",
+              "SortOrder": "string"
+            }
+          ],
+          "TagKey": "string",
+          "MaxResults": "number",
+          "TimePeriod": {
+            "End": "string",
+            "Start": "string"
+          },
+          "SearchString": "string",
+          "NextPageToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            "string"
+          ],
+          "TotalSize": "number",
+          "ReturnSize": "number",
+          "NextPageToken": "string"
+        }
+      ]
+  GetUsageForecast:
+    description: |-
+      Retrieves a forecast for how much Amazon Web Services predicts that you will use over the forecast time period that you select, based on your past usage.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetUsageForecast.html
+    example:
+      inputs: [
+        {
+          "Filter": {
+            "Or": [
+              "Expression"
+            ],
+            "And": [
+              "Expression"
+            ],
+            "Not": "Expression",
+            "Tags": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "Dimensions": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            },
+            "CostCategories": {
+              "Key": "string",
+              "Values": [
+                "string"
+              ],
+              "MatchOptions": [
+                "string"
+              ]
+            }
+          },
+          "Metric": "string",
+          "TimePeriod": {
+            "End": "string",
+            "Start": "string"
+          },
+          "Granularity": "string",
+          "PredictionIntervalLevel": "number"
+        }
+      ]
+      outputs: [
+        {
+          "Total": {
+            "Unit": "string",
+            "Amount": "string"
+          },
+          "ForecastResultsByTime": [
+            {
+              "MeanValue": "string",
+              "TimePeriod": {
+                "End": "string",
+                "Start": "string"
+              },
+              "PredictionIntervalLowerBound": "string",
+              "PredictionIntervalUpperBound": "string"
+            }
+          ]
+        }
+      ]
+  ListCostCategoryDefinitions:
+    description: |-
+      Returns the name, ARN, NumberOfRules and effective dates of all Cost Categories defined in the account. You have the option to use EffectiveOn to return a list of Cost Categories that were active on a specific date. If there is no EffectiveOn specified, you’ll see Cost Categories that are effective on the current date. If Cost Category is still effective, EffectiveEnd is omitted in the response. ListCostCategoryDefinitions supports pagination. The request can have a MaxResults range up to 100.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_ListCostCategoryDefinitions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": "number",
+          "EffectiveOn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CostCategoryReferences": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ],
+              "DefaultValue": "string",
+              "EffectiveEnd": "string",
+              "NumberOfRules": "number",
+              "EffectiveStart": "string",
+              "CostCategoryArn": "string",
+              "ProcessingStatus": [
+                {
+                  "Status": "string",
+                  "Component": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  DescribeServices:
+    description: |-
+      Returns the metadata for one service or a list of the metadata for all services. Use this without a service code to get the service codes for all services. Use it with a service code, such as AmazonEC2, to get information specific to that service, such as the attribute names available for that service. For example, some of the attribute names available for EC2 are volumeType, maxIopsVolume, operation, locationType, and instanceCapacity10xlarge.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_DescribeServices.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ServiceCode": "string",
+          "FormatVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Services": [
+            {
+              "ServiceCode": "string",
+              "AttributeNames": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "FormatVersion": "string"
+        }
+      ]
+  GetAttributeValues:
+    description: |-
+      Returns a list of attribute values. Attibutes are similar to the details in a Price List API offer file. For a list of available attributes, see Offer File Definitions in the AWS Billing and Cost Management User Guide.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetAttributeValues.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ServiceCode": "string",
+          "AttributeName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "AttributeValues": [
+            {
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  GetProducts:
+    description: |-
+      Returns a list of all products that match the filter criteria.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_pricing_GetProducts.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Type": "string",
+              "Field": "string",
+              "Value": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ServiceCode": "string",
+          "FormatVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "PriceList": [
+            "string"
+          ],
+          "FormatVersion": "string"
+        }
+      ]
+  ProvideAnomalyFeedback:
+    description: |-
+      Modifies the feedback property of a given cost anomaly.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_ProvideAnomalyFeedback.html
+    example:
+      inputs: [
+        {
+          "Feedback": "string",
+          "AnomalyId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "AnomalyId": "string"
+        }
+      ]
+  UpdateAnomalyMonitor:
+    description: |-
+      Updates an existing cost anomaly monitor. The changes made are applied going forward, and does not change anomalies detected in the past.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_UpdateAnomalyMonitor.html
+    example:
+      inputs: [
+        {
+          "MonitorArn": "string",
+          "MonitorName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "MonitorArn": "string"
+        }
+      ]
+  UpdateAnomalySubscription:
+    description: |-
+      Updates an existing cost anomaly monitor subscription.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_UpdateAnomalySubscription.html
+    example:
+      inputs: [
+        {
+          "Frequency": "string",
+          "Threshold": "number",
+          "Subscribers": [
+            {
+              "Type": "string",
+              "Status": "string",
+              "Address": "string"
+            }
+          ],
+          "MonitorArnList": [
+            "string"
+          ],
+          "SubscriptionArn": "string",
+          "SubscriptionName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "SubscriptionArn": "string"
+        }
+      ]
+  UpdateCostCategoryDefinition:
+    description: |-
+      Updates an existing Cost Category. Changes made to the Cost Category rules will be used to categorize the current month’s expenses and future expenses. This won’t change categorization for the previous months.
+    versions:
+      from: 2017.10.25
+      to: 2017.10.25
+    link: https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_UpdateCostCategoryDefinition.html
+    example:
+      inputs: [
+        {
+          "Rules": [
+            {
+              "Rule": {
+                "Or": [
+                  "Expression"
+                ],
+                "And": [
+                  "Expression"
+                ],
+                "Not": "Expression",
+                "Tags": {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ],
+                  "MatchOptions": [
+                    "string"
+                  ]
+                },
+                "Dimensions": {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ],
+                  "MatchOptions": [
+                    "string"
+                  ]
+                },
+                "CostCategories": {
+                  "Key": "string",
+                  "Values": [
+                    "string"
+                  ],
+                  "MatchOptions": [
+                    "string"
+                  ]
+                }
+              },
+              "Type": "string",
+              "Value": "string",
+              "InheritedValue": {
+                "DimensionKey": "string",
+                "DimensionName": "string"
+              }
+            }
+          ],
+          "RuleVersion": "string",
+          "DefaultValue": "string",
+          "CostCategoryArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EffectiveStart": "string",
+          "CostCategoryArn": "string"
+        }
+      ]

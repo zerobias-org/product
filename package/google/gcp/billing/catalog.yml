@@ -1,0 +1,1764 @@
+Product:
+  name: GCP Billing
+  versions: [1.0.0]
+  package: google.gcp.billing
+  description: |-
+    Cloud Billing
+  link: https://cloud.google.com/billing
+  contentType: json
+Operations:
+  billingbudgets.billingAccounts.budgets.create:
+    description: |-
+      Creates a new budget. See [Quotas and limits](https://cloud.google.com/billing/quotas) for more information on the limits of the number of budgets you can create.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/budget/rest/v1/billingAccounts.budgets/create
+    example:
+      inputs: [
+        {
+          "id": "GoogleCloudBillingBudgetsV1Budget",
+          "type": "object",
+          "properties": {
+            "etag": {
+              "type": "string",
+              "description": "Optional. Etag to validate that the object is unchanged for a read-modify-write operation. An empty etag will cause an update to overwrite other changes."
+            },
+            "name": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`."
+            },
+            "amount": {
+              "id": "GoogleCloudBillingBudgetsV1BudgetAmount",
+              "type": "object",
+              "properties": {
+                "specifiedAmount": {
+                  "id": "GoogleTypeMoney",
+                  "type": "object",
+                  "properties": {
+                    "nanos": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000."
+                    },
+                    "units": {
+                      "type": "string",
+                      "format": "int64",
+                      "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar."
+                    },
+                    "currencyCode": {
+                      "type": "string",
+                      "description": "The three-letter currency code defined in ISO 4217."
+                    }
+                  },
+                  "description": "A specified amount to use as the budget. `currency_code` is optional. If specified when creating a budget, it must match the currency of the billing account. If specified when updating a budget, it must match the currency_code of the existing budget. The `currency_code` is provided on output."
+                },
+                "lastPeriodAmount": {
+                  "id": "GoogleCloudBillingBudgetsV1LastPeriodAmount",
+                  "type": "object",
+                  "properties": {},
+                  "description": "Use the last period's actual spend as the budget for the present period. LastPeriodAmount can only be set when the budget's time period is a Filter.calendar_period. It cannot be set in combination with Filter.custom_period."
+                }
+              },
+              "description": "Required. Budgeted amount."
+            },
+            "displayName": {
+              "type": "string",
+              "description": "User data for display name in UI. The name must be less than or equal to 60 characters."
+            },
+            "budgetFilter": {
+              "id": "GoogleCloudBillingBudgetsV1Filter",
+              "type": "object",
+              "properties": {
+                "labels": {
+                  "type": "object",
+                  "description": "Optional. A single label and value pair specifying that usage from only this set of labeled resources should be included in the budget. Currently, multiple entries or multiple values per entry are not allowed. If omitted, the report will include all labeled and unlabeled usage.",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "type": "any"
+                    }
+                  }
+                },
+                "projects": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. A set of projects of the form `projects/{project}`, specifying that usage from only this set of projects should be included in the budget. If omitted, the report will include all usage for the billing account, regardless of which project the usage occurred on. Only zero or one project can be specified currently."
+                },
+                "services": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. A set of services of the form `services/{service_id}`, specifying that usage from only this set of services should be included in the budget. If omitted, the report will include usage for all the services. The service names are available through the Catalog API: https://cloud.google.com/billing/v1/how-tos/catalog-api."
+                },
+                "creditTypes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. If Filter.credit_types_treatment is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be subtracted from gross cost to determine the spend for threshold calculations. See [a list of acceptable credit type values](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type). If Filter.credit_types_treatment is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty."
+                },
+                "subaccounts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying that usage from only this set of subaccounts should be included in the budget. If a subaccount is set to the name of the parent account, usage from the parent account will be included. If the field is omitted, the report will include usage from the parent account and all subaccounts, if they exist."
+                },
+                "customPeriod": {
+                  "id": "GoogleCloudBillingBudgetsV1CustomPeriod",
+                  "type": "object",
+                  "properties": {
+                    "endDate": {
+                      "id": "GoogleTypeDate",
+                      "type": "object",
+                      "properties": {
+                        "day": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+                        },
+                        "year": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+                        },
+                        "month": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+                        }
+                      },
+                      "description": "Optional. The end date of the time period. Budgets with elapsed end date won't be processed. If unset, specifies to track all usage incurred since the start_date."
+                    },
+                    "startDate": {
+                      "id": "GoogleTypeDate",
+                      "type": "object",
+                      "properties": {
+                        "day": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+                        },
+                        "year": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+                        },
+                        "month": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+                        }
+                      },
+                      "description": "Required. The start date must be after January 1, 2017."
+                    }
+                  },
+                  "description": "Optional. Specifies to track usage from any start date (required) to any end date (optional). This time period is static, it does not recur."
+                },
+                "calendarPeriod": {
+                  "enum": [
+                    "CALENDAR_PERIOD_UNSPECIFIED",
+                    "MONTH",
+                    "QUARTER",
+                    "YEAR"
+                  ],
+                  "type": "string",
+                  "description": "Optional. Specifies to track usage for recurring calendar period. For example, assume that CalendarPeriod.QUARTER is set. The budget will track usage from April 1 to June 30, when the current calendar month is April, May, June. After that, it will track usage from July 1 to September 30 when the current calendar month is July, August, September, so on.",
+                  "enumDescriptions": [
+                    "",
+                    "A month. Month starts on the first day of each month, such as January 1, February 1, March 1, and so on.",
+                    "A quarter. Quarters start on dates January 1, April 1, July 1, and October 1 of each year.",
+                    "A year. Year starts on January 1."
+                  ]
+                },
+                "creditTypesTreatment": {
+                  "enum": [
+                    "CREDIT_TYPES_TREATMENT_UNSPECIFIED",
+                    "INCLUDE_ALL_CREDITS",
+                    "EXCLUDE_ALL_CREDITS",
+                    "INCLUDE_SPECIFIED_CREDITS"
+                  ],
+                  "type": "string",
+                  "description": "Optional. If not set, default behavior is `INCLUDE_ALL_CREDITS`.",
+                  "enumDescriptions": [
+                    "",
+                    "All types of credit are subtracted from the gross cost to determine the spend for threshold calculations.",
+                    "All types of credit are added to the net cost to determine the spend for threshold calculations.",
+                    "[Credit types](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type) specified in the credit_types field are subtracted from the gross cost to determine the spend for threshold calculations."
+                  ]
+                }
+              },
+              "description": "Optional. Filters that define which resources are used to compute the actual spend against the budget amount, such as projects, services, and the budget's time period, as well as other filters."
+            },
+            "thresholdRules": {
+              "type": "array",
+              "items": {
+                "id": "GoogleCloudBillingBudgetsV1ThresholdRule",
+                "type": "object",
+                "properties": {
+                  "spendBasis": {
+                    "enum": [
+                      "BASIS_UNSPECIFIED",
+                      "CURRENT_SPEND",
+                      "FORECASTED_SPEND"
+                    ],
+                    "type": "string",
+                    "description": "Optional. The type of basis used to determine if spend has passed the threshold. Behavior defaults to CURRENT_SPEND if not set.",
+                    "enumDescriptions": [
+                      "Unspecified threshold basis.",
+                      "Use current spend as the basis for comparison against the threshold.",
+                      "Use forecasted spend for the period as the basis for comparison against the threshold. FORECASTED_SPEND can only be set when the budget's time period is a Filter.calendar_period. It cannot be set in combination with Filter.custom_period."
+                    ]
+                  },
+                  "thresholdPercent": {
+                    "type": "number",
+                    "format": "double",
+                    "description": "Required. Send an alert when this threshold is exceeded. This is a 1.0-based percentage, so 0.5 = 50%. Validation: non-negative number."
+                  }
+                },
+                "description": "ThresholdRule contains the definition of a threshold. Threshold rules define the triggering events used to generate a budget notification email. When a threshold is crossed (spend exceeds the specified percentages of the budget), budget alert emails are sent to the email recipients you specify in the [NotificationsRule](#notificationsrule). Threshold rules also affect the fields included in the [JSON data object](https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format) sent to a Pub/Sub topic. Threshold rules are _required_ if using email notifications. Threshold rules are _optional_ if only setting a [`pubsubTopic` NotificationsRule](#NotificationsRule), unless you want your JSON data object to include data about the thresholds you set. For more information, see [set budget threshold rules and actions](https://cloud.google.com/billing/docs/how-to/budgets#budget-actions)."
+              },
+              "description": "Optional. Rules that trigger alerts (notifications of thresholds being crossed) when spend exceeds the specified percentages of the budget. Optional for `pubsubTopic` notifications. Required if using email notifications."
+            },
+            "notificationsRule": {
+              "id": "GoogleCloudBillingBudgetsV1NotificationsRule",
+              "type": "object",
+              "properties": {
+                "pubsubTopic": {
+                  "type": "string",
+                  "description": "Optional. The name of the Pub/Sub topic where budget related messages will be published, in the form `projects/{project_id}/topics/{topic_id}`. Updates are sent at regular intervals to the topic. The topic needs to be created before the budget is created; see https://cloud.google.com/billing/docs/how-to/budgets#manage-notifications for more details. Caller is expected to have `pubsub.topics.setIamPolicy` permission on the topic when it's set for a budget, otherwise, the API call will fail with PERMISSION_DENIED. See https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications for more details on Pub/Sub roles and permissions."
+                },
+                "schemaVersion": {
+                  "type": "string",
+                  "description": "Optional. Required when NotificationsRule.pubsub_topic is set. The schema version of the notification sent to NotificationsRule.pubsub_topic. Only \"1.0\" is accepted. It represents the JSON schema as defined in https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format."
+                },
+                "disableDefaultIamRecipients": {
+                  "type": "boolean",
+                  "description": "Optional. When set to true, disables default notifications sent when a threshold is exceeded. Default notifications are sent to those with Billing Account Administrator and Billing Account User IAM roles for the target account."
+                },
+                "monitoringNotificationChannels": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. Targets to send notifications to when a threshold is exceeded. This is in addition to default recipients who have billing account IAM roles. The value is the full REST resource name of a monitoring notification channel with the form `projects/{project_id}/notificationChannels/{channel_id}`. A maximum of 5 channels are allowed. See https://cloud.google.com/billing/docs/how-to/budgets-notification-recipients for more details."
+                }
+              },
+              "description": "Optional. Rules to apply to notifications sent based on budget spend and thresholds."
+            }
+          },
+          "description": "A budget is a plan that describes what you expect to spend on Cloud projects, plus the rules to execute as spend is tracked against that plan, (for example, send an alert when 90% of the target spend is met). The budget time period is configurable, with options such as month (default), quarter, year, or custom time period."
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  billingbudgets.billingAccounts.budgets.delete:
+    description: |-
+      Deletes a budget. Returns successfully if already deleted.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/budget/rest/v1/billingAccounts.budgets/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "GoogleProtobufEmpty",
+          "type": "object",
+          "properties": {},
+          "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`."
+        }
+      ]
+  billingbudgets.billingAccounts.budgets.get:
+    description: |-
+      Returns a budget. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/budget/rest/v1/billingAccounts.budgets/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  billingbudgets.billingAccounts.budgets.list:
+    description: |-
+      Returns a list of budgets for a billing account. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. When reading from the API, you will not see these fields in the return value, though they may have been set in the Cloud Console.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/budget/rest/v1/billingAccounts.budgets/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "GoogleCloudBillingBudgetsV1ListBudgetsResponse",
+          "type": "object",
+          "properties": {
+            "budgets": {
+              "type": "array",
+              "items": {
+                "id": "GoogleCloudBillingBudgetsV1Budget",
+                "type": "object",
+                "properties": {
+                  "etag": {
+                    "type": "string",
+                    "description": "Optional. Etag to validate that the object is unchanged for a read-modify-write operation. An empty etag will cause an update to overwrite other changes."
+                  },
+                  "name": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`."
+                  },
+                  "amount": {
+                    "id": "GoogleCloudBillingBudgetsV1BudgetAmount",
+                    "type": "object",
+                    "properties": {
+                      "specifiedAmount": {
+                        "id": "GoogleTypeMoney",
+                        "type": "object",
+                        "properties": {
+                          "nanos": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000."
+                          },
+                          "units": {
+                            "type": "string",
+                            "format": "int64",
+                            "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar."
+                          },
+                          "currencyCode": {
+                            "type": "string",
+                            "description": "The three-letter currency code defined in ISO 4217."
+                          }
+                        },
+                        "description": "A specified amount to use as the budget. `currency_code` is optional. If specified when creating a budget, it must match the currency of the billing account. If specified when updating a budget, it must match the currency_code of the existing budget. The `currency_code` is provided on output."
+                      },
+                      "lastPeriodAmount": {
+                        "id": "GoogleCloudBillingBudgetsV1LastPeriodAmount",
+                        "type": "object",
+                        "properties": {},
+                        "description": "Use the last period's actual spend as the budget for the present period. LastPeriodAmount can only be set when the budget's time period is a Filter.calendar_period. It cannot be set in combination with Filter.custom_period."
+                      }
+                    },
+                    "description": "Required. Budgeted amount."
+                  },
+                  "displayName": {
+                    "type": "string",
+                    "description": "User data for display name in UI. The name must be less than or equal to 60 characters."
+                  },
+                  "budgetFilter": {
+                    "id": "GoogleCloudBillingBudgetsV1Filter",
+                    "type": "object",
+                    "properties": {
+                      "labels": {
+                        "type": "object",
+                        "description": "Optional. A single label and value pair specifying that usage from only this set of labeled resources should be included in the budget. Currently, multiple entries or multiple values per entry are not allowed. If omitted, the report will include all labeled and unlabeled usage.",
+                        "additionalProperties": {
+                          "type": "array",
+                          "items": {
+                            "type": "any"
+                          }
+                        }
+                      },
+                      "projects": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Optional. A set of projects of the form `projects/{project}`, specifying that usage from only this set of projects should be included in the budget. If omitted, the report will include all usage for the billing account, regardless of which project the usage occurred on. Only zero or one project can be specified currently."
+                      },
+                      "services": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Optional. A set of services of the form `services/{service_id}`, specifying that usage from only this set of services should be included in the budget. If omitted, the report will include usage for all the services. The service names are available through the Catalog API: https://cloud.google.com/billing/v1/how-tos/catalog-api."
+                      },
+                      "creditTypes": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Optional. If Filter.credit_types_treatment is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be subtracted from gross cost to determine the spend for threshold calculations. See [a list of acceptable credit type values](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type). If Filter.credit_types_treatment is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty."
+                      },
+                      "subaccounts": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying that usage from only this set of subaccounts should be included in the budget. If a subaccount is set to the name of the parent account, usage from the parent account will be included. If the field is omitted, the report will include usage from the parent account and all subaccounts, if they exist."
+                      },
+                      "customPeriod": {
+                        "id": "GoogleCloudBillingBudgetsV1CustomPeriod",
+                        "type": "object",
+                        "properties": {
+                          "endDate": {
+                            "id": "GoogleTypeDate",
+                            "type": "object",
+                            "properties": {
+                              "day": {
+                                "type": "integer",
+                                "format": "int32",
+                                "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+                              },
+                              "year": {
+                                "type": "integer",
+                                "format": "int32",
+                                "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+                              },
+                              "month": {
+                                "type": "integer",
+                                "format": "int32",
+                                "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+                              }
+                            },
+                            "description": "Optional. The end date of the time period. Budgets with elapsed end date won't be processed. If unset, specifies to track all usage incurred since the start_date."
+                          },
+                          "startDate": {
+                            "id": "GoogleTypeDate",
+                            "type": "object",
+                            "properties": {
+                              "day": {
+                                "type": "integer",
+                                "format": "int32",
+                                "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+                              },
+                              "year": {
+                                "type": "integer",
+                                "format": "int32",
+                                "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+                              },
+                              "month": {
+                                "type": "integer",
+                                "format": "int32",
+                                "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+                              }
+                            },
+                            "description": "Required. The start date must be after January 1, 2017."
+                          }
+                        },
+                        "description": "Optional. Specifies to track usage from any start date (required) to any end date (optional). This time period is static, it does not recur."
+                      },
+                      "calendarPeriod": {
+                        "enum": [
+                          "CALENDAR_PERIOD_UNSPECIFIED",
+                          "MONTH",
+                          "QUARTER",
+                          "YEAR"
+                        ],
+                        "type": "string",
+                        "description": "Optional. Specifies to track usage for recurring calendar period. For example, assume that CalendarPeriod.QUARTER is set. The budget will track usage from April 1 to June 30, when the current calendar month is April, May, June. After that, it will track usage from July 1 to September 30 when the current calendar month is July, August, September, so on.",
+                        "enumDescriptions": [
+                          "",
+                          "A month. Month starts on the first day of each month, such as January 1, February 1, March 1, and so on.",
+                          "A quarter. Quarters start on dates January 1, April 1, July 1, and October 1 of each year.",
+                          "A year. Year starts on January 1."
+                        ]
+                      },
+                      "creditTypesTreatment": {
+                        "enum": [
+                          "CREDIT_TYPES_TREATMENT_UNSPECIFIED",
+                          "INCLUDE_ALL_CREDITS",
+                          "EXCLUDE_ALL_CREDITS",
+                          "INCLUDE_SPECIFIED_CREDITS"
+                        ],
+                        "type": "string",
+                        "description": "Optional. If not set, default behavior is `INCLUDE_ALL_CREDITS`.",
+                        "enumDescriptions": [
+                          "",
+                          "All types of credit are subtracted from the gross cost to determine the spend for threshold calculations.",
+                          "All types of credit are added to the net cost to determine the spend for threshold calculations.",
+                          "[Credit types](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type) specified in the credit_types field are subtracted from the gross cost to determine the spend for threshold calculations."
+                        ]
+                      }
+                    },
+                    "description": "Optional. Filters that define which resources are used to compute the actual spend against the budget amount, such as projects, services, and the budget's time period, as well as other filters."
+                  },
+                  "thresholdRules": {
+                    "type": "array",
+                    "items": {
+                      "id": "GoogleCloudBillingBudgetsV1ThresholdRule",
+                      "type": "object",
+                      "properties": {
+                        "spendBasis": {
+                          "enum": [
+                            "BASIS_UNSPECIFIED",
+                            "CURRENT_SPEND",
+                            "FORECASTED_SPEND"
+                          ],
+                          "type": "string",
+                          "description": "Optional. The type of basis used to determine if spend has passed the threshold. Behavior defaults to CURRENT_SPEND if not set.",
+                          "enumDescriptions": [
+                            "Unspecified threshold basis.",
+                            "Use current spend as the basis for comparison against the threshold.",
+                            "Use forecasted spend for the period as the basis for comparison against the threshold. FORECASTED_SPEND can only be set when the budget's time period is a Filter.calendar_period. It cannot be set in combination with Filter.custom_period."
+                          ]
+                        },
+                        "thresholdPercent": {
+                          "type": "number",
+                          "format": "double",
+                          "description": "Required. Send an alert when this threshold is exceeded. This is a 1.0-based percentage, so 0.5 = 50%. Validation: non-negative number."
+                        }
+                      },
+                      "description": "ThresholdRule contains the definition of a threshold. Threshold rules define the triggering events used to generate a budget notification email. When a threshold is crossed (spend exceeds the specified percentages of the budget), budget alert emails are sent to the email recipients you specify in the [NotificationsRule](#notificationsrule). Threshold rules also affect the fields included in the [JSON data object](https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format) sent to a Pub/Sub topic. Threshold rules are _required_ if using email notifications. Threshold rules are _optional_ if only setting a [`pubsubTopic` NotificationsRule](#NotificationsRule), unless you want your JSON data object to include data about the thresholds you set. For more information, see [set budget threshold rules and actions](https://cloud.google.com/billing/docs/how-to/budgets#budget-actions)."
+                    },
+                    "description": "Optional. Rules that trigger alerts (notifications of thresholds being crossed) when spend exceeds the specified percentages of the budget. Optional for `pubsubTopic` notifications. Required if using email notifications."
+                  },
+                  "notificationsRule": {
+                    "id": "GoogleCloudBillingBudgetsV1NotificationsRule",
+                    "type": "object",
+                    "properties": {
+                      "pubsubTopic": {
+                        "type": "string",
+                        "description": "Optional. The name of the Pub/Sub topic where budget related messages will be published, in the form `projects/{project_id}/topics/{topic_id}`. Updates are sent at regular intervals to the topic. The topic needs to be created before the budget is created; see https://cloud.google.com/billing/docs/how-to/budgets#manage-notifications for more details. Caller is expected to have `pubsub.topics.setIamPolicy` permission on the topic when it's set for a budget, otherwise, the API call will fail with PERMISSION_DENIED. See https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications for more details on Pub/Sub roles and permissions."
+                      },
+                      "schemaVersion": {
+                        "type": "string",
+                        "description": "Optional. Required when NotificationsRule.pubsub_topic is set. The schema version of the notification sent to NotificationsRule.pubsub_topic. Only \"1.0\" is accepted. It represents the JSON schema as defined in https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format."
+                      },
+                      "disableDefaultIamRecipients": {
+                        "type": "boolean",
+                        "description": "Optional. When set to true, disables default notifications sent when a threshold is exceeded. Default notifications are sent to those with Billing Account Administrator and Billing Account User IAM roles for the target account."
+                      },
+                      "monitoringNotificationChannels": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Optional. Targets to send notifications to when a threshold is exceeded. This is in addition to default recipients who have billing account IAM roles. The value is the full REST resource name of a monitoring notification channel with the form `projects/{project_id}/notificationChannels/{channel_id}`. A maximum of 5 channels are allowed. See https://cloud.google.com/billing/docs/how-to/budgets-notification-recipients for more details."
+                      }
+                    },
+                    "description": "Optional. Rules to apply to notifications sent based on budget spend and thresholds."
+                  }
+                },
+                "description": "A budget is a plan that describes what you expect to spend on Cloud projects, plus the rules to execute as spend is tracked against that plan, (for example, send an alert when 90% of the target spend is met). The budget time period is configurable, with options such as month (default), quarter, year, or custom time period."
+              },
+              "description": "List of the budgets owned by the requested billing account."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "If not empty, indicates that there may be more budgets that match the request; this value should be passed in a new `ListBudgetsRequest`."
+            }
+          },
+          "description": "Response for ListBudgets"
+        }
+      ]
+  billingbudgets.billingAccounts.budgets.patch:
+    description: |-
+      Updates a budget and returns the updated budget. WARNING: There are some fields exposed on the Google Cloud Console that aren't available on this API. Budget fields that are not exposed in this API will not be changed by this method.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/budget/rest/v1/billingAccounts.budgets/patch
+    example:
+      inputs: [
+        {
+          "id": "GoogleCloudBillingBudgetsV1Budget",
+          "type": "object",
+          "properties": {
+            "etag": {
+              "type": "string",
+              "description": "Optional. Etag to validate that the object is unchanged for a read-modify-write operation. An empty etag will cause an update to overwrite other changes."
+            },
+            "name": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. Resource name of the budget. The resource name implies the scope of a budget. Values are of the form `billingAccounts/{billingAccountId}/budgets/{budgetId}`."
+            },
+            "amount": {
+              "id": "GoogleCloudBillingBudgetsV1BudgetAmount",
+              "type": "object",
+              "properties": {
+                "specifiedAmount": {
+                  "id": "GoogleTypeMoney",
+                  "type": "object",
+                  "properties": {
+                    "nanos": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000."
+                    },
+                    "units": {
+                      "type": "string",
+                      "format": "int64",
+                      "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar."
+                    },
+                    "currencyCode": {
+                      "type": "string",
+                      "description": "The three-letter currency code defined in ISO 4217."
+                    }
+                  },
+                  "description": "A specified amount to use as the budget. `currency_code` is optional. If specified when creating a budget, it must match the currency of the billing account. If specified when updating a budget, it must match the currency_code of the existing budget. The `currency_code` is provided on output."
+                },
+                "lastPeriodAmount": {
+                  "id": "GoogleCloudBillingBudgetsV1LastPeriodAmount",
+                  "type": "object",
+                  "properties": {},
+                  "description": "Use the last period's actual spend as the budget for the present period. LastPeriodAmount can only be set when the budget's time period is a Filter.calendar_period. It cannot be set in combination with Filter.custom_period."
+                }
+              },
+              "description": "Required. Budgeted amount."
+            },
+            "displayName": {
+              "type": "string",
+              "description": "User data for display name in UI. The name must be less than or equal to 60 characters."
+            },
+            "budgetFilter": {
+              "id": "GoogleCloudBillingBudgetsV1Filter",
+              "type": "object",
+              "properties": {
+                "labels": {
+                  "type": "object",
+                  "description": "Optional. A single label and value pair specifying that usage from only this set of labeled resources should be included in the budget. Currently, multiple entries or multiple values per entry are not allowed. If omitted, the report will include all labeled and unlabeled usage.",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "type": "any"
+                    }
+                  }
+                },
+                "projects": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. A set of projects of the form `projects/{project}`, specifying that usage from only this set of projects should be included in the budget. If omitted, the report will include all usage for the billing account, regardless of which project the usage occurred on. Only zero or one project can be specified currently."
+                },
+                "services": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. A set of services of the form `services/{service_id}`, specifying that usage from only this set of services should be included in the budget. If omitted, the report will include usage for all the services. The service names are available through the Catalog API: https://cloud.google.com/billing/v1/how-tos/catalog-api."
+                },
+                "creditTypes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. If Filter.credit_types_treatment is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be subtracted from gross cost to determine the spend for threshold calculations. See [a list of acceptable credit type values](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type). If Filter.credit_types_treatment is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty."
+                },
+                "subaccounts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying that usage from only this set of subaccounts should be included in the budget. If a subaccount is set to the name of the parent account, usage from the parent account will be included. If the field is omitted, the report will include usage from the parent account and all subaccounts, if they exist."
+                },
+                "customPeriod": {
+                  "id": "GoogleCloudBillingBudgetsV1CustomPeriod",
+                  "type": "object",
+                  "properties": {
+                    "endDate": {
+                      "id": "GoogleTypeDate",
+                      "type": "object",
+                      "properties": {
+                        "day": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+                        },
+                        "year": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+                        },
+                        "month": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+                        }
+                      },
+                      "description": "Optional. The end date of the time period. Budgets with elapsed end date won't be processed. If unset, specifies to track all usage incurred since the start_date."
+                    },
+                    "startDate": {
+                      "id": "GoogleTypeDate",
+                      "type": "object",
+                      "properties": {
+                        "day": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+                        },
+                        "year": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+                        },
+                        "month": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+                        }
+                      },
+                      "description": "Required. The start date must be after January 1, 2017."
+                    }
+                  },
+                  "description": "Optional. Specifies to track usage from any start date (required) to any end date (optional). This time period is static, it does not recur."
+                },
+                "calendarPeriod": {
+                  "enum": [
+                    "CALENDAR_PERIOD_UNSPECIFIED",
+                    "MONTH",
+                    "QUARTER",
+                    "YEAR"
+                  ],
+                  "type": "string",
+                  "description": "Optional. Specifies to track usage for recurring calendar period. For example, assume that CalendarPeriod.QUARTER is set. The budget will track usage from April 1 to June 30, when the current calendar month is April, May, June. After that, it will track usage from July 1 to September 30 when the current calendar month is July, August, September, so on.",
+                  "enumDescriptions": [
+                    "",
+                    "A month. Month starts on the first day of each month, such as January 1, February 1, March 1, and so on.",
+                    "A quarter. Quarters start on dates January 1, April 1, July 1, and October 1 of each year.",
+                    "A year. Year starts on January 1."
+                  ]
+                },
+                "creditTypesTreatment": {
+                  "enum": [
+                    "CREDIT_TYPES_TREATMENT_UNSPECIFIED",
+                    "INCLUDE_ALL_CREDITS",
+                    "EXCLUDE_ALL_CREDITS",
+                    "INCLUDE_SPECIFIED_CREDITS"
+                  ],
+                  "type": "string",
+                  "description": "Optional. If not set, default behavior is `INCLUDE_ALL_CREDITS`.",
+                  "enumDescriptions": [
+                    "",
+                    "All types of credit are subtracted from the gross cost to determine the spend for threshold calculations.",
+                    "All types of credit are added to the net cost to determine the spend for threshold calculations.",
+                    "[Credit types](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type) specified in the credit_types field are subtracted from the gross cost to determine the spend for threshold calculations."
+                  ]
+                }
+              },
+              "description": "Optional. Filters that define which resources are used to compute the actual spend against the budget amount, such as projects, services, and the budget's time period, as well as other filters."
+            },
+            "thresholdRules": {
+              "type": "array",
+              "items": {
+                "id": "GoogleCloudBillingBudgetsV1ThresholdRule",
+                "type": "object",
+                "properties": {
+                  "spendBasis": {
+                    "enum": [
+                      "BASIS_UNSPECIFIED",
+                      "CURRENT_SPEND",
+                      "FORECASTED_SPEND"
+                    ],
+                    "type": "string",
+                    "description": "Optional. The type of basis used to determine if spend has passed the threshold. Behavior defaults to CURRENT_SPEND if not set.",
+                    "enumDescriptions": [
+                      "Unspecified threshold basis.",
+                      "Use current spend as the basis for comparison against the threshold.",
+                      "Use forecasted spend for the period as the basis for comparison against the threshold. FORECASTED_SPEND can only be set when the budget's time period is a Filter.calendar_period. It cannot be set in combination with Filter.custom_period."
+                    ]
+                  },
+                  "thresholdPercent": {
+                    "type": "number",
+                    "format": "double",
+                    "description": "Required. Send an alert when this threshold is exceeded. This is a 1.0-based percentage, so 0.5 = 50%. Validation: non-negative number."
+                  }
+                },
+                "description": "ThresholdRule contains the definition of a threshold. Threshold rules define the triggering events used to generate a budget notification email. When a threshold is crossed (spend exceeds the specified percentages of the budget), budget alert emails are sent to the email recipients you specify in the [NotificationsRule](#notificationsrule). Threshold rules also affect the fields included in the [JSON data object](https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format) sent to a Pub/Sub topic. Threshold rules are _required_ if using email notifications. Threshold rules are _optional_ if only setting a [`pubsubTopic` NotificationsRule](#NotificationsRule), unless you want your JSON data object to include data about the thresholds you set. For more information, see [set budget threshold rules and actions](https://cloud.google.com/billing/docs/how-to/budgets#budget-actions)."
+              },
+              "description": "Optional. Rules that trigger alerts (notifications of thresholds being crossed) when spend exceeds the specified percentages of the budget. Optional for `pubsubTopic` notifications. Required if using email notifications."
+            },
+            "notificationsRule": {
+              "id": "GoogleCloudBillingBudgetsV1NotificationsRule",
+              "type": "object",
+              "properties": {
+                "pubsubTopic": {
+                  "type": "string",
+                  "description": "Optional. The name of the Pub/Sub topic where budget related messages will be published, in the form `projects/{project_id}/topics/{topic_id}`. Updates are sent at regular intervals to the topic. The topic needs to be created before the budget is created; see https://cloud.google.com/billing/docs/how-to/budgets#manage-notifications for more details. Caller is expected to have `pubsub.topics.setIamPolicy` permission on the topic when it's set for a budget, otherwise, the API call will fail with PERMISSION_DENIED. See https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications for more details on Pub/Sub roles and permissions."
+                },
+                "schemaVersion": {
+                  "type": "string",
+                  "description": "Optional. Required when NotificationsRule.pubsub_topic is set. The schema version of the notification sent to NotificationsRule.pubsub_topic. Only \"1.0\" is accepted. It represents the JSON schema as defined in https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format."
+                },
+                "disableDefaultIamRecipients": {
+                  "type": "boolean",
+                  "description": "Optional. When set to true, disables default notifications sent when a threshold is exceeded. Default notifications are sent to those with Billing Account Administrator and Billing Account User IAM roles for the target account."
+                },
+                "monitoringNotificationChannels": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Optional. Targets to send notifications to when a threshold is exceeded. This is in addition to default recipients who have billing account IAM roles. The value is the full REST resource name of a monitoring notification channel with the form `projects/{project_id}/notificationChannels/{channel_id}`. A maximum of 5 channels are allowed. See https://cloud.google.com/billing/docs/how-to/budgets-notification-recipients for more details."
+                }
+              },
+              "description": "Optional. Rules to apply to notifications sent based on budget spend and thresholds."
+            }
+          },
+          "description": "A budget is a plan that describes what you expect to spend on Cloud projects, plus the rules to execute as spend is tracked against that plan, (for example, send an alert when 90% of the target spend is met). The budget time period is configurable, with options such as month (default), quarter, year, or custom time period."
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cloudbilling.billingAccounts.create:
+    description: |-
+      This method creates [billing subaccounts](https://cloud.google.com/billing/docs/concepts#subaccounts). Google Cloud resellers should use the Channel Services APIs, [accounts.customers.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers/create) and [accounts.customers.entitlements.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers.entitlements/create). When creating a subaccount, the current authenticated user must have the `billing.accounts.update` IAM permission on the parent account, which is typically given to billing account [administrators](https://cloud.google.com/billing/docs/how-to/billing-access). This method will return an error if the parent account has not been provisioned as a reseller account.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/rest/v1/billingAccounts/create
+    example:
+      inputs: [
+        {
+          "id": "BillingAccount",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The resource name of the billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF` would be the resource name for billing account `012345-567890-ABCDEF`."
+            },
+            "open": {
+              "type": "boolean",
+              "readOnly": true,
+              "description": "Output only. True if the billing account is open, and will therefore be charged for any usage on associated projects. False if the billing account is closed, and therefore projects associated with it will be unable to use paid services."
+            },
+            "displayName": {
+              "type": "string",
+              "description": "The display name given to the billing account, such as `My Billing Account`. This name is displayed in the Google Cloud Console."
+            },
+            "masterBillingAccount": {
+              "type": "string",
+              "description": "If this account is a [subaccount](https://cloud.google.com/billing/docs/concepts), then this will be the resource name of the parent billing account that it is being resold through. Otherwise this will be empty."
+            }
+          },
+          "description": "A billing account in the [Google Cloud Console](https://console.cloud.google.com/). You can assign a billing account to one or more projects."
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cloudbilling.billingAccounts.get:
+    description: |-
+      Gets information about a billing account. The current authenticated user must be a [viewer of the billing account](https://cloud.google.com/billing/docs/how-to/billing-access).
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/rest/v1/billingAccounts/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  cloudbilling.billingAccounts.getIamPolicy:
+    description: |-
+      Gets the access control policy for a billing account. The caller must have the `billing.accounts.getIamPolicy` permission on the account, which is often given to billing account [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/rest/v1/billingAccounts/getIamPolicy
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Policy",
+          "type": "object",
+          "properties": {
+            "etag": {
+              "type": "string",
+              "format": "byte",
+              "description": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost."
+            },
+            "version": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+            },
+            "bindings": {
+              "type": "array",
+              "items": {
+                "id": "Binding",
+                "type": "object",
+                "properties": {
+                  "role": {
+                    "type": "string",
+                    "description": "Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`."
+                  },
+                  "members": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. "
+                  },
+                  "condition": {
+                    "id": "Expr",
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
+                      },
+                      "location": {
+                        "type": "string",
+                        "description": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
+                      },
+                      "expression": {
+                        "type": "string",
+                        "description": "Textual representation of an expression in Common Expression Language syntax."
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
+                      }
+                    },
+                    "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+                  }
+                },
+                "description": "Associates `members` with a `role`."
+              },
+              "description": "Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member."
+            },
+            "auditConfigs": {
+              "type": "array",
+              "items": {
+                "id": "AuditConfig",
+                "type": "object",
+                "properties": {
+                  "service": {
+                    "type": "string",
+                    "description": "Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services."
+                  },
+                  "auditLogConfigs": {
+                    "type": "array",
+                    "items": {
+                      "id": "AuditLogConfig",
+                      "type": "object",
+                      "properties": {
+                        "logType": {
+                          "enum": [
+                            "LOG_TYPE_UNSPECIFIED",
+                            "ADMIN_READ",
+                            "DATA_WRITE",
+                            "DATA_READ"
+                          ],
+                          "type": "string",
+                          "description": "The log type that this config enables.",
+                          "enumDescriptions": [
+                            "Default case. Should never be this.",
+                            "Admin reads. Example: CloudIAM getIamPolicy",
+                            "Data writes. Example: CloudSQL Users create",
+                            "Data reads. Example: CloudSQL Users list"
+                          ]
+                        },
+                        "exemptedMembers": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members."
+                        }
+                      },
+                      "description": "Provides the configuration for logging a type of permissions. Example: { \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging."
+                    },
+                    "description": "The configuration for logging of each type of permission."
+                  }
+                },
+                "description": "Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { \"audit_configs\": [ { \"service\": \"allServices\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" }, { \"log_type\": \"ADMIN_READ\" } ] }, { \"service\": \"sampleservice.googleapis.com\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\" }, { \"log_type\": \"DATA_WRITE\", \"exempted_members\": [ \"user:aliya@example.com\" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging."
+              },
+              "description": "Specifies cloud audit logging configuration for this policy."
+            }
+          },
+          "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/)."
+        }
+      ]
+  cloudbilling.billingAccounts.list:
+    description: |-
+      Lists the billing accounts that the current authenticated user has permission to [view](https://cloud.google.com/billing/docs/how-to/billing-access).
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/rest/v1/billingAccounts/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListBillingAccountsResponse",
+          "type": "object",
+          "properties": {
+            "nextPageToken": {
+              "type": "string",
+              "description": "A token to retrieve the next page of results. To retrieve the next page, call `ListBillingAccounts` again with the `page_token` field set to this value. This field is empty if there are no more results to retrieve."
+            },
+            "billingAccounts": {
+              "type": "array",
+              "items": {
+                "id": "BillingAccount",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. The resource name of the billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF` would be the resource name for billing account `012345-567890-ABCDEF`."
+                  },
+                  "open": {
+                    "type": "boolean",
+                    "readOnly": true,
+                    "description": "Output only. True if the billing account is open, and will therefore be charged for any usage on associated projects. False if the billing account is closed, and therefore projects associated with it will be unable to use paid services."
+                  },
+                  "displayName": {
+                    "type": "string",
+                    "description": "The display name given to the billing account, such as `My Billing Account`. This name is displayed in the Google Cloud Console."
+                  },
+                  "masterBillingAccount": {
+                    "type": "string",
+                    "description": "If this account is a [subaccount](https://cloud.google.com/billing/docs/concepts), then this will be the resource name of the parent billing account that it is being resold through. Otherwise this will be empty."
+                  }
+                },
+                "description": "A billing account in the [Google Cloud Console](https://console.cloud.google.com/). You can assign a billing account to one or more projects."
+              },
+              "description": "A list of billing accounts."
+            }
+          },
+          "description": "Response message for `ListBillingAccounts`."
+        }
+      ]
+  cloudbilling.billingAccounts.patch:
+    description: |-
+      Updates a billing account's fields. Currently the only field that can be edited is `display_name`. The current authenticated user must have the `billing.accounts.update` IAM permission, which is typically given to the [administrator](https://cloud.google.com/billing/docs/how-to/billing-access) of the billing account.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/rest/v1/billingAccounts/patch
+    example:
+      inputs: [
+        {
+          "id": "BillingAccount",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. The resource name of the billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF` would be the resource name for billing account `012345-567890-ABCDEF`."
+            },
+            "open": {
+              "type": "boolean",
+              "readOnly": true,
+              "description": "Output only. True if the billing account is open, and will therefore be charged for any usage on associated projects. False if the billing account is closed, and therefore projects associated with it will be unable to use paid services."
+            },
+            "displayName": {
+              "type": "string",
+              "description": "The display name given to the billing account, such as `My Billing Account`. This name is displayed in the Google Cloud Console."
+            },
+            "masterBillingAccount": {
+              "type": "string",
+              "description": "If this account is a [subaccount](https://cloud.google.com/billing/docs/concepts), then this will be the resource name of the parent billing account that it is being resold through. Otherwise this will be empty."
+            }
+          },
+          "description": "A billing account in the [Google Cloud Console](https://console.cloud.google.com/). You can assign a billing account to one or more projects."
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  cloudbilling.billingAccounts.projects.list:
+    description: |-
+      Lists the projects associated with a billing account. The current authenticated user must have the `billing.resourceAssociations.list` IAM permission, which is often given to billing account [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/rest/v1/billingAccounts.projects/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListProjectBillingInfoResponse",
+          "type": "object",
+          "properties": {
+            "nextPageToken": {
+              "type": "string",
+              "description": "A token to retrieve the next page of results. To retrieve the next page, call `ListProjectBillingInfo` again with the `page_token` field set to this value. This field is empty if there are no more results to retrieve."
+            },
+            "projectBillingInfo": {
+              "type": "array",
+              "items": {
+                "id": "ProjectBillingInfo",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The resource name for the `ProjectBillingInfo`; has the form `projects/{project_id}/billingInfo`. For example, the resource name for the billing information for project `tokyo-rain-123` would be `projects/tokyo-rain-123/billingInfo`. This field is read-only."
+                  },
+                  "projectId": {
+                    "type": "string",
+                    "description": "The ID of the project that this `ProjectBillingInfo` represents, such as `tokyo-rain-123`. This is a convenience field so that you don't need to parse the `name` field to obtain a project ID. This field is read-only."
+                  },
+                  "billingEnabled": {
+                    "type": "boolean",
+                    "description": "True if the project is associated with an open billing account, to which usage on the project is charged. False if the project is associated with a closed billing account, or no billing account at all, and therefore cannot use paid services. This field is read-only."
+                  },
+                  "billingAccountName": {
+                    "type": "string",
+                    "description": "The resource name of the billing account associated with the project, if any. For example, `billingAccounts/012345-567890-ABCDEF`."
+                  }
+                },
+                "description": "Encapsulation of billing information for a Google Cloud Console project. A project has at most one associated billing account at a time (but a billing account can be assigned to multiple projects)."
+              },
+              "description": "A list of `ProjectBillingInfo` resources representing the projects associated with the billing account."
+            }
+          },
+          "description": "Request message for `ListProjectBillingInfoResponse`."
+        }
+      ]
+  cloudbilling.billingAccounts.setIamPolicy:
+    description: |-
+      Sets the access control policy for a billing account. Replaces any existing policy. The caller must have the `billing.accounts.setIamPolicy` permission on the account, which is often given to billing account [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/rest/v1/billingAccounts/setIamPolicy
+    example:
+      inputs: [
+        {
+          "id": "SetIamPolicyRequest",
+          "type": "object",
+          "properties": {
+            "policy": {
+              "id": "Policy",
+              "type": "object",
+              "properties": {
+                "etag": {
+                  "type": "string",
+                  "format": "byte",
+                  "description": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost."
+                },
+                "version": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+                },
+                "bindings": {
+                  "type": "array",
+                  "items": {
+                    "id": "Binding",
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "type": "string",
+                        "description": "Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`."
+                      },
+                      "members": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. "
+                      },
+                      "condition": {
+                        "id": "Expr",
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string",
+                            "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
+                          },
+                          "location": {
+                            "type": "string",
+                            "description": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
+                          },
+                          "expression": {
+                            "type": "string",
+                            "description": "Textual representation of an expression in Common Expression Language syntax."
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
+                          }
+                        },
+                        "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+                      }
+                    },
+                    "description": "Associates `members` with a `role`."
+                  },
+                  "description": "Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member."
+                },
+                "auditConfigs": {
+                  "type": "array",
+                  "items": {
+                    "id": "AuditConfig",
+                    "type": "object",
+                    "properties": {
+                      "service": {
+                        "type": "string",
+                        "description": "Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services."
+                      },
+                      "auditLogConfigs": {
+                        "type": "array",
+                        "items": {
+                          "id": "AuditLogConfig",
+                          "type": "object",
+                          "properties": {
+                            "logType": {
+                              "enum": [
+                                "LOG_TYPE_UNSPECIFIED",
+                                "ADMIN_READ",
+                                "DATA_WRITE",
+                                "DATA_READ"
+                              ],
+                              "type": "string",
+                              "description": "The log type that this config enables.",
+                              "enumDescriptions": [
+                                "Default case. Should never be this.",
+                                "Admin reads. Example: CloudIAM getIamPolicy",
+                                "Data writes. Example: CloudSQL Users create",
+                                "Data reads. Example: CloudSQL Users list"
+                              ]
+                            },
+                            "exemptedMembers": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": "Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members."
+                            }
+                          },
+                          "description": "Provides the configuration for logging a type of permissions. Example: { \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging."
+                        },
+                        "description": "The configuration for logging of each type of permission."
+                      }
+                    },
+                    "description": "Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { \"audit_configs\": [ { \"service\": \"allServices\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" }, { \"log_type\": \"ADMIN_READ\" } ] }, { \"service\": \"sampleservice.googleapis.com\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\" }, { \"log_type\": \"DATA_WRITE\", \"exempted_members\": [ \"user:aliya@example.com\" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging."
+                  },
+                  "description": "Specifies cloud audit logging configuration for this policy."
+                }
+              },
+              "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/)."
+            },
+            "updateMask": {
+              "type": "string",
+              "format": "google-fieldmask",
+              "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`"
+            }
+          },
+          "description": "Request message for `SetIamPolicy` method."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Policy",
+          "type": "object",
+          "properties": {
+            "etag": {
+              "type": "string",
+              "format": "byte",
+              "description": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost."
+            },
+            "version": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+            },
+            "bindings": {
+              "type": "array",
+              "items": {
+                "id": "Binding",
+                "type": "object",
+                "properties": {
+                  "role": {
+                    "type": "string",
+                    "description": "Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`."
+                  },
+                  "members": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. "
+                  },
+                  "condition": {
+                    "id": "Expr",
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
+                      },
+                      "location": {
+                        "type": "string",
+                        "description": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
+                      },
+                      "expression": {
+                        "type": "string",
+                        "description": "Textual representation of an expression in Common Expression Language syntax."
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
+                      }
+                    },
+                    "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+                  }
+                },
+                "description": "Associates `members` with a `role`."
+              },
+              "description": "Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member."
+            },
+            "auditConfigs": {
+              "type": "array",
+              "items": {
+                "id": "AuditConfig",
+                "type": "object",
+                "properties": {
+                  "service": {
+                    "type": "string",
+                    "description": "Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services."
+                  },
+                  "auditLogConfigs": {
+                    "type": "array",
+                    "items": {
+                      "id": "AuditLogConfig",
+                      "type": "object",
+                      "properties": {
+                        "logType": {
+                          "enum": [
+                            "LOG_TYPE_UNSPECIFIED",
+                            "ADMIN_READ",
+                            "DATA_WRITE",
+                            "DATA_READ"
+                          ],
+                          "type": "string",
+                          "description": "The log type that this config enables.",
+                          "enumDescriptions": [
+                            "Default case. Should never be this.",
+                            "Admin reads. Example: CloudIAM getIamPolicy",
+                            "Data writes. Example: CloudSQL Users create",
+                            "Data reads. Example: CloudSQL Users list"
+                          ]
+                        },
+                        "exemptedMembers": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members."
+                        }
+                      },
+                      "description": "Provides the configuration for logging a type of permissions. Example: { \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging."
+                    },
+                    "description": "The configuration for logging of each type of permission."
+                  }
+                },
+                "description": "Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { \"audit_configs\": [ { \"service\": \"allServices\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" }, { \"log_type\": \"ADMIN_READ\" } ] }, { \"service\": \"sampleservice.googleapis.com\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\" }, { \"log_type\": \"DATA_WRITE\", \"exempted_members\": [ \"user:aliya@example.com\" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging."
+              },
+              "description": "Specifies cloud audit logging configuration for this policy."
+            }
+          },
+          "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/)."
+        }
+      ]
+  cloudbilling.billingAccounts.testIamPermissions:
+    description: |-
+      Tests the access control policy for a billing account. This method takes the resource and a set of permissions as input and returns the subset of the input permissions that the caller is allowed for that resource.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/rest/v1/billingAccounts/testIamPermissions
+    example:
+      inputs: [
+        {
+          "id": "TestIamPermissionsRequest",
+          "type": "object",
+          "properties": {
+            "permissions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions)."
+            }
+          },
+          "description": "Request message for `TestIamPermissions` method."
+        }
+      ]
+      outputs: [
+        {
+          "id": "TestIamPermissionsResponse",
+          "type": "object",
+          "properties": {
+            "permissions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed."
+            }
+          },
+          "description": "Response message for `TestIamPermissions` method."
+        }
+      ]
+  cloudbilling.projects.getBillingInfo:
+    description: |-
+      Gets the billing information for a project. The current authenticated user must have [permission to view the project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo ).
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/rest/v1/projects/getBillingInfo
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ProjectBillingInfo",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The resource name for the `ProjectBillingInfo`; has the form `projects/{project_id}/billingInfo`. For example, the resource name for the billing information for project `tokyo-rain-123` would be `projects/tokyo-rain-123/billingInfo`. This field is read-only."
+            },
+            "projectId": {
+              "type": "string",
+              "description": "The ID of the project that this `ProjectBillingInfo` represents, such as `tokyo-rain-123`. This is a convenience field so that you don't need to parse the `name` field to obtain a project ID. This field is read-only."
+            },
+            "billingEnabled": {
+              "type": "boolean",
+              "description": "True if the project is associated with an open billing account, to which usage on the project is charged. False if the project is associated with a closed billing account, or no billing account at all, and therefore cannot use paid services. This field is read-only."
+            },
+            "billingAccountName": {
+              "type": "string",
+              "description": "The resource name of the billing account associated with the project, if any. For example, `billingAccounts/012345-567890-ABCDEF`."
+            }
+          },
+          "description": "Encapsulation of billing information for a Google Cloud Console project. A project has at most one associated billing account at a time (but a billing account can be assigned to multiple projects)."
+        }
+      ]
+  cloudbilling.projects.updateBillingInfo:
+    description: |-
+      Sets or updates the billing account associated with a project. You specify the new billing account by setting the `billing_account_name` in the `ProjectBillingInfo` resource to the resource name of a billing account. Associating a project with an open billing account enables billing on the project and allows charges for resource usage. If the project already had a billing account, this method changes the billing account used for resource usage charges. *Note:* Incurred charges that have not yet been reported in the transaction history of the Google Cloud Console might be billed to the new billing account, even if the charge occurred before the new billing account was assigned to the project. The current authenticated user must have ownership privileges for both the [project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo ) and the [billing account](https://cloud.google.com/billing/docs/how-to/billing-access). You can disable billing on the project by setting the `billing_account_name` field to empty. This action disassociates the current billing account from the project. Any billable activity of your in-use services will stop, and your application could stop functioning as expected. Any unbilled charges to date will be billed to the previously associated account. The current authenticated user must be either an owner of the project or an owner of the billing account for the project. Note that associating a project with a *closed* billing account will have much the same effect as disabling billing on the project: any paid resources used by the project will be shut down. Thus, unless you wish to disable billing, you should always call this method with the name of an *open* billing account.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/rest/v1/projects/updateBillingInfo
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ProjectBillingInfo",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The resource name for the `ProjectBillingInfo`; has the form `projects/{project_id}/billingInfo`. For example, the resource name for the billing information for project `tokyo-rain-123` would be `projects/tokyo-rain-123/billingInfo`. This field is read-only."
+            },
+            "projectId": {
+              "type": "string",
+              "description": "The ID of the project that this `ProjectBillingInfo` represents, such as `tokyo-rain-123`. This is a convenience field so that you don't need to parse the `name` field to obtain a project ID. This field is read-only."
+            },
+            "billingEnabled": {
+              "type": "boolean",
+              "description": "True if the project is associated with an open billing account, to which usage on the project is charged. False if the project is associated with a closed billing account, or no billing account at all, and therefore cannot use paid services. This field is read-only."
+            },
+            "billingAccountName": {
+              "type": "string",
+              "description": "The resource name of the billing account associated with the project, if any. For example, `billingAccounts/012345-567890-ABCDEF`."
+            }
+          },
+          "description": "Encapsulation of billing information for a Google Cloud Console project. A project has at most one associated billing account at a time (but a billing account can be assigned to multiple projects)."
+        }
+      ]
+  cloudbilling.services.list:
+    description: |-
+      Lists all public cloud services.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/rest/v1/services/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListServicesResponse",
+          "type": "object",
+          "properties": {
+            "services": {
+              "type": "array",
+              "items": {
+                "id": "Service",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The resource name for the service. Example: \"services/DA34-426B-A397\""
+                  },
+                  "serviceId": {
+                    "type": "string",
+                    "description": "The identifier for the service. Example: \"DA34-426B-A397\""
+                  },
+                  "displayName": {
+                    "type": "string",
+                    "description": "A human readable display name for this service."
+                  },
+                  "businessEntityName": {
+                    "type": "string",
+                    "description": "The business under which the service is offered. Ex. \"businessEntities/GCP\", \"businessEntities/Maps\""
+                  }
+                },
+                "description": "Encapsulates a single service in Google Cloud Platform."
+              },
+              "description": "A list of services."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "A token to retrieve the next page of results. To retrieve the next page, call `ListServices` again with the `page_token` field set to this value. This field is empty if there are no more results to retrieve."
+            }
+          },
+          "description": "Response message for `ListServices`."
+        }
+      ]
+  cloudbilling.services.skus.list:
+    description: |-
+      Lists all publicly available SKUs for a given cloud service.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/billing/docs/reference/rest/v1/services.skus/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListSkusResponse",
+          "type": "object",
+          "properties": {
+            "skus": {
+              "type": "array",
+              "items": {
+                "id": "Sku",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The resource name for the SKU. Example: \"services/DA34-426B-A397/skus/AA95-CD31-42FE\""
+                  },
+                  "skuId": {
+                    "type": "string",
+                    "description": "The identifier for the SKU. Example: \"AA95-CD31-42FE\""
+                  },
+                  "category": {
+                    "id": "Category",
+                    "type": "object",
+                    "properties": {
+                      "usageType": {
+                        "type": "string",
+                        "description": "Represents how the SKU is consumed. Example: \"OnDemand\", \"Preemptible\", \"Commit1Mo\", \"Commit1Yr\" etc."
+                      },
+                      "resourceGroup": {
+                        "type": "string",
+                        "description": "A group classification for related SKUs. Example: \"RAM\", \"GPU\", \"Prediction\", \"Ops\", \"GoogleEgress\" etc."
+                      },
+                      "resourceFamily": {
+                        "type": "string",
+                        "description": "The type of product the SKU refers to. Example: \"Compute\", \"Storage\", \"Network\", \"ApplicationServices\" etc."
+                      },
+                      "serviceDisplayName": {
+                        "type": "string",
+                        "description": "The display name of the service this SKU belongs to."
+                      }
+                    },
+                    "description": "The category hierarchy of this SKU, purely for organizational purpose."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "A human readable description of the SKU, has a maximum length of 256 characters."
+                  },
+                  "geoTaxonomy": {
+                    "id": "GeoTaxonomy",
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "enum": [
+                          "TYPE_UNSPECIFIED",
+                          "GLOBAL",
+                          "REGIONAL",
+                          "MULTI_REGIONAL"
+                        ],
+                        "type": "string",
+                        "description": "The type of Geo Taxonomy: GLOBAL, REGIONAL, or MULTI_REGIONAL.",
+                        "enumDescriptions": [
+                          "The type is not specified.",
+                          "The sku is global in nature, e.g. a license sku. Global skus are available in all regions, and so have an empty region list.",
+                          "The sku is available in a specific region, e.g. \"us-west2\".",
+                          "The sku is associated with multiple regions, e.g. \"us-west2\" and \"us-east1\"."
+                        ]
+                      },
+                      "regions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "The list of regions associated with a sku. Empty for Global skus, which are associated with all Google Cloud regions."
+                      }
+                    },
+                    "description": "The geographic taxonomy for this sku."
+                  },
+                  "pricingInfo": {
+                    "type": "array",
+                    "items": {
+                      "id": "PricingInfo",
+                      "type": "object",
+                      "properties": {
+                        "summary": {
+                          "type": "string",
+                          "description": "An optional human readable summary of the pricing information, has a maximum length of 256 characters."
+                        },
+                        "effectiveTime": {
+                          "type": "string",
+                          "format": "google-datetime",
+                          "description": "The timestamp from which this pricing was effective within the requested time range. This is guaranteed to be greater than or equal to the start_time field in the request and less than the end_time field in the request. If a time range was not specified in the request this field will be equivalent to a time within the last 12 hours, indicating the latest pricing info."
+                        },
+                        "aggregationInfo": {
+                          "id": "AggregationInfo",
+                          "type": "object",
+                          "properties": {
+                            "aggregationCount": {
+                              "type": "integer",
+                              "format": "int32",
+                              "description": "The number of intervals to aggregate over. Example: If aggregation_level is \"DAILY\" and aggregation_count is 14, aggregation will be over 14 days."
+                            },
+                            "aggregationLevel": {
+                              "enum": [
+                                "AGGREGATION_LEVEL_UNSPECIFIED",
+                                "ACCOUNT",
+                                "PROJECT"
+                              ],
+                              "type": "string",
+                              "enumDescriptions": [
+                                "",
+                                "",
+                                ""
+                              ]
+                            },
+                            "aggregationInterval": {
+                              "enum": [
+                                "AGGREGATION_INTERVAL_UNSPECIFIED",
+                                "DAILY",
+                                "MONTHLY"
+                              ],
+                              "type": "string",
+                              "enumDescriptions": [
+                                "",
+                                "",
+                                ""
+                              ]
+                            }
+                          },
+                          "description": "Aggregation Info. This can be left unspecified if the pricing expression doesn't require aggregation."
+                        },
+                        "pricingExpression": {
+                          "id": "PricingExpression",
+                          "type": "object",
+                          "properties": {
+                            "baseUnit": {
+                              "type": "string",
+                              "description": "The base unit for the SKU which is the unit used in usage exports. Example: \"By\""
+                            },
+                            "usageUnit": {
+                              "type": "string",
+                              "description": "The short hand for unit of usage this pricing is specified in. Example: usage_unit of \"GiBy\" means that usage is specified in \"Gibi Byte\"."
+                            },
+                            "tieredRates": {
+                              "type": "array",
+                              "items": {
+                                "id": "TierRate",
+                                "type": "object",
+                                "properties": {
+                                  "unitPrice": {
+                                    "id": "Money",
+                                    "type": "object",
+                                    "properties": {
+                                      "nanos": {
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "description": "Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000."
+                                      },
+                                      "units": {
+                                        "type": "string",
+                                        "format": "int64",
+                                        "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar."
+                                      },
+                                      "currencyCode": {
+                                        "type": "string",
+                                        "description": "The three-letter currency code defined in ISO 4217."
+                                      }
+                                    },
+                                    "description": "The price per unit of usage. Example: unit_price of amount $10 indicates that each unit will cost $10."
+                                  },
+                                  "startUsageAmount": {
+                                    "type": "number",
+                                    "format": "double",
+                                    "description": "Usage is priced at this rate only after this amount. Example: start_usage_amount of 10 indicates that the usage will be priced at the unit_price after the first 10 usage_units."
+                                  }
+                                },
+                                "description": "The price rate indicating starting usage and its corresponding price."
+                              },
+                              "description": "The list of tiered rates for this pricing. The total cost is computed by applying each of the tiered rates on usage. This repeated list is sorted by ascending order of start_usage_amount."
+                            },
+                            "displayQuantity": {
+                              "type": "number",
+                              "format": "double",
+                              "description": "The recommended quantity of units for displaying pricing info. When displaying pricing info it is recommended to display: (unit_price * display_quantity) per display_quantity usage_unit. This field does not affect the pricing formula and is for display purposes only. Example: If the unit_price is \"0.0001 USD\", the usage_unit is \"GB\" and the display_quantity is \"1000\" then the recommended way of displaying the pricing info is \"0.10 USD per 1000 GB\""
+                            },
+                            "baseUnitDescription": {
+                              "type": "string",
+                              "description": "The base unit in human readable form. Example: \"byte\"."
+                            },
+                            "usageUnitDescription": {
+                              "type": "string",
+                              "description": "The unit of usage in human readable form. Example: \"gibi byte\"."
+                            },
+                            "baseUnitConversionFactor": {
+                              "type": "number",
+                              "format": "double",
+                              "description": "Conversion factor for converting from price per usage_unit to price per base_unit, and start_usage_amount to start_usage_amount in base_unit. unit_price / base_unit_conversion_factor = price per base_unit. start_usage_amount * base_unit_conversion_factor = start_usage_amount in base_unit."
+                            }
+                          },
+                          "description": "Expresses the pricing formula. See `PricingExpression` for an example."
+                        },
+                        "currencyConversionRate": {
+                          "type": "number",
+                          "format": "double",
+                          "description": "Conversion rate used for currency conversion, from USD to the currency specified in the request. This includes any surcharge collected for billing in non USD currency. If a currency is not specified in the request this defaults to 1.0. Example: USD * currency_conversion_rate = JPY"
+                        }
+                      },
+                      "description": "Represents the pricing information for a SKU at a single point of time."
+                    },
+                    "description": "A timeline of pricing info for this SKU in chronological order."
+                  },
+                  "serviceRegions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "List of service regions this SKU is offered at. Example: \"asia-east1\" Service regions can be found at https://cloud.google.com/about/locations/"
+                  },
+                  "serviceProviderName": {
+                    "type": "string",
+                    "description": "Identifies the service provider. This is 'Google' for first party services in Google Cloud Platform."
+                  }
+                },
+                "description": "Encapsulates a single SKU in Google Cloud Platform"
+              },
+              "description": "The list of public SKUs of the given service."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "A token to retrieve the next page of results. To retrieve the next page, call `ListSkus` again with the `page_token` field set to this value. This field is empty if there are no more results to retrieve."
+            }
+          },
+          "description": "Response message for `ListSkus`."
+        }
+      ]

@@ -1,0 +1,1272 @@
+Product:
+  name: AWS Server Migration Service
+  versions: [2016.10.24]
+  package: amazon.aws.sms
+  description: |-
+    AWS Server Migration Service
+  link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CreateApp:
+    description: |-
+      Creates an application. An application consists of one or more server groups. Each server group contain one or more servers.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_CreateApp.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "roleName": "string",
+          "clientToken": "string",
+          "description": "string",
+          "serverGroups": [
+            {
+              "name": "string",
+              "serverList": [
+                {
+                  "serverId": "string",
+                  "vmServer": {
+                    "vmName": "string",
+                    "vmPath": "string",
+                    "vmManagerName": "string",
+                    "vmManagerType": "string",
+                    "vmServerAddress": {
+                      "vmId": "string",
+                      "vmManagerId": "string"
+                    }
+                  },
+                  "serverType": "string",
+                  "replicationJobId": "string",
+                  "replicationJobTerminated": false
+                }
+              ],
+              "serverGroupId": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "appSummary": {
+            "name": "string",
+            "appId": "string",
+            "status": "string",
+            "roleName": "string",
+            "description": "string",
+            "creationTime": 1481289211.615,
+            "lastModified": 1481289211.615,
+            "launchStatus": "string",
+            "totalServers": 1,
+            "importedAppId": "string",
+            "launchDetails": {
+              "stackId": "string",
+              "stackName": "string",
+              "latestLaunchTime": 1481289211.615
+            },
+            "statusMessage": "string",
+            "replicationStatus": "string",
+            "totalServerGroups": 1,
+            "launchStatusMessage": "string",
+            "latestReplicationTime": 1481289211.615,
+            "replicationStatusMessage": "string",
+            "launchConfigurationStatus": "string",
+            "replicationConfigurationStatus": "string"
+          },
+          "serverGroups": [
+            {
+              "name": "string",
+              "serverList": [
+                {
+                  "serverId": "string",
+                  "vmServer": {
+                    "vmName": "string",
+                    "vmPath": "string",
+                    "vmManagerName": "string",
+                    "vmManagerType": "string",
+                    "vmServerAddress": {
+                      "vmId": "string",
+                      "vmManagerId": "string"
+                    }
+                  },
+                  "serverType": "string",
+                  "replicationJobId": "string",
+                  "replicationJobTerminated": false
+                }
+              ],
+              "serverGroupId": "string"
+            }
+          ]
+        }
+      ]
+  CreateReplicationJob:
+    description: |-
+      Creates a replication job. The replication job schedules periodic replication runs to replicate your server to AWS. Each replication run creates an Amazon Machine Image (AMI).
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_CreateReplicationJob.html
+    example:
+      inputs: [
+        {
+          "runOnce": false,
+          "kmsKeyId": "string",
+          "roleName": "string",
+          "serverId": "string",
+          "encrypted": false,
+          "frequency": 1,
+          "description": "string",
+          "licenseType": "string",
+          "seedReplicationTime": 1481289211.615,
+          "numberOfRecentAmisToKeep": 1
+        }
+      ]
+      outputs: [
+        {
+          "replicationJobId": "string"
+        }
+      ]
+  DeleteApp:
+    description: |-
+      Deletes the specified application. Optionally deletes the launched stack associated with the application and all AWS SMS replication jobs for servers in the application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_DeleteApp.html
+    example:
+      inputs: [
+        {
+          "appId": "string",
+          "forceTerminateApp": false,
+          "forceStopAppReplication": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteAppLaunchConfiguration:
+    description: |-
+      Deletes the launch configuration for the specified application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_DeleteAppLaunchConfiguration.html
+    example:
+      inputs: [
+        {
+          "appId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteAppReplicationConfiguration:
+    description: |-
+      Deletes the replication configuration for the specified application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_DeleteAppReplicationConfiguration.html
+    example:
+      inputs: [
+        {
+          "appId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteAppValidationConfiguration:
+    description: |-
+      Deletes the validation configuration for the specified application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_DeleteAppValidationConfiguration.html
+    example:
+      inputs: [
+        {
+          "appId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteReplicationJob:
+    description: |-
+      Deletes the specified replication job.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_DeleteReplicationJob.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteServerCatalog:
+    description: |-
+      Deletes all servers from your server catalog.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_DeleteServerCatalog.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DisassociateConnector:
+    description: |-
+      Disassociates the specified connector from AWS SMS.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_DisassociateConnector.html
+    example:
+      inputs: [
+        {
+          "connectorId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GenerateChangeSet:
+    description: |-
+      Generates a target change set for a currently launched stack and writes it to an Amazon S3 object in the customer’s Amazon S3 bucket.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_GenerateChangeSet.html
+    example:
+      inputs: [
+        {
+          "appId": "string",
+          "changesetFormat": "string"
+        }
+      ]
+      outputs: [
+        {
+          "s3Location": {
+            "key": "string",
+            "bucket": "string"
+          }
+        }
+      ]
+  GenerateTemplate:
+    description: |-
+      Generates an AWS CloudFormation template based on the current launch configuration and writes it to an Amazon S3 object in the customer’s Amazon S3 bucket.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_GenerateTemplate.html
+    example:
+      inputs: [
+        {
+          "appId": "string",
+          "templateFormat": "string"
+        }
+      ]
+      outputs: [
+        {
+          "s3Location": {
+            "key": "string",
+            "bucket": "string"
+          }
+        }
+      ]
+  GetApp:
+    description: |-
+      Retrieve information about the specified application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_GetApp.html
+    example:
+      inputs: [
+        {
+          "appId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "appSummary": {
+            "name": "string",
+            "appId": "string",
+            "status": "string",
+            "roleName": "string",
+            "description": "string",
+            "creationTime": 1481289211.615,
+            "lastModified": 1481289211.615,
+            "launchStatus": "string",
+            "totalServers": 1,
+            "importedAppId": "string",
+            "launchDetails": {
+              "stackId": "string",
+              "stackName": "string",
+              "latestLaunchTime": 1481289211.615
+            },
+            "statusMessage": "string",
+            "replicationStatus": "string",
+            "totalServerGroups": 1,
+            "launchStatusMessage": "string",
+            "latestReplicationTime": 1481289211.615,
+            "replicationStatusMessage": "string",
+            "launchConfigurationStatus": "string",
+            "replicationConfigurationStatus": "string"
+          },
+          "serverGroups": [
+            {
+              "name": "string",
+              "serverList": [
+                {
+                  "serverId": "string",
+                  "vmServer": {
+                    "vmName": "string",
+                    "vmPath": "string",
+                    "vmManagerName": "string",
+                    "vmManagerType": "string",
+                    "vmServerAddress": {
+                      "vmId": "string",
+                      "vmManagerId": "string"
+                    }
+                  },
+                  "serverType": "string",
+                  "replicationJobId": "string",
+                  "replicationJobTerminated": false
+                }
+              ],
+              "serverGroupId": "string"
+            }
+          ]
+        }
+      ]
+  GetAppLaunchConfiguration:
+    description: |-
+      Retrieves the application launch configuration associated with the specified application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_GetAppLaunchConfiguration.html
+    example:
+      inputs: [
+        {
+          "appId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "appId": "string",
+          "roleName": "string",
+          "autoLaunch": false,
+          "serverGroupLaunchConfigurations": [
+            {
+              "launchOrder": 1,
+              "serverGroupId": "string",
+              "serverLaunchConfigurations": [
+                {
+                  "vpc": "string",
+                  "server": {
+                    "serverId": "string",
+                    "vmServer": {
+                      "vmName": "string",
+                      "vmPath": "string",
+                      "vmManagerName": "string",
+                      "vmManagerType": "string",
+                      "vmServerAddress": {
+                        "vmId": "string",
+                        "vmManagerId": "string"
+                      }
+                    },
+                    "serverType": "string",
+                    "replicationJobId": "string",
+                    "replicationJobTerminated": false
+                  },
+                  "subnet": "string",
+                  "userData": {
+                    "s3Location": {
+                      "key": "string",
+                      "bucket": "string"
+                    }
+                  },
+                  "logicalId": "string",
+                  "ec2KeyName": "string",
+                  "instanceType": "string",
+                  "securityGroup": "string",
+                  "configureScript": {
+                    "key": "string",
+                    "bucket": "string"
+                  },
+                  "configureScriptType": "string",
+                  "iamInstanceProfileName": "string",
+                  "associatePublicIpAddress": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  GetAppReplicationConfiguration:
+    description: |-
+      Retrieves the application replication configuration associated with the specified application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_GetAppReplicationConfiguration.html
+    example:
+      inputs: [
+        {
+          "appId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "serverGroupReplicationConfigurations": [
+            {
+              "serverGroupId": "string",
+              "serverReplicationConfigurations": [
+                {
+                  "server": {
+                    "serverId": "string",
+                    "vmServer": {
+                      "vmName": "string",
+                      "vmPath": "string",
+                      "vmManagerName": "string",
+                      "vmManagerType": "string",
+                      "vmServerAddress": {
+                        "vmId": "string",
+                        "vmManagerId": "string"
+                      }
+                    },
+                    "serverType": "string",
+                    "replicationJobId": "string",
+                    "replicationJobTerminated": false
+                  },
+                  "serverReplicationParameters": {
+                    "runOnce": false,
+                    "kmsKeyId": "string",
+                    "seedTime": 1481289211.615,
+                    "encrypted": false,
+                    "frequency": 1,
+                    "licenseType": "string",
+                    "numberOfRecentAmisToKeep": 1
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  GetAppValidationConfiguration:
+    description: |-
+      Retrieves information about a configuration for validating an application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_GetAppValidationConfiguration.html
+    example:
+      inputs: [
+        {
+          "appId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "appValidationConfigurations": [
+            {
+              "name": "string",
+              "validationId": "string",
+              "appValidationStrategy": "string",
+              "ssmValidationParameters": {
+                "source": {
+                  "s3Location": {
+                    "key": "string",
+                    "bucket": "string"
+                  }
+                },
+                "command": "string",
+                "instanceId": "string",
+                "scriptType": "string",
+                "outputS3BucketName": "string",
+                "executionTimeoutSeconds": 1
+              }
+            }
+          ],
+          "serverGroupValidationConfigurations": [
+            {
+              "serverGroupId": "string",
+              "serverValidationConfigurations": [
+                {
+                  "name": "string",
+                  "server": {
+                    "serverId": "string",
+                    "vmServer": {
+                      "vmName": "string",
+                      "vmPath": "string",
+                      "vmManagerName": "string",
+                      "vmManagerType": "string",
+                      "vmServerAddress": {
+                        "vmId": "string",
+                        "vmManagerId": "string"
+                      }
+                    },
+                    "serverType": "string",
+                    "replicationJobId": "string",
+                    "replicationJobTerminated": false
+                  },
+                  "validationId": "string",
+                  "serverValidationStrategy": "string",
+                  "userDataValidationParameters": {
+                    "source": {
+                      "s3Location": {
+                        "key": "string",
+                        "bucket": "string"
+                      }
+                    },
+                    "scriptType": "string"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+  GetAppValidationOutput:
+    description: |-
+      Retrieves output from validating an application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_GetAppValidationOutput.html
+    example:
+      inputs: [
+        {
+          "appId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "validationOutputList": [
+            {
+              "name": "string",
+              "status": "string",
+              "validationId": "string",
+              "statusMessage": "string",
+              "appValidationOutput": {
+                "ssmOutput": {
+                  "s3Location": {
+                    "key": "string",
+                    "bucket": "string"
+                  }
+                }
+              },
+              "latestValidationTime": 1481289211.615,
+              "serverValidationOutput": {
+                "server": {
+                  "serverId": "string",
+                  "vmServer": {
+                    "vmName": "string",
+                    "vmPath": "string",
+                    "vmManagerName": "string",
+                    "vmManagerType": "string",
+                    "vmServerAddress": {
+                      "vmId": "string",
+                      "vmManagerId": "string"
+                    }
+                  },
+                  "serverType": "string",
+                  "replicationJobId": "string",
+                  "replicationJobTerminated": false
+                }
+              }
+            }
+          ]
+        }
+      ]
+  GetConnectors:
+    description: |-
+      Describes the connectors registered with the AWS SMS.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_GetConnectors.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "connectorList": [
+            {
+              "status": "string",
+              "version": "string",
+              "ipAddress": "string",
+              "macAddress": "string",
+              "connectorId": "string",
+              "vmManagerId": "string",
+              "associatedOn": 1481289211.615,
+              "vmManagerName": "string",
+              "vmManagerType": "string",
+              "capabilityList": [
+                "string"
+              ]
+            }
+          ]
+        }
+      ]
+  GetReplicationJobs:
+    description: |-
+      Describes the specified replication job or all of your replication jobs.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_GetReplicationJobs.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "replicationJobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "replicationJobList": [
+            {
+              "state": "string",
+              "runOnce": false,
+              "kmsKeyId": "string",
+              "roleName": "string",
+              "serverId": "string",
+              "vmServer": {
+                "vmName": "string",
+                "vmPath": "string",
+                "vmManagerName": "string",
+                "vmManagerType": "string",
+                "vmServerAddress": {
+                  "vmId": "string",
+                  "vmManagerId": "string"
+                }
+              },
+              "encrypted": false,
+              "frequency": 1,
+              "serverType": "string",
+              "description": "string",
+              "latestAmiId": "string",
+              "licenseType": "string",
+              "statusMessage": "string",
+              "replicationJobId": "string",
+              "replicationRunList": [
+                {
+                  "type": "string",
+                  "amiId": "string",
+                  "state": "string",
+                  "kmsKeyId": "string",
+                  "encrypted": false,
+                  "description": "string",
+                  "stageDetails": {
+                    "stage": "string",
+                    "stageProgress": "string"
+                  },
+                  "completedTime": 1481289211.615,
+                  "statusMessage": "string",
+                  "replicationRunId": "string",
+                  "scheduledStartTime": 1481289211.615
+                }
+              ],
+              "seedReplicationTime": 1481289211.615,
+              "numberOfRecentAmisToKeep": 1,
+              "nextReplicationRunStartTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  GetReplicationRuns:
+    description: |-
+      Describes the replication runs for the specified replication job.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_GetReplicationRuns.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "replicationJobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "replicationJob": {
+            "state": "string",
+            "runOnce": false,
+            "kmsKeyId": "string",
+            "roleName": "string",
+            "serverId": "string",
+            "vmServer": {
+              "vmName": "string",
+              "vmPath": "string",
+              "vmManagerName": "string",
+              "vmManagerType": "string",
+              "vmServerAddress": {
+                "vmId": "string",
+                "vmManagerId": "string"
+              }
+            },
+            "encrypted": false,
+            "frequency": 1,
+            "serverType": "string",
+            "description": "string",
+            "latestAmiId": "string",
+            "licenseType": "string",
+            "statusMessage": "string",
+            "replicationJobId": "string",
+            "replicationRunList": [
+              {
+                "type": "string",
+                "amiId": "string",
+                "state": "string",
+                "kmsKeyId": "string",
+                "encrypted": false,
+                "description": "string",
+                "stageDetails": {
+                  "stage": "string",
+                  "stageProgress": "string"
+                },
+                "completedTime": 1481289211.615,
+                "statusMessage": "string",
+                "replicationRunId": "string",
+                "scheduledStartTime": 1481289211.615
+              }
+            ],
+            "seedReplicationTime": 1481289211.615,
+            "numberOfRecentAmisToKeep": 1,
+            "nextReplicationRunStartTime": 1481289211.615
+          },
+          "replicationRunList": [
+            {
+              "type": "string",
+              "amiId": "string",
+              "state": "string",
+              "kmsKeyId": "string",
+              "encrypted": false,
+              "description": "string",
+              "stageDetails": {
+                "stage": "string",
+                "stageProgress": "string"
+              },
+              "completedTime": 1481289211.615,
+              "statusMessage": "string",
+              "replicationRunId": "string",
+              "scheduledStartTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  GetServers:
+    description: |-
+      Describes the servers in your server catalog.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_GetServers.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "vmServerAddressList": [
+            {
+              "vmId": "string",
+              "vmManagerId": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "serverList": [
+            {
+              "serverId": "string",
+              "vmServer": {
+                "vmName": "string",
+                "vmPath": "string",
+                "vmManagerName": "string",
+                "vmManagerType": "string",
+                "vmServerAddress": {
+                  "vmId": "string",
+                  "vmManagerId": "string"
+                }
+              },
+              "serverType": "string",
+              "replicationJobId": "string",
+              "replicationJobTerminated": false
+            }
+          ],
+          "lastModifiedOn": 1481289211.615,
+          "serverCatalogStatus": "string"
+        }
+      ]
+  ImportAppCatalog:
+    description: |-
+      Allows application import from AWS Migration Hub.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_ImportAppCatalog.html
+    example:
+      inputs: [
+        {
+          "roleName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ImportServerCatalog:
+    description: |-
+      Gathers a complete list of on-premises servers. Connectors must be installed and monitoring all servers to import.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_ImportServerCatalog.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  LaunchApp:
+    description: |-
+      Launches the specified application as a stack in AWS CloudFormation.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_LaunchApp.html
+    example:
+      inputs: [
+        {
+          "appId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListApps:
+    description: |-
+      Retrieves summaries for all applications.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_ListApps.html
+    example:
+      inputs: [
+        {
+          "appIds": [
+            "string"
+          ],
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "apps": [
+            {
+              "name": "string",
+              "appId": "string",
+              "status": "string",
+              "roleName": "string",
+              "description": "string",
+              "creationTime": 1481289211.615,
+              "lastModified": 1481289211.615,
+              "launchStatus": "string",
+              "totalServers": 1,
+              "importedAppId": "string",
+              "launchDetails": {
+                "stackId": "string",
+                "stackName": "string",
+                "latestLaunchTime": 1481289211.615
+              },
+              "statusMessage": "string",
+              "replicationStatus": "string",
+              "totalServerGroups": 1,
+              "launchStatusMessage": "string",
+              "latestReplicationTime": 1481289211.615,
+              "replicationStatusMessage": "string",
+              "launchConfigurationStatus": "string",
+              "replicationConfigurationStatus": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  NotifyAppValidationOutput:
+    description: |-
+      Provides information to AWS SMS about whether application validation is successful.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_NotifyAppValidationOutput.html
+    example:
+      inputs: [
+        {
+          "appId": "string",
+          "notificationContext": {
+            "status": "string",
+            "validationId": "string",
+            "statusMessage": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutAppLaunchConfiguration:
+    description: |-
+      Creates or updates the launch configuration for the specified application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_PutAppLaunchConfiguration.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  PutAppReplicationConfiguration:
+    description: |-
+      Creates or updates the replication configuration for the specified application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_PutAppReplicationConfiguration.html
+    example:
+      inputs: [
+        {
+          "appId": "string",
+          "serverGroupReplicationConfigurations": [
+            {
+              "serverGroupId": "string",
+              "serverReplicationConfigurations": [
+                {
+                  "server": {
+                    "serverId": "string",
+                    "vmServer": {
+                      "vmName": "string",
+                      "vmPath": "string",
+                      "vmManagerName": "string",
+                      "vmManagerType": "string",
+                      "vmServerAddress": {
+                        "vmId": "string",
+                        "vmManagerId": "string"
+                      }
+                    },
+                    "serverType": "string",
+                    "replicationJobId": "string",
+                    "replicationJobTerminated": false
+                  },
+                  "serverReplicationParameters": {
+                    "runOnce": false,
+                    "kmsKeyId": "string",
+                    "seedTime": 1481289211.615,
+                    "encrypted": false,
+                    "frequency": 1,
+                    "licenseType": "string",
+                    "numberOfRecentAmisToKeep": 1
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutAppValidationConfiguration:
+    description: |-
+      Creates or updates a validation configuration for the specified application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_PutAppValidationConfiguration.html
+    example:
+      inputs: [
+        {
+          "appId": "string",
+          "appValidationConfigurations": [
+            {
+              "name": "string",
+              "validationId": "string",
+              "appValidationStrategy": "string",
+              "ssmValidationParameters": {
+                "source": {
+                  "s3Location": {
+                    "key": "string",
+                    "bucket": "string"
+                  }
+                },
+                "command": "string",
+                "instanceId": "string",
+                "scriptType": "string",
+                "outputS3BucketName": "string",
+                "executionTimeoutSeconds": 1
+              }
+            }
+          ],
+          "serverGroupValidationConfigurations": [
+            {
+              "serverGroupId": "string",
+              "serverValidationConfigurations": [
+                {
+                  "name": "string",
+                  "server": {
+                    "serverId": "string",
+                    "vmServer": {
+                      "vmName": "string",
+                      "vmPath": "string",
+                      "vmManagerName": "string",
+                      "vmManagerType": "string",
+                      "vmServerAddress": {
+                        "vmId": "string",
+                        "vmManagerId": "string"
+                      }
+                    },
+                    "serverType": "string",
+                    "replicationJobId": "string",
+                    "replicationJobTerminated": false
+                  },
+                  "validationId": "string",
+                  "serverValidationStrategy": "string",
+                  "userDataValidationParameters": {
+                    "source": {
+                      "s3Location": {
+                        "key": "string",
+                        "bucket": "string"
+                      }
+                    },
+                    "scriptType": "string"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartAppReplication:
+    description: |-
+      Starts replicating the specified application by creating replication jobs for each server in the application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_StartAppReplication.html
+    example:
+      inputs: [
+        {
+          "appId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartOnDemandAppReplication:
+    description: |-
+      Starts an on-demand replication run for the specified application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_StartOnDemandAppReplication.html
+    example:
+      inputs: [
+        {
+          "appId": "string",
+          "description": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartOnDemandReplicationRun:
+    description: |-
+      Starts an on-demand replication run for the specified replication job. This replication run starts immediately. This replication run is in addition to the ones already scheduled.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_StartOnDemandReplicationRun.html
+    example:
+      inputs: [
+        {
+          "description": "string",
+          "replicationJobId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "replicationRunId": "string"
+        }
+      ]
+  StopAppReplication:
+    description: |-
+      Stops replicating the specified application by deleting the replication job for each server in the application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_StopAppReplication.html
+    example:
+      inputs: [
+        {
+          "appId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TerminateApp:
+    description: |-
+      Terminates the stack for the specified application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_TerminateApp.html
+    example:
+      inputs: [
+        {
+          "appId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateApp:
+    description: |-
+      Updates the specified application.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_UpdateApp.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "appId": "string",
+          "roleName": "string",
+          "description": "string",
+          "serverGroups": [
+            {
+              "name": "string",
+              "serverList": [
+                {
+                  "serverId": "string",
+                  "vmServer": {
+                    "vmName": "string",
+                    "vmPath": "string",
+                    "vmManagerName": "string",
+                    "vmManagerType": "string",
+                    "vmServerAddress": {
+                      "vmId": "string",
+                      "vmManagerId": "string"
+                    }
+                  },
+                  "serverType": "string",
+                  "replicationJobId": "string",
+                  "replicationJobTerminated": false
+                }
+              ],
+              "serverGroupId": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "appSummary": {
+            "name": "string",
+            "appId": "string",
+            "status": "string",
+            "roleName": "string",
+            "description": "string",
+            "creationTime": 1481289211.615,
+            "lastModified": 1481289211.615,
+            "launchStatus": "string",
+            "totalServers": 1,
+            "importedAppId": "string",
+            "launchDetails": {
+              "stackId": "string",
+              "stackName": "string",
+              "latestLaunchTime": 1481289211.615
+            },
+            "statusMessage": "string",
+            "replicationStatus": "string",
+            "totalServerGroups": 1,
+            "launchStatusMessage": "string",
+            "latestReplicationTime": 1481289211.615,
+            "replicationStatusMessage": "string",
+            "launchConfigurationStatus": "string",
+            "replicationConfigurationStatus": "string"
+          },
+          "serverGroups": [
+            {
+              "name": "string",
+              "serverList": [
+                {
+                  "serverId": "string",
+                  "vmServer": {
+                    "vmName": "string",
+                    "vmPath": "string",
+                    "vmManagerName": "string",
+                    "vmManagerType": "string",
+                    "vmServerAddress": {
+                      "vmId": "string",
+                      "vmManagerId": "string"
+                    }
+                  },
+                  "serverType": "string",
+                  "replicationJobId": "string",
+                  "replicationJobTerminated": false
+                }
+              ],
+              "serverGroupId": "string"
+            }
+          ]
+        }
+      ]
+  UpdateReplicationJob:
+    description: |-
+      Updates the specified settings for the specified replication job.
+    versions:
+      from: 2016.10.24
+    link: https://docs.aws.amazon.com/server-migration-service/latest/APIReference/API_UpdateReplicationJob.html
+    example:
+      inputs: [
+        {
+          "kmsKeyId": "string",
+          "roleName": "string",
+          "encrypted": false,
+          "frequency": 1,
+          "description": "string",
+          "licenseType": "string",
+          "replicationJobId": "string",
+          "numberOfRecentAmisToKeep": 1,
+          "nextReplicationRunStartTime": 1481289211.615
+        }
+      ]
+      outputs: [
+        {}
+      ]

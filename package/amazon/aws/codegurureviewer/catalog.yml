@@ -1,0 +1,483 @@
+Product:
+  name: Amazon CodeGuru Reviewer
+  versions: [2019.9.19]
+  package: amazon.aws.codegurureviewer
+  description: |-
+    Amazon CodeGuru Reviewer
+  link: https://docs.aws.amazon.com/codeguru/latest/reviewer-api/Welcome.html
+  contentType: json
+Operations:
+  AssociateRepository:
+    description: |-
+      Use to associate an AWS CodeCommit repository or a repostory managed by AWS CodeStar Connections with Amazon CodeGuru Reviewer. When you associate a repository, CodeGuru Reviewer reviews source code changes in the repository's pull requests and provides automatic recommendations. You can view recommendations using the CodeGuru Reviewer console. For more information, see Recommendations in Amazon CodeGuru Reviewer in the Amazon CodeGuru Reviewer User Guide.
+    versions:
+      from: 2019.9.19
+    link: https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_AssociateRepository.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "Repository": {
+            "Bitbucket": {
+              "Name": "string",
+              "Owner": "string",
+              "ConnectionArn": "string"
+            },
+            "CodeCommit": {
+              "Name": "string"
+            },
+            "GitHubEnterpriseServer": {
+              "Name": "string",
+              "Owner": "string",
+              "ConnectionArn": "string"
+            }
+          },
+          "KMSKeyDetails": {
+            "KMSKeyId": "string",
+            "EncryptionOption": "string"
+          },
+          "ClientRequestToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "RepositoryAssociation": {
+            "Name": "string",
+            "Owner": "string",
+            "State": "string",
+            "StateReason": "string",
+            "ProviderType": "string",
+            "AssociationId": "string",
+            "ConnectionArn": "string",
+            "KMSKeyDetails": {
+              "KMSKeyId": "string",
+              "EncryptionOption": "string"
+            },
+            "AssociationArn": "string",
+            "CreatedTimeStamp": 1481289211.615,
+            "LastUpdatedTimeStamp": 1481289211.615
+          }
+        }
+      ]
+  CreateCodeReview:
+    description: |-
+      Use to create a code review with a CodeReviewType of RepositoryAnalysis. This type of code review analyzes all code under a specified branch in an associated repository. PullRequest code reviews are automatically triggered by a pull request so cannot be created using this method.
+    versions:
+      from: 2019.9.19
+    link: https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Type": {
+            "RepositoryAnalysis": {
+              "RepositoryHead": {
+                "BranchName": "string"
+              }
+            }
+          },
+          "ClientRequestToken": "string",
+          "RepositoryAssociationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CodeReview": {
+            "Name": "string",
+            "Type": "string",
+            "Owner": "string",
+            "State": "string",
+            "Metrics": {
+              "FindingsCount": 1,
+              "MeteredLinesOfCodeCount": 1
+            },
+            "StateReason": "string",
+            "ProviderType": "string",
+            "CodeReviewArn": "string",
+            "PullRequestId": "string",
+            "AssociationArn": "string",
+            "RepositoryName": "string",
+            "SourceCodeType": {
+              "CommitDiff": {
+                "SourceCommit": "string",
+                "DestinationCommit": "string"
+              },
+              "RepositoryHead": {
+                "BranchName": "string"
+              }
+            },
+            "CreatedTimeStamp": 1481289211.615,
+            "LastUpdatedTimeStamp": 1481289211.615
+          }
+        }
+      ]
+  DescribeCodeReview:
+    description: |-
+      Returns the metadata associated with the code review along with its status.
+    versions:
+      from: 2019.9.19
+    link: https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_DescribeCodeReview.html
+    example:
+      inputs: [
+        {
+          "CodeReviewArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CodeReview": {
+            "Name": "string",
+            "Type": "string",
+            "Owner": "string",
+            "State": "string",
+            "Metrics": {
+              "FindingsCount": 1,
+              "MeteredLinesOfCodeCount": 1
+            },
+            "StateReason": "string",
+            "ProviderType": "string",
+            "CodeReviewArn": "string",
+            "PullRequestId": "string",
+            "AssociationArn": "string",
+            "RepositoryName": "string",
+            "SourceCodeType": {
+              "CommitDiff": {
+                "SourceCommit": "string",
+                "DestinationCommit": "string"
+              },
+              "RepositoryHead": {
+                "BranchName": "string"
+              }
+            },
+            "CreatedTimeStamp": 1481289211.615,
+            "LastUpdatedTimeStamp": 1481289211.615
+          }
+        }
+      ]
+  DescribeRecommendationFeedback:
+    description: |-
+      Describes the customer feedback for a CodeGuru Reviewer recommendation.
+    versions:
+      from: 2019.9.19
+    link: https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_DescribeRecommendationFeedback.html
+    example:
+      inputs: [
+        {
+          "UserId": "string",
+          "CodeReviewArn": "string",
+          "RecommendationId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "RecommendationFeedback": {
+            "UserId": "string",
+            "Reactions": [
+              "string"
+            ],
+            "CodeReviewArn": "string",
+            "CreatedTimeStamp": 1481289211.615,
+            "RecommendationId": "string",
+            "LastUpdatedTimeStamp": 1481289211.615
+          }
+        }
+      ]
+  DescribeRepositoryAssociation:
+    description: |-
+      Returns a RepositoryAssociation object that contains information about the requested repository association.
+    versions:
+      from: 2019.9.19
+    link: https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_DescribeRepositoryAssociation.html
+    example:
+      inputs: [
+        {
+          "AssociationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "RepositoryAssociation": {
+            "Name": "string",
+            "Owner": "string",
+            "State": "string",
+            "StateReason": "string",
+            "ProviderType": "string",
+            "AssociationId": "string",
+            "ConnectionArn": "string",
+            "KMSKeyDetails": {
+              "KMSKeyId": "string",
+              "EncryptionOption": "string"
+            },
+            "AssociationArn": "string",
+            "CreatedTimeStamp": 1481289211.615,
+            "LastUpdatedTimeStamp": 1481289211.615
+          }
+        }
+      ]
+  DisassociateRepository:
+    description: |-
+      Removes the association between Amazon CodeGuru Reviewer and a repository.
+    versions:
+      from: 2019.9.19
+    link: https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_DisassociateRepository.html
+    example:
+      inputs: [
+        {
+          "AssociationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "RepositoryAssociation": {
+            "Name": "string",
+            "Owner": "string",
+            "State": "string",
+            "StateReason": "string",
+            "ProviderType": "string",
+            "AssociationId": "string",
+            "ConnectionArn": "string",
+            "KMSKeyDetails": {
+              "KMSKeyId": "string",
+              "EncryptionOption": "string"
+            },
+            "AssociationArn": "string",
+            "CreatedTimeStamp": 1481289211.615,
+            "LastUpdatedTimeStamp": 1481289211.615
+          }
+        }
+      ]
+  ListCodeReviews:
+    description: |-
+      Lists all the code reviews that the customer has created in the past 90 days.
+    versions:
+      from: 2019.9.19
+    link: https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListCodeReviews.html
+    example:
+      inputs: [
+        {
+          "Type": "string",
+          "States": [
+            "string"
+          ],
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ProviderTypes": [
+            "string"
+          ],
+          "RepositoryNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CodeReviewSummaries": [
+            {
+              "Name": "string",
+              "Type": "string",
+              "Owner": "string",
+              "State": "string",
+              "ProviderType": "string",
+              "CodeReviewArn": "string",
+              "PullRequestId": "string",
+              "MetricsSummary": {
+                "FindingsCount": 1,
+                "MeteredLinesOfCodeCount": 1
+              },
+              "RepositoryName": "string",
+              "CreatedTimeStamp": 1481289211.615,
+              "LastUpdatedTimeStamp": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListRecommendationFeedback:
+    description: |-
+      Returns a list of RecommendationFeedbackSummary objects that contain customer recommendation feedback for all CodeGuru Reviewer users.
+    versions:
+      from: 2019.9.19
+    link: https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRecommendationFeedback.html
+    example:
+      inputs: [
+        {
+          "UserIds": [
+            "string"
+          ],
+          "NextToken": "string",
+          "MaxResults": 1,
+          "CodeReviewArn": "string",
+          "RecommendationIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "RecommendationFeedbackSummaries": [
+            {
+              "UserId": "string",
+              "Reactions": [
+                "string"
+              ],
+              "RecommendationId": "string"
+            }
+          ]
+        }
+      ]
+  ListRecommendations:
+    description: |-
+      Returns the list of all recommendations for a completed code review.
+    versions:
+      from: 2019.9.19
+    link: https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRecommendations.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "CodeReviewArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "RecommendationSummaries": [
+            {
+              "EndLine": 1,
+              "FilePath": "string",
+              "StartLine": 1,
+              "Description": "string",
+              "RecommendationId": "string"
+            }
+          ]
+        }
+      ]
+  ListRepositoryAssociations:
+    description: |-
+      Returns a list of RepositoryAssociationSummary objects that contain summary information about a repository association. You can filter the returned list by ProviderType , Name , State , and Owner .
+    versions:
+      from: 2019.9.19
+    link: https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html
+    example:
+      inputs: [
+        {
+          "Names": [
+            "string"
+          ],
+          "Owners": [
+            "string"
+          ],
+          "States": [
+            "string"
+          ],
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ProviderTypes": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "RepositoryAssociationSummaries": [
+            {
+              "Name": "string",
+              "Owner": "string",
+              "State": "string",
+              "ProviderType": "string",
+              "AssociationId": "string",
+              "ConnectionArn": "string",
+              "AssociationArn": "string",
+              "LastUpdatedTimeStamp": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns the list of tags associated with an associated repository resource.
+    versions:
+      from: 2019.9.19
+    link: https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  PutRecommendationFeedback:
+    description: |-
+      Stores customer feedback for a CodeGuru Reviewer recommendation. When this API is called again with different reactions the previous feedback is overwritten.
+    versions:
+      from: 2019.9.19
+    link: https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_PutRecommendationFeedback.html
+    example:
+      inputs: [
+        {
+          "Reactions": [
+            "string"
+          ],
+          "CodeReviewArn": "string",
+          "RecommendationId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Adds one or more tags to an associated repository.
+    versions:
+      from: 2019.9.19
+    link: https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes a tag from an associated repository.
+    versions:
+      from: 2019.9.19
+    link: https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

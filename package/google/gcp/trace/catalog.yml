@@ -1,0 +1,1030 @@
+Product:
+  name: GCP Trace
+  versions: [1.0.0,2.0.0-beta1,2.0.0]
+  package: google.gcp.trace
+  description: |-
+    Cloud Trace
+  link: https://cloud.google.com/trace/docs/reference
+  contentType: json
+Operations:
+  projects.patchTraces:
+    description: |-
+      Sends new traces to Cloud Trace or updates existing traces. If the ID of a trace that you send matches that of an existing trace, any fields in the existing trace and its spans are overwritten by the provided values, and any new fields provided are merged with the existing trace data. If the ID does not match, a new trace is created.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects/patchTraces
+    example:
+      inputs: [
+        {
+          "id": "Traces",
+          "type": "object",
+          "properties": {
+            "traces": {
+              "type": "array",
+              "items": {
+                "id": "Trace",
+                "type": "object",
+                "properties": {
+                  "spans": {
+                    "type": "array",
+                    "items": {
+                      "id": "TraceSpan",
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "enum": [
+                            "SPAN_KIND_UNSPECIFIED",
+                            "RPC_SERVER",
+                            "RPC_CLIENT"
+                          ],
+                          "type": "string",
+                          "description": "Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `RPC_CLIENT` and `RPC_SERVER` to identify queueing latency associated with the span.",
+                          "enumDescriptions": [
+                            "Unspecified.",
+                            "Indicates that the span covers server-side handling of an RPC or other remote network request.",
+                            "Indicates that the span covers the client-side wrapper around an RPC or other remote request."
+                          ]
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "Name of the span. Must be less than 128 bytes. The span name is sanitized and displayed in the Trace tool in the Google Cloud Platform Console. The name may be a method name or some other per-call site name. For the same executable and the same call point, a best practice is to use a consistent name, which makes it easier to correlate cross-trace spans."
+                        },
+                        "labels": {
+                          "type": "object",
+                          "description": "Collection of labels associated with the span. Label keys must be less than 128 bytes. Label values must be less than 16 kilobytes (10MB for `/stacktrace` values). Some predefined label keys exist, or you may create your own. When creating your own, we recommend the following formats: * `/category/product/key` for agents of well-known products (e.g. `/db/mongodb/read_size`). * `short_host/path/key` for domain-specific keys (e.g. `foo.com/myproduct/bar`) Predefined labels include: * `/agent` * `/component` * `/error/message` * `/error/name` * `/http/client_city` * `/http/client_country` * `/http/client_protocol` * `/http/client_region` * `/http/host` * `/http/method` * `/http/path` * `/http/redirected_url` * `/http/request/size` * `/http/response/size` * `/http/route` * `/http/status_code` * `/http/url` * `/http/user_agent` * `/pid` * `/stacktrace` * `/tid`",
+                          "additionalProperties": {
+                            "type": "string"
+                          }
+                        },
+                        "spanId": {
+                          "type": "string",
+                          "format": "uint64",
+                          "description": "Identifier for the span. Must be a 64-bit integer other than 0 and unique within a trace. For example, `2205310701640571284`."
+                        },
+                        "endTime": {
+                          "type": "string",
+                          "format": "google-datetime",
+                          "description": "End time of the span in nanoseconds from the UNIX epoch."
+                        },
+                        "startTime": {
+                          "type": "string",
+                          "format": "google-datetime",
+                          "description": "Start time of the span in nanoseconds from the UNIX epoch."
+                        },
+                        "parentSpanId": {
+                          "type": "string",
+                          "format": "uint64",
+                          "description": "Optional. ID of the parent span, if any."
+                        }
+                      },
+                      "description": "A span represents a single timed event within a trace. Spans can be nested and form a trace tree. Often, a trace contains a root span that describes the end-to-end latency of an operation and, optionally, one or more subspans for its suboperations. Spans do not need to be contiguous. There may be gaps between spans in a trace."
+                    },
+                    "description": "Collection of spans in the trace."
+                  },
+                  "traceId": {
+                    "type": "string",
+                    "description": "Globally unique identifier for the trace. This identifier is a 128-bit numeric value formatted as a 32-byte hex string. For example, `382d4f4c6b7bb2f4a972559d9085001d`. The numeric value should not be zero."
+                  },
+                  "projectId": {
+                    "type": "string",
+                    "description": "Project ID of the Cloud project where the trace data is stored."
+                  }
+                },
+                "description": "A trace describes how long it takes for an application to perform an operation. It consists of a set of spans, each of which represent a single timed event within the operation."
+              },
+              "description": "List of traces."
+            }
+          },
+          "description": "List of new or updated traces."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Empty",
+          "type": "object",
+          "properties": {},
+          "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`."
+        }
+      ]
+  projects.traces.get:
+    description: |-
+      Gets a single trace by its ID.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Trace",
+          "type": "object",
+          "properties": {
+            "spans": {
+              "type": "array",
+              "items": {
+                "id": "TraceSpan",
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "SPAN_KIND_UNSPECIFIED",
+                      "RPC_SERVER",
+                      "RPC_CLIENT"
+                    ],
+                    "type": "string",
+                    "description": "Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `RPC_CLIENT` and `RPC_SERVER` to identify queueing latency associated with the span.",
+                    "enumDescriptions": [
+                      "Unspecified.",
+                      "Indicates that the span covers server-side handling of an RPC or other remote network request.",
+                      "Indicates that the span covers the client-side wrapper around an RPC or other remote request."
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the span. Must be less than 128 bytes. The span name is sanitized and displayed in the Trace tool in the Google Cloud Platform Console. The name may be a method name or some other per-call site name. For the same executable and the same call point, a best practice is to use a consistent name, which makes it easier to correlate cross-trace spans."
+                  },
+                  "labels": {
+                    "type": "object",
+                    "description": "Collection of labels associated with the span. Label keys must be less than 128 bytes. Label values must be less than 16 kilobytes (10MB for `/stacktrace` values). Some predefined label keys exist, or you may create your own. When creating your own, we recommend the following formats: * `/category/product/key` for agents of well-known products (e.g. `/db/mongodb/read_size`). * `short_host/path/key` for domain-specific keys (e.g. `foo.com/myproduct/bar`) Predefined labels include: * `/agent` * `/component` * `/error/message` * `/error/name` * `/http/client_city` * `/http/client_country` * `/http/client_protocol` * `/http/client_region` * `/http/host` * `/http/method` * `/http/path` * `/http/redirected_url` * `/http/request/size` * `/http/response/size` * `/http/route` * `/http/status_code` * `/http/url` * `/http/user_agent` * `/pid` * `/stacktrace` * `/tid`",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  },
+                  "spanId": {
+                    "type": "string",
+                    "format": "uint64",
+                    "description": "Identifier for the span. Must be a 64-bit integer other than 0 and unique within a trace. For example, `2205310701640571284`."
+                  },
+                  "endTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "description": "End time of the span in nanoseconds from the UNIX epoch."
+                  },
+                  "startTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "description": "Start time of the span in nanoseconds from the UNIX epoch."
+                  },
+                  "parentSpanId": {
+                    "type": "string",
+                    "format": "uint64",
+                    "description": "Optional. ID of the parent span, if any."
+                  }
+                },
+                "description": "A span represents a single timed event within a trace. Spans can be nested and form a trace tree. Often, a trace contains a root span that describes the end-to-end latency of an operation and, optionally, one or more subspans for its suboperations. Spans do not need to be contiguous. There may be gaps between spans in a trace."
+              },
+              "description": "Collection of spans in the trace."
+            },
+            "traceId": {
+              "type": "string",
+              "description": "Globally unique identifier for the trace. This identifier is a 128-bit numeric value formatted as a 32-byte hex string. For example, `382d4f4c6b7bb2f4a972559d9085001d`. The numeric value should not be zero."
+            },
+            "projectId": {
+              "type": "string",
+              "description": "Project ID of the Cloud project where the trace data is stored."
+            }
+          },
+          "description": "A trace describes how long it takes for an application to perform an operation. It consists of a set of spans, each of which represent a single timed event within the operation."
+        }
+      ]
+  projects.traces.list:
+    description: |-
+      Returns of a list of traces that match the specified filter conditions.
+    versions:
+      from: 1.0.0
+    link: https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListTracesResponse",
+          "type": "object",
+          "properties": {
+            "traces": {
+              "type": "array",
+              "items": {
+                "id": "Trace",
+                "type": "object",
+                "properties": {
+                  "spans": {
+                    "type": "array",
+                    "items": {
+                      "id": "TraceSpan",
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "enum": [
+                            "SPAN_KIND_UNSPECIFIED",
+                            "RPC_SERVER",
+                            "RPC_CLIENT"
+                          ],
+                          "type": "string",
+                          "description": "Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `RPC_CLIENT` and `RPC_SERVER` to identify queueing latency associated with the span.",
+                          "enumDescriptions": [
+                            "Unspecified.",
+                            "Indicates that the span covers server-side handling of an RPC or other remote network request.",
+                            "Indicates that the span covers the client-side wrapper around an RPC or other remote request."
+                          ]
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "Name of the span. Must be less than 128 bytes. The span name is sanitized and displayed in the Trace tool in the Google Cloud Platform Console. The name may be a method name or some other per-call site name. For the same executable and the same call point, a best practice is to use a consistent name, which makes it easier to correlate cross-trace spans."
+                        },
+                        "labels": {
+                          "type": "object",
+                          "description": "Collection of labels associated with the span. Label keys must be less than 128 bytes. Label values must be less than 16 kilobytes (10MB for `/stacktrace` values). Some predefined label keys exist, or you may create your own. When creating your own, we recommend the following formats: * `/category/product/key` for agents of well-known products (e.g. `/db/mongodb/read_size`). * `short_host/path/key` for domain-specific keys (e.g. `foo.com/myproduct/bar`) Predefined labels include: * `/agent` * `/component` * `/error/message` * `/error/name` * `/http/client_city` * `/http/client_country` * `/http/client_protocol` * `/http/client_region` * `/http/host` * `/http/method` * `/http/path` * `/http/redirected_url` * `/http/request/size` * `/http/response/size` * `/http/route` * `/http/status_code` * `/http/url` * `/http/user_agent` * `/pid` * `/stacktrace` * `/tid`",
+                          "additionalProperties": {
+                            "type": "string"
+                          }
+                        },
+                        "spanId": {
+                          "type": "string",
+                          "format": "uint64",
+                          "description": "Identifier for the span. Must be a 64-bit integer other than 0 and unique within a trace. For example, `2205310701640571284`."
+                        },
+                        "endTime": {
+                          "type": "string",
+                          "format": "google-datetime",
+                          "description": "End time of the span in nanoseconds from the UNIX epoch."
+                        },
+                        "startTime": {
+                          "type": "string",
+                          "format": "google-datetime",
+                          "description": "Start time of the span in nanoseconds from the UNIX epoch."
+                        },
+                        "parentSpanId": {
+                          "type": "string",
+                          "format": "uint64",
+                          "description": "Optional. ID of the parent span, if any."
+                        }
+                      },
+                      "description": "A span represents a single timed event within a trace. Spans can be nested and form a trace tree. Often, a trace contains a root span that describes the end-to-end latency of an operation and, optionally, one or more subspans for its suboperations. Spans do not need to be contiguous. There may be gaps between spans in a trace."
+                    },
+                    "description": "Collection of spans in the trace."
+                  },
+                  "traceId": {
+                    "type": "string",
+                    "description": "Globally unique identifier for the trace. This identifier is a 128-bit numeric value formatted as a 32-byte hex string. For example, `382d4f4c6b7bb2f4a972559d9085001d`. The numeric value should not be zero."
+                  },
+                  "projectId": {
+                    "type": "string",
+                    "description": "Project ID of the Cloud project where the trace data is stored."
+                  }
+                },
+                "description": "A trace describes how long it takes for an application to perform an operation. It consists of a set of spans, each of which represent a single timed event within the operation."
+              },
+              "description": "List of trace records as specified by the view parameter."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "If defined, indicates that there are more traces that match the request and that this value should be passed to the next request to continue retrieving additional traces."
+            }
+          },
+          "description": "The response message for the `ListTraces` method."
+        }
+      ]
+  projects.traceSinks.create:
+    description: |-
+      Creates a sink that exports trace spans to a destination. The export of newly-ingested traces begins immediately, unless the sink's `writer_identity` is not permitted to write to the destination. A sink can export traces only from the resource owning the sink (the 'parent').
+    versions:
+      from: 2.0.0-beta1
+      to: 2.0.0
+    link: https://cloud.google.com/trace/docs/reference/v2/rest/v2beta1/projects.traceSinks/create
+    example:
+      inputs: [
+        {
+          "id": "TraceSink",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Required. The canonical sink resource name, unique within the project. Must be of the form: project/[PROJECT_NUMBER]/traceSinks/[SINK_ID]. E.g.: `\"projects/12345/traceSinks/my-project-trace-sink\"`. Sink identifiers are limited to 256 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods."
+            },
+            "outputConfig": {
+              "id": "OutputConfig",
+              "type": "object",
+              "properties": {
+                "destination": {
+                  "type": "string",
+                  "description": "The destination for writing trace data. Currently only BigQuery is supported. E.g.: \"bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]\""
+                }
+              },
+              "description": "Required. The export destination."
+            },
+            "writerIdentity": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. A service account name for exporting the data. This field is set by sinks.create and sinks.update. The service account will need to be granted write access to the destination specified in the output configuration, see [Granting access for a resource](/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource). To create tables and write data this account will need the dataEditor role. Read more about roles in the [BigQuery documentation](https://cloud.google.com/bigquery/docs/access-control). E.g.: \"service-00000001@00000002.iam.gserviceaccount.com\""
+            }
+          },
+          "description": "Describes a sink used to export traces to a BigQuery dataset. The sink must be created within a project."
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  projects.traceSinks.delete:
+    description: |-
+      Deletes a sink.
+    versions:
+      from: 2.0.0-beta1
+      to: 2.0.0
+    link: https://cloud.google.com/trace/docs/reference/v2/rest/v2beta1/projects.traceSinks/delete
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "Empty",
+          "type": "object",
+          "properties": {},
+          "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`."
+        }
+      ]
+  projects.traceSinks.get:
+    description: |-
+      Get a trace sink by name under the parent resource (GCP project).
+    versions:
+      from: 2.0.0-beta1
+      to: 2.0.0
+    link: https://cloud.google.com/trace/docs/reference/v2/rest/v2beta1/projects.traceSinks/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  projects.traceSinks.list:
+    description: |-
+      List all sinks for the parent resource (GCP project).
+    versions:
+      from: 2.0.0-beta1
+      to: 2.0.0
+    link: https://cloud.google.com/trace/docs/reference/v2/rest/v2beta1/projects.traceSinks/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ListTraceSinksResponse",
+          "type": "object",
+          "properties": {
+            "sinks": {
+              "type": "array",
+              "items": {
+                "id": "TraceSink",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Required. The canonical sink resource name, unique within the project. Must be of the form: project/[PROJECT_NUMBER]/traceSinks/[SINK_ID]. E.g.: `\"projects/12345/traceSinks/my-project-trace-sink\"`. Sink identifiers are limited to 256 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods."
+                  },
+                  "outputConfig": {
+                    "id": "OutputConfig",
+                    "type": "object",
+                    "properties": {
+                      "destination": {
+                        "type": "string",
+                        "description": "The destination for writing trace data. Currently only BigQuery is supported. E.g.: \"bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]\""
+                      }
+                    },
+                    "description": "Required. The export destination."
+                  },
+                  "writerIdentity": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "Output only. A service account name for exporting the data. This field is set by sinks.create and sinks.update. The service account will need to be granted write access to the destination specified in the output configuration, see [Granting access for a resource](/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource). To create tables and write data this account will need the dataEditor role. Read more about roles in the [BigQuery documentation](https://cloud.google.com/bigquery/docs/access-control). E.g.: \"service-00000001@00000002.iam.gserviceaccount.com\""
+                  }
+                },
+                "description": "Describes a sink used to export traces to a BigQuery dataset. The sink must be created within a project."
+              },
+              "description": "A list of sinks."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "If there might be more results than appear in this response, then `nextPageToken` is included. To get the next set of results, call the same method again using the value of `nextPageToken` as `pageToken`."
+            }
+          },
+          "description": "Result returned from `ListTraceSinks`."
+        }
+      ]
+  projects.traceSinks.patch:
+    description: |-
+      Updates a sink. This method updates fields in the existing sink according to the provided update mask. The sink's name cannot be changed nor any output-only fields (e.g. the writer_identity).
+    versions:
+      from: 2.0.0-beta1
+      to: 2.0.0
+    link: https://cloud.google.com/trace/docs/reference/v2/rest/v2beta1/projects.traceSinks/patch
+    example:
+      inputs: [
+        {
+          "id": "TraceSink",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Required. The canonical sink resource name, unique within the project. Must be of the form: project/[PROJECT_NUMBER]/traceSinks/[SINK_ID]. E.g.: `\"projects/12345/traceSinks/my-project-trace-sink\"`. Sink identifiers are limited to 256 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods."
+            },
+            "outputConfig": {
+              "id": "OutputConfig",
+              "type": "object",
+              "properties": {
+                "destination": {
+                  "type": "string",
+                  "description": "The destination for writing trace data. Currently only BigQuery is supported. E.g.: \"bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]\""
+                }
+              },
+              "description": "Required. The export destination."
+            },
+            "writerIdentity": {
+              "type": "string",
+              "readOnly": true,
+              "description": "Output only. A service account name for exporting the data. This field is set by sinks.create and sinks.update. The service account will need to be granted write access to the destination specified in the output configuration, see [Granting access for a resource](/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource). To create tables and write data this account will need the dataEditor role. Read more about roles in the [BigQuery documentation](https://cloud.google.com/bigquery/docs/access-control). E.g.: \"service-00000001@00000002.iam.gserviceaccount.com\""
+            }
+          },
+          "description": "Describes a sink used to export traces to a BigQuery dataset. The sink must be created within a project."
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  projects.traces.batchWrite:
+    description: |-
+      Sends new spans to new or existing traces. You cannot update existing spans.
+    versions:
+      from: 2.0.0-beta1
+      to: 2.0.0
+    link: https://cloud.google.com/trace/docs/reference/v2/rest/v2/projects.traces/batchWrite
+    example:
+      inputs: [
+        {
+          "id": "BatchWriteSpansRequest",
+          "type": "object",
+          "properties": {
+            "spans": {
+              "type": "array",
+              "items": {
+                "id": "Span",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Required. The resource name of the span in the following format: projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero."
+                  },
+                  "links": {
+                    "id": "Links",
+                    "type": "object",
+                    "properties": {
+                      "link": {
+                        "type": "array",
+                        "items": {
+                          "id": "Link",
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "enum": [
+                                "TYPE_UNSPECIFIED",
+                                "CHILD_LINKED_SPAN",
+                                "PARENT_LINKED_SPAN"
+                              ],
+                              "type": "string",
+                              "description": "The relationship of the current span relative to the linked span.",
+                              "enumDescriptions": [
+                                "The relationship of the two spans is unknown.",
+                                "The linked span is a child of the current span.",
+                                "The linked span is a parent of the current span."
+                              ]
+                            },
+                            "spanId": {
+                              "type": "string",
+                              "description": "The [SPAN_ID] for a span within a trace."
+                            },
+                            "traceId": {
+                              "type": "string",
+                              "description": "The [TRACE_ID] for a trace within a project."
+                            },
+                            "attributes": {
+                              "id": "Attributes",
+                              "type": "object",
+                              "properties": {
+                                "attributeMap": {
+                                  "type": "object",
+                                  "description": "The set of attributes. Each attribute's key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example: \"/instance_id\": { \"string_value\": { \"value\": \"my-instance\" } } \"/http/request_bytes\": { \"int_value\": 300 } \"abc.com/myattribute\": { \"bool_value\": false }",
+                                  "additionalProperties": {
+                                    "id": "AttributeValue",
+                                    "type": "object",
+                                    "properties": {
+                                      "intValue": {
+                                        "type": "string",
+                                        "format": "int64",
+                                        "description": "A 64-bit signed integer."
+                                      },
+                                      "boolValue": {
+                                        "type": "boolean",
+                                        "description": "A Boolean value represented by `true` or `false`."
+                                      },
+                                      "stringValue": {
+                                        "id": "TruncatableString",
+                                        "type": "object",
+                                        "properties": {
+                                          "value": {
+                                            "type": "string",
+                                            "description": "The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit."
+                                          },
+                                          "truncatedByteCount": {
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "description": "The number of bytes removed from the original string. If this value is 0, then the string was not shortened."
+                                          }
+                                        },
+                                        "description": "A string up to 256 bytes long."
+                                      }
+                                    },
+                                    "description": "The allowed types for [VALUE] in a `[KEY]:[VALUE]` attribute."
+                                  }
+                                },
+                                "droppedAttributesCount": {
+                                  "type": "integer",
+                                  "format": "int32",
+                                  "description": "The number of attributes that were discarded. Attributes can be discarded because their keys are too long or because there are too many attributes. If this value is 0 then all attributes are valid."
+                                }
+                              },
+                              "description": "A set of attributes on the link. You have have up to 32 attributes per link."
+                            }
+                          },
+                          "description": "A pointer from the current span to another span in the same trace or in a different trace. For example, this can be used in batching operations, where a single batch handler processes multiple requests from different traces or when the handler receives a request from a different project."
+                        },
+                        "description": "A collection of links."
+                      },
+                      "droppedLinksCount": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The number of dropped links after the maximum size was enforced. If this value is 0, then no links were dropped."
+                      }
+                    },
+                    "description": "Links associated with the span. You can have up to 128 links per Span."
+                  },
+                  "spanId": {
+                    "type": "string",
+                    "description": "Required. The [SPAN_ID] portion of the span's resource name."
+                  },
+                  "status": {
+                    "id": "Status",
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The status code, which should be an enum value of google.rpc.Code."
+                      },
+                      "details": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": {
+                            "type": "any",
+                            "description": "Properties of the object. Contains field @type with type URL."
+                          }
+                        },
+                        "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+                      },
+                      "message": {
+                        "type": "string",
+                        "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+                      }
+                    },
+                    "description": "Optional. The final status for this span."
+                  },
+                  "endTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "description": "Required. The end time of the span. On the client side, this is the time kept by the local machine where the span execution ends. On the server side, this is the time when the server application handler stops running."
+                  },
+                  "spanKind": {
+                    "enum": [
+                      "SPAN_KIND_UNSPECIFIED",
+                      "INTERNAL",
+                      "SERVER",
+                      "CLIENT",
+                      "PRODUCER",
+                      "CONSUMER"
+                    ],
+                    "type": "string",
+                    "description": "Optional. Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `CLIENT` (caller) and `SERVER` (callee) to identify an RPC call.",
+                    "enumDescriptions": [
+                      "Unspecified. Do NOT use as default. Implementations MAY assume SpanKind.INTERNAL to be default.",
+                      "Indicates that the span is used internally. Default value.",
+                      "Indicates that the span covers server-side handling of an RPC or other remote network request.",
+                      "Indicates that the span covers the client-side wrapper around an RPC or other remote request.",
+                      "Indicates that the span describes producer sending a message to a broker. Unlike client and server, there is no direct critical path latency relationship between producer and consumer spans (e.g. publishing a message to a pubsub service).",
+                      "Indicates that the span describes consumer receiving a message from a broker. Unlike client and server, there is no direct critical path latency relationship between producer and consumer spans (e.g. receiving a message from a pubsub service subscription)."
+                    ]
+                  },
+                  "startTime": {
+                    "type": "string",
+                    "format": "google-datetime",
+                    "description": "Required. The start time of the span. On the client side, this is the time kept by the local machine where the span execution starts. On the server side, this is the time when the server's application handler starts running."
+                  },
+                  "attributes": {
+                    "id": "Attributes",
+                    "type": "object",
+                    "properties": {
+                      "attributeMap": {
+                        "type": "object",
+                        "description": "The set of attributes. Each attribute's key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example: \"/instance_id\": { \"string_value\": { \"value\": \"my-instance\" } } \"/http/request_bytes\": { \"int_value\": 300 } \"abc.com/myattribute\": { \"bool_value\": false }",
+                        "additionalProperties": {
+                          "id": "AttributeValue",
+                          "type": "object",
+                          "properties": {
+                            "intValue": {
+                              "type": "string",
+                              "format": "int64",
+                              "description": "A 64-bit signed integer."
+                            },
+                            "boolValue": {
+                              "type": "boolean",
+                              "description": "A Boolean value represented by `true` or `false`."
+                            },
+                            "stringValue": {
+                              "id": "TruncatableString",
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "string",
+                                  "description": "The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit."
+                                },
+                                "truncatedByteCount": {
+                                  "type": "integer",
+                                  "format": "int32",
+                                  "description": "The number of bytes removed from the original string. If this value is 0, then the string was not shortened."
+                                }
+                              },
+                              "description": "A string up to 256 bytes long."
+                            }
+                          },
+                          "description": "The allowed types for [VALUE] in a `[KEY]:[VALUE]` attribute."
+                        }
+                      },
+                      "droppedAttributesCount": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The number of attributes that were discarded. Attributes can be discarded because their keys are too long or because there are too many attributes. If this value is 0 then all attributes are valid."
+                      }
+                    },
+                    "description": "A set of attributes on the span. You can have up to 32 attributes per span."
+                  },
+                  "stackTrace": {
+                    "id": "StackTrace",
+                    "type": "object",
+                    "properties": {
+                      "stackFrames": {
+                        "id": "StackFrames",
+                        "type": "object",
+                        "properties": {
+                          "frame": {
+                            "type": "array",
+                            "items": {
+                              "id": "StackFrame",
+                              "type": "object",
+                              "properties": {
+                                "fileName": {
+                                  "id": "TruncatableString",
+                                  "type": "object",
+                                  "properties": {
+                                    "value": {
+                                      "type": "string",
+                                      "description": "The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit."
+                                    },
+                                    "truncatedByteCount": {
+                                      "type": "integer",
+                                      "format": "int32",
+                                      "description": "The number of bytes removed from the original string. If this value is 0, then the string was not shortened."
+                                    }
+                                  },
+                                  "description": "The name of the source file where the function call appears (up to 256 bytes)."
+                                },
+                                "lineNumber": {
+                                  "type": "string",
+                                  "format": "int64",
+                                  "description": "The line number in `file_name` where the function call appears."
+                                },
+                                "loadModule": {
+                                  "id": "Module",
+                                  "type": "object",
+                                  "properties": {
+                                    "module": {
+                                      "id": "TruncatableString",
+                                      "type": "object",
+                                      "properties": {
+                                        "value": {
+                                          "type": "string",
+                                          "description": "The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit."
+                                        },
+                                        "truncatedByteCount": {
+                                          "type": "integer",
+                                          "format": "int32",
+                                          "description": "The number of bytes removed from the original string. If this value is 0, then the string was not shortened."
+                                        }
+                                      },
+                                      "description": "For example: main binary, kernel modules, and dynamic libraries such as libc.so, sharedlib.so (up to 256 bytes)."
+                                    },
+                                    "buildId": {
+                                      "id": "TruncatableString",
+                                      "type": "object",
+                                      "properties": {
+                                        "value": {
+                                          "type": "string",
+                                          "description": "The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit."
+                                        },
+                                        "truncatedByteCount": {
+                                          "type": "integer",
+                                          "format": "int32",
+                                          "description": "The number of bytes removed from the original string. If this value is 0, then the string was not shortened."
+                                        }
+                                      },
+                                      "description": "A unique identifier for the module, usually a hash of its contents (up to 128 bytes)."
+                                    }
+                                  },
+                                  "description": "The binary module from where the code was loaded."
+                                },
+                                "columnNumber": {
+                                  "type": "string",
+                                  "format": "int64",
+                                  "description": "The column number where the function call appears, if available. This is important in JavaScript because of its anonymous functions."
+                                },
+                                "functionName": {
+                                  "id": "TruncatableString",
+                                  "type": "object",
+                                  "properties": {
+                                    "value": {
+                                      "type": "string",
+                                      "description": "The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit."
+                                    },
+                                    "truncatedByteCount": {
+                                      "type": "integer",
+                                      "format": "int32",
+                                      "description": "The number of bytes removed from the original string. If this value is 0, then the string was not shortened."
+                                    }
+                                  },
+                                  "description": "The fully-qualified name that uniquely identifies the function or method that is active in this frame (up to 1024 bytes)."
+                                },
+                                "sourceVersion": {
+                                  "id": "TruncatableString",
+                                  "type": "object",
+                                  "properties": {
+                                    "value": {
+                                      "type": "string",
+                                      "description": "The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit."
+                                    },
+                                    "truncatedByteCount": {
+                                      "type": "integer",
+                                      "format": "int32",
+                                      "description": "The number of bytes removed from the original string. If this value is 0, then the string was not shortened."
+                                    }
+                                  },
+                                  "description": "The version of the deployed source code (up to 128 bytes)."
+                                },
+                                "originalFunctionName": {
+                                  "id": "TruncatableString",
+                                  "type": "object",
+                                  "properties": {
+                                    "value": {
+                                      "type": "string",
+                                      "description": "The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit."
+                                    },
+                                    "truncatedByteCount": {
+                                      "type": "integer",
+                                      "format": "int32",
+                                      "description": "The number of bytes removed from the original string. If this value is 0, then the string was not shortened."
+                                    }
+                                  },
+                                  "description": "An un-mangled function name, if `function_name` is [mangled](http://www.avabodh.com/cxxin/namemangling.html). The name can be fully-qualified (up to 1024 bytes)."
+                                }
+                              },
+                              "description": "Represents a single stack frame in a stack trace."
+                            },
+                            "description": "Stack frames in this call stack."
+                          },
+                          "droppedFramesCount": {
+                            "type": "integer",
+                            "format": "int32",
+                            "description": "The number of stack frames that were dropped because there were too many stack frames. If this value is 0, then no stack frames were dropped."
+                          }
+                        },
+                        "description": "Stack frames in this stack trace. A maximum of 128 frames are allowed."
+                      },
+                      "stackTraceHashId": {
+                        "type": "string",
+                        "format": "int64",
+                        "description": "The hash ID is used to conserve network bandwidth for duplicate stack traces within a single trace. Often multiple spans will have identical stack traces. The first occurrence of a stack trace should contain both the `stackFrame` content and a value in `stackTraceHashId`. Subsequent spans within the same request can refer to that stack trace by only setting `stackTraceHashId`."
+                      }
+                    },
+                    "description": "Stack trace captured at the start of the span."
+                  },
+                  "timeEvents": {
+                    "id": "TimeEvents",
+                    "type": "object",
+                    "properties": {
+                      "timeEvent": {
+                        "type": "array",
+                        "items": {
+                          "id": "TimeEvent",
+                          "type": "object",
+                          "properties": {
+                            "time": {
+                              "type": "string",
+                              "format": "google-datetime",
+                              "description": "The timestamp indicating the time the event occurred."
+                            },
+                            "annotation": {
+                              "id": "Annotation",
+                              "type": "object",
+                              "properties": {
+                                "attributes": {
+                                  "id": "Attributes",
+                                  "type": "object",
+                                  "properties": {
+                                    "attributeMap": {
+                                      "type": "object",
+                                      "description": "The set of attributes. Each attribute's key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example: \"/instance_id\": { \"string_value\": { \"value\": \"my-instance\" } } \"/http/request_bytes\": { \"int_value\": 300 } \"abc.com/myattribute\": { \"bool_value\": false }",
+                                      "additionalProperties": {
+                                        "id": "AttributeValue",
+                                        "type": "object",
+                                        "properties": {
+                                          "intValue": {
+                                            "type": "string",
+                                            "format": "int64",
+                                            "description": "A 64-bit signed integer."
+                                          },
+                                          "boolValue": {
+                                            "type": "boolean",
+                                            "description": "A Boolean value represented by `true` or `false`."
+                                          },
+                                          "stringValue": {
+                                            "id": "TruncatableString",
+                                            "type": "object",
+                                            "properties": {
+                                              "value": {
+                                                "type": "string",
+                                                "description": "The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit."
+                                              },
+                                              "truncatedByteCount": {
+                                                "type": "integer",
+                                                "format": "int32",
+                                                "description": "The number of bytes removed from the original string. If this value is 0, then the string was not shortened."
+                                              }
+                                            },
+                                            "description": "A string up to 256 bytes long."
+                                          }
+                                        },
+                                        "description": "The allowed types for [VALUE] in a `[KEY]:[VALUE]` attribute."
+                                      }
+                                    },
+                                    "droppedAttributesCount": {
+                                      "type": "integer",
+                                      "format": "int32",
+                                      "description": "The number of attributes that were discarded. Attributes can be discarded because their keys are too long or because there are too many attributes. If this value is 0 then all attributes are valid."
+                                    }
+                                  },
+                                  "description": "A set of attributes on the annotation. You can have up to 4 attributes per Annotation."
+                                },
+                                "description": {
+                                  "id": "TruncatableString",
+                                  "type": "object",
+                                  "properties": {
+                                    "value": {
+                                      "type": "string",
+                                      "description": "The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit."
+                                    },
+                                    "truncatedByteCount": {
+                                      "type": "integer",
+                                      "format": "int32",
+                                      "description": "The number of bytes removed from the original string. If this value is 0, then the string was not shortened."
+                                    }
+                                  },
+                                  "description": "A user-supplied message describing the event. The maximum length for the description is 256 bytes."
+                                }
+                              },
+                              "description": "Text annotation with a set of attributes."
+                            },
+                            "messageEvent": {
+                              "id": "MessageEvent",
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string",
+                                  "format": "int64",
+                                  "description": "An identifier for the MessageEvent's message that can be used to match SENT and RECEIVED MessageEvents. It is recommended to be unique within a Span."
+                                },
+                                "type": {
+                                  "enum": [
+                                    "TYPE_UNSPECIFIED",
+                                    "SENT",
+                                    "RECEIVED"
+                                  ],
+                                  "type": "string",
+                                  "description": "Type of MessageEvent. Indicates whether the message was sent or received.",
+                                  "enumDescriptions": [
+                                    "Unknown event type.",
+                                    "Indicates a sent message.",
+                                    "Indicates a received message."
+                                  ]
+                                },
+                                "compressedSizeBytes": {
+                                  "type": "string",
+                                  "format": "int64",
+                                  "description": "The number of compressed bytes sent or received. If missing assumed to be the same size as uncompressed."
+                                },
+                                "uncompressedSizeBytes": {
+                                  "type": "string",
+                                  "format": "int64",
+                                  "description": "The number of uncompressed bytes sent or received."
+                                }
+                              },
+                              "description": "An event describing a message sent/received between Spans."
+                            }
+                          },
+                          "description": "A time-stamped annotation or message event in the Span."
+                        },
+                        "description": "A collection of `TimeEvent`s."
+                      },
+                      "droppedAnnotationsCount": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The number of dropped annotations in all the included time events. If the value is 0, then no annotations were dropped."
+                      },
+                      "droppedMessageEventsCount": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The number of dropped message events in all the included time events. If the value is 0, then no message events were dropped."
+                      }
+                    },
+                    "description": "A set of time events. You can have up to 32 annotations and 128 message events per span."
+                  },
+                  "displayName": {
+                    "id": "TruncatableString",
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "description": "The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit."
+                      },
+                      "truncatedByteCount": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The number of bytes removed from the original string. If this value is 0, then the string was not shortened."
+                      }
+                    },
+                    "description": "Required. A description of the span's operation (up to 128 bytes). Trace displays the description in the Google Cloud Platform Console. For example, the display name can be a qualified method name or a file name and a line number where the operation is called. A best practice is to use the same display name within an application and at the same call point. This makes it easier to correlate spans in different traces."
+                  },
+                  "parentSpanId": {
+                    "type": "string",
+                    "description": "The [SPAN_ID] of this span's parent span. If this is a root span, then this field must be empty."
+                  },
+                  "childSpanCount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Optional. The number of child spans that were generated while this span was active. If set, allows implementation to detect missing child spans."
+                  },
+                  "sameProcessAsParentSpan": {
+                    "type": "boolean",
+                    "description": "Optional. Set this parameter to indicate whether this span is in the same process as its parent. If you do not set this parameter, Trace is unable to take advantage of this helpful information."
+                  }
+                },
+                "description": "A span represents a single operation within a trace. Spans can be nested to form a trace tree. Often, a trace contains a root span that describes the end-to-end latency, and one or more subspans for its sub-operations. A trace can also contain multiple root spans, or none at all. Spans do not need to be contiguous—there may be gaps or overlaps between spans in a trace."
+              },
+              "description": "Required. A list of new spans. The span names must not match existing spans, or the results are undefined."
+            }
+          },
+          "description": "The request message for the `BatchWriteSpans` method."
+        }
+      ]
+      outputs: [
+        {
+          "id": "Empty",
+          "type": "object",
+          "properties": {},
+          "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`."
+        }
+      ]
+  projects.traces.spans.createSpan:
+    description: |-
+      Creates a new span.
+    versions:
+      from: 2.0.0-beta1
+      to: 2.0.0
+    link: https://cloud.google.com/trace/docs/reference/v2/rest/v2/projects.traces.spans/createSpan
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]

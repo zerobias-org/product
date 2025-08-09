@@ -1,0 +1,2406 @@
+Product:
+  name: Azure IoT Central
+  versions: [1.0.0-preview]
+  package: microsoft.azure.iotcentral
+  description: |-
+    IoTCentral
+  link: https://docs.microsoft.com/en-us/azure/iot-central/
+  contentType: json
+Operations:
+  ApiTokens.Create:
+    description: |-
+      Create a new API token in the application to use in the IoT Central public API. The token value will be returned in the response, and won't be returned again in subsequent requests.
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/apitokens/create
+    example:
+      inputs: [
+        {
+          "roles": [
+            {
+              "role": "ca310b8d-2f4a-44e0-a36e-957c202cd8d4"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "id": "testtoken",
+          "roles": [
+            {
+              "role": "ca310b8d-2f4a-44e0-a36e-957c202cd8d4"
+            }
+          ],
+          "token": "SharedAccessSignature sr=...",
+          "expiry": "2020-10-18T18:30:40.227Z"
+        }
+      ]
+  ApiTokens.Get:
+    description: |-
+      Get an API token by ID.
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/apitokens/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "testtoken",
+          "roles": [
+            {
+              "role": "ca310b8d-2f4a-44e0-a36e-957c202cd8d4"
+            }
+          ],
+          "expiry": "2020-10-18T18:30:40.227Z"
+        }
+      ]
+  ApiTokens.List:
+    description: |-
+      Get the list of API tokens in an application. The token value will never be returned for security reasons.
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/apitokens/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "testtoken",
+              "roles": [
+                {
+                  "role": "ca310b8d-2f4a-44e0-a36e-957c202cd8d4"
+                }
+              ],
+              "expiry": "2020-10-18T18:30:40.227Z"
+            }
+          ]
+        }
+      ]
+  ApiTokens.Remove:
+    description: |-
+      Delete an API token.
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/apitokens/remove
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Applications.Get:
+    description: |-
+      Get an application by ID
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/applications/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "194e282c-290a-4858-b68f-4274690697fc",
+          "host": "store-analytics-checkout---pnp.azureiotcentral.com",
+          "subdomain": "store-analytics-checkout---pnp",
+          "displayName": "x - Store Analytics Checkout - PnP"
+        }
+      ]
+  Applications.List:
+    description: |-
+      Get the list of applications accessible to the signed-in user
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/applications/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "194e282c-290a-4858-b68f-4274690697fc",
+              "host": "store-analytics-checkout---pnp.azureiotcentral.com",
+              "subdomain": "store-analytics-checkout---pnp",
+              "displayName": "x - Store Analytics Checkout - PnP"
+            },
+            {
+              "id": "ca517ec7-234e-4cbb-9d83-424f8a1d1809",
+              "host": "contoso.azureiotcentral.com",
+              "subdomain": "contoso",
+              "displayName": "Custom 2gskl57ibaw"
+            }
+          ]
+        }
+      ]
+  ContinuousDataExports.Create:
+    description: |-
+      Create a new continuous data export or update an existing one by ID.
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/continuousdataexports/create
+    example:
+      inputs: [
+        {
+          "enabled": true,
+          "sources": [
+            "devices",
+            "deviceTemplates",
+            "telemetry"
+          ],
+          "endpoint": {
+            "name": "container",
+            "type": "StorageEndpoint",
+            "connectionString": "{Connection-string-to-blob-storage}"
+          },
+          "displayName": "Export to Storage 2"
+        }
+      ]
+      outputs: [
+        {
+          "id": "abc",
+          "etag": "7e02c03e-25cb-4d1c-9f6b-019506283872",
+          "status": "starting",
+          "enabled": true,
+          "sources": [
+            "devices",
+            "deviceTemplates",
+            "telemetry"
+          ],
+          "endpoint": {
+            "name": "container",
+            "type": "StorageEndpoint",
+            "connectionString": "DefaultEndpointsProtocol=https;AccountName=contosoiotcstorage;AccountKey=*****;EndpointSuffix=core.windows.net"
+          },
+          "displayName": "Export to Storage 2"
+        }
+      ]
+  ContinuousDataExports.Get:
+    description: |-
+      Get a continuous data export by ID.
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/continuousdataexports/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "16cad42a-bd47-4684-b106-9f9b4d2d02e9",
+          "etag": "076f201d-e9c3-4bef-af0a-608420ba4526",
+          "status": "running",
+          "enabled": true,
+          "sources": [
+            "devices",
+            "deviceTemplates",
+            "telemetry"
+          ],
+          "endpoint": {
+            "name": "cde",
+            "type": "StorageEndpoint",
+            "connectionString": "DefaultEndpointsProtocol=https;AccountName=jeffscratchppe;AccountKey=*****;EndpointSuffix=core.windows.net"
+          },
+          "displayName": "Export to Storage 1"
+        }
+      ]
+  ContinuousDataExports.List:
+    description: |-
+      Get the list of continuous data exports in an application.
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/continuousdataexports/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "16cad42a-bd47-4684-b106-9f9b4d2d02e9",
+              "etag": "076f201d-e9c3-4bef-af0a-608420ba4526",
+              "status": "starting",
+              "enabled": true,
+              "sources": [
+                "devices",
+                "deviceTemplates",
+                "telemetry"
+              ],
+              "endpoint": {
+                "name": "cde",
+                "type": "StorageEndpoint",
+                "connectionString": "DefaultEndpointsProtocol=https;AccountName=jeffscratchppe;AccountKey=*****;EndpointSuffix=core.windows.net"
+              },
+              "displayName": "Export to Storage 1"
+            },
+            {
+              "id": "9dce0282-751d-4121-aed3-b316d658f17a",
+              "etag": "3398c6b5-de40-44ad-bf4a-0c216e2b4d88",
+              "status": "stopping",
+              "enabled": false,
+              "sources": [
+                "devices",
+                "deviceTemplates",
+                "telemetry"
+              ],
+              "endpoint": {
+                "name": "roommonitoring-ehout",
+                "type": "EventHubsEndpoint",
+                "connectionString": "Endpoint=sb://roommonitoring.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=*****"
+              },
+              "displayName": "Export to Event Hubs 1"
+            }
+          ]
+        }
+      ]
+  ContinuousDataExports.Remove:
+    description: |-
+      Delete a continuous data export.
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/continuousdataexports/remove
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  ContinuousDataExports.Update:
+    description: |-
+      Update an existing continuous data export via PATCH.
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/continuousdataexports/update
+    example:
+      inputs: [
+        {
+          "enabled": false,
+          "sources": [
+            "devices",
+            "deviceTemplates",
+            "telemetry"
+          ],
+          "endpoint": {
+            "name": "Blob 1",
+            "type": "StorageEndpoint",
+            "connectionString": "<updated connection string>"
+          },
+          "displayName": "Updated export name"
+        }
+      ]
+      outputs: [
+        {
+          "id": "abc",
+          "etag": "493aface-4c5e-4318-89e9-f6586f687009",
+          "status": "stopped",
+          "enabled": false,
+          "sources": [
+            "devices",
+            "deviceTemplates",
+            "telemetry"
+          ],
+          "endpoint": {
+            "name": "Blob 1",
+            "type": "StorageEndpoint",
+            "connectionString": "<updated connection string"
+          },
+          "displayName": "Updated export name"
+        }
+      ]
+  DeviceGroups.List:
+    description: |-
+      Get the list of device groups in an application.
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devicegroups/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "475cad48-b7ff-4a09-b51e-1a9021385453",
+              "displayName": "DeviceGroupEntry1"
+            },
+            {
+              "id": "c2d5ae1d-2cb7-4f58-bf44-5e816aba0a0e",
+              "displayName": "DeviceGroupEntry2"
+            },
+            {
+              "id": "241ad72b-32aa-4216-aabe-91b240582c8d",
+              "displayName": "DeviceGroupEntry3"
+            },
+            {
+              "id": "241ad72b-32aa-4216-aabe-91b240582c8d",
+              "displayName": "DeviceGroupEntry4"
+            }
+          ]
+        }
+      ]
+  Devices.Create:
+    description: |-
+      Create or update a device
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/create
+    example:
+      inputs: [
+        {
+          "approved": true,
+          "simulated": true,
+          "instanceOf": "urn:kmwga2re7:modelDefinition:t_cj5wspyv",
+          "displayName": "CheckoutThermostatccc"
+        }
+      ]
+      outputs: [
+        {
+          "id": "ccc",
+          "etag": "eyJoZWFkZXIiOiJcIjE1MDE2ZDFiLTAwMDAtMGQwMC0wMDAwLTVkYWNkNDIxMDAwMFwiIiwiZGF0YSI6IlwiMTUwMTZhMWItMDAwMC0wZDAwLTAwMDAtNWRhY2Q0MjEwMDAwXCIifQ",
+          "approved": true,
+          "simulated": true,
+          "instanceOf": "urn:kmwga2re7:modelDefinition:t_cj5wspyv",
+          "displayName": "CheckoutThermostatccc",
+          "provisioned": false
+        }
+      ]
+  Devices.CreateAttestation:
+    description: |-
+      Create or update an individual device attestation
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/createattestation
+    example:
+      inputs: [
+        {
+          "type": "SymmetricKeyAttestation",
+          "symmetricKey": {
+            "primaryKey": "<primary key>",
+            "secondaryKey": "<secondary key>"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Devices.ExecuteCommand:
+    description: |-
+      Execute a device command
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/executecommand
+    example:
+      inputs: [
+        {
+          "request": {
+            "tempVal": 30
+          },
+          "responseTimeout": 10,
+          "connectionTimeout": 10
+        }
+      ]
+      outputs: [
+        {
+          "request": {
+            "tempVal": 30
+          },
+          "response": "Sample response value",
+          "responseCode": 200,
+          "responseTimeout": 10,
+          "connectionTimeout": 10
+        }
+      ]
+  Devices.ExecuteComponentCommand:
+    description: |-
+      Execute a component command
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/executecomponentcommand
+    example:
+      inputs: [
+        {
+          "request": {
+            "tempVal": 30
+          },
+          "responseTimeout": 10,
+          "connectionTimeout": 10
+        }
+      ]
+      outputs: [
+        {
+          "request": {
+            "tempVal": 30
+          },
+          "response": "Sample response value",
+          "responseCode": 200,
+          "responseTimeout": 10,
+          "connectionTimeout": 10
+        }
+      ]
+  Devices.ExecuteModuleCommand:
+    description: |-
+      Execute a module command
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/executemodulecommand
+    example:
+      inputs: [
+        {
+          "request": {
+            "SafeMode": true
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Devices.ExecuteModuleComponentCommand:
+    description: |-
+      Execute a module component command
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/executemodulecomponentcommand
+    example:
+      inputs: [
+        {
+          "request": {
+            "SafeMode": true
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Devices.Get:
+    description: |-
+      Get a device by ID
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "CheckoutThermostat",
+          "etag": "eyJoZWFkZXIiOiJcIjAyMDA4YzMyLTAwMDAtMGQwMC0wMDAwLTVkOTY4YjdhMDAwMFwiIn0",
+          "approved": true,
+          "simulated": true,
+          "instanceOf": "urn:kmwga2re7:modelDefinition:t_cj5wspyv",
+          "displayName": "CheckoutThermostat",
+          "provisioned": true
+        }
+      ]
+  Devices.GetAttestation:
+    description: |-
+      Get device attestation
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/getattestation
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "type": "X509Attestation",
+          "x509": {
+            "clientCertificates": {
+              "primary": {
+                "info": {
+                  "sha1Thumbprint": "<thumbprint>"
+                }
+              }
+            }
+          }
+        }
+      ]
+  Devices.GetCloudProperties:
+    description: |-
+      Get device cloud properties
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/getcloudproperties
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "AssetID": "123abc"
+        }
+      ]
+  Devices.GetCommandHistory:
+    description: |-
+      Get device command history
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/getcommandhistory
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "4e17dd2e-7bf2-458d-8466-19bc6fc9b642",
+              "request": 20,
+              "response": 58.795679629034694,
+              "responseCode": 200
+            }
+          ]
+        }
+      ]
+  Devices.GetComponentCommandHistory:
+    description: |-
+      Get component command history
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/getcomponentcommandhistory
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "4e17dd2e-7bf2-458d-8466-19bc6fc9b642",
+              "request": 20,
+              "response": 58.795679629034694,
+              "responseCode": 200
+            }
+          ]
+        }
+      ]
+  Devices.GetComponentProperties:
+    description: |-
+      Get device properties for a specific component
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/getcomponentproperties
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "current": 2,
+          "voltage": 5,
+          "fanSpeed": 35,
+          "irSwitch": true,
+          "$metadata": {
+            "current": {
+              "desiredValue": 2,
+              "ackDesiredState": {
+                "code": 200,
+                "version": 2,
+                "description": "Processed"
+              }
+            },
+            "voltage": {
+              "desiredValue": 5,
+              "ackDesiredState": {
+                "code": 200,
+                "version": 2,
+                "description": "Processed"
+              }
+            },
+            "fanSpeed": {
+              "desiredValue": 35,
+              "ackDesiredState": {
+                "code": 200,
+                "version": 2,
+                "description": "Processed"
+              }
+            },
+            "irSwitch": {
+              "desiredValue": true,
+              "ackDesiredState": {
+                "code": 200,
+                "version": 2,
+                "description": "Processed"
+              }
+            }
+          }
+        }
+      ]
+  Devices.GetComponentTelemetryValue:
+    description: |-
+      Get component telemetry value
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/getcomponenttelemetryvalue
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": 32
+        }
+      ]
+  Devices.GetCredentials:
+    description: |-
+      Get device credentials
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/getcredentials
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "idScope": "<ID scope>",
+          "symmetricKey": {
+            "primaryKey": "<primary key>",
+            "secondaryKey": "<secondary key>"
+          }
+        }
+      ]
+  Devices.GetModuleCommandHistory:
+    description: |-
+      Get module command history
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/getmodulecommandhistory
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "response": "Success",
+              "responseCode": 200
+            }
+          ]
+        }
+      ]
+  Devices.GetModuleComponentCommandHistory:
+    description: |-
+      Get module component command history
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/getmodulecomponentcommandhistory
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "response": "Success",
+              "responseCode": 200
+            }
+          ]
+        }
+      ]
+  Devices.GetModuleComponentProperties:
+    description: |-
+      Get module properties for a specific component
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/getmodulecomponentproperties
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Status": 66.82181229066656,
+          "$metadata": {
+            "Status": {
+              "lastUpdateTime": "2020-04-27T22:09:25.1151948Z"
+            },
+            "SensitivityDial": {
+              "ackCode": 200,
+              "ackVersion": 1,
+              "desiredValue": 50,
+              "ackDescription": "Ok",
+              "desiredVersion": 3,
+              "lastUpdateTime": "2020-04-27T22:08:55.1149957Z"
+            }
+          },
+          "SensitivityDial": 50
+        }
+      ]
+  Devices.GetModuleComponentTelemetryValue:
+    description: |-
+      Get module component telemetry value
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/getmodulecomponenttelemetryvalue
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": {
+            "humidity": 24,
+            "temperature": 20.961113326000568
+          },
+          "timestamp": "2020-04-16T03:24:44.84Z"
+        }
+      ]
+  Devices.GetModuleProperties:
+    description: |-
+      Get module properties
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/getmoduleproperties
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "componentA": {
+            "Status": 25.494280816287844,
+            "$metadata": {
+              "Status": {
+                "lastUpdateTime": "2020-04-27T22:19:31.9485342Z"
+              },
+              "SensitivityDial": {
+                "ackCode": 200,
+                "ackVersion": 1,
+                "desiredValue": 50,
+                "ackDescription": "Ok",
+                "desiredVersion": 3,
+                "lastUpdateTime": "2020-04-27T22:08:55.1149957Z"
+              }
+            },
+            "SensitivityDial": 50
+          }
+        }
+      ]
+  Devices.GetModuleTelemetryValue:
+    description: |-
+      Get module telemetry value
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/getmoduletelemetryvalue
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": {
+            "humidity": 24,
+            "temperature": 20.961113326000568
+          },
+          "timestamp": "2020-04-16T03:24:44.84Z"
+        }
+      ]
+  Devices.GetProperties:
+    description: |-
+      Get device properties
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/getproperties
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "settings": {
+            "fanSpeed": 12.5,
+            "$metadata": {
+              "fanSpeed": {
+                "desiredValue": 30,
+                "desiredVersion": 2,
+                "lastUpdateTime": "2020-07-21T19:06:50.9718608Z"
+              }
+            }
+          },
+          "deviceinfo": {
+            "model": "model",
+            "$metadata": {
+              "model": {
+                "lastUpdateTime": "2020-07-21T19:06:50.9718608Z"
+              },
+              "swVersion": {
+                "lastUpdateTime": "2020-07-21T19:06:50.9718608Z"
+              },
+              "manufacturer": {
+                "lastUpdateTime": "2020-07-21T19:06:50.9718608Z"
+              }
+            },
+            "swVersion": "swVersion",
+            "manufacturer": "manufacturer"
+          }
+        }
+      ]
+  Devices.GetTelemetryValue:
+    description: |-
+      Get device telemetry value
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/gettelemetryvalue
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": 32
+        }
+      ]
+  Devices.List:
+    description: |-
+      Get the list of devices in an application
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "CheckoutThermostat",
+              "etag": "eyJoZWFkZXIiOiJcIjAyMDA4YzMyLTAwMDAtMGQwMC0wMDAwLTVkOTY4YjdhMDAwMFwiIn0",
+              "approved": true,
+              "simulated": true,
+              "instanceOf": "urn:kmwga2re7:modelDefinition:t_cj5wspyv",
+              "displayName": "CheckoutThermostat",
+              "provisioned": true
+            },
+            {
+              "id": "Checkout1",
+              "etag": "eyJoZWFkZXIiOiJcIjAyMDA4ZDMyLTAwMDAtMGQwMC0wMDAwLTVkOTY4Yjg3MDAwMFwiIn0",
+              "approved": true,
+              "simulated": true,
+              "instanceOf": "urn:sbk9sd6sl:modelDefinition:u3b_fwd7os",
+              "displayName": "Checkout1",
+              "provisioned": true
+            },
+            {
+              "id": "Checkout2",
+              "etag": "eyJoZWFkZXIiOiJcIjAyMDA5MDMyLTAwMDAtMGQwMC0wMDAwLTVkOTY4Yjg3MDAwMFwiIn0",
+              "approved": true,
+              "simulated": true,
+              "instanceOf": "urn:sbk9sd6sl:modelDefinition:u3b_fwd7os",
+              "displayName": "Checkout2",
+              "provisioned": true
+            },
+            {
+              "id": "Checkout3",
+              "etag": "eyJoZWFkZXIiOiJcIjAyMDA4ZTMyLTAwMDAtMGQwMC0wMDAwLTVkOTY4Yjg3MDAwMFwiIn0",
+              "approved": true,
+              "simulated": true,
+              "instanceOf": "urn:sbk9sd6sl:modelDefinition:u3b_fwd7os",
+              "displayName": "Checkout3",
+              "provisioned": true
+            }
+          ]
+        }
+      ]
+  Devices.ListComponents:
+    description: |-
+      List the components present in a device
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/listcomponents
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "@id": "<id>",
+              "name": "LocationTracking",
+              "@type": [
+                "InterfaceInstance"
+              ]
+            },
+            {
+              "@id": "<id>",
+              "name": "EnvironmentSensing",
+              "@type": [
+                "InterfaceInstance"
+              ]
+            }
+          ]
+        }
+      ]
+  Devices.ListModuleComponents:
+    description: |-
+      List the components present in a module
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/listmodulecomponents
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "@id": "<id>",
+              "name": "interfaceA",
+              "@type": [
+                "InterfaceInstance"
+              ],
+              "displayName": "InterfaceA"
+            }
+          ]
+        }
+      ]
+  Devices.ListModules:
+    description: |-
+      List the modules present in a device
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/listmodules
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "@id": "<id>",
+              "name": "Environment",
+              "@type": [
+                "Relationship",
+                "SemanticType/EdgeModule"
+              ]
+            },
+            {
+              "@id": "<id>",
+              "name": "Camera",
+              "@type": [
+                "Relationship",
+                "SemanticType/EdgeModule"
+              ]
+            }
+          ]
+        }
+      ]
+  Devices.Remove:
+    description: |-
+      Delete a device
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/remove
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Devices.RemoveAttestation:
+    description: |-
+      Remove an individual device attestation
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/removeattestation
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Devices.SetCloudProperties:
+    description: |-
+      Update device cloud properties
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/setcloudproperties
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "AssetID": "123abc"
+        }
+      ]
+  Devices.SetComponentProperties:
+    description: |-
+      Update device properties for a specific component
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/setcomponentproperties
+    example:
+      inputs: [
+        {
+          "current": 2,
+          "voltage": 5,
+          "fanSpeed": 35,
+          "irSwitch": true
+        }
+      ]
+      outputs: [
+        {
+          "$metadata": {
+            "current": {
+              "desiredValue": 2
+            },
+            "voltage": {
+              "desiredValue": 5
+            },
+            "fanSpeed": {
+              "desiredValue": 35
+            },
+            "irSwitch": {
+              "desiredValue": true
+            }
+          }
+        }
+      ]
+  Devices.SetModuleComponentProperties:
+    description: |-
+      Update module properties for a specific component
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/setmodulecomponentproperties
+    example:
+      inputs: [
+        {
+          "SensitivityDial": 300
+        }
+      ]
+      outputs: [
+        {
+          "$metadata": {
+            "SensitivityDial": {
+              "ackCode": 200,
+              "ackVersion": 1,
+              "desiredValue": 300,
+              "ackDescription": "Ok",
+              "desiredVersion": 3,
+              "lastUpdateTime": "2020-04-27T22:08:55.1149957Z"
+            }
+          },
+          "SensitivityDial": 50
+        }
+      ]
+  Devices.SetModuleProperties:
+    description: |-
+      Update module properties
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/setmoduleproperties
+    example:
+      inputs: [
+        {
+          "componentA": {
+            "SensitivityDial": 200
+          }
+        }
+      ]
+      outputs: [
+        {
+          "componentA": {
+            "$metadata": {
+              "SensitivityDial": {
+                "ackCode": 200,
+                "ackVersion": 1,
+                "desiredValue": 200,
+                "ackDescription": "Ok",
+                "desiredVersion": 3,
+                "lastUpdateTime": "2020-04-27T22:08:55.1149957Z"
+              }
+            },
+            "SensitivityDial": 75
+          }
+        }
+      ]
+  Devices.SetProperties:
+    description: |-
+      Update device properties
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/setproperties
+    example:
+      inputs: [
+        {
+          "settings": {
+            "current": 7,
+            "voltage": 25
+          }
+        }
+      ]
+      outputs: [
+        {
+          "settings": {
+            "$metadata": {
+              "current": {
+                "desiredValue": 7
+              },
+              "voltage": {
+                "desiredValue": 25
+              }
+            }
+          }
+        }
+      ]
+  Devices.Update:
+    description: |-
+      Update a device via patch
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/update
+    example:
+      inputs: [
+        {
+          "approved": false,
+          "instanceOf": "urn:baacbx8bk:modelDefinition:lgxugnniks",
+          "displayName": "Updated displayName"
+        }
+      ]
+      outputs: [
+        {
+          "id": "ccc",
+          "etag": "eyJoZWFkZXIiOiJcIjAxMDAyNmVjLTAwMDAtMGQwMC0wMDAwLTVkYmZkMjFhMDAwMFwiIn0",
+          "approved": false,
+          "simulated": false,
+          "instanceOf": "urn:baacbx8bk:modelDefinition:lgxugnniks",
+          "displayName": "Updated displayName",
+          "provisioned": true
+        }
+      ]
+  Devices.UpdateCloudProperties:
+    description: |-
+      Update device cloud properties via PATCH
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/updatecloudproperties
+    example:
+      inputs: [
+        {
+          "AssetID": "updated value"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Devices.UpdateComponentProperties:
+    description: |-
+      Update device properties for a specific component via PATCH
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/updatecomponentproperties
+    example:
+      inputs: [
+        {
+          "fanSpeed": 101,
+          "irSwitch": true
+        }
+      ]
+      outputs: [
+        {
+          "$metadata": {
+            "fanSpeed": {
+              "desiredValue": 101
+            },
+            "irSwitch": {
+              "desiredValue": true
+            }
+          }
+        }
+      ]
+  Devices.UpdateModuleComponentProperties:
+    description: |-
+      Update module properties for a specific component via PATCH
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/updatemodulecomponentproperties
+    example:
+      inputs: [
+        {
+          "SensitivityDial": 300
+        }
+      ]
+      outputs: [
+        {
+          "$metadata": {
+            "SensitivityDial": {
+              "ackCode": 200,
+              "ackVersion": 1,
+              "desiredValue": 300,
+              "ackDescription": "Ok",
+              "desiredVersion": 3,
+              "lastUpdateTime": "2020-04-27T22:08:55.1149957Z"
+            }
+          },
+          "SensitivityDial": 50
+        }
+      ]
+  Devices.UpdateModuleProperties:
+    description: |-
+      Update module properties via PATCH
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/updatemoduleproperties
+    example:
+      inputs: [
+        {
+          "componentA": {
+            "SensitivityDial": 200
+          }
+        }
+      ]
+      outputs: [
+        {
+          "componentA": {
+            "$metadata": {
+              "SensitivityDial": {
+                "ackCode": 200,
+                "ackVersion": 1,
+                "desiredValue": 200,
+                "ackDescription": "Ok",
+                "desiredVersion": 3,
+                "lastUpdateTime": "2020-04-27T22:08:55.1149957Z"
+              }
+            },
+            "SensitivityDial": 75
+          }
+        }
+      ]
+  Devices.UpdateProperties:
+    description: |-
+      Update device properties via PATCH
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devices/updateproperties
+    example:
+      inputs: [
+        {
+          "settings": {
+            "current": 7,
+            "voltage": 25
+          }
+        }
+      ]
+      outputs: [
+        {
+          "settings": {
+            "$metadata": {
+              "current": {
+                "desiredValue": 7
+              },
+              "voltage": {
+                "desiredValue": 25
+              }
+            }
+          }
+        }
+      ]
+  DeviceTemplates.Create:
+    description: |-
+      Publish a new device template or update the cloud properties and overrides of an existing device template. Default views will be automatically generated for new device templates created this way.
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devicetemplates/create
+    example:
+      inputs: [
+        {
+          "types": [
+            "DeviceModel"
+          ],
+          "displayName": "Environment sensor 1",
+          "capabilityModel": {
+            "@id": "urn:storeAnalyticsCheckoutPnp:capabilityModel:1",
+            "@type": [
+              "CapabilityModel"
+            ],
+            "@context": [
+              "http://azureiot.com/v1/contexts/IoTModel.json"
+            ],
+            "contents": [],
+            "implements": [
+              {
+                "@id": "urn:storeAnalyticsCheckoutPnp:capabilityModel:fyy5xn_y:1",
+                "name": "Interface",
+                "@type": [
+                  "InterfaceInstance"
+                ],
+                "schema": {
+                  "@id": "urn:storeAnalyticsCheckoutPnp:Interface:1",
+                  "@type": [
+                    "Interface"
+                  ],
+                  "contents": [
+                    {
+                      "@id": "urn:storeAnalyticsCheckoutPnp:Interface:Temperature:1",
+                      "name": "Temperature",
+                      "unit": "celsius",
+                      "@type": [
+                        "Telemetry",
+                        "SemanticType/Temperature"
+                      ],
+                      "schema": "double",
+                      "displayName": "Temperature"
+                    },
+                    {
+                      "@id": "urn:storeAnalyticsCheckoutPnp:Interface:Humidity:1",
+                      "name": "Humidity",
+                      "unit": "percent",
+                      "@type": [
+                        "Telemetry",
+                        "SemanticType/Humidity"
+                      ],
+                      "schema": "double",
+                      "displayName": "Humidity"
+                    },
+                    {
+                      "@id": "urn:storeAnalyticsCheckoutPnp:Interface:Occupancy:1",
+                      "name": "Occupancy",
+                      "@type": [
+                        "Telemetry"
+                      ],
+                      "schema": "double",
+                      "displayName": "Occupancy"
+                    }
+                  ],
+                  "displayName": "Interface"
+                },
+                "displayName": "Interface"
+              }
+            ],
+            "displayName": "Motion detector"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "environmentstemplateid",
+          "types": [
+            "DeviceModel"
+          ],
+          "displayName": "Environment sensor 1",
+          "capabilityModel": {
+            "@id": "urn:storeAnalyticsCheckoutPnp:capabilityModel:1",
+            "@type": [
+              "CapabilityModel"
+            ],
+            "@context": [
+              "http://azureiot.com/v1/contexts/IoTModel.json"
+            ],
+            "contents": [],
+            "implements": [
+              {
+                "@id": "urn:storeAnalyticsCheckoutPnp:capabilityModel:fyy5xn_y:1",
+                "name": "Interface",
+                "@type": [
+                  "InterfaceInstance"
+                ],
+                "schema": {
+                  "@id": "urn:storeAnalyticsCheckoutPnp:Interface:1",
+                  "@type": [
+                    "Interface"
+                  ],
+                  "contents": [
+                    {
+                      "@id": "urn:storeAnalyticsCheckoutPnp:Interface:Temperature:1",
+                      "name": "Temperature",
+                      "unit": "celsius",
+                      "@type": [
+                        "Telemetry",
+                        "SemanticType/Temperature"
+                      ],
+                      "schema": "double",
+                      "displayName": "Temperature"
+                    },
+                    {
+                      "@id": "urn:storeAnalyticsCheckoutPnp:Interface:Humidity:1",
+                      "name": "Humidity",
+                      "unit": "percent",
+                      "@type": [
+                        "Telemetry",
+                        "SemanticType/Humidity"
+                      ],
+                      "schema": "double",
+                      "displayName": "Humidity"
+                    },
+                    {
+                      "@id": "urn:storeAnalyticsCheckoutPnp:Interface:Occupancy:1",
+                      "name": "Occupancy",
+                      "@type": [
+                        "Telemetry"
+                      ],
+                      "schema": "double",
+                      "displayName": "Occupancy"
+                    }
+                  ],
+                  "displayName": "Interface"
+                },
+                "displayName": "Interface"
+              }
+            ],
+            "displayName": "Motion detector"
+          }
+        }
+      ]
+  DeviceTemplates.Get:
+    description: |-
+      Get a device template by ID
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devicetemplates/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "urn:sbk9sd6sl:modelDefinition:u3b_fwd7os",
+          "types": [
+            "DeviceModel"
+          ],
+          "displayName": "RS40 Occupancy Sensor",
+          "solutionModel": {
+            "@id": "urn:sbk9sd6sl:modelDefinition:rxyaituqzz",
+            "@type": [
+              "SolutionModel"
+            ],
+            "overrides": [],
+            "initialValues": [],
+            "cloudProperties": []
+          },
+          "capabilityModel": {
+            "@id": "urn:rigado:RS40_Occupancy_Sensor:1",
+            "@type": [
+              "CapabilityModel"
+            ],
+            "@context": [
+              "http://azureiot.com/v1/contexts/IoTModel.json"
+            ],
+            "contents": [],
+            "implements": [
+              {
+                "@id": "urn:rigado:RS40_Occupancy_Sensor:Device_information_RS40_Occupancy_Sensor:1",
+                "name": "Device_information_RS40_Occupancy_Sensor",
+                "@type": [
+                  "InterfaceInstance"
+                ],
+                "schema": {
+                  "@id": "urn:azureiot:DeviceManagement:DeviceInformation:1",
+                  "@type": [
+                    "Interface"
+                  ],
+                  "contents": [
+                    {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:manufacturer:1",
+                      "name": "manufacturer",
+                      "@type": [
+                        "Property"
+                      ],
+                      "schema": "string",
+                      "description": "Company name of the device manufacturer. This could be the same as the name of the original equipment manufacturer (OEM). Ex. Contoso.",
+                      "displayName": "Manufacturer"
+                    },
+                    {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:model:1",
+                      "name": "model",
+                      "@type": [
+                        "Property"
+                      ],
+                      "schema": "string",
+                      "description": "Device model name or ID. Ex. Surface Book 2.",
+                      "displayName": "Device model"
+                    },
+                    {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:swVersion:1",
+                      "name": "swVersion",
+                      "@type": [
+                        "Property"
+                      ],
+                      "schema": "string",
+                      "description": "Version of the software on your device. This could be the version of your firmware. Ex. 1.3.45",
+                      "displayName": "Software version"
+                    },
+                    {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:osName:1",
+                      "name": "osName",
+                      "@type": [
+                        "Property"
+                      ],
+                      "schema": "string",
+                      "description": "Name of the operating system on the device. Ex. Windows 10 IoT Core.",
+                      "displayName": "Operating system name"
+                    },
+                    {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:processorArchitecture:1",
+                      "name": "processorArchitecture",
+                      "@type": [
+                        "Property"
+                      ],
+                      "schema": "string",
+                      "description": "Architecture of the processor on the device. Ex. x64 or ARM.",
+                      "displayName": "Processor architecture"
+                    },
+                    {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:processorManufacturer:1",
+                      "name": "processorManufacturer",
+                      "@type": [
+                        "Property"
+                      ],
+                      "schema": "string",
+                      "description": "Name of the manufacturer of the processor on the device. Ex. Intel.",
+                      "displayName": "Processor manufacturer"
+                    },
+                    {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:totalStorage:1",
+                      "name": "totalStorage",
+                      "@type": [
+                        "Property"
+                      ],
+                      "schema": "long",
+                      "description": "Total available storage on the device in kilobytes. Ex. 2048000 kilobytes.",
+                      "displayName": "Total storage",
+                      "displayUnit": "kilobytes"
+                    },
+                    {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:totalMemory:1",
+                      "name": "totalMemory",
+                      "@type": [
+                        "Property"
+                      ],
+                      "schema": "long",
+                      "description": "Total available memory on the device in kilobytes. Ex. 256000 kilobytes.",
+                      "displayName": "Total memory",
+                      "displayUnit": "kilobytes"
+                    }
+                  ],
+                  "displayName": "Device Information"
+                }
+              },
+              {
+                "@id": "urn:rigado:RS40_Occupancy_Sensor:RS40_Occupancy_Sensor:1",
+                "name": "RS40_Occupancy_Sensor",
+                "@type": [
+                  "InterfaceInstance"
+                ],
+                "schema": {
+                  "@id": "urn:rigado:interfaces:RS40_Occupancy_Sensor:1",
+                  "@type": [
+                    "Interface"
+                  ],
+                  "contents": [
+                    {
+                      "@id": "urn:rigado:interfaces:RS40_Occupancy_Sensor:count:1",
+                      "name": "count",
+                      "@type": [
+                        "Telemetry"
+                      ],
+                      "schema": "integer",
+                      "comment": "",
+                      "description": "Count of motion events seen in the previous interval",
+                      "displayName": "count"
+                    },
+                    {
+                      "@id": "urn:rigado:interfaces:RS40_Occupancy_Sensor:state:1",
+                      "name": "state",
+                      "@type": [
+                        "Telemetry"
+                      ],
+                      "schema": "boolean",
+                      "description": "Occupancy State",
+                      "displayName": "state"
+                    }
+                  ],
+                  "displayName": "Interface"
+                }
+              }
+            ],
+            "displayName": "RS40 Occupancy Sensor"
+          }
+        }
+      ]
+  DeviceTemplates.GetMerged:
+    description: |-
+      Get a merged device template by ID
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devicetemplates/getmerged
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "urn:sbk9sd6sl:modelDefinition:u3b_fwd7os",
+          "etag": "\"1800bfd5-0000-0d00-0000-5d96df080000\"",
+          "types": [
+            "DeviceModel"
+          ],
+          "displayName": "RS40 Occupancy Sensor",
+          "solutionModel": {
+            "@id": "urn:sbk9sd6sl:modelDefinition:rxyaituqzz",
+            "@type": [
+              "SolutionModel"
+            ]
+          },
+          "capabilityModel": {
+            "@id": "urn:rigado:RS40_Occupancy_Sensor:1",
+            "@type": [
+              "CapabilityModel"
+            ],
+            "implements": [
+              {
+                "@id": "urn:rigado:RS40_Occupancy_Sensor:Device_information_RS40_Occupancy_Sensor:1",
+                "name": "Device_information_RS40_Occupancy_Sensor",
+                "@type": [
+                  "InterfaceInstance"
+                ],
+                "schema": {
+                  "@id": "urn:azureiot:DeviceManagement:DeviceInformation:1",
+                  "@type": [
+                    "Interface"
+                  ],
+                  "contents": [
+                    {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:manufacturer:1",
+                      "name": "manufacturer",
+                      "@type": [
+                        "Property"
+                      ],
+                      "schema": "string",
+                      "description": "Company name of the device manufacturer. This could be the same as the name of the original equipment manufacturer (OEM). Ex. Contoso.",
+                      "displayName": "Manufacturer"
+                    },
+                    {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:model:1",
+                      "name": "model",
+                      "@type": [
+                        "Property"
+                      ],
+                      "schema": "string",
+                      "description": "Device model name or ID. Ex. Surface Book 2.",
+                      "displayName": "Device model"
+                    },
+                    {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:swVersion:1",
+                      "name": "swVersion",
+                      "@type": [
+                        "Property"
+                      ],
+                      "schema": "string",
+                      "description": "Version of the software on your device. This could be the version of your firmware. Ex. 1.3.45",
+                      "displayName": "Software version"
+                    },
+                    {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:osName:1",
+                      "name": "osName",
+                      "@type": [
+                        "Property"
+                      ],
+                      "schema": "string",
+                      "description": "Name of the operating system on the device. Ex. Windows 10 IoT Core.",
+                      "displayName": "Operating system name"
+                    },
+                    {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:processorArchitecture:1",
+                      "name": "processorArchitecture",
+                      "@type": [
+                        "Property"
+                      ],
+                      "schema": "string",
+                      "description": "Architecture of the processor on the device. Ex. x64 or ARM.",
+                      "displayName": "Processor architecture"
+                    },
+                    {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:processorManufacturer:1",
+                      "name": "processorManufacturer",
+                      "@type": [
+                        "Property"
+                      ],
+                      "schema": "string",
+                      "description": "Name of the manufacturer of the processor on the device. Ex. Intel.",
+                      "displayName": "Processor manufacturer"
+                    },
+                    {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:totalStorage:1",
+                      "name": "totalStorage",
+                      "@type": [
+                        "Property"
+                      ],
+                      "schema": "long",
+                      "description": "Total available storage on the device in kilobytes. Ex. 2048000 kilobytes.",
+                      "displayName": "Total storage",
+                      "displayUnit": "kilobytes"
+                    },
+                    {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:totalMemory:1",
+                      "name": "totalMemory",
+                      "@type": [
+                        "Property"
+                      ],
+                      "schema": "long",
+                      "description": "Total available memory on the device in kilobytes. Ex. 256000 kilobytes.",
+                      "displayName": "Total memory",
+                      "displayUnit": "kilobytes"
+                    }
+                  ],
+                  "displayName": "Device Information"
+                }
+              },
+              {
+                "@id": "urn:rigado:RS40_Occupancy_Sensor:RS40_Occupancy_Sensor:1",
+                "name": "RS40_Occupancy_Sensor",
+                "@type": [
+                  "InterfaceInstance"
+                ],
+                "schema": {
+                  "@id": "urn:rigado:interfaces:RS40_Occupancy_Sensor:1",
+                  "@type": [
+                    "Interface"
+                  ],
+                  "contents": [
+                    {
+                      "@id": "urn:rigado:interfaces:RS40_Occupancy_Sensor:count:1",
+                      "name": "count",
+                      "@type": [
+                        "Telemetry"
+                      ],
+                      "schema": "integer",
+                      "comment": "",
+                      "description": "Count of motion events seen in the previous interval",
+                      "displayName": "count"
+                    },
+                    {
+                      "@id": "urn:rigado:interfaces:RS40_Occupancy_Sensor:state:1",
+                      "name": "state",
+                      "@type": [
+                        "Telemetry"
+                      ],
+                      "schema": "boolean",
+                      "description": "Occupancy State",
+                      "displayName": "state"
+                    }
+                  ],
+                  "displayName": "Interface"
+                }
+              }
+            ],
+            "displayName": "RS40 Occupancy Sensor"
+          }
+        }
+      ]
+  DeviceTemplates.List:
+    description: |-
+      Get the list of device templates in an application
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devicetemplates/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "urn:sbk9sd6sl:modelDefinition:u3b_fwd7os",
+              "types": [
+                "DeviceModel"
+              ],
+              "displayName": "RS40 Occupancy Sensor",
+              "solutionModel": {
+                "@id": "urn:sbk9sd6sl:modelDefinition:rxyaituqzz",
+                "@type": [
+                  "SolutionModel"
+                ],
+                "overrides": [],
+                "initialValues": [],
+                "cloudProperties": []
+              },
+              "capabilityModel": {
+                "@id": "urn:rigado:RS40_Occupancy_Sensor:1",
+                "@type": [
+                  "CapabilityModel"
+                ],
+                "@context": [
+                  "http://azureiot.com/v1/contexts/IoTModel.json"
+                ],
+                "contents": [],
+                "implements": [
+                  {
+                    "@id": "urn:rigado:RS40_Occupancy_Sensor:Device_information_RS40_Occupancy_Sensor:1",
+                    "name": "Device_information_RS40_Occupancy_Sensor",
+                    "@type": [
+                      "InterfaceInstance"
+                    ],
+                    "schema": {
+                      "@id": "urn:azureiot:DeviceManagement:DeviceInformation:1",
+                      "@type": [
+                        "Interface"
+                      ],
+                      "contents": [
+                        {
+                          "@id": "urn:azureiot:DeviceManagement:DeviceInformation:manufacturer:1",
+                          "name": "manufacturer",
+                          "@type": [
+                            "Property"
+                          ],
+                          "schema": "string",
+                          "description": "Company name of the device manufacturer. This could be the same as the name of the original equipment manufacturer (OEM). Ex. Contoso.",
+                          "displayName": "Manufacturer"
+                        },
+                        {
+                          "@id": "urn:azureiot:DeviceManagement:DeviceInformation:model:1",
+                          "name": "model",
+                          "@type": [
+                            "Property"
+                          ],
+                          "schema": "string",
+                          "description": "Device model name or ID. Ex. Surface Book 2.",
+                          "displayName": "Device model"
+                        },
+                        {
+                          "@id": "urn:azureiot:DeviceManagement:DeviceInformation:swVersion:1",
+                          "name": "swVersion",
+                          "@type": [
+                            "Property"
+                          ],
+                          "schema": "string",
+                          "description": "Version of the software on your device. This could be the version of your firmware. Ex. 1.3.45",
+                          "displayName": "Software version"
+                        },
+                        {
+                          "@id": "urn:azureiot:DeviceManagement:DeviceInformation:osName:1",
+                          "name": "osName",
+                          "@type": [
+                            "Property"
+                          ],
+                          "schema": "string",
+                          "description": "Name of the operating system on the device. Ex. Windows 10 IoT Core.",
+                          "displayName": "Operating system name"
+                        },
+                        {
+                          "@id": "urn:azureiot:DeviceManagement:DeviceInformation:processorArchitecture:1",
+                          "name": "processorArchitecture",
+                          "@type": [
+                            "Property"
+                          ],
+                          "schema": "string",
+                          "description": "Architecture of the processor on the device. Ex. x64 or ARM.",
+                          "displayName": "Processor architecture"
+                        },
+                        {
+                          "@id": "urn:azureiot:DeviceManagement:DeviceInformation:processorManufacturer:1",
+                          "name": "processorManufacturer",
+                          "@type": [
+                            "Property"
+                          ],
+                          "schema": "string",
+                          "description": "Name of the manufacturer of the processor on the device. Ex. Intel.",
+                          "displayName": "Processor manufacturer"
+                        },
+                        {
+                          "@id": "urn:azureiot:DeviceManagement:DeviceInformation:totalStorage:1",
+                          "name": "totalStorage",
+                          "@type": [
+                            "Property"
+                          ],
+                          "schema": "long",
+                          "description": "Total available storage on the device in kilobytes. Ex. 2048000 kilobytes.",
+                          "displayName": "Total storage",
+                          "displayUnit": "kilobytes"
+                        },
+                        {
+                          "@id": "urn:azureiot:DeviceManagement:DeviceInformation:totalMemory:1",
+                          "name": "totalMemory",
+                          "@type": [
+                            "Property"
+                          ],
+                          "schema": "long",
+                          "description": "Total available memory on the device in kilobytes. Ex. 256000 kilobytes.",
+                          "displayName": "Total memory",
+                          "displayUnit": "kilobytes"
+                        }
+                      ],
+                      "displayName": "Device Information"
+                    }
+                  },
+                  {
+                    "@id": "urn:rigado:RS40_Occupancy_Sensor:RS40_Occupancy_Sensor:1",
+                    "name": "RS40_Occupancy_Sensor",
+                    "@type": [
+                      "InterfaceInstance"
+                    ],
+                    "schema": {
+                      "@id": "urn:rigado:interfaces:RS40_Occupancy_Sensor:1",
+                      "@type": [
+                        "Interface"
+                      ],
+                      "contents": [
+                        {
+                          "@id": "urn:rigado:interfaces:RS40_Occupancy_Sensor:count:1",
+                          "name": "count",
+                          "@type": [
+                            "Telemetry"
+                          ],
+                          "schema": "integer",
+                          "comment": "",
+                          "description": "Count of motion events seen in the previous interval",
+                          "displayName": "count"
+                        },
+                        {
+                          "@id": "urn:rigado:interfaces:RS40_Occupancy_Sensor:state:1",
+                          "name": "state",
+                          "@type": [
+                            "Telemetry"
+                          ],
+                          "schema": "boolean",
+                          "description": "Occupancy State",
+                          "displayName": "state"
+                        }
+                      ],
+                      "displayName": "Interface"
+                    }
+                  }
+                ],
+                "displayName": "RS40 Occupancy Sensor"
+              }
+            }
+          ]
+        }
+      ]
+  DeviceTemplates.ListDevices:
+    description: |-
+      Get devices for a template
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devicetemplates/listdevices
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "Checkout1",
+              "etag": "eyJoZWFkZXIiOiJcIjAyMDA4ZDMyLTAwMDAtMGQwMC0wMDAwLTVkOTY4Yjg3MDAwMFwiIn0",
+              "approved": true,
+              "simulated": true,
+              "instanceOf": "urn:sbk9sd6sl:modelDefinition:u3b_fwd7os",
+              "displayName": "Checkout1",
+              "provisioned": true
+            },
+            {
+              "id": "Checkout2",
+              "etag": "eyJoZWFkZXIiOiJcIjAyMDA5MDMyLTAwMDAtMGQwMC0wMDAwLTVkOTY4Yjg3MDAwMFwiIn0",
+              "approved": true,
+              "simulated": true,
+              "instanceOf": "urn:sbk9sd6sl:modelDefinition:u3b_fwd7os",
+              "displayName": "Checkout2",
+              "provisioned": true
+            },
+            {
+              "id": "Checkout3",
+              "etag": "eyJoZWFkZXIiOiJcIjAyMDA4ZTMyLTAwMDAtMGQwMC0wMDAwLTVkOTY4Yjg3MDAwMFwiIn0",
+              "approved": true,
+              "simulated": true,
+              "instanceOf": "urn:sbk9sd6sl:modelDefinition:u3b_fwd7os",
+              "displayName": "Checkout3",
+              "provisioned": true
+            }
+          ]
+        }
+      ]
+  DeviceTemplates.Remove:
+    description: |-
+      Delete a device template
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/devicetemplates/remove
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Jobs.Create:
+    description: |-
+      Execute a new job
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/jobs/create
+    example:
+      inputs: [
+        {
+          "data": [
+            {
+              "path": "componentName.propertyName",
+              "type": "PropertyJobData",
+              "value": "updated value",
+              "target": "urn:1dgygpt7t:modelDefinition:02uwtefvdy"
+            }
+          ],
+          "group": "475cad48-b7ff-4a09-b51e-1a9021385453",
+          "displayName": "My Job"
+        }
+      ]
+      outputs: [
+        {
+          "id": "myJobId",
+          "data": [
+            {
+              "path": "componentName.propertyName",
+              "type": "PropertyJobData",
+              "value": "updated value",
+              "target": "urn:1dgygpt7t:modelDefinition:02uwtefvdy"
+            }
+          ],
+          "group": "475cad48-b7ff-4a09-b51e-1a9021385453",
+          "status": "running",
+          "displayName": "My Job"
+        }
+      ]
+  Jobs.Get:
+    description: |-
+      Get a job by ID
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/jobs/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "myJobId",
+          "data": [
+            {
+              "path": "componentName.propertyName",
+              "type": "PropertyJobData",
+              "value": "updated value",
+              "target": "urn:1dgygpt7t:modelDefinition:02uwtefvdy"
+            }
+          ],
+          "group": "475cad48-b7ff-4a09-b51e-1a9021385453",
+          "status": "running",
+          "displayName": "My Job"
+        }
+      ]
+  Jobs.GetDevices:
+    description: |-
+      Get device statuses
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/jobs/getdevices
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "ylleedih6k",
+              "status": "completed"
+            },
+            {
+              "id": "t81v3k204k",
+              "status": "completed"
+            },
+            {
+              "id": "iotc-1",
+              "status": "completed"
+            },
+            {
+              "id": "iotc",
+              "status": "completed"
+            },
+            {
+              "id": "1c5cs18m7k1",
+              "status": "completed"
+            }
+          ]
+        }
+      ]
+  Jobs.List:
+    description: |-
+      Get the list of jobs in an application
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/jobs/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "myJobId",
+              "data": [
+                {
+                  "path": "componentName.propertyName",
+                  "type": "PropertyJobData",
+                  "value": "updated value",
+                  "target": "urn:1dgygpt7t:modelDefinition:02uwtefvdy"
+                }
+              ],
+              "group": "475cad48-b7ff-4a09-b51e-1a9021385453",
+              "status": "running",
+              "displayName": "My Job"
+            }
+          ]
+        }
+      ]
+  Jobs.Rerun:
+    description: |-
+      Rerun a job on failed devices
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/jobs/rerun
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "myJobRerunId",
+          "data": [
+            {
+              "path": "componentName.propertyName",
+              "type": "PropertyJobData",
+              "value": "updated value",
+              "target": "urn:1dgygpt7t:modelDefinition:02uwtefvdy"
+            }
+          ],
+          "group": "475cad48-b7ff-4a09-b51e-1a9021385453",
+          "status": "running",
+          "displayName": "My Job"
+        }
+      ]
+  Jobs.Resume:
+    description: |-
+      Resume a stopped job
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/jobs/resume
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Jobs.Stop:
+    description: |-
+      Stop a running job
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/jobs/stop
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Roles.Get:
+    description: |-
+      Get a role by ID.
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/roles/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "ca310b8d-2f4a-44e0-a36e-957c202cd8d4",
+          "displayName": "Administrator"
+        }
+      ]
+  Roles.List:
+    description: |-
+      Get the list of roles in an application.
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/roles/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "ca310b8d-2f4a-44e0-a36e-957c202cd8d4",
+              "displayName": "Administrator"
+            },
+            {
+              "id": "344138e9-8de4-4497-8c54-5237e96d6aaf",
+              "displayName": "Builder"
+            },
+            {
+              "id": "ae2c9854-393b-4f97-8c42-479d70ce626e",
+              "displayName": "Operator"
+            }
+          ]
+        }
+      ]
+  Users.Create:
+    description: |-
+      Create or update a user in the application
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/users/create
+    example:
+      inputs: [
+        {
+          "type": "ServicePrincipalUser",
+          "roles": [
+            {
+              "role": "<role Id>"
+            }
+          ],
+          "objectId": "<object Id>",
+          "tenantId": "<tenant Id>"
+        }
+      ]
+      outputs: [
+        {
+          "id": "123",
+          "type": "ServicePrincipalUser",
+          "roles": [
+            {
+              "role": "<role Id>"
+            }
+          ],
+          "objectId": "<object Id>",
+          "tenantId": "<tenant Id>"
+        }
+      ]
+  Users.Get:
+    description: |-
+      Get a user by ID
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/users/get
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "id": "abc",
+          "type": "EmailUser",
+          "email": "alice@contoso.com",
+          "roles": [
+            {
+              "role": "ca310b8d-2f4a-44e0-a36e-957c202cd8d4"
+            }
+          ]
+        }
+      ]
+  Users.List:
+    description: |-
+      Get the list of users in an application
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/users/list
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "id": "af0d5b8f-7a69-4521-868e-19745fae353f",
+              "type": "EmailUser",
+              "email": "alice@contoso.com",
+              "roles": [
+                {
+                  "role": "ca310b8d-2f4a-44e0-a36e-957c202cd8d4"
+                }
+              ]
+            },
+            {
+              "id": "123",
+              "type": "ServicePrincipalUser",
+              "roles": [
+                {
+                  "role": "ca310b8d-2f4a-44e0-a36e-957c202cd8d4"
+                }
+              ],
+              "objectId": "9071c899-bce0-4862-b208-75dabae226a9",
+              "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+            }
+          ]
+        }
+      ]
+  Users.Remove:
+    description: |-
+      Delete a user
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/users/remove
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Users.Update:
+    description: |-
+      Update a user in the application via PATCH
+    versions:
+      from: 1.0.0-preview
+    link: https://docs.microsoft.com/en-us/rest/api/iotcentral/users/update
+    example:
+      inputs: [
+        {
+          "type": "ServicePrincipalUser",
+          "roles": [
+            {
+              "role": "<role Id>"
+            }
+          ],
+          "objectId": "<object Id>",
+          "tenantId": "<tenant Id>"
+        }
+      ]
+      outputs: [
+        {
+          "id": "123",
+          "type": "ServicePrincipalUser",
+          "roles": [
+            {
+              "role": "<role Id>"
+            }
+          ],
+          "objectId": "<object Id>",
+          "tenantId": "<tenant Id>"
+        }
+      ]

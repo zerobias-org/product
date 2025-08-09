@@ -1,0 +1,1257 @@
+Product:
+  name: Azure Search Service
+  versions: [2020.6.30-preview,2020.6.30]
+  package: microsoft.azure.searchservice
+  description: |-
+    SearchService
+  link: https://docs.microsoft.com/en-us/rest/api/searchservice/
+  contentType: json
+Operations:
+  Documents.AddUpdateOrDeleteDocuments:
+    description: |-
+      Adds, updates or deletes documents.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/addupdate-or-delete-documents
+    example:
+      inputs: [
+        {
+          "value": [
+            {
+              "Tags": [
+                "pool",
+                "air conditioning",
+                "concierge"
+              ],
+              "Rooms": [
+                {
+                  "Tags": [
+                    "vcr/dvd"
+                  ],
+                  "Type": "Budget Room",
+                  "BaseRate": 96.99,
+                  "BedOptions": "1 Queen Bed",
+                  "Description": "Budget Room, 1 Queen Bed (Cityside)",
+                  "SleepsCount": 2,
+                  "Description_fr": "Chambre ├ëconomique, 1 grand lit (c├┤t├⌐ ville)",
+                  "SmokingAllowed": true
+                },
+                {
+                  "Tags": [
+                    "vcr/dvd",
+                    "jacuzzi tub"
+                  ],
+                  "Type": "Budget Room",
+                  "BaseRate": 80.99,
+                  "BedOptions": "1 King Bed",
+                  "Description": "Budget Room, 1 King Bed (Mountain View)",
+                  "SleepsCount": 2,
+                  "Description_fr": "Chambre ├ëconomique, 1 tr├¿s grand lit (Mountain View)",
+                  "SmokingAllowed": true
+                }
+              ],
+              "Rating": 3.6,
+              "Address": {
+                "City": "New York",
+                "Country": "USA",
+                "PostalCode": "10022",
+                "StateProvince": "NY",
+                "StreetAddress": "677 5th Ave"
+              },
+              "HotelId": "1",
+              "Category": "Boutique",
+              "Location": {
+                "type": "Point",
+                "coordinates": [
+                  -73.975403,
+                  40.760586
+                ]
+              },
+              "HotelName": "Secret Point Motel",
+              "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York.",
+              "@search.action": "upload",
+              "ParkingIncluded": false,
+              "LastRenovationDate": "1970-01-18T00:00:00Z"
+            },
+            {
+              "Tags": [
+                "pool",
+                "free wifi",
+                "concierge"
+              ],
+              "Rooms": [
+                {
+                  "Tags": [
+                    "Room Tags"
+                  ],
+                  "Type": "Suite",
+                  "BaseRate": 250.99,
+                  "BedOptions": "2 Double Beds",
+                  "Description": "Suite, 2 Double Beds (Mountain View)",
+                  "SleepsCount": 2,
+                  "Description_fr": "Suite, 2 lits doubles (vue sur la montagne)",
+                  "SmokingAllowed": false
+                }
+              ],
+              "Rating": 3.6,
+              "Address": {
+                "City": "Sarasota",
+                "Country": "USA",
+                "PostalCode": "34243",
+                "StateProvince": "FL",
+                "StreetAddress": "140 University Town Center Dr"
+              },
+              "HotelId": "2",
+              "Category": "Boutique",
+              "Location": {
+                "type": "Point",
+                "coordinates": [
+                  -82.452843,
+                  27.384417
+                ]
+              },
+              "HotelName": "Twin Dome Motel",
+              "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.",
+              "@search.action": "upload",
+              "Description_fr": "L'h├┤tel est situ├⌐ dans une place du XIXe si├¿cle, qui a ├⌐t├⌐ agrandie et r├⌐nov├⌐e aux plus hautes normes architecturales pour cr├⌐er un h├┤tel moderne, fonctionnel et de premi├¿re classe dans lequel l'art et les ├⌐l├⌐ments historiques uniques coexistent avec le confort le plus moderne.",
+              "ParkingIncluded": false,
+              "LastRenovationDate": "1979-02-18T00:00:00Z"
+            },
+            {
+              "Rating": 2.39,
+              "HotelId": "3",
+              "Description": "Surprisingly expensive",
+              "@search.action": "merge",
+              "LastRenovationDate": null
+            },
+            {
+              "hotelId": "4",
+              "@search.action": "delete"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "key": "unique_key_of_new_document",
+              "status": true,
+              "statusCode": 201,
+              "errorMessage": null
+            },
+            {
+              "key": "unique_key_of_merged_document",
+              "status": true,
+              "statusCode": 200,
+              "errorMessage": null
+            },
+            {
+              "key": "unique_key_of_deleted_document",
+              "status": true,
+              "statusCode": 200,
+              "errorMessage": null
+            }
+          ]
+        }
+      ]
+  Documents.Autocomplete:
+    description: |-
+      Finishes a partially typed query input using existing terms in the search index for use in a secondary query
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/autocomplete
+    example:
+      inputs: [
+        {
+          "top": 3,
+          "filter": "search.in(roleId, 'admin,manager')",
+          "search": "washington medic",
+          "suggesterName": "sg"
+        }
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "text": "medicaid",
+              "queryPlusText": "washington medicaid"
+            },
+            {
+              "text": "medicare",
+              "queryPlusText": "washington medicare"
+            },
+            {
+              "text": "medicine",
+              "queryPlusText": "washington medicine"
+            }
+          ]
+        }
+      ]
+  Documents.CountDocuments:
+    description: |-
+      The Count Documents operation retrieves a count of the number of documents in a search index.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/count-documents
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Indexers.CreateDataSource:
+    description: |-
+      Creates a data source.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/create-data-source
+    example:
+      inputs: [
+        {
+          "name": "Name of the data source",
+          "type": "Must be a supported data source",
+          "container": {
+            "name": "Name of the table, collection, or blob container you wish to index"
+          },
+          "credentials": {
+            "connectionString": "Connection string for your data source"
+          },
+          "description": "Anything you want, or nothing at all",
+          "encryptionKey": {},
+          "dataChangeDetectionPolicy": {},
+          "dataDeletionDetectionPolicy": {}
+        }
+      ]
+      outputs: [
+        {
+          "name": "asqldatasource",
+          "type": "azuresql",
+          "container": {
+            "name": "sometable"
+          },
+          "credentials": {
+            "connectionString": "Server=tcp:....database.windows.net,1433;Database=...;User ID=...;Password=...;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;"
+          },
+          "description": "a description",
+          "dataChangeDetectionPolicy": {
+            "@odata.type": "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
+            "highWaterMarkColumnName": "RowVersion"
+          }
+        }
+      ]
+  Skillsets.CreateSkillset:
+    description: |-
+      Creates a skillset.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/create-skillset
+    example:
+      inputs: [
+        {
+          "name": "financedocenricher",
+          "skills": [
+            {
+              "inputs": [
+                {
+                  "name": "text",
+                  "source": "/document/content"
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "organizations",
+                  "targetName": "organizations"
+                }
+              ],
+              "categories": [
+                "Organization"
+              ],
+              "@odata.type": "#Microsoft.Skills.Text.EntityRecognitionSkill",
+              "defaultLanguageCode": "en"
+            },
+            {
+              "inputs": [
+                {
+                  "name": "text",
+                  "source": "/document/content"
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "score",
+                  "targetName": "mySentiment"
+                }
+              ],
+              "@odata.type": "#Microsoft.Skills.Text.SentimentSkill"
+            }
+          ],
+          "description": "Extract sentiment from financial records, extract company names, and then find additional information about each company mentioned.",
+          "knowledgeStore": {
+            "projections": [
+              {
+                "tables": [
+                  {
+                    "source": "/document/Record",
+                    "tableName": "Records",
+                    "generatedKeyName": "RecordId"
+                  },
+                  {
+                    "source": "/document/organizations*",
+                    "tableName": "Organizations",
+                    "generatedKeyName": "OrganizationId"
+                  },
+                  {
+                    "source": "/document/mySentiment",
+                    "tableName": "Sentiment",
+                    "generatedKeyName": "SentimentId"
+                  }
+                ],
+                "objects": []
+              }
+            ],
+            "storageConnectionString": "<your storage connection string goes here>"
+          },
+          "cognitiveServices": {
+            "key": "<your cognitive services all-in-one key goes here>",
+            "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
+            "description": "mycogsvcs resource in West US 2"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Synonyms.CreateSynonymMap:
+    description: |-
+      Creates a synonym map.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/create-synonym-map
+    example:
+      inputs: [
+        {
+          "name": "synonymmap1",
+          "format": "solr",
+          "synonyms": "United States, United States of America, USA\n        Washington, Wash. => WA",
+          "encryptionKey": {
+            "keyVaultUri": "URI of Azure Key Vault, also referred to as DNS name, that provides the key. An example URI might be https://my-keyvault-name.vault.azure.net",
+            "keyVaultKeyName": "Name of the Azure Key Vault key used for encryption",
+            "accessCredentials": {
+              "applicationId": "Azure AD Application ID that was granted access permissions to your specified Azure Key Vault",
+              "applicationSecret": "Authentication key of the specified Azure AD application)"
+            },
+            "keyVaultKeyVersion": "Version of the Azure Key Vault key"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Indexers.DataTypeMapForIndexers:
+    description: |-
+      When building a schema for an indexer, the data types used in the data source must map to an allowed data type for the fields in the target index.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/data-type-map-for-indexers-in-azure-search
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Indexers.DeleteDataSource:
+    description: |-
+      Deletes data source.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/delete-data-source
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Indexes.DeleteIndex:
+    description: |-
+      Deletes an index.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/delete-index
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Indexers.DeleteIndexer:
+    description: |-
+      Deletes an indexer.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/delete-indexer
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Skillsets.DeleteSkillset:
+    description: |-
+      Deletes a skillset.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/delete-skillset
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Synonyms.DeleteSynonymMap:
+    description: |-
+      Deletes a synonym map.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/delete-synonym-map
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Indexers.GetDataSource:
+    description: |-
+      Retrieves a data source.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/get-data-source
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "name": "asqldatasource",
+          "type": "azuresql",
+          "container": {
+            "name": "sometable"
+          },
+          "credentials": {
+            "connectionString": null
+          },
+          "description": "a description",
+          "encryptionKey": null,
+          "dataChangeDetectionPolicy": {
+            "@odata.type": "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
+            "highWaterMarkColumnName": "RowVersion"
+          },
+          "dataDeletionDetectionPolicy": {
+            "@odata.type": "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy",
+            "softDeleteColumnName": "IsDeleted",
+            "softDeleteMarkerValue": "true"
+          }
+        }
+      ]
+  Indexes.GetIndex:
+    description: |-
+      Gets an Index.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/get-index
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Indexers.GetIndexer:
+    description: |-
+      Gets an indexer.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/get-indexer
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "name": "myindexer",
+          "schedule": {
+            "interval": "PT1H",
+            "startTime": "2015-01-01T00:00:00Z"
+          },
+          "parameters": {
+            "maxFailedItems": 10,
+            "base64EncodeKeys": false,
+            "maxFailedItemsPerBatch": 5
+          },
+          "description": "a cool indexer",
+          "encryptionKey": null,
+          "dataSourceName": "ordersds",
+          "targetIndexName": "orders"
+        }
+      ]
+  Indexers.GetIndexerStatus:
+    description: |-
+      Gets an indexer status.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/get-indexer-status
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "status": "running",
+          "lastResult": {
+            "errors": [],
+            "status": "success",
+            "endTime": "2014-11-26T03:37:19.012Z",
+            "warnings": [],
+            "startTime": "2014-11-26T03:37:18.853Z",
+            "itemsFailed": 0,
+            "errorMessage": null,
+            "itemsProcessed": 11,
+            "finalTrackingState": null,
+            "initialTrackingState": null
+          },
+          "executionHistory": [
+            {
+              "errors": [],
+              "status": "success",
+              "endTime": "2014-11-26T03:37:19.012Z",
+              "warnings": [],
+              "startTime": "2014-11-26T03:37:18.853Z",
+              "itemsFailed": 0,
+              "errorMessage": null,
+              "itemsProcessed": 11,
+              "finalTrackingState": null,
+              "initialTrackingState": null
+            },
+            {
+              "errors": [
+                {
+                  "key": "",
+                  "name": "The operation name describing where the error occurred. For example, 'Enrichment.LanguageDetectionSkill.SkillName'",
+                  "details": "Any additional details, such as the WebApi response if executing a custom skill failed.",
+                  "statusCode": 400,
+                  "errorMessage": "Document key cannot be missing or empty.",
+                  "documentationLink": "A link to relevant documentation. For example, 'https://go.microsoft.com/fwlink/?linkid=2099692'"
+                }
+              ],
+              "status": "transientFailure",
+              "endTime": "2014-11-26T03:28:12.007Z",
+              "warnings": [
+                {
+                  "key": "document id",
+                  "name": "The operation name describing where the warning occurred. For example, 'Enrichment.LanguageDetectionSkill.SkillName'",
+                  "details": "Any additional details, such as the WebApi response if executing a custom skill failed.",
+                  "message": "A warning doesn't stop indexing, and is intended to inform you of certain interesting situations, like when a blob indexer truncates the amount of text extracted from a blob.",
+                  "documentationLink": "A link to relevant documentation. For example, 'https://go.microsoft.com/fwlink/?linkid=2099692'"
+                }
+              ],
+              "startTime": "2014-11-26T03:28:10.125Z",
+              "itemsFailed": 1,
+              "errorMessage": null,
+              "itemsProcessed": 1,
+              "finalTrackingState": null,
+              "initialTrackingState": null
+            }
+          ]
+        }
+      ]
+  Indexes.GetIndexStatistics:
+    description: |-
+      Gets index statistics.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/get-index-statistics
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "storageSize": 100,
+          "documentCount": 1
+        }
+      ]
+  Services.GetServiceStatistics:
+    description: |-
+      The Service Statistics operation returns the number and type of objects in your service, the maximum allowed for each object type given the service tier, actual and maximum storage, and other limits that vary by tier. This request pulls information from the service so that you don't have to look up or calculate service limits.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/get-service-statistics
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "limits": {
+            "maxFieldsPerIndex": 1000,
+            "maxIndexerRunTime": "P1D",
+            "maxFileExtractionSize": 16777216,
+            "maxFieldNestingDepthPerIndex": 10,
+            "maxFileContentCharactersToExtract": 65536,
+            "maxComplexCollectionFieldsPerIndex": 40,
+            "maxComplexObjectsInCollectionsPerDocument": 3000
+          },
+          "counters": {
+            "storageSize": {
+              "quota": 2147483648,
+              "usage": 22265221
+            },
+            "synonymMaps": {
+              "quota": 3,
+              "usage": 0
+            },
+            "indexesCount": {
+              "quota": 15,
+              "usage": 10
+            },
+            "documentCount": {
+              "quota": null,
+              "usage": 5072
+            },
+            "indexersCount": {
+              "quota": 15,
+              "usage": 8
+            },
+            "dataSourcesCount": {
+              "quota": 15,
+              "usage": 9
+            }
+          },
+          "@odata.context": "https://my-search-service.search.windows.net/$metadata#Microsoft.Azure.Search.V2019_05_06.ServiceStatistics"
+        }
+      ]
+  Skillsets.GetSkillset:
+    description: |-
+      Gets a skillset.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/get-skillset
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Synonyms.GetSynonymMap:
+    description: |-
+      Gets a synonym map.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/get-synonym-map
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "name": "synonymmap1",
+          "format": "solr",
+          "synonyms": "United States, United States of America, USA\n          Washington, Wash. => WA",
+          "encryptionKey": null
+        }
+      ]
+  Indexers.ListDataSources:
+    description: |-
+      Lists data sources.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/list-data-sources
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "name": "datasource1",
+              "type": "azuresql",
+              "other": "... data source properties"
+            }
+          ]
+        }
+      ]
+  Indexers.ListIndexers:
+    description: |-
+      Lists indexers.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/list-indexers
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "name": "myindexer",
+              "other": "... data source properties",
+              "description": "a cool indexer",
+              "dataSourceName": "ordersds",
+              "targetIndexName": "orders"
+            }
+          ]
+        }
+      ]
+  Indexes.ListIndexes:
+    description: |-
+      Lists indexes.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/list-indexes
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "name": "Books",
+              "fields": [
+                {
+                  "name": "ISBN"
+                }
+              ]
+            },
+            {
+              "name": "Games"
+            }
+          ]
+        }
+      ]
+  Skillsets.ListSkillset:
+    description: |-
+      Lists skillsets.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/list-skillset
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Synonyms.ListSynonymMaps:
+    description: |-
+      Lists synonym maps.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/list-synonym-maps
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "name": "synonymmap1",
+              "format": "solr",
+              "other synonym map properties": "..."
+            }
+          ]
+        }
+      ]
+  Documents.LookupDocument:
+    description: |-
+      The Lookup Document operation retrieves a document from Azure Cognitive Search.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/lookup-document
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "field_name": "field_value"
+        }
+      ]
+  Indexes.CreateIndex:
+    description: |-
+      Creates an index.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/preview-api/create-index
+    example:
+      inputs: [
+        {
+          "name": "Name of the index",
+          "fields": [
+            {
+              "key": true,
+              "name": "name_of_field",
+              "type": "Edm.String | Edm.Int32 | Edm.Int64 | Edm.Double | Edm.Boolean | Edm.DateTimeOffset | Edm.GeographyPoint | Edm.ComplexType | Collection(Edm.String) | Collection(Edm.Int32) | Collection(Edm.Int64) | Collection(Edm.Double) | Collection(Edm.Boolean) | Collection(Edm.DateTimeOffset) | Collection(Edm.GeographyPoint) | Collection(Edm.ComplexType)",
+              "fields": [],
+              "analyzer": "name_of_analyzer_for_search_and_indexing",
+              "sortable": true,
+              "facetable": true,
+              "filterable": true,
+              "normalizer": "name_of_normalizer",
+              "searchable": true,
+              "retrievable": true,
+              "synonymMaps": [
+                "name_of_synonym_map"
+              ],
+              "indexAnalyzer": "name_of_indexing_analyzer",
+              "searchAnalyzer": "name_of_search_analyzer"
+            }
+          ],
+          "analyzers": [],
+          "similarity": {},
+          "suggesters": [],
+          "tokenizers": [],
+          "charFilters": [],
+          "corsOptions": {},
+          "normalizers": [],
+          "tokenFilters": [],
+          "encryptionKey": {},
+          "scoringProfiles": [],
+          "defaultScoringProfile": "Name of a custom scoring profile to use as the default"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Indexers.CreateIndexer:
+    description: |-
+      Creates an indexer.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/preview-api/create-indexer
+    example:
+      inputs: [
+        {
+          "name": "Name of the indexer",
+          "cache": {},
+          "disabled": false,
+          "schedule": {},
+          "parameters": {},
+          "description": "Anything you want, or nothing at all",
+          "skillsetName": "Name of an existing skillset",
+          "encryptionKey": {},
+          "fieldMappings": {},
+          "dataSourceName": "Name of an existing data source",
+          "targetIndexName": "Name of an existing index",
+          "outputFieldMappings": {}
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Documents.ResetDocuments:
+    description: |-
+      Reset Documents from your data source.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/preview-api/reset-documents
+    example:
+      inputs: [
+        {
+          "documentKeys": [
+            "key1",
+            "key2",
+            "key3"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Skillsets.ResetSkills:
+    description: |-
+      Resets skills.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/preview-api/reset-skills
+    example:
+      inputs: [
+        {
+          "skillNames": [
+            "<SKILL-1>",
+            "SKILL-n"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Documents.SearchDocuments:
+    description: |-
+      Search Documents.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/preview-api/search-documents
+    example:
+      inputs: [
+        {
+          "top": 10,
+          "skip": 0,
+          "count": true,
+          "facets": [
+            "facet_expression_1",
+            "facet_expression_2"
+          ],
+          "filter": "odata_filter_expression",
+          "search": "simple_query_expression",
+          "select": "field_name_1, field_name_2, ...",
+          "answers": "none",
+          "orderby": "orderby_expression",
+          "speller": "none",
+          "highlight": "highlight_field_1, highlight_field_2, ...",
+          "queryType": "simple",
+          "sessionId": "session_id",
+          "searchMode": "any",
+          "featuresMode": "disabled",
+          "searchFields": "field_name_1, field_name_2, ...",
+          "queryLanguage": "none",
+          "scoringProfile": "scoring_profile_name",
+          "highlightPreTag": "pre_tag",
+          "minimumCoverage": 100,
+          "highlightPostTag": "post_tag",
+          "scoringParameters": [
+            "scoring_parameter_1",
+            "scoring_parameter_2"
+          ],
+          "scoringStatistics": "local"
+        }
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "text": [],
+              "people": [],
+              "content": "\nA\nT\n\nM\nO\n\nS\nP\n\nH\nE\n\nR\nE\n\nE\nA\n\nR\nT\n\nH\n\n34\n\nValley Fog\nCanada\n\nFog is essentially a cloud lying on the ground. Like all clouds, it forms when the air reaches its dew pointΓÇöthe temperature at  \n\nwhich an air mass is cool enough for its water vapor to condense into liquid droplets.\n\nThis false-color image shows valley fog, which is common in the Pacific Northwest of North America. On clear winter nights, the \n\nground and overlying air cool off rapidly, especially at high elevations. Cold air is denser than warm air, and it sinks down into the \n\nvalleys. The moist air in the valleys gets chilled to its dew point, and fog forms. If undisturbed by winds, such fog may persist for \n\ndays. The Terra satellite captured this image of foggy valleys northeast of Vancouver in February 2010.\n\n\n",
+              "locations": [
+                "Pacific Northwest",
+                "North America",
+                "Vancouver"
+              ],
+              "layoutText": [],
+              "@search.score": 0.5479723,
+              "merged_content": "\nA\nT\n\nM\nO\n\nS\nP\n\nH\nE\n\nR\nE\n\nE\nA\n\nR\nT\n\nH\n\n34\n\nValley Fog\nCanada\n\nFog is essentially a cloud lying on the ground. Like all clouds, it forms when the air reaches its dew pointΓÇöthe temperature at  \n\nwhich an air mass is cool enough for its water vapor to condense into liquid droplets.\n\nThis false-color image shows valley fog, which is common in the Pacific Northwest of North America. On clear winter nights, the \n\nground and overlying air cool off rapidly, especially at high elevations. Cold air is denser than warm air, and it sinks down into the \n\nvalleys. The moist air in the valleys gets chilled to its dew point, and fog forms. If undisturbed by winds, such fog may persist for \n\ndays. The Terra satellite captured this image of foggy valleys northeast of Vancouver in February 2010.\n\n\n",
+              "@search.captions": [
+                {
+                  "text": "Like all clouds, it forms when the air reaches its dew pointΓÇöthe temperature at    which an air mass is cool enough for its water vapor to condense into liquid droplets. This false-color image shows valley fog, which is common in the Pacific Northwest of North America.",
+                  "highlights": "Like all<em> clouds</em>, it<em> forms</em> when the air reaches its dew pointΓÇöthe temperature at    which an air mass is cool enough for its water vapor to condense into liquid droplets. This false-color image shows valley<em> fog</em>, which is common in the Pacific Northwest of North America."
+                }
+              ],
+              "@search.rerankerScore": 1.0321671911515296,
+              "metadata_storage_path": "aHR0cHM6Ly9oZWlkaXN0YmxvYnN0b3JhZ2UuYmxvYi5jb3JlLndpbmRvd3MubmV0L25hc2EtZWJvb2stMS01MC9wYWdlLTQxLnBkZg2"
+            }
+          ],
+          "@search.answers": [
+            {
+              "key": "aHR0cHM6Ly9oZWlkaXN0YmxvYnN0b3JhZ2UuYmxvYi5jb3JlLndpbmRvd3MubmV0L25hc2EtZWJvb2stMS01MC9wYWdlLTQ1LnBkZg2",
+              "text": "Sunlight heats the land all day, warming that moist air and causing it to rise high into the   atmosphere until it cools and condenses into water droplets. Clouds generally form where air is ascending (over land in this case),   but not where it is descending (over the river).",
+              "score": 0.94639826,
+              "highlights": "Sunlight heats the land all day, warming that moist air and causing it to rise high into the   atmosphere until it cools and condenses into water droplets. Clouds generally form<em> where air is ascending</em> (over land in this case),   but not where it is<em> descending</em> (over the river)."
+            }
+          ]
+        }
+      ]
+  Indexes.UpdateIndex:
+    description: |-
+      Updates an index.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/preview-api/update-index
+    example:
+      inputs: [
+        {
+          "name": "Name of the index",
+          "fields": [
+            {
+              "key": true,
+              "name": "name_of_field",
+              "type": "Edm.String | Edm.Int32 | Edm.Int64 | Edm.Double | Edm.Boolean | Edm.DateTimeOffset | Edm.GeographyPoint | Edm.ComplexType | Collection(Edm.String) | Collection(Edm.Int32) | Collection(Edm.Int64) | Collection(Edm.Double) | Collection(Edm.Boolean) | Collection(Edm.DateTimeOffset) | Collection(Edm.GeographyPoint) | Collection(Edm.ComplexType)",
+              "fields": [],
+              "analyzer": "name_of_analyzer_for_search_and_indexing",
+              "sortable": true,
+              "facetable": true,
+              "filterable": true,
+              "normalizer": "name_of_normalizer",
+              "searchable": true,
+              "retrievable": true,
+              "synonymMaps": [
+                "name_of_synonym_map"
+              ],
+              "indexAnalyzer": "name_of_indexing_analyzer",
+              "searchAnalyzer": "name_of_search_analyzer"
+            }
+          ],
+          "analyzers": [],
+          "similarity": {},
+          "suggesters": [],
+          "tokenizers": [],
+          "charFilters": [],
+          "corsOptions": {},
+          "normalizers": [],
+          "tokenFilters": [],
+          "encryptionKey": {},
+          "scoringProfiles": [],
+          "defaultScoringProfile": "Name of a custom scoring profile to use as the default"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Indexers.UpdateIndexer:
+    description: |-
+      Updates an indexer.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/preview-api/update-indexer
+    example:
+      inputs: [
+        {
+          "name": "Name of the indexer",
+          "cache": {},
+          "disabled": false,
+          "schedule": {},
+          "parameters": {},
+          "description": "Anything you want, or nothing at all",
+          "skillsetName": "Name of an existing skillset",
+          "encryptionKey": {},
+          "fieldMappings": {},
+          "dataSourceName": "Name of an existing data source",
+          "targetIndexName": "Name of an existing index",
+          "outputFieldMappings": {}
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Indexers.ResetIndexer:
+    description: |-
+      Resets an indexer.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/reset-indexer
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Indexers.RunIndexer:
+    description: |-
+      Runs an indexer.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/run-indexer
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  Documents.Suggestions:
+    description: |-
+      A Suggestions request is a search-as-you-type query that looks for matching values in suggester-aware fields and returns documents that contain a match.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/suggestions
+    example:
+      inputs: [
+        {
+          "top": 5,
+          "fuzzy": true,
+          "filter": "odata_filter_expression",
+          "search": "partial_search_input",
+          "select": "field_name_1, field_name_2, ...",
+          "orderby": "orderby_expression",
+          "searchFields": "field_name_1, field_name_2, ...",
+          "suggesterName": "suggester_name",
+          "highlightPreTag": "pre_tag",
+          "minimumCoverage": 80,
+          "highlightPostTag": "post_tag"
+        }
+      ]
+      outputs: [
+        {
+          "value": [
+            {
+              "<key field>": "...",
+              "@search.text": "..."
+            }
+          ],
+          "@search.coverage": "#(if minimumCoverage was provided in the query)"
+        }
+      ]
+  Indexes.AnalyzeText:
+    description: |-
+      Analize text.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/test-analyzer
+    example:
+      inputs: [
+        {
+          "text": "Text to analyze",
+          "analyzer": "analyzer_name"
+        }
+      ]
+      outputs: [
+        {
+          "tokens": [
+            {
+              "token": "the",
+              "position": 0,
+              "endOffset": 3,
+              "startOffset": 0
+            },
+            {
+              "token": "quick",
+              "position": 1,
+              "endOffset": 9,
+              "startOffset": 4
+            },
+            {
+              "token": "brown",
+              "position": 2,
+              "endOffset": 15,
+              "startOffset": 10
+            },
+            {
+              "token": "fox",
+              "position": 3,
+              "endOffset": 19,
+              "startOffset": 16
+            }
+          ]
+        }
+      ]
+  Indexers.UpdateDataSource:
+    description: |-
+      Updates a data source.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/update-data-source
+    example:
+      inputs: [
+        {
+          "name": "Name of the data source",
+          "type": "Must be a supported data source",
+          "container": {
+            "name": "Name of the table, collection, or blob container you wish to index"
+          },
+          "credentials": {
+            "connectionString": "Connection string for your data source"
+          },
+          "description": "Anything you want, or nothing at all",
+          "encryptionKey": {},
+          "dataChangeDetectionPolicy": {},
+          "dataDeletionDetectionPolicy": {}
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Skillsets.UpdateSkillset:
+    description: |-
+      Updates a skillset.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/update-skillset
+    example:
+      inputs: [
+        {
+          "name": "financedocenricher",
+          "skills": [
+            {
+              "inputs": [
+                {
+                  "name": "text",
+                  "source": "/document/content"
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "organizations",
+                  "targetName": "companies"
+                }
+              ],
+              "categories": [
+                "Organization"
+              ],
+              "@odata.type": "#Microsoft.Skills.Text.EntityRecognitionSkill",
+              "defaultLanguageCode": "en"
+            },
+            {
+              "inputs": [
+                {
+                  "name": "text",
+                  "source": "/document/content"
+                }
+              ],
+              "outputs": [
+                {
+                  "name": "score",
+                  "targetName": "positivityscore"
+                }
+              ],
+              "@odata.type": "#Microsoft.Skills.Text.SentimentSkill"
+            }
+          ],
+          "description": "An updated version of a skillset used to extract sentiment from financial records, extract company names, and then find additional information about each company mentioned. This version changes the target names.",
+          "cognitiveServices": {
+            "key": "<your key goes here>",
+            "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
+            "description": "mycogsvcs resource in West US 2"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Synonyms.UpdateSynonymMap:
+    description: |-
+      Updates a synonym map.
+    versions:
+      from: 2020.6.30-preview
+    link: https://docs.microsoft.com/en-us/rest/api/searchservice/update-synonym-map
+    example:
+      inputs: [
+        {
+          "name": "synonymmap1",
+          "format": "solr",
+          "synonyms": "United States, United States of America, USA\n        Washington, Wash. => WA",
+          "encryptionKey": {
+            "keyVaultUri": "URI of Azure Key Vault, also referred to as DNS name, that provides the key. An example URI might be https://my-keyvault-name.vault.azure.net",
+            "keyVaultKeyName": "Name of the Azure Key Vault key used for encryption",
+            "accessCredentials": {
+              "applicationId": "Azure AD Application ID that was granted access permissions to your specified Azure Key Vault",
+              "applicationSecret": "Authentication key of the specified Azure AD application)"
+            },
+            "keyVaultKeyVersion": "Version of the Azure Key Vault key"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]

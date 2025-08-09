@@ -1,0 +1,945 @@
+Product:
+  name: Amazon Location Service
+  versions: [2020.11.19]
+  package: amazon.aws.geo
+  description: |-
+    Amazon Location Service
+  link: https://docs.aws.amazon.com/location-trackers/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  BatchDeleteGeofence:
+    description: |-
+      Deletes a batch of geofences from a geofence collection.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_BatchDeleteGeofence.html
+    example:
+      inputs: [
+        {
+          "GeofenceIds": [
+            "string"
+          ],
+          "CollectionName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Errors": [
+            {
+              "Error": {
+                "Code": "string",
+                "Message": "string"
+              },
+              "GeofenceId": "string"
+            }
+          ]
+        }
+      ]
+  BatchEvaluateGeofences:
+    description: |-
+      Evaluates device positions against the geofence geometries from a given geofence collection. The evaluation determines if the device has entered or exited a geofenced area, which publishes ENTER or EXIT geofence events to Amazon EventBridge.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_BatchEvaluateGeofences.html
+    example:
+      inputs: [
+        {
+          "CollectionName": "string",
+          "DevicePositionUpdates": [
+            {
+              "DeviceId": "string",
+              "Position": [
+                0.1
+              ],
+              "SampleTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Errors": [
+            {
+              "Error": {
+                "Code": "string",
+                "Message": "string"
+              },
+              "DeviceId": "string",
+              "SampleTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  BatchPutGeofence:
+    description: |-
+      A batch request for storing geofence geometries into a given geofence collection, or updates the geometry of an existing geofence if a geofence ID is included in the request.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_BatchPutGeofence.html
+    example:
+      inputs: [
+        {
+          "Entries": [
+            {
+              "Geometry": {
+                "Polygon": [
+                  {
+                    "0": [
+                      0.1
+                    ]
+                  }
+                ]
+              },
+              "GeofenceId": "string"
+            }
+          ],
+          "CollectionName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Errors": [
+            {
+              "Error": {
+                "Code": "string",
+                "Message": "string"
+              },
+              "GeofenceId": "string"
+            }
+          ],
+          "Successes": [
+            {
+              "CreateTime": 1481289211.615,
+              "GeofenceId": "string",
+              "UpdateTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  CreateGeofenceCollection:
+    description: |-
+      Creates a geofence collection, which manages and stores geofences.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_CreateGeofenceCollection.html
+    example:
+      inputs: [
+        {
+          "Description": "string",
+          "PricingPlan": "string",
+          "CollectionName": "string",
+          "PricingPlanDataSource": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CreateTime": 1481289211.615,
+          "CollectionArn": "string",
+          "CollectionName": "string"
+        }
+      ]
+  DeleteGeofenceCollection:
+    description: |-
+      Deletes a geofence collection from your AWS account.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_DeleteGeofenceCollection.html
+    example:
+      inputs: [
+        {
+          "CollectionName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeGeofenceCollection:
+    description: |-
+      Retrieves the geofence collection details.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_DescribeGeofenceCollection.html
+    example:
+      inputs: [
+        {
+          "CollectionName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CreateTime": 1481289211.615,
+          "UpdateTime": 1481289211.615,
+          "Description": "string",
+          "PricingPlan": "string",
+          "CollectionArn": "string",
+          "CollectionName": "string",
+          "PricingPlanDataSource": "string"
+        }
+      ]
+  GetGeofence:
+    description: |-
+      Retrieves the geofence details from a geofence collection.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GetGeofence.html
+    example:
+      inputs: [
+        {
+          "GeofenceId": "string",
+          "CollectionName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "Geometry": {
+            "Polygon": [
+              {
+                "0": [
+                  0.1
+                ]
+              }
+            ]
+          },
+          "CreateTime": 1481289211.615,
+          "GeofenceId": "string",
+          "UpdateTime": 1481289211.615
+        }
+      ]
+  ListGeofenceCollections:
+    description: |-
+      Lists geofence collections in your AWS account.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_ListGeofenceCollections.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Entries": [
+            {
+              "CreateTime": 1481289211.615,
+              "UpdateTime": 1481289211.615,
+              "Description": "string",
+              "PricingPlan": "string",
+              "CollectionName": "string",
+              "PricingPlanDataSource": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListGeofences:
+    description: |-
+      Lists geofences stored in a given geofence collection.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_ListGeofences.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "CollectionName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Entries": [
+            {
+              "Status": "string",
+              "Geometry": {
+                "Polygon": [
+                  {
+                    "0": [
+                      0.1
+                    ]
+                  }
+                ]
+              },
+              "CreateTime": 1481289211.615,
+              "GeofenceId": "string",
+              "UpdateTime": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  PutGeofence:
+    description: |-
+      Stores a geofence geometry in a given geofence collection, or updates the geometry of an existing geofence if a geofence ID is included in the request.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_PutGeofence.html
+    example:
+      inputs: [
+        {
+          "Geometry": {
+            "Polygon": [
+              {
+                "0": [
+                  0.1
+                ]
+              }
+            ]
+          },
+          "GeofenceId": "string",
+          "CollectionName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CreateTime": 1481289211.615,
+          "GeofenceId": "string",
+          "UpdateTime": 1481289211.615
+        }
+      ]
+  CreateMap:
+    description: |-
+      Creates a map resource in your AWS account, which provides map tiles of different styles sourced from global location data providers.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-maps/latest/APIReference/API_CreateMap.html
+    example:
+      inputs: [
+        {
+          "MapName": "string",
+          "Description": "string",
+          "PricingPlan": "string",
+          "Configuration": {
+            "Style": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "MapArn": "string",
+          "MapName": "string",
+          "CreateTime": 1481289211.615
+        }
+      ]
+  DeleteMap:
+    description: |-
+      Deletes a map resource from your AWS account.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-maps/latest/APIReference/API_DeleteMap.html
+    example:
+      inputs: [
+        {
+          "MapName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeMap:
+    description: |-
+      Retrieves the map resource details.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-maps/latest/APIReference/API_DescribeMap.html
+    example:
+      inputs: [
+        {
+          "MapName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "MapArn": "string",
+          "MapName": "string",
+          "CreateTime": 1481289211.615,
+          "DataSource": "string",
+          "UpdateTime": 1481289211.615,
+          "Description": "string",
+          "PricingPlan": "string",
+          "Configuration": {
+            "Style": "string"
+          }
+        }
+      ]
+  GetMapGlyphs:
+    description: |-
+      Retrieves glyphs used to display labels on a map.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-maps/latest/APIReference/API_GetMapGlyphs.html
+    example:
+      inputs: [
+        {
+          "MapName": "string",
+          "FontStack": "string",
+          "FontUnicodeRange": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Blob": "blob",
+          "ContentType": "string"
+        }
+      ]
+  GetMapSprites:
+    description: |-
+      Retrieves the sprite sheet corresponding to a map resource. The sprite sheet is a PNG image paired with a JSON document describing the offsets of individual icons that will be displayed on a rendered map.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-maps/latest/APIReference/API_GetMapSprites.html
+    example:
+      inputs: [
+        {
+          "MapName": "string",
+          "FileName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Blob": "blob",
+          "ContentType": "string"
+        }
+      ]
+  GetMapStyleDescriptor:
+    description: |-
+      Retrieves the map style descriptor from a map resource.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-maps/latest/APIReference/API_GetMapStyleDescriptor.html
+    example:
+      inputs: [
+        {
+          "MapName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Blob": "blob",
+          "ContentType": "string"
+        }
+      ]
+  GetMapTile:
+    description: |-
+      Retrieves a vector data tile from the map resource. Map tiles are used by clients to render a map. They are addressed using a grid arrangement with an X coordinate, Y coordinate, and Z (zoom) level.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-maps/latest/APIReference/API_GetMapTile.html
+    example:
+      inputs: [
+        {
+          "X": "string",
+          "Y": "string",
+          "Z": "string",
+          "MapName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Blob": "blob",
+          "ContentType": "string"
+        }
+      ]
+  ListMaps:
+    description: |-
+      Lists map resources in your AWS account.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-maps/latest/APIReference/API_ListMaps.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Entries": [
+            {
+              "MapName": "string",
+              "CreateTime": 1481289211.615,
+              "DataSource": "string",
+              "UpdateTime": 1481289211.615,
+              "Description": "string",
+              "PricingPlan": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  CreatePlaceIndex:
+    description: |-
+      Creates a Place index resource in your AWS account, which supports Places functions with geospatial data sourced from your chosen data provider.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-places/latest/APIReference/API_CreatePlaceIndex.html
+    example:
+      inputs: [
+        {
+          "IndexName": "string",
+          "DataSource": "string",
+          "Description": "string",
+          "PricingPlan": "string",
+          "DataSourceConfiguration": {
+            "IntendedUse": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "IndexArn": "string",
+          "IndexName": "string",
+          "CreateTime": 1481289211.615
+        }
+      ]
+  DeletePlaceIndex:
+    description: |-
+      Deletes a Place index resource from your AWS account.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-places/latest/APIReference/API_DeletePlaceIndex.html
+    example:
+      inputs: [
+        {
+          "IndexName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribePlaceIndex:
+    description: |-
+      Retrieves the Place index resource details.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-places/latest/APIReference/API_DescribePlaceIndex.html
+    example:
+      inputs: [
+        {
+          "IndexName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "IndexArn": "string",
+          "IndexName": "string",
+          "CreateTime": 1481289211.615,
+          "DataSource": "string",
+          "UpdateTime": 1481289211.615,
+          "Description": "string",
+          "PricingPlan": "string",
+          "DataSourceConfiguration": {
+            "IntendedUse": "string"
+          }
+        }
+      ]
+  ListPlaceIndexes:
+    description: |-
+      Lists Place index resources in your AWS account.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-places/latest/APIReference/API_ListPlaceIndexes.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Entries": [
+            {
+              "IndexName": "string",
+              "CreateTime": 1481289211.615,
+              "DataSource": "string",
+              "UpdateTime": 1481289211.615,
+              "Description": "string",
+              "PricingPlan": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  SearchPlaceIndexForPosition:
+    description: |-
+      Reverse geocodes a given coordinate and returns a legible address. Allows you to search for Places or points of interest near a given position.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-places/latest/APIReference/API_SearchPlaceIndexForPosition.html
+    example:
+      inputs: [
+        {
+          "Position": [
+            0.1
+          ],
+          "IndexName": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Results": [
+            {
+              "Place": {
+                "Label": "string",
+                "Region": "string",
+                "Street": "string",
+                "Country": "string",
+                "Geometry": {
+                  "Point": [
+                    0.1
+                  ]
+                },
+                "SubRegion": "string",
+                "PostalCode": "string",
+                "Municipality": "string",
+                "Neighborhood": "string",
+                "AddressNumber": "string"
+              }
+            }
+          ],
+          "Summary": {
+            "Position": [
+              0.1
+            ],
+            "DataSource": "string",
+            "MaxResults": 1
+          }
+        }
+      ]
+  SearchPlaceIndexForText:
+    description: |-
+      Geocodes free-form text, such as an address, name, city, or region to allow you to search for Places or points of interest.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-places/latest/APIReference/API_SearchPlaceIndexForText.html
+    example:
+      inputs: [
+        {
+          "Text": "string",
+          "IndexName": "string",
+          "FilterBBox": [
+            0.1
+          ],
+          "MaxResults": 1,
+          "BiasPosition": [
+            0.1
+          ],
+          "FilterCountries": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Results": [
+            {
+              "Place": {
+                "Label": "string",
+                "Region": "string",
+                "Street": "string",
+                "Country": "string",
+                "Geometry": {
+                  "Point": [
+                    0.1
+                  ]
+                },
+                "SubRegion": "string",
+                "PostalCode": "string",
+                "Municipality": "string",
+                "Neighborhood": "string",
+                "AddressNumber": "string"
+              }
+            }
+          ],
+          "Summary": {
+            "Text": "string",
+            "DataSource": "string",
+            "FilterBBox": [
+              0.1
+            ],
+            "MaxResults": 1,
+            "ResultBBox": [
+              0.1
+            ],
+            "BiasPosition": [
+              0.1
+            ],
+            "FilterCountries": [
+              "string"
+            ]
+          }
+        }
+      ]
+  AssociateTrackerConsumer:
+    description: |-
+      Creates an association between a geofence collection and a tracker resource. This allows the tracker resource to communicate location data to the linked geofence collection.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-trackers/latest/APIReference/API_AssociateTrackerConsumer.html
+    example:
+      inputs: [
+        {
+          "ConsumerArn": "string",
+          "TrackerName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  BatchGetDevicePosition:
+    description: |-
+      A batch request to retrieve all device positions.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-trackers/latest/APIReference/API_BatchGetDevicePosition.html
+    example:
+      inputs: [
+        {
+          "DeviceIds": [
+            "string"
+          ],
+          "TrackerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Errors": [
+            {
+              "Error": {
+                "Code": "string",
+                "Message": "string"
+              },
+              "DeviceId": "string"
+            }
+          ],
+          "DevicePositions": [
+            {
+              "DeviceId": "string",
+              "Position": [
+                0.1
+              ],
+              "SampleTime": 1481289211.615,
+              "ReceivedTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  BatchUpdateDevicePosition:
+    description: |-
+      Uploads position update data for one or more devices to a tracker resource. Amazon Location uses the data when reporting the last known device position and position history.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-trackers/latest/APIReference/API_BatchUpdateDevicePosition.html
+    example:
+      inputs: [
+        {
+          "Updates": [
+            {
+              "DeviceId": "string",
+              "Position": [
+                0.1
+              ],
+              "SampleTime": 1481289211.615
+            }
+          ],
+          "TrackerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Errors": [
+            {
+              "Error": {
+                "Code": "string",
+                "Message": "string"
+              },
+              "DeviceId": "string",
+              "SampleTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  CreateTracker:
+    description: |-
+      Creates a tracker resource in your AWS account, which lets you retrieve current and historical location of devices.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-trackers/latest/APIReference/API_CreateTracker.html
+    example:
+      inputs: [
+        {
+          "Description": "string",
+          "PricingPlan": "string",
+          "TrackerName": "string",
+          "PricingPlanDataSource": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CreateTime": 1481289211.615,
+          "TrackerArn": "string",
+          "TrackerName": "string"
+        }
+      ]
+  DeleteTracker:
+    description: |-
+      Deletes a tracker resource from your AWS account.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-trackers/latest/APIReference/API_DeleteTracker.html
+    example:
+      inputs: [
+        {
+          "TrackerName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeTracker:
+    description: |-
+      Retrieves the tracker resource details.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-trackers/latest/APIReference/API_DescribeTracker.html
+    example:
+      inputs: [
+        {
+          "TrackerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "CreateTime": 1481289211.615,
+          "TrackerArn": "string",
+          "UpdateTime": 1481289211.615,
+          "Description": "string",
+          "PricingPlan": "string",
+          "TrackerName": "string",
+          "PricingPlanDataSource": "string"
+        }
+      ]
+  DisassociateTrackerConsumer:
+    description: |-
+      Removes the association between a tracker resource and a geofence collection.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-trackers/latest/APIReference/API_DisassociateTrackerConsumer.html
+    example:
+      inputs: [
+        {
+          "ConsumerArn": "string",
+          "TrackerName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetDevicePositionHistory:
+    description: |-
+      Retrieves the device position history from a tracker resource within a specified range of time.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-trackers/latest/APIReference/API_GetDevicePositionHistory.html
+    example:
+      inputs: [
+        {
+          "DeviceId": "string",
+          "NextToken": "string",
+          "TrackerName": "string",
+          "EndTimeExclusive": 1481289211.615,
+          "StartTimeInclusive": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DevicePositions": [
+            {
+              "DeviceId": "string",
+              "Position": [
+                0.1
+              ],
+              "SampleTime": 1481289211.615,
+              "ReceivedTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  GetDevicePosition:
+    description: |-
+      Retrieves a device's most recent position according to its sample time.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-trackers/latest/APIReference/API_GetDevicePosition.html
+    example:
+      inputs: [
+        {
+          "DeviceId": "string",
+          "TrackerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DeviceId": "string",
+          "Position": [
+            0.1
+          ],
+          "SampleTime": 1481289211.615,
+          "ReceivedTime": 1481289211.615
+        }
+      ]
+  ListTrackerConsumers:
+    description: |-
+      Lists geofence collections currently associated to the given tracker resource.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-trackers/latest/APIReference/API_ListTrackerConsumers.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "TrackerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ConsumerArns": [
+            "string"
+          ]
+        }
+      ]
+  ListTrackers:
+    description: |-
+      Lists tracker resources in your AWS account.
+    versions:
+      from: 2020.11.19
+    link: https://docs.aws.amazon.com/location-trackers/latest/APIReference/API_ListTrackers.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Entries": [
+            {
+              "CreateTime": 1481289211.615,
+              "UpdateTime": 1481289211.615,
+              "Description": "string",
+              "PricingPlan": "string",
+              "TrackerName": "string",
+              "PricingPlanDataSource": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]

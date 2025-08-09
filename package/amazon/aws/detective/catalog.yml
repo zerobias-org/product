@@ -1,0 +1,365 @@
+Product:
+  name: Amazon Detective
+  versions: [2018.10.26]
+  package: amazon.aws.detective
+  description: |-
+    Amazon Detective
+  link: https://docs.aws.amazon.com/detective/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AcceptInvitation:
+    description: |-
+      Accepts an invitation for the member account to contribute data to a behavior graph. This operation can only be called by an invited member account.
+    versions:
+      from: 2018.10.26
+    link: https://docs.aws.amazon.com/detective/latest/APIReference/API_AcceptInvitation.html
+    example:
+      inputs: [
+        {
+          "GraphArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateGraph:
+    description: |-
+      Creates a new behavior graph for the calling account, and sets that account as the administrator account. This operation is called by the account that is enabling Detective.
+    versions:
+      from: 2018.10.26
+    link: https://docs.aws.amazon.com/detective/latest/APIReference/API_CreateGraph.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  CreateMembers:
+    description: |-
+      Sends a request to invite the specified AWS accounts to be member accounts in the behavior graph. This operation can only be called by the administrator account for a behavior graph.
+    versions:
+      from: 2018.10.26
+    link: https://docs.aws.amazon.com/detective/latest/APIReference/API_CreateMembers.html
+    example:
+      inputs: [
+        {
+          "Message": "string",
+          "Accounts": [
+            {
+              "AccountId": "string",
+              "EmailAddress": "string"
+            }
+          ],
+          "GraphArn": "string",
+          "DisableEmailNotification": false
+        }
+      ]
+      outputs: [
+        {
+          "Members": [
+            {
+              "Status": "string",
+              "GraphArn": "string",
+              "MasterId": "string",
+              "AccountId": "string",
+              "InvitedTime": 1481289211.615,
+              "UpdatedTime": 1481289211.615,
+              "EmailAddress": "string",
+              "DisabledReason": "string",
+              "AdministratorId": "string",
+              "VolumeUsageInBytes": 1,
+              "VolumeUsageUpdatedTime": 1481289211.615,
+              "PercentOfGraphUtilization": 0.1,
+              "PercentOfGraphUtilizationUpdatedTime": 1481289211.615
+            }
+          ],
+          "UnprocessedAccounts": [
+            {
+              "Reason": "string",
+              "AccountId": "string"
+            }
+          ]
+        }
+      ]
+  DeleteGraph:
+    description: |-
+      Disables the specified behavior graph and queues it to be deleted. This operation removes the graph from each member account's list of behavior graphs.
+    versions:
+      from: 2018.10.26
+    link: https://docs.aws.amazon.com/detective/latest/APIReference/API_DeleteGraph.html
+    example:
+      inputs: [
+        {
+          "GraphArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteMembers:
+    description: |-
+      Deletes one or more member accounts from the administrator account's behavior graph. This operation can only be called by a Detective administrator account. That account cannot use DeleteMembers to delete their own account from the behavior graph. To disable a behavior graph, the administrator account uses the DeleteGraph API method.
+    versions:
+      from: 2018.10.26
+    link: https://docs.aws.amazon.com/detective/latest/APIReference/API_DeleteMembers.html
+    example:
+      inputs: [
+        {
+          "GraphArn": "string",
+          "AccountIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "AccountIds": [
+            "string"
+          ],
+          "UnprocessedAccounts": [
+            {
+              "Reason": "string",
+              "AccountId": "string"
+            }
+          ]
+        }
+      ]
+  DisassociateMembership:
+    description: |-
+      Removes the member account from the specified behavior graph. This operation can only be called by a member account that has the ENABLED status.
+    versions:
+      from: 2018.10.26
+    link: https://docs.aws.amazon.com/detective/latest/APIReference/API_DisassociateMembership.html
+    example:
+      inputs: [
+        {
+          "GraphArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetMembers:
+    description: |-
+      Returns the membership details for specified member accounts for a behavior graph.
+    versions:
+      from: 2018.10.26
+    link: https://docs.aws.amazon.com/detective/latest/APIReference/API_GetMembers.html
+    example:
+      inputs: [
+        {
+          "GraphArn": "string",
+          "AccountIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "MemberDetails": [
+            {
+              "Status": "string",
+              "GraphArn": "string",
+              "MasterId": "string",
+              "AccountId": "string",
+              "InvitedTime": 1481289211.615,
+              "UpdatedTime": 1481289211.615,
+              "EmailAddress": "string",
+              "DisabledReason": "string",
+              "AdministratorId": "string",
+              "VolumeUsageInBytes": 1,
+              "VolumeUsageUpdatedTime": 1481289211.615,
+              "PercentOfGraphUtilization": 0.1,
+              "PercentOfGraphUtilizationUpdatedTime": 1481289211.615
+            }
+          ],
+          "UnprocessedAccounts": [
+            {
+              "Reason": "string",
+              "AccountId": "string"
+            }
+          ]
+        }
+      ]
+  ListGraphs:
+    description: |-
+      Returns the list of behavior graphs that the calling account is an administrator account of. This operation can only be called by an administrator account.
+    versions:
+      from: 2018.10.26
+    link: https://docs.aws.amazon.com/detective/latest/APIReference/API_ListGraphs.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "GraphList": [
+            {
+              "Arn": "string",
+              "CreatedTime": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListInvitations:
+    description: |-
+      Retrieves the list of open and accepted behavior graph invitations for the member account. This operation can only be called by a member account.
+    versions:
+      from: 2018.10.26
+    link: https://docs.aws.amazon.com/detective/latest/APIReference/API_ListInvitations.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Invitations": [
+            {
+              "Status": "string",
+              "GraphArn": "string",
+              "MasterId": "string",
+              "AccountId": "string",
+              "InvitedTime": 1481289211.615,
+              "UpdatedTime": 1481289211.615,
+              "EmailAddress": "string",
+              "DisabledReason": "string",
+              "AdministratorId": "string",
+              "VolumeUsageInBytes": 1,
+              "VolumeUsageUpdatedTime": 1481289211.615,
+              "PercentOfGraphUtilization": 0.1,
+              "PercentOfGraphUtilizationUpdatedTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListMembers:
+    description: |-
+      Retrieves the list of member accounts for a behavior graph. Does not return member accounts that were removed from the behavior graph.
+    versions:
+      from: 2018.10.26
+    link: https://docs.aws.amazon.com/detective/latest/APIReference/API_ListMembers.html
+    example:
+      inputs: [
+        {
+          "GraphArn": "string",
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "MemberDetails": [
+            {
+              "Status": "string",
+              "GraphArn": "string",
+              "MasterId": "string",
+              "AccountId": "string",
+              "InvitedTime": 1481289211.615,
+              "UpdatedTime": 1481289211.615,
+              "EmailAddress": "string",
+              "DisabledReason": "string",
+              "AdministratorId": "string",
+              "VolumeUsageInBytes": 1,
+              "VolumeUsageUpdatedTime": 1481289211.615,
+              "PercentOfGraphUtilization": 0.1,
+              "PercentOfGraphUtilizationUpdatedTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns the tag values that are assigned to a behavior graph.
+    versions:
+      from: 2018.10.26
+    link: https://docs.aws.amazon.com/detective/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": {
+            "string": "string"
+          }
+        }
+      ]
+  RejectInvitation:
+    description: |-
+      Rejects an invitation to contribute the account data to a behavior graph. This operation must be called by a member account that has the INVITED status.
+    versions:
+      from: 2018.10.26
+    link: https://docs.aws.amazon.com/detective/latest/APIReference/API_RejectInvitation.html
+    example:
+      inputs: [
+        {
+          "GraphArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartMonitoringMember:
+    description: |-
+      Sends a request to enable data ingest for a member account that has a status of ACCEPTED_BUT_DISABLED.
+    versions:
+      from: 2018.10.26
+    link: https://docs.aws.amazon.com/detective/latest/APIReference/API_StartMonitoringMember.html
+    example:
+      inputs: [
+        {
+          "GraphArn": "string",
+          "AccountId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Applies tag values to a behavior graph.
+    versions:
+      from: 2018.10.26
+    link: https://docs.aws.amazon.com/detective/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes tags from a behavior graph.
+    versions:
+      from: 2018.10.26
+    link: https://docs.aws.amazon.com/detective/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

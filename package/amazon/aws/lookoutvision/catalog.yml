@@ -1,0 +1,501 @@
+Product:
+  name: Amazon Lookout for Vision
+  versions: [2020.11.20]
+  package: amazon.aws.lookoutvision
+  description: |-
+    Amazon Lookout for Vision
+  link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CreateDataset:
+    description: |-
+      Creates a new dataset in an Amazon Lookout for Vision project. CreateDataset can create a training or a test dataset from a valid dataset source (DatasetSource).
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_CreateDataset.html
+    example:
+      inputs: [
+        {
+          "ClientToken": "string",
+          "DatasetType": "string",
+          "ProjectName": "string",
+          "DatasetSource": {
+            "GroundTruthManifest": {
+              "S3Object": {
+                "Key": "string",
+                "Bucket": "string",
+                "VersionId": "string"
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "DatasetMetadata": {
+            "Status": "string",
+            "DatasetType": "string",
+            "StatusMessage": "string",
+            "CreationTimestamp": 1481289211.615
+          }
+        }
+      ]
+  CreateModel:
+    description: |-
+      Creates a new version of a model within an an Amazon Lookout for Vision project. CreateModel is an asynchronous operation in which Amazon Lookout for Vision trains, tests, and evaluates a new version of a model.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_CreateModel.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "KmsKeyId": "string",
+          "ClientToken": "string",
+          "Description": "string",
+          "ProjectName": "string",
+          "OutputConfig": {
+            "S3Location": {
+              "Bucket": "string",
+              "Prefix": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "ModelMetadata": {
+            "Status": "string",
+            "ModelArn": "string",
+            "Description": "string",
+            "Performance": {
+              "Recall": 0.1,
+              "F1Score": 0.1,
+              "Precision": 0.1
+            },
+            "ModelVersion": "string",
+            "StatusMessage": "string",
+            "CreationTimestamp": 1481289211.615
+          }
+        }
+      ]
+  CreateProject:
+    description: |-
+      Creates an empty Amazon Lookout for Vision project. After you create the project, add a dataset by calling CreateDataset.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_CreateProject.html
+    example:
+      inputs: [
+        {
+          "ClientToken": "string",
+          "ProjectName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ProjectMetadata": {
+            "ProjectArn": "string",
+            "ProjectName": "string",
+            "CreationTimestamp": 1481289211.615
+          }
+        }
+      ]
+  DeleteDataset:
+    description: |-
+      Deletes an existing Amazon Lookout for Vision dataset.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_DeleteDataset.html
+    example:
+      inputs: [
+        {
+          "ClientToken": "string",
+          "DatasetType": "string",
+          "ProjectName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteModel:
+    description: |-
+      Deletes an Amazon Lookout for Vision model. You can't delete a running model. To stop a running model, use the StopModel operation.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_DeleteModel.html
+    example:
+      inputs: [
+        {
+          "ClientToken": "string",
+          "ProjectName": "string",
+          "ModelVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ModelArn": "string"
+        }
+      ]
+  DeleteProject:
+    description: |-
+      Deletes an Amazon Lookout for Vision project.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_DeleteProject.html
+    example:
+      inputs: [
+        {
+          "ClientToken": "string",
+          "ProjectName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ProjectArn": "string"
+        }
+      ]
+  DescribeDataset:
+    description: |-
+      Describe an Amazon Lookout for Vision dataset.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_DescribeDataset.html
+    example:
+      inputs: [
+        {
+          "DatasetType": "string",
+          "ProjectName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DatasetDescription": {
+            "Status": "string",
+            "ImageStats": {
+              "Total": 1,
+              "Normal": 1,
+              "Anomaly": 1,
+              "Labeled": 1
+            },
+            "DatasetType": "string",
+            "ProjectName": "string",
+            "StatusMessage": "string",
+            "CreationTimestamp": 1481289211.615,
+            "LastUpdatedTimestamp": 1481289211.615
+          }
+        }
+      ]
+  DescribeModel:
+    description: |-
+      Describes a version of an Amazon Lookout for Vision model.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_DescribeModel.html
+    example:
+      inputs: [
+        {
+          "ProjectName": "string",
+          "ModelVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ModelDescription": {
+            "Status": "string",
+            "KmsKeyId": "string",
+            "ModelArn": "string",
+            "Description": "string",
+            "Performance": {
+              "Recall": 0.1,
+              "F1Score": 0.1,
+              "Precision": 0.1
+            },
+            "ModelVersion": "string",
+            "OutputConfig": {
+              "S3Location": {
+                "Bucket": "string",
+                "Prefix": "string"
+              }
+            },
+            "StatusMessage": "string",
+            "EvaluationResult": {
+              "Key": "string",
+              "Bucket": "string"
+            },
+            "CreationTimestamp": 1481289211.615,
+            "EvaluationManifest": {
+              "Key": "string",
+              "Bucket": "string"
+            },
+            "EvaluationEndTimestamp": 1481289211.615
+          }
+        }
+      ]
+  DescribeProject:
+    description: |-
+      Describes an Amazon Lookout for Vision project.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_DescribeProject.html
+    example:
+      inputs: [
+        {
+          "ProjectName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "ProjectDescription": {
+            "Datasets": [
+              {
+                "Status": "string",
+                "DatasetType": "string",
+                "StatusMessage": "string",
+                "CreationTimestamp": 1481289211.615
+              }
+            ],
+            "ProjectArn": "string",
+            "ProjectName": "string",
+            "CreationTimestamp": 1481289211.615
+          }
+        }
+      ]
+  DetectAnomalies:
+    description: |-
+      Detects anomalies in an image that you supply.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_DetectAnomalies.html
+    example:
+      inputs: [
+        {
+          "Body": "blob",
+          "ContentType": "string",
+          "ProjectName": "string",
+          "ModelVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "DetectAnomalyResult": {
+            "Source": {
+              "Type": "string"
+            },
+            "Confidence": 0.1,
+            "IsAnomalous": false
+          }
+        }
+      ]
+  ListDatasetEntries:
+    description: |-
+      Lists the JSON Lines within a dataset. An Amazon Lookout for Vision JSON Line contains the anomaly information for a single image, including the image location and the assigned label.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_ListDatasetEntries.html
+    example:
+      inputs: [
+        {
+          "Labeled": false,
+          "NextToken": "string",
+          "MaxResults": 1,
+          "DatasetType": "string",
+          "ProjectName": "string",
+          "AnomalyClass": "string",
+          "AfterCreationDate": 1481289211.615,
+          "SourceRefContains": "string",
+          "BeforeCreationDate": 1481289211.615
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DatasetEntries": [
+            "string"
+          ]
+        }
+      ]
+  ListModels:
+    description: |-
+      Lists the versions of a model in an Amazon Lookout for Vision project.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_ListModels.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ProjectName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Models": [
+            {
+              "Status": "string",
+              "ModelArn": "string",
+              "Description": "string",
+              "Performance": {
+                "Recall": 0.1,
+                "F1Score": 0.1,
+                "Precision": 0.1
+              },
+              "ModelVersion": "string",
+              "StatusMessage": "string",
+              "CreationTimestamp": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListProjects:
+    description: |-
+      Lists the Amazon Lookout for Vision projects in your AWS account.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_ListProjects.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Projects": [
+            {
+              "ProjectArn": "string",
+              "ProjectName": "string",
+              "CreationTimestamp": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Returns a list of tags attached to the specified Amazon Lookout for Vision model.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  StartModel:
+    description: |-
+      Starts the running of the version of an Amazon Lookout for Vision model. Starting a model takes a while to complete. To check the current state of the model, use DescribeModel.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_StartModel.html
+    example:
+      inputs: [
+        {
+          "ClientToken": "string",
+          "ProjectName": "string",
+          "ModelVersion": "string",
+          "MinInferenceUnits": 1
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string"
+        }
+      ]
+  StopModel:
+    description: |-
+      Stops the hosting of a running model. The operation might take a while to complete. To check the current status, call DescribeModel.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_StopModel.html
+    example:
+      inputs: [
+        {
+          "ClientToken": "string",
+          "ProjectName": "string",
+          "ModelVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds one or more key-value tags to an Amazon Lookout for Vision model. For more information, see Tagging a model in the Amazon Lookout for Vision Developer Guide.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes one or more tags from an Amazon Lookout for Vision model. For more information, see Tagging a model in the Amazon Lookout for Vision Developer Guide.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateDatasetEntries:
+    description: |-
+      Adds one or more JSON Line entries to a dataset. A JSON Line includes information about an image used for training or testing an Amazon Lookout for Vision model.
+    versions:
+      from: 2020.11.20
+    link: https://docs.aws.amazon.com/lookout-for-vision/latest/APIReference/API_UpdateDatasetEntries.html
+    example:
+      inputs: [
+        {
+          "Changes": "blob",
+          "ClientToken": "string",
+          "DatasetType": "string",
+          "ProjectName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string"
+        }
+      ]

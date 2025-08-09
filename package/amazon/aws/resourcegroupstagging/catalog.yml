@@ -1,0 +1,234 @@
+Product:
+  name: AWS Resource Groups Tagging
+  versions: [2017.1.26]
+  package: amazon.aws.resourcegroupstagging
+  description: |-
+    AWS Resource Groups Tagging
+  link: https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/overview.html
+  contentType: json
+Operations:
+  DescribeReportCreation:
+    description: |-
+      Describes the status of the StartReportCreation operation.
+    versions:
+      from: 2017.1.26
+    link: https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_DescribeReportCreation.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "S3Location": "string",
+          "ErrorMessage": "string"
+        }
+      ]
+  GetComplianceSummary:
+    description: |-
+      Returns a table that shows counts of resources that are noncompliant with their tag policies.
+    versions:
+      from: 2017.1.26
+    link: https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_GetComplianceSummary.html
+    example:
+      inputs: [
+        {
+          "GroupBy": [
+            "string"
+          ],
+          "MaxResults": 1,
+          "RegionFilters": [
+            "string"
+          ],
+          "TagKeyFilters": [
+            "string"
+          ],
+          "PaginationToken": "string",
+          "TargetIdFilters": [
+            "string"
+          ],
+          "ResourceTypeFilters": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "SummaryList": [
+            {
+              "Region": "string",
+              "TargetId": "string",
+              "LastUpdated": "string",
+              "ResourceType": "string",
+              "TargetIdType": "string",
+              "NonCompliantResources": 1
+            }
+          ],
+          "PaginationToken": "string"
+        }
+      ]
+  GetResources:
+    description: |-
+      Returns all the tagged or previously tagged resources that are located in the specified Region for the AWS account.
+    versions:
+      from: 2017.1.26
+    link: https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_GetResources.html
+    example:
+      inputs: [
+        {
+          "TagFilters": [
+            {
+              "Key": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "TagsPerPage": 1,
+          "PaginationToken": "string",
+          "ResourceARNList": [
+            "string"
+          ],
+          "ResourcesPerPage": 1,
+          "ResourceTypeFilters": [
+            "string"
+          ],
+          "IncludeComplianceDetails": false,
+          "ExcludeCompliantResources": false
+        }
+      ]
+      outputs: [
+        {
+          "PaginationToken": "string",
+          "ResourceTagMappingList": [
+            {
+              "Tags": [
+                {
+                  "Key": "string",
+                  "Value": "string"
+                }
+              ],
+              "ResourceARN": "string",
+              "ComplianceDetails": {
+                "ComplianceStatus": false,
+                "NoncompliantKeys": [
+                  "string"
+                ],
+                "KeysWithNoncompliantValues": [
+                  "string"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+  GetTagKeys:
+    description: |-
+      Returns all tag keys currently in use in the specified Region for the calling AWS account.
+    versions:
+      from: 2017.1.26
+    link: https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_GetTagKeys.html
+    example:
+      inputs: [
+        {
+          "PaginationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "PaginationToken": "string"
+        }
+      ]
+  GetTagValues:
+    description: |-
+      Returns all tag values for the specified key that are used in the specified AWS Region for the calling AWS account.
+    versions:
+      from: 2017.1.26
+    link: https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_GetTagValues.html
+    example:
+      inputs: [
+        {
+          "Key": "string",
+          "PaginationToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TagValues": [
+            "string"
+          ],
+          "PaginationToken": "string"
+        }
+      ]
+  StartReportCreation:
+    description: |-
+      Generates a report that lists all tagged resources in the accounts across your organization and tells whether each resource is compliant with the effective tag policy. Compliance data is refreshed daily. The report is generated asynchronously.
+    versions:
+      from: 2017.1.26
+    link: https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_StartReportCreation.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  TagResources:
+    description: |-
+      Applies one or more tags to the specified resources.
+    versions:
+      from: 2017.1.26
+    link: https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_TagResources.html
+    example:
+      inputs: [
+        {
+          "Tags": {
+            "string": "string"
+          },
+          "ResourceARNList": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "FailedResourcesMap": {
+            "string": {
+              "ErrorCode": "string",
+              "StatusCode": 1,
+              "ErrorMessage": "string"
+            }
+          }
+        }
+      ]
+  UntagResources:
+    description: |-
+      Removes the specified tags from the specified resources. When you specify a tag key, the action removes both that key and its associated value. The operation succeeds even if you attempt to remove tags from a resource that were already removed.
+    versions:
+      from: 2017.1.26
+    link: https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_UntagResources.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceARNList": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "FailedResourcesMap": {
+            "string": {
+              "ErrorCode": "string",
+              "StatusCode": 1,
+              "ErrorMessage": "string"
+            }
+          }
+        }
+      ]

@@ -1,0 +1,1450 @@
+Product:
+  name: AWS License Manager
+  versions: [2018.8.1]
+  package: amazon.aws.licensemanager
+  description: |-
+    AWS License Manager
+  link: https://docs.aws.amazon.com/license-manager/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AcceptGrant:
+    description: |-
+      Accepts the specified grant.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_AcceptGrant.html
+    example:
+      inputs: [
+        {
+          "GrantArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "Version": "string",
+          "GrantArn": "string"
+        }
+      ]
+  CheckInLicense:
+    description: |-
+      Checks in the specified license. Check in a license when it is no longer in use.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_CheckInLicense.html
+    example:
+      inputs: [
+        {
+          "Beneficiary": "string",
+          "LicenseConsumptionToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CheckoutBorrowLicense:
+    description: |-
+      Checks out the specified license for offline use.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_CheckoutBorrowLicense.html
+    example:
+      inputs: [
+        {
+          "NodeId": "string",
+          "LicenseArn": "string",
+          "ClientToken": "string",
+          "Entitlements": [
+            {
+              "Name": "string",
+              "Unit": "string",
+              "Value": "string"
+            }
+          ],
+          "CheckoutMetadata": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ],
+          "DigitalSignatureMethod": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NodeId": "string",
+          "IssuedAt": "string",
+          "Expiration": "string",
+          "LicenseArn": "string",
+          "SignedToken": "string",
+          "CheckoutMetadata": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ],
+          "EntitlementsAllowed": [
+            {
+              "Name": "string",
+              "Unit": "string",
+              "Value": "string"
+            }
+          ],
+          "LicenseConsumptionToken": "string"
+        }
+      ]
+  CheckoutLicense:
+    description: |-
+      Checks out the specified license.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_CheckoutLicense.html
+    example:
+      inputs: [
+        {
+          "NodeId": "string",
+          "ProductSKU": "string",
+          "Beneficiary": "string",
+          "ClientToken": "string",
+          "CheckoutType": "string",
+          "Entitlements": [
+            {
+              "Name": "string",
+              "Unit": "string",
+              "Value": "string"
+            }
+          ],
+          "KeyFingerprint": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NodeId": "string",
+          "IssuedAt": "string",
+          "Expiration": "string",
+          "SignedToken": "string",
+          "CheckoutType": "string",
+          "EntitlementsAllowed": [
+            {
+              "Name": "string",
+              "Unit": "string",
+              "Value": "string"
+            }
+          ],
+          "LicenseConsumptionToken": "string"
+        }
+      ]
+  CreateGrant:
+    description: |-
+      Creates a grant for the specified license. A grant shares the use of license entitlements with specific AWS accounts.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_CreateGrant.html
+    example:
+      inputs: [
+        {
+          "GrantName": "string",
+          "HomeRegion": "string",
+          "LicenseArn": "string",
+          "Principals": [
+            "string"
+          ],
+          "ClientToken": "string",
+          "AllowedOperations": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "Version": "string",
+          "GrantArn": "string"
+        }
+      ]
+  CreateGrantVersion:
+    description: |-
+      Creates a new version of the specified grant.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_CreateGrantVersion.html
+    example:
+      inputs: [
+        {
+          "Status": "string",
+          "GrantArn": "string",
+          "GrantName": "string",
+          "ClientToken": "string",
+          "SourceVersion": "string",
+          "AllowedOperations": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "Version": "string",
+          "GrantArn": "string"
+        }
+      ]
+  CreateLicenseConfiguration:
+    description: |-
+      Creates a license configuration.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_CreateLicenseConfiguration.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Description": "string",
+          "LicenseCount": 1,
+          "LicenseRules": [
+            "string"
+          ],
+          "LicenseCountingType": "string",
+          "LicenseCountHardLimit": false,
+          "ProductInformationList": [
+            {
+              "ResourceType": "string",
+              "ProductInformationFilterList": [
+                {
+                  "ProductInformationFilterName": "string",
+                  "ProductInformationFilterValue": [
+                    "string"
+                  ],
+                  "ProductInformationFilterComparator": "string"
+                }
+              ]
+            }
+          ],
+          "DisassociateWhenNotFound": false
+        }
+      ]
+      outputs: [
+        {
+          "LicenseConfigurationArn": "string"
+        }
+      ]
+  CreateLicense:
+    description: |-
+      Creates a license.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_CreateLicense.html
+    example:
+      inputs: [
+        {
+          "Issuer": {
+            "Name": "string",
+            "SignKey": "string"
+          },
+          "Validity": {
+            "End": "string",
+            "Begin": "string"
+          },
+          "HomeRegion": "string",
+          "ProductSKU": "string",
+          "Beneficiary": "string",
+          "ClientToken": "string",
+          "LicenseName": "string",
+          "ProductName": "string",
+          "Entitlements": [
+            {
+              "Name": "string",
+              "Unit": "string",
+              "Value": "string",
+              "Overage": false,
+              "MaxCount": 1,
+              "AllowCheckIn": false
+            }
+          ],
+          "LicenseMetadata": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ],
+          "ConsumptionConfiguration": {
+            "RenewType": "string",
+            "BorrowConfiguration": {
+              "AllowEarlyCheckIn": false,
+              "MaxTimeToLiveInMinutes": 1
+            },
+            "ProvisionalConfiguration": {
+              "MaxTimeToLiveInMinutes": 1
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "Version": "string",
+          "LicenseArn": "string"
+        }
+      ]
+  CreateLicenseVersion:
+    description: |-
+      Creates a new version of the specified license.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_CreateLicenseVersion.html
+    example:
+      inputs: [
+        {
+          "Issuer": {
+            "Name": "string",
+            "SignKey": "string"
+          },
+          "Status": "string",
+          "Validity": {
+            "End": "string",
+            "Begin": "string"
+          },
+          "HomeRegion": "string",
+          "LicenseArn": "string",
+          "ClientToken": "string",
+          "LicenseName": "string",
+          "ProductName": "string",
+          "Entitlements": [
+            {
+              "Name": "string",
+              "Unit": "string",
+              "Value": "string",
+              "Overage": false,
+              "MaxCount": 1,
+              "AllowCheckIn": false
+            }
+          ],
+          "SourceVersion": "string",
+          "LicenseMetadata": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ],
+          "ConsumptionConfiguration": {
+            "RenewType": "string",
+            "BorrowConfiguration": {
+              "AllowEarlyCheckIn": false,
+              "MaxTimeToLiveInMinutes": 1
+            },
+            "ProvisionalConfiguration": {
+              "MaxTimeToLiveInMinutes": 1
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "Version": "string",
+          "LicenseArn": "string"
+        }
+      ]
+  CreateToken:
+    description: |-
+      Creates a long-lived token.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_CreateToken.html
+    example:
+      inputs: [
+        {
+          "RoleArns": [
+            "string"
+          ],
+          "LicenseArn": "string",
+          "ClientToken": "string",
+          "TokenProperties": [
+            "string"
+          ],
+          "ExpirationInDays": 1
+        }
+      ]
+      outputs: [
+        {
+          "Token": "string",
+          "TokenId": "string",
+          "TokenType": "string"
+        }
+      ]
+  DeleteGrant:
+    description: |-
+      Deletes the specified grant.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_DeleteGrant.html
+    example:
+      inputs: [
+        {
+          "Version": "string",
+          "GrantArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "Version": "string",
+          "GrantArn": "string"
+        }
+      ]
+  DeleteLicenseConfiguration:
+    description: |-
+      Deletes the specified license configuration.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_DeleteLicenseConfiguration.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteLicense:
+    description: |-
+      Deletes the specified license.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_DeleteLicense.html
+    example:
+      inputs: [
+        {
+          "LicenseArn": "string",
+          "SourceVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "DeletionDate": "string"
+        }
+      ]
+  DeleteToken:
+    description: |-
+      Deletes the specified token. Must be called in the license home Region.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_DeleteToken.html
+    example:
+      inputs: [
+        {
+          "TokenId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ExtendLicenseConsumption:
+    description: |-
+      Extends the expiration date for license consumption.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_ExtendLicenseConsumption.html
+    example:
+      inputs: [
+        {
+          "DryRun": false,
+          "LicenseConsumptionToken": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Expiration": "string",
+          "LicenseConsumptionToken": "string"
+        }
+      ]
+  GetAccessToken:
+    description: |-
+      Gets a temporary access token to use with AssumeRoleWithWebIdentity. Access tokens are valid for one hour.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_GetAccessToken.html
+    example:
+      inputs: [
+        {
+          "Token": "string",
+          "TokenProperties": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetGrant:
+    description: |-
+      Gets detailed information about the specified grant.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_GetGrant.html
+    example:
+      inputs: [
+        {
+          "Version": "string",
+          "GrantArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Grant": {
+            "Version": "string",
+            "GrantArn": "string",
+            "GrantName": "string",
+            "ParentArn": "string",
+            "HomeRegion": "string",
+            "LicenseArn": "string",
+            "GrantStatus": "string",
+            "StatusReason": "string",
+            "GrantedOperations": [
+              "string"
+            ],
+            "GranteePrincipalArn": "string"
+          }
+        }
+      ]
+  GetLicenseConfiguration:
+    description: |-
+      Gets detailed information about the specified license configuration.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_GetLicenseConfiguration.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Status": "string",
+          "Description": "string",
+          "LicenseCount": 1,
+          "LicenseRules": [
+            "string"
+          ],
+          "OwnerAccountId": "string",
+          "ConsumedLicenses": 1,
+          "LicenseCountingType": "string",
+          "LicenseCountHardLimit": false,
+          "LicenseConfigurationId": "string",
+          "ProductInformationList": [
+            {
+              "ResourceType": "string",
+              "ProductInformationFilterList": [
+                {
+                  "ProductInformationFilterName": "string",
+                  "ProductInformationFilterValue": [
+                    "string"
+                  ],
+                  "ProductInformationFilterComparator": "string"
+                }
+              ]
+            }
+          ],
+          "LicenseConfigurationArn": "string",
+          "DisassociateWhenNotFound": false,
+          "ConsumedLicenseSummaryList": [
+            {
+              "ResourceType": "string",
+              "ConsumedLicenses": 1
+            }
+          ],
+          "ManagedResourceSummaryList": [
+            {
+              "ResourceType": "string",
+              "AssociationCount": 1
+            }
+          ],
+          "AutomatedDiscoveryInformation": {
+            "LastRunTime": 1481289211.615
+          }
+        }
+      ]
+  GetLicense:
+    description: |-
+      Gets detailed information about the specified license.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_GetLicense.html
+    example:
+      inputs: [
+        {
+          "Version": "string",
+          "LicenseArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "License": {
+            "Issuer": {
+              "Name": "string",
+              "SignKey": "string",
+              "KeyFingerprint": "string"
+            },
+            "Status": "string",
+            "Version": "string",
+            "Validity": {
+              "End": "string",
+              "Begin": "string"
+            },
+            "CreateTime": "string",
+            "HomeRegion": "string",
+            "LicenseArn": "string",
+            "ProductSKU": "string",
+            "Beneficiary": "string",
+            "LicenseName": "string",
+            "ProductName": "string",
+            "Entitlements": [
+              {
+                "Name": "string",
+                "Unit": "string",
+                "Value": "string",
+                "Overage": false,
+                "MaxCount": 1,
+                "AllowCheckIn": false
+              }
+            ],
+            "LicenseMetadata": [
+              {
+                "Name": "string",
+                "Value": "string"
+              }
+            ],
+            "ConsumptionConfiguration": {
+              "RenewType": "string",
+              "BorrowConfiguration": {
+                "AllowEarlyCheckIn": false,
+                "MaxTimeToLiveInMinutes": 1
+              },
+              "ProvisionalConfiguration": {
+                "MaxTimeToLiveInMinutes": 1
+              }
+            }
+          }
+        }
+      ]
+  GetLicenseUsage:
+    description: |-
+      Gets detailed information about the usage of the specified license.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_GetLicenseUsage.html
+    example:
+      inputs: [
+        {
+          "LicenseArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "LicenseUsage": {
+            "EntitlementUsages": [
+              {
+                "Name": "string",
+                "Unit": "string",
+                "MaxCount": "string",
+                "ConsumedValue": "string"
+              }
+            ]
+          }
+        }
+      ]
+  GetServiceSettings:
+    description: |-
+      Gets the License Manager settings for the current Region.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_GetServiceSettings.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "S3BucketArn": "string",
+          "SnsTopicArn": "string",
+          "OrganizationConfiguration": {
+            "EnableIntegration": false
+          },
+          "EnableCrossAccountsDiscovery": false,
+          "LicenseManagerResourceShareArn": "string"
+        }
+      ]
+  ListAssociationsForLicenseConfiguration:
+    description: |-
+      Lists the resource associations for the specified license configuration.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_ListAssociationsForLicenseConfiguration.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "LicenseConfigurationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "LicenseConfigurationAssociations": [
+            {
+              "ResourceArn": "string",
+              "ResourceType": "string",
+              "AssociationTime": 1481289211.615,
+              "ResourceOwnerId": "string",
+              "AmiAssociationScope": "string"
+            }
+          ]
+        }
+      ]
+  ListDistributedGrants:
+    description: |-
+      Lists the grants distributed for the specified license.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_ListDistributedGrants.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "GrantArns": [
+            "string"
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Grants": [
+            {
+              "Version": "string",
+              "GrantArn": "string",
+              "GrantName": "string",
+              "ParentArn": "string",
+              "HomeRegion": "string",
+              "LicenseArn": "string",
+              "GrantStatus": "string",
+              "StatusReason": "string",
+              "GrantedOperations": [
+                "string"
+              ],
+              "GranteePrincipalArn": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListFailuresForLicenseConfigurationOperations:
+    description: |-
+      Lists the license configuration operations that failed.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_ListFailuresForLicenseConfigurationOperations.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "LicenseConfigurationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "LicenseOperationFailureList": [
+            {
+              "FailureTime": 1481289211.615,
+              "ResourceArn": "string",
+              "ErrorMessage": "string",
+              "MetadataList": [
+                {
+                  "Name": "string",
+                  "Value": "string"
+                }
+              ],
+              "ResourceType": "string",
+              "OperationName": "string",
+              "ResourceOwnerId": "string",
+              "OperationRequestedBy": "string"
+            }
+          ]
+        }
+      ]
+  ListLicenseConfigurations:
+    description: |-
+      Lists the license configurations for your account.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_ListLicenseConfigurations.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1,
+          "LicenseConfigurationArns": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "LicenseConfigurations": [
+            {
+              "Name": "string",
+              "Status": "string",
+              "Description": "string",
+              "LicenseCount": 1,
+              "LicenseRules": [
+                "string"
+              ],
+              "OwnerAccountId": "string",
+              "ConsumedLicenses": 1,
+              "LicenseCountingType": "string",
+              "LicenseCountHardLimit": false,
+              "LicenseConfigurationId": "string",
+              "ProductInformationList": [
+                {
+                  "ResourceType": "string",
+                  "ProductInformationFilterList": [
+                    {
+                      "ProductInformationFilterName": "string",
+                      "ProductInformationFilterValue": [
+                        "string"
+                      ],
+                      "ProductInformationFilterComparator": "string"
+                    }
+                  ]
+                }
+              ],
+              "LicenseConfigurationArn": "string",
+              "DisassociateWhenNotFound": false,
+              "ConsumedLicenseSummaryList": [
+                {
+                  "ResourceType": "string",
+                  "ConsumedLicenses": 1
+                }
+              ],
+              "ManagedResourceSummaryList": [
+                {
+                  "ResourceType": "string",
+                  "AssociationCount": 1
+                }
+              ],
+              "AutomatedDiscoveryInformation": {
+                "LastRunTime": 1481289211.615
+              }
+            }
+          ]
+        }
+      ]
+  ListLicenses:
+    description: |-
+      Lists the licenses for your account.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_ListLicenses.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1,
+          "LicenseArns": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Licenses": [
+            {
+              "Issuer": {
+                "Name": "string",
+                "SignKey": "string",
+                "KeyFingerprint": "string"
+              },
+              "Status": "string",
+              "Version": "string",
+              "Validity": {
+                "End": "string",
+                "Begin": "string"
+              },
+              "CreateTime": "string",
+              "HomeRegion": "string",
+              "LicenseArn": "string",
+              "ProductSKU": "string",
+              "Beneficiary": "string",
+              "LicenseName": "string",
+              "ProductName": "string",
+              "Entitlements": [
+                {
+                  "Name": "string",
+                  "Unit": "string",
+                  "Value": "string",
+                  "Overage": false,
+                  "MaxCount": 1,
+                  "AllowCheckIn": false
+                }
+              ],
+              "LicenseMetadata": [
+                {
+                  "Name": "string",
+                  "Value": "string"
+                }
+              ],
+              "ConsumptionConfiguration": {
+                "RenewType": "string",
+                "BorrowConfiguration": {
+                  "AllowEarlyCheckIn": false,
+                  "MaxTimeToLiveInMinutes": 1
+                },
+                "ProvisionalConfiguration": {
+                  "MaxTimeToLiveInMinutes": 1
+                }
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListLicenseSpecificationsForResource:
+    description: |-
+      Describes the license configurations for the specified resource.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_ListLicenseSpecificationsForResource.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "MaxResults": 1,
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "LicenseSpecifications": [
+            {
+              "AmiAssociationScope": "string",
+              "LicenseConfigurationArn": "string"
+            }
+          ]
+        }
+      ]
+  ListLicenseVersions:
+    description: |-
+      Lists all versions of the specified license.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_ListLicenseVersions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "LicenseArn": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Licenses": [
+            {
+              "Issuer": {
+                "Name": "string",
+                "SignKey": "string",
+                "KeyFingerprint": "string"
+              },
+              "Status": "string",
+              "Version": "string",
+              "Validity": {
+                "End": "string",
+                "Begin": "string"
+              },
+              "CreateTime": "string",
+              "HomeRegion": "string",
+              "LicenseArn": "string",
+              "ProductSKU": "string",
+              "Beneficiary": "string",
+              "LicenseName": "string",
+              "ProductName": "string",
+              "Entitlements": [
+                {
+                  "Name": "string",
+                  "Unit": "string",
+                  "Value": "string",
+                  "Overage": false,
+                  "MaxCount": 1,
+                  "AllowCheckIn": false
+                }
+              ],
+              "LicenseMetadata": [
+                {
+                  "Name": "string",
+                  "Value": "string"
+                }
+              ],
+              "ConsumptionConfiguration": {
+                "RenewType": "string",
+                "BorrowConfiguration": {
+                  "AllowEarlyCheckIn": false,
+                  "MaxTimeToLiveInMinutes": 1
+                },
+                "ProvisionalConfiguration": {
+                  "MaxTimeToLiveInMinutes": 1
+                }
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListReceivedGrants:
+    description: |-
+      Lists grants that are received but not accepted.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_ListReceivedGrants.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "GrantArns": [
+            "string"
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Grants": [
+            {
+              "Version": "string",
+              "GrantArn": "string",
+              "GrantName": "string",
+              "ParentArn": "string",
+              "HomeRegion": "string",
+              "LicenseArn": "string",
+              "GrantStatus": "string",
+              "StatusReason": "string",
+              "GrantedOperations": [
+                "string"
+              ],
+              "GranteePrincipalArn": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListReceivedLicenses:
+    description: |-
+      Lists received licenses.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_ListReceivedLicenses.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1,
+          "LicenseArns": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "Licenses": [
+            {
+              "Issuer": {
+                "Name": "string",
+                "SignKey": "string",
+                "KeyFingerprint": "string"
+              },
+              "Status": "string",
+              "Version": "string",
+              "Validity": {
+                "End": "string",
+                "Begin": "string"
+              },
+              "CreateTime": "string",
+              "HomeRegion": "string",
+              "LicenseArn": "string",
+              "ProductSKU": "string",
+              "Beneficiary": "string",
+              "LicenseName": "string",
+              "ProductName": "string",
+              "Entitlements": [
+                {
+                  "Name": "string",
+                  "Unit": "string",
+                  "Value": "string",
+                  "Overage": false,
+                  "MaxCount": 1,
+                  "AllowCheckIn": false
+                }
+              ],
+              "LicenseMetadata": [
+                {
+                  "Name": "string",
+                  "Value": "string"
+                }
+              ],
+              "ReceivedMetadata": {
+                "ReceivedStatus": "string",
+                "AllowedOperations": [
+                  "string"
+                ]
+              },
+              "ConsumptionConfiguration": {
+                "RenewType": "string",
+                "BorrowConfiguration": {
+                  "AllowEarlyCheckIn": false,
+                  "MaxTimeToLiveInMinutes": 1
+                },
+                "ProvisionalConfiguration": {
+                  "MaxTimeToLiveInMinutes": 1
+                }
+              }
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListResourceInventory:
+    description: |-
+      Lists resources managed using Systems Manager inventory.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_ListResourceInventory.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Value": "string",
+              "Condition": "string"
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "ResourceInventoryList": [
+            {
+              "Platform": "string",
+              "ResourceId": "string",
+              "ResourceArn": "string",
+              "ResourceType": "string",
+              "PlatformVersion": "string",
+              "ResourceOwningAccountId": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists the tags for the specified license configuration.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  ListTokens:
+    description: |-
+      Lists your tokens.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_ListTokens.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "TokenIds": [
+            "string"
+          ],
+          "NextToken": "string",
+          "MaxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "Tokens": [
+            {
+              "Status": "string",
+              "TokenId": "string",
+              "RoleArns": [
+                "string"
+              ],
+              "TokenType": "string",
+              "LicenseArn": "string",
+              "ExpirationTime": "string",
+              "TokenProperties": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  ListUsageForLicenseConfiguration:
+    description: |-
+      Lists all license usage records for a license configuration, displaying license consumption details by resource at a selected point in time. Use this action to audit the current license consumption for any license inventory and configuration.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_ListUsageForLicenseConfiguration.html
+    example:
+      inputs: [
+        {
+          "Filters": [
+            {
+              "Name": "string",
+              "Values": [
+                "string"
+              ]
+            }
+          ],
+          "NextToken": "string",
+          "MaxResults": 1,
+          "LicenseConfigurationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "LicenseConfigurationUsageList": [
+            {
+              "ResourceArn": "string",
+              "ResourceType": "string",
+              "ResourceStatus": "string",
+              "AssociationTime": 1481289211.615,
+              "ResourceOwnerId": "string",
+              "ConsumedLicenses": 1
+            }
+          ]
+        }
+      ]
+  RejectGrant:
+    description: |-
+      Rejects the specified grant.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_RejectGrant.html
+    example:
+      inputs: [
+        {
+          "GrantArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Status": "string",
+          "Version": "string",
+          "GrantArn": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds the specified tags to the specified license configuration.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes the specified tags from the specified license configuration.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateLicenseConfiguration:
+    description: |-
+      Modifies the attributes of an existing license configuration.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_UpdateLicenseConfiguration.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Description": "string",
+          "LicenseCount": 1,
+          "LicenseRules": [
+            "string"
+          ],
+          "LicenseCountHardLimit": false,
+          "ProductInformationList": [
+            {
+              "ResourceType": "string",
+              "ProductInformationFilterList": [
+                {
+                  "ProductInformationFilterName": "string",
+                  "ProductInformationFilterValue": [
+                    "string"
+                  ],
+                  "ProductInformationFilterComparator": "string"
+                }
+              ]
+            }
+          ],
+          "LicenseConfigurationArn": "string",
+          "DisassociateWhenNotFound": false,
+          "LicenseConfigurationStatus": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateLicenseSpecificationsForResource:
+    description: |-
+      Adds or removes the specified license configurations for the specified AWS resource.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_UpdateLicenseSpecificationsForResource.html
+    example:
+      inputs: [
+        {
+          "ResourceArn": "string",
+          "AddLicenseSpecifications": [
+            {
+              "AmiAssociationScope": "string",
+              "LicenseConfigurationArn": "string"
+            }
+          ],
+          "RemoveLicenseSpecifications": [
+            {
+              "AmiAssociationScope": "string",
+              "LicenseConfigurationArn": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateServiceSettings:
+    description: |-
+      Updates License Manager settings for the current Region.
+    versions:
+      from: 2018.8.1
+    link: https://docs.aws.amazon.com/license-manager/latest/APIReference/API_UpdateServiceSettings.html
+    example:
+      inputs: [
+        {
+          "S3BucketArn": "string",
+          "SnsTopicArn": "string",
+          "OrganizationConfiguration": {
+            "EnableIntegration": false
+          },
+          "EnableCrossAccountsDiscovery": false
+        }
+      ]
+      outputs: [
+        {}
+      ]

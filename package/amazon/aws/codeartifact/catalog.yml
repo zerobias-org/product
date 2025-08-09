@@ -1,0 +1,1079 @@
+Product:
+  name: AWS CodeArtifact
+  versions: [2018.9.22]
+  package: amazon.aws.codeartifact
+  description: |-
+    CodeArtifact
+  link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AssociateExternalConnection:
+    description: |-
+      Adds an existing external connection to a repository. One external connection is allowed per repository.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_AssociateExternalConnection.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "repository": "string",
+          "domainOwner": "string",
+          "externalConnection": "string"
+        }
+      ]
+      outputs: [
+        {
+          "repository": {
+            "arn": "string",
+            "name": "string",
+            "upstreams": [
+              {
+                "repositoryName": "string"
+              }
+            ],
+            "domainName": "string",
+            "description": "string",
+            "domainOwner": "string",
+            "externalConnections": [
+              {
+                "status": "string",
+                "packageFormat": "string",
+                "externalConnectionName": "string"
+              }
+            ],
+            "administratorAccount": "string"
+          }
+        }
+      ]
+  CopyPackageVersions:
+    description: |-
+      Copies package versions from one repository to another repository in the same domain.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_CopyPackageVersions.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "format": "string",
+          "package": "string",
+          "versions": [
+            "string"
+          ],
+          "namespace": "string",
+          "domainOwner": "string",
+          "allowOverwrite": false,
+          "sourceRepository": "string",
+          "versionRevisions": {
+            "string": "string"
+          },
+          "includeFromUpstream": false,
+          "destinationRepository": "string"
+        }
+      ]
+      outputs: [
+        {
+          "failedVersions": {
+            "string": {
+              "errorCode": "string",
+              "errorMessage": "string"
+            }
+          },
+          "successfulVersions": {
+            "string": {
+              "status": "string",
+              "revision": "string"
+            }
+          }
+        }
+      ]
+  CreateDomain:
+    description: |-
+      Creates a domain. CodeArtifact domains make it easier to manage multiple repositories across an organization. You can use a domain to apply permissions across many repositories owned by different AWS accounts. An asset is stored only once in a domain, even if it's in multiple repositories.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_CreateDomain.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "domain": "string",
+          "encryptionKey": "string"
+        }
+      ]
+      outputs: [
+        {
+          "domain": {
+            "arn": "string",
+            "name": "string",
+            "owner": "string",
+            "status": "string",
+            "createdTime": 1481289211.615,
+            "s3BucketArn": "string",
+            "encryptionKey": "string",
+            "assetSizeBytes": 1,
+            "repositoryCount": 1
+          }
+        }
+      ]
+  CreateRepository:
+    description: |-
+      Creates a repository.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_CreateRepository.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "domain": "string",
+          "upstreams": [
+            {
+              "repositoryName": "string"
+            }
+          ],
+          "repository": "string",
+          "description": "string",
+          "domainOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "repository": {
+            "arn": "string",
+            "name": "string",
+            "upstreams": [
+              {
+                "repositoryName": "string"
+              }
+            ],
+            "domainName": "string",
+            "description": "string",
+            "domainOwner": "string",
+            "externalConnections": [
+              {
+                "status": "string",
+                "packageFormat": "string",
+                "externalConnectionName": "string"
+              }
+            ],
+            "administratorAccount": "string"
+          }
+        }
+      ]
+  DeleteDomain:
+    description: |-
+      Deletes a domain. You cannot delete a domain that contains repositories. If you want to delete a domain with repositories, first delete its repositories.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DeleteDomain.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "domainOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "domain": {
+            "arn": "string",
+            "name": "string",
+            "owner": "string",
+            "status": "string",
+            "createdTime": 1481289211.615,
+            "s3BucketArn": "string",
+            "encryptionKey": "string",
+            "assetSizeBytes": 1,
+            "repositoryCount": 1
+          }
+        }
+      ]
+  DeleteDomainPermissionsPolicy:
+    description: |-
+      Deletes the resource policy set on a domain.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DeleteDomainPermissionsPolicy.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "domainOwner": "string",
+          "policyRevision": "string"
+        }
+      ]
+      outputs: [
+        {
+          "policy": {
+            "document": "string",
+            "revision": "string",
+            "resourceArn": "string"
+          }
+        }
+      ]
+  DeletePackageVersions:
+    description: |-
+      Deletes one or more versions of a package. A deleted package version cannot be restored in your repository. If you want to remove a package version from your repository and be able to restore it later, set its status to Archived. Archived packages cannot be downloaded from a repository and don't show up with list package APIs (for example, ListackageVersions), but you can restore them using UpdatePackageVersionsStatus.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DeletePackageVersions.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "format": "string",
+          "package": "string",
+          "versions": [
+            "string"
+          ],
+          "namespace": "string",
+          "repository": "string",
+          "domainOwner": "string",
+          "expectedStatus": "string"
+        }
+      ]
+      outputs: [
+        {
+          "failedVersions": {
+            "string": {
+              "errorCode": "string",
+              "errorMessage": "string"
+            }
+          },
+          "successfulVersions": {
+            "string": {
+              "status": "string",
+              "revision": "string"
+            }
+          }
+        }
+      ]
+  DeleteRepository:
+    description: |-
+      Deletes a repository.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DeleteRepository.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "repository": "string",
+          "domainOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "repository": {
+            "arn": "string",
+            "name": "string",
+            "upstreams": [
+              {
+                "repositoryName": "string"
+              }
+            ],
+            "domainName": "string",
+            "description": "string",
+            "domainOwner": "string",
+            "externalConnections": [
+              {
+                "status": "string",
+                "packageFormat": "string",
+                "externalConnectionName": "string"
+              }
+            ],
+            "administratorAccount": "string"
+          }
+        }
+      ]
+  DeleteRepositoryPermissionsPolicy:
+    description: |-
+      Deletes the resource policy that is set on a repository. After a resource policy is deleted, the permissions allowed and denied by the deleted policy are removed. The effect of deleting a resource policy might not be immediate.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DeleteRepositoryPermissionsPolicy.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "repository": "string",
+          "domainOwner": "string",
+          "policyRevision": "string"
+        }
+      ]
+      outputs: [
+        {
+          "policy": {
+            "document": "string",
+            "revision": "string",
+            "resourceArn": "string"
+          }
+        }
+      ]
+  DescribeDomain:
+    description: |-
+      Returns a DomainDescription object that contains information about the requested domain.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DescribeDomain.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "domainOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "domain": {
+            "arn": "string",
+            "name": "string",
+            "owner": "string",
+            "status": "string",
+            "createdTime": 1481289211.615,
+            "s3BucketArn": "string",
+            "encryptionKey": "string",
+            "assetSizeBytes": 1,
+            "repositoryCount": 1
+          }
+        }
+      ]
+  DescribePackageVersion:
+    description: |-
+      Returns a PackageVersionDescription object that contains information about the requested package version.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DescribePackageVersion.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "format": "string",
+          "package": "string",
+          "namespace": "string",
+          "repository": "string",
+          "domainOwner": "string",
+          "packageVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "packageVersion": {
+            "format": "string",
+            "status": "string",
+            "summary": "string",
+            "version": "string",
+            "homePage": "string",
+            "licenses": [
+              {
+                "url": "string",
+                "name": "string"
+              }
+            ],
+            "revision": "string",
+            "namespace": "string",
+            "displayName": "string",
+            "packageName": "string",
+            "publishedTime": 1481289211.615,
+            "sourceCodeRepository": "string"
+          }
+        }
+      ]
+  DescribeRepository:
+    description: |-
+      Returns a RepositoryDescription object that contains detailed information about the requested repository.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DescribeRepository.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "repository": "string",
+          "domainOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "repository": {
+            "arn": "string",
+            "name": "string",
+            "upstreams": [
+              {
+                "repositoryName": "string"
+              }
+            ],
+            "domainName": "string",
+            "description": "string",
+            "domainOwner": "string",
+            "externalConnections": [
+              {
+                "status": "string",
+                "packageFormat": "string",
+                "externalConnectionName": "string"
+              }
+            ],
+            "administratorAccount": "string"
+          }
+        }
+      ]
+  DisassociateExternalConnection:
+    description: |-
+      Removes an existing external connection from a repository.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DisassociateExternalConnection.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "repository": "string",
+          "domainOwner": "string",
+          "externalConnection": "string"
+        }
+      ]
+      outputs: [
+        {
+          "repository": {
+            "arn": "string",
+            "name": "string",
+            "upstreams": [
+              {
+                "repositoryName": "string"
+              }
+            ],
+            "domainName": "string",
+            "description": "string",
+            "domainOwner": "string",
+            "externalConnections": [
+              {
+                "status": "string",
+                "packageFormat": "string",
+                "externalConnectionName": "string"
+              }
+            ],
+            "administratorAccount": "string"
+          }
+        }
+      ]
+  DisposePackageVersions:
+    description: |-
+      Deletes the assets in package versions and sets the package versions' status to Disposed. A disposed package version cannot be restored in your repository because its assets are deleted.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DisposePackageVersions.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "format": "string",
+          "package": "string",
+          "versions": [
+            "string"
+          ],
+          "namespace": "string",
+          "repository": "string",
+          "domainOwner": "string",
+          "expectedStatus": "string",
+          "versionRevisions": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "failedVersions": {
+            "string": {
+              "errorCode": "string",
+              "errorMessage": "string"
+            }
+          },
+          "successfulVersions": {
+            "string": {
+              "status": "string",
+              "revision": "string"
+            }
+          }
+        }
+      ]
+  GetAuthorizationToken:
+    description: |-
+      Generates a temporary authorization token for accessing repositories in the domain. This API requires the codeartifact:GetAuthorizationToken and sts:GetServiceBearerToken permissions. For more information about authorization tokens, see AWS CodeArtifact authentication and tokens.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_GetAuthorizationToken.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "domainOwner": "string",
+          "durationSeconds": 1
+        }
+      ]
+      outputs: [
+        {
+          "expiration": 1481289211.615,
+          "authorizationToken": "string"
+        }
+      ]
+  GetDomainPermissionsPolicy:
+    description: |-
+      Returns the resource policy attached to the specified domain.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_GetDomainPermissionsPolicy.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "domainOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "policy": {
+            "document": "string",
+            "revision": "string",
+            "resourceArn": "string"
+          }
+        }
+      ]
+  GetPackageVersionAsset:
+    description: |-
+      Returns an asset (or file) that is in a package. For example, for a Maven package version, use GetPackageVersionAsset to download a JAR file, a POM file, or any other assets in the package version.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_GetPackageVersionAsset.html
+    example:
+      inputs: [
+        {
+          "asset": "string",
+          "domain": "string",
+          "format": "string",
+          "package": "string",
+          "namespace": "string",
+          "repository": "string",
+          "domainOwner": "string",
+          "packageVersion": "string",
+          "packageVersionRevision": "string"
+        }
+      ]
+      outputs: [
+        {
+          "asset": "blob",
+          "assetName": "string",
+          "packageVersion": "string",
+          "packageVersionRevision": "string"
+        }
+      ]
+  GetPackageVersionReadme:
+    description: |-
+      Gets the readme file or descriptive text for a package version. For packages that do not contain a readme file, CodeArtifact extracts a description from a metadata file. For example, from the <description> element in the pom.xml file of a Maven package.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_GetPackageVersionReadme.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "format": "string",
+          "package": "string",
+          "namespace": "string",
+          "repository": "string",
+          "domainOwner": "string",
+          "packageVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "format": "string",
+          "readme": "string",
+          "package": "string",
+          "version": "string",
+          "namespace": "string",
+          "versionRevision": "string"
+        }
+      ]
+  GetRepositoryEndpoint:
+    description: |-
+      Returns the endpoint of a repository for a specific package format.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_GetRepositoryEndpoint.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "format": "string",
+          "repository": "string",
+          "domainOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "repositoryEndpoint": "string"
+        }
+      ]
+  GetRepositoryPermissionsPolicy:
+    description: |-
+      Returns the resource policy that is set on a repository.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_GetRepositoryPermissionsPolicy.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "repository": "string",
+          "domainOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "policy": {
+            "document": "string",
+            "revision": "string",
+            "resourceArn": "string"
+          }
+        }
+      ]
+  ListDomains:
+    description: |-
+      Returns a list of DomainSummary objects for all domains owned by the AWS account that makes this call. Each returned DomainSummary object contains information about a domain.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListDomains.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "domains": [
+            {
+              "arn": "string",
+              "name": "string",
+              "owner": "string",
+              "status": "string",
+              "createdTime": 1481289211.615,
+              "encryptionKey": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListPackages:
+    description: |-
+      Returns a list of PackageSummary objects for packages in a repository that match the request parameters.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackages.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "format": "string",
+          "namespace": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "repository": "string",
+          "domainOwner": "string",
+          "packagePrefix": "string"
+        }
+      ]
+      outputs: [
+        {
+          "packages": [
+            {
+              "format": "string",
+              "package": "string",
+              "namespace": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListPackageVersionAssets:
+    description: |-
+      Returns a list of AssetSummary objects for assets in a package version.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersionAssets.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "format": "string",
+          "package": "string",
+          "namespace": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "repository": "string",
+          "domainOwner": "string",
+          "packageVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "assets": [
+            {
+              "name": "string",
+              "size": 1,
+              "hashes": {
+                "string": "string"
+              }
+            }
+          ],
+          "format": "string",
+          "package": "string",
+          "version": "string",
+          "namespace": "string",
+          "nextToken": "string",
+          "versionRevision": "string"
+        }
+      ]
+  ListPackageVersionDependencies:
+    description: |-
+      Returns the direct dependencies for a package version. The dependencies are returned as PackageDependency objects. CodeArtifact extracts the dependencies for a package version from the metadata file for the package format (for example, the package.json file for npm packages and the pom.xml file for Maven). Any package version dependencies that are not listed in the configuration file are not returned.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersionDependencies.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "format": "string",
+          "package": "string",
+          "namespace": "string",
+          "nextToken": "string",
+          "repository": "string",
+          "domainOwner": "string",
+          "packageVersion": "string"
+        }
+      ]
+      outputs: [
+        {
+          "format": "string",
+          "package": "string",
+          "version": "string",
+          "namespace": "string",
+          "nextToken": "string",
+          "dependencies": [
+            {
+              "package": "string",
+              "namespace": "string",
+              "dependencyType": "string",
+              "versionRequirement": "string"
+            }
+          ],
+          "versionRevision": "string"
+        }
+      ]
+  ListPackageVersions:
+    description: |-
+      Returns a list of PackageVersionSummary objects for package versions in a repository that match the request parameters.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "format": "string",
+          "sortBy": "string",
+          "status": "string",
+          "package": "string",
+          "namespace": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "repository": "string",
+          "domainOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "format": "string",
+          "package": "string",
+          "versions": [
+            {
+              "status": "string",
+              "version": "string",
+              "revision": "string"
+            }
+          ],
+          "namespace": "string",
+          "nextToken": "string",
+          "defaultDisplayVersion": "string"
+        }
+      ]
+  ListRepositories:
+    description: |-
+      Returns a list of RepositorySummary objects. Each RepositorySummary contains information about a repository in the specified AWS account and that matches the input parameters.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListRepositories.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "repositoryPrefix": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "repositories": [
+            {
+              "arn": "string",
+              "name": "string",
+              "domainName": "string",
+              "description": "string",
+              "domainOwner": "string",
+              "administratorAccount": "string"
+            }
+          ]
+        }
+      ]
+  ListRepositoriesInDomain:
+    description: |-
+      Returns a list of RepositorySummary objects. Each RepositorySummary contains information about a repository in the specified domain and that matches the input parameters.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListRepositoriesInDomain.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "domainOwner": "string",
+          "repositoryPrefix": "string",
+          "administratorAccount": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "repositories": [
+            {
+              "arn": "string",
+              "name": "string",
+              "domainName": "string",
+              "description": "string",
+              "domainOwner": "string",
+              "administratorAccount": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Gets information about AWS tags for a specified Amazon Resource Name (ARN) in AWS CodeArtifact.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ]
+        }
+      ]
+  PutDomainPermissionsPolicy:
+    description: |-
+      Sets a resource policy on a domain that specifies permissions to access it.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PutDomainPermissionsPolicy.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "domainOwner": "string",
+          "policyDocument": "string",
+          "policyRevision": "string"
+        }
+      ]
+      outputs: [
+        {
+          "policy": {
+            "document": "string",
+            "revision": "string",
+            "resourceArn": "string"
+          }
+        }
+      ]
+  PutRepositoryPermissionsPolicy:
+    description: |-
+      Sets the resource policy on a repository that specifies permissions to access it.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PutRepositoryPermissionsPolicy.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "repository": "string",
+          "domainOwner": "string",
+          "policyDocument": "string",
+          "policyRevision": "string"
+        }
+      ]
+      outputs: [
+        {
+          "policy": {
+            "document": "string",
+            "revision": "string",
+            "resourceArn": "string"
+          }
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds or updates tags for a resource in AWS CodeArtifact.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": [
+            {
+              "key": "string",
+              "value": "string"
+            }
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes tags from a resource in AWS CodeArtifact.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdatePackageVersionsStatus:
+    description: |-
+      Updates the status of one or more versions of a package.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "format": "string",
+          "package": "string",
+          "versions": [
+            "string"
+          ],
+          "namespace": "string",
+          "repository": "string",
+          "domainOwner": "string",
+          "targetStatus": "string",
+          "expectedStatus": "string",
+          "versionRevisions": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "failedVersions": {
+            "string": {
+              "errorCode": "string",
+              "errorMessage": "string"
+            }
+          },
+          "successfulVersions": {
+            "string": {
+              "status": "string",
+              "revision": "string"
+            }
+          }
+        }
+      ]
+  UpdateRepository:
+    description: |-
+      Update the properties of a repository.
+    versions:
+      from: 2018.9.22
+    link: https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdateRepository.html
+    example:
+      inputs: [
+        {
+          "domain": "string",
+          "upstreams": [
+            {
+              "repositoryName": "string"
+            }
+          ],
+          "repository": "string",
+          "description": "string",
+          "domainOwner": "string"
+        }
+      ]
+      outputs: [
+        {
+          "repository": {
+            "arn": "string",
+            "name": "string",
+            "upstreams": [
+              {
+                "repositoryName": "string"
+              }
+            ],
+            "domainName": "string",
+            "description": "string",
+            "domainOwner": "string",
+            "externalConnections": [
+              {
+                "status": "string",
+                "packageFormat": "string",
+                "externalConnectionName": "string"
+              }
+            ],
+            "administratorAccount": "string"
+          }
+        }
+      ]

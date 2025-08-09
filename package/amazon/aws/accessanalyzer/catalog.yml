@@ -1,0 +1,1031 @@
+Product:
+  name: AWS IAM Access Analyzer
+  versions: [2019.11.1]
+  package: amazon.aws.accessanalyzer
+  description: |-
+    Access Analyzer
+  link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  ApplyArchiveRule:
+    description: |-
+      Retroactively applies the archive rule to existing findings that meet the archive rule criteria.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_ApplyArchiveRule.html
+    example:
+      inputs: [
+        {
+          "ruleName": "string",
+          "analyzerArn": "string",
+          "clientToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CancelPolicyGeneration:
+    description: |-
+      Cancels the requested policy generation.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_CancelPolicyGeneration.html
+    example:
+      inputs: [
+        {
+          "jobId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateAccessPreview:
+    description: |-
+      Creates an access preview that allows you to preview Access Analyzer findings for your resource before deploying resource permissions.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_CreateAccessPreview.html
+    example:
+      inputs: [
+        {
+          "analyzerArn": "string",
+          "clientToken": "string",
+          "configurations": {
+            "string": {
+              "kmsKey": {
+                "grants": [
+                  {
+                    "operations": [
+                      "string"
+                    ],
+                    "constraints": {
+                      "encryptionContextEquals": {
+                        "string": "string"
+                      },
+                      "encryptionContextSubset": {
+                        "string": "string"
+                      }
+                    },
+                    "issuingAccount": "string",
+                    "granteePrincipal": "string",
+                    "retiringPrincipal": "string"
+                  }
+                ],
+                "keyPolicies": {
+                  "string": "string"
+                }
+              },
+              "iamRole": {
+                "trustPolicy": "string"
+              },
+              "s3Bucket": {
+                "accessPoints": {
+                  "string": {
+                    "networkOrigin": {
+                      "vpcConfiguration": {
+                        "vpcId": "string"
+                      },
+                      "internetConfiguration": {}
+                    },
+                    "accessPointPolicy": "string",
+                    "publicAccessBlock": {
+                      "ignorePublicAcls": false,
+                      "restrictPublicBuckets": false
+                    }
+                  }
+                },
+                "bucketPolicy": "string",
+                "bucketAclGrants": [
+                  {
+                    "grantee": {
+                      "id": "string",
+                      "uri": "string"
+                    },
+                    "permission": "string"
+                  }
+                ],
+                "bucketPublicAccessBlock": {
+                  "ignorePublicAcls": false,
+                  "restrictPublicBuckets": false
+                }
+              },
+              "sqsQueue": {
+                "queuePolicy": "string"
+              },
+              "secretsManagerSecret": {
+                "kmsKeyId": "string",
+                "secretPolicy": "string"
+              }
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "id": "string"
+        }
+      ]
+  CreateAnalyzer:
+    description: |-
+      Creates an analyzer for your account.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_CreateAnalyzer.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "type": "string",
+          "clientToken": "string",
+          "analyzerName": "string",
+          "archiveRules": [
+            {
+              "filter": {
+                "string": {
+                  "eq": [
+                    "string"
+                  ],
+                  "neq": [
+                    "string"
+                  ],
+                  "exists": false,
+                  "contains": [
+                    "string"
+                  ]
+                }
+              },
+              "ruleName": "string"
+            }
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "arn": "string"
+        }
+      ]
+  CreateArchiveRule:
+    description: |-
+      Creates an archive rule for the specified analyzer. Archive rules automatically archive new findings that meet the criteria you define when you create the rule.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_CreateArchiveRule.html
+    example:
+      inputs: [
+        {
+          "filter": {
+            "string": {
+              "eq": [
+                "string"
+              ],
+              "neq": [
+                "string"
+              ],
+              "exists": false,
+              "contains": [
+                "string"
+              ]
+            }
+          },
+          "ruleName": "string",
+          "clientToken": "string",
+          "analyzerName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteAnalyzer:
+    description: |-
+      Deletes the specified analyzer. When you delete an analyzer, Access Analyzer is disabled for the account or organization in the current or specific Region. All findings that were generated by the analyzer are deleted. You cannot undo this action.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_DeleteAnalyzer.html
+    example:
+      inputs: [
+        {
+          "clientToken": "string",
+          "analyzerName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteArchiveRule:
+    description: |-
+      Deletes the specified archive rule.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_DeleteArchiveRule.html
+    example:
+      inputs: [
+        {
+          "ruleName": "string",
+          "clientToken": "string",
+          "analyzerName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetAccessPreview:
+    description: |-
+      Retrieves information about an access preview for the specified analyzer.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_GetAccessPreview.html
+    example:
+      inputs: [
+        {
+          "analyzerArn": "string",
+          "accessPreviewId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "accessPreview": {
+            "id": "string",
+            "status": "string",
+            "createdAt": 1481289211.615,
+            "analyzerArn": "string",
+            "statusReason": {
+              "code": "string"
+            },
+            "configurations": {
+              "string": {
+                "kmsKey": {
+                  "grants": [
+                    {
+                      "operations": [
+                        "string"
+                      ],
+                      "constraints": {
+                        "encryptionContextEquals": {
+                          "string": "string"
+                        },
+                        "encryptionContextSubset": {
+                          "string": "string"
+                        }
+                      },
+                      "issuingAccount": "string",
+                      "granteePrincipal": "string",
+                      "retiringPrincipal": "string"
+                    }
+                  ],
+                  "keyPolicies": {
+                    "string": "string"
+                  }
+                },
+                "iamRole": {
+                  "trustPolicy": "string"
+                },
+                "s3Bucket": {
+                  "accessPoints": {
+                    "string": {
+                      "networkOrigin": {
+                        "vpcConfiguration": {
+                          "vpcId": "string"
+                        },
+                        "internetConfiguration": {}
+                      },
+                      "accessPointPolicy": "string",
+                      "publicAccessBlock": {
+                        "ignorePublicAcls": false,
+                        "restrictPublicBuckets": false
+                      }
+                    }
+                  },
+                  "bucketPolicy": "string",
+                  "bucketAclGrants": [
+                    {
+                      "grantee": {
+                        "id": "string",
+                        "uri": "string"
+                      },
+                      "permission": "string"
+                    }
+                  ],
+                  "bucketPublicAccessBlock": {
+                    "ignorePublicAcls": false,
+                    "restrictPublicBuckets": false
+                  }
+                },
+                "sqsQueue": {
+                  "queuePolicy": "string"
+                },
+                "secretsManagerSecret": {
+                  "kmsKeyId": "string",
+                  "secretPolicy": "string"
+                }
+              }
+            }
+          }
+        }
+      ]
+  GetAnalyzedResource:
+    description: |-
+      Retrieves information about a resource that was analyzed.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_GetAnalyzedResource.html
+    example:
+      inputs: [
+        {
+          "analyzerArn": "string",
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "resource": {
+            "error": "string",
+            "status": "string",
+            "actions": [
+              "string"
+            ],
+            "isPublic": false,
+            "createdAt": 1481289211.615,
+            "sharedVia": [
+              "string"
+            ],
+            "updatedAt": 1481289211.615,
+            "analyzedAt": 1481289211.615,
+            "resourceArn": "string",
+            "resourceType": "string",
+            "resourceOwnerAccount": "string"
+          }
+        }
+      ]
+  GetAnalyzer:
+    description: |-
+      Retrieves information about the specified analyzer.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_GetAnalyzer.html
+    example:
+      inputs: [
+        {
+          "analyzerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "analyzer": {
+            "arn": "string",
+            "name": "string",
+            "tags": {
+              "string": "string"
+            },
+            "type": "string",
+            "status": "string",
+            "createdAt": 1481289211.615,
+            "statusReason": {
+              "code": "string"
+            },
+            "lastResourceAnalyzed": "string",
+            "lastResourceAnalyzedAt": 1481289211.615
+          }
+        }
+      ]
+  GetArchiveRule:
+    description: |-
+      Retrieves information about an archive rule.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_GetArchiveRule.html
+    example:
+      inputs: [
+        {
+          "ruleName": "string",
+          "analyzerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "archiveRule": {
+            "filter": {
+              "string": {
+                "eq": [
+                  "string"
+                ],
+                "neq": [
+                  "string"
+                ],
+                "exists": false,
+                "contains": [
+                  "string"
+                ]
+              }
+            },
+            "ruleName": "string",
+            "createdAt": 1481289211.615,
+            "updatedAt": 1481289211.615
+          }
+        }
+      ]
+  GetFinding:
+    description: |-
+      Retrieves information about the specified finding.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_GetFinding.html
+    example:
+      inputs: [
+        {
+          "id": "string",
+          "analyzerArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "finding": {
+            "id": "string",
+            "error": "string",
+            "action": [
+              "string"
+            ],
+            "status": "string",
+            "sources": [
+              {
+                "type": "string",
+                "detail": {
+                  "accessPointArn": "string"
+                }
+              }
+            ],
+            "isPublic": false,
+            "resource": "string",
+            "condition": {
+              "string": "string"
+            },
+            "createdAt": 1481289211.615,
+            "principal": {
+              "string": "string"
+            },
+            "updatedAt": 1481289211.615,
+            "analyzedAt": 1481289211.615,
+            "resourceType": "string",
+            "resourceOwnerAccount": "string"
+          }
+        }
+      ]
+  GetGeneratedPolicy:
+    description: |-
+      Retrieves the policy that was generated using StartPolicyGeneration.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_GetGeneratedPolicy.html
+    example:
+      inputs: [
+        {
+          "jobId": "string",
+          "includeResourcePlaceholders": false,
+          "includeServiceLevelTemplate": false
+        }
+      ]
+      outputs: [
+        {
+          "jobDetails": {
+            "jobId": "string",
+            "status": "string",
+            "jobError": {
+              "code": "string",
+              "message": "string"
+            },
+            "startedOn": 1481289211.615,
+            "completedOn": 1481289211.615
+          },
+          "generatedPolicyResult": {
+            "properties": {
+              "isComplete": false,
+              "principalArn": "string",
+              "cloudTrailProperties": {
+                "endTime": 1481289211.615,
+                "startTime": 1481289211.615,
+                "trailProperties": [
+                  {
+                    "regions": [
+                      "string"
+                    ],
+                    "allRegions": false,
+                    "cloudTrailArn": "string"
+                  }
+                ]
+              }
+            },
+            "generatedPolicies": [
+              {
+                "policy": "string"
+              }
+            ]
+          }
+        }
+      ]
+  ListAccessPreviewFindings:
+    description: |-
+      Retrieves a list of access preview findings generated by the specified access preview.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_ListAccessPreviewFindings.html
+    example:
+      inputs: [
+        {
+          "filter": {
+            "string": {
+              "eq": [
+                "string"
+              ],
+              "neq": [
+                "string"
+              ],
+              "exists": false,
+              "contains": [
+                "string"
+              ]
+            }
+          },
+          "nextToken": "string",
+          "maxResults": 1,
+          "analyzerArn": "string",
+          "accessPreviewId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "findings": [
+            {
+              "id": "string",
+              "error": "string",
+              "action": [
+                "string"
+              ],
+              "status": "string",
+              "sources": [
+                {
+                  "type": "string",
+                  "detail": {
+                    "accessPointArn": "string"
+                  }
+                }
+              ],
+              "isPublic": false,
+              "resource": "string",
+              "condition": {
+                "string": "string"
+              },
+              "createdAt": 1481289211.615,
+              "principal": {
+                "string": "string"
+              },
+              "changeType": "string",
+              "resourceType": "string",
+              "existingFindingId": "string",
+              "resourceOwnerAccount": "string",
+              "existingFindingStatus": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListAccessPreviews:
+    description: |-
+      Retrieves a list of access previews for the specified analyzer.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_ListAccessPreviews.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "analyzerArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "accessPreviews": [
+            {
+              "id": "string",
+              "status": "string",
+              "createdAt": 1481289211.615,
+              "analyzerArn": "string",
+              "statusReason": {
+                "code": "string"
+              }
+            }
+          ]
+        }
+      ]
+  ListAnalyzedResources:
+    description: |-
+      Retrieves a list of resources of the specified type that have been analyzed by the specified analyzer..
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_ListAnalyzedResources.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "analyzerArn": "string",
+          "resourceType": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "analyzedResources": [
+            {
+              "resourceArn": "string",
+              "resourceType": "string",
+              "resourceOwnerAccount": "string"
+            }
+          ]
+        }
+      ]
+  ListAnalyzers:
+    description: |-
+      Retrieves a list of analyzers.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_ListAnalyzers.html
+    example:
+      inputs: [
+        {
+          "type": "string",
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "analyzers": [
+            {
+              "arn": "string",
+              "name": "string",
+              "tags": {
+                "string": "string"
+              },
+              "type": "string",
+              "status": "string",
+              "createdAt": 1481289211.615,
+              "statusReason": {
+                "code": "string"
+              },
+              "lastResourceAnalyzed": "string",
+              "lastResourceAnalyzedAt": 1481289211.615
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListArchiveRules:
+    description: |-
+      Retrieves a list of archive rules created for the specified analyzer.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_ListArchiveRules.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "analyzerName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "archiveRules": [
+            {
+              "filter": {
+                "string": {
+                  "eq": [
+                    "string"
+                  ],
+                  "neq": [
+                    "string"
+                  ],
+                  "exists": false,
+                  "contains": [
+                    "string"
+                  ]
+                }
+              },
+              "ruleName": "string",
+              "createdAt": 1481289211.615,
+              "updatedAt": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListFindings:
+    description: |-
+      Retrieves a list of findings generated by the specified analyzer.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_ListFindings.html
+    example:
+      inputs: [
+        {
+          "sort": {
+            "orderBy": "string",
+            "attributeName": "string"
+          },
+          "filter": {
+            "string": {
+              "eq": [
+                "string"
+              ],
+              "neq": [
+                "string"
+              ],
+              "exists": false,
+              "contains": [
+                "string"
+              ]
+            }
+          },
+          "nextToken": "string",
+          "maxResults": 1,
+          "analyzerArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "findings": [
+            {
+              "id": "string",
+              "error": "string",
+              "action": [
+                "string"
+              ],
+              "status": "string",
+              "sources": [
+                {
+                  "type": "string",
+                  "detail": {
+                    "accessPointArn": "string"
+                  }
+                }
+              ],
+              "isPublic": false,
+              "resource": "string",
+              "condition": {
+                "string": "string"
+              },
+              "createdAt": 1481289211.615,
+              "principal": {
+                "string": "string"
+              },
+              "updatedAt": 1481289211.615,
+              "analyzedAt": 1481289211.615,
+              "resourceType": "string",
+              "resourceOwnerAccount": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListPolicyGenerations:
+    description: |-
+      Lists all of the policy generations requested in the last seven days.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_ListPolicyGenerations.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "principalArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "policyGenerations": [
+            {
+              "jobId": "string",
+              "status": "string",
+              "startedOn": 1481289211.615,
+              "completedOn": 1481289211.615,
+              "principalArn": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Retrieves a list of tags applied to the specified resource.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "tags": {
+            "string": "string"
+          }
+        }
+      ]
+  StartPolicyGeneration:
+    description: |-
+      Starts the policy generation request.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_StartPolicyGeneration.html
+    example:
+      inputs: [
+        {
+          "clientToken": "string",
+          "cloudTrailDetails": {
+            "trails": [
+              {
+                "regions": [
+                  "string"
+                ],
+                "allRegions": false,
+                "cloudTrailArn": "string"
+              }
+            ],
+            "endTime": 1481289211.615,
+            "startTime": 1481289211.615,
+            "accessRole": "string"
+          },
+          "policyGenerationDetails": {
+            "principalArn": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartResourceScan:
+    description: |-
+      Immediately starts a scan of the policies applied to the specified resource.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_StartResourceScan.html
+    example:
+      inputs: [
+        {
+          "analyzerArn": "string",
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  TagResource:
+    description: |-
+      Adds a tag to the specified resource.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "tags": {
+            "string": "string"
+          },
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Removes a tag from the specified resource.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "tagKeys": [
+            "string"
+          ],
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateArchiveRule:
+    description: |-
+      Updates the criteria and values for the specified archive rule.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_UpdateArchiveRule.html
+    example:
+      inputs: [
+        {
+          "filter": {
+            "string": {
+              "eq": [
+                "string"
+              ],
+              "neq": [
+                "string"
+              ],
+              "exists": false,
+              "contains": [
+                "string"
+              ]
+            }
+          },
+          "ruleName": "string",
+          "clientToken": "string",
+          "analyzerName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateFindings:
+    description: |-
+      Updates the status for the specified findings.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_UpdateFindings.html
+    example:
+      inputs: [
+        {
+          "ids": [
+            "string"
+          ],
+          "status": "string",
+          "analyzerArn": "string",
+          "clientToken": "string",
+          "resourceArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ValidatePolicy:
+    description: |-
+      Requests the validation of a policy and returns a list of findings. The findings help you identify issues and provide actionable recommendations to resolve the issue and enable you to author functional policies that meet security best practices.
+    versions:
+      from: 2019.11.1
+    link: https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_ValidatePolicy.html
+    example:
+      inputs: [
+        {
+          "locale": "string",
+          "nextToken": "string",
+          "maxResults": 1,
+          "policyType": "string",
+          "policyDocument": "string"
+        }
+      ]
+      outputs: [
+        {
+          "findings": [
+            {
+              "issueCode": "string",
+              "locations": [
+                {
+                  "path": [
+                    {
+                      "key": "string",
+                      "index": 1,
+                      "value": "string",
+                      "substring": {
+                        "start": 1,
+                        "length": 1
+                      }
+                    }
+                  ],
+                  "span": {
+                    "end": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 1
+                    },
+                    "start": {
+                      "line": 1,
+                      "column": 1,
+                      "offset": 1
+                    }
+                  }
+                }
+              ],
+              "findingType": "string",
+              "learnMoreLink": "string",
+              "findingDetails": "string"
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]

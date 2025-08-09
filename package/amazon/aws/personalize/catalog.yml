@@ -1,0 +1,1515 @@
+Product:
+  name: Amazon Personalize
+  versions: [2018.3.22,2018.5.22]
+  package: amazon.aws.personalize
+  description: |-
+    Amazon Personalize
+  link: https://docs.aws.amazon.com/personalize/latest/dg/what-is-personalize.html
+  contentType: json
+Operations:
+  CreateBatchInferenceJob:
+    description: |-
+      Creates a batch inference job. The operation can handle up to 50 million records and the input file must be in JSON format. For more information, see Getting batch recommendations.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_CreateBatchInferenceJob.html
+    example:
+      inputs: [
+        {
+          "jobName": "string",
+          "roleArn": "string",
+          "jobInput": {
+            "s3DataSource": {
+              "path": "string",
+              "kmsKeyArn": "string"
+            }
+          },
+          "filterArn": "string",
+          "jobOutput": {
+            "s3DataDestination": {
+              "path": "string",
+              "kmsKeyArn": "string"
+            }
+          },
+          "numResults": 1,
+          "solutionVersionArn": "string",
+          "batchInferenceJobConfig": {
+            "itemExplorationConfig": {
+              "string": "string"
+            }
+          }
+        }
+      ]
+      outputs: [
+        {
+          "batchInferenceJobArn": "string"
+        }
+      ]
+  CreateCampaign:
+    description: |-
+      Creates a campaign by deploying a solution version. When a client calls the GetRecommendations and GetPersonalizedRanking APIs, a campaign is specified in the request.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_CreateCampaign.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "campaignConfig": {
+            "itemExplorationConfig": {
+              "string": "string"
+            }
+          },
+          "minProvisionedTPS": 1,
+          "solutionVersionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "campaignArn": "string"
+        }
+      ]
+  CreateDatasetExportJob:
+    description: |-
+      Creates a job that exports data from your dataset to an Amazon S3 bucket. To allow Amazon Personalize to export the training data, you must specify an service-linked AWS Identity and Access Management (IAM) role that gives Amazon Personalize PutObject permissions for your Amazon S3 bucket. For information, see Exporting a dataset in the Amazon Personalize developer guide.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetExportJob.html
+    example:
+      inputs: [
+        {
+          "jobName": "string",
+          "roleArn": "string",
+          "jobOutput": {
+            "s3DataDestination": {
+              "path": "string",
+              "kmsKeyArn": "string"
+            }
+          },
+          "datasetArn": "string",
+          "ingestionMode": "string"
+        }
+      ]
+      outputs: [
+        {
+          "datasetExportJobArn": "string"
+        }
+      ]
+  CreateDatasetGroup:
+    description: |-
+      Creates an empty dataset group. A dataset group contains related datasets that supply data for training a model.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetGroup.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "roleArn": "string",
+          "kmsKeyArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "datasetGroupArn": "string"
+        }
+      ]
+  CreateDataset:
+    description: |-
+      Creates an empty dataset and adds it to the specified dataset group. Use CreateDatasetImportJob to import your training data to a dataset.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDataset.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "schemaArn": "string",
+          "datasetType": "string",
+          "datasetGroupArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "datasetArn": "string"
+        }
+      ]
+  CreateDatasetImportJob:
+    description: |-
+      Creates a job that imports training data from your data source (an Amazon S3 bucket) to an Amazon Personalize dataset. To allow Amazon Personalize to import the training data, you must specify an AWS Identity and Access Management (IAM) service role that has permission to read from the data source, as Amazon Personalize makes a copy of your data and processes it in an internal AWS system. For information on granting access to your Amazon S3 bucket, see Giving Amazon Personalize Access to Amazon S3 Resources.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_CreateDatasetImportJob.html
+    example:
+      inputs: [
+        {
+          "jobName": "string",
+          "roleArn": "string",
+          "dataSource": {
+            "dataLocation": "string"
+          },
+          "datasetArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "datasetImportJobArn": "string"
+        }
+      ]
+  CreateEventTracker:
+    description: |-
+      Creates an event tracker that you use when adding event data to a specified dataset group using the PutEvents API.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_CreateEventTracker.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "datasetGroupArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "trackingId": "string",
+          "eventTrackerArn": "string"
+        }
+      ]
+  CreateFilter:
+    description: |-
+      Creates a recommendation filter. For more information, see Filtering recommendations.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_CreateFilter.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "datasetGroupArn": "string",
+          "filterExpression": "string"
+        }
+      ]
+      outputs: [
+        {
+          "filterArn": "string"
+        }
+      ]
+  CreateSchema:
+    description: |-
+      Creates an Amazon Personalize schema from the specified schema string. The schema you create must be in Avro JSON format.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSchema.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "schema": "string"
+        }
+      ]
+      outputs: [
+        {
+          "schemaArn": "string"
+        }
+      ]
+  CreateSolution:
+    description: |-
+      Creates the configuration for training a model. A trained model is known as a solution. After the configuration is created, you train the model (create a solution) by calling the CreateSolutionVersion operation. Every time you call CreateSolutionVersion, a new version of the solution is created.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolution.html
+    example:
+      inputs: [
+        {
+          "name": "string",
+          "eventType": "string",
+          "recipeArn": "string",
+          "performHPO": false,
+          "performAutoML": false,
+          "solutionConfig": {
+            "hpoConfig": {
+              "hpoObjective": {
+                "type": "string",
+                "metricName": "string",
+                "metricRegex": "string"
+              },
+              "hpoResourceConfig": {
+                "maxNumberOfTrainingJobs": "string",
+                "maxParallelTrainingJobs": "string"
+              },
+              "algorithmHyperParameterRanges": {
+                "integerHyperParameterRanges": [
+                  {
+                    "name": "string",
+                    "maxValue": 1,
+                    "minValue": 1
+                  }
+                ],
+                "continuousHyperParameterRanges": [
+                  {
+                    "name": "string",
+                    "maxValue": 0.1,
+                    "minValue": 0.1
+                  }
+                ],
+                "categoricalHyperParameterRanges": [
+                  {
+                    "name": "string",
+                    "values": [
+                      "string"
+                    ]
+                  }
+                ]
+              }
+            },
+            "autoMLConfig": {
+              "metricName": "string",
+              "recipeList": [
+                "string"
+              ]
+            },
+            "eventValueThreshold": "string",
+            "algorithmHyperParameters": {
+              "string": "string"
+            },
+            "featureTransformationParameters": {
+              "string": "string"
+            }
+          },
+          "datasetGroupArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "solutionArn": "string"
+        }
+      ]
+  CreateSolutionVersion:
+    description: |-
+      Trains or retrains an active solution. A solution is created using the CreateSolution operation and must be in the ACTIVE state before calling CreateSolutionVersion. A new version of the solution is created every time you call this operation.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_CreateSolutionVersion.html
+    example:
+      inputs: [
+        {
+          "solutionArn": "string",
+          "trainingMode": "string"
+        }
+      ]
+      outputs: [
+        {
+          "solutionVersionArn": "string"
+        }
+      ]
+  DeleteCampaign:
+    description: |-
+      Removes a campaign by deleting the solution deployment. The solution that the campaign is based on is not deleted and can be redeployed when needed. A deleted campaign can no longer be specified in a GetRecommendations request. For more information on campaigns, see CreateCampaign.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteCampaign.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDatasetGroup:
+    description: |-
+      Deletes a dataset group.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteDatasetGroup.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDataset:
+    description: |-
+      Deletes a dataset. You can't delete a dataset if an associated DatasetImportJob or SolutionVersion is in the CREATE PENDING or IN PROGRESS state. For more information on datasets, see CreateDataset.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteDataset.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteEventTracker:
+    description: |-
+      Deletes the event tracker. Does not delete the event-interactions dataset from the associated dataset group. For more information on event trackers, see CreateEventTracker.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteEventTracker.html
+    example:
+      inputs: [
+        {
+          "eventTrackerArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteFilter:
+    description: |-
+      Deletes a filter.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteFilter.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteSchema:
+    description: |-
+      Deletes a schema. Before deleting a schema, you must delete all datasets referencing the schema. For more information on schemas, see CreateSchema.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteSchema.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteSolution:
+    description: |-
+      Deletes all versions of a solution and the Solution object itself. Before deleting a solution, you must delete all campaigns based on the solution. To determine what campaigns are using the solution, call ListCampaigns and supply the Amazon Resource Name (ARN) of the solution. You can't delete a solution if an associated SolutionVersion is in the CREATE PENDING or IN PROGRESS state. For more information on solutions, see CreateSolution.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DeleteSolution.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeAlgorithm:
+    description: |-
+      Describes the given algorithm.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeAlgorithm.html
+    example:
+      inputs: [
+        {
+          "algorithmArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "algorithm": {
+            "name": "string",
+            "roleArn": "string",
+            "algorithmArn": "string",
+            "algorithmImage": {
+              "name": "string",
+              "dockerURI": "string"
+            },
+            "creationDateTime": 1481289211.615,
+            "trainingInputMode": "string",
+            "lastUpdatedDateTime": 1481289211.615,
+            "defaultResourceConfig": {
+              "string": "string"
+            },
+            "defaultHyperParameters": {
+              "string": "string"
+            },
+            "defaultHyperParameterRanges": {
+              "integerHyperParameterRanges": [
+                {
+                  "name": "string",
+                  "maxValue": 1,
+                  "minValue": 1,
+                  "isTunable": false
+                }
+              ],
+              "continuousHyperParameterRanges": [
+                {
+                  "name": "string",
+                  "maxValue": 0.1,
+                  "minValue": 0.1,
+                  "isTunable": false
+                }
+              ],
+              "categoricalHyperParameterRanges": [
+                {
+                  "name": "string",
+                  "values": [
+                    "string"
+                  ],
+                  "isTunable": false
+                }
+              ]
+            }
+          }
+        }
+      ]
+  DescribeBatchInferenceJob:
+    description: |-
+      Gets the properties of a batch inference job including name, Amazon Resource Name (ARN), status, input and output configurations, and the ARN of the solution version used to generate the recommendations.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeBatchInferenceJob.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "batchInferenceJob": {
+            "status": "string",
+            "jobName": "string",
+            "roleArn": "string",
+            "jobInput": {
+              "s3DataSource": {
+                "path": "string",
+                "kmsKeyArn": "string"
+              }
+            },
+            "filterArn": "string",
+            "jobOutput": {
+              "s3DataDestination": {
+                "path": "string",
+                "kmsKeyArn": "string"
+              }
+            },
+            "numResults": 1,
+            "failureReason": "string",
+            "creationDateTime": 1481289211.615,
+            "solutionVersionArn": "string",
+            "lastUpdatedDateTime": 1481289211.615,
+            "batchInferenceJobArn": "string",
+            "batchInferenceJobConfig": {
+              "itemExplorationConfig": {
+                "string": "string"
+              }
+            }
+          }
+        }
+      ]
+  DescribeCampaign:
+    description: |-
+      Describes the given campaign, including its status.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeCampaign.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "campaign": {
+            "name": "string",
+            "status": "string",
+            "campaignArn": "string",
+            "failureReason": "string",
+            "campaignConfig": {
+              "itemExplorationConfig": {
+                "string": "string"
+              }
+            },
+            "creationDateTime": 1481289211.615,
+            "minProvisionedTPS": 1,
+            "solutionVersionArn": "string",
+            "lastUpdatedDateTime": 1481289211.615,
+            "latestCampaignUpdate": {
+              "status": "string",
+              "failureReason": "string",
+              "campaignConfig": {
+                "itemExplorationConfig": {
+                  "string": "string"
+                }
+              },
+              "creationDateTime": 1481289211.615,
+              "minProvisionedTPS": 1,
+              "solutionVersionArn": "string",
+              "lastUpdatedDateTime": 1481289211.615
+            }
+          }
+        }
+      ]
+  DescribeDatasetExportJob:
+    description: |-
+      Describes the dataset export job created by CreateDatasetExportJob, including the export job status.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetExportJob.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "datasetExportJob": {
+            "status": "string",
+            "jobName": "string",
+            "roleArn": "string",
+            "jobOutput": {
+              "s3DataDestination": {
+                "path": "string",
+                "kmsKeyArn": "string"
+              }
+            },
+            "datasetArn": "string",
+            "failureReason": "string",
+            "ingestionMode": "string",
+            "creationDateTime": 1481289211.615,
+            "datasetExportJobArn": "string",
+            "lastUpdatedDateTime": 1481289211.615
+          }
+        }
+      ]
+  DescribeDatasetGroup:
+    description: |-
+      Describes the given dataset group. For more information on dataset groups, see CreateDatasetGroup.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetGroup.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "datasetGroup": {
+            "name": "string",
+            "status": "string",
+            "roleArn": "string",
+            "kmsKeyArn": "string",
+            "failureReason": "string",
+            "datasetGroupArn": "string",
+            "creationDateTime": 1481289211.615,
+            "lastUpdatedDateTime": 1481289211.615
+          }
+        }
+      ]
+  DescribeDataset:
+    description: |-
+      Describes the given dataset. For more information on datasets, see CreateDataset.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDataset.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "dataset": {
+            "name": "string",
+            "status": "string",
+            "schemaArn": "string",
+            "datasetArn": "string",
+            "datasetType": "string",
+            "datasetGroupArn": "string",
+            "creationDateTime": 1481289211.615,
+            "lastUpdatedDateTime": 1481289211.615
+          }
+        }
+      ]
+  DescribeDatasetImportJob:
+    description: |-
+      Describes the dataset import job created by CreateDatasetImportJob, including the import job status.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeDatasetImportJob.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "datasetImportJob": {
+            "status": "string",
+            "jobName": "string",
+            "roleArn": "string",
+            "dataSource": {
+              "dataLocation": "string"
+            },
+            "datasetArn": "string",
+            "failureReason": "string",
+            "creationDateTime": 1481289211.615,
+            "datasetImportJobArn": "string",
+            "lastUpdatedDateTime": 1481289211.615
+          }
+        }
+      ]
+  DescribeEventTracker:
+    description: |-
+      Describes an event tracker. The response includes the trackingId and status of the event tracker. For more information on event trackers, see CreateEventTracker.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeEventTracker.html
+    example:
+      inputs: [
+        {
+          "eventTrackerArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "eventTracker": {
+            "name": "string",
+            "status": "string",
+            "accountId": "string",
+            "trackingId": "string",
+            "datasetGroupArn": "string",
+            "eventTrackerArn": "string",
+            "creationDateTime": 1481289211.615,
+            "lastUpdatedDateTime": 1481289211.615
+          }
+        }
+      ]
+  DescribeFeatureTransformation:
+    description: |-
+      Describes the given feature transformation.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeFeatureTransformation.html
+    example:
+      inputs: [
+        {
+          "featureTransformationArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "featureTransformation": {
+            "name": "string",
+            "status": "string",
+            "creationDateTime": 1481289211.615,
+            "defaultParameters": {
+              "string": "string"
+            },
+            "lastUpdatedDateTime": 1481289211.615,
+            "featureTransformationArn": "string"
+          }
+        }
+      ]
+  DescribeFilter:
+    description: |-
+      Describes a filter's properties.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeFilter.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "filter": {
+            "name": "string",
+            "status": "string",
+            "filterArn": "string",
+            "failureReason": "string",
+            "datasetGroupArn": "string",
+            "creationDateTime": 1481289211.615,
+            "filterExpression": "string",
+            "lastUpdatedDateTime": 1481289211.615
+          }
+        }
+      ]
+  DescribeRecipe:
+    description: |-
+      Describes a recipe.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeRecipe.html
+    example:
+      inputs: [
+        {
+          "recipeArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "recipe": {
+            "name": "string",
+            "status": "string",
+            "recipeArn": "string",
+            "recipeType": "string",
+            "description": "string",
+            "algorithmArn": "string",
+            "creationDateTime": 1481289211.615,
+            "lastUpdatedDateTime": 1481289211.615,
+            "featureTransformationArn": "string"
+          }
+        }
+      ]
+  DescribeSchema:
+    description: |-
+      Describes a schema. For more information on schemas, see CreateSchema.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSchema.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "schema": {
+            "name": "string",
+            "schema": "string",
+            "schemaArn": "string",
+            "creationDateTime": 1481289211.615,
+            "lastUpdatedDateTime": 1481289211.615
+          }
+        }
+      ]
+  DescribeSolution:
+    description: |-
+      Describes a solution. For more information on solutions, see CreateSolution.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolution.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "solution": {
+            "name": "string",
+            "status": "string",
+            "eventType": "string",
+            "recipeArn": "string",
+            "performHPO": false,
+            "solutionArn": "string",
+            "autoMLResult": {
+              "bestRecipeArn": "string"
+            },
+            "performAutoML": false,
+            "solutionConfig": {
+              "hpoConfig": {
+                "hpoObjective": {
+                  "type": "string",
+                  "metricName": "string",
+                  "metricRegex": "string"
+                },
+                "hpoResourceConfig": {
+                  "maxNumberOfTrainingJobs": "string",
+                  "maxParallelTrainingJobs": "string"
+                },
+                "algorithmHyperParameterRanges": {
+                  "integerHyperParameterRanges": [
+                    {
+                      "name": "string",
+                      "maxValue": 1,
+                      "minValue": 1
+                    }
+                  ],
+                  "continuousHyperParameterRanges": [
+                    {
+                      "name": "string",
+                      "maxValue": 0.1,
+                      "minValue": 0.1
+                    }
+                  ],
+                  "categoricalHyperParameterRanges": [
+                    {
+                      "name": "string",
+                      "values": [
+                        "string"
+                      ]
+                    }
+                  ]
+                }
+              },
+              "autoMLConfig": {
+                "metricName": "string",
+                "recipeList": [
+                  "string"
+                ]
+              },
+              "eventValueThreshold": "string",
+              "algorithmHyperParameters": {
+                "string": "string"
+              },
+              "featureTransformationParameters": {
+                "string": "string"
+              }
+            },
+            "datasetGroupArn": "string",
+            "creationDateTime": 1481289211.615,
+            "lastUpdatedDateTime": 1481289211.615,
+            "latestSolutionVersion": {
+              "status": "string",
+              "failureReason": "string",
+              "creationDateTime": 1481289211.615,
+              "solutionVersionArn": "string",
+              "lastUpdatedDateTime": 1481289211.615
+            }
+          }
+        }
+      ]
+  DescribeSolutionVersion:
+    description: |-
+      Describes a specific version of a solution. For more information on solutions, see CreateSolution.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_DescribeSolutionVersion.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "solutionVersion": {
+            "status": "string",
+            "eventType": "string",
+            "recipeArn": "string",
+            "performHPO": false,
+            "solutionArn": "string",
+            "trainingMode": "string",
+            "failureReason": "string",
+            "performAutoML": false,
+            "trainingHours": 0.1,
+            "solutionConfig": {
+              "hpoConfig": {
+                "hpoObjective": {
+                  "type": "string",
+                  "metricName": "string",
+                  "metricRegex": "string"
+                },
+                "hpoResourceConfig": {
+                  "maxNumberOfTrainingJobs": "string",
+                  "maxParallelTrainingJobs": "string"
+                },
+                "algorithmHyperParameterRanges": {
+                  "integerHyperParameterRanges": [
+                    {
+                      "name": "string",
+                      "maxValue": 1,
+                      "minValue": 1
+                    }
+                  ],
+                  "continuousHyperParameterRanges": [
+                    {
+                      "name": "string",
+                      "maxValue": 0.1,
+                      "minValue": 0.1
+                    }
+                  ],
+                  "categoricalHyperParameterRanges": [
+                    {
+                      "name": "string",
+                      "values": [
+                        "string"
+                      ]
+                    }
+                  ]
+                }
+              },
+              "autoMLConfig": {
+                "metricName": "string",
+                "recipeList": [
+                  "string"
+                ]
+              },
+              "eventValueThreshold": "string",
+              "algorithmHyperParameters": {
+                "string": "string"
+              },
+              "featureTransformationParameters": {
+                "string": "string"
+              }
+            },
+            "tunedHPOParams": {
+              "algorithmHyperParameters": {
+                "string": "string"
+              }
+            },
+            "datasetGroupArn": "string",
+            "creationDateTime": 1481289211.615,
+            "solutionVersionArn": "string",
+            "lastUpdatedDateTime": 1481289211.615
+          }
+        }
+      ]
+  GetSolutionMetrics:
+    description: |-
+      Gets the metrics for the specified solution version.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_GetSolutionMetrics.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "metrics": {
+            "string": 0.1
+          },
+          "solutionVersionArn": "string"
+        }
+      ]
+  ListBatchInferenceJobs:
+    description: |-
+      Gets a list of the batch inference jobs that have been performed off of a solution version.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_ListBatchInferenceJobs.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "solutionVersionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "batchInferenceJobs": [
+            {
+              "status": "string",
+              "jobName": "string",
+              "failureReason": "string",
+              "creationDateTime": 1481289211.615,
+              "solutionVersionArn": "string",
+              "lastUpdatedDateTime": 1481289211.615,
+              "batchInferenceJobArn": "string"
+            }
+          ]
+        }
+      ]
+  ListCampaigns:
+    description: |-
+      Returns a list of campaigns that use the given solution. When a solution is not specified, all the campaigns associated with the account are listed. The response provides the properties for each campaign, including the Amazon Resource Name (ARN). For more information on campaigns, see CreateCampaign.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_ListCampaigns.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "solutionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "campaigns": [
+            {
+              "name": "string",
+              "status": "string",
+              "campaignArn": "string",
+              "failureReason": "string",
+              "creationDateTime": 1481289211.615,
+              "lastUpdatedDateTime": 1481289211.615
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListDatasetExportJobs:
+    description: |-
+      Returns a list of dataset export jobs that use the given dataset. When a dataset is not specified, all the dataset export jobs associated with the account are listed. The response provides the properties for each dataset export job, including the Amazon Resource Name (ARN). For more information on dataset export jobs, see CreateDatasetExportJob. For more information on datasets, see CreateDataset.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasetExportJobs.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "datasetArn": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "datasetExportJobs": [
+            {
+              "status": "string",
+              "jobName": "string",
+              "failureReason": "string",
+              "creationDateTime": 1481289211.615,
+              "datasetExportJobArn": "string",
+              "lastUpdatedDateTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListDatasetGroups:
+    description: |-
+      Returns a list of dataset groups. The response provides the properties for each dataset group, including the Amazon Resource Name (ARN). For more information on dataset groups, see CreateDatasetGroup.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasetGroups.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "datasetGroups": [
+            {
+              "name": "string",
+              "status": "string",
+              "failureReason": "string",
+              "datasetGroupArn": "string",
+              "creationDateTime": 1481289211.615,
+              "lastUpdatedDateTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListDatasetImportJobs:
+    description: |-
+      Returns a list of dataset import jobs that use the given dataset. When a dataset is not specified, all the dataset import jobs associated with the account are listed. The response provides the properties for each dataset import job, including the Amazon Resource Name (ARN). For more information on dataset import jobs, see CreateDatasetImportJob. For more information on datasets, see CreateDataset.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasetImportJobs.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "datasetArn": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "datasetImportJobs": [
+            {
+              "status": "string",
+              "jobName": "string",
+              "failureReason": "string",
+              "creationDateTime": 1481289211.615,
+              "datasetImportJobArn": "string",
+              "lastUpdatedDateTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListDatasets:
+    description: |-
+      Returns the list of datasets contained in the given dataset group. The response provides the properties for each dataset, including the Amazon Resource Name (ARN). For more information on datasets, see CreateDataset.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_ListDatasets.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "datasetGroupArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "datasets": [
+            {
+              "name": "string",
+              "status": "string",
+              "datasetArn": "string",
+              "datasetType": "string",
+              "creationDateTime": 1481289211.615,
+              "lastUpdatedDateTime": 1481289211.615
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListEventTrackers:
+    description: |-
+      Returns the list of event trackers associated with the account. The response provides the properties for each event tracker, including the Amazon Resource Name (ARN) and tracking ID. For more information on event trackers, see CreateEventTracker.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_ListEventTrackers.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "datasetGroupArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "eventTrackers": [
+            {
+              "name": "string",
+              "status": "string",
+              "eventTrackerArn": "string",
+              "creationDateTime": 1481289211.615,
+              "lastUpdatedDateTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListFilters:
+    description: |-
+      Lists all filters that belong to a given dataset group.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_ListFilters.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "datasetGroupArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Filters": [
+            {
+              "name": "string",
+              "status": "string",
+              "filterArn": "string",
+              "failureReason": "string",
+              "datasetGroupArn": "string",
+              "creationDateTime": 1481289211.615,
+              "lastUpdatedDateTime": 1481289211.615
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListRecipes:
+    description: |-
+      Returns a list of available recipes. The response provides the properties for each recipe, including the recipe's Amazon Resource Name (ARN).
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_ListRecipes.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "recipeProvider": "string"
+        }
+      ]
+      outputs: [
+        {
+          "recipes": [
+            {
+              "name": "string",
+              "status": "string",
+              "recipeArn": "string",
+              "creationDateTime": 1481289211.615,
+              "lastUpdatedDateTime": 1481289211.615
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListSchemas:
+    description: |-
+      Returns the list of schemas associated with the account. The response provides the properties for each schema, including the Amazon Resource Name (ARN). For more information on schemas, see CreateSchema.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_ListSchemas.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1
+        }
+      ]
+      outputs: [
+        {
+          "schemas": [
+            {
+              "name": "string",
+              "schemaArn": "string",
+              "creationDateTime": 1481289211.615,
+              "lastUpdatedDateTime": 1481289211.615
+            }
+          ],
+          "nextToken": "string"
+        }
+      ]
+  ListSolutions:
+    description: |-
+      Returns a list of solutions that use the given dataset group. When a dataset group is not specified, all the solutions associated with the account are listed. The response provides the properties for each solution, including the Amazon Resource Name (ARN). For more information on solutions, see CreateSolution.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutions.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "datasetGroupArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "solutions": [
+            {
+              "name": "string",
+              "status": "string",
+              "solutionArn": "string",
+              "creationDateTime": 1481289211.615,
+              "lastUpdatedDateTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListSolutionVersions:
+    description: |-
+      Returns a list of solution versions for the given solution. When a solution is not specified, all the solution versions associated with the account are listed. The response provides the properties for each solution version, including the Amazon Resource Name (ARN). For more information on solutions, see CreateSolution.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_ListSolutionVersions.html
+    example:
+      inputs: [
+        {
+          "nextToken": "string",
+          "maxResults": 1,
+          "solutionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "nextToken": "string",
+          "solutionVersions": [
+            {
+              "status": "string",
+              "failureReason": "string",
+              "creationDateTime": 1481289211.615,
+              "solutionVersionArn": "string",
+              "lastUpdatedDateTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  GetPersonalizedRanking:
+    description: |-
+      Re-ranks a list of recommended items for the given user. The first item in the list is deemed the most likely item to be of interest to the user.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetPersonalizedRanking.html
+    example:
+      inputs: [
+        {
+          "userId": "string",
+          "context": {
+            "string": "string"
+          },
+          "filterArn": "string",
+          "inputList": [
+            "string"
+          ],
+          "campaignArn": "string",
+          "filterValues": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "recommendationId": "string",
+          "personalizedRanking": [
+            {
+              "score": 0.1,
+              "itemId": "string"
+            }
+          ]
+        }
+      ]
+  GetRecommendations:
+    description: |-
+      Returns a list of recommended items. The required input depends on the recipe type used to create the solution backing the campaign.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html
+    example:
+      inputs: [
+        {
+          "itemId": "string",
+          "userId": "string",
+          "context": {
+            "string": "string"
+          },
+          "filterArn": "string",
+          "numResults": 1,
+          "campaignArn": "string",
+          "filterValues": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "itemList": [
+            {
+              "score": 0.1,
+              "itemId": "string"
+            }
+          ],
+          "recommendationId": "string"
+        }
+      ]
+  PutEvents:
+    description: |-
+      Records user interaction event data. For more information see Recording Events.
+    versions:
+      from: 2018.3.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html
+    example:
+      inputs: [
+        {
+          "userId": "string",
+          "eventList": [
+            {
+              "itemId": "string",
+              "sentAt": 1481289211.615,
+              "eventId": "string",
+              "eventType": "string",
+              "eventValue": 0.1,
+              "impression": [
+                "string"
+              ],
+              "properties": "string",
+              "recommendationId": "string"
+            }
+          ],
+          "sessionId": "string",
+          "trackingId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutItems:
+    description: |-
+      Adds one or more items to an Items dataset. For more information see Importing Items Incrementally.
+    versions:
+      from: 2018.3.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutItems.html
+    example:
+      inputs: [
+        {
+          "items": [
+            {
+              "itemId": "string",
+              "properties": "string"
+            }
+          ],
+          "datasetArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  PutUsers:
+    description: |-
+      Adds one or more users to a Users dataset. For more information see Importing Users Incrementally.
+    versions:
+      from: 2018.3.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutUsers.html
+    example:
+      inputs: [
+        {
+          "users": [
+            {
+              "userId": "string",
+              "properties": "string"
+            }
+          ],
+          "datasetArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateCampaign:
+    description: |-
+      Updates a campaign by either deploying a new solution or changing the value of the campaign's minProvisionedTPS parameter.
+    versions:
+      from: 2018.5.22
+      to: 2018.5.22
+    link: https://docs.aws.amazon.com/personalize/latest/dg/API_UpdateCampaign.html
+    example:
+      inputs: [
+        {
+          "campaignArn": "string",
+          "campaignConfig": {
+            "itemExplorationConfig": {
+              "string": "string"
+            }
+          },
+          "minProvisionedTPS": 1,
+          "solutionVersionArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "campaignArn": "string"
+        }
+      ]

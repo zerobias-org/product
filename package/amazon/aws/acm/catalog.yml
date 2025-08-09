@@ -1,0 +1,403 @@
+Product:
+  name: AWS Certificate Manager
+  versions: [2015.12.8]
+  package: amazon.aws.acm
+  description: |-
+    AWS Certificate Manager
+  link: https://docs.aws.amazon.com/acm/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  AddTagsToCertificate:
+    description: |-
+      Adds one or more tags to an ACM certificate. Tags are labels that you can use to identify and organize your AWS resources. Each tag consists of a key and an optional value. You specify the certificate on input by its Amazon Resource Name (ARN). You specify the tag by using a key-value pair.
+    versions:
+      from: 2015.12.8
+    link: https://docs.aws.amazon.com/acm/latest/APIReference/API_AddTagsToCertificate.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "CertificateArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteCertificate:
+    description: |-
+      Deletes a certificate and its associated private key. If this action succeeds, the certificate no longer appears in the list that can be displayed by calling the ListCertificates action or be retrieved by calling the GetCertificate action. The certificate will not be available for use by AWS services integrated with ACM.
+    versions:
+      from: 2015.12.8
+    link: https://docs.aws.amazon.com/acm/latest/APIReference/API_DeleteCertificate.html
+    example:
+      inputs: [
+        {
+          "CertificateArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeCertificate:
+    description: |-
+      Returns detailed metadata about the specified ACM certificate.
+    versions:
+      from: 2015.12.8
+    link: https://docs.aws.amazon.com/acm/latest/APIReference/API_DescribeCertificate.html
+    example:
+      inputs: [
+        {
+          "CertificateArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Certificate": {
+            "Type": "string",
+            "Issuer": "string",
+            "Serial": "string",
+            "Status": "string",
+            "InUseBy": [
+              "string"
+            ],
+            "Options": {
+              "CertificateTransparencyLoggingPreference": "string"
+            },
+            "Subject": "string",
+            "IssuedAt": 1481289211.615,
+            "NotAfter": 1481289211.615,
+            "CreatedAt": 1481289211.615,
+            "KeyUsages": [
+              {
+                "Name": "string"
+              }
+            ],
+            "NotBefore": 1481289211.615,
+            "RevokedAt": 1481289211.615,
+            "DomainName": "string",
+            "ImportedAt": 1481289211.615,
+            "KeyAlgorithm": "string",
+            "FailureReason": "string",
+            "CertificateArn": "string",
+            "RenewalSummary": {
+              "UpdatedAt": 1481289211.615,
+              "RenewalStatus": "string",
+              "RenewalStatusReason": "string",
+              "DomainValidationOptions": [
+                {
+                  "DomainName": "string",
+                  "ResourceRecord": {
+                    "Name": "string",
+                    "Type": "string",
+                    "Value": "string"
+                  },
+                  "ValidationDomain": "string",
+                  "ValidationEmails": [
+                    "string"
+                  ],
+                  "ValidationMethod": "string",
+                  "ValidationStatus": "string"
+                }
+              ]
+            },
+            "RevocationReason": "string",
+            "ExtendedKeyUsages": [
+              {
+                "OID": "string",
+                "Name": "string"
+              }
+            ],
+            "RenewalEligibility": "string",
+            "SignatureAlgorithm": "string",
+            "CertificateAuthorityArn": "string",
+            "DomainValidationOptions": [
+              {
+                "DomainName": "string",
+                "ResourceRecord": {
+                  "Name": "string",
+                  "Type": "string",
+                  "Value": "string"
+                },
+                "ValidationDomain": "string",
+                "ValidationEmails": [
+                  "string"
+                ],
+                "ValidationMethod": "string",
+                "ValidationStatus": "string"
+              }
+            ],
+            "SubjectAlternativeNames": [
+              "string"
+            ]
+          }
+        }
+      ]
+  ExportCertificate:
+    description: |-
+      Exports a private certificate issued by a private certificate authority (CA) for use anywhere. The exported file contains the certificate, the certificate chain, and the encrypted private 2048-bit RSA key associated with the public key that is embedded in the certificate. For security, you must assign a passphrase for the private key when exporting it.
+    versions:
+      from: 2015.12.8
+    link: https://docs.aws.amazon.com/acm/latest/APIReference/API_ExportCertificate.html
+    example:
+      inputs: [
+        {
+          "Passphrase": "blob",
+          "CertificateArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "PrivateKey": "string",
+          "Certificate": "string",
+          "CertificateChain": "string"
+        }
+      ]
+  GetAccountConfiguration:
+    description: |-
+      Returns the account configuration options associated with an AWS account.
+    versions:
+      from: 2015.12.8
+    link: https://docs.aws.amazon.com/acm/latest/APIReference/API_GetAccountConfiguration.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "ExpiryEvents": {
+            "DaysBeforeExpiry": 1
+          }
+        }
+      ]
+  GetCertificate:
+    description: |-
+      Retrieves an Amazon-issued certificate and its certificate chain. The chain consists of the certificate of the issuing CA and the intermediate certificates of any other subordinate CAs. All of the certificates are base64 encoded. You can use OpenSSL to decode the certificates and inspect individual fields.
+    versions:
+      from: 2015.12.8
+    link: https://docs.aws.amazon.com/acm/latest/APIReference/API_GetCertificate.html
+    example:
+      inputs: [
+        {
+          "CertificateArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Certificate": "string",
+          "CertificateChain": "string"
+        }
+      ]
+  ImportCertificate:
+    description: |-
+      Imports a certificate into AWS Certificate Manager (ACM) to use with services that are integrated with ACM. Note that integrated services allow only certificate types and keys they support to be associated with their resources. Further, their support differs depending on whether the certificate is imported into IAM or into ACM. For more information, see the documentation for each service. For more information about importing certificates into ACM, see Importing Certificates in the AWS Certificate Manager User Guide.
+    versions:
+      from: 2015.12.8
+    link: https://docs.aws.amazon.com/acm/latest/APIReference/API_ImportCertificate.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "PrivateKey": "blob",
+          "Certificate": "blob",
+          "CertificateArn": "string",
+          "CertificateChain": "blob"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListCertificates:
+    description: |-
+      Retrieves a list of certificate ARNs and domain names. You can request that only certificates that match a specific status be listed. You can also filter by specific attributes of the certificate. Default filtering returns only RSA_2048 certificates. For more information, see Filters.
+    versions:
+      from: 2015.12.8
+    link: https://docs.aws.amazon.com/acm/latest/APIReference/API_ListCertificates.html
+    example:
+      inputs: [
+        {
+          "Includes": {
+            "keyTypes": [
+              "string"
+            ],
+            "keyUsage": [
+              "string"
+            ],
+            "extendedKeyUsage": [
+              "string"
+            ]
+          },
+          "MaxItems": 1,
+          "NextToken": "string",
+          "CertificateStatuses": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CertificateSummaryList": [
+            {
+              "DomainName": "string",
+              "CertificateArn": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForCertificate:
+    description: |-
+      Lists the tags that have been applied to the ACM certificate. Use the certificate's Amazon Resource Name (ARN) to specify the certificate. To add a tag to an ACM certificate, use the AddTagsToCertificate action. To delete a tag, use the RemoveTagsFromCertificate action.
+    versions:
+      from: 2015.12.8
+    link: https://docs.aws.amazon.com/acm/latest/APIReference/API_ListTagsForCertificate.html
+    example:
+      inputs: [
+        {
+          "CertificateArn": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ]
+        }
+      ]
+  PutAccountConfiguration:
+    description: |-
+      Adds or modifies account-level configurations in ACM.
+    versions:
+      from: 2015.12.8
+    link: https://docs.aws.amazon.com/acm/latest/APIReference/API_PutAccountConfiguration.html
+    example:
+      inputs: [
+        {
+          "ExpiryEvents": {
+            "DaysBeforeExpiry": 1
+          },
+          "IdempotencyToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RemoveTagsFromCertificate:
+    description: |-
+      Remove one or more tags from an ACM certificate. A tag consists of a key-value pair. If you do not specify the value portion of the tag when calling this function, the tag will be removed regardless of value. If you specify a value, the tag is removed only if it is associated with the specified value.
+    versions:
+      from: 2015.12.8
+    link: https://docs.aws.amazon.com/acm/latest/APIReference/API_RemoveTagsFromCertificate.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "CertificateArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RenewCertificate:
+    description: |-
+      Renews an eligible ACM certificate. At this time, only exported private certificates can be renewed with this operation. In order to renew your ACM PCA certificates with ACM, you must first grant the ACM service principal permission to do so. For more information, see Testing Managed Renewal in the ACM User Guide.
+    versions:
+      from: 2015.12.8
+    link: https://docs.aws.amazon.com/acm/latest/APIReference/API_RenewCertificate.html
+    example:
+      inputs: [
+        {
+          "CertificateArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RequestCertificate:
+    description: |-
+      Requests an ACM certificate for use with other AWS services. To request an ACM certificate, you must specify a fully qualified domain name (FQDN) in the DomainName parameter. You can also specify additional FQDNs in the SubjectAlternativeNames parameter.
+    versions:
+      from: 2015.12.8
+    link: https://docs.aws.amazon.com/acm/latest/APIReference/API_RequestCertificate.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Options": {
+            "CertificateTransparencyLoggingPreference": "string"
+          },
+          "DomainName": "string",
+          "IdempotencyToken": "string",
+          "ValidationMethod": "string",
+          "CertificateAuthorityArn": "string",
+          "DomainValidationOptions": [
+            {
+              "DomainName": "string",
+              "ValidationDomain": "string"
+            }
+          ],
+          "SubjectAlternativeNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ResendValidationEmail:
+    description: |-
+      Resends the email that requests domain ownership validation. The domain owner or an authorized representative must approve the ACM certificate before it can be issued. The certificate can be approved by clicking a link in the mail to navigate to the Amazon certificate approval website and then clicking I Approve. However, the validation email can be blocked by spam filters. Therefore, if you do not receive the original mail, you can request that the mail be resent within 72 hours of requesting the ACM certificate. If more than 72 hours have elapsed since your original request or since your last attempt to resend validation mail, you must request a new certificate. For more information about setting up your contact email addresses, see Configure Email for your Domain.
+    versions:
+      from: 2015.12.8
+    link: https://docs.aws.amazon.com/acm/latest/APIReference/API_ResendValidationEmail.html
+    example:
+      inputs: [
+        {
+          "Domain": "string",
+          "CertificateArn": "string",
+          "ValidationDomain": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateCertificateOptions:
+    description: |-
+      Updates a certificate. Currently, you can use this function to specify whether to opt in to or out of recording your certificate in a certificate transparency log. For more information, see Opting Out of Certificate Transparency Logging.
+    versions:
+      from: 2015.12.8
+    link: https://docs.aws.amazon.com/acm/latest/APIReference/API_UpdateCertificateOptions.html
+    example:
+      inputs: [
+        {
+          "Options": {
+            "CertificateTransparencyLoggingPreference": "string"
+          },
+          "CertificateArn": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]

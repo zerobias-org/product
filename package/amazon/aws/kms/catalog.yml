@@ -1,0 +1,1073 @@
+Product:
+  name: AWS Key Management Service
+  versions: [2014.11.1]
+  package: amazon.aws.kms
+  description: |-
+    AWS Key Management Service (KMS)
+  link: https://docs.aws.amazon.com/kms/latest/APIReference/Welcome.html
+  contentType: json
+Operations:
+  CancelKeyDeletion:
+    description: |-
+      Cancels the deletion of a customer master key (CMK). When this operation succeeds, the key state of the CMK is Disabled. To enable the CMK, use EnableKey.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_CancelKeyDeletion.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ConnectCustomKeyStore:
+    description: |-
+      Connects or reconnects a custom key store to its associated AWS CloudHSM cluster.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_ConnectCustomKeyStore.html
+    example:
+      inputs: [
+        {
+          "CustomKeyStoreId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateAlias:
+    description: |-
+      Creates a friendly name for a customer master key (CMK).
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateAlias.html
+    example:
+      inputs: [
+        {
+          "AliasName": "string",
+          "TargetKeyId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateCustomKeyStore:
+    description: |-
+      Creates a custom key store that is associated with an AWS CloudHSM cluster that you own and manage.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateCustomKeyStore.html
+    example:
+      inputs: [
+        {
+          "KeyStorePassword": "string",
+          "CloudHsmClusterId": "string",
+          "CustomKeyStoreName": "string",
+          "TrustAnchorCertificate": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateGrant:
+    description: |-
+      Adds a grant to a customer master key (CMK).
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateGrant.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "KeyId": "string",
+          "Operations": [
+            "string"
+          ],
+          "Constraints": {
+            "EncryptionContextEquals": {
+              "string": "string"
+            },
+            "EncryptionContextSubset": {
+              "string": "string"
+            }
+          },
+          "GrantTokens": [
+            "string"
+          ],
+          "GranteePrincipal": "string",
+          "RetiringPrincipal": "string"
+        }
+      ]
+      outputs: [
+        {
+          "GrantId": "string",
+          "GrantToken": "string"
+        }
+      ]
+  CreateKey:
+    description: |-
+      Creates a unique customer managed customer master key (CMK) in your AWS account and Region.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "TagKey": "string",
+              "TagValue": "string"
+            }
+          ],
+          "Origin": "string",
+          "Policy": "string",
+          "KeyUsage": "string",
+          "Description": "string",
+          "CustomKeyStoreId": "string",
+          "CustomerMasterKeySpec": "string",
+          "BypassPolicyLockoutSafetyCheck": false
+        }
+      ]
+      outputs: [
+        {
+          "KeyMetadata": {
+            "Arn": "string",
+            "KeyId": "string",
+            "Origin": "string",
+            "Enabled": false,
+            "ValidTo": 1481289211.615,
+            "KeyState": "string",
+            "KeyUsage": "string",
+            "KeyManager": "string",
+            "Description": "string",
+            "AWSAccountId": "string",
+            "CreationDate": 1481289211.615,
+            "DeletionDate": 1481289211.615,
+            "ExpirationModel": "string",
+            "CustomKeyStoreId": "string",
+            "CloudHsmClusterId": "string",
+            "SigningAlgorithms": [
+              "string"
+            ],
+            "EncryptionAlgorithms": [
+              "string"
+            ],
+            "CustomerMasterKeySpec": "string"
+          }
+        }
+      ]
+  Decrypt:
+    description: |-
+      Decrypts ciphertext that was encrypted by a AWS KMS customer master key (CMK).
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "GrantTokens": [
+            "string"
+          ],
+          "CiphertextBlob": "blob",
+          "EncryptionContext": {
+            "string": "string"
+          },
+          "EncryptionAlgorithm": "string"
+        }
+      ]
+      outputs: [
+        {
+          "KeyId": "string",
+          "Plaintext": "blob",
+          "EncryptionAlgorithm": "string"
+        }
+      ]
+  DeleteAlias:
+    description: |-
+      Deletes the specified alias.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_DeleteAlias.html
+    example:
+      inputs: [
+        {
+          "AliasName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteCustomKeyStore:
+    description: |-
+      Deletes a custom key store. This operation does not delete the AWS CloudHSM cluster that is associated with the custom key store, or affect any users or keys in the cluster.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_DeleteCustomKeyStore.html
+    example:
+      inputs: [
+        {
+          "CustomKeyStoreId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteImportedKeyMaterial:
+    description: |-
+      Deletes key material that you previously imported. This operation makes the specified customer master key (CMK) unusable. For more information about importing key material into AWS KMS, see Importing Key Material in the AWS Key Management Service Developer Guide.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_DeleteImportedKeyMaterial.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeCustomKeyStores:
+    description: |-
+      Gets information about custom key stores in the account and region.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeCustomKeyStores.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "CustomKeyStoreId": "string",
+          "CustomKeyStoreName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Truncated": false,
+          "NextMarker": "string",
+          "CustomKeyStores": [
+            {
+              "CreationDate": 1481289211.615,
+              "ConnectionState": "string",
+              "CustomKeyStoreId": "string",
+              "CloudHsmClusterId": "string",
+              "CustomKeyStoreName": "string",
+              "ConnectionErrorCode": "string",
+              "TrustAnchorCertificate": "string"
+            }
+          ]
+        }
+      ]
+  DescribeKey:
+    description: |-
+      Provides detailed information about a customer master key (CMK). You can run DescribeKey on a customer managed CMK or an AWS managed CMK.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "GrantTokens": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "KeyMetadata": {
+            "Arn": "string",
+            "KeyId": "string",
+            "Origin": "string",
+            "Enabled": false,
+            "ValidTo": 1481289211.615,
+            "KeyState": "string",
+            "KeyUsage": "string",
+            "KeyManager": "string",
+            "Description": "string",
+            "AWSAccountId": "string",
+            "CreationDate": 1481289211.615,
+            "DeletionDate": 1481289211.615,
+            "ExpirationModel": "string",
+            "CustomKeyStoreId": "string",
+            "CloudHsmClusterId": "string",
+            "SigningAlgorithms": [
+              "string"
+            ],
+            "EncryptionAlgorithms": [
+              "string"
+            ],
+            "CustomerMasterKeySpec": "string"
+          }
+        }
+      ]
+  DisableKey:
+    description: |-
+      Sets the state of a customer master key (CMK) to disabled. This change temporarily prevents use of the CMK for cryptographic operations.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_DisableKey.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DisableKeyRotation:
+    description: |-
+      Disables automatic rotation of the key material for the specified symmetric customer master key (CMK).
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_DisableKeyRotation.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DisconnectCustomKeyStore:
+    description: |-
+      Disconnects the custom key store from its associated AWS CloudHSM cluster. While a custom key store is disconnected, you can manage the custom key store and its customer master keys (CMKs), but you cannot create or use CMKs in the custom key store. You can reconnect the custom key store at any time.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_DisconnectCustomKeyStore.html
+    example:
+      inputs: [
+        {
+          "CustomKeyStoreId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  EnableKey:
+    description: |-
+      Sets the key state of a customer master key (CMK) to enabled. This allows you to use the CMK for cryptographic operations.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_EnableKey.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  EnableKeyRotation:
+    description: |-
+      Enables automatic rotation of the key material for the specified symmetric customer master key (CMK).
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_EnableKeyRotation.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Encrypt:
+    description: |-
+      Encrypts plaintext into ciphertext by using a customer master key (CMK).
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "Plaintext": "blob",
+          "GrantTokens": [
+            "string"
+          ],
+          "EncryptionContext": {
+            "string": "string"
+          },
+          "EncryptionAlgorithm": "string"
+        }
+      ]
+      outputs: [
+        {
+          "KeyId": "string",
+          "CiphertextBlob": "blob",
+          "EncryptionAlgorithm": "string"
+        }
+      ]
+  GenerateDataKey:
+    description: |-
+      Generates a unique symmetric data key for client-side encryption. This operation returns a plaintext copy of the data key and a copy that is encrypted under a customer master key (CMK) that you specify. You can use the plaintext key to encrypt your data outside of AWS KMS and store the encrypted data key with the encrypted data.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKey.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "KeySpec": "string",
+          "GrantTokens": [
+            "string"
+          ],
+          "NumberOfBytes": 1,
+          "EncryptionContext": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "KeyId": "string",
+          "Plaintext": "blob",
+          "CiphertextBlob": "blob"
+        }
+      ]
+  GenerateDataKeyPair:
+    description: |-
+      Generates a unique asymmetric data key pair. The GenerateDataKeyPair operation returns a plaintext public key, a plaintext private key, and a copy of the private key that is encrypted under the symmetric CMK you specify. You can use the data key pair to perform asymmetric cryptography and implement digital signatures outside of AWS KMS.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKeyPair.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "GrantTokens": [
+            "string"
+          ],
+          "KeyPairSpec": "string",
+          "EncryptionContext": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "KeyId": "string",
+          "PublicKey": "blob",
+          "KeyPairSpec": "string",
+          "PrivateKeyPlaintext": "blob",
+          "PrivateKeyCiphertextBlob": "blob"
+        }
+      ]
+  GenerateDataKeyPairWithoutPlaintext:
+    description: |-
+      Generates a unique asymmetric data key pair. The GenerateDataKeyPairWithoutPlaintext operation returns a plaintext public key and a copy of the private key that is encrypted under the symmetric CMK you specify. Unlike GenerateDataKeyPair, this operation does not return a plaintext private key.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKeyPairWithoutPlaintext.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "GrantTokens": [
+            "string"
+          ],
+          "KeyPairSpec": "string",
+          "EncryptionContext": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "KeyId": "string",
+          "PublicKey": "blob",
+          "KeyPairSpec": "string",
+          "PrivateKeyCiphertextBlob": "blob"
+        }
+      ]
+  GenerateDataKeyWithoutPlaintext:
+    description: |-
+      Generates a unique symmetric data key. This operation returns a data key that is encrypted under a customer master key (CMK) that you specify. To request an asymmetric data key pair, use the GenerateDataKeyPair or GenerateDataKeyPairWithoutPlaintext operations.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKeyWithoutPlaintext.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "KeySpec": "string",
+          "GrantTokens": [
+            "string"
+          ],
+          "NumberOfBytes": 1,
+          "EncryptionContext": {
+            "string": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "KeyId": "string",
+          "CiphertextBlob": "blob"
+        }
+      ]
+  GenerateRandom:
+    description: |-
+      Returns a random byte string that is cryptographically secure.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateRandom.html
+    example:
+      inputs: [
+        {
+          "NumberOfBytes": 1,
+          "CustomKeyStoreId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Plaintext": "blob"
+        }
+      ]
+  GetKeyPolicy:
+    description: |-
+      Gets a key policy attached to the specified customer master key (CMK).
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_GetKeyPolicy.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "PolicyName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Policy": "string"
+        }
+      ]
+  GetKeyRotationStatus:
+    description: |-
+      Gets a Boolean value that indicates whether automatic rotation of the key material is enabled for the specified customer master key (CMK).
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_GetKeyRotationStatus.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "KeyRotationEnabled": false
+        }
+      ]
+  GetParametersForImport:
+    description: |-
+      Returns the items you need to import key material into a symmetric, customer managed customer master key (CMK). For more information about importing key material into AWS KMS, see Importing Key Material in the AWS Key Management Service Developer Guide.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_GetParametersForImport.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "WrappingKeySpec": "string",
+          "WrappingAlgorithm": "string"
+        }
+      ]
+      outputs: [
+        {
+          "KeyId": "string",
+          "PublicKey": "blob",
+          "ImportToken": "blob",
+          "ParametersValidTo": 1481289211.615
+        }
+      ]
+  GetPublicKey:
+    description: |-
+      Returns the public key of an asymmetric CMK. Unlike the private key of a asymmetric CMK, which never leaves AWS KMS unencrypted, callers with kms:GetPublicKey permission can download the public key of an asymmetric CMK. You can share the public key to allow others to encrypt messages and verify signatures outside of AWS KMS. For information about symmetric and asymmetric CMKs, see Using Symmetric and Asymmetric CMKs in the AWS Key Management Service Developer Guide.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_GetPublicKey.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "GrantTokens": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "KeyId": "string",
+          "KeyUsage": "string",
+          "PublicKey": "blob",
+          "SigningAlgorithms": [
+            "string"
+          ],
+          "EncryptionAlgorithms": [
+            "string"
+          ],
+          "CustomerMasterKeySpec": "string"
+        }
+      ]
+  ImportKeyMaterial:
+    description: |-
+      Imports key material into an existing symmetric AWS KMS customer master key (CMK) that was created without key material. After you successfully import key material into a CMK, you can reimport the same key material into that CMK, but you cannot import different key material.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_ImportKeyMaterial.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "ValidTo": 1481289211.615,
+          "ImportToken": "blob",
+          "ExpirationModel": "string",
+          "EncryptedKeyMaterial": "blob"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ListAliases:
+    description: |-
+      Gets a list of aliases in the caller's AWS account and region. For more information about aliases, see CreateAlias.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_ListAliases.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "Limit": 1,
+          "Marker": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Aliases": [
+            {
+              "AliasArn": "string",
+              "AliasName": "string",
+              "TargetKeyId": "string",
+              "CreationDate": 1481289211.615,
+              "LastUpdatedDate": 1481289211.615
+            }
+          ],
+          "Truncated": false,
+          "NextMarker": "string"
+        }
+      ]
+  ListGrants:
+    description: |-
+      Gets a list of all grants for the specified customer master key (CMK).
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_ListGrants.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "Limit": 1,
+          "Marker": "string",
+          "GrantId": "string",
+          "GranteePrincipal": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Grants": [
+            {
+              "Name": "string",
+              "KeyId": "string",
+              "GrantId": "string",
+              "Operations": [
+                "string"
+              ],
+              "Constraints": {
+                "EncryptionContextEquals": {
+                  "string": "string"
+                },
+                "EncryptionContextSubset": {
+                  "string": "string"
+                }
+              },
+              "CreationDate": 1481289211.615,
+              "IssuingAccount": "string",
+              "GranteePrincipal": "string",
+              "RetiringPrincipal": "string"
+            }
+          ],
+          "Truncated": false,
+          "NextMarker": "string"
+        }
+      ]
+  ListKeyPolicies:
+    description: |-
+      Gets the names of the key policies that are attached to a customer master key (CMK). This operation is designed to get policy names that you can use in a GetKeyPolicy operation. However, the only valid policy name is default.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_ListKeyPolicies.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "Limit": 1,
+          "Marker": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Truncated": false,
+          "NextMarker": "string",
+          "PolicyNames": [
+            "string"
+          ]
+        }
+      ]
+  ListKeys:
+    description: |-
+      Gets a list of all customer master keys (CMKs) in the caller's AWS account and Region.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_ListKeys.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Keys": [
+            {
+              "KeyId": "string",
+              "KeyArn": "string"
+            }
+          ],
+          "Truncated": false,
+          "NextMarker": "string"
+        }
+      ]
+  ListResourceTags:
+    description: |-
+      Returns all tags on the specified customer master key (CMK).
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_ListResourceTags.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "Limit": 1,
+          "Marker": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "TagKey": "string",
+              "TagValue": "string"
+            }
+          ],
+          "Truncated": false,
+          "NextMarker": "string"
+        }
+      ]
+  ListRetirableGrants:
+    description: |-
+      Returns information about all grants in the AWS account and Region that have the specified retiring principal.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_ListRetirableGrants.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "Marker": "string",
+          "RetiringPrincipal": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Grants": [
+            {
+              "Name": "string",
+              "KeyId": "string",
+              "GrantId": "string",
+              "Operations": [
+                "string"
+              ],
+              "Constraints": {
+                "EncryptionContextEquals": {
+                  "string": "string"
+                },
+                "EncryptionContextSubset": {
+                  "string": "string"
+                }
+              },
+              "CreationDate": 1481289211.615,
+              "IssuingAccount": "string",
+              "GranteePrincipal": "string",
+              "RetiringPrincipal": "string"
+            }
+          ],
+          "Truncated": false,
+          "NextMarker": "string"
+        }
+      ]
+  PutKeyPolicy:
+    description: |-
+      Attaches a key policy to the specified customer master key (CMK).
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "Policy": "string",
+          "PolicyName": "string",
+          "BypassPolicyLockoutSafetyCheck": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ReEncrypt:
+    description: |-
+      Decrypts ciphertext and then reencrypts it entirely within AWS KMS. You can use this operation to change the customer master key (CMK) under which data is encrypted, such as when you manually rotate a CMK or change the CMK that protects a ciphertext. You can also use it to reencrypt ciphertext under the same CMK, such as to change the encryption context of a ciphertext.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_ReEncrypt.html
+    example:
+      inputs: [
+        {
+          "GrantTokens": [
+            "string"
+          ],
+          "SourceKeyId": "string",
+          "CiphertextBlob": "blob",
+          "DestinationKeyId": "string",
+          "SourceEncryptionContext": {
+            "string": "string"
+          },
+          "SourceEncryptionAlgorithm": "string",
+          "DestinationEncryptionContext": {
+            "string": "string"
+          },
+          "DestinationEncryptionAlgorithm": "string"
+        }
+      ]
+      outputs: [
+        {
+          "KeyId": "string",
+          "SourceKeyId": "string",
+          "CiphertextBlob": "blob",
+          "SourceEncryptionAlgorithm": "string",
+          "DestinationEncryptionAlgorithm": "string"
+        }
+      ]
+  RetireGrant:
+    description: |-
+      Deletes a grant. Typically, you retire a grant when you no longer need its permissions. To identify the grant to retire, use a grant token, or both the grant ID and a key identifier (key ID or key ARN) of the customer master key (CMK). The CreateGrant operation returns both values.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_RetireGrant.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "GrantId": "string",
+          "GrantToken": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RevokeGrant:
+    description: |-
+      Deletes the specified grant. You revoke a grant to terminate the permissions that the grant allows. For more information, see Retiring and revoking grants in the AWS Key Management Service Developer Guide .
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_RevokeGrant.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "GrantId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ScheduleKeyDeletion:
+    description: |-
+      Schedules the deletion of a customer master key (CMK). You may provide a waiting period, specified in days, before deletion occurs. If you do not provide a waiting period, the default period of 30 days is used. When this operation is successful, the key state of the CMK changes to PendingDeletion. Before the waiting period ends, you can use CancelKeyDeletion to cancel the deletion of the CMK. After the waiting period ends, AWS KMS deletes the CMK and all AWS KMS data associated with it, including all aliases that refer to it.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_ScheduleKeyDeletion.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "PendingWindowInDays": 1
+        }
+      ]
+      outputs: [
+        {
+          "KeyId": "string",
+          "DeletionDate": 1481289211.615
+        }
+      ]
+  Sign:
+    description: |-
+      Creates a digital signature for a message or message digest by using the private key in an asymmetric CMK. To verify the signature, use the Verify operation, or use the public key in the same asymmetric CMK outside of AWS KMS. For information about symmetric and asymmetric CMKs, see Using Symmetric and Asymmetric CMKs in the AWS Key Management Service Developer Guide.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_Sign.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "Message": "blob",
+          "GrantTokens": [
+            "string"
+          ],
+          "MessageType": "string",
+          "SigningAlgorithm": "string"
+        }
+      ]
+      outputs: [
+        {
+          "KeyId": "string",
+          "Signature": "blob",
+          "SigningAlgorithm": "string"
+        }
+      ]
+  TagResource:
+    description: |-
+      Adds or edits tags on a customer managed CMK.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_TagResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "TagKey": "string",
+              "TagValue": "string"
+            }
+          ],
+          "KeyId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UntagResource:
+    description: |-
+      Deletes tags from a customer managed CMK. To delete a tag, specify the tag key and the CMK.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_UntagResource.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "TagKeys": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateAlias:
+    description: |-
+      Associates an existing AWS KMS alias with a different customer master key (CMK). Each alias is associated with only one CMK at a time, although a CMK can have multiple aliases. The alias and the CMK must be in the same AWS account and Region.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_UpdateAlias.html
+    example:
+      inputs: [
+        {
+          "AliasName": "string",
+          "TargetKeyId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateCustomKeyStore:
+    description: |-
+      Changes the properties of a custom key store. Use the CustomKeyStoreId parameter to identify the custom key store you want to edit. Use the remaining parameters to change the properties of the custom key store.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_UpdateCustomKeyStore.html
+    example:
+      inputs: [
+        {
+          "CustomKeyStoreId": "string",
+          "KeyStorePassword": "string",
+          "CloudHsmClusterId": "string",
+          "NewCustomKeyStoreName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateKeyDescription:
+    description: |-
+      Updates the description of a customer master key (CMK). To see the description of a CMK, use DescribeKey.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_UpdateKeyDescription.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "Description": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  Verify:
+    description: |-
+      Verifies a digital signature that was generated by the Sign operation.
+    versions:
+      from: 2014.11.1
+    link: https://docs.aws.amazon.com/kms/latest/APIReference/API_Verify.html
+    example:
+      inputs: [
+        {
+          "KeyId": "string",
+          "Message": "blob",
+          "Signature": "blob",
+          "GrantTokens": [
+            "string"
+          ],
+          "MessageType": "string",
+          "SigningAlgorithm": "string"
+        }
+      ]
+      outputs: [
+        {
+          "KeyId": "string",
+          "SignatureValid": false,
+          "SigningAlgorithm": "string"
+        }
+      ]

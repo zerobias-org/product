@@ -1,0 +1,1474 @@
+Product:
+  name: AWS Directory Service
+  versions: [2015.4.16]
+  package: amazon.aws.ds
+  description: |-
+    AWS Directory Service
+  link: https://docs.aws.amazon.com/directoryservice/latest/devguide/welcome.html
+  contentType: json
+Operations:
+  AcceptSharedDirectory:
+    description: |-
+      Accepts a directory sharing request that was sent from the directory owner account.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_AcceptSharedDirectory.html
+    example:
+      inputs: [
+        {
+          "SharedDirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "SharedDirectory": {
+            "ShareNotes": "string",
+            "ShareMethod": "string",
+            "ShareStatus": "string",
+            "OwnerAccountId": "string",
+            "CreatedDateTime": 1481289211.615,
+            "SharedAccountId": "string",
+            "OwnerDirectoryId": "string",
+            "SharedDirectoryId": "string",
+            "LastUpdatedDateTime": 1481289211.615
+          }
+        }
+      ]
+  AddIpRoutes:
+    description: |-
+      If the DNS server for your on-premises domain uses a publicly addressable IP address, you must add a CIDR address block to correctly route traffic to and from your Microsoft AD on Amazon Web Services. AddIpRoutes adds this address block. You can also use AddIpRoutes to facilitate routing traffic that uses public IP ranges from your Microsoft AD on AWS to a peer VPC.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_AddIpRoutes.html
+    example:
+      inputs: [
+        {
+          "IpRoutes": [
+            {
+              "CidrIp": "string",
+              "Description": "string"
+            }
+          ],
+          "DirectoryId": "string",
+          "UpdateSecurityGroupForDirectoryControllers": false
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  AddRegion:
+    description: |-
+      Adds two domain controllers in the specified Region for the specified directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_AddRegion.html
+    example:
+      inputs: [
+        {
+          "RegionName": "string",
+          "DirectoryId": "string",
+          "VPCSettings": {
+            "VpcId": "string",
+            "SubnetIds": [
+              "string"
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  AddTagsToResource:
+    description: |-
+      Adds or overwrites one or more tags for the specified directory. Each directory can have a maximum of 50 tags. Each tag consists of a key and optional value. Tag keys must be unique to each resource.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_AddTagsToResource.html
+    example:
+      inputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "ResourceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CancelSchemaExtension:
+    description: |-
+      Cancels an in-progress schema extension to a Microsoft AD directory. Once a schema extension has started replicating to all domain controllers, the task can no longer be canceled. A schema extension can be canceled during any of the following states; Initializing, CreatingSnapshot, and UpdatingSchema.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_CancelSchemaExtension.html
+    example:
+      inputs: [
+        {
+          "DirectoryId": "string",
+          "SchemaExtensionId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ConnectDirectory:
+    description: |-
+      Creates an AD Connector to connect to an on-premises directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_ConnectDirectory.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Size": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Password": "string",
+          "ShortName": "string",
+          "Description": "string",
+          "ConnectSettings": {
+            "VpcId": "string",
+            "SubnetIds": [
+              "string"
+            ],
+            "CustomerDnsIps": [
+              "string"
+            ],
+            "CustomerUserName": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "DirectoryId": "string"
+        }
+      ]
+  CreateAlias:
+    description: |-
+      Creates an alias for a directory and assigns the alias to the directory. The alias is used to construct the access URL for the directory, such as http://<alias>.awsapps.com.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_CreateAlias.html
+    example:
+      inputs: [
+        {
+          "Alias": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateComputer:
+    description: |-
+      Creates an Active Directory computer object in the specified directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_CreateComputer.html
+    example:
+      inputs: [
+        {
+          "Password": "string",
+          "DirectoryId": "string",
+          "ComputerName": "string",
+          "ComputerAttributes": [
+            {
+              "Name": "string",
+              "Value": "string"
+            }
+          ],
+          "OrganizationalUnitDistinguishedName": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Computer": {
+            "ComputerId": "string",
+            "ComputerName": "string",
+            "ComputerAttributes": [
+              {
+                "Name": "string",
+                "Value": "string"
+              }
+            ]
+          }
+        }
+      ]
+  CreateConditionalForwarder:
+    description: |-
+      Creates a conditional forwarder associated with your AWS directory. Conditional forwarders are required in order to set up a trust relationship with another domain. The conditional forwarder points to the trusted domain.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_CreateConditionalForwarder.html
+    example:
+      inputs: [
+        {
+          "DnsIpAddrs": [
+            "string"
+          ],
+          "DirectoryId": "string",
+          "RemoteDomainName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateDirectory:
+    description: |-
+      Creates a Simple AD directory. For more information, see Simple Active Directory in the AWS Directory Service Admin Guide.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_CreateDirectory.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Size": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Password": "string",
+          "ShortName": "string",
+          "Description": "string",
+          "VpcSettings": {
+            "VpcId": "string",
+            "SubnetIds": [
+              "string"
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "DirectoryId": "string"
+        }
+      ]
+  CreateLogSubscription:
+    description: |-
+      Creates a subscription to forward real-time Directory Service domain controller security logs to the specified Amazon CloudWatch log group in your AWS account.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_CreateLogSubscription.html
+    example:
+      inputs: [
+        {
+          "DirectoryId": "string",
+          "LogGroupName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  CreateMicrosoftAD:
+    description: |-
+      Creates a Microsoft AD directory in the AWS Cloud. For more information, see AWS Managed Microsoft AD in the AWS Directory Service Admin Guide.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_CreateMicrosoftAD.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "Edition": "string",
+          "Password": "string",
+          "ShortName": "string",
+          "Description": "string",
+          "VpcSettings": {
+            "VpcId": "string",
+            "SubnetIds": [
+              "string"
+            ]
+          }
+        }
+      ]
+      outputs: [
+        {
+          "DirectoryId": "string"
+        }
+      ]
+  CreateSnapshot:
+    description: |-
+      Creates a snapshot of a Simple AD or Microsoft AD directory in the AWS cloud.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_CreateSnapshot.html
+    example:
+      inputs: [
+        {
+          "Name": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "SnapshotId": "string"
+        }
+      ]
+  CreateTrust:
+    description: |-
+      AWS Directory Service for Microsoft Active Directory allows you to configure trust relationships. For example, you can establish a trust between your AWS Managed Microsoft AD directory, and your existing on-premises Microsoft Active Directory. This would allow you to provide users and groups access to resources in either domain, with a single set of credentials.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_CreateTrust.html
+    example:
+      inputs: [
+        {
+          "TrustType": "string",
+          "DirectoryId": "string",
+          "SelectiveAuth": "string",
+          "TrustPassword": "string",
+          "TrustDirection": "string",
+          "RemoteDomainName": "string",
+          "ConditionalForwarderIpAddrs": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "TrustId": "string"
+        }
+      ]
+  DeleteConditionalForwarder:
+    description: |-
+      Deletes a conditional forwarder that has been set up for your AWS directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DeleteConditionalForwarder.html
+    example:
+      inputs: [
+        {
+          "DirectoryId": "string",
+          "RemoteDomainName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteDirectory:
+    description: |-
+      Deletes an AWS Directory Service directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DeleteDirectory.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "DirectoryId": "string"
+        }
+      ]
+  DeleteLogSubscription:
+    description: |-
+      Deletes the specified log subscription.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DeleteLogSubscription.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DeleteSnapshot:
+    description: |-
+      Deletes a directory snapshot.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DeleteSnapshot.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "SnapshotId": "string"
+        }
+      ]
+  DeleteTrust:
+    description: |-
+      Deletes an existing trust relationship between your AWS Managed Microsoft AD directory and an external domain.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DeleteTrust.html
+    example:
+      inputs: [
+        {
+          "TrustId": "string",
+          "DeleteAssociatedConditionalForwarder": false
+        }
+      ]
+      outputs: [
+        {
+          "TrustId": "string"
+        }
+      ]
+  DeregisterCertificate:
+    description: |-
+      Deletes from the system the certificate that was registered for secure LDAP or client certificate authentication.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DeregisterCertificate.html
+    example:
+      inputs: [
+        {
+          "DirectoryId": "string",
+          "CertificateId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DeregisterEventTopic:
+    description: |-
+      Removes the specified directory as a publisher to the specified SNS topic.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DeregisterEventTopic.html
+    example:
+      inputs: [
+        {
+          "TopicName": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DescribeCertificate:
+    description: |-
+      Displays information about the certificate registered for secure LDAP or client certificate authentication.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DescribeCertificate.html
+    example:
+      inputs: [
+        {
+          "DirectoryId": "string",
+          "CertificateId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Certificate": {
+            "Type": "string",
+            "State": "string",
+            "CommonName": "string",
+            "StateReason": "string",
+            "CertificateId": "string",
+            "ExpiryDateTime": 1481289211.615,
+            "RegisteredDateTime": 1481289211.615,
+            "ClientCertAuthSettings": {
+              "OCSPUrl": "string"
+            }
+          }
+        }
+      ]
+  DescribeConditionalForwarders:
+    description: |-
+      Obtains information about the conditional forwarders for this account.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DescribeConditionalForwarders.html
+    example:
+      inputs: [
+        {
+          "DirectoryId": "string",
+          "RemoteDomainNames": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "ConditionalForwarders": [
+            {
+              "DnsIpAddrs": [
+                "string"
+              ],
+              "RemoteDomainName": "string",
+              "ReplicationScope": "string"
+            }
+          ]
+        }
+      ]
+  DescribeDirectories:
+    description: |-
+      Obtains information about the directories that belong to this account.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DescribeDirectories.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "DirectoryIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DirectoryDescriptions": [
+            {
+              "Name": "string",
+              "Size": "string",
+              "Type": "string",
+              "Alias": "string",
+              "Stage": "string",
+              "Edition": "string",
+              "AccessUrl": "string",
+              "ShortName": "string",
+              "DnsIpAddrs": [
+                "string"
+              ],
+              "LaunchTime": 1481289211.615,
+              "ShareNotes": "string",
+              "SsoEnabled": false,
+              "Description": "string",
+              "DirectoryId": "string",
+              "RegionsInfo": {
+                "PrimaryRegion": "string",
+                "AdditionalRegions": [
+                  "string"
+                ]
+              },
+              "ShareMethod": "string",
+              "ShareStatus": "string",
+              "StageReason": "string",
+              "VpcSettings": {
+                "VpcId": "string",
+                "SubnetIds": [
+                  "string"
+                ],
+                "SecurityGroupId": "string",
+                "AvailabilityZones": [
+                  "string"
+                ]
+              },
+              "RadiusStatus": "string",
+              "RadiusSettings": {
+                "RadiusPort": 1,
+                "DisplayLabel": "string",
+                "SharedSecret": "string",
+                "RadiusRetries": 1,
+                "RadiusServers": [
+                  "string"
+                ],
+                "RadiusTimeout": 1,
+                "UseSameUsername": false,
+                "AuthenticationProtocol": "string"
+              },
+              "ConnectSettings": {
+                "VpcId": "string",
+                "SubnetIds": [
+                  "string"
+                ],
+                "ConnectIps": [
+                  "string"
+                ],
+                "SecurityGroupId": "string",
+                "CustomerUserName": "string",
+                "AvailabilityZones": [
+                  "string"
+                ]
+              },
+              "StageLastUpdatedDateTime": 1481289211.615,
+              "OwnerDirectoryDescription": {
+                "AccountId": "string",
+                "DnsIpAddrs": [
+                  "string"
+                ],
+                "DirectoryId": "string",
+                "VpcSettings": {
+                  "VpcId": "string",
+                  "SubnetIds": [
+                    "string"
+                  ],
+                  "SecurityGroupId": "string",
+                  "AvailabilityZones": [
+                    "string"
+                  ]
+                },
+                "RadiusStatus": "string",
+                "RadiusSettings": {
+                  "RadiusPort": 1,
+                  "DisplayLabel": "string",
+                  "SharedSecret": "string",
+                  "RadiusRetries": 1,
+                  "RadiusServers": [
+                    "string"
+                  ],
+                  "RadiusTimeout": 1,
+                  "UseSameUsername": false,
+                  "AuthenticationProtocol": "string"
+                }
+              },
+              "DesiredNumberOfDomainControllers": 1
+            }
+          ]
+        }
+      ]
+  DescribeDomainControllers:
+    description: |-
+      Provides information about any domain controllers in your directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DescribeDomainControllers.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "DirectoryId": "string",
+          "DomainControllerIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "DomainControllers": [
+            {
+              "VpcId": "string",
+              "Status": "string",
+              "SubnetId": "string",
+              "DnsIpAddr": "string",
+              "LaunchTime": 1481289211.615,
+              "DirectoryId": "string",
+              "StatusReason": "string",
+              "AvailabilityZone": "string",
+              "DomainControllerId": "string",
+              "StatusLastUpdatedDateTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  DescribeEventTopics:
+    description: |-
+      Obtains information about which SNS topics receive status messages from the specified directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DescribeEventTopics.html
+    example:
+      inputs: [
+        {
+          "TopicNames": [
+            "string"
+          ],
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "EventTopics": [
+            {
+              "Status": "string",
+              "TopicArn": "string",
+              "TopicName": "string",
+              "DirectoryId": "string",
+              "CreatedDateTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  DescribeLDAPSSettings:
+    description: |-
+      Describes the status of LDAP security for the specified directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DescribeLDAPSSettings.html
+    example:
+      inputs: [
+        {
+          "Type": "string",
+          "Limit": 1,
+          "NextToken": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "LDAPSSettingsInfo": [
+            {
+              "LDAPSStatus": "string",
+              "LDAPSStatusReason": "string",
+              "LastUpdatedDateTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  DescribeRegions:
+    description: |-
+      Provides information about the Regions that are configured for multi-Region replication.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DescribeRegions.html
+    example:
+      inputs: [
+        {
+          "NextToken": "string",
+          "RegionName": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "RegionsDescription": [
+            {
+              "Status": "string",
+              "LaunchTime": 1481289211.615,
+              "RegionName": "string",
+              "RegionType": "string",
+              "DirectoryId": "string",
+              "VpcSettings": {
+                "VpcId": "string",
+                "SubnetIds": [
+                  "string"
+                ]
+              },
+              "LastUpdatedDateTime": 1481289211.615,
+              "StatusLastUpdatedDateTime": 1481289211.615,
+              "DesiredNumberOfDomainControllers": 1
+            }
+          ]
+        }
+      ]
+  DescribeSharedDirectories:
+    description: |-
+      Returns the shared directories in your account.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DescribeSharedDirectories.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "OwnerDirectoryId": "string",
+          "SharedDirectoryIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "SharedDirectories": [
+            {
+              "ShareNotes": "string",
+              "ShareMethod": "string",
+              "ShareStatus": "string",
+              "OwnerAccountId": "string",
+              "CreatedDateTime": 1481289211.615,
+              "SharedAccountId": "string",
+              "OwnerDirectoryId": "string",
+              "SharedDirectoryId": "string",
+              "LastUpdatedDateTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  DescribeSnapshots:
+    description: |-
+      Obtains information about the directory snapshots that belong to this account.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DescribeSnapshots.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "DirectoryId": "string",
+          "SnapshotIds": [
+            "string"
+          ]
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "Snapshots": [
+            {
+              "Name": "string",
+              "Type": "string",
+              "Status": "string",
+              "StartTime": 1481289211.615,
+              "SnapshotId": "string",
+              "DirectoryId": "string"
+            }
+          ]
+        }
+      ]
+  DescribeTrusts:
+    description: |-
+      Obtains information about the trust relationships for this account.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DescribeTrusts.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "TrustIds": [
+            "string"
+          ],
+          "NextToken": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Trusts": [
+            {
+              "TrustId": "string",
+              "TrustType": "string",
+              "TrustState": "string",
+              "DirectoryId": "string",
+              "SelectiveAuth": "string",
+              "TrustDirection": "string",
+              "CreatedDateTime": 1481289211.615,
+              "RemoteDomainName": "string",
+              "TrustStateReason": "string",
+              "LastUpdatedDateTime": 1481289211.615,
+              "StateLastUpdatedDateTime": 1481289211.615
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  DisableClientAuthentication:
+    description: |-
+      Disables alternative client authentication methods for the specified directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DisableClientAuthentication.html
+    example:
+      inputs: [
+        {
+          "Type": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DisableLDAPS:
+    description: |-
+      Deactivates LDAP secure calls for the specified directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DisableLDAPS.html
+    example:
+      inputs: [
+        {
+          "Type": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  DisableRadius:
+    description: |-
+      Disables multi-factor authentication (MFA) with the Remote Authentication Dial In User Service (RADIUS) server for an AD Connector or Microsoft AD directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DisableRadius.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  DisableSso:
+    description: |-
+      Disables single-sign on for a directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_DisableSso.html
+    example:
+      inputs: [
+        {
+          "Password": "string",
+          "UserName": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  EnableClientAuthentication:
+    description: |-
+      Enables alternative client authentication methods for the specified directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_EnableClientAuthentication.html
+    example:
+      inputs: [
+        {
+          "Type": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  EnableLDAPS:
+    description: |-
+      Activates the switch for the specific directory to always use LDAP secure calls.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_EnableLDAPS.html
+    example:
+      inputs: [
+        {
+          "Type": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  EnableRadius:
+    description: |-
+      Enables multi-factor authentication (MFA) with the Remote Authentication Dial In User Service (RADIUS) server for an AD Connector or Microsoft AD directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_EnableRadius.html
+    example:
+      inputs: [
+        {
+          "DirectoryId": "string",
+          "RadiusSettings": {
+            "RadiusPort": 1,
+            "DisplayLabel": "string",
+            "SharedSecret": "string",
+            "RadiusRetries": 1,
+            "RadiusServers": [
+              "string"
+            ],
+            "RadiusTimeout": 1,
+            "UseSameUsername": false,
+            "AuthenticationProtocol": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  EnableSso:
+    description: |-
+      Enables single sign-on for a directory. Single sign-on allows users in your directory to access certain AWS services from a computer joined to the directory without having to enter their credentials separately.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_EnableSso.html
+    example:
+      inputs: [
+        {
+          "Password": "string",
+          "UserName": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  GetDirectoryLimits:
+    description: |-
+      Obtains directory limit information for the current Region.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_GetDirectoryLimits.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "DirectoryLimits": {
+            "CloudOnlyDirectoriesLimit": 1,
+            "CloudOnlyMicrosoftADLimit": 1,
+            "ConnectedDirectoriesLimit": 1,
+            "CloudOnlyDirectoriesCurrentCount": 1,
+            "CloudOnlyDirectoriesLimitReached": false,
+            "CloudOnlyMicrosoftADCurrentCount": 1,
+            "CloudOnlyMicrosoftADLimitReached": false,
+            "ConnectedDirectoriesCurrentCount": 1,
+            "ConnectedDirectoriesLimitReached": false
+          }
+        }
+      ]
+  GetSnapshotLimits:
+    description: |-
+      Obtains the manual snapshot limits for a directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_GetSnapshotLimits.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "SnapshotLimits": {
+            "ManualSnapshotsLimit": 1,
+            "ManualSnapshotsCurrentCount": 1,
+            "ManualSnapshotsLimitReached": false
+          }
+        }
+      ]
+  ListCertificates:
+    description: |-
+      For the specified directory, lists all the certificates registered for a secure LDAP or client certificate authentication.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_ListCertificates.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "CertificatesInfo": [
+            {
+              "Type": "string",
+              "State": "string",
+              "CommonName": "string",
+              "CertificateId": "string",
+              "ExpiryDateTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListIpRoutes:
+    description: |-
+      Lists the address blocks that you have added to a directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_ListIpRoutes.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "IpRoutesInfo": [
+            {
+              "CidrIp": "string",
+              "Description": "string",
+              "DirectoryId": "string",
+              "AddedDateTime": 1481289211.615,
+              "IpRouteStatusMsg": "string",
+              "IpRouteStatusReason": "string"
+            }
+          ]
+        }
+      ]
+  ListLogSubscriptions:
+    description: |-
+      Lists the active log subscriptions for the AWS account.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_ListLogSubscriptions.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "LogSubscriptions": [
+            {
+              "DirectoryId": "string",
+              "LogGroupName": "string",
+              "SubscriptionCreatedDateTime": 1481289211.615
+            }
+          ]
+        }
+      ]
+  ListSchemaExtensions:
+    description: |-
+      Lists all schema extensions applied to a Microsoft AD Directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_ListSchemaExtensions.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "NextToken": "string",
+          "SchemaExtensionsInfo": [
+            {
+              "Description": "string",
+              "DirectoryId": "string",
+              "EndDateTime": 1481289211.615,
+              "StartDateTime": 1481289211.615,
+              "SchemaExtensionId": "string",
+              "SchemaExtensionStatus": "string",
+              "SchemaExtensionStatusReason": "string"
+            }
+          ]
+        }
+      ]
+  ListTagsForResource:
+    description: |-
+      Lists all tags on a directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_ListTagsForResource.html
+    example:
+      inputs: [
+        {
+          "Limit": 1,
+          "NextToken": "string",
+          "ResourceId": "string"
+        }
+      ]
+      outputs: [
+        {
+          "Tags": [
+            {
+              "Key": "string",
+              "Value": "string"
+            }
+          ],
+          "NextToken": "string"
+        }
+      ]
+  RegisterCertificate:
+    description: |-
+      Registers a certificate for a secure LDAP or client certificate authentication.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_RegisterCertificate.html
+    example:
+      inputs: [
+        {
+          "Type": "string",
+          "DirectoryId": "string",
+          "CertificateData": "string",
+          "ClientCertAuthSettings": {
+            "OCSPUrl": "string"
+          }
+        }
+      ]
+      outputs: [
+        {
+          "CertificateId": "string"
+        }
+      ]
+  RegisterEventTopic:
+    description: |-
+      Associates a directory with an SNS topic. This establishes the directory as a publisher to the specified SNS topic. You can then receive email or text (SMS) messages when the status of your directory changes. You get notified if your directory goes from an Active status to an Impaired or Inoperable status. You also receive a notification when the directory returns to an Active status.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_RegisterEventTopic.html
+    example:
+      inputs: [
+        {
+          "TopicName": "string",
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RejectSharedDirectory:
+    description: |-
+      Rejects a directory sharing request that was sent from the directory owner account.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_RejectSharedDirectory.html
+    example:
+      inputs: [
+        {
+          "SharedDirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RemoveIpRoutes:
+    description: |-
+      Removes IP address blocks from a directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_RemoveIpRoutes.html
+    example:
+      inputs: [
+        {
+          "CidrIps": [
+            "string"
+          ],
+          "DirectoryId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RemoveRegion:
+    description: |-
+      Stops all replication and removes the domain controllers from the specified Region. You cannot remove the primary Region with this operation. Instead, use the DeleteDirectory API.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_RemoveRegion.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  RemoveTagsFromResource:
+    description: |-
+      Removes tags from a directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_RemoveTagsFromResource.html
+    example:
+      inputs: [
+        {
+          "TagKeys": [
+            "string"
+          ],
+          "ResourceId": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  ResetUserPassword:
+    description: |-
+      Resets the password for any user in your AWS Managed Microsoft AD or Simple AD directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_ResetUserPassword.html
+    example:
+      inputs: [
+        {
+          "UserName": "string",
+          "DirectoryId": "string",
+          "NewPassword": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  RestoreFromSnapshot:
+    description: |-
+      Restores a directory using an existing directory snapshot.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_RestoreFromSnapshot.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {}
+      ]
+  ShareDirectory:
+    description: |-
+      Shares a specified directory (DirectoryId) in your AWS account (directory owner) with another AWS account (directory consumer). With this operation you can use your directory from any AWS account and from any Amazon VPC within an AWS Region.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_ShareDirectory.html
+    example:
+      inputs: [
+        {
+          "ShareNotes": "string",
+          "DirectoryId": "string",
+          "ShareMethod": "string",
+          "ShareTarget": {
+            "Id": "string",
+            "Type": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  StartSchemaExtension:
+    description: |-
+      Applies a schema extension to a Microsoft AD directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_StartSchemaExtension.html
+    example:
+      inputs: [
+        {
+          "Description": "string",
+          "DirectoryId": "string",
+          "LdifContent": "string",
+          "CreateSnapshotBeforeSchemaExtension": false
+        }
+      ]
+      outputs: [
+        {
+          "SchemaExtensionId": "string"
+        }
+      ]
+  UnshareDirectory:
+    description: |-
+      Stops the directory sharing between the directory owner and consumer accounts.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_UnshareDirectory.html
+    example:
+      inputs: [
+        {
+          "DirectoryId": "string",
+          "UnshareTarget": {
+            "Id": "string",
+            "Type": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateConditionalForwarder:
+    description: |-
+      Updates a conditional forwarder that has been set up for your AWS directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_UpdateConditionalForwarder.html
+    example:
+      inputs: [
+        {
+          "DnsIpAddrs": [
+            "string"
+          ],
+          "DirectoryId": "string",
+          "RemoteDomainName": "string"
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateNumberOfDomainControllers:
+    description: |-
+      Adds or removes domain controllers to or from the directory. Based on the difference between current value and new value (provided through this API call), domain controllers will be added or removed. It may take up to 45 minutes for any new domain controllers to become fully active once the requested number of domain controllers is updated. During this time, you cannot make another update request.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_UpdateNumberOfDomainControllers.html
+    example:
+      inputs: [
+        {
+          "DirectoryId": "string",
+          "DesiredNumber": 1
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateRadius:
+    description: |-
+      Updates the Remote Authentication Dial In User Service (RADIUS) server information for an AD Connector or Microsoft AD directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_UpdateRadius.html
+    example:
+      inputs: [
+        {
+          "DirectoryId": "string",
+          "RadiusSettings": {
+            "RadiusPort": 1,
+            "DisplayLabel": "string",
+            "SharedSecret": "string",
+            "RadiusRetries": 1,
+            "RadiusServers": [
+              "string"
+            ],
+            "RadiusTimeout": 1,
+            "UseSameUsername": false,
+            "AuthenticationProtocol": "string"
+          }
+        }
+      ]
+      outputs: [
+        {}
+      ]
+  UpdateTrust:
+    description: |-
+      Updates the trust that has been set up between your AWS Managed Microsoft AD directory and an on-premises Active Directory.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_UpdateTrust.html
+    example:
+      inputs: [
+        {
+          "TrustId": "string",
+          "SelectiveAuth": "string"
+        }
+      ]
+      outputs: [
+        {
+          "TrustId": "string",
+          "RequestId": "string"
+        }
+      ]
+  VerifyTrust:
+    description: |-
+      AWS Directory Service for Microsoft Active Directory allows you to configure and verify trust relationships.
+    versions:
+      from: 2015.4.16
+    link: https://docs.aws.amazon.com/directoryservice/latest/devguide/API_VerifyTrust.html
+    example:
+      inputs: [
+        {}
+      ]
+      outputs: [
+        {
+          "TrustId": "string"
+        }
+      ]
