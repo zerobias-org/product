@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/zerobias-org/product/compare/@zerobias-org/product-microsoft-azure-entra@1.0.2...@zerobias-org/product-microsoft-azure-entra@1.0.3) (2025-08-19)
+
+
+### Bug Fixes
+
+* force to rebuild, see cdn flow ([057183a](https://github.com/zerobias-org/product/commit/057183ac7c531c03e941c62e2bea7efe00cc8508))
+
+
+
+
+
 ## [1.0.2](https://github.com/zerobias-org/product/compare/@zerobias-org/product-microsoft-azure-entra@1.0.2...@zerobias-org/product-microsoft-azure-entra@1.0.2) (2025-08-11)
 
 
