@@ -95,7 +95,9 @@ Since no automated script exists yet, create products manually:
    - Add dependencies:
      - **Vendor products**: `"@zerobias-org/vendor-{vendor}": "latest"`
      - **Suite products**: `"@zerobias-org/suite-{vendor}-{suite}": "latest"`
-   - Update auditmation.package: `"{vendor}.{code}"`
+   - Update auditmation.package:
+     - **Vendor products**: `"{vendor}.{code}"`
+     - **Suite products**: `"{vendor}.{suite}.{code}"`
    - Set dataloader-version: `"5.0.25"` (current standard)
    - Ensure files array includes: `["index.yml", "catalog.yml", "logo.*"]`
    - Update script paths:
@@ -185,6 +187,19 @@ suiteId: 430ec569-6163-517d-93ea-658e4e92033c
 parentType: suite
 ```
 
+```json
+// package/microsoft/azure/entra/package.json
+{
+  "name": "@zerobias-org/product-microsoft-entra",
+  "dependencies": {
+    "@zerobias-org/suite-microsoft-azure": "latest"
+  },
+  "auditmation": {
+    "package": "microsoft.azure.entra"
+  }
+}
+```
+
 ## Architecture
 
 ### Monorepo Structure
@@ -221,7 +236,7 @@ Each product package contains:
 #### package.json Requirements
 - Package name format: `@zerobias-org/product-{vendor}-{code}`
 - Must include `auditmation` section with:
-  - `package: "{vendor}.{code}"`
+  - `package: "{vendor}.{code}"` for vendor products or `"{vendor}.{suite}.{code}"` for suite products
   - `import-artifact: "product"`
   - `dataloader-version: "5.0.25"` (current standard)
 - Dependencies must include exactly one dependency:
