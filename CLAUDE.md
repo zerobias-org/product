@@ -87,8 +87,10 @@ Since no automated script exists yet, create products manually:
    ```
 
 3. **Configure package.json**
-   - Update name: `@zerobias-org/product-{vendor}-{code}` (manually replace placeholders)
-   - Set description: `"Product package for {vendor} {code}"`
+   - Update name format:
+     - **Vendor products**: `@zerobias-org/product-{vendor}-{code}`
+     - **Suite products**: `@zerobias-org/product-{vendor}-{suite}-{code}`
+   - Set description: `"Product package for {vendor} {code}"` or `"Product package for {vendor} {suite} {code}"`
    - Set repository directory path correctly:
      - **Vendor products**: `"directory": "package/{vendor}/{code}/"`
      - **Suite products**: `"directory": "package/{vendor}/{suite}/{code}/"`
@@ -190,7 +192,7 @@ parentType: suite
 ```json
 // package/microsoft/azure/entra/package.json
 {
-  "name": "@zerobias-org/product-microsoft-entra",
+  "name": "@zerobias-org/product-microsoft-azure-entra",
   "dependencies": {
     "@zerobias-org/suite-microsoft-azure": "latest"
   },
@@ -234,7 +236,9 @@ Each product package contains:
 ### Product Structure and Requirements
 
 #### package.json Requirements
-- Package name format: `@zerobias-org/product-{vendor}-{code}`
+- Package name format:
+  - **Vendor products**: `@zerobias-org/product-{vendor}-{code}`
+  - **Suite products**: `@zerobias-org/product-{vendor}-{suite}-{code}`
 - Must include `auditmation` section with:
   - `package: "{vendor}.{code}"` for vendor products or `"{vendor}.{suite}.{code}"` for suite products
   - `import-artifact: "product"`
