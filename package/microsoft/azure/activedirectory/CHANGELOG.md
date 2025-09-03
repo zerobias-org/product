@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.6-rc.0](https://github.com/zerobias-org/product/compare/@zerobias-org/product-microsoft-azure-activedirectory@1.3.5...@zerobias-org/product-microsoft-azure-activedirectory@1.3.6-rc.0) (2025-09-02)
+
+
+### Bug Fixes
+
+* deprecate old azure active directory and move new one to active ([df32e56](https://github.com/zerobias-org/product/commit/df32e56c80b6bcf0a236a0cf8b7cd605dbfcd93a))
+
+
+
+
+
 ## [1.3.5](https://github.com/zerobias-org/product/compare/@zerobias-org/product-microsoft-azure-activedirectory@1.3.5-rc.1...@zerobias-org/product-microsoft-azure-activedirectory@1.3.5) (2025-08-09)
 
 **Note:** Version bump only for package @zerobias-org/product-microsoft-azure-activedirectory
