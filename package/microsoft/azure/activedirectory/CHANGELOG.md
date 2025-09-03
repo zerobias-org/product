@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.6](https://github.com/zerobias-org/product/compare/@zerobias-org/product-microsoft-azure-activedirectory@1.3.6-rc.0...@zerobias-org/product-microsoft-azure-activedirectory@1.3.6) (2025-09-03)
+
+**Note:** Version bump only for package @zerobias-org/product-microsoft-azure-activedirectory
+
+
+
+
+
 ## [1.3.6-rc.0](https://github.com/zerobias-org/product/compare/@zerobias-org/product-microsoft-azure-activedirectory@1.3.5...@zerobias-org/product-microsoft-azure-activedirectory@1.3.6-rc.0) (2025-09-02)
 
 
