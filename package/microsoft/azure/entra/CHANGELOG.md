@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1-rc.2](https://github.com/zerobias-org/product/compare/@zerobias-org/product-microsoft-azure-entra@2.0.1-rc.1...@zerobias-org/product-microsoft-azure-entra@2.0.1-rc.2) (2025-10-14)
+
+
+### Bug Fixes
+
+* deprecate old azure active directory and move new one to active ([df32e56](https://github.com/zerobias-org/product/commit/df32e56c80b6bcf0a236a0cf8b7cd605dbfcd93a))
+
+
+
+
+
 ## [2.0.1-rc.1](https://github.com/zerobias-org/product/compare/@zerobias-org/product-microsoft-azure-entra@2.0.1-rc.0...@zerobias-org/product-microsoft-azure-entra@2.0.1-rc.1) (2025-10-14)
 
 
