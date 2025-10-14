@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1-rc.0](https://github.com/zerobias-org/product/compare/@zerobias-org/product-auditmation-auditmation@1.5.3...@zerobias-org/product-auditmation-auditmation@2.0.1-rc.0) (2025-10-14)
+
+
+### Bug Fixes
+
+* bump all to over versions we set ([8b46437](https://github.com/zerobias-org/product/commit/8b46437ba88822f7fa42a41915866dcc54c25b91))
+
+
+
+
+
 ## [1.5.3](https://github.com/zerobias-org/product/compare/@zerobias-org/product-auditmation-auditmation@1.5.3-rc.1...@zerobias-org/product-auditmation-auditmation@1.5.3) (2025-08-09)
 
 **Note:** Version bump only for package @zerobias-org/product-auditmation-auditmation
