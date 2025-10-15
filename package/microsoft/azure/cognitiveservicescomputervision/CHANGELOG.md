@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/zerobias-org/product/compare/@zerobias-org/product-microsoft-azure-cognitiveservicescomputervision@2.0.1-rc.2...@zerobias-org/product-microsoft-azure-cognitiveservicescomputervision@2.0.1) (2025-10-15)
+
+**Note:** Version bump only for package @zerobias-org/product-microsoft-azure-cognitiveservicescomputervision
+
+
+
+
+
 ## [2.0.1-rc.2](https://github.com/zerobias-org/product/compare/@zerobias-org/product-microsoft-azure-cognitiveservicescomputervision@2.0.1-rc.1...@zerobias-org/product-microsoft-azure-cognitiveservicescomputervision@2.0.1-rc.2) (2025-10-14)
 
 **Note:** Version bump only for package @zerobias-org/product-microsoft-azure-cognitiveservicescomputervision
