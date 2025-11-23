@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/zerobias-org/product/compare/@zerobias-org/product-jamf-connect@2.0.1...@zerobias-org/product-jamf-connect@2.0.2) (2025-11-23)
+
+
+### Bug Fixes
+
+* last time ([f4801f1](https://github.com/zerobias-org/product/commit/f4801f173e5077023645cce8d1c7d3793ee4dbde))
+* pointing to wrong vendor id ([e925fcc](https://github.com/zerobias-org/product/commit/e925fcc74bd094b7e85bce7491be5cb607b94493))
+* revert vendorid again, update deps ([3a3fb71](https://github.com/zerobias-org/product/commit/3a3fb71b5ef87a00f4eae5fda990027e6376b0a0))
+
+
+
+
+
 ## [2.0.1](https://github.com/zerobias-org/product/compare/@zerobias-org/product-jamf-connect@2.0.1-rc.2...@zerobias-org/product-jamf-connect@2.0.1) (2025-10-15)
 
 **Note:** Version bump only for package @zerobias-org/product-jamf-connect
