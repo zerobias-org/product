@@ -131,11 +131,22 @@ Since no automated script exists yet, create products manually:
    ls -lh package/{vendor}/{code}/logo.svg
    ```
 
-5. **Create catalog.yml**
+5. **Create catalog.yml** (**Required** - the dataloader will fail without this file)
+   ```yaml
+   Product:
+     name: {Product Display Name}
+     versions: [0.0.0]
+     package: {vendor}.{code}   # or {vendor}.{suite}.{code} for suite products
+     description: |-
+       {Brief product description}
+     link: {Official product URL}
+     contentType: json
+   Operations:
+   ```
    - Set Product section with name, package, description, link
-   - Include version array with current version
+   - Include version array with current version (typically `[0.0.0]`)
    - Set contentType: `"json"`
-   - Omit Operations section (not required for new products)
+   - The `Operations:` key should be present but can be empty
 
 6. **Install Dependencies and Generate Shrinkwrap**
    ```bash
@@ -221,7 +232,7 @@ parentType: suite
 ### Package Structure
 Each product package contains:
 - `index.yml`: Product metadata and configuration
-- `catalog.yml`: Service catalog information (optional)
+- `catalog.yml`: Service catalog definition (**required** by the dataloader)
 - `package.json`: Dependencies and scripts
 - `npm-shrinkwrap.json`: Locked dependency versions
 - `logo.svg/png`: Product branding
@@ -246,7 +257,7 @@ Each product package contains:
 - Dependencies must include exactly one dependency:
   - **Vendor products**: `@zerobias-org/vendor-{vendor}`
   - **Suite products**: `@zerobias-org/suite-{vendor}-{suite}`
-- Standard scripts: `nx:publish`, `prepublishtest`, `correct:deps`, `validate`
+- Standard scripts: `correct:deps`, `validate`
 
 #### index.yml Requirements
 - Must contain: `id`, `name`, `description`, `url`, `vendorCode`, `code`, `status`
@@ -314,4 +325,81 @@ The `scripts/validate.ts` script checks:
 - Always run `npm install && npm shrinkwrap` after creating or modifying a product
 - The dependency (vendor or suite) will force installation of the appropriate package
 - Run validation from the product directory: `npm run validate`
+
+#### Dataloader Testing
+After validation passes, test with the dataloader CLI:
+```bash
+cd package/{vendor}/{code}
+dataloader
+```
+The dataloader reads `catalog.yml` to import the product into the local platform database. If `catalog.yml` is missing, the dataloader will fail with `ENOENT: no such file or directory, open './catalog.yml'`.
+
+## ZeroBias Task Integration
+
+For creating products from ZeroBias tasks, use the skill:
+
+```
+/create-product [task-id]
+```
+
+See **[.claude/skills/create-product.md](.claude/skills/create-product.md)** for the complete workflow.
+
+### Quick Reference
+
+**Orchestration Documentation:**
+- [Meta-repo: DEPENDENCY_CHAIN.md](../../docs/orchestration/DEPENDENCY_CHAIN.md) - **STRICT dependency rules**
+- [Meta-repo: TASK_MANAGEMENT.md](../../docs/orchestration/TASK_MANAGEMENT.md) - Task API patterns
+- [Meta-repo: API_REFERENCE.md](../../docs/orchestration/API_REFERENCE.md) - Quick API reference
+
+**Dependency Chain:**
+```
+vendor → suite → product
+```
+
+**CRITICAL:** Products require either a vendor (vendor products) or a suite (suite products). Check/create the full chain first.
+
+### Key APIs
+
+```javascript
+// Check if vendor exists (REQUIRED before product)
+zerobias_execute("portal.Vendor.search", { searchVendorBody: { search: "vendor name" }})
+
+// Check if suite exists (REQUIRED for suite products)
+zerobias_execute("portal.Suite.search", { searchSuiteBody: { search: "suite name" }})
+
+// Check if product already exists
+zerobias_execute("portal.Product.search", { searchProductBody: { search: "product name" }})
+
+// Get your party ID for assignment
+zerobias_execute("platform.Party.getMyParty", {})
+
+// Transition task to in_progress (use transitionId, NOT status)
+zerobias_execute("platform.Task.update", {
+  id: taskId,
+  updateTask: {
+    assigned: partyId,
+    transitionId: "7f140bbe-4c10-54ac-922c-460c66392fad"
+  }
+})
+```
+
+### Workflow Transitions
+
+| Transition | Target Status | ID |
+|------------|---------------|-----|
+| Start | in_progress | `7f140bbe-4c10-54ac-922c-460c66392fad` |
+| Peer Review | awaiting_approval | `f017a447-0994-594d-9417-39cbc9a4de88` |
+| Accept | released | `1d2e9381-f609-5e26-8bc6-7bbb65a9048d` |
+
+**Note:** Always get actual IDs from `task.nextTransitions`.
+
+---
+
+## Related Documentation
+
+- **[Root CLAUDE.md](../../CLAUDE.md)** - Meta-repo guidance
+- **[ContentArtifacts.md](../../ContentArtifacts.md)** - Content catalog system
+- **[zerobias-org/suite/CLAUDE.md](../suite/CLAUDE.md)** - Community suites
+- **[zerobias-org/vendor/CLAUDE.md](../vendor/CLAUDE.md)** - Community vendors
+- **[com/platform/dataloader/CLAUDE.md](../../com/platform/dataloader/CLAUDE.md)** - Dataloader processor
 
