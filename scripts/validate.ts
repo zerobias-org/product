@@ -2,8 +2,38 @@
 import fs from 'fs/promises';
 import path from 'path';
 import yaml from 'yaml';
-import { UUID, URL } from '@auditmation/types-core-js';
-import { VspStatusEnum, FactoryTypeEnum, HostingTypeEnum } from '@auditmation/module-auditmation-auditmation-portal';
+import { UUID, URL } from '@zerobias-org/types-core-js';
+
+// Local enums for validation (avoids dependency on @auditmation/module-auditmation-auditmation-portal)
+const VspStatusEnum = {
+  values: ['active', 'verified', 'inactive', 'deprecated', 'published'] as const,
+  from(value: string): string {
+    if (!this.values.includes(value as any)) {
+      throw new Error(`Invalid VspStatus: ${value}. Valid values: ${this.values.join(', ')}`);
+    }
+    return value;
+  }
+};
+
+const FactoryTypeEnum = {
+  values: ['software', 'hardware', 'service', 'platform', 'infrastructure', 'saas', 'paas', 'iaas'] as const,
+  from(value: string): string {
+    if (!this.values.includes(value as any)) {
+      throw new Error(`Invalid FactoryType: ${value}. Valid values: ${this.values.join(', ')}`);
+    }
+    return value;
+  }
+};
+
+const HostingTypeEnum = {
+  values: ['cloud', 'on-premise', 'hybrid', 'managed', 'self-hosted'] as const,
+  from(value: string): string {
+    if (!this.values.includes(value as any)) {
+      throw new Error(`Invalid HostingType: ${value}. Valid values: ${this.values.join(', ')}`);
+    }
+    return value;
+  }
+};
 
 const productTypes: Record<string, number> = {};
 
@@ -41,8 +71,19 @@ async function readAndParseFile(file: string, fullPathFile: string): Promise<any
 }
 
 function processPackageJson(packageFile: Record<string, any>, code: string, vendor: string, suite?: string): void {
-  let check: any = packageFile.name !== undefined && packageFile.name !== null && packageFile.name === `@zerobias-org/product-${vendor}-${code}`
-    ? true : new Error('package.json missing name or not set to @zerobias-org/product-<vendor>-<code>');
+  let expectedName: string;
+  let expectedPackage: string;
+
+  if (suite) {
+    expectedName = `@zerobias-org/product-${vendor}-${suite}-${code}`;
+    expectedPackage = `${vendor}.${suite}.${code}`;
+  } else {
+    expectedName = `@zerobias-org/product-${vendor}-${code}`;
+    expectedPackage = `${vendor}.${code}`;
+  }
+
+  let check: any = packageFile.name !== undefined && packageFile.name !== null && packageFile.name === expectedName
+    ? true : new Error(`package.json missing name or not set to ${expectedName}`);
 
   check = packageFile.description !== undefined && packageFile.description !== null
     ? true : new Error('package.json missing description or needs replacement from {name}');
@@ -54,8 +95,8 @@ function processPackageJson(packageFile: Record<string, any>, code: string, vend
     const auditmation = packageFile.auditmation;
     check = auditmation['import-artifact'] !== undefined && auditmation['import-artifact'] !== null && auditmation['import-artifact'] === 'product'
       ? true : new Error('package.json auditmation section missing import-artifact or not set to product');
-    check = auditmation.package !== undefined && auditmation.package !== null && auditmation.package === `${vendor}.${code}`
-      ? true : new Error('package.json auditmation section missing package or not set to <vendor>.<code>');
+    check = auditmation.package !== undefined && auditmation.package !== null && auditmation.package === expectedPackage
+      ? true : new Error(`package.json auditmation section missing package or not set to ${expectedPackage}`);
     check = auditmation['dataloader-version'] !== undefined && auditmation['dataloader-version'] !== null ? true
       : new Error('package.json auditmation section missing dataloader-version');
   } else {
@@ -162,7 +203,7 @@ async function processIndexYml(indexFile: Record<string, any>): Promise<{ code: 
   } else {
     throw new Error('parentType in index.yml must be either vendor or suite.');
   }
- 
+
   return { code, vendor, suite };
 }
 
@@ -185,7 +226,7 @@ async function processArtifact(directory: string) {
   if (!packageJson) {
     throw new Error('Unable to parse package.json');
   }
-  
+
   if (packageJson.auditmation && typeof packageJson.auditmation === 'object' && packageJson.auditmation.deprecated) {
     console.log('This artifact is deprecated according to the package.json.');
     return;
@@ -202,7 +243,7 @@ async function processArtifact(directory: string) {
   if (!indexYml) {
     throw new Error('Unable to parse index.yml');
   }
-  
+
   if (indexYml.deprecate) {
     console.log('This artifact is deprecated due to index.yml.');
     return;
