@@ -342,7 +342,7 @@ For creating products from ZeroBias tasks, use the skill:
 /create-product [task-id]
 ```
 
-See **[.claude/skills/create-product.md](.claude/skills/create-product.md)** for the complete workflow.
+See **[.claude/skills/create-product/SKILL.md](.claude/skills/create-product/SKILL.md)** for the complete workflow.
 
 ### Quick Reference
 
