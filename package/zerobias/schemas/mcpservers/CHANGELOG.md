@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.1-rc.1 (2026-03-16)</small>
+
+* chore(release): bump version ([ce021c7](https://github.com/zerobias-org/product/commit/ce021c7))
+
+
+
+
+
 ## <small>1.0.1-rc.0 (2026-03-16)</small>
 
 **Note:** Version bump only for package @zerobias-org/product-zerobias-schemas-mcpservers
