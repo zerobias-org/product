@@ -97,10 +97,10 @@ Since no automated script exists yet, create products manually:
    - Add dependencies:
      - **Vendor products**: `"@zerobias-org/vendor-{vendor}": "latest"`
      - **Suite products**: `"@zerobias-org/suite-{vendor}-{suite}": "latest"`
-   - Update auditmation.package:
+   - Update zerobias.package:
      - **Vendor products**: `"{vendor}.{code}"`
      - **Suite products**: `"{vendor}.{suite}.{code}"`
-   - Set dataloader-version: `"5.0.25"` (current standard)
+   - Set dataloader-version: `"1.0.0"` (current standard)
    - Ensure files array includes: `["index.yml", "catalog.yml", "logo.*"]`
    - Update script paths:
      - **Vendor products**: `"../../../scripts/publish.sh"`, `"../../../scripts/prepublish.sh"`, etc.
@@ -181,7 +181,7 @@ parentType: vendor
   "dependencies": {
     "@zerobias-org/vendor-github": "latest"
   },
-  "auditmation": {
+  "zerobias": {
     "package": "github.github"
   }
 }
@@ -207,7 +207,7 @@ parentType: suite
   "dependencies": {
     "@zerobias-org/suite-microsoft-azure": "latest"
   },
-  "auditmation": {
+  "zerobias": {
     "package": "microsoft.azure.entra"
   }
 }
@@ -250,10 +250,11 @@ Each product package contains:
 - Package name format:
   - **Vendor products**: `@zerobias-org/product-{vendor}-{code}`
   - **Suite products**: `@zerobias-org/product-{vendor}-{suite}-{code}`
-- Must include `auditmation` section with:
+- Must include `zerobias` section with:
   - `package: "{vendor}.{code}"` for vendor products or `"{vendor}.{suite}.{code}"` for suite products
   - `import-artifact: "product"`
-  - `dataloader-version: "5.0.25"` (current standard)
+  - `dataloader-version: "1.0.0"` (current standard)
+  - Note: `auditmation` key is still accepted for backwards compatibility
 - Dependencies must include exactly one dependency:
   - **Vendor products**: `@zerobias-org/vendor-{vendor}`
   - **Suite products**: `@zerobias-org/suite-{vendor}-{suite}`
@@ -315,7 +316,7 @@ Follow Conventional Commits specification:
 #### Validation Script
 The `scripts/validate.ts` script checks:
 - Proper package.json structure and naming
-- Required auditmation configuration
+- Required zerobias (or auditmation) metadata configuration
 - Dependency configuration (vendor or suite)
 - index.yml structure and required fields
 - Presence of required files (.npmrc, package.json, index.yml)

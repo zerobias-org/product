@@ -35,8 +35,8 @@
   "dependencies": {
     "@zerobias-org/vendor-{vendor}": "latest"
   },
-  "auditmation": {
-    "dataloader-version": "5.0.25",
+  "zerobias": {
+    "dataloader-version": "1.0.0",
     "import-artifact": "product",
     "package": "{vendor}.{code}"
   }
@@ -68,8 +68,8 @@
   "dependencies": {
     "@zerobias-org/suite-{vendor}-{suite}": "latest"
   },
-  "auditmation": {
-    "dataloader-version": "5.0.25",
+  "zerobias": {
+    "dataloader-version": "1.0.0",
     "import-artifact": "product",
     "package": "{vendor}.{suite}.{code}"
   }
