@@ -70,6 +70,16 @@ async function readAndParseFile(file: string, fullPathFile: string): Promise<any
   throw new Error(`File type not supported: ${file}`);
 }
 
+function getMetadataSection(packageFile: Record<string, any>): { key: string, section: Record<string, any> } {
+  if (packageFile.zerobias && typeof packageFile.zerobias === 'object') {
+    return { key: 'zerobias', section: packageFile.zerobias };
+  }
+  if (packageFile.auditmation && typeof packageFile.auditmation === 'object') {
+    return { key: 'auditmation', section: packageFile.auditmation };
+  }
+  throw new Error('package.json missing zerobias (or auditmation) metadata section');
+}
+
 function processPackageJson(packageFile: Record<string, any>, code: string, vendor: string, suite?: string): void {
   let expectedName: string;
   let expectedPackage: string;
@@ -91,17 +101,13 @@ function processPackageJson(packageFile: Record<string, any>, code: string, vend
     throw new Error('package.json description needs replacement from {name}');
   }
 
-  if (packageFile.auditmation && typeof packageFile.auditmation === 'object') {
-    const auditmation = packageFile.auditmation;
-    check = auditmation['import-artifact'] !== undefined && auditmation['import-artifact'] !== null && auditmation['import-artifact'] === 'product'
-      ? true : new Error('package.json auditmation section missing import-artifact or not set to product');
-    check = auditmation.package !== undefined && auditmation.package !== null && auditmation.package === expectedPackage
-      ? true : new Error(`package.json auditmation section missing package or not set to ${expectedPackage}`);
-    check = auditmation['dataloader-version'] !== undefined && auditmation['dataloader-version'] !== null ? true
-      : new Error('package.json auditmation section missing dataloader-version');
-  } else {
-    throw new Error(`package.json missing auditmation section`);
-  }
+  const { key: metaKey, section: metadata } = getMetadataSection(packageFile);
+  check = metadata['import-artifact'] !== undefined && metadata['import-artifact'] !== null && metadata['import-artifact'] === 'product'
+    ? true : new Error(`package.json ${metaKey} section missing import-artifact or not set to product`);
+  check = metadata.package !== undefined && metadata.package !== null && metadata.package === expectedPackage
+    ? true : new Error(`package.json ${metaKey} section missing package or not set to ${expectedPackage}`);
+  check = metadata['dataloader-version'] !== undefined && metadata['dataloader-version'] !== null ? true
+    : new Error(`package.json ${metaKey} section missing dataloader-version`);
 
   if (packageFile.dependencies && typeof packageFile.dependencies === 'object') {
     if (suite) {
@@ -227,7 +233,8 @@ async function processArtifact(directory: string) {
     throw new Error('Unable to parse package.json');
   }
 
-  if (packageJson.auditmation && typeof packageJson.auditmation === 'object' && packageJson.auditmation.deprecated) {
+  const metaSection = packageJson.zerobias || packageJson.auditmation;
+  if (metaSection && typeof metaSection === 'object' && metaSection.deprecated) {
     console.log('This artifact is deprecated according to the package.json.');
     return;
   }

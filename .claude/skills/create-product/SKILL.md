@@ -82,8 +82,8 @@ package/{vendor}/{suite}/{code}/
 **Required files:** `.npmrc`, `package.json`, `index.yml`, `catalog.yml`, logo file
 
 **Key conventions:**
-- Metadata key: `auditmation` (this repo has NOT migrated to `zerobias`)
-- Dataloader version: `"5.0.25"`
+- Metadata key: `zerobias` (preferred; `auditmation` still accepted for backwards compatibility)
+- Dataloader version: `"1.0.0"`
 - Scripts use `tsx` (not `ts-node`)
 - Starting version: `"1.0.0-rc.1"`
 - `catalog.yml` MUST be in the `files` array
@@ -101,7 +101,7 @@ npm run validate
 
 | Error | Fix |
 |-------|-----|
-| `package.json missing auditmation section` | Use `auditmation` key, not `zerobias` |
+| `package.json missing zerobias ... metadata section` | Add `zerobias` (or `auditmation`) key with required fields |
 | `factoryType documentation not valid` | Use `software`, `firmware`, or `hardware` |
 | `package.json missing name` | Check name format matches convention |
 | `description needs replacement from {name}` | Replace all template placeholders |
