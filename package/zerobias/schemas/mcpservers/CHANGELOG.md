@@ -1,0 +1,8 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## 1.0.0 (2026-03-09)
+
+* feat(zerobias-schemas-mcpservers): add MCP Servers product package and update create-product skill ([1af5fc0](https://github.com/zerobias-org/product/commit/1af5fc0))
