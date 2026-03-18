@@ -58,13 +58,17 @@ Products in this repository can be:
 1. **Vendor Products**: Direct vendor integrations (e.g., `package/github/github/`)
 2. **Suite Products**: Products that belong to a suite (e.g., `package/microsoft/azure/entra/`)
 
+#### Code Format Constraint
+
+`{vendor}`, `{suite}`, and `{code}` must match `^[a-z0-9]+$` — **lowercase alphanumeric only. No hyphens, no underscores, no dots.** This matches the ZB platform UI's `vspCodeValidator`. The API does not enforce this server-side, but the ecosystem (catalog package names, dataloader artifact resolution, schema linkage) requires it. The `validate` script enforces this.
+
 #### Product Directory Structure
 - **Vendor Products**: `package/{vendor}/{code}/`
   - `{vendor}` - Vendor name (e.g., github, okta)
   - `{code}` - Product identifier (e.g., github, okta)
 - **Suite Products**: `package/{vendor}/{suite}/{code}/`
   - `{vendor}` - Vendor name (e.g., microsoft)
-  - `{suite}` - Suite identifier (e.g., azure, 365)  
+  - `{suite}` - Suite identifier (e.g., azure, 365)
   - `{code}` - Product identifier (e.g., entra, teams)
 
 #### Manual Creation Process

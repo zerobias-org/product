@@ -131,6 +131,10 @@ async function processIndexYml(indexFile: Record<string, any>): Promise<{ code: 
   if (typeof code !== 'string') {
     throw new Error('code in index.yml needs replacement from {code}');
   }
+  // Enforce ^[a-z0-9]+$ — matches ZB platform vspCodeValidator (no hyphens, underscores, or dots)
+  if (!/^[a-z0-9]+$/.test(code)) {
+    throw new Error(`code "${code}" contains invalid characters. Must match ^[a-z0-9]+$ (lowercase alphanumeric only — no hyphens, underscores, or dots).`);
+  }
 
   let check: any;
   check = indexFile.id !== undefined && indexFile.id !== null && indexFile.id !== '{id}' ? new UUID(indexFile.id)
@@ -208,6 +212,15 @@ async function processIndexYml(indexFile: Record<string, any>): Promise<{ code: 
       : new Error('suiteCode not found in index.yml');
   } else {
     throw new Error('parentType in index.yml must be either vendor or suite.');
+  }
+
+  // Enforce ^[a-z0-9]+$ on vendor and suite codes — matches ZB platform vspCodeValidator
+  const codePattern = /^[a-z0-9]+$/;
+  if (typeof vendor === 'string' && !codePattern.test(vendor)) {
+    throw new Error(`vendorCode "${vendor}" contains invalid characters. Must match ^[a-z0-9]+$ (lowercase alphanumeric only).`);
+  }
+  if (suite && typeof suite === 'string' && !codePattern.test(suite)) {
+    throw new Error(`suiteCode "${suite}" contains invalid characters. Must match ^[a-z0-9]+$ (lowercase alphanumeric only).`);
   }
 
   return { code, vendor, suite };

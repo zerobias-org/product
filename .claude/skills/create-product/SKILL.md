@@ -82,6 +82,7 @@ package/{vendor}/{suite}/{code}/
 **Required files:** `.npmrc`, `package.json`, `index.yml`, `catalog.yml`, logo file
 
 **Key conventions:**
+- `{vendor}`, `{suite}`, `{code}` must match `^[a-z0-9]+$` — **lowercase alphanumeric only, no hyphens/underscores/dots** (matches ZB platform `vspCodeValidator`)
 - Metadata key: `zerobias` (preferred; `auditmation` still accepted for backwards compatibility)
 - Dataloader version: `"1.0.0"`
 - Scripts use `tsx` (not `ts-node`)
