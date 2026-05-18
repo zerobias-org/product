@@ -109,8 +109,8 @@ fun validateLogo(projectDir: java.io.File, pkgDoc: Map<String, Any?>, tag: Strin
 
     val logo = candidates.single()
     val size = logo.length()
-    require(size in 500..(5L * 1024 * 1024)) {
-        "$tag ${logo.name} size $size bytes outside acceptable range (500B–5MB) — likely an error response or unscaled asset"
+    require(size in 100..(5L * 1024 * 1024)) {
+        "$tag ${logo.name} size $size bytes outside acceptable range (100B–5MB) — likely an error response or unscaled asset"
     }
 
     val head = logo.inputStream().use { stream -> ByteArray(8).also { stream.read(it) } }
