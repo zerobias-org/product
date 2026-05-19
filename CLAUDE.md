@@ -4,360 +4,161 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a Lerna-based monorepo containing ZeroBias product artifacts. Each product package represents a vendor/service integration with metadata, configuration, and dependencies.
+Monorepo of ZeroBias product artifacts. Each `package/<vendor>/<code>/` (vendor-parented) or `package/<vendor>/<suite>/<code>/` (suite-parented) directory is one publishable product package.
+
+The repo is on the **gradle + [zbb publish reusable workflow](https://github.com/zerobias-org/devops/blob/main/.github/workflows/zbb-publish-reusable.yml)** pipeline. Lerna and nx were removed in the post-migration cleanup — they are no longer the build or publish system. See `org/vendor` and `org/suite` for the canonical reference shapes.
 
 ## Development Commands
 
-### Installation and Setup
+### Per-product
+
 ```bash
-# Initial setup (required after cloning)
-npm install
+# File-shape validation only (validator philosophy: only checks things the dataloader doesn't):
+./gradlew :<vendor>:<code>:validateContent              # vendor-parented
+./gradlew :<vendor>:<suite>:<code>:validateContent      # suite-parented
 
-# Bootstrap all packages with dependencies
-npm run bootstrap
-
-# Reset entire workspace (clean + bootstrap + build)
-npm run reset
+# Full gate — validate → lint → compile → buildArtifacts → testIntegrationDataloader → writeGateStamp:
+./gradlew :<vendor>:<code>:gate
+./gradlew :<vendor>:<suite>:<code>:gate
 ```
 
-### Common Development Tasks
+`gate` writes `package/<path>/gate-stamp.json`. The publish workflow's preflight rejects any product without a committed stamp.
+
+`testIntegrationDataloader` runs the dataloader against an ephemeral Neon Postgres branch. Without `NEON_API_KEY` / `NEON_PROJECT_ID` in env (vault refs in `zbb.yaml`), it's skipped locally; CI runs it on push against an ephemeral branch.
+
+### Per-product helper
+
 ```bash
-# Validate all edited or added products
-npm run validate
-
-# Build all packages (runs npm shrinkwrap)
-npm run build
-
-# Run tests for all packages
-npm run lerna:test
-
-# Correct dependencies across packages
+# Reset all `dependencies` versions in a package.json to "latest" (replaces lerna sync):
+cd package/<vendor>/<code>
 npm run correct:deps
-
-# Clean workspace
-npm run clean       # Basic clean
-npm run clean:full  # Full clean including node_modules
 ```
 
-### Lerna Version Management
+### Repo-wide
+
 ```bash
-# Dry run to preview version changes and changelog
-npm run lerna:dry-run
+# Cross-cut: fail if two products share an index.yml id UUID
+./gradlew validateUniqueIds
 
-# Version packages (used by CI/CD)
-npm run lerna:version
-
-# Publish packages (used by CI/CD)
-npm run lerna:publish
+# Info tasks (zbb CLI helpers):
+./gradlew projectPaths       # emit project-to-directory mapping
+./gradlew changedModules     # list products changed since last tag
 ```
 
-### Creating New Products
+## Product Structure
 
-#### Understanding Product Types
-Products in this repository can be:
-1. **Vendor Products**: Direct vendor integrations (e.g., `package/github/github/`)
-2. **Suite Products**: Products that belong to a suite (e.g., `package/microsoft/azure/entra/`)
+### Two parent types
 
-#### Product Directory Structure
-- **Vendor Products**: `package/{vendor}/{code}/`
-  - `{vendor}` - Vendor name (e.g., github, okta)
-  - `{code}` - Product identifier (e.g., github, okta)
-- **Suite Products**: `package/{vendor}/{suite}/{code}/`
-  - `{vendor}` - Vendor name (e.g., microsoft)
-  - `{suite}` - Suite identifier (e.g., azure, 365)  
-  - `{code}` - Product identifier (e.g., entra, teams)
+| `parentType` | Path | Sample | npm name | `zerobias.package` |
+|---|---|---|---|---|
+| `vendor` | `package/<v>/<p>/` (depth 2) | `qualys/qualysplatform` | `@zerobias-org/product-<v>-<p>` | `<v>.<p>` |
+| `suite` | `package/<v>/<s>/<p>/` (depth 3) | `amazon/aws/s3` | `@zerobias-org/product-<v>-<s>-<p>` | `<v>.<s>.<p>` |
 
-#### Manual Creation Process
-Since no automated script exists yet, create products manually:
+The gate validator (`build.gradle.kts:50-93`) reads `index.yml.parentType` at runtime and applies the matching formula.
 
-1. **Create Directory Structure**
-   ```bash
-   # For vendor product
-   mkdir -p package/{vendor}/{code}
-   
-   # For suite product  
-   mkdir -p package/{vendor}/{suite}/{code}
-   ```
+### Required files per product
 
-2. **Copy Template Files**
-   ```bash
-   # Copy from repository root templates/ directory
-   cp templates/* package/{vendor}/{code}/
-   cp .npmrc package/{vendor}/{code}/
-   ```
+- `index.yml` — product metadata (id, name, code, vendorCode, vendorId, parentType, etc.)
+- `package.json` — npm name + `zerobias` block + the single `correct:deps` script
+- `catalog.yml` — service catalog definition (dataloader fails without it)
+- `.npmrc` — artifact-private registry config
+- `build.gradle.kts` — `plugins { id("zb.content") }` (one-liner; validator handles the depth)
+- `logo.svg` / `logo.png` / `logo.jpg` — optional; if present must match magic bytes for its extension, be 100B–5MB, and appear in `files` array
 
-3. **Configure package.json**
-   - Update name format:
-     - **Vendor products**: `@zerobias-org/product-{vendor}-{code}`
-     - **Suite products**: `@zerobias-org/product-{vendor}-{suite}-{code}`
-   - Set description: `"Product package for {vendor} {code}"` or `"Product package for {vendor} {suite} {code}"`
-   - Set repository directory path correctly:
-     - **Vendor products**: `"directory": "package/{vendor}/{code}/"`
-     - **Suite products**: `"directory": "package/{vendor}/{suite}/{code}/"`
-   - Add dependencies:
-     - **Vendor products**: `"@zerobias-org/vendor-{vendor}": "latest"`
-     - **Suite products**: `"@zerobias-org/suite-{vendor}-{suite}": "latest"`
-   - Update zerobias.package:
-     - **Vendor products**: `"{vendor}.{code}"`
-     - **Suite products**: `"{vendor}.{suite}.{code}"`
-   - Set dataloader-version: `"1.0.0"` (current standard)
-   - Ensure files array includes: `["index.yml", "catalog.yml", "logo.*"]`
-   - Update script paths:
-     - **Vendor products**: `"../../../scripts/publish.sh"`, `"../../../scripts/prepublish.sh"`, etc.
-     - **Suite products**: `"../../../../scripts/publish.sh"`, `"../../../../scripts/prepublish.sh"`, etc.
+### package.json shape (per product)
 
-4. **Configure index.yml**
-   - Generate unique UUID (lowercase)
-   - Set real name, description, url (manually replace all template placeholders)
-   - Set vendorCode: `{vendor}` and code: `{code}`
-   - Set current timestamps for created/updated fields (both should be identical at creation)
-   - Configure parentType and IDs:
-     - **Vendor products**: `parentType: "vendor"`, add vendorId (get from `node_modules/@zerobias-org/vendor-{vendor}/index.yml`)
-     - **Suite products**: `parentType: "suite"`, add vendorId, suiteId, suiteCode (get IDs from `node_modules/@zerobias-org/suite-{vendor}-{suite}/index.yml`)
-   - Set logo URL pattern:
-     - **Vendor products**: `https://cdn.auditmation.io/logos/{vendor}-{code}.svg`
-     - **Suite products**: `https://cdn.auditmation.io/logos/{vendor}-{suite}-{code}.svg`
-   - Set status: `"verified"`
-   - Set factoryTypes: `["software"]` (standard for software products)
-   - Set hostingTypes: `[]` (empty array is default)
-   - Set cpeProducts: `[]` (empty unless you know specific CPE identifiers exist)
-
-5. **Add Logo File**
-   ```bash
-   # Download official logo (preferred approach)
-   curl -o package/{vendor}/{code}/logo.svg "https://official-logo-url.svg"
-   
-   # Verify download completed
-   ls -lh package/{vendor}/{code}/logo.svg
-   ```
-
-5. **Create catalog.yml** (**Required** - the dataloader will fail without this file)
-   ```yaml
-   Product:
-     name: {Product Display Name}
-     versions: [0.0.0]
-     package: {vendor}.{code}   # or {vendor}.{suite}.{code} for suite products
-     description: |-
-       {Brief product description}
-     link: {Official product URL}
-     contentType: json
-   Operations:
-   ```
-   - Set Product section with name, package, description, link
-   - Include version array with current version (typically `[0.0.0]`)
-   - Set contentType: `"json"`
-   - The `Operations:` key should be present but can be empty
-
-6. **Install Dependencies and Generate Shrinkwrap**
-   ```bash
-   cd package/{vendor}/{code}
-   npm install  # This will install vendor/suite dependency and allow ID lookup
-   npm shrinkwrap
-   ```
-
-7. **Validate Product**
-   ```bash
-   cd package/{vendor}/{code}
-   npm run validate
-   ```
-
-#### Examples from Production
-
-**GitHub (Vendor Product):**
-```yaml
-# package/github/github/index.yml
-id: 7129ca79-24d8-53f0-8491-e66977bee4a7
-name: GitHub
-code: github
-vendorCode: github
-vendorId: 075189d1-f253-5eab-b698-89514f327da0
-parentType: vendor
-```
-
-```json
-// package/github/github/package.json
+```jsonc
 {
-  "name": "@zerobias-org/product-github-github",
+  "name": "@zerobias-org/product-<v>-<p>",          // or product-<v>-<s>-<p>
+  "version": "2.0.x",
+  "files": ["index.yml", "catalog.yml", "logo.*"],
   "dependencies": {
-    "@zerobias-org/vendor-github": "latest"
+    "@zerobias-org/vendor-<v>": "latest"            // or suite-<v>-<s>
   },
   "zerobias": {
-    "package": "github.github"
+    "package": "<v>.<p>",                            // or <v>.<s>.<p>
+    "import-artifact": "product",
+    "dataloader-version": "1.0.0"
+  },
+  "scripts": {
+    "correct:deps": "tsx ../../../scripts/correctDeps.ts"   // depth-2; depth-3 uses ../../../../
   }
 }
 ```
 
-**Microsoft Entra (Suite Product):**
-```yaml
-# package/microsoft/azure/entra/index.yml
-id: 62c17d9b-10f3-41ec-8be2-f53b3d18fe64
-name: Entra ID
-code: entra
-vendorCode: microsoft
-vendorId: f6b6f862-3012-5f64-a523-4b1f28296829
-suiteCode: azure
-suiteId: 430ec569-6163-517d-93ea-658e4e92033c
-parentType: suite
+Legacy `auditmation` metadata key is still accepted; prefer `zerobias`.
+
+### index.yml shape
+
+- `id` — UUID, must be unique across the entire repo (enforced by `validateUniqueIds`)
+- `name`, `code`, `description`, `url`, `status: "verified"`
+- `parentType: "vendor"` + `vendorCode` + `vendorId`
+- OR `parentType: "suite"` + `vendorCode` + `vendorId` + `suiteCode` + `suiteId`
+- `logo` URL — convention: `https://cdn.auditmation.io/logos/<v>-<p>.<ext>` (or `<v>-<s>-<p>.<ext>` for suite-parented)
+- `created` / `updated` — real ISO timestamps (no placeholder `00:00:00.000Z`)
+- `factoryTypes: ["software"]` typical; `hostingTypes: []`; `cpeProducts: []` unless known
+
+Vendor IDs come from `org/vendor/package/<v>/index.yml`. Suite IDs come from `org/suite/package/<v>/<s>/index.yml`.
+
+## Validator philosophy
+
+The dataloader is the source of truth for schema rules (UUID format, code regex, status enum, URL parse, `vendorId`/`suiteId` lookup, etc.). The gate validator only enforces what the dataloader CANNOT or DOES NOT see:
+
+1. **Filesystem ↔ npm-name ↔ `zerobias.package` triangulation** — dataloader reads `zerobias.package` but never the npm `name` and has no view of the directory layout
+2. **Logo file correctness** — dataloader only records the URL; doesn't crack the bytes
+3. **Repo-wide unique `id` UUIDs** (`:validateUniqueIds`) — dataloader sees one product at a time
+
+This avoids drift when the dataloader tightens. Every repo on the gradle pipeline keeps the philosophy comment at the top of `build.gradle.kts` so future readers don't add validations the dataloader will do better.
+
+## Creating a new product
+
+Use the skill: `/create-product [task-id]`. See [.claude/skills/create-product/SKILL.md](.claude/skills/create-product/SKILL.md). The skill bootstraps the directory, copies templates, looks up parent IDs, runs `./gradlew :path:validateContent`, and walks through the catalog.yml step.
+
+## Migrating remaining lerna-era packages
+
+Use the skill: `/migrate-packages [<v>/<p> ...|<v>/<s>/<p> ...]`. See [.claude/skills/migrate-packages/SKILL.md](.claude/skills/migrate-packages/SKILL.md). The skill drops the marker, runs `:gate`, applies the major bump where needed (`1.x → 2.0`, `0.x → 1.0`, `2.x → no-op`), commits per-product.
+
+## Branches
+
+- `main` — default, all PRs target it
+- `dev`, `qa`, `uat` — environment branches kept in sync by the publish workflow's `sync` job after every successful main publish
+
+## Commit format
+
+[Conventional Commits](https://www.conventionalcommits.org/), enforced by `commitlint` (`.commitlintrc.json`).
+
+```
+feat(product-<v>-<p>): <subject>
+feat(product-<v>-<s>-<p>)!: <subject> (<oldVer> → <newVer>)
 ```
 
-```json
-// package/microsoft/azure/entra/package.json
-{
-  "name": "@zerobias-org/product-microsoft-azure-entra",
-  "dependencies": {
-    "@zerobias-org/suite-microsoft-azure": "latest"
-  },
-  "zerobias": {
-    "package": "microsoft.azure.entra"
-  }
-}
-```
+Use `!` for major version bumps. Scopes: `product-<...>`, `bundle`, `validator`, `repo-cleanup`.
 
-## Architecture
+## CI/CD
 
-### Monorepo Structure
-- **Root**: Contains Lerna, Nx, and Husky configurations
-- **package/**: All product packages organized by vendor/service
-  - Each package follows pattern: `vendor/service/`
-  - Contains: `index.yml`, `catalog.yml`, `logo.svg`, `package.json`, `npm-shrinkwrap.json`
-- **scripts/**: Build and publishing automation scripts
-- **templates/**: Package templates for new products
+Single workflow: `.github/workflows/publish.yml` — a thin wrapper around `zerobias-org/devops/.github/workflows/zbb-publish-reusable.yml@main`. Triggered on `push` to main/qa/dev/uat (paths: `package/**`, `.github/workflows/publish.yml`) and on `workflow_dispatch` (optional `product` input).
 
-### Key Technologies
-- **Lerna**: Independent versioning for packages
-- **Nx**: Task orchestration and caching
-- **Husky**: Git hooks for commit validation
-- **Conventional Commits**: Enforced commit message format
+The reusable workflow's jobs:
+1. **detect** — diff to find changed products
+2. **version** (main only, single-writer) — bump patch version, commit
+3. **publish** (matrix) — per-product publish to npm + GHCR
+4. **update-bundle** (main only, after publish success) — refresh `bundle/package.json` deps from npm, patch-bump bundle, publish
+5. **sync** — propagate main → uat → qa → dev
 
-### Package Structure
-Each product package contains:
-- `index.yml`: Product metadata and configuration
-- `catalog.yml`: Service catalog definition (**required** by the dataloader)
-- `package.json`: Dependencies and scripts
-- `npm-shrinkwrap.json`: Locked dependency versions
-- `logo.svg/png`: Product branding
-- `.npmrc`: Registry configuration
-
-### Versioning Strategy
-- Independent versioning per package
-- Starting version for new products: `1.0.0-rc.1`
-- Version bumps handled automatically by Lerna in CI/CD
-- Pre-major releases use release candidates (e.g., `1.0.0-rc.1`)
-
-### Product Structure and Requirements
-
-#### package.json Requirements
-- Package name format:
-  - **Vendor products**: `@zerobias-org/product-{vendor}-{code}`
-  - **Suite products**: `@zerobias-org/product-{vendor}-{suite}-{code}`
-- Must include `zerobias` section with:
-  - `package: "{vendor}.{code}"` for vendor products or `"{vendor}.{suite}.{code}"` for suite products
-  - `import-artifact: "product"`
-  - `dataloader-version: "1.0.0"` (current standard)
-  - Note: `auditmation` key is still accepted for backwards compatibility
-- Dependencies must include exactly one dependency:
-  - **Vendor products**: `@zerobias-org/vendor-{vendor}`
-  - **Suite products**: `@zerobias-org/suite-{vendor}-{suite}`
-- Standard scripts: `correct:deps`, `validate`
-
-#### index.yml Requirements
-- Must contain: `id`, `name`, `description`, `url`, `vendorCode`, `code`, `status`
-- Must have real timestamps for `created` and `updated` (never use placeholder times like `00:00:00.000Z`)
-- Optional: `logo`, `imageUrl`, `tags`, `aliases`, `cpeProducts`, `factoryTypes`, `hostingTypes`
-- No template placeholders like `{code}`, `{name}`, etc.
-- Logo URL pattern: `https://cdn.auditmation.io/logos/{vendor}-{code}.svg`
-
-#### Parent Relationship Configuration
-- **Vendor products**: Set `parentType: "vendor"`, include `vendorId` and `vendorCode`
-- **Suite products**: Set `parentType: "suite"`, include `vendorId`, `vendorCode`, `suiteId`, and `suiteCode`
-
-#### Logo Best Practices
-- **Use official logos**: Always try to find and use official vendor SVG logos
-- **Download approach**: Use curl to download official logos directly:
-  ```bash
-  curl -o package/{vendor}/{code}/logo.svg "https://official-logo-url.svg"
-  ```
-- **Verify download**: Check file size with `ls -lh` to ensure complete download
-- **Never modify**: Don't edit SVG content - preserve official branding exactly as provided
-
-## Git Workflow
-
-### Branch Strategy
-- Main branch: `main`
-- Development branch: `dev`
-- All PRs should target `dev` branch
-
-### Commit Format
-Follow Conventional Commits specification:
-- `feat`: New feature
-- `fix`: Bug fix
-- `docs`: Documentation changes
-- `style`: Code style changes
-- `refactor`: Code refactoring
-- `perf`: Performance improvements
-- `test`: Test additions/changes
-- `chore`: Build/tooling changes
-
-### CI/CD Workflows
-- **pull_request.yml**: Validates PRs, runs tests
-- **lerna_publish.yml**: Publishes changed packages
-- **lerna_post_publish.yml**: Post-publish notifications
-
-## Important Notes
-
-- Always run `npm install` in root after cloning to set up Husky hooks
-- Never manually bump versions in package.json files
-- All commits must follow Conventional Commits format
-- Set `ZB_TOKEN` environment variable for npm registry authentication
-- Packages are published to GitHub npm registry
-
-### Validation and Testing
-
-#### Validation Script
-The `scripts/validate.ts` script checks:
-- Proper package.json structure and naming
-- Required zerobias (or auditmation) metadata configuration
-- Dependency configuration (vendor or suite)
-- index.yml structure and required fields
-- Presence of required files (.npmrc, package.json, index.yml)
-- Ensures no template placeholders remain
-
-#### Required Post-Installation Steps
-- Always run `npm install && npm shrinkwrap` after creating or modifying a product
-- The dependency (vendor or suite) will force installation of the appropriate package
-- Run validation from the product directory: `npm run validate`
-
-#### Dataloader Testing
-After validation passes, test with the dataloader CLI:
+For pre-release validation on a feature branch:
 ```bash
-cd package/{vendor}/{code}
-dataloader
+gh workflow run publish.yml --ref <branch>
 ```
-The dataloader reads `catalog.yml` to import the product into the local platform database. If `catalog.yml` is missing, the dataloader will fail with `ENOENT: no such file or directory, open './catalog.yml'`.
+
+## Bundle
+
+`bundle/` ships `@zerobias-org/product-bundle` — an aggregate npm package listing every product as a dependency. Auto-refreshed by the `update-bundle` job; no manual maintenance.
 
 ## ZeroBias Task Integration
 
-For creating products from ZeroBias tasks, use the skill:
+For creating products from ZeroBias tasks: `/create-product [task-id]`.
 
-```
-/create-product [task-id]
-```
-
-See **[.claude/skills/create-product/SKILL.md](.claude/skills/create-product/SKILL.md)** for the complete workflow.
-
-### Quick Reference
-
-**Orchestration Documentation:**
-- [Meta-repo: DEPENDENCY_CHAIN.md](../../docs/orchestration/DEPENDENCY_CHAIN.md) - **STRICT dependency rules**
-- [Meta-repo: TASK_MANAGEMENT.md](../../docs/orchestration/TASK_MANAGEMENT.md) - Task API patterns
-- [Meta-repo: API_REFERENCE.md](../../docs/orchestration/API_REFERENCE.md) - Quick API reference
-
-**Dependency Chain:**
-```
-vendor → suite → product
-```
-
-**CRITICAL:** Products require either a vendor (vendor products) or a suite (suite products). Check/create the full chain first.
+**Dependency Chain:** `vendor → suite → product`. Products require either a vendor (vendor-parented) or a suite (suite-parented). Check/create the full chain first.
 
 ### Key APIs
 
@@ -392,15 +193,19 @@ zerobias_execute("platform.Task.update", {
 | Peer Review | awaiting_approval | `f017a447-0994-594d-9417-39cbc9a4de88` |
 | Accept | released | `1d2e9381-f609-5e26-8bc6-7bbb65a9048d` |
 
-**Note:** Always get actual IDs from `task.nextTransitions`.
+Always get actual IDs from `task.nextTransitions`.
+
+**Orchestration:**
+- [DEPENDENCY_CHAIN.md](../../docs/orchestration/DEPENDENCY_CHAIN.md) — strict dependency rules
+- [TASK_MANAGEMENT.md](../../docs/orchestration/TASK_MANAGEMENT.md) — task API patterns
+- [API_REFERENCE.md](../../docs/orchestration/API_REFERENCE.md) — quick API reference
 
 ---
 
 ## Related Documentation
 
-- **[Root CLAUDE.md](../../CLAUDE.md)** - Meta-repo guidance
-- **[ContentArtifacts.md](../../ContentArtifacts.md)** - Content catalog system
-- **[zerobias-org/suite/CLAUDE.md](../suite/CLAUDE.md)** - Community suites
-- **[zerobias-org/vendor/CLAUDE.md](../vendor/CLAUDE.md)** - Community vendors
-- **[com/platform/dataloader/CLAUDE.md](../../com/platform/dataloader/CLAUDE.md)** - Dataloader processor
-
+- [Root CLAUDE.md](../../CLAUDE.md) — meta-repo guidance
+- [ContentArtifacts.md](../../ContentArtifacts.md) — content catalog system
+- [org/vendor/CLAUDE.md](../vendor/CLAUDE.md) — vendor repo (parent dependency)
+- [org/suite/CLAUDE.md](../suite/CLAUDE.md) — suite repo (parent dependency for suite-parented products)
+- [com/platform/dataloader/CLAUDE.md](../../com/platform/dataloader/CLAUDE.md) — the dataloader processors
