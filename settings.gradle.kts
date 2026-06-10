@@ -12,8 +12,13 @@ pluginManagement {
         maven {
             url = uri("https://maven.pkg.github.com/zerobias-org/util")
             credentials {
-                username = System.getenv("GITHUB_ACTOR") ?: "zerobias-org"
-                password = System.getenv("READ_TOKEN") ?: System.getenv("NPM_TOKEN") ?: System.getenv("GITHUB_TOKEN") ?: ""
+                username = System.getenv("GITHUB_ACTOR")?.takeIf(String::isNotBlank) ?: "zerobias-org"
+                // `?:` only falls through on null, not on an empty string. CI can export
+                // READ_TOKEN set-but-empty, which would short-circuit the fallback and
+                // auth with a blank password (401 → "plugin not found"). Skip blanks so a
+                // later valid token (e.g. NPM_TOKEN) is used.
+                password = listOf("READ_TOKEN", "NPM_TOKEN", "GITHUB_TOKEN")
+                    .firstNotNullOfOrNull { System.getenv(it)?.takeIf(String::isNotBlank) } ?: ""
             }
         }
         gradlePluginPortal()
