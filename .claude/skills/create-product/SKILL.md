@@ -92,19 +92,34 @@ package/{vendor}/{suite}/{code}/
 ### Phase 5: Install and Validate
 
 ```bash
-cd package/{vendor}/{code}  # or {vendor}/{suite}/{code}
-npm install
-npm run validate
+cd package/{vendor}/{code}                              # or {vendor}/{suite}/{code}
+npm install                                             # resolves the parent vendor/suite dep so ID lookup works
+
+# Drop the gradle marker
+echo 'plugins { id("zb.content") }' > build.gradle.kts
+
+# From repo root: run the full gate (validate → compile → buildArtifacts → testIntegrationDataloader → writeGateStamp)
+cd <repo-root>
+./gradlew :{vendor}:{code}:gate                         # vendor-parented
+./gradlew :{vendor}:{suite}:{code}:gate                 # suite-parented
+```
+
+`gate` writes `gate-stamp.json`. The publish workflow rejects any product without a committed stamp.
+
+For file-shape checks only (no compile, no dataloader):
+```bash
+./gradlew :{vendor}:{code}:validateContent
 ```
 
 **Common validation errors:**
 
 | Error | Fix |
 |-------|-----|
-| `package.json missing zerobias ... metadata section` | Add `zerobias` (or `auditmation`) key with required fields |
-| `factoryType documentation not valid` | Use `software`, `firmware`, or `hardware` |
-| `package.json missing name` | Check name format matches convention |
-| `description needs replacement from {name}` | Replace all template placeholders |
+| `index.yml.parentType must be 'vendor' or 'suite'` | Set `parentType` in index.yml |
+| `package.json name expected '@zerobias-org/product-<v>-<p>'` | Name must match directory; fix the name (don't rename the dir) |
+| `zerobias.package expected '<v>.<p>'` | Fix the `zerobias.package` value to match directory layout |
+| `logo.svg doesn't look like SVG` | Logo magic bytes don't match its extension; rename to actual format or re-source |
+| `duplicate index.yml ids across the repo` | UUID collision — generate fresh with `uuidgen` |
 
 ### Phase 6: Test with Dataloader
 
@@ -138,8 +153,7 @@ gh pr create --base dev --title "feat({vendor}-{code}): add {Product Name}" --bo
 - Task ID: {task-id}
 
 ## Validation
-- [x] `npm run validate` passes
-- [x] `dataloader` runs successfully
+- [x] `./gradlew :{vendor}:{code}:gate` passes (writes `gate-stamp.json`)
 - [x] Logo included
 
 ## Test Plan

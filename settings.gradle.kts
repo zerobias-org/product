@@ -1,14 +1,24 @@
+// settings.gradle.kts — product monorepo
+//
+// Plugin resolution order: mavenLocal (for `publishToMavenLocal` dev builds
+// of build-tools) → GitHub Packages Maven → gradle plugin portal → mavenCentral.
+// Never via `includeBuild` of a sibling repo path: dev iteration goes through
+// `./gradlew publishToMavenLocal` from build-tools so CI and local resolve
+// the artifact the same way.
+
 pluginManagement {
-    val localBuildTools = file("../util/packages/build-tools")
-    if (localBuildTools.exists()) {
-        includeBuild(localBuildTools)
-    }
     repositories {
+        mavenLocal()
         maven {
             url = uri("https://maven.pkg.github.com/zerobias-org/util")
             credentials {
-                username = System.getenv("GITHUB_ACTOR") ?: "zerobias-org"
-                password = System.getenv("READ_TOKEN") ?: System.getenv("NPM_TOKEN") ?: System.getenv("GITHUB_TOKEN") ?: ""
+                username = System.getenv("GITHUB_ACTOR")?.takeIf(String::isNotBlank) ?: "zerobias-org"
+                // `?:` only falls through on null, not on an empty string. CI can export
+                // READ_TOKEN set-but-empty, which would short-circuit the fallback and
+                // auth with a blank password (401 → "plugin not found"). Skip blanks so a
+                // later valid token (e.g. NPM_TOKEN) is used.
+                password = listOf("READ_TOKEN", "NPM_TOKEN", "GITHUB_TOKEN")
+                    .firstNotNullOfOrNull { System.getenv(it)?.takeIf(String::isNotBlank) } ?: ""
             }
         }
         gradlePluginPortal()
