@@ -1,0 +1,76 @@
+Product:
+  name: Stellar Cyber
+  versions: [6.5.0]
+  package: stellarcyber.stellarcyber
+  description: |-
+    Stellar Cyber Open XDR. Cases are correlated groups of alerts (threat findings);
+    each case alert carries the resource context (GuardDuty finding, MITRE tactic/technique,
+    username, AWS account/region).
+  link: https://docs.stellarcyber.ai/6.5.xs/Using/API/API-Intro.htm
+  contentType: json
+Operations:
+  ListCases:
+    description: |-
+      List Stellar Cyber cases (correlated threat findings).
+    versions:
+      from: 6.5.0
+    link: https://docs.stellarcyber.ai/6.5.xs/Using/API/API-Case-Query.htm
+    example:
+      inputs: [
+        { "limit": 100, "status": "" }
+      ]
+      outputs: [
+        {
+          "data": {
+            "cases": [
+              {
+                "_id": "string",
+                "name": "string",
+                "severity": "Low|Medium|High|Critical",
+                "score": 0.0,
+                "size": 1,
+                "status": "string",
+                "created_at": 0,
+                "tenant_name": "string"
+              }
+            ]
+          }
+        }
+      ]
+  ListCaseAlerts:
+    description: |-
+      List the alerts within a case (the resource/threat detail). `skip` and `limit`
+      are both required (Stellar Cyber returns 422 if either is omitted).
+    versions:
+      from: 6.5.0
+    link: https://docs.stellarcyber.ai/6.5.xs/Using/API/API-Case-Query.htm
+    example:
+      inputs: [
+        { "caseId": "string", "skip": 0, "limit": 100 }
+      ]
+      outputs: [
+        {
+          "docs": [
+            {
+              "_id": "string",
+              "_source": {
+                "@timestamp": "string",
+                "severity": 0,
+                "username": "string",
+                "xdr_event": {
+                  "display_name": "string",
+                  "description": "string",
+                  "tactic": { "id": "string", "name": "string" },
+                  "technique": { "id": "string", "name": "string" }
+                },
+                "aws_guardduty": {
+                  "AccountId": "string",
+                  "Arn": "string",
+                  "Type": "string",
+                  "Resource": { "ResourceType": "string" }
+                }
+              }
+            }
+          ]
+        }
+      ]
