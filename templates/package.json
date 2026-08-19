@@ -1,31 +1,35 @@
 {
-  "name": "@zerobias-org/product-${vendor}-{suite?}-{code}",
-  "version": "1.0.0-rc.1",
-  "description": "{name}",
+  "name": "@zerobias-org/product-{vendor}-{code}",
+  "version": "1.0.0",
+  "description": "Product package for {name}",
   "author": "team@zerobias.com",
   "license": "ISC",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git@github.com:zerobias-org/product.git",
-    "directory": "package/{vendor}/{suite?}/{code}/"
+    "directory": "package/{vendor}/{code}/"
   },
   "scripts": {
-    "correct:deps": "tsx ../../../scripts/correctDeps.ts",
-    "validate": "tsx ../../../scripts/validate.ts"
+    "correct:deps": "tsx ../../../scripts/correctDeps.ts"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://pkg.zerobias.org/"
   },
   "files": [
-    "index.yml",
     "catalog.yml",
-    "logo.*"
+    "components/**",
+    "editions/**",
+    "features/**",
+    "index.yml",
+    "logo.*",
+    "supports.yml"
   ],
-  "dependencies": {},
-  "auditmation": {
-    "dataloader-version": "1.0.0",
+  "dependencies": {
+    "@zerobias-org/vendor-{vendor}": "latest"
+  },
+  "zerobias": {
+    "dataloader-version": "5.0.25",
     "import-artifact": "product",
-    "package": "{vendor}.{suite?}.{code}"
+    "package": "{vendor}.{code}"
   }
 }

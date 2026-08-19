@@ -1,21 +1,23 @@
 # Product Package Templates
 
+The scaffold script (`./scripts/createNewProduct.sh`) generates all of
+these from `templates/` and rewrites them for the parent type — this file
+is the reference for what the RESULT must look like (and for hand-fixing a
+package that drifted).
+
 ## .npmrc
 
 ```
-@auditmation:registry=https://pkg.zerobias.org
-@auditlogic:registry=https://pkg.zerobias.org
 @zerobias-org:registry=https://pkg.zerobias.org
-//pkg.zerobias.org/:always-auth=true
 //pkg.zerobias.org/:_authToken=${ZB_TOKEN}
 ```
 
-## package.json — Vendor Product
+## package.json — vendor-parented
 
 ```json
 {
   "name": "@zerobias-org/product-{vendor}-{code}",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0",
   "description": "Product package for {Product Name}",
   "author": "team@zerobias.com",
   "license": "ISC",
@@ -25,11 +27,10 @@
     "directory": "package/{vendor}/{code}/"
   },
   "scripts": {
-    "correct:deps": "tsx ../../../scripts/correctDeps.ts",
-    "validate": "tsx ../../../scripts/validate.ts"
+    "correct:deps": "tsx ../../../scripts/correctDeps.ts"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://pkg.zerobias.org/"
   },
   "files": ["catalog.yml", "index.yml", "logo.*"],
   "dependencies": {
@@ -38,86 +39,88 @@
   "zerobias": {
     "dataloader-version": "1.0.0",
     "import-artifact": "product",
-    "package": "{vendor}.{code}"
+    "package": "{vendor}.{code}",
+    "orgId": "{target-org-uuid}"
   }
 }
 ```
 
-## package.json — Suite Product
+- `version` starts at `1.0.0` and is never hand-edited afterwards — CI
+  owns bumps; org-private rc versions are computed by `zbb publishOrg`.
+- `zerobias.orgId` is set during the org-first flow (before the first
+  gate) and **deleted in the PR phase** — see the skill's Phase 3/7.
+- Legacy `auditmation` metadata key is still accepted in old packages;
+  new packages use `zerobias`.
 
-```json
+## package.json — suite-parented (differences only)
+
+```jsonc
 {
   "name": "@zerobias-org/product-{vendor}-{suite}-{code}",
-  "version": "1.0.0-rc.1",
-  "description": "Product package for {Product Name}",
-  "author": "team@zerobias.com",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:zerobias-org/product.git",
-    "directory": "package/{vendor}/{suite}/{code}/"
-  },
+  "repository": { "directory": "package/{vendor}/{suite}/{code}/" },
   "scripts": {
-    "correct:deps": "tsx ../../../../scripts/correctDeps.ts",
-    "validate": "tsx ../../../../scripts/validate.ts"
+    "correct:deps": "tsx ../../../../scripts/correctDeps.ts"   // one level deeper
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "files": ["catalog.yml", "index.yml", "logo.*"],
   "dependencies": {
-    "@zerobias-org/suite-{vendor}-{suite}": "latest"
+    "@zerobias-org/suite-{vendor}-{suite}": "latest"           // suite, not vendor
   },
-  "zerobias": {
-    "dataloader-version": "1.0.0",
-    "import-artifact": "product",
-    "package": "{vendor}.{suite}.{code}"
-  }
+  "zerobias": { "package": "{vendor}.{suite}.{code}" }
 }
 ```
 
 ## index.yml
 
 ```yaml
-id: {generate-uuid}
+id: {fresh-uuid-v4-lowercase}
 name: {Product Display Name}
 type: product
 ownerId: 00000000-0000-0000-0000-000000000000
-created: '{ISO-8601-timestamp}'
-updated: '{ISO-8601-timestamp}'
 code: {code}
-status: verified
+status: active
 description: >-
-  {Multi-line product description}
+  {What the product is and does.}
 aliases: []
 logo: https://cdn.auditmation.io/logos/{vendor}-{code}.svg
 imageUrl: https://cdn.auditmation.io/logos/{vendor}-{code}.svg
 url: {official-product-url}
 vendorId: {vendor-uuid}
 vendorCode: {vendor}
-# Suite products also need:
-# suiteId: {suite-uuid}
-# suiteCode: {suite}
-parentType: vendor  # or 'suite' for suite products
+parentType: vendor
 tags: []
+segments: []
 cpeProducts: []
 factoryTypes:
   - software
 hostingTypes: []
 ```
 
-**Getting vendor/suite IDs:**
-```bash
-# From installed dependency
-cat node_modules/@zerobias-org/vendor-{vendor}/index.yml | grep "^id:"
-cat node_modules/@zerobias-org/suite-{vendor}-{suite}/index.yml | grep "^id:"
+Suite-parented products additionally carry (and the scaffold inserts):
+
+```yaml
+suiteId: {suite-uuid}
+suiteCode: {suite}
+parentType: suite
 ```
 
-Or via API:
+- No `created`/`updated` fields — the dataloader stamps them server-side.
+- `logo`/`imageUrl` extension must match the actual logo file; the CDN
+  name is `{vendor}-{code}.<ext>` (vendor-parented) or
+  `{vendor}-{suite}-{code}.<ext>` (suite-parented).
+- `hostingTypes`: fill when known (e.g. `- saas`); `factoryTypes:
+  [software]` is the typical default.
+
+**Getting vendor/suite IDs** — from the Phase 1 `store.*.get` results
+(`id` field):
+
 ```javascript
-zerobias_execute("portal.Vendor.search", { searchVendorBody: { search: vendorCode }})
-zerobias_execute("portal.Suite.search", { searchSuiteBody: { search: suiteCode }})
+zerobias_execute("store.Vendor.get", { vendorCode: "{vendor}" })          // → vendorId
+zerobias_execute("store.Suite.get",  { vendorCode: "{vendor}",
+                                       suiteCode: "{suite}" })            // → suiteId
 ```
+
+(The `portal.*.search` ops found in older docs do NOT exist. Legacy
+fallback: `npm install` in the package dir and read `id` from
+`node_modules/@zerobias-org/vendor-{vendor}/index.yml`.)
 
 ## catalog.yml
 
@@ -134,13 +137,11 @@ Product:
 Operations:
 ```
 
+(`package` uses the same dot-joined path as `zerobias.package` —
+`{vendor}.{suite}.{code}` for suite-parented.)
+
 ## Logo
 
-```bash
-# Download official logo (prefer SVG)
-curl -o package/{path}/logo.svg "https://official-logo-url.svg"
-ls -lh package/{path}/logo.svg
-```
-
-Logo URL pattern: `https://cdn.auditmation.io/logos/{vendor}-{code}.svg`
-For suite products: `https://cdn.auditmation.io/logos/{vendor}-{suite}-{code}.svg`
+Download the official asset (vendor press-kit / brand pages); prefer SVG,
+never modify SVG content. Exactly one `logo.{svg|png|jpg}`, magic bytes
+matching the extension, present in the `files` array.
