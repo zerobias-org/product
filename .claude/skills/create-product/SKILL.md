@@ -195,9 +195,14 @@ the rest empty rather than guessing:
   `hostingTypes` (`saas`, `onprem`, …), `cpeProducts` (entries from the
   NVD CPE dictionary, `<vendor>:<product>` form), `segments` (segment
   UUIDs from the `segment` catalog).
-- `editions/` and `components/` directories and `supports.yml` — authored
-  per the catalog content model; the template's `files` list already
-  publishes them when present (nothing extra to wire).
+- `editions/`, `components/`, and `features/` directories and
+  `supports.yml` — authored per the catalog content model (the
+  dataloader mints child compliance features from `features/*.yml`);
+  the template's `files` list already publishes them when present
+  (nothing extra to wire).
+- Dependency note: suite-parented products depend on the suite package
+  ONLY — the vendor is reachable through it. Older packages carrying
+  both deps are legacy redundancy, not the pattern to copy.
 - Segment associations, compliance features, and control links span
   OTHER repos — that full wiring belongs to the meta-repo
   `/create-product` orchestrator, not this skill. When running
