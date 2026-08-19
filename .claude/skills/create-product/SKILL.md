@@ -184,6 +184,26 @@ Exact file shapes, key conventions, and the catalog.yml template live in
 - **Logo**: download the official asset (vendor press-kit / brand pages).
   Never modify SVG content. If none found, note it in the PR.
 
+### Enrichment — what separates a minimal load from a complete product
+
+The scaffold gives a minimal loadable package. A complete product (model:
+`package/github/github`) also carries — fill what you can verify, leave
+the rest empty rather than guessing:
+
+- `index.yml` fields: `apiDocsUrl` (official API docs), `factoryTypes`
+  (`software` default; also `hardware`/`service` where true),
+  `hostingTypes` (`saas`, `onprem`, …), `cpeProducts` (entries from the
+  NVD CPE dictionary, `<vendor>:<product>` form), `segments` (segment
+  UUIDs from the `segment` catalog).
+- `editions/` and `components/` directories and `supports.yml` — authored
+  per the catalog content model; the template's `files` list already
+  publishes them when present (nothing extra to wire).
+- Segment associations, compliance features, and control links span
+  OTHER repos — that full wiring belongs to the meta-repo
+  `/create-product` orchestrator, not this skill. When running
+  standalone, note unfilled enrichment in the PR body so reviewers see
+  it's deliberate.
+
 ## Phase 4 — gate (git add FIRST, always via zbb)
 
 All builds go through `zbb` — **never invoke `./gradlew` directly**. Only
