@@ -91,12 +91,12 @@ Legacy `auditmation` metadata key is still accepted; prefer `zerobias`.
 ### index.yml shape
 
 - `id` — UUID, must be unique across the entire repo (enforced by `validateUniqueIds`)
-- `name`, `code`, `description`, `url`, `status: "verified"`
+- `name`, `code`, `description`, `url`, `status: active`
 - `parentType: "vendor"` + `vendorCode` + `vendorId`
 - OR `parentType: "suite"` + `vendorCode` + `vendorId` + `suiteCode` + `suiteId`
 - `logo` URL — convention: `https://cdn.auditmation.io/logos/<v>-<p>.<ext>` (or `<v>-<s>-<p>.<ext>` for suite-parented)
-- `created` / `updated` — real ISO timestamps (no placeholder `00:00:00.000Z`)
-- `factoryTypes: ["software"]` typical; `hostingTypes: []`; `cpeProducts: []` unless known
+- No `created` / `updated` on new packages — the dataloader stamps them server-side (legacy packages may carry real ISO timestamps)
+- `factoryTypes: ["software"]` typical; `hostingTypes: []`; `cpeProducts: []` unless known; `segments: []` until catalog wiring assigns them
 
 Vendor IDs come from `org/vendor/package/<v>/index.yml`. Suite IDs come from `org/suite/package/<v>/<s>/index.yml`.
 
@@ -112,7 +112,32 @@ This avoids drift when the dataloader tightens. Every repo on the gradle pipelin
 
 ## Creating a new product
 
-Use the skill: `/create-product [task-id]`. See [.claude/skills/create-product/SKILL.md](.claude/skills/create-product/SKILL.md). The skill bootstraps the directory, copies templates, looks up parent IDs, runs `./gradlew :path:validateContent`, and walks through the catalog.yml step.
+Say "add product X" / "make product X" (or run `/create-product`) — the
+[create-product skill](.claude/skills/create-product/SKILL.md) handles the
+whole org-first flow; a ZeroBias task id is optional. Headless works too:
+`claude -p "make product x"` pre-flights credentials, runs to org load, and
+stops there (sign-off and PR stay human).
+
+Hard prerequisites live in the
+[`prerequisites` skill](.claude/skills/prerequisites/SKILL.md) — run
+`/prerequisites` to pre-flight the repo (tools, MCPs, credentials — the
+API key must be an **org owner** key; member keys can't load artifacts to
+the org). If one is missing: **install it or wait — never work around it**
+(no substitute tooling, no alternative paths).
+
+The content SDLC (the skill owns the details — don't restate them here):
+
+1. scaffold → `zbb --slot <slot> gate` (never bare `./gradlew`) → commit `gate-stamp.json`
+2. `publishOrg` → load into YOUR org → verify → 🙋 explicit user sign-off
+3. only then PR → base **`main`** (this repo's PR base — unlike vendor/suite, which use `dev`)
+
+**No ZeroBias org?** (external contributors): stop after the gate and open
+the PR against `main` — maintainers run the org verification on their side.
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+One-time credential setup (all three credential homes, check-first):
+`./scripts/setup-org-credentials.sh` — run it yourself in a normal
+terminal; `--launch` starts Claude Code with everything exported.
 
 ## Migrating remaining lerna-era packages
 
@@ -163,14 +188,15 @@ For creating products from ZeroBias tasks: `/create-product [task-id]`.
 ### Key APIs
 
 ```javascript
-// Check if vendor exists (REQUIRED before product)
-zerobias_execute("portal.Vendor.search", { searchVendorBody: { search: "vendor name" }})
+// Check if vendor exists (REQUIRED before product) — the portal.*.search
+// ops found in older docs do NOT exist; vendorId comes from the result's `id`
+zerobias_execute("store.Vendor.get", { vendorCode: "vendor" })
 
-// Check if suite exists (REQUIRED for suite products)
-zerobias_execute("portal.Suite.search", { searchSuiteBody: { search: "suite name" }})
+// Check if suite exists (REQUIRED for suite-parented products) — suiteId from `id`
+zerobias_execute("store.Suite.get", { vendorCode: "vendor", suiteCode: "suite" })
 
-// Check if product already exists
-zerobias_execute("portal.Product.search", { searchProductBody: { search: "product name" }})
+// Check if product already exists (scan the listing for the code)
+zerobias_execute("store.Vendor.listProducts", { vendorCode: "vendor" })
 
 // Get your party ID for assignment
 zerobias_execute("platform.Party.getMyParty", {})
@@ -195,17 +221,12 @@ zerobias_execute("platform.Task.update", {
 
 Always get actual IDs from `task.nextTransitions`.
 
-**Orchestration:**
-- [DEPENDENCY_CHAIN.md](../../docs/orchestration/DEPENDENCY_CHAIN.md) — strict dependency rules
-- [TASK_MANAGEMENT.md](../../docs/orchestration/TASK_MANAGEMENT.md) — task API patterns
-- [API_REFERENCE.md](../../docs/orchestration/API_REFERENCE.md) — quick API reference
-
 ---
 
 ## Related Documentation
 
-- [Root CLAUDE.md](../../CLAUDE.md) — meta-repo guidance
-- [ContentArtifacts.md](../../ContentArtifacts.md) — content catalog system
-- [org/vendor/CLAUDE.md](../vendor/CLAUDE.md) — vendor repo (parent dependency)
-- [org/suite/CLAUDE.md](../suite/CLAUDE.md) — suite repo (parent dependency for suite-parented products)
-- [com/platform/dataloader/CLAUDE.md](../../com/platform/dataloader/CLAUDE.md) — the dataloader processors
+- [CONTRIBUTING.md](CONTRIBUTING.md) — the two contribution lanes (with/without a ZeroBias account)
+- [.claude/skills/create-product/SKILL.md](.claude/skills/create-product/SKILL.md) — full new-product walkthrough (org-first SDLC)
+- [.claude/skills/create-product/templates.md](.claude/skills/create-product/templates.md) — exact file shapes for both parent types
+- [zerobias-org/vendor](https://github.com/zerobias-org/vendor) — vendor repo (parent dependency); sibling on the same gradle pipeline
+- [zerobias-org/suite](https://github.com/zerobias-org/suite) — suite repo (parent for suite-parented products)
