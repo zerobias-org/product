@@ -137,7 +137,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 One-time credential setup (all three credential homes, check-first):
 `./scripts/setup-org-credentials.sh` — run it yourself in a normal
-terminal; `--launch` starts Claude Code with everything exported.
+terminal; `--launch` starts Claude Code through your zbb slot (the
+session and its MCPs use the slot's identity).
 
 ## Migrating remaining lerna-era packages
 
@@ -230,3 +231,52 @@ Always get actual IDs from `task.nextTransitions`.
 - [.claude/skills/create-product/templates.md](.claude/skills/create-product/templates.md) — exact file shapes for both parent types
 - [zerobias-org/vendor](https://github.com/zerobias-org/vendor) — vendor repo (parent dependency); sibling on the same gradle pipeline
 - [zerobias-org/suite](https://github.com/zerobias-org/suite) — suite repo (parent for suite-parented products)
+
+---
+
+## Sessions, credentials & MCPs — slot-first
+
+<!-- Synced section: identical in vendor, suite, product, module.
+     The zerobias meta-repo's CLAUDE.md carries the same rules in its
+     own words. Edit in one repo, copy to all. -->
+
+All org credentials (platform ORG key, registry key, org/env identity)
+live in a **zbb slot**; Claude Code sessions are launched THROUGH the
+slot so the committed `.mcp.json` templates (`${VAR}` refs — no
+secrets) and the zb `env` profile resolve that identity.
+
+- **One-time setup (per org/env):** the user runs
+  `./scripts/setup-org-credentials.sh` themselves in a normal terminal
+  (never inside a Claude session). Check-first and re-runnable: it
+  creates the slot (`<env>-<org-prefix>`), stores the keys, and wires
+  `~/.npmrc` + the zb profile.
+- **Launch:** `./scripts/setup-org-credentials.sh --launch [args…]`,
+  or `zbb --slot <slot> exec claude` from this repo's root.
+- **Missing MCP tools / 401 / `MISSING_ENV_VAR` / `NOT SET`** means
+  the session wasn't launched through a slot. Fix the launch. Do NOT
+  register MCPs with pasted literal keys (a baked key silently
+  overrides every slot identity, connecting as the wrong org) and do
+  NOT export creds into the session as a workaround.
+- **Multi-org / multi-env = one slot each**, chosen at launch time;
+  switching identity means restarting claude through the other slot
+  (env is read once at startup).
+
+Deep dive: the meta-repo's
+[docs/MCPs.md](https://github.com/zerobias-org/zerobias/blob/main/docs/MCPs.md).
+
+## Windows — WSL2 only
+
+Everything here runs only on Ubuntu (`zbb` fails on native Windows).
+On Windows, work inside WSL2 end-to-end — user walkthrough:
+[docs/WindowsWSLSetup.md](https://github.com/zerobias-org/zerobias/blob/main/docs/WindowsWSLSetup.md).
+
+- **If this session runs on NATIVE Windows** (prompt `PS C:\`, paths
+  under `C:\` or `/mnt/c/...`): your ONLY job is getting WSL2 + Ubuntu
+  installed. Refuse repo work — no cloning, editing, git, or builds —
+  and point the user to their WSL session. Never relay work between a
+  Windows agent and a WSL agent.
+- **In WSL:** logins and credential setup happen in the Ubuntu
+  terminal (`gh auth login`, claude's first-run login,
+  `setup-org-credentials.sh`). Once setup is green, offer Remote
+  Control (`/remote-control`, or `--launch --remote-control`) to
+  continue from the Claude desktop / mobile app.
