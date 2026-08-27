@@ -251,9 +251,22 @@ secrets) and the zb `env` profile resolve that identity.
   creates the slot (`<env>-<org-prefix>`), stores the keys, and wires
   `~/.npmrc` + the zb profile.
 - **Launch:** `./scripts/setup-org-credentials.sh --launch [args…]`,
-  or `zbb --slot <slot> exec claude` from this repo's root.
+  or `zbb --slot <slot> --stack <stack> exec claude` from anywhere
+  (`<stack>` = this repo's `zbb.yaml` `name:` short form, e.g.
+  `vendor` in the vendor repo); from this repo's root plain
+  `zbb --slot <slot> exec claude` works too (cwd infers the stack).
+  NEVER launch stackless from outside a `zbb.yaml` directory: a slot
+  holds NO user vars of its own (only `ZB_SLOT*` identity) — every
+  credential is **stack-scoped**, stored per stack inside the slot,
+  and the setup script seeds every content stack it finds with the
+  same creds. Add `--continue` to resume the previous session under
+  another slot (sessions are keyed by cwd, not by slot).
 - **Missing MCP tools / 401 / `MISSING_ENV_VAR` / `NOT SET`** means
-  the session wasn't launched through a slot. Fix the launch. Do NOT
+  the session wasn't launched through a slot WITH a stack context.
+  Check inside the session: `echo ${ZB_SLOT:-no-slot} ${ZB_ORG_ID:-no-stack}`
+  (`no-slot` = not launched through zbb; `no-stack` = launched
+  stackless). Fix the launch — exit and relaunch; `/mcp` reconnect can
+  never pick up new env (it is captured once at claude startup). Do NOT
   register MCPs with pasted literal keys (a baked key silently
   overrides every slot identity, connecting as the wrong org) and do
   NOT export creds into the session as a workaround.
