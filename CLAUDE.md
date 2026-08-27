@@ -272,7 +272,12 @@ secrets) and the zb `env` profile resolve that identity.
   NOT export creds into the session as a workaround.
 - **Multi-org / multi-env = one slot each**, chosen at launch time;
   switching identity means restarting claude through the other slot
-  (env is read once at startup).
+  (env is read once at startup). A second IDENTITY (another API key)
+  for the same org gets its own named slot too — a preset `SLOT` skips
+  the reuse-by-content scan:
+  `SLOT=<name> ZB_API_KEY=<other-key> ./scripts/setup-org-credentials.sh`.
+  With several slots holding one org, always pass `--slot` explicitly —
+  the auto-reuse scan just takes the first match.
 
 Deep dive: the meta-repo's
 [docs/MCPs.md](https://github.com/zerobias-org/zerobias/blob/main/docs/MCPs.md).
