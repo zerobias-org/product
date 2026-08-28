@@ -257,10 +257,17 @@ secrets) and the zb `env` profile resolve that identity.
   `zbb --slot <slot> exec claude` works too (cwd infers the stack).
   NEVER launch stackless from outside a `zbb.yaml` directory: a slot
   holds NO user vars of its own (only `ZB_SLOT*` identity) — every
-  credential is **stack-scoped**, stored per stack inside the slot,
-  and the setup script seeds every content stack it finds with the
-  same creds. Add `--continue` to resume the previous session under
-  another slot (sessions are keyed by cwd, not by slot).
+  credential is **stack-scoped**, and lives ONCE per slot on the
+  shared `dev` stack (`@zerobias-org/dev-stack`); this repo's stack
+  imports it (see `zbb.yaml` depends/imports), so the setup script
+  seeds only the dev stack and every content stack resolves the same
+  creds transitively. Never `env set` those vars on a content stack —
+  a per-stack override shadows the import and rotation stops
+  propagating there. `zbb --slot <slot> --stack dev exec claude`
+  launches a creds-only session from anywhere (MCPs work; repo gates
+  still need the repo's own stack). Add `--continue` to resume the
+  previous session under another slot (sessions are keyed by cwd,
+  not by slot).
 - **Missing MCP tools / 401 / `MISSING_ENV_VAR` / `NOT SET`** means
   the session wasn't launched through a slot WITH a stack context.
   Check inside the session: `echo ${ZB_SLOT:-no-slot} ${ZB_ORG_ID:-no-stack}`
@@ -272,7 +279,12 @@ secrets) and the zb `env` profile resolve that identity.
   NOT export creds into the session as a workaround.
 - **Multi-org / multi-env = one slot each**, chosen at launch time;
   switching identity means restarting claude through the other slot
-  (env is read once at startup).
+  (env is read once at startup). A second IDENTITY (another API key)
+  for the same org gets its own named slot too — a preset `SLOT` skips
+  the reuse-by-content scan:
+  `SLOT=<name> ZB_API_KEY=<other-key> ./scripts/setup-org-credentials.sh`.
+  With several slots holding one org, always pass `--slot` explicitly —
+  the auto-reuse scan just takes the first match.
 
 Deep dive: the meta-repo's
 [docs/MCPs.md](https://github.com/zerobias-org/zerobias/blob/main/docs/MCPs.md).
