@@ -79,6 +79,36 @@ vanished), treat it as a prerequisite regression — STOP the phase you're
 in, re-run `/prerequisites`, and resume only from `READY`. Never improvise
 past a mid-flow credential failure.
 
+**The one that bites hardest: `read:packages`.** It gates the ENTIRE zbb
+toolchain here — compile, validation, tests, `gate`, publish — because the
+`zb.*` gradle plugins resolve from GitHub Packages Maven.
+`com.zerobias.build-tools` is PUBLIC; GHP Maven simply refuses ANONYMOUS
+reads, so nothing needs granting to anyone and no org membership is involved.
+
+**Being logged in to `gh` is NOT enough — the scope is separate, and an
+authenticated-but-unscoped token is the usual false pass.** Assert the scope,
+not the login:
+
+```bash
+gh auth status 2>&1 | grep -q 'read:packages' && echo OK || echo 'MISSING read:packages'
+gh auth refresh -s read:packages && export GITHUB_TOKEN=$(gh auth token)   # the fix
+```
+
+A 401 from `maven.pkg.github.com`, `Plugin [id: 'zb.workspace'] was not
+found`, or `Could not resolve com.zerobias.build-tools` IS this prerequisite —
+it lands on the very first request (plugins pin `1.+`, so `maven-metadata.xml`
+is fetched before any package file is read). Per the rule above it is
+self-fixable, so run the refresh and retry. Do NOT report it to the user as an
+environment limitation, do NOT downgrade to `validateContent`-only, and do NOT
+write "validation deferred to CI" in the PR body — a package whose gate never
+ran cannot publish, so that PR is dead on arrival.
+
+⚠ Dev machines that have run `publishToMavenLocal` are silently exempt
+(`mavenLocal()` is first in the resolution order) — this flow is routinely run
+in clean containers with no `~/.m2`, no keyring and no inherited environment,
+which always need the scope. Never conclude it is unnecessary because a
+developer machine worked.
+
 ## Phase 1 — resolve inputs + existence check
 
 Needed: **vendor**, **optional suite**, and **product name** (natural
