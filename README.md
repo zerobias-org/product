@@ -4,7 +4,72 @@ ZeroBias product artifacts. Each `package/<vendor>/<code>/` (or `package/<vendor
 
 ## Authentication
 
-Set `ZB_TOKEN` in your environment to authenticate with the npm registry. Get one from [ZeroBias](https://app.zerobias.com).
+Two separate credentials. **Both are required before any `zbb` / gradle
+command** — compile, validation, tests, `gate`, publish. Nothing here is
+optional or implied, and neither one substitutes for the other.
+
+| Credential | What it unlocks | Needed by |
+|---|---|---|
+| `GITHUB_TOKEN` with **`read:packages`** | the `zb.*` gradle plugins (`zb.workspace`, `zb.base`, `zb.content`) from GitHub Packages Maven | **everyone**, every zbb/gradle command |
+| `ZB_TOKEN` | the `@zerobias-org` npm registry + the gate's dataloader step | package installs; org loads |
+
+### 1. GitHub token — `read:packages`
+
+`com.zerobias.build-tools` is a **public** package, but GitHub Packages Maven
+refuses **anonymous** reads. So this is a registry requirement, not a
+permission one: nothing needs to be granted to you, and you do not need
+membership of any organisation.
+
+**Being logged in to `gh` is not enough — the scope is separate.** Check the
+scope, not the login:
+
+```bash
+gh auth status 2>&1 | grep -q 'read:packages' && echo OK || echo 'MISSING read:packages'
+```
+
+If it says MISSING:
+
+```bash
+gh auth refresh -s read:packages
+export GITHUB_TOKEN=$(gh auth token)
+```
+
+or export a personal access token that already carries the scope:
+
+```bash
+export GITHUB_TOKEN=<your PAT>
+```
+
+Verify it actually reads (200 = ready, 401 = scope still missing):
+
+```bash
+curl -s -o /dev/null -w '%{http_code}\n' -u "x:$GITHUB_TOKEN" \
+  https://maven.pkg.github.com/zerobias-org/util/zb/workspace/zb.workspace.gradle.plugin/maven-metadata.xml
+```
+
+Without it the build fails on its very first request — the plugins pin
+`1.+`, so gradle must fetch `maven-metadata.xml` before anything else, and a
+401 there surfaces as `Plugin [id: 'zb.workspace'] was not found` or
+`Could not resolve com.zerobias.build-tools`, long before any product file is
+read.
+
+> ⚠ An **invalid** `GITHUB_TOKEN` in your environment silently shadows a
+> valid `gh` keyring login — `gh auth status` exposes it.
+
+> ⚠ Machines that have previously run `publishToMavenLocal` on build-tools are
+> silently exempt: `mavenLocal()` is first in the resolution order, so the
+> token is never exercised there. A clean or containerised environment has no
+> `~/.m2` and always needs the scope — never conclude it is unnecessary
+> because it worked on a developer machine.
+
+### 2. `ZB_TOKEN`
+
+Set `ZB_TOKEN` in your environment to authenticate with the npm registry. Get
+one from [ZeroBias](https://app.zerobias.com). Without it the gate's
+dataloader step prints `ZB_TOKEN not set — skipping`, which is expected for
+contributors without a ZeroBias account; everything else must still pass.
+
+Full contributor walkthrough, both lanes: **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 
 ## Build & validate
 

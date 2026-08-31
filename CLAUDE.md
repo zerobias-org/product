@@ -125,6 +125,34 @@ API key must be an **org owner** key; member keys can't load artifacts to
 the org). If one is missing: **install it or wait — never work around it**
 (no substitute tooling, no alternative paths).
 
+**`read:packages` is required before ANY gradle/zbb command here** — it gates
+compile, validation, tests, `gate` and publish alike, because the `zb.*`
+plugins resolve from GitHub Packages Maven. `com.zerobias.build-tools` is
+PUBLIC; GHP Maven simply refuses anonymous reads, so nothing needs to be
+granted to anyone and no org membership is involved.
+
+Being logged in to `gh` is NOT enough — check the **scope**:
+
+```bash
+gh auth status 2>&1 | grep -q 'read:packages' && echo OK || echo 'MISSING read:packages'
+gh auth refresh -s read:packages && export GITHUB_TOKEN=$(gh auth token)   # the fix
+```
+
+A 401 from `maven.pkg.github.com`, `Plugin [id: 'zb.workspace'] was not
+found`, or `Could not resolve com.zerobias.build-tools` is this and nothing
+else — it lands on the first request (plugins pin `1.+`, so
+`maven-metadata.xml` is fetched before any package file). It is KNOWN and
+SELF-FIXABLE: run the refresh and retry. **Never** report it as an
+environment limitation, **never** fall back to `validateContent`-only, and
+**never** write "validation deferred to CI" — a package whose gate never ran
+cannot publish, so that PR is dead on arrival.
+
+⚠ Dev machines that have run `publishToMavenLocal` are silently exempt
+(`mavenLocal()` is first in the resolution order). Clean, CI and container
+environments have no `~/.m2` and always need the scope — never conclude it is
+unnecessary because it worked locally. An INVALID `GITHUB_TOKEN` also silently
+shadows a valid keyring login (`gh auth status` exposes it).
+
 The content SDLC (the skill owns the details — don't restate them here):
 
 1. scaffold → `zbb --slot <slot> gate` (never bare `./gradlew`) → commit `gate-stamp.json`
