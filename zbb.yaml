@@ -80,6 +80,13 @@ lifecycle:
   gate:      ./gradlew gate
   gateCheck: ./gradlew gateCheck
   publish:   ./gradlew publish
+  # Org-first SDLC: publish an org-private rc + queue the org dataloader
+  # job. The -PorgPublish=true flag is what flips the shared publish
+  # pipeline into org mode — zbb does not inject it on its own, and the
+  # zb.base `publishOrg` alias reads the flag at CONFIGURATION time, so
+  # without this entry zbb falls back to a bare `./gradlew publishOrg`
+  # that hard-fails.
+  publishOrg: ./gradlew publishOrg -PorgPublish=true
 
 require:
   - tool: dataloader
