@@ -113,7 +113,7 @@ gh workflow run publish.yml --ref <branch>
 
 ## Branches
 
-- `main` — default branch, all PRs target it
+- `dev` — all package PRs target it (bottom of the promotion chain `dev → qa → uat → main`); `main` is the default branch and publishes `latest`; non-package work may PR straight to `main`
 - `dev`, `qa`, `uat` — environment branches kept in sync by the `sync` job in the publish workflow
 
 ## Commit format

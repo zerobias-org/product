@@ -49,7 +49,7 @@ Two paths through this table:
 - **Platform path** (default — you have a ZeroBias org): ALL rows are hard.
 - **External contributor** (no ZeroBias account): rows 1–6 AND the GitHub-token row are hard; rows
   7–11 don't apply — follow the no-org fallback in `CLAUDE.md` (gate → PR
-  against `main`; maintainers run the org verification). This is the ONE
+  against `dev`; maintainers run the org verification). This is the ONE
   sanctioned scope reduction; everything else still follows
   install-or-wait.
 
