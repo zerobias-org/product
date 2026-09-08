@@ -3,7 +3,7 @@ name: create-product
 description: >-
   Create a new product package in the zerobias-org catalog and take it through
   the full content SDLC — scaffold → gradle gate → publishOrg + org load →
-  user verifies the org artifact → PR to main only after explicit sign-off.
+  user verifies the org artifact → PR to dev only after explicit sign-off.
   USE THIS when the user says "add product X", "register <vendor>'s <tool> as
   a product", "make product X", or a ZeroBias task asks for a product package.
   Standalone: works in this repo alone (no meta-repo), and no platform task is
@@ -15,18 +15,18 @@ description: >-
 Products sit below vendors (and optionally suites) in the catalog
 dependency chain (vendor → suite? → **product** → …). This skill produces
 ONE product package and delivers it **org-first**: the default deliverable
-is the product loaded into the user's own org; the PR to `main` happens
+is the product loaded into the user's own org; the PR to `dev` happens
 only after the user signs off on the org-loaded result.
 
 ```
 Phase 0 prerequisites (hard gate — /prerequisites must report READY)
 Phase 1 resolve + existence check (product AND its vendor/suite parents)
-Phase 2 branch (from main)
+Phase 2 branch (from dev)
 Phase 3 scaffold + author content
 Phase 4 gate                        ← git add BEFORE gating
 Phase 5 publishOrg + org load
 Phase 6 user verifies org artifact  ← 🙋 explicit sign-off required
-Phase 7 PR --base main              ← only after sign-off
+Phase 7 PR --base dev               ← only after sign-off
 ```
 
 **Two parent types (decide in Phase 1, before scaffolding):**
@@ -153,18 +153,21 @@ local), STOP and ask the user what to do (update / nothing).
 The `zb` MCP is a hard prerequisite (see Prerequisites) — do NOT substitute
 raw HTTP calls if it's missing; stop and have it installed instead.
 
-## Phase 2 — branch first (never commit on main)
+## Phase 2 — branch first (never commit on dev or main)
 
 ```bash
 git fetch origin
-git switch -c feat/product-<vendorCode>-<productCode> origin/main
+git switch -c feat/product-<vendorCode>-<productCode> origin/dev
 # suite-parented: feat/product-<vendorCode>-<suiteCode>-<productCode>
 ```
 
-⚠ Unlike the vendor/suite repos (which PR against `dev`), **this repo's
-PRs target `main`** — `main` is the default branch and the publish
-workflow's sync job propagates main → uat → qa → dev. Branch from
-`origin/main`, PR back to `main`.
+**This repo's PRs target `dev`**, like vendor/suite/schema — the bottom of the
+promotion chain `dev → qa → uat → main`.
+A merge to `dev` publishes the `dev` prerelease line (dist-tag `dev`); promotion
+up the chain is a later, separate merge, and only `main` publishes `latest`. The
+promotion-order check warns on any PR that skips a step. Branch from
+`origin/dev`, PR back to `dev`. (Non-package work — skills, docs, scripts — may
+still PR straight to `main`; nothing publishes and the sync carries it down.)
 
 ## Phase 3 — scaffold + author
 
@@ -326,8 +329,8 @@ a stale locally-published copy in `~/.m2` can shadow the release).
 Show the user the org-loaded product (catalog UI or the product listing
 result). ⚠️ The logo will render BROKEN in the UI at this stage —
 `cdn.auditmation.io/logos/<v>-<p>.<ext>` (or `<v>-<s>-<p>.<ext>`) 404s
-until the product reaches `main`, where the publish workflow uploads it
-(the dataloader never touches the CDN). Tell the user up front; have them
+until the product publishes from an env branch, where the publish workflow
+uploads it (the dataloader never touches the CDN). Tell the user up front; have them
 judge the data fields (name, description, parent binding, url, catalog
 entry), and verify the logo locally (it must be inside the published rc
 tarball). **Do NOT proceed to the PR until the user explicitly confirms**
@@ -335,7 +338,7 @@ tarball). **Do NOT proceed to the PR until the user explicitly confirms**
 sign-off — if unclear, ask. Headless runs never reach this phase — they
 stop after Phase 5 by design.
 
-## Phase 7 — PR to main (after sign-off only)
+## Phase 7 — PR to dev (after sign-off only)
 
 1. Flip ownership to the shared catalog: **delete `zerobias.orgId` from
    `package.json`**. No re-gate needed — the gate-stamp's sourceHash
@@ -349,10 +352,10 @@ git commit -m "feat(product-<vendorCode>-<productCode>): add <Product Name>"
 git push -u origin feat/product-<vendorCode>-<productCode>
 ```
 
-3. PR against **main** (this repo's PR base — see Phase 2):
+3. PR against **dev** (this repo's PR base — see Phase 2):
 
 ```bash
-gh pr create --base main \
+gh pr create --base dev \
   --title "feat(product-<vendorCode>-<productCode>): add <Product Name>" \
   --body "…summary, parent type + chain, validation checklist (gate ✓,
           gate-stamp committed ✓, org-loaded + user-verified ✓), and

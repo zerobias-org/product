@@ -157,10 +157,10 @@ The content SDLC (the skill owns the details — don't restate them here):
 
 1. scaffold → `zbb --slot <slot> gate` (never bare `./gradlew`) → commit `gate-stamp.json`
 2. `publishOrg` → load into YOUR org → verify → 🙋 explicit user sign-off
-3. only then PR → base **`main`** (this repo's PR base — unlike vendor/suite, which use `dev`)
+3. only then PR → base **`dev`** (same as vendor/suite/schema)
 
 **No ZeroBias org?** (external contributors): stop after the gate and open
-the PR against `main` — maintainers run the org verification on their side.
+the PR against `dev` — maintainers run the org verification on their side.
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 One-time credential setup (all three credential homes, check-first):
@@ -174,8 +174,9 @@ Use the skill: `/migrate-packages [<v>/<p> ...|<v>/<s>/<p> ...]`. See [.claude/s
 
 ## Branches
 
-- `main` — default, all PRs target it
-- `dev`, `qa`, `uat` — environment branches kept in sync by the publish workflow's `sync` job after every successful main publish
+- `dev` — **all package PRs target it**; bottom of the promotion chain. A merge publishes the `dev` prerelease line (dist-tag `dev`).
+- `qa`, `uat`, `main` — promotion targets, reached by merging the branch below (`dev → qa → uat → main`); `main` publishes `latest` and is the default branch. After a main publish the sync job propagates main → uat → qa → dev. The promotion-order check warns on PRs that skip a step.
+- **Exception — non-package work** (skills, docs, scripts, `zbb.yaml`, workflows) may PR straight to `main`: nothing publishes, and the sync carries it down.
 
 ## Commit format
 

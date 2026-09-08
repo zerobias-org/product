@@ -58,9 +58,9 @@ You can validate everything except the platform load locally.
    expected in this lane; everything else must pass. The run writes
    `package/<path>/gate-stamp.json` — commit it.
 
-5. **PR against `main`** (this repo's default and PR base — unlike some
-   sibling content repos that use `dev`). Maintainers run the
-   platform-side (org-load) verification before merge.
+5. **PR against `dev`** (the bottom of the promotion chain, same as the
+   sibling content repos). Maintainers run the platform-side (org-load)
+   verification before merge.
 
 ## Lane 2 — ZeroBias platform users (org-first delivery)
 
@@ -76,7 +76,7 @@ Your product is loaded into your own org and verified there **before** any PR.
 
 2. In the session, say **"make product \<name\>"**. The skill runs the full
    SDLC: scaffold → gate → `publishOrg` (org-private load) → you verify the
-   org artifact → sign-off → PR against `main`.
+   org artifact → sign-off → PR against `dev`.
 
 Notes for both lanes: commits follow Conventional Commits
 (`feat(product-<vendor>-<code>): …`); never commit on `main` directly;
