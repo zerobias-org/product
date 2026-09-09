@@ -70,15 +70,18 @@ Two paths through this table:
 | — | **GitHub token with `read:packages` — gates the ENTIRE zbb toolchain** (compile, validation, tests, `gate`, publish; the `zb.*` gradle plugins resolve from GitHub Packages Maven). `com.zerobias.build-tools` is PUBLIC — GHP Maven refuses ANONYMOUS reads, so this is a registry requirement, NOT a permission one: nothing needs granting, no org membership involved (verified 2026-08-31). ⚠ dev machines that ran `publishToMavenLocal` are silently exempt via `mavenLocal()`; clean/CI/container envs always need it — never generalise from a dev machine | **Check the SCOPE, not the login — being `gh` authenticated is NOT enough and is the usual false pass:** `gh auth status 2>&1 \| grep -q 'read:packages' && echo OK \|\| echo MISSING`. Definitive (proves the read; 200 = ready, 401 = missing): `curl -s -o /dev/null -w '%{http_code}' -u "x:$(gh auth token)" https://maven.pkg.github.com/zerobias-org/util/zb/workspace/zb.workspace.gradle.plugin/maven-metadata.xml` | `gh auth refresh -s read:packages && export GITHUB_TOKEN=$(gh auth token)`, OR export a PAT carrying the scope. A 401 / `Plugin [id: 'zb.workspace'] was not found` / `Could not resolve com.zerobias.build-tools` is this row — KNOWN and SELF-FIXABLE: run the refresh and retry, never report it as an environment limitation, never fall back to `validateContent`-only, never write "validation deferred to CI". ⚠ an INVALID `GITHUB_TOKEN` env var silently shadows a valid keyring login — `gh auth status` exposes it |
 | — | **build-tools plugin ≥ 1.0.137** (hard floor for org loads) | `./gradlew buildEnvironment \| grep build-tools` → ≥ 1.0.137 | usually a stale locally-published build-tools in `~/.m2` shadowing the release — remove `~/.m2/repository/com/zerobias/build-tools`; otherwise fix the GitHub-token row above |
 | — | Gate's Neon dataloader step | runs **iff `ZB_TOKEN` is present** (row 9 covers it; older `NEON_API_KEY` mentions are stale) | — |
-| — | `@zerobias-com/platform-dataloader` global *(optional — local Neon gate)* | `command -v dataloader` | `npm i -g @zerobias-com/platform-dataloader@latest` |
+| — | **`@zerobias-com/platform-dataloader` global** (hard — this repo's `zbb.yaml` `require:` runs on EVERY zbb lifecycle command: `gate` / `publishOrg` / `dataloader` exit 1 at preflight without it, printing an install hint that zbb does NOT run) | `command -v dataloader` + version ≥ 1.0.87 — read `$(npm root -g)/@zerobias-com/platform-dataloader/package.json` (`dataloader --version` boots the app and dials a DB first, ~5 s) | `./scripts/setup-org-credentials.sh` installs it when missing and reports when it is behind (re-run is safe, check-first); by hand: `zbb --slot <slot> --stack dev exec npm i -g @zerobias-com/platform-dataloader@latest` — needs the slot's `ZB_TOKEN`, a bare `npm i -g` 401s |
 
 **Tooling freshness (hard).** The ZeroBias CLIs move fast and version skew
 fails in confusing ways. For every UNPINNED @zerobias tool —
 `@zerobias-org/zbb`, `@zerobias-com/zerobias-mcp` (`zb`), and
 `@zerobias-com/platform-dataloader` when installed — the installed version
-MUST equal the registry's latest: compare `npm view <pkg> version` against
-the installed one. Behind → update with consent (`npm i -g <pkg>@latest`)
-or stop and wait — never continue on stale tooling. Documented pins beat
+MUST equal the registry's latest: compare `npm view <pkg>@latest version` against
+the installed one. Behind → update with consent (`zbb --slot <slot> --stack dev exec npm i -g <pkg>@latest`)
+or stop and wait — never continue on stale tooling. Spell `@latest` in the
+`npm view`: inside a slot the dev stack exports `NPM_CONFIG_TAG` (content-package
+dist-tag routing), and a bare `npm view <pkg> version` resolves THAT tag — the
+CLIs carry none, so the lookup comes back empty and must not read as "latest". Documented pins beat
 freshness: never bump a pinned version to satisfy this rule.
 ⚠ Run the `@zerobias-com/*` `npm view` freshness checks from `$HOME`, not
 the repo cwd — this repo's project `.npmrc` reroutes that scope to GitHub
