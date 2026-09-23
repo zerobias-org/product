@@ -193,7 +193,8 @@ index.yml             # product metadata
 catalog.yml           # service catalog definition (dataloader fails without it)
 logo.{svg|png|jpg}    # official product logo (SVG preferred, unmodified)
 build.gradle.kts      # one-line zb.content marker (REQUIRED for publish detect)
-.npmrc                # REQUIRED — validator hard-fails with ".npmrc missing"
+.npmrc                # REQUIRED — byte-identical copy of the repo-root .npmrc
+npm-shrinkwrap.json   # REQUIRED — shipped, no resolved URLs (see templates.md)
 ```
 
 Exact file shapes, key conventions, and the catalog.yml template live in
@@ -274,8 +275,11 @@ rejects publishes without a valid committed stamp. CI does not rerun your
 tests — it validates the committed stamp.
 
 If you gated before adding new files, re-gate after `git add`.
-Legacy `npm install` / `npm shrinkwrap` / `npm run validate` are gone —
-zbb owns the lifecycle. Don't commit a shrinkwrap.
+Legacy `npm shrinkwrap` / `npm run validate` are gone — zbb owns the
+lifecycle. The only npm step you run yourself is the shrinkwrap
+generation (`npm install --package-lock-only --no-workspaces`, see
+templates.md); commit `npm-shrinkwrap.json` and `git add` it BEFORE the
+final gate (it is in `files[]`, hence in the stamp's sourceHash).
 
 ## Phase 5 — publishOrg + load into the user's org
 

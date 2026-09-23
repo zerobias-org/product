@@ -7,10 +7,23 @@ package that drifted).
 
 ## .npmrc
 
+Byte-identical copy of the repo-root `.npmrc` — `cp` it, never hand-write
+it (every scope → `pkg.zerobias.org`, `${ZB_TOKEN}`,
+`omit-lockfile-registry-resolved=true`). npm reads only the package's own
+`.npmrc` + `~/.npmrc`, never the repo root.
+
+## npm-shrinkwrap.json
+
+Required, shipped (in `files[]`), no `resolved` URLs. Generate after
+`package.json` is final, inside the package dir:
+
+```bash
+npm install --package-lock-only --no-workspaces && mv package-lock.json npm-shrinkwrap.json
 ```
-@zerobias-org:registry=https://pkg.zerobias.org
-//pkg.zerobias.org/:_authToken=${ZB_TOKEN}
-```
+
+Refresh with `npm update --package-lock-only --no-workspaces`. Dependency
+specs are `"*"` (never `"latest"` / `^`): `npm ci` accepts any pin under
+`*`, and a fresh resolve follows `NPM_CONFIG_TAG` / `latest`.
 
 ## package.json — vendor-parented
 
@@ -30,11 +43,11 @@ package that drifted).
     "correct:deps": "tsx ../../../scripts/correctDeps.ts"
   },
   "publishConfig": {
-    "registry": "https://pkg.zerobias.org/"
+    "registry": "https://pkg.zerobias.org"
   },
-  "files": ["catalog.yml", "index.yml", "logo.*"],
+  "files": ["catalog.yml", "index.yml", "logo.*", "npm-shrinkwrap.json"],
   "dependencies": {
-    "@zerobias-org/vendor-{vendor}": "latest"
+    "@zerobias-org/vendor-{vendor}": "*"
   },
   "zerobias": {
     "dataloader-version": "1.0.0",
@@ -62,7 +75,7 @@ package that drifted).
     "correct:deps": "tsx ../../../../scripts/correctDeps.ts"   // one level deeper
   },
   "dependencies": {
-    "@zerobias-org/suite-{vendor}-{suite}": "latest"           // suite, not vendor
+    "@zerobias-org/suite-{vendor}-{suite}": "*"                // suite, not vendor
   },
   "zerobias": { "package": "{vendor}.{suite}.{code}" }
 }
