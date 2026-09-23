@@ -48,7 +48,7 @@ plugins { id("zb.content") }
 Same one-liner regardless of depth — the validator handles the formula switch via `index.yml.parentType`.
 
 ### 2. Ensure `.npmrc`
-The validator requires `package/<path>/.npmrc`. Most products already have it; if not, copy from a sibling.
+The validator requires `package/<path>/.npmrc`, byte-identical to the repo-root `.npmrc`: `cp .npmrc package/<path>/.npmrc` (never from a sibling — siblings may be stale). Set every `dependencies` spec to `"*"` (`npm run correct:deps` does this), then ensure `package/<path>/npm-shrinkwrap.json` exists, has zero `"resolved"` entries, and is listed in `package.json` `files[]`; generate it with `npm install --package-lock-only --no-workspaces && mv package-lock.json npm-shrinkwrap.json` inside the package, and delete any stale `package-lock.json`. `git add` both before the gate — untracked files are invisible to the stamp's `sourceHash`.
 
 ### 3. Run **full** `:gate` (NOT just `:validateContent`)
 ```bash
@@ -94,7 +94,7 @@ feat(product-<v>-<s>-<p>)!: migrate to gradle pipeline (<oldVer> → 2.0.0)
 ```
 The `!` marks the major bump as breaking. Drop the `!` if no version change (already-2.x case).
 
-Stage exactly: `package/<path>/build.gradle.kts`, `package/<path>/.npmrc` (if you added it), `package/<path>/package.json` (version bump), **`package/<path>/gate-stamp.json`** (mandatory — preflight rejects without it), and any drift fixes.
+Stage exactly: `package/<path>/build.gradle.kts`, `package/<path>/.npmrc` (if you added or refreshed it), `package/<path>/npm-shrinkwrap.json`, `package/<path>/package.json` (version bump + `files[]` + `"*"` deps), **`package/<path>/gate-stamp.json`** (mandatory — preflight rejects without it), and any drift fixes.
 
 ### 7. (After the batch) Verify on a feature branch
 ```bash

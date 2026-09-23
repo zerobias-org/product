@@ -29,7 +29,7 @@ The repo is on the **gradle + [zbb publish reusable workflow](https://github.com
 ### Per-product helper
 
 ```bash
-# Reset all `dependencies` versions in a package.json to "latest" (replaces lerna sync):
+# Reset all `dependencies` specs in a package.json to "*" (replaces lerna sync; the shipped npm-shrinkwrap.json pins the version):
 cd package/<vendor>/<code>
 npm run correct:deps
 ```
@@ -61,7 +61,8 @@ The gate validator (`build.gradle.kts:50-93`) reads `index.yml.parentType` at ru
 - `index.yml` — product metadata (id, name, code, vendorCode, vendorId, parentType, etc.)
 - `package.json` — npm name + `zerobias` block + the single `correct:deps` script
 - `catalog.yml` — service catalog definition (dataloader fails without it)
-- `.npmrc` — artifact-private registry config
+- `.npmrc` — byte-identical copy of the repo-root `.npmrc` (all scopes → `pkg.zerobias.org`, `ZB_TOKEN`, `omit-lockfile-registry-resolved=true`)
+- `npm-shrinkwrap.json` — shipped lockfile, no `resolved` URLs, listed in `files[]` (generate: `npm install --package-lock-only --no-workspaces && mv package-lock.json npm-shrinkwrap.json`)
 - `build.gradle.kts` — `plugins { id("zb.content") }` (one-liner; validator handles the depth)
 - `logo.svg` / `logo.png` / `logo.jpg` — optional; if present must match magic bytes for its extension, be 100B–5MB, and appear in `files` array
 
@@ -71,9 +72,9 @@ The gate validator (`build.gradle.kts:50-93`) reads `index.yml.parentType` at ru
 {
   "name": "@zerobias-org/product-<v>-<p>",          // or product-<v>-<s>-<p>
   "version": "2.0.x",
-  "files": ["index.yml", "catalog.yml", "logo.*"],
+  "files": ["index.yml", "catalog.yml", "logo.*", "npm-shrinkwrap.json"],
   "dependencies": {
-    "@zerobias-org/vendor-<v>": "latest"            // or suite-<v>-<s>
+    "@zerobias-org/vendor-<v>": "*"                 // or suite-<v>-<s>; pinned by npm-shrinkwrap.json
   },
   "zerobias": {
     "package": "<v>.<p>",                            // or <v>.<s>.<p>
