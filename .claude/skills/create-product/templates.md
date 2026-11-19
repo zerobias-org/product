@@ -52,16 +52,18 @@ specs are `"*"` (never `"latest"` / `^`): `npm ci` accepts any pin under
   "zerobias": {
     "dataloader-version": "1.0.0",
     "import-artifact": "product",
-    "package": "{vendor}.{code}",
-    "orgId": "{target-org-uuid}"
+    "package": "{vendor}.{code}"
   }
 }
 ```
 
 - `version` starts at `1.0.0` and is never hand-edited afterwards — CI
   owns bumps; org-private rc versions are computed by `zbb publishOrg`.
-- `zerobias.orgId` is set during the org-first flow (before the first
-  gate) and **deleted in the PR phase** — see the skill's Phase 3/7.
+- `zerobias.orgId` goes ONLY on an org-only package — it declares the
+  package's owner, and every row it loads is privately owned by that org.
+  This is the dataloader's ownership rule for every content type (see
+  `com/platform/dataloader/docs/STABLE_IDS.md`); a catalog product never
+  carries it. See the skill's "Decide first".
 - Legacy `auditmation` metadata key is still accepted in old packages;
   new packages use `zerobias`.
 
