@@ -59,12 +59,17 @@ You can validate everything except the platform load locally.
    `package/<path>/gate-stamp.json` — commit it.
 
 5. **PR against `dev`** (the bottom of the promotion chain, same as the
-   sibling content repos). Maintainers run the platform-side (org-load)
-   verification before merge.
+   sibling content repos). Maintainers review before merge; CI loads the
+   product into the catalog after it merges.
 
-## Lane 2 — ZeroBias platform users (org-first delivery)
+## Lane 2 — ZeroBias platform users
 
-Your product is loaded into your own org and verified there **before** any PR.
+A **catalog** product (shared content, the usual case) follows the same flow
+as Lane 1: gate → PR against `dev`, with no `zerobias.orgId`. An
+**org-only** product (`zerobias.orgId` set) is loaded into your org with
+`publishOrg` and verified there; it is not a PR to the shared catalog.
+`zerobias.orgId` declares the package's owner for every content type (see
+the dataloader's `docs/STABLE_IDS.md`).
 
 1. One-time credential setup + session launch (owns all three credential
    homes, verifies your key is an org OWNER, then starts Claude Code with
@@ -74,9 +79,9 @@ Your product is loaded into your own org and verified there **before** any PR.
    ./scripts/setup-org-credentials.sh --launch
    ```
 
-2. In the session, say **"make product \<name\>"**. The skill runs the full
-   SDLC: scaffold → gate → `publishOrg` (org-private load) → you verify the
-   org artifact → sign-off → PR against `dev`.
+2. In the session, say **"make product \<name\>"**. The skill asks which
+   kind it is and runs scaffold → gate → PR against `dev` (catalog), or
+   scaffold → gate → `publishOrg` → you verify the org artifact (org-only).
 
 Notes for both lanes: commits follow Conventional Commits
 (`feat(product-<vendor>-<code>): …`); never commit on `main` directly;

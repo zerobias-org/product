@@ -115,9 +115,10 @@ This avoids drift when the dataloader tightens. Every repo on the gradle pipelin
 
 Say "add product X" / "make product X" (or run `/create-product`) — the
 [create-product skill](.claude/skills/create-product/SKILL.md) handles the
-whole org-first flow; a ZeroBias task id is optional. Headless works too:
-`claude -p "make product x"` pre-flights credentials, runs to org load, and
-stops there (sign-off and PR stay human).
+whole flow; a ZeroBias task id is optional. Headless works too:
+`claude -p "make product x"` pre-flights credentials, runs to the gate (or
+the org load, for an org-only product), and stops there (sign-off and PR
+stay human).
 
 Hard prerequisites live in the
 [`prerequisites` skill](.claude/skills/prerequisites/SKILL.md) — run
@@ -157,12 +158,17 @@ shadows a valid keyring login (`gh auth status` exposes it).
 The content SDLC (the skill owns the details — don't restate them here):
 
 1. scaffold → `zbb --slot <slot> gate` (never bare `./gradlew`) → commit `gate-stamp.json`
-2. `publishOrg` → load into YOUR org → verify → 🙋 explicit user sign-off
-3. only then PR → base **`dev`** (same as vendor/suite/schema)
+2. **Catalog package** (default): PR → base **`dev`** (same as
+   vendor/suite/schema), no `zerobias.orgId`.
+3. **Org-only package** (`zerobias.orgId` set): `publishOrg` → load into that
+   org → verify → 🙋 explicit user sign-off.
+
+`zerobias.orgId` is the dataloader's package-ownership field for every
+content type, not something specific to products. See the dataloader's
+`docs/STABLE_IDS.md` ("Declared-owner validation", "Promotion").
 
 **No ZeroBias org?** (external contributors): stop after the gate and open
-the PR against `dev` — maintainers run the org verification on their side.
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+the PR against `dev`. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 One-time credential setup (all three credential homes, check-first):
 `./scripts/setup-org-credentials.sh` — run it yourself in a normal
@@ -257,7 +263,7 @@ Always get actual IDs from `task.nextTransitions`.
 ## Related Documentation
 
 - [CONTRIBUTING.md](CONTRIBUTING.md) — the two contribution lanes (with/without a ZeroBias account)
-- [.claude/skills/create-product/SKILL.md](.claude/skills/create-product/SKILL.md) — full new-product walkthrough (org-first SDLC)
+- [.claude/skills/create-product/SKILL.md](.claude/skills/create-product/SKILL.md) — full new-product walkthrough (catalog or org-only product)
 - [.claude/skills/create-product/templates.md](.claude/skills/create-product/templates.md) — exact file shapes for both parent types
 - [zerobias-org/vendor](https://github.com/zerobias-org/vendor) — vendor repo (parent dependency); sibling on the same gradle pipeline
 - [zerobias-org/suite](https://github.com/zerobias-org/suite) — suite repo (parent for suite-parented products)
